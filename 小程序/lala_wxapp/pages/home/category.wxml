@@ -1,0 +1,265 @@
+<tab-bar menufooter="{{menufooter}}" wx:if="{{menufooter&&menufooter.data}}"></tab-bar>
+<view class="container">
+    <swiper autoplay="true" class="slide" indicatorDots="true" interval="4000" wx:if="{{carousel&&carousel.slide_status==1&&carousel.slide}}">
+        <swiper-item bind:tap="onJsEvent" data-event-type="jsUrl" data-url="{{item.wxapp_link}}" wx:for="{{carousel.slide}}">
+            <image src="{{item.thumb}}"></image>
+        </swiper-item>
+    </swiper>
+    <view class="search-discount border-1px-b" wx:if="{{carousel&&carousel.nav_status==1&&carousel.nav}}">
+        <view bind:tap="onJsEvent" class="discount-item col-50 {{index%2==0?'border-1px-r':''}}" data-event-type="jsUrl" data-url="{{item.wxapp_link}}" wx:for="{{carousel.nav}}">
+            <view class="col-60">
+                <view>
+                    <view class="store-title">{{item.title}}</view>
+                    <view class="store-subtitle">{{item.sub_title}}</view>
+                </view>
+            </view>
+            <view class="col-40">
+                <view>
+                    <image src="{{item.thumb}}"></image>
+                </view>
+            </view>
+        </view>
+    </view>
+    <view class="cate-list-wrap border-1px-b" wx:if="{{carousel&&carousel.child}}">
+        <scroll-view class="cate-list" scrollX="{{true}}">
+            <view bind:tap="onChangeCategory" class="cate-item {{categorySelectedId==carousel.id?'active':''}}" data-id="{{carousel.id}}">
+                <view class="img-wrap">
+                    <image class="wh-100" src="{{carousel.thumb}}"></image>
+                </view>
+                <view class="cate-title ellipsis">全部</view>
+            </view>
+            <view bind:tap="onChangeCategory" class="cate-item {{categorySelectedId==item.id?'active':''}}" data-id="{{item.id}}" wx:for="{{carousel.child}}" wx:key="{{index}}">
+                <view class="img-wrap">
+                    <image class="wh-100" src="{{item.thumb}}"></image>
+                </view>
+                <view class="cate-title ellipsis">{{item.title}}</view>
+            </view>
+        </scroll-view>
+    </view>
+    <view class="diy-store-list">
+        <view class="diy-store-button-tab border-1px-b">
+            <view bind:tap="onMultiple" class="col-25 {{condition.order&&condition.order!='sailed'&&condition.order!='distance'?'active':''}}">{{filter_title}} <view class="icon icon-unfold"></view>
+            </view>
+            <view bind:tap="onOrderby" class="col-25 {{condition.order=='sailed'?'active':''}}" data-order="sailed" data-type="order">销量最高</view>
+            <view bind:tap="onOrderby" class="col-25 {{condition.order=='distance'?'active':''}}" data-order="distance" data-type="order">离我最近</view>
+            <view bind:tap="onFilter" class="col-25 {{condition.dis||condition.mode?'active':''}}">
+				筛选 <view class="icon icon-unfold"></view>
+                <text wx:if="{{condition.dis&&!condition.mode||condition.mode&&!condition.dis}}">1</text>
+                <text wx:if="{{condition.dis&&condition.mode}}">2</text>
+            </view>
+        </view>
+        <view class="diy-store-other-condition font-13 bg-default padding-15-lr padding-10-tb">
+            <van-row gutter="10">
+                <van-col span="6" wx:if="{{config&&config.is_has_svip==1}}">
+                    <view bind:tap="onOrderby" class="other-condition-item {{condition.dis=='svipRedpacket'?'active':''}}" data-order="svipRedpacket" data-type="order">会员红包</view>
+                </van-col>
+                <van-col span="6" wx:else>
+                    <view bind:tap="onOrderby" class="other-condition-item {{condition.dis=='mallNewMember'?'active':''}}" data-dis="mallNewMember" data-title="refresh" data-type="discounts">首单立减</view>
+                </van-col>
+                <van-col span="6">
+                    <view bind:tap="onOrderby" class="other-condition-item {{condition.dis=='deliveryFeeDiscount'?'active':''}}" data-dis="deliveryFeeDiscount" data-title="refresh" data-type="discounts">减配送费</view>
+                </van-col>
+                <van-col span="6" wx:if="{{config&&config.is_has_zhunshibao==1}}">
+                    <view bind:tap="onOrderby" class="other-condition-item {{condition.dis=='zhunshibao'?'active':''}}" data-dis="zhunshibao" data-title="refresh" data-type="discounts">赠准时宝</view>
+                </van-col>
+                <van-col span="6" wx:else>
+                    <view bind:tap="onOrderby" class="other-condition-item {{condition.dis=='couponCollect'?'active':''}}" data-dis="couponCollect" data-title="refresh" data-type="discounts">进店领券</view>
+                </van-col>
+                <van-col span="6">
+                    <view bind:tap="onOrderby" class="other-condition-item {{condition.dis=='discount'?'active':''}}" data-dis="discount" data-title="refresh" data-type="discounts">立减优惠</view>
+                </van-col>
+            </van-row>
+        </view>
+        <view class="diy-waimai-store-box">
+            <view class="waimai-store-item-list" wx:if="{{!store.empty}}">
+                <view class="waimai-store-item border-1px-b {{storeItem.is_rest==1?'disabled':''}}" wx:if="{{store.data.length>0}}" wx:for="{{store.data}}" wx:for-item="storeItem">
+                    <view class="mian-content-box ">
+                        <view class="content-left border-1px">
+                            <navigator class="item-image" url="{{storeItem.url}}">
+                                <view class="item-rest" wx:if="{{storeItem.is_rest==1}}">休息中</view>
+                                <image src="{{storeItem.logo}}"></image>
+                                <view class="store-label" wx:if="{{storeItem.label>0}}">
+                                    <view class="label" style="background:{{storeItem.label_color}}">{{storeItem.label_cn}}</view>
+                                </view>
+                            </navigator>
+                        </view>
+                        <view class="content-right">
+                            <navigator url="{{storeItem.url}}">
+                                <view class="item-name-wrap">
+                                    <view class="item-name">{{storeItem.title}}</view>
+                                </view>
+                                <view class="delivery-tip" wx:if="{{storeItem.rest_reserve_cn}}">
+                                    <text>{{storeItem.rest_reserve_cn}}</text>
+                                </view>
+                                <view class="item-score-time">
+                                    <view class="item-score-sale">
+                                        <view class="item-star-box">
+                                            <view class="stars" style="color:#ff2d4b; width:{{storeItem.score*20}}%">
+                                                <view class="icon icon-favor_fill_light"></view>
+                                                <view class="icon icon-favor_fill_light"></view>
+                                                <view class="icon icon-favor_fill_light"></view>
+                                                <view class="icon icon-favor_fill_light"></view>
+                                                <view class="icon icon-favor_fill_light"></view>
+                                            </view>
+                                            <view class="stars-bg">
+                                                <view class="icon icon-favor_light"></view>
+                                                <view class="icon icon-favor_light"></view>
+                                                <view class="icon icon-favor_light"></view>
+                                                <view class="icon icon-favor_light"></view>
+                                                <view class="icon icon-favor_light"></view>
+                                            </view>
+                                        </view>
+                                        <view class="item-sale">月售 {{storeItem.sailed}}</view>
+                                    </view>
+                                    <view class="time-distance">
+                                        <view class="avg_delivery_time">{{storeItem.delivery_time}}分钟</view>
+                                        <view class="line">|</view>
+                                        <view class="avg_distance">{{storeItem.distance}}km</view>
+                                    </view>
+                                </view>
+                                <view class="item-min-delivery">
+                                    <view class="item-min-delivery-left">
+                                        <view>起送价{{Lang.dollarSign}}{{storeItem.send_price}}</view>
+                                        <view class="line">|</view>
+                                        <view>配送费{{Lang.dollarSign}}{{storeItem.delivery_price}}</view>
+                                    </view>
+                                    <view class="item-min-delivery-right" wx:if="{{storeItem.delivery_title}}">{{storeItem.delivery_title}}</view>
+                                </view>
+                            </navigator>
+                            <view bind:tap="onToggleDiscount" class="discount-box" data-index="{{index}}" wx:if="{{storeItem.activity&&(storeItem.activity.num>0||storeItem.activity.labels_num>0)}}">
+                                <view class="toggle">
+                                    <view class="icon {{storeItem.activity.is_show_all?'icon-fold':'icon-unfold'}}" wx:if="{{theme.store.discount_style==1&&storeItem.activity.num>2||theme.store.discount_style==2&&storeItem.activity.labels_num>4}}"></view>
+                                </view>
+                                <block wx:if="{{theme.store.discount_style==1}}" wx:for="{{storeItem.activity.items}}">
+                                    <view class="single-line" wx:if="{{index<2||storeItem.activity.is_show_all&&index>=2}}">
+                                        <image class="discount-icon" src="/static/img/{{item.type}}_b.png"></image>
+                                        <view class="discount-text">{{item.title}}</view>
+                                    </view>
+                                </block>
+                                <view class="label-wrap {{storeItem.activity.is_show_all?'autoHeight':''}}" wx:if="{{theme.store.discount_style==2}}">
+                                    <text class="{{item.class}}" wx:if="{{index<4||storeItem.activity.is_show_all&&index>=4}}" wx:for="{{storeItem.activity.labels}}">{{item.title}}</text>
+                                </view>
+                            </view>
+                            <view class="hot-box" wx:if="{{storeItem.hot_goods_num>0&&theme.store.showhotgoods==1}}">
+                                <navigator url="../store/goodsDetail?sid={{storeItem.id}}&id={{item.id}}" wx:for="{{storeItem.hot_goods}}">
+                                    <view class="hot-box-item">
+                                        <view class="hot-t border-1px">
+                                            <image mode="widthFix" src="{{item.thumb}}"></image>
+                                            <view class="">{{item.discount}}折</view>
+                                        </view>
+                                        <view class="hot-b">
+                                            <view class="shop-name">{{item.title}}</view>
+                                            <view class="shop-price">
+                                                <view class="now-price">{{Lang.dollarSign}}{{item.price}}</view>
+                                            </view>
+                                        </view>
+                                    </view>
+                                </navigator>
+                            </view>
+                        </view>
+                    </view>
+                </view>
+            </view>
+            <view class="no-store" wx:else>
+                <image class="no-coupon" src="http://cos.lalawaimai.com/we7_wmall/wxapp/store_no_con.png"></image>
+                <view class="no-record">附近没有发现门店,我们正在努力覆盖中</view>
+                <navigator class="nodata-target" hoverClass="none" url="../home/location">
+                    <view class="target-btn">切换地址</view>
+                </navigator>
+            </view>
+        </view>
+    </view>
+    <block wx:if="{{!store.empty}}">
+        <view class="wui-loadmore wui-loadmore-nomore" wx:if="{{store.loaded==1}}">
+            <view class="wui-loadmore-tips">我是有底线的</view>
+            <view class="wui-loadmore-line"></view>
+        </view>
+        <view class="wui-loadmore" wx:else>
+            <view class="wui-loading"></view>
+            <view class="wui-loadmore-tips">正在加载中</view>
+        </view>
+    </block>
+    <view class="dialog {{multiple?'dialog-show':''}}">
+        <view bind:tap="onMultiple" class="dialog-mask"></view>
+        <view class="dialog-container">
+            <view class="button-tab border-1px-b">
+                <view bind:tap="onMultiple" class="col-25 {{condition.order&&condition.order!='sailed'&&condition.order!='distance'?'active':''}}">{{filter_title}}</view>
+                <view bind:tap="onOrderby" class="col-25 {{condition.order=='sailed'?'active':''}}" data-order="sailed" data-type="order">销量最高</view>
+                <view bind:tap="onOrderby" class="col-25 {{condition.order=='distance'?'active':''}}" data-order="distance" data-type="order">离我最近</view>
+                <view bind:tap="onFilter" class="col-25 {{condition.dis||condition.mode?'active':''}}">
+					筛选<text wx:if="{{condition.dis&&!condition.mode||condition.mode&&!condition.dis}}">1</text>
+                    <text wx:if="{{condition.dis&&condition.mode}}">2</text>
+                </view>
+            </view>
+            <view class="multiple">
+                <scroll-view scrollY="true">
+                    <view class="list">
+                        <view bind:tap="onOrderby" class="wui-cell {{condition.order==item.key?'active':''}}" data-order="{{item.key}}" data-title="{{item.title}}" data-type="order" wx:for="{{orderbys}}">
+                            <view class="wui-cell-bd">
+                                <view class="icon icon-{{item.icon}}"></view>{{item.title}}
+								</view>
+                            <view class="weui-cell__ft weui-cell__ft_in-radio">
+                                <icon class="weui-icon-radion" size="16" type="success_no_circle"></icon>
+                            </view>
+                        </view>
+                    </view>
+                </scroll-view>
+            </view>
+        </view>
+    </view>
+    <view class="dialog {{filter?'dialog-show':''}}">
+        <view bind:tap="onFilter" class="dialog-mask"></view>
+        <view class="dialog-container">
+            <view class="button-tab border-1px-b">
+                <view bind:tap="onMultiple" class="col-25 {{condition.order&&condition.order!='sailed'&&condition.order!='distance'?'active':''}}">{{filter_title}}</view>
+                <view bind:tap="onOrderby" class="col-25 {{condition.order=='sailed'?'active':''}}" data-order="sailed" data-type="order">销量最高</view>
+                <view bind:tap="onOrderby" class="col-25 {{condition.order=='distance'?'active':''}}" data-order="distance" data-type="order">离我最近</view>
+                <view bind:tap="onFilter" class="col-25 {{condition.dis||condition.mode?'active':''}}">
+					筛选<text wx:if="{{condition.dis&&!condition.mode||condition.mode&&!condition.dis}}">1</text>
+                    <text wx:if="{{condition.dis&&condition.mode}}">2</text>
+                </view>
+            </view>
+            <view class="filter">
+                <scroll-view scrollY="true">
+                    <view class="list-title">
+                        <view class="line"></view>
+						配送服务
+					</view>
+                    <view class="new-search-group">
+                        <view class="new-search-item">
+                            <view bind:tap="onOrderby" class="info {{condition.mode==2?'active':''}}" data-mode="2" data-type="mode">
+                                <view class="icon icon-waimai"></view>
+								{{config.delivery_title}}
+							</view>
+                        </view>
+                        <view class="new-search-item">
+                            <view bind:tap="onOrderby" class="info {{condition.mode==1?'active':''}}" data-mode="1" data-type="mode">
+                                <view class="icon icon-waimai"></view>
+								商家自送
+							</view>
+                        </view>
+                    </view>
+                    <view class="list-title">
+                        <view class="line"></view>
+						优惠活动(单选)
+					</view>
+                    <view class="new-search-group">
+                        <view class="new-search-item" wx:for="{{discounts}}">
+                            <view bind:tap="onOrderby" class="info {{condition.dis==item.key?'active':''}}" data-dis="{{item.key}}" data-type="discounts">
+                                <image alt="" src="/static/img/{{item.key}}_b.png"></image>
+								{{item.title}}
+							</view>
+                        </view>
+                    </view>
+                </scroll-view>
+            </view>
+            <view class="search-btn border-1px-t">
+                <view bind:tap="onOrderby" class="search-btn-left" data-type="clear">清除筛选</view>
+                <view bind:tap="onOrderby" class="search-btn-right" data-type="finish">完成<text wx:if="{{condition.dis&&!condition.mode||condition.mode&&!condition.dis}}">1</text>
+                    <text wx:if="{{condition.dis&&condition.mode}}">2</text>
+                </view>
+            </view>
+        </view>
+    </view>
+</view>
+<include src="../public/footer.wxml"></include>

@@ -1,0 +1,101 @@
+page {
+    background: #f4f4f4;
+}
+
+.location {
+    text-align: center;
+    padding: 10px;
+    background: #fff;
+    margin-top: 10px;
+    font-size: 15px;
+}
+
+.item-title {
+    padding: 10px 0 10px 15px;
+    font-size: 14px;
+    color: #B2B2B2;
+}
+
+.item-title .icon {
+    margin-right: 5px;
+}
+
+.item {
+    background: #fff;
+}
+
+.item .wui-cell::after {
+    right: 0;
+}
+
+.item .wui-cell .detail {
+    margin-top: 5px;
+    color: #B2B2B2;
+}
+
+.item .wui-cell .detail>view {
+    display: inline-block;
+    float: left;
+}
+
+.item .wui-cell .detail .name {
+    margin-right: 10px;
+}
+
+.item .wui-cell .detail .sex {
+    margin-right: 15px;
+}
+
+.item .wui-cell:last-child::after {
+    border-top: 0;
+}
+
+.item.first .wui-cell {
+    padding: 10px 15px;
+}
+
+.container .content .address-list {
+    margin-top: 15px;
+    background-color: #fff;
+}
+
+.container .content .address-list .address-item {
+    margin-left: 15px;
+    padding: 5px 0;
+}
+
+.container .content .address-list .address-item .top {
+    position: relative;
+}
+
+.container .content .address-list .address-item .top view {
+    display: inline-block;
+}
+
+.container .content .address-list .address-item .top .address {
+    font-size: 14px;
+}
+
+.container .content .address-list .address-item .top .distance {
+    font-size: 12px;
+    color: #9E9E9E;
+    position: absolute;
+    top: 50%;
+    right: 15px;
+    transform: translate(0,-50%);
+}
+
+.container .content .address-list .address-item .bottom {
+    position: relative;
+}
+
+.container .content .address-list .address-item .bottom .detail {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    display: inline-block;
+    max-width: 90%;
+    font-size: 12px;
+    color: #9E9E9E;
+    margin-left: -1px;
+}

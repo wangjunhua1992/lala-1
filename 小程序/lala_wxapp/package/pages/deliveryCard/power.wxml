@@ -1,0 +1,38 @@
+<view class="page-card">
+    <view class="topImg">
+        <image src="http://cos.lalawaimai.com/we7_wmall/wxapp/card-privilege.jpg"></image>
+    </view>
+    <view class="power" wx:if="{{diytips.length>0}}">
+        <view class="ptitle">特权说明</view>
+        <view class="pmain">
+            <view class="pmainli ellipsis" wx:for="{{diytips}}">
+				{{item.text}}
+			</view>
+        </view>
+    </view>
+    <view class="power" wx:else>
+        <view class="ptitle">特权说明</view>
+        <view class="pmain">
+            <view class="pmainli">
+				仅支持平台配送商户使用
+			</view>
+            <view class="pmainli">
+				下单配送费直接扣除
+			</view>
+            <view class="pmainli" wx:if="{{member.setmeal_day_free_limit>0}}">
+				每日仅限{{member.setmeal_day_free_limit}}单享受特权
+			</view>
+            <view class="pmainli" wx:else>
+				每日不限次享受特权
+			</view>
+            <view class="pmainli" wx:if="{{member.setmeal_deliveryfee_free_limit>0}}">
+				每单最高减免配送费{{member.setmeal_deliveryfee_free_limit}}{{Lang.dollarSignCn}}
+			</view>
+            <view class="pmainli" wx:else>
+				免费送金额不设限制
+			</view>
+        </view>
+    </view>
+    <view bind:tap="onToHome" class="shop">现在去购物</view>
+</view>
+<include src="../../../pages/public/footer.wxml"></include>

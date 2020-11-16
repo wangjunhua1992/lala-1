@@ -1,0 +1,353 @@
+page {
+    background: #f4f4f4;
+    overflow: hidden;
+    height: 100%;
+}
+
+.container {
+    height: 100%;
+    overflow: hidden;
+}
+
+.container .content {
+    display: -webkit-flex;
+    box-sizing: border-box;
+    height: 100%;
+    padding-bottom: 50px;
+}
+
+.container .main-scroll {
+    height: 100%;
+}
+
+.container .slide {
+    height: 414px;
+    margin: 0 auto;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.container .slide .slide-item {
+    height: 100%;
+}
+
+.container .slide .slide-item image {
+    width: 100%;
+    height: 100%;
+}
+
+.container .goods-thumb {
+    font-size: 0px;
+    padding: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.container .cell-group {
+    background-color: #fff;
+    line-height: 1.4;
+    font-size: 17px;
+    overflow: hidden;
+    position: relative;
+    display: block;
+}
+
+.container .cell-group .cell {
+    position: relative;
+    padding: 16px 13px 14px;
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    transition-duration: 300ms;
+    transition-property: background-color;
+    line-height: 19px;
+}
+
+.container .cell::before {
+    content: "";
+    position: absolute;
+    left: 11px;
+    right: 11px;
+    bottom: -1px;
+    height: 1px;
+    border-top: 1px solid #ebebeb;
+    color: #d9d9d9;
+    transform-origin: 0 0;
+    transform: scaleY(0.5);
+}
+
+.container .cell .cell-text {
+    color: #7c7c7c;
+    font-size: 13px;
+    -webkit-box-flex: 1;
+    flex: 1;
+    line-height: 15px;
+}
+
+.container .cell .name label {
+    padding: 1px 2px;
+    background: #f24749;
+    color: #fff;
+    font-size: 15px;
+    margin-right: 4px;
+}
+
+.container .cell.cell-credit {
+    padding: 4px 11px;
+}
+
+.container .cell.cell-credit::before {
+    border: none;
+}
+
+.container .cell-text .price {
+    text-align: left;
+    color: #f24749;
+    font-size: 14px;
+}
+
+.container .cell-text .price .big {
+    font-weight: bold;
+    font-size: 17px;
+    text-align: left;
+    margin-right: 3px;
+}
+
+.container .cell-text .price .text {
+    font-weight: bold;
+    font-size: 13px;
+    text-align: center;
+}
+
+.container .cell-text .price .old {
+    text-align: right;
+    text-decoration: line-through;
+    color: #999;
+    margin-left: 5px;
+}
+
+.container .wui-tab {
+    margin-top: 11px;
+}
+
+.container .wui-tab .wui-tab-bd {
+    border: none;
+}
+
+.container .detail-block {
+    height: auto;
+    min-height: 44px;
+    overflow: hidden;
+    background: #fff;
+    position: relative;
+}
+
+.container .detail-block .tab-basic {
+    display: none;
+    font-size: 15px;
+    color: #666;
+    padding: 11px;
+    box-sizing: border-box;
+    width: 100%;
+}
+
+.container .detail-block .tab-basic.show {
+    display: block;
+}
+
+.container .detail-block .tab-records {
+    display: none;
+}
+
+.container .detail-block .tab-records.show {
+    display: block;
+}
+
+.container .loglist .list {
+    position: relative;
+    display: flex;
+    padding: 8px 13px;
+    transition-duration: 300ms;
+    -webkit-box-align: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.container .list .list-media {
+    display: flex;
+    flex-shrink: 0;
+    -webkit-box-lines: single;
+    flex-wrap: nowrap;
+    box-sizing: border-box;
+    -webkit-box-align: center;
+    align-items: center;
+    margin-right: 13px;
+    position: relative;
+    color: #aaa;
+}
+
+.container .list .list-media image {
+    height: 44px;
+    width: 44px;
+    border-radius: 100%;
+}
+
+.container .list .list-inner {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    box-sizing: border-box;
+    -webkit-box-flex: 1;
+    flex: 1;
+    display: block;
+}
+
+.container .list .list-inner .title {
+    position: relative;
+    color: #000;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    height: 22px;
+    line-height: 22px;
+    font-size: 15px;
+}
+
+.container .list .list-media.text {
+    font-size: 13px;
+    color: #666;
+}
+
+.container .detail-block .more {
+    text-align: center;
+    font-size: 15px;
+    color: #666;
+    padding-bottom: 11px;
+}
+
+.container .detail-block .more text {
+    color: #f60;
+}
+
+.container .detail-block .nomore text {
+    color: #ccc;
+}
+
+.container .bottom-fixed.disabled {
+    background: #ddd;
+    color: #fff;
+}
+
+.container .list-group {
+    margin-top: 11px;
+    background: #fff;
+    position: relative;
+}
+
+.container .list-group .list {
+    position: relative;
+    display: flex;
+    padding: 8px 13px;
+    transition-duration: 300ms;
+    -webkit-box-align: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.container .list-group .group-list-inner {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    box-sizing: border-box;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-flex: 1;
+    flex: 1;
+    display: block;
+}
+
+.container .list-group .list-inner {
+    font-size: 17px;
+    position: relative;
+    color: #000;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    height: 22px;
+    line-height: 22px;
+}
+
+.container .list-group .group-list-inner .title {
+    font-size: 17px;
+}
+
+.container .list-group .text {
+    position: relative;
+    font-size: 14px;
+    color: #666;
+    height: auto;
+    display: flex;
+    -webkit-box-align: start;
+    align-items: center;
+    padding-top: 8px;
+}
+
+.container .list-group .group-list-inner .text .item {
+    height: auto;
+    width: 33%;
+    text-align: center;
+    display: inline-block;
+}
+
+.container .list-group .group-list-inner .text .item>view {
+    padding: 4px;
+    color: #666;
+}
+
+.container .recommend .item image {
+    width: 88px;
+    height: 88px;
+    vertical-align: middle;
+}
+
+.container .recommend .item .title {
+    color: #666;
+    font-size: 14px;
+    height: 19px;
+    line-height: 19px;
+    position: relative;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+.container .recommend .item .price {
+    color: #f24749;
+    font-size: 12px;
+}
+
+.container .start {
+    background: #f24749;
+    color: #fff;
+}
+
+.container .tips {
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 10000;
+    width: 100%;
+    height: 30px;
+    background-color: rgba(0,0,0,0.3);
+    line-height: 30px;
+    font-size: 16px;
+    color: #ccc;
+}
+
+.container .tips .icon {
+    font-size: 16px;
+    margin: 0px 5px 0px 10px;
+}

@@ -1,0 +1,62 @@
+page {
+    background-color: #f5f5f5;
+    line-height: 1;
+    font-size: 14px;
+}
+
+.member-account .account-title {
+    padding: 15px 30px;
+}
+
+.member-account .account-title .account-group {
+    width: 100%;
+    height: 30px;
+    border: 1px solid #FF2D4B;
+    border-radius: 30px;
+    background-color: #fff;
+}
+
+.member-account .account-title .account-group .bank {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50%;
+    height: 100%;
+    color: #FF2D4B;
+    font-size: 14px;
+    border-radius: 30px 0px 0px 30px;
+}
+
+.member-account .account-title .account-group .alipay {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50%;
+    height: 100%;
+    color: #FF2D4B;
+    font-size: 14px;
+    border-radius: 0px 30px 30px 0px;
+    border-left: 1px solid #FF2D4B;
+}
+
+.member-account .account-title .account-group .bank.active,.member-account .account-title .account-group .alipay.active {
+    color: #fff;
+    background-color: #FF2D4B;
+}
+
+.member-account button {
+    display: inline-block;
+    width: 100%;
+    line-height: normal;
+    border-radius: 3px;
+    padding: 11px 0;
+}
+
+.member-account button.btn-danger {
+    color: #fff!important;
+    background-color: #ff2d4b!important;
+}
+
+.member-account button.btn-disabled {
+    background-color: #ccc!important;
+}

@@ -1,0 +1,204 @@
+<view class="seckill-detail">
+    <view class="goods-info padding-15-lr padding-15-t bg-default">
+        <swiper circular="{{true}}" class="thumbs" wx:if="{{goods.thumbs&&goods.thumbs.length>0}}">
+            <swiper-item wx:for="{{goods.thumbs}}" wx:key="{{index}}">
+                <image class="wh-100" src="{{item}}"></image>
+            </swiper-item>
+        </swiper>
+        <view class="thumb" wx:else>
+            <image mode="widthFix" src="{{goods.thumb}}"></image>
+        </view>
+        <view class="title">【限时抢购】{{goods.store.title}} {{goods.name}}</view>
+        <view class="border-1px-b flex-lr padding-15-b">
+            <view class="flex">
+                <view class="c-danger font-16 font-bold">{{Lang.dollarSign}}{{goods.price}}</view>
+                <view class="c-gray font-12 line-through margin-5-l">{{Lang.dollarSign}}{{goods.oldprice}}</view>
+            </view>
+            <text class="c-gray font-12">已售{{goods.sailed}}份</text>
+            <view class="flex">
+                <text class="c-gray font-12 margin-5-r">距结束</text>
+                <count-down endtime="{{goods.endtime_cn}}" wx:if="{{goods&&goods.endtime}}"></count-down>
+            </view>
+        </view>
+        <view class="padding-15-tb flex-lr font-12 c-gray">
+            <view class="col-33 border-1px-r">
+                <text class="icon icon-browse"></text>
+                <span>{{goods.total_looknum}}人浏览</span>
+            </view>
+            <view class="col-33 text-center border-1px-r">
+                <text class="icon icon-share"></text>
+                <text>{{goods.total_sharenum}}人分享</text>
+            </view>
+            <view class="col-33 text-right">
+                <text class="icon icon-friend font-15"></text>
+                <text>{{goods.sailed}}人参与</text>
+            </view>
+        </view>
+    </view>
+    <view class="margin-10-t padding-15-l bg-default">
+        <view class="flex-lr padding-15-tb padding-15-r font-14 border-1px-b">
+            <view class="font-14">抢购流程</view>
+        </view>
+        <view class="padding-15-tb padding-15-r flex-lr">
+            <view class="step flex">
+                <text class="step-number">1</text>
+                <view class="c-gray font-12">
+                    <view class="margin-5-b">选择商品</view>
+                    <view>点击立即购买</view>
+                </view>
+            </view>
+            <view class="step flex">
+                <text class="step-number">2</text>
+                <view class="c-gray font-12">
+                    <view class="margin-5-b">付款完成</view>
+                    <view>在订单页选择使用</view>
+                </view>
+            </view>
+            <view class="step flex">
+                <textg class="step-number">3</textg>
+                <view class="c-gray font-12">
+                    <view class="margin-5-b">出示核销码</view>
+                    <view>请工作人员验证</view>
+                </view>
+            </view>
+        </view>
+    </view>
+    <view class="margin-10-t padding-15-l bg-default">
+        <view class="flex-lr padding-15-tb padding-15-r font-14 border-1px-b">适用门店</view>
+        <view class="padding-15-tb padding-15-r flex-lr">
+            <view class="font-14 store-info">
+                <view class="margin-10-b w-100 ellipsis">{{goods.store.title}}</view>
+                <view class="flex c-gray w-100">
+                    <text class="icon icon-location margin-5-r font-15"></text>
+                    <view bind:tap="onJsEvent" class="ellipsis" data-address="{{goods.store.address}}" data-event-type="jsLocation" data-lat="{{goods.store.location_x}}" data-lng="{{goods.store.location_y}}" data-name="{{goods.store.title}}">{{goods.store.address}}</view>
+                </view>
+            </view>
+            <text bind:tap="onJsEvent" class="icon icon-telephone icon-telephone-circle" data-event-type="jsPhone" data-phoneNumber="{{goods.store.telephone}}"></text>
+        </view>
+    </view>
+    <view class="margin-10-t padding-15-l bg-default">
+        <view class="flex-lr padding-15-tb padding-15-r font-14 border-1px-b">
+            <view class="font-14">购买须知</view>
+        </view>
+        <view class="padding-15-tb padding-15-r richtext">
+            <template is="wxParse" data="{{wxParseData:buy_note.nodes}}"></template>
+        </view>
+    </view>
+    <view class="margin-10-t padding-15-l bg-default">
+        <view class="flex-lr padding-15-tb padding-15-r font-14 border-1px-b">
+            <view class="font-14">商品详情</view>
+        </view>
+        <view class="padding-15-tb padding-15-r richtext">
+            <template is="wxParse" data="{{wxParseData:description.nodes}}"></template>
+        </view>
+    </view>
+    <view class="comment">
+        <view class="flex-lr padding-15-tb padding-15-r border-1px-b">用户评价</view>
+        <block wx:if="{{!comment.empty}}">
+            <view class="padding-15-tb padding-15-r {{index<comment.data.length-1?'border-1px-b':''}}" wx:for="{{comment.data}}" wx:key="{{item.id}}">
+                <view class="consumer-info flex-lr">
+                    <view class="avatar">
+                        <image src="{{item.avatar}}"></image>
+                    </view>
+                    <view class="basic flex-lr">
+                        <view>
+                            <view class="font-14">{{item.nickname}}</view>
+                            <view class="c-gray font-12 margin-5-t">{{item.addtime_cn}}</view>
+                        </view>
+                        <view class="item-star-box">
+                            <view class="stars" style="color:#ff2d4b; width:{{item.goods_quality*20}}%">
+                                <view class="icon icon-favor_fill_light"></view>
+                                <view class="icon icon-favor_fill_light"></view>
+                                <view class="icon icon-favor_fill_light"></view>
+                                <view class="icon icon-favor_fill_light"></view>
+                                <view class="icon icon-favor_fill_light"></view>
+                                <view class="icon icon-favor_fill_light"></view>
+                            </view>
+                            <view class="stars-bg">
+                                <view class="icon icon-favor_light"></view>
+                                <view class="icon icon-favor_light"></view>
+                                <view class="icon icon-favor_light"></view>
+                                <view class="icon icon-favor_light"></view>
+                                <view class="icon icon-favor_light"></view>
+                            </view>
+                        </view>
+                    </view>
+                </view>
+                <view class="comment-item">
+                    <view class="text">{{item.note}}</view>
+                    <view class="comment-tags margin-5-t" wx:if="{{item.tag_goods&&item.tag_goods.length>0}}">
+                        <view class="icon icon-tag margin-5-r font-14"></view>
+                        <view class="tags-wrap font-13 c-gray">
+                            <view class="tag-item margin-5-r" wx:for="{{item.tag_goods}}" wx:for-index="tagIndex" wx:for-item="tag" wx:key="{{tagIndex}}">{{tag.title}}</view>
+                        </view>
+                    </view>
+                    <view class="thumbs margin-10-t" wx:if="{{item.thumbs.length>0}}">
+                        <view class="col-25" wx:if="{{thumbIndex<4}}" wx:for="{{item.thumbs}}" wx:for-index="thumbIndex" wx:for-item="thumb" wx:key="thumbIndex">
+                            <image bind:tap="onImgPreview" data-current="{{thumb}}" data-urls="{{item.thumbs}}" src="{{thumb}}"></image>
+                        </view>
+                        <view class="thumbs-num" wx:if="{{item.thumbs.length>4}}">共{{item.thumbs.length}}张</view>
+                    </view>
+                </view>
+            </view>
+            <view bind:tap="onGetComment" class="padding-15-tb text-center border-1px-t" wx:if="{{!comment.loaded}}">查看更多评价</view>
+            <view class="padding-15-tb text-center border-1px-t c-gray" wx:else>已加载全部评价</view>
+        </block>
+        <view class="no-comment" wx:else>暂时没有商品评价</view>
+    </view>
+    <view class="margin-10-t bg-default" vIf="recommend.length > 0">
+        <view class="padding-15-l">
+            <view bind:tap="onJsEvent" class="flex-lr padding-15-tb padding-15-r font-14 border-1px-b" data-event-type="jsUrl" data-url="gohome/pages/seckill/index">
+                <view class="font-14">更多优惠商品</view>
+                <text class="icon icon-right c-gray font-14"></text>
+            </view>
+        </view>
+        <view class="activity-list">
+            <view bind:tap="onJsEvent" class="activity-item" data-event-type="jsUrl" data-url="gohome/pages/seckill/detail?id={{item.id}}" wx:for="{{recommend}}" wx:key="{{index}}">
+                <view class="item-inner">
+                    <view class="thumb">
+                        <image alt="" class="wh-100" src="{{item.thumb}}"></image>
+                    </view>
+                    <view class="goods-title">{{item.name}}</view>
+                    <view class="flex-lr">
+                        <view class="flex">
+                            <text class="c-danger font-500 font-15 margin-5-r">{{Lang.dollarSign}}{{item.price}}</text>
+                            <view class="c-gray line-through font-12">{{Lang.dollarSign}}{{item.oldprice}}</view>
+                        </view>
+                        <view class="c-gray font-12">已售{{item.falesailed_total}}份</view>
+                    </view>
+                </view>
+            </view>
+        </view>
+    </view>
+</view>
+<view class="right-btn">
+    <view bind:tap="onJsEvent" class="btn-item" data-event-type="jsUrl" data-url="gohome/pages/poster/index?goods_id={{goods.id}}&type=seckill">
+        <text>生成</text>
+        <text>海报</text>
+    </view>
+</view>
+<view class="goods-action border-1px-t">
+    <view bind:tap="onJsEvent" class="mini-btn border-1px-r" data-event-type="jsUrl" data-url="gohome/pages/haodian/detail?sid={{goods.store.id}}">
+        <view class="icon icon-shop"></view>
+        <view>店铺</view>
+    </view>
+    <view bind:tap="onToggleFavor" class="mini-btn border-1px-r {{goods.is_favor?'is_favor':''}}">
+        <view class="icon {{goods.is_favor?'icon-favor_fill_light':'icon-favor1'}}"></view>
+        <view>{{goods.is_favor?'已收藏':'收藏'}}</view>
+    </view>
+    <view bind:tap="onToggleZhezhao" class="mini-btn">
+        <view class="icon icon-share"></view>
+        <view>分享</view>
+    </view>
+    <block wx:if="{{goods.status==1}}">
+        <view bind:tap="onJsEvent" class="big-btn" data-event-type="jsUrl" data-url="gohome/pages/seckill/order/create?goods_id={{goods.id}}" wx:if="{{goods.total!=0}}">立即抢购</view>
+        <view class="big-btn btn-disabled" wx:else>商品已抢光</view>
+    </block>
+    <view class="big-btn btn-disabled" wx:elif="{{goods.status==2}}">活动未开始</view>
+    <view class="big-btn btn-disabled" wx:elif="{{goods.status==3}}">活动已结束</view>
+</view>
+<view bind:tap="onToggleZhezhao" class="share-zhezhao" wx:if="{{zhezhaoShow}}">
+    <image mode="widthFix" src="../../static/img/share-layer.png"></image>
+</view>
+<danmu danmus="{{danmu}}" wx:if="{{danmu}}"></danmu>
+<include src="../../../pages/public/footer.wxml"></include>

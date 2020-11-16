@@ -1,0 +1,61 @@
+<view class="storebd-index">
+    <view class="content">
+        <view class="storebd-title">
+            <view class="storebd-member">
+                <view class="member-img">
+                    <image alt="" src="{{storebd_user.avatar}}"></image>
+                </view>
+                <view>推广员：{{storebd_user.title}}</view>
+            </view>
+        </view>
+        <view class="user-getcash flex">
+            <view class="getcash-item">
+                <view>成功提现佣金</view>
+                <view class="price">{{Lang.dollarSign}} {{commission.getcash_success}}</view>
+            </view>
+            <view class="getcash-item">
+                <view>可提现佣金</view>
+                <view class="price">{{Lang.dollarSign}} {{storebd_user.credit2}}</view>
+            </view>
+        </view>
+        <view class="block-nav">
+            <view class="nav-title">我的佣金</view>
+            <view class="col-3">
+                <view bind:tap="onJsEvent" class="icon-col" data-event-type="jsUrl" data-url="package/pages/storebd/commission">
+                    <view class="icon-img">
+                        <text class="icon icon-refund"></text>
+                    </view>
+                    <view class="text-icon">推广佣金</view>
+                    <view class="icon-tips">{{commission.total}}{{Lang.dollarSignCn}}</view>
+                </view>
+                <view bind:tap="onJsEvent" class="icon-col" data-event-type="jsUrl" data-url="package/pages/storebd/current">
+                    <view class="icon-img">
+                        <text class="icon icon-list"></text>
+                    </view>
+                    <view class="text-icon">佣金明细</view>
+                    <view class="icon-tips">{{current}}笔</view>
+                </view>
+                <view bind:tap="onJsEvent" class="icon-col" data-event-type="jsUrl" data-url="package/pages/storebd/getcashlog">
+                    <view class="icon-img">
+                        <text class="icon icon-sort"></text>
+                    </view>
+                    <view class="text-icon">提现明细</view>
+                    <view class="icon-tips">{{getcash}}笔</view>
+                </view>
+            </view>
+        </view>
+        <view class="block-nav">
+            <view class="nav-title">其他</view>
+            <view class="col-3">
+                <view bind:tap="onJsEvent" class="icon-col" data-event-type="jsUrl" data-url="package/pages/storebd/store">
+                    <view class="icon-img">
+                        <text class="icon icon-store"></text>
+                    </view>
+                    <view class="text-icon">推广店铺</view>
+                    <view class="icon-tips">{{stores}}家</view>
+                </view>
+            </view>
+        </view>
+    </view>
+</view>
+<include src="../../../pages/public/footer.wxml"></include>

@@ -1,0 +1,256 @@
+<tab-bar menufooter="{{menufooter}}" wx:if="{{menufooter&&menufooter.data}}"></tab-bar>
+<view class="container">
+    <view class="content">
+        <view class="order-status">
+            <view bindtap="chooseStatus" class="status">
+				订单{{order.order_status}} <view class="icon icon-xiangyou1"></view>
+            </view>
+            <view class="order-btn" wx:if="{{order.status<3||order.refund_status>0}}">
+                <view bind:tap="onJsEvent" class="btn" data-event-type="jsPay" data-order-id="{{order.id}}" data-order-type="errander" data-success-url="detail?id={{order.id}}" wx:if="{{order.is_pay==0&&order.status!=3&&order.status!=4}}">立即支付</view>
+                <block wx:if="{{order.status==2}}">
+                    <view bind:tap="onJsEvent" class="btn" data-confirm="确定已收到商品吗?" data-event-type="jsPost" data-href="errander/order/end?id={{order.id}}" data-success-url="detail?id={{order.id}}">确认收货</view>
+                    <view bind:tap="onCallDeliveryer" class="btn" data-type="deliveryer">联系骑士</view>
+                </block>
+                <view bind:tap="onJsEvent" class="btn" data-confirm="确定取消订单吗?" data-event-type="jsPost" data-href="errander/order/cancel?id={{order.id}}" data-success-url="detail?id={{order.id}}" wx:if="{{order.status==1}}">取消订单</view>
+            </view>
+            <view class="divide" wx:if="{{order.deliveryer_id>0}}">
+                <view class="divide-line"></view>
+            </view>
+            <view class="deliveryer-container clearfix" wx:if="{{order.deliveryer_id>0}}">
+                <view class="avatar">
+                    <image src="{{deliveryer.avatar}}"></image>
+                </view>
+                <view class="deliveryer-info">
+                    <view class="name">
+						{{deliveryer.title}}
+						<view class="mobile">{{deliveryer.mobile}}</view>
+                    </view>
+                </view>
+                <view class="operate">
+                    <view bind:tap="onCallDeliveryer" class="tel" data-type="deliveryer">
+                        <view class="icon icon-telephone icon-telephone-circle"></view>
+                    </view>
+                    <view bind:tap="onJsEvent" class="location" data-event-type="jsUrl" data-url="pages/paotui/map?id={{order.id}}" wx:if="{{show_location}}">
+                        <view class="icon icon-zuobiao"></view>
+                    </view>
+                </view>
+            </view>
+        </view>
+        <view class="shop-content">
+            <navigator class="store-name clearfix" url="../paotui/diy?id={{order.category.id}}">
+                <view class="name">{{order.category.name}}</view>
+                <view class="more">
+                    <view class="icon icon-xiangyou1"></view>
+                </view>
+            </navigator>
+            <view class="order-region-entries">
+                <view class="order-region-entry" wx:if="{{order.order_type=='buy'}}">
+                    <view class="order-entry-price">与配送员结算</view>
+                    <view class="order-entry-name">商品费用</view>
+                </view>
+                <view class="order-region-entry">
+                    <view class="order-entry-price">{{Lang.dollarSign}}{{order.delivery_fee}}</view>
+                    <view class="order-entry-name">配送费</view>
+                </view>
+                <view class="order-region-entry">
+                    <view class="order-entry-price">{{Lang.dollarSign}}{{order.delivery_tips}}</view>
+                    <view class="order-entry-name">小费</view>
+                </view>
+            </view>
+            <view class="divide">
+                <view class="divide-line"></view>
+            </view>
+            <view class="discount-box" wx:if="{{order.discount_fee>0}}">
+                <view class="discount">
+                    <view class="discount-name">
+                        <view class="tags tags-redPacket"></view>平台红包优惠
+					</view>
+                    <view class="discount-price">-{{Lang.dollarSign}}{{order.discount_fee}}</view>
+                </view>
+            </view>
+            <view class="divide" wx:if="{{order.discount_fee>0}}">
+                <view class="divide-line"></view>
+            </view>
+            <view class="price clearfix">
+                <view class="total">
+					总计 <view>{{Lang.dollarSign}}{{order.final_fee}}</view>
+                </view>
+            </view>
+        </view>
+        <view class="dispatching" wx:if="{{order.order_type=='buy'}}">
+            <view class="time clearfix">
+                <view class="text">订单类型</view>
+                <view class="main">{{order.order_type_cn}}</view>
+            </view>
+            <view class="address clearfix">
+                <view class="text">购买商品</view>
+                <view class="main">{{order.goods_name}}</view>
+            </view>
+            <view class="address clearfix">
+                <view class="text">购买地址</view>
+                <view class="main">{{order.buy_address}}</view>
+            </view>
+        </view>
+        <view class="dispatching" wx:if="{{order.order_type!='buy'}}">
+            <view class="time clearfix">
+                <view class="text">订单类型</view>
+                <view class="main">{{order.order_type_cn}}</view>
+            </view>
+            <view class="address clearfix">
+                <view class="text">物品信息</view>
+                <view class="main">{{order.goods_name}}</view>
+            </view>
+            <view class="address clearfix">
+                <view class="text">物品价值</view>
+                <view class="main">{{order.goods_price}}{{Lang.dollarSignCn}}</view>
+            </view>
+            <view class="address clearfix">
+                <view class="text">物品重量</view>
+                <view class="main">{{order.goods_weight}}kg</view>
+            </view>
+            <view class="address clearfix">
+                <view class="text">取货地址</view>
+                <view class="main">{{order.buy_address}}</view>
+            </view>
+            <view class="address clearfix">
+                <view class="text">联系人</view>
+                <view class="main">{{order.buy_username}}</view>
+            </view>
+            <view class="address clearfix">
+                <view bind:tap="onJsEvent" class="main" data-event-type="jsPhone" data-phoneNumber="{{order.buy_mobile}}">
+                    <view class="icon icon-telephone"></view>
+					{{order.buy_mobile}}
+				</view>
+            </view>
+        </view>
+        <view class="dispatching">
+            <view class="time clearfix">
+                <view class="text">收货地址</view>
+                <view class="main">{{order.accept_address}}</view>
+            </view>
+            <view class="address clearfix">
+                <view class="text">联系人</view>
+                <view class="main">{{order.accept_username}}</view>
+            </view>
+        </view>
+        <view class="dispatching">
+            <view class="{{order.deliveryer_id>0?'address':'time'}} clearfix">
+                <view class="text">配送时间</view>
+                <view class="main">{{order.delivery_time}}</view>
+            </view>
+            <view class="address clearfix">
+                <view class="text">订单号</view>
+                <view class="main">{{order.order_sn}}</view>
+            </view>
+            <view class="address clearfix">
+                <view class="text">收货码</view>
+                <view class="main">{{order.code}}</view>
+            </view>
+            <view class="address clearfix">
+                <view class="text">支付方式</view>
+                <view class="main">{{order.pay_type_cn}}</view>
+            </view>
+            <view class="address clearfix" wx:if="{{order.note}}">
+                <view class="text">备注</view>
+                <view class="main">{{order.note}}</view>
+            </view>
+            <block wx:if="{{order.data.order.partData}}" wx:for="{{order.data.order.partData}}">
+                <view class="address clearfix" wx:if="{{item.type!='multipleChoices'}}">
+                    <view class="text">{{item.title}}</view>
+                    <view class="main">{{item.value}}</view>
+                </view>
+                <view class="address clearfix" wx:else>
+                    <view class="text">{{item.title}}</view>
+                    <view class="main">
+                        <block wx:for="{{item.value}}" wx:for-item="value_child">
+							{{value_child}}
+						</block>
+                    </view>
+                </view>
+            </block>
+            <view class="address clearfix" wx:if="{{order.data.order.extra_fee}}" wx:for="{{order.data.order.extra_fee}}">
+                <view class="text">{{item.title}}</view>
+                <view class="main">
+                    <block wx:for="{{item.value}}" wx:for-item="value_child">
+							{{' '+value_child.name}}-{{Lang.dollarSign}}{{value_child.fee}}
+						</block>
+                </view>
+            </view>
+            <block wx:if="{{order.data.order}}">
+                <view class="uploadImg-group" wx:if="{{order.data.order.thumbs}}" wx:for="{{order.data.order.thumbs}}" wx:key="{{index}}">
+                    <view class="uploadImg-title">{{item.title}}</view>
+                    <view class="uploadImg-body">
+                        <view class="img-group" wx:for="{{item.value}}" wx:for-item="thumb" wx:key="{{index}}">
+                            <view class="img-wrap">
+                                <image alt="" bind:tap="onShowImage" data-preview="{{thumb}}" src="{{thumb}}"></image>
+                            </view>
+                        </view>
+                    </view>
+                </view>
+            </block>
+        </view>
+    </view>
+    <view class="wui-dialog {{showStatus?'wui-dialog-show':''}}">
+        <view bindtap="chooseStatus" class="wui-dialog-mask"></view>
+        <view class="wui-dialog-container">
+            <view class="pop">
+                <view class="pop-title">订单跟踪</view>
+                <view class="pop-container">
+                    <scroll-view scrollY="true">
+                        <view class="wui-steps wui-steps-vsteps wui-steps-3 my-class">
+                            <view class="wui-steps-step {{minid==index?'wui-steps-step-first-child':''}} {{maxid==index?'wui-steps-step-last-child':''}} {{maxid==index?' wui-steps-step-done wui-steps-step-cur':''}}" data-id="{{index}}" wx:for="{{logs}}">
+                                <view class="wui-steps-title">
+										{{item.title}}
+										<view class="time">{{item.addtime}}</view>
+                                </view>
+                                <view class="explan">{{item.note}}</view>
+                                <view class="wui-steps-icons">
+                                    <view class="wui-steps-circle"></view>
+                                </view>
+                                <view class="wui-steps-line"></view>
+                            </view>
+                        </view>
+                    </scroll-view>
+                </view>
+                <view bindtap="chooseStatus" class="bottom-fixed close border-1px-t">
+					关闭
+				</view>
+            </view>
+        </view>
+    </view>
+    <van-popup class="yinsihao-popup" show="{{yinsihao.status}}">
+        <view class="popup-title">
+            <image class="yinsihao-img" src="http://cos.lalawaimai.com/we7_wmall/wxapp/yinsihao_bg.png"></image>
+        </view>
+        <view class="popup-container van-hairline--bottom">
+            <view class="font-14">将通过转播的方式保护您的隐私</view>
+            <view class="yinsihao-mobile">{{yinsihao.secret_mobile}} 转 <text class="c-danger">{{yinsihao.extension}}</text>
+            </view>
+            <view class="yinsihao-tips">
+                <view>
+					拨打{{yinsihao.secret_mobile}}
+				</view>
+                <view>
+					接通后输入分机号{{yinsihao.extension}}#即可
+				</view>
+            </view>
+        </view>
+        <view class="popup-footer">
+            <view bind:tap="onToggleYinsihaoStatus" class="yinsihao-cancel">取消</view>
+            <view bind:tap="onCallSecretMobile" class="yinsihao-confirm van-hairline--left">立即呼叫</view>
+        </view>
+    </van-popup>
+    <van-popup class="yinsihao-popup" show="{{servicePopupStatus}}">
+        <view class="popup-title font-16 font-500">
+			订单已不能使用隐私号联系
+		</view>
+        <view class="popup-container padding-15-b font-14 van-hairline--bottom">
+			为您联系客服
+		</view>
+        <view class="popup-footer">
+            <view bind:tap="onToggleServicePopupStatus" class="yinsihao-cancel">取消</view>
+            <view bind:tap="onCallService" class="yinsihao-confirm van-hairline--left">继续呼叫</view>
+        </view>
+    </van-popup>
+</view>
+<include src="../public/footer.wxml"></include>

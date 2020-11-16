@@ -1,0 +1,45 @@
+<view class="shareRedpacket-invite">
+    <view class="content">
+        <view class="invite-img">
+            <image alt="" mode="widthFix" src="../../static/img/shareRedpacket-top.png"></image>
+        </view>
+        <view class="active-day">
+            <view class="day-picture">
+                <image alt="" src="{{member.avatar}}"></image>
+            </view>
+            <view class="day-info">Hi,我来{{mall_title}}{{days_format}}了，你也快来吧！</view>
+        </view>
+        <view class="activity-box">
+            <view class="activity-info">
+                <view>新用户最高可得</view>
+                <view class="packet-money">{{Lang.dollarSign}}<text>{{redPacket.follow_redpacket_max}}</text>
+                </view>
+            </view>
+            <view class="user-info">
+                <view class="phone-input">
+                    <input bindinput="onInput" data-type="mobile" placeholder="请输入手机号" type="text"></input>
+                </view>
+                <view class="captcha clearfix">
+                    <view class="captcha-input">
+                        <input bindinput="onInput" data-type="invite_captcha" placeholder="请输入图形验证码" type="text"></input>
+                    </view>
+                    <image alt="" bind:tap="onRefreshCaptcha" class="btn-captcha" src="{{captcha}}"></image>
+                </view>
+                <view class="code clearfix">
+                    <view class="code-input">
+                        <input bindinput="onInput" data-type="inputcode" placeholder="请输入验证码" type="text"></input>
+                    </view>
+                    <view bind:tap="getCode" class="send-code {{getCode?'':'disabled'}}">{{code.text}}</view>
+                </view>
+                <view class="now-get">
+                    <view bind:tap="onSubmit" id="now-get">立即领取</view>
+                </view>
+            </view>
+            <view class="box-bottom">
+                <image alt="" mode="widthFix" src="../../static/img/box_bot.png"></image>
+            </view>
+            <input type="hidden"></input>
+        </view>
+    </view>
+</view>
+<include src="../../../pages/public/footer.wxml"></include>

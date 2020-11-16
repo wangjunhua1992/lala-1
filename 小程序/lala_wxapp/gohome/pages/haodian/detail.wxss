@@ -1,0 +1,642 @@
+@import "../../../nmy/0.wxss";
+
+page {
+    background-color: #F5F5F5;
+    font-size: 14px;
+    line-height: 1;
+}
+
+.haodian-detail {
+    padding-bottom: 50px;
+}
+
+.haodian-detail .store-info {
+    position: relative;
+}
+
+.haodian-detail .store-info .store-logo {
+    width: 80px;
+    height: 80px;
+    font-size: 0px;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.haodian-detail .store-info .store-logo image {
+    width: 100%;
+    height: 100%;
+}
+
+.haodian-detail .store-info .info-inner {
+    position: absolute;
+    top: 15px;
+    left: 100px;
+    right: 10px;
+    bottom: 15px;
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: flex-start;
+    justify-content: space-between;
+}
+
+.haodian-detail .store-info .info-inner .store-title {
+    max-width: 40%;
+}
+
+.haodian-detail .store-info .info-inner .store-tag {
+    font-size: 12px;
+    border: 1px solid #ff2d4b;
+    color: #ff2d4b;
+    padding: 2px 5px;
+    border-radius: 3px;
+    margin-left: 5px;
+}
+
+.haodian-detail .store-info .info-inner .store-address {
+    max-width: 75%;
+}
+
+.haodian-detail .store-info .info-inner .store-other {
+    position: absolute;
+    right: 0px;
+    bottom: 0px;
+}
+
+.haodian-detail .store-feature {
+    display: flex;
+    flex-flow: row wrap;
+    align-items: center;
+}
+
+.haodian-detail .store-feature .feature-item {
+    width: 25%;
+    margin-bottom: 10px;
+}
+
+.haodian-detail .store-feature .feature-item .icon {
+    width: 18px;
+    height: 18px;
+    border-radius: 3px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.haodian-detail .coupon-list .coupon-item {
+    background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAqgAAACgCAYAAADAdJ4YAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNi1jMTQyIDc5LjE2MDkyNCwgMjAxNy8wNy8xMy0wMTowNjozOSAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIDIwMTggKFdpbmRvd3MpIiB4bXBNTTpJbnN0YW5jZUlEPSJ4bXAuaWlkOkVBODE3MkMxRkM2MTExRTg5REM1RjYxNThCRjgyRTk5IiB4bXBNTTpEb2N1bWVudElEPSJ4bXAuZGlkOkVBODE3MkMyRkM2MTExRTg5REM1RjYxNThCRjgyRTk5Ij4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6RUE4MTcyQkZGQzYxMTFFODlEQzVGNjE1OEJGODJFOTkiIHN0UmVmOmRvY3VtZW50SUQ9InhtcC5kaWQ6RUE4MTcyQzBGQzYxMTFFODlEQzVGNjE1OEJGODJFOTkiLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz4PnfEcAAANuUlEQVR42uzd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) no-repeat center center;
+    background-size: 100% 100%;
+    margin: 10px;
+    font-size: 14px;
+}
+
+.haodian-detail .coupon-list .coupon-item .left {
+    width: 72%;
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: flex-start;
+    justify-content: space-between;
+    padding: 15px 10px;
+}
+
+.haodian-detail .coupon-list .coupon-item .right {
+    width: 28%;
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    justify-content: center;
+}
+
+.haodian-detail .coupon-list .coupon-item .btn-take {
+    background-color: #ff2d4b;
+    color: #fff;
+    border-radius: 50px;
+    padding: 5px 10px;
+    font-size: 12px;
+    margin-top: 10px;
+}
+
+.haodian-detail .activity-header {
+    font-weight: bold;
+    position: relative;
+    font-size: 15px;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+}
+
+.haodian-detail .activity-header .more {
+    position: absolute;
+    right: 10px;
+    bottom: 0;
+    line-height: 30px;
+    color: #999;
+    font-size: 12px;
+    font-weight: normal;
+}
+
+.haodian-detail .activity-header .more .icon {
+    margin-left: -5px;
+    font-size: 12px;
+}
+
+.haodian-detail .haodian-kanjia .activity-list {
+    white-space: nowrap;
+    overflow-x: scroll;
+    overflow-y: hidden;
+    padding: 5px;
+    background-color: #fff;
+}
+
+.haodian-detail .haodian-kanjia .activity-list .activity-item {
+    display: inline-block;
+    width: 30%;
+    padding: 5px;
+}
+
+.haodian-detail .haodian-kanjia .activity-list .activity-item .thumb {
+    width: 100%;
+    height: 80px;
+    font-size: 0px;
+    border-radius: 3px;
+    overflow: hidden;
+    position: relative;
+}
+
+.haodian-detail .haodian-kanjia .activity-list .activity-item .thumb image {
+    width: 100%;
+    height: 100%;
+}
+
+.haodian-detail .haodian-kanjia .activity-list .activity-item .goods-title {
+    white-space: normal;
+    font-size: 14px;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+    line-height: 1.2;
+    margin: 8px 0;
+    height: 33px;
+}
+
+.haodian-detail .haodian-kanjia .activity-list .discount {
+    position: relative;
+    padding: 3px 3px 3px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10px;
+    background-color: #FED4D5;
+    color: #C51C33;
+    margin-left: 10px;
+}
+
+.haodian-detail .haodian-kanjia .activity-list .discount:before {
+    content: "";
+    display: block;
+    border-width: 8px;
+    position: absolute;
+    left: -8px;
+    transform: translateX(-50%);
+    border-style: solid dashed dashed;
+    border-color: transparent #FED4D5 transparent transparent;
+    font-size: 0;
+    line-height: 0;
+    z-index: 10;
+}
+
+.haodian-detail .haodian-pintuan .activity-list {
+    padding: 7.5px;
+    background-color: #fff;
+    display: flex;
+    flex-flow: row wrap;
+    align-items: center;
+}
+
+.haodian-detail .haodian-pintuan .activity-list .activity-item {
+    width: 50%;
+}
+
+.haodian-detail .haodian-pintuan .activity-list .activity-item .item-inner {
+    padding: 7.5px;
+}
+
+.haodian-detail .haodian-pintuan .activity-item .thumb {
+    width: 100%;
+    height: 162px;
+    font-size: 0px;
+    border-radius: 3px;
+    overflow: hidden;
+    position: relative;
+}
+
+.haodian-detail .haodian-pintuan .activity-item .thumb image {
+    width: 100%;
+    height: 100%;
+}
+
+.haodian-detail .haodian-pintuan .activity-item .thumb .end-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background-color: rgba(0,0,0,0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.haodian-detail .haodian-pintuan .activity-item .thumb .end-bg image {
+    width: 130px;
+}
+
+.haodian-detail .haodian-pintuan .activity-item .goods-title {
+    font-size: 14px;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+    line-height: 1.2;
+    margin: 8px 0;
+}
+
+.haodian-detail .haodian-pintuan .activity-item .btn {
+    color: #fff;
+    font-size: 14px;
+    padding: 8px 5px;
+    border-radius: 3px;
+    border: none;
+    width: auto;
+}
+
+.haodian-detail .haodian-pintuan .activity-item .btn.btn-detail {
+    background: linear-gradient(to right,#FC6030,#FF0101);
+}
+
+.haodian-detail .haodian-pintuan .activity-item .btn.btn-end {
+    background-color: #959595;
+}
+
+.haodian-detail .haodian-pintuan .activity-item .discount {
+    position: relative;
+    padding: 2px 3px 2px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10px;
+    background-color: #FED4D5;
+    color: #C51C33;
+    margin-left: 10px;
+}
+
+.haodian-detail .haodian-pintuan .activity-item .discount:before {
+    content: "";
+    display: block;
+    border-width: 7px;
+    position: absolute;
+    left: -7px;
+    transform: translateX(-50%);
+    border-style: solid dashed dashed;
+    border-color: transparent #FED4D5 transparent transparent;
+    font-size: 0;
+    line-height: 0;
+    z-index: 10;
+}
+
+.haodian-detail .haodian-pintuan .activity-item .bar {
+    width: 60%;
+    height: 14px;
+    border-radius: 20px;
+    background-color: #FED4D5;
+    position: relative;
+    margin-top: 10px;
+    overflow: hidden;
+}
+
+.haodian-detail .activity-item .bar.bar-end {
+    background-color: #959595;
+}
+
+.haodian-detail .activity-item .bar .bar-inner {
+    position: absolute;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    border-radius: 20px;
+    background: linear-gradient(to right,#FD6131,#FE0000);
+}
+
+.haodian-detail .activity-item .bar .bar-text {
+    position: absolute;
+    z-index: 2;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    padding-left: 10px;
+    display: flex;
+    align-items: center;
+    font-size: 10px;
+    color: #fff;
+    min-width: 80px;
+}
+
+.haodian-detail .haodian-seckill .activity-list .activity-item .thumb {
+    position: relative;
+    width: 100px;
+    height: 100px;
+    border-radius: 2px;
+    overflow: hidden;
+}
+
+.haodian-detail .haodian-seckill .activity-list .activity-item .thumb image {
+    width: 100%;
+    height: 100%;
+}
+
+.haodian-detail .haodian-seckill .activity-list .activity-item .btn {
+    color: #fff;
+    font-size: 14px;
+    padding: 8px 5px;
+    border-radius: 3px;
+}
+
+.haodian-detail .haodian-seckill .activity-list .activity-item .btn.btn-detail {
+    background: linear-gradient(to right,#FC6030,#FF0101);
+}
+
+.haodian-detail .haodian-seckill .activity-list .activity-item .btn.btn-end {
+    background-color: #959595;
+}
+
+.haodian-detail .haodian-seckill .activity-list .activity-item .info {
+    flex: 1;
+    padding-left: 10px;
+    height: 100px;
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: flex-start;
+    justify-content: space-between;
+}
+
+.haodian-detail .haodian-seckill .activity-list .activity-item .info .price-bar {
+    width: 67%;
+}
+
+.haodian-detail .haodian-seckill .activity-list .activity-item .info .discount {
+    position: relative;
+    padding: 3px 5px 3px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    background-color: #FED4D5;
+    color: #C51C33;
+    margin-left: 10px;
+}
+
+.haodian-detail .haodian-seckill .activity-list .activity-item .info .discount:before {
+    content: "";
+    display: block;
+    border-width: 8px;
+    position: absolute;
+    left: -8px;
+    transform: translateX(-50%);
+    border-style: solid dashed dashed;
+    border-color: transparent #FED4D5 transparent transparent;
+    font-size: 0;
+    line-height: 0;
+    z-index: 10;
+}
+
+.haodian-detail .haodian-seckill .activity-list .activity-item .bar {
+    width: 100%;
+    height: 14px;
+    border-radius: 20px;
+    background-color: #FED4D5;
+    position: relative;
+    margin-top: 10px;
+    overflow: hidden;
+    box-sizing: border-box;
+}
+
+.haodian-detail .haodian-seckill .activity-list .activity-item .bar.bar-end {
+    background-color: #959595;
+}
+
+.haodian-detail .haodian-seckill .activity-list .activity-item .bar .bar-inner {
+    position: absolute;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    border-radius: 20px;
+    background: linear-gradient(to right,#FD6131,#FE0000);
+}
+
+.haodian-detail .haodian-seckill .activity-list .activity-item .bar .bar-text {
+    position: absolute;
+    z-index: 2;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    padding-left: 10px;
+    display: flex;
+    align-items: center;
+    font-size: 10px;
+    color: #fff;
+    min-width: 80px;
+}
+
+.haodian-detail .haodian-seckill .activity-list .activity-item .btn {
+    width: auto;
+    border: none;
+}
+
+.haodian-detail .detail-comment .tab-group {
+    position: relative;
+    top: 0px;
+}
+
+.haodian-detail .detail-comment .richtext {
+    padding: 10px;
+}
+
+.haodian-detail .detail-comment .richtext image {
+    max-width: 100%;
+}
+
+.haodian-detail .detail-comment .appr-status {
+    display: inline-block;
+    height: 10px;
+    margin: 0 5px 0 8px;
+    vertical-align: middle;
+}
+
+.haodian-detail .detail-comment .appr-score {
+    display: inline-block;
+    background: url(http://cos.lalawaimai.com/we7_wmall/wxapp/newstars.png) no-repeat;
+    background-size: cover;
+    width: 10px;
+    height: 10px;
+    float: left;
+    margin-right: 4px;
+    background-position: 0 0;
+}
+
+.haodian-detail .detail-comment .appr-score-half {
+    background-position: -13px 0;
+}
+
+.haodian-detail .detail-comment .appr-score-gray {
+    background-position: -27px 0!important;
+}
+
+.haodian-detail .comment-list .comment-item .avatar image {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+
+.haodian-detail .comment-list .comment-item .basic {
+    padding-left: 10px;
+    flex: 1;
+}
+
+.haodian-detail .comment-list .comment-item .comment-item {
+    margin-left: 60px;
+}
+
+.haodian-detail .comment-list .comment-item .comment-item .text {
+    font-size: 13px;
+    line-height: 1.4;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 4;
+    overflow: hidden;
+}
+
+.haodian-detail .comment-list .comment-item .thumbs {
+    width: 100%;
+    margin: 5px -10px -5px -5px;
+    display: flex;
+    flex-flow: row wrap;
+    align-items: center;
+}
+
+.haodian-detail .comment-list .comment-item .thumbs .thumb-item {
+    width: 25%;
+    height: 70px;
+    overflow: hidden;
+    position: relative;
+}
+
+.haodian-detail .comment-list .comment-item .thumbs .thumb-item .img-group {
+    padding: 5px;
+    height: 86%;
+}
+
+.haodian-detail .comment-list .comment-item .thumbs .thumb-item .img-group image {
+    border-radius: 3px;
+    width: 100%;
+    height: 100%;
+}
+
+.haodian-detail .comment-list .comment-item .thumbs .thumb-item .thumb-num {
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    bottom: 5px;
+    right: 5px;
+    background-color: rgba(0,0,0,0.6);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    border-radius: 3px;
+}
+
+.haodian-detail .comment-list .comment-item .comment-item .comment-tags {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: flex-start;
+}
+
+.haodian-detail .comment-list .comment-item .comment-item .comment-tags .icon-tag {
+    margin-top: 3px;
+}
+
+.haodian-detail .comment-list .comment-item .comment-item .tags-wrap {
+    display: flex;
+    flex-flow: row wrap;
+    align-items: center;
+    line-height: 1.3;
+}
+
+.haodian-detail .comment-list .comment-item .no-comment {
+    padding: 20px 15px 20px 0;
+    text-align: center;
+    background-color: #fff;
+    color: #999;
+    font-size: 14px;
+}
+
+.haodian-detail .comment-list .wui-loadmore-tips {
+    background-color: #fff;
+}
+
+.no-data-simple {
+    text-align: center;
+    font-size: 14px;
+    color: #999;
+    padding: 20px 0;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.no-data-simple .icon {
+    margin-right: 5px;
+    font-size: 18px;
+}
+
+.fixed-actions {
+    position: fixed;
+    z-index: 100;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+    height: 50px;
+    background-color: #fff;
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+}
+
+.fixed-actions .action-icon {
+    width: 15%;
+    height: 50px;
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    justify-content: center;
+    color: #666;
+}
+
+.fixed-actions .action-icon .icon {
+    font-size: 18px;
+    margin-bottom: 5px;
+}
+
+.fixed-actions .action-btn {
+    flex: 1;
+    width: 25%;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(to right,#FD6131,#FE0000);
+    color: #fff;
+    font-size: 16px;
+}

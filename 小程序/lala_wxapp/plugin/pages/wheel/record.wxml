@@ -1,0 +1,62 @@
+<view class="page-record">
+    <view class="content">
+        <view class="wheel-label">
+            <view bind:tap="onChangeStatus" class="wheel-item {{status==-1?'active':''}}" data-status="-1">全部</view>
+            <view bind:tap="onChangeStatus" class="wheel-item {{status==0?'active':''}}" data-status="0">未领取</view>
+            <view bind:tap="onChangeStatus" class="wheel-item {{status==1?'active':''}}" data-status="1">已领取</view>
+        </view>
+        <view class="record-item" wx:for="{{list}}">
+            <view class="record-body">
+                <view class="record-inner">
+                    <text class="record-text-left">抽奖时间：</text>
+                    <text class="record-text-right">{{item.addtime}}</text>
+                </view>
+                <view class="record-inner">
+                    <text class="record-text-left">中奖情况：</text>
+                    <text class="record-text-right" wx:if="{{item.type}}">{{item.type.text?item.type.text:'无'}}</text>
+                    <text class="record-text-right" wx:else>未中奖</text>
+                </view>
+                <view class="record-inner">
+                    <text class="record-text-left">奖品类型：</text>
+                    <text class="record-text-right" wx:if="{{item.award_type}}">{{item.award_type.text?item.award_type.text:'无'}}</text>
+                    <text class="record-text-right" wx:else>无</text>
+                </view>
+                <view class="record-inner">
+                    <view class="record-text-left">奖品详情：</view>
+                    <block wx:if="{{item.award_type}}">
+                        <view class="record-text-right" wx:if="{{item.award_type.name!='redpacket'}}">
+                            <block wx:if="{{item.award_type.name=='credit1'||item.award_type.name=='credit2'}}">
+								{{item.award_value}}{{item.award_type.name=='credit1'?'积分':Lang.dollarSignCn}}
+							</block>
+                            <block wx:else>
+								{{item.award_value}}
+							</block>
+                        </view>
+                        <view class="record-text-right" wx:else>
+                            <block wx:for="item.award_value" wx:for-item="redpacketItem">
+								{{redpacketItem}}
+							</block>
+                        </view>
+                    </block>
+                    <text class="record-text-right" wx:else>未中奖</text>
+                </view>
+                <view bind:tap="onGetPrize" class="record-footer" data-id="{{item.id}}" wx:if="{{item.status==0}}">
+                    <view class="record-status">已领取</view>
+                </view>
+            </view>
+        </view>
+        <view class="wui-loadmore" wx:if="{{loading}}">
+            <view class="wui-loading"></view>
+            <view class="wui-loadmore-tips">正在加载中</view>
+        </view>
+        <view class="no-data" wx:elif="{{!list.length}}">
+            <image class="no-coupon" src="http://cos.lalawaimai.com/we7_wmall/wxapp/coupon_no_con.png"></image>
+            <text class="no-record">暂无数据</text>
+        </view>
+        <view class="wui-loadmore wui-loadmore-nomore" wx:elif="{{loaded}}">
+            <view class="wui-loadmore-tips">我是有底线的</view>
+            <view class="wui-loadmore-line"></view>
+        </view>
+    </view>
+</view>
+<include src="../../../pages/public/footer.wxml"></include>

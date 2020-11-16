@@ -1,0 +1,221 @@
+.picture {
+    width: 100%;
+    height: 200px;
+}
+
+.list-group {
+    padding: 15px;
+}
+
+.list-group-title {
+    font-size: 14px;
+    color: #333;
+    padding: 3px 0;
+    position: relative;
+    line-height: 18px;
+    padding-left: 15px;
+}
+
+.list-group-title .icon {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translate(0,-70%);
+    display: inline-block;
+}
+
+.text {
+    font-size: 12px;
+    margin-top: 10px;
+    padding-top: 10px;
+}
+
+.button {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.text-color {
+    color: #EF4F4F;
+    font-weight: bold;
+}
+
+.list-group-text {
+    display: inline-block;
+    color: #EF4F4F;
+    font-szie: 18px;
+}
+
+.container .list-group .cell {
+    position: relative;
+    padding: 10px 5px 5px 5px;
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    transition-duration: 300ms;
+    transition-property: background-color;
+}
+
+.container .list-group .cell .cell-label {
+    position: relative;
+    display: block;
+    width: 80px;
+    font-size: 17px;
+    padding: 0 15px;
+}
+
+.container .list-group .cell .overflow {
+    font-size: 16px;
+    color: #666;
+    height: auto;
+    word-break: break-all;
+    overflow: auto;
+    white-space: normal;
+    flex: 1;
+    text-overflow: ellipsis;
+}
+
+.container .list-group .cell .cell-label::after {
+    content: "*";
+    position: absolute;
+    right: 10px;
+    top: 5px;
+    color: #f30;
+    font-size: 16px;
+}
+
+checkbox .wx-checkbox-input {
+    width: 15px;
+    height: 15px;
+}
+
+.container .list-group .cell .cell-user-text {
+    color: #999;
+}
+
+.container .list-group .cell .cell-user-text checkbox-group {
+    display: inline-block;
+}
+
+.container .list-group .cell .cell-user-text .open-popup {
+    display: inline-block;
+    color: #0894ec;
+}
+
+.container .list-group .cell-top {
+    padding-top: 20px;
+    padding-bottom: 0px;
+}
+
+.pop-container {
+    padding-bottom: 0px!important;
+    height: 357px!important;
+}
+
+.pop-container scroll-view .protocol {
+    margin: 10px;
+    font-size: 14px;
+    color: #333;
+}
+
+.pop-container scroll-view {
+    background: #f4f4f4;
+}
+
+button.btn {
+    padding: 0;
+}
+
+.container .container-info {
+    padding: 0 1.5rem;
+    text-align: center;
+}
+
+.container .container-info .icon {
+    position: relative;
+    display: inline-block;
+    font-style: normal;
+    vertical-align: middle;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 100% auto;
+}
+
+.container .container-info .icon::before {
+    font-size: 104px;
+    color: #10aeff;
+    content: "\e61c";
+}
+
+.container .container-info .text-area {
+    margin-bottom: 25px;
+    padding: 0 20px;
+}
+
+.container .container-info .text-area .msg-title {
+    margin-bottom: 5px;
+    font-weight: 400;
+    font-size: 20px;
+    margin-top: 0;
+}
+
+.container .container-info .btn-sure {
+    background: #10aeff;
+    color: #fff;
+    width: 100%;
+    position: relative;
+    display: block;
+    box-sizing: border-box;
+    font-family: inherit;
+    font-size: 16px;
+    text-align: center;
+    text-decoration: none;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    cursor: pointer;
+    border: 1px solid #10aeff;
+    border-radius: 5px;
+}
+
+.container .container-info .extra-area {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.container .container-info .extra-area .extra-index {
+    color: #61749B;
+    font-size: 14px;
+}
+
+.cell-group {
+    padding: 0;
+}
+
+.cell-group .list-group-title {
+    padding: 11px 15px;
+}
+
+.cell-group .text {
+    margin-top: 0;
+}
+
+.cell-group .text::before {
+    content: "";
+    position: absolute;
+    left: 11px;
+    right: 11px;
+    top: 0;
+    height: 1px;
+    border-top: 1px solid #d9d9d9;
+    color: #d9d9d9;
+    transform-origin: 0 0;
+    transform: scaleY(0.5);
+}
+
+.cell-checkbox {
+    padding: 11px 11px 0!important;
+}

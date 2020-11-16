@@ -1,0 +1,73 @@
+page {
+    background-color: #f4f4f4;
+}
+
+.container .content .search-rmd-wrap {
+    margin-bottom: 11px;
+    background: #fff;
+}
+
+.container .content .rmd-history {
+    margin-bottom: 11px;
+}
+
+.search-rmd-title {
+    position: relative;
+    padding-left: 16px;
+    font-size: 15px;
+    line-height: 38px;
+    color: #656565;
+    background: #fff;
+}
+
+.search-rmd-title view:first-child {
+    border-bottom: 1rpx solid #e5e5e5;
+}
+
+.search-rmd-title .icon {
+    position: absolute;
+    top: 0;
+    right: 15px;
+}
+
+.search-rmd-title .change {
+    position: absolute;
+    right: 11px;
+    top: 50%;
+    transform: translate(0,-50%);
+}
+
+.search-rmd {
+    max-height: 92px;
+    padding: 8px 9px;
+    background: #fff;
+    overflow: hidden;
+}
+
+.search-rmd view,.search-rmd navigator {
+    display: inline-block;
+    float: left;
+    max-width: 187px;
+    min-width: 58px;
+    height: 31px;
+    line-height: 31px;
+    margin: 8px 5px;
+    padding: 0 16px;
+    -mox-box-sizing: border-box;
+    box-sizing: border-box;
+    border-radius: 2px;
+    border: 1px solid #ccc;
+    color: #2f2f2f;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    text-align: center;
+    font-size: 14px;
+}
+
+.search-rmd navigator view {
+    float: left;
+    height: 30px;
+    margin-top: -2px;
+    margin-right: 3px;
+}

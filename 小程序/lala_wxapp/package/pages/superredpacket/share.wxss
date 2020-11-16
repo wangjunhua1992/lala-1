@@ -1,0 +1,319 @@
+page {
+    background: #F3F2F2;
+}
+
+.pull-left {
+    float: left;
+}
+
+.pull-right {
+    float: right;
+}
+
+.share-redpacket {
+    padding-bottom: 1rem;
+    background: #e36e07;
+}
+
+.share-redpacket .content {
+    padding-bottom: 1rem;
+    background: #e36e07;
+}
+
+.share-redpacket .button.button-danger {
+    background: #ff3f26;
+    color: #ffffff;
+}
+
+.share-redpacket .redpacket-item .redpacket-info .redpacket-title {
+    color: #ef361e;
+}
+
+.share-redpacket .redpacket-item .price {
+    color: #ef361e;
+}
+
+.share-redpacket .redpacket-item .redpacket-bottom .use-redpack {
+    color: #ef361e;
+    font-size: 1rem;
+}
+
+.share-redpacket .list-block.media-list .item-bottom .item-after {
+    color: #ef361e;
+}
+
+.share-redpacket .banner {
+    line-height: 0.9;
+    width: 100%;
+}
+
+.share-redpacket .banner .top-img {
+    width: 100%;
+}
+
+.share-redpacket .receive {
+    width: 95%;
+    margin: 0 auto;
+    background: rgba(255,255,255,0.6);
+    border-radius: 0.15rem;
+    padding: .5rem 5%;
+    box-sizing: border-box;
+}
+
+.share-redpacket .receive .mobile-input {
+    height: 2.4rem;
+    width: 100%;
+    border: none;
+    font-size: 0.8rem;
+    padding-left: 10px;
+    border-radius: 4px;
+    margin-bottom: 0.8rem;
+    background: #fff;
+    box-sizing: border-box;
+}
+
+.share-redpacket .receive .mobile-input::-webkit-input-placeholder {
+    color: #999;
+}
+
+.share-redpacket .receive .receive-immediately {
+    background: #ff3f26;
+    color: #fff;
+    font-size: .85rem;
+    height: 2.4rem;
+    line-height: 2.4rem;
+    display: block;
+    padding: 0 0.5rem;
+    text-align: center;
+    cursor: pointer;
+    border-radius: 0.25rem;
+    font-size: 0.85rem;
+}
+
+.share-redpacket .title-line {
+    background: url(http://cos.lalawaimai.com/we7_wmall/wxappg/bg_ling.png) no-repeat;
+    background-size: 100% auto;
+    background-position: 0;
+    color: #333333;
+    text-align: center;
+    font-weight: normal;
+    margin: 0.25rem auto 0;
+    width: 95%;
+    font-size: 0.8rem;
+}
+
+.share-redpacket .records-agreement {
+    width: 95%;
+    margin: 0.5rem auto 0;
+    background: rgba(255,255,255,0.6);
+    border-radius: 0.15rem;
+    padding: .5rem 0;
+    box-sizing: border-box;
+}
+
+.share-redpacket .records-agreement .records-container {
+    font-size: .85rem;
+    box-sizing: border-box;
+    display: block;
+}
+
+.share-redpacket .records-agreement .records-container .item-content .content-body {
+    display: flex;
+    box-sizing: border-box;
+}
+
+.share-redpacket .records-agreement .records-container .item-content .content-body .item-media {
+    padding-bottom: .5rem;
+    padding-top: .45rem;
+    display: flex;
+    box-sizing: border-box;
+}
+
+.share-redpacket .records-agreement .records-container .item-content .content-body .item-media .head-img {
+    display: block;
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+}
+
+.share-redpacket .records-agreement .records-container .item-content .content-body .item-inner {
+    display: block;
+    padding-top: .5rem;
+    padding-bottom: .45rem;
+    margin-left: .75rem;
+    width: 100%;
+    min-height: 2.2rem;
+}
+
+.share-redpacket .records-agreement .records-container .item-content .content-body .item-inner .item-title-row {
+    display: flex;
+    -webkit-justify-content: space-between;
+    font-weight: normal;
+}
+
+.share-redpacket .records-agreement .records-container .item-content .content-body .item-inner .item-title-row .item-title {
+    font-weight: normal;
+    font-size: 1rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.share-redpacket .records-agreement .records-container .item-content .content-body .item-inner .item-title-row .item-subtitle {
+    font-size: 1rem;
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.share-redpacket .records-agreement .records-container .item-content .content-body .item-inner .item-title-row .item-after {
+    font-size: 1rem;
+    color: #3d1415;
+    margin-left: .25rem;
+    float: right;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.share-redpacket .records-agreement .records-container .item-content .content-body .item-inner .item-title-row .item-header {
+    color: #ef361e;
+}
+
+.share-redpacket .records-agreement .records-container .item-content {
+    padding: 0.5rem;
+    box-sizing: border-box;
+}
+
+.share-redpacket .agreement-inner {
+    padding: 0 5%;
+    font-size: 1.2rem;
+    box-sizing: border-box;
+}
+
+.share-redpacket .redpacket {
+    width: 95%;
+    margin: 0 auto;
+    background: rgba(255,255,255,0.6);
+    border-radius: 0.15rem;
+    padding: .5rem;
+    box-sizing: border-box;
+}
+
+.share-redpacket .redpacket-item {
+    box-sizing: border-box;
+    min-height: 3.2rem;
+    background-color: #fff;
+    text-align: center;
+    padding: 0.2rem 0.8rem 0;
+    margin-bottom: 0.5rem;
+    border-radius: 5px;
+}
+
+.share-redpacket .redpacket-item.activity-empty {
+    width: 95%;
+    height: 5rem;
+    line-height: 4.5rem;
+    padding: .5rem;
+    margin: 0 auto;
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: #ccc;
+}
+
+.share-redpacket .redpacket-item .image {
+    width: 3.2rem;
+    margin: 0.3rem 0.5rem 0 0;
+    border: none;
+    max-width: 100%;
+}
+
+.share-redpacket .redpacket-item .image .img {
+    width: 3.2rem;
+    height: 3.2rem;
+}
+
+.share-redpacket .redpacket-item .redpacket-info {
+    max-width: 5.9rem;
+    height: 2.8rem;
+}
+
+.share-redpacket .redpacket-item .redpacket-info .redpacket-title {
+    max-width: 5.9rem;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    font-size: 1.2rem;
+    margin-top: 0.5rem;
+    margin-bottom: 0.2rem;
+}
+
+.share-redpacket .redpacket-item .redpacket-info .use-condition {
+    font-size: 1rem;
+    color: #666;
+}
+
+.share-redpacket .redpacket-item .price {
+    font-size: 2.2rem;
+}
+
+.share-redpacket .redpacket-item .price .price-rmb {
+    font-size: 1rem;
+    font-weight: bold;
+}
+
+.share-redpacket .redpacket-item .redpacket-bottom {
+    border-top: 1px dashed #eaeaea;
+    color: #a9a9a9;
+    font-size: 0.6rem;
+    padding: 0.2rem 0;
+    box-sizing: border-box;
+}
+
+.share-redpacket .redpacket-item .redpacket-bottom .use-days-limit {
+    max-width: 80%;
+    text-align: left;
+    font-size: 0.8rem;
+}
+
+.share-redpacket .redpacket .other {
+    margin-top: .5rem;
+}
+
+.share-redpacket .redpacket .get-success {
+    margin: 0.5rem 0;
+    text-align: center;
+    font-size: 0.75rem;
+    color: #333;
+    box-sizing: border-box;
+}
+
+.share-redpacket .redpacket .immediate-use {
+    background: #ff3f26;
+    color: #fff;
+    font-size: .85;
+    height: 2.4rem;
+    line-height: 2.4rem;
+    display: block;
+    padding: 0 0.5rem;
+    text-align: center;
+    cursor: pointer;
+    border-radius: 0.25rem;
+    font-size: 0.85rem;
+}
+
+.share-redpacket .redpacket .give-redpacket {
+    margin-top: 0.8rem;
+    background: #ff3f26;
+    color: #fff;
+    font-size: .85;
+    height: 2.4rem;
+    line-height: 2.4rem;
+    display: block;
+    padding: 0 0.5rem;
+    text-align: center;
+    cursor: pointer;
+    border-radius: 0.25rem;
+    font-size: 0.85rem;
+}

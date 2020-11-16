@@ -1,0 +1,54 @@
+<view class="container">
+    <view class="content">
+        <view class="search-header-wrap">
+            <view class="search-header">
+                <view class="search-sec">
+                    <form>
+                        <view class="icon icon-search"></view>
+                        <input bindinput="onInput" class="search-input"></input>
+                    </form>
+                </view>
+                <view class="search-btn">搜索</view>
+            </view>
+        </view>
+        <view bind:tap="onChooseAddress" class="location" data-address="{{location}}" data-x="{{location_x}}" data-y="{{location_y}}" wx:if="{{!showSearch&&!getlocationfail}}">
+            <view class="icon icon-location"></view>点击定位当前位置
+		</view>
+        <view class="item-title" wx:if="{{!showSearch&&addresses.length>0}}">
+            <view class="icon icon-time"></view>
+			我的收货地址
+		</view>
+        <view class="item first" wx:if="{{!showSearch}}">
+            <view class="wui-cell" wx:for="{{addresses}}">
+                <view bind:tap="onChooseAddress" class="wui-cell-bd" data-address="{{item.address}}" data-x="{{item.location_x}}" data-y="{{item.location_y}}">
+                    <view class="address">{{item.address}}</view>
+                    <view class="detail clearfix">
+                        <view class="name">{{item.realname}}</view>
+                        <view class="sex">{{item.sex}}</view>
+                        <view class="tel">{{item.mobile}}</view>
+                    </view>
+                </view>
+            </view>
+        </view>
+        <view class="item-title" wx:if="{{!showSearch&&pois.length>0}}">
+            <view class="icon icon-location"></view>
+			附近的地址
+		</view>
+        <view class="item" wx:if="{{!showSearch}}">
+            <view bind:tap="onChooseAddress" class="wui-cell" data-address="{{item.name}}" data-x="{{item.location_x}}" data-y="{{item.location_y}}" wx:for="{{pois}}">
+                <view class="wui-cell-bd">{{item.name}}</view>
+            </view>
+        </view>
+        <view class="address-list" wx:if="{{showSearch}}">
+            <view bind:tap="onChooseAddress" class="address-item border-1px-b" data-address="{{item.name}}" data-x="{{item.location_x}}" data-y="{{item.location_y}}" wx:for="{{searchAddress}}">
+                <view class="top">
+                    <view class="address">{{item.name}}</view>
+                </view>
+                <view class="bottom">
+                    <view class="detail">{{item.address}}</view>
+                </view>
+            </view>
+        </view>
+    </view>
+</view>
+<include src="../public/footer.wxml"></include>

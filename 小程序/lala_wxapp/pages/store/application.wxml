@@ -1,0 +1,71 @@
+<view class="container">
+    <view class="content">
+        <form bindreset="formReset" bindsubmit="onSubmit">
+            <view class="shopinfo">
+                <view class="list">
+                    <view class="weui-cell weui-cell__input border-1px-b">
+                        <view class="weui-cell__hd">
+                            <view class="weui-label">商户名称</view>
+                        </view>
+                        <view class="weui-cell__bd">
+                            <input class="weui-input" name="title" placeholder="店铺名称" value="{{title}}"></input>
+                        </view>
+                    </view>
+                    <view class="weui-cell weui-cell__input border-1px-b">
+                        <view class="weui-cell__hd">
+                            <view class="weui-label">商户地址</view>
+                        </view>
+                        <view class="weui-cell__bd">
+                            <input class="weui-input" name="address" placeholder="店铺详细地址" value="{{address}}"></input>
+                        </view>
+                    </view>
+                    <view class="weui-cell weui-cell__input border-1px-b">
+                        <view class="weui-cell__hd">
+                            <view class="weui-label">联系电话</view>
+                        </view>
+                        <view class="weui-cell__bd">
+                            <input class="weui-input" name="telephone" placeholder="店铺负责人电话" value="{{telephone}}"></input>
+                        </view>
+                    </view>
+                    <view class="weui-cell weui-cell__input">
+                        <view class="weui-cell__hd">
+                            <view class="weui-label">商户简介</view>
+                        </view>
+                        <view class="weui-cell__bd">
+                            <textarea name="content" placeholder="" value="{{content}}"></textarea>
+                        </view>
+                    </view>
+                    <view class="weui-cell weui-cell__input">
+                        <view class="weui-cell__hd">
+                            <view class="weui-label">资质认证</view>
+                        </view>
+                        <view class="weui-cell__bd">
+                            <input disabled class="weui-input" name="" placeholder="仅用于平台认证" value=""></input>
+                        </view>
+                    </view>
+                </view>
+            </view>
+            <view class="store-aptitude">
+                <view bind:tap="onJsEvent" class="aptitude-img" data-count="1" data-event-type="jsUploadImg" data-key="business">
+                    <image alt="" src="{{business[0].url}}" wx:if="{{business&&business[0].url}}"></image>
+                    <image alt="" src="http://cos.lalawaimai.com/we7_wmall/wxapp/store_aptitude.png" wx:else></image>
+                </view>
+                <view bind:tap="onJsEvent" class="aptitude-img" data-count="1" data-event-type="jsUploadImg" data-key="service">
+                    <image alt="" src="{{service[0].url}}" wx:if="{{service&&service[0].url}}"></image>
+                    <image alt="" src="http://cos.lalawaimai.com/we7_wmall/wxapp/food_aptitude.png" wx:else></image>
+                </view>
+                <view bind:tap="onJsEvent" class="aptitude-img" data-count="1" data-event-type="jsUploadImg" data-key="more1">
+                    <image alt="" src="{{more1[0].url}}" wx:if="{{more1&&more1[0].url}}"></image>
+                    <image alt="" src="http://cos.lalawaimai.com/we7_wmall/wxapp/other_aptitude.png" wx:else></image>
+                </view>
+            </view>
+            <view class="protocol">
+				我已阅读并同意<navigator url="../public/richtext?key=agreement_settle">《商户入驻协议》</navigator>
+            </view>
+            <view class="btn-box">
+                <button class="btn btn-large btn-danger" formType="submit">提交</button>
+            </view>
+        </form>
+    </view>
+</view>
+<include src="../public/footer.wxml"></include>

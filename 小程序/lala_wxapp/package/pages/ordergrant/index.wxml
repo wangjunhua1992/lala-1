@@ -1,0 +1,122 @@
+<view class="page-index">
+    <view class="banner">
+        <image class="banner-image" src="http://cos.lalawaimai.com/we7_wmall/wxapp/bg-mypage.png"></image>
+        <view class="banner-avtar">
+            <image class="userphoto" src="{{member.avatar}}"></image>
+        </view>
+        <navigator url="record">
+            <view class="detal">详细记录</view>
+        </navigator>
+        <view bind:tap="onShowAgreement" class="open-agreement open-agreement-show">活动规则</view>
+        <view class="wui-dialog {{agreement?'wui-dialog-show':''}}">
+            <view bind:tap="onShowAgreement" class="wui-dialog-mask"></view>
+            <view class="wui-dialog-container">
+                <view class="pop">
+                    <view class="pop-title">活动规则详解</view>
+                    <view class="pop-container">
+                        <scroll-view class="protocol-container" scrollY="true">
+                            <view class="agreement">
+                                <template is="wxParse" data="{{wxParseData:richtext.nodes}}"></template>
+                            </view>
+                        </scroll-view>
+                    </view>
+                </view>
+            </view>
+        </view>
+        <view class="banner-row">
+            <view class="col-33">
+                <view class="titles">连续下单</view>
+                <view class="days">{{order_days_amount.continuous}}</view>
+            </view>
+            <view class="col-33">
+                <view class="titles username">{{member.nickname}}</view>
+            </view>
+            <view class="col-33">
+                <view class="titles">累计下单</view>
+                <view class="days">{{order_days_amount.sum}}</view>
+            </view>
+        </view>
+    </view>
+    <view class="calendar">
+        <view class="titles border-1px-b">
+            <icon class="icon icon-calendar"></icon>{{year}}年{{month}}月
+		</view>
+        <view class="calendar-inner">
+            <view class="week clearfix" wx:for="{{calendar}}" wx:key="week">
+                <view bind:tap="onDayClick" class="day pull-left {{item.today?'today':''}}" data-day="{{item.day}}" data-grant="{{item.grant}}" wx:for="{{item}}" wx:key="day">
+                    <view class="num">{{item.day?item.day:''}}</view>
+                    <view class="grant" wx:if="{{item.grant}}">
+                        <icon class="icon icon-recharge"></icon>{{item.grant}}
+							</view>
+                    <view class="special" style="background: {{item.color}};" wx:if="{{item.title}}">{{item.title}}</view>
+                    <icon class="icon icon-check signed" wx:if="{{item.signed}}"></icon>
+                </view>
+            </view>
+        </view>
+    </view>
+    <view class="reward-container">
+        <view class="titles">
+            <view class="text">
+                <icon class="icon icon-gifts"></icon>连续下单有礼
+			</view>
+            <view class="subtitle pull-right">连续下单即可领取</view>
+        </view>
+        <view class="reward-inner">
+            <view class="award">
+                <scroll-view scrollX="true">
+                    <view class="award-list">
+                        <view class="item" wx:for="{{config_ordergrant.continuous}}" wx:for-item="continuous">
+                            <view class="grant">
+                                <view>+{{continuous.grant}}</view>
+                                <view>{{grantType}}</view>
+                            </view>
+                            <view class="circle {{continuous.status==2?'active':''}}">
+                                <view class="icon icon-check"></view>
+                            </view>
+                            <view class="days">{{continuous.days}}天</view>
+                            <view bind:tap="onGetReward" class="text btn-get disabled" wx:if="{{!continuous.status}}">不可领</view>
+                            <view bind:tap="onGetReward" class="text btn-get" data-days="{{continuous.days}}" data-index="{{index}}" data-status="{{continuous.status}}" data-type="1" wx:if="{{continuous.status==1}}">可领取</view>
+                            <view bind:tap="onGetReward" class="text btn-get" data-days="{{continuous.days}}" data-index="{{index}}" data-status="{{continuous.status}}" data-type="1" wx:if="{{continuous.status==2}}">已领取</view>
+                        </view>
+                    </view>
+                </scroll-view>
+            </view>
+        </view>
+    </view>
+    <view class="reward-container">
+        <view class="titles">
+            <view class="text">
+                <icon class="icon icon-gifts"></icon>累计下单有礼
+			</view>
+            <view class="subtitle pull-right">累计下单满足即可领取</view>
+        </view>
+        <view class="reward-inner">
+            <view class="award">
+                <scroll-view scrollX="true">
+                    <view class="award-list">
+                        <view class="item" wx:for="{{config_ordergrant.all}}" wx:for-item="all">
+                            <view class="grant">
+                                <view>+{{all.grant}}</view>
+                                <view>{{grantType}}</view>
+                            </view>
+                            <view class="circle {{all.status==2?'active':''}}">
+                                <view class="icon icon-check"></view>
+                            </view>
+                            <view class="days">{{all.days}}天</view>
+                            <view bind:tap="onGetReward" class="text btn-get disabled" wx:if="{{!all.status}}">不可领</view>
+                            <view bind:tap="onGetReward" class="text btn-get {{all.status==2?'active':''}}" data-days="{{all.days}}" data-index="{{index}}" data-status="{{all.status}}" data-type="2" wx:if="{{all.status==1}}">可领取</view>
+                            <view bind:tap="onGetReward" class="text btn-get {{all.status==2?'active':''}}" data-days="{{all.days}}" data-index="{{index}}" data-status="{{all.status}}" data-type="2" wx:if="{{all.status==2}}">已领取</view>
+                        </view>
+                    </view>
+                </scroll-view>
+            </view>
+        </view>
+    </view>
+</view>
+<van-dialog closeOnClickOverlay="{{true}}" show="{{toastShow}}" showConfirmButton="{{false}}" useSlot="{{true}}">
+    <view class="font-14 text-center padding-10-tb">
+        <template is="wxParse" data="{{wxParseData:toast.nodes}}"></template>
+    </view>
+</van-dialog>
+<include src="../../../pages/public/footer.wxml"></include>
+<import src="/library/wxParse/wxParse.wxml"></import>

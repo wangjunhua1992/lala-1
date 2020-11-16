@@ -1,0 +1,89 @@
+{
+    "pages": [
+        "pages/order/index",
+        "pages/goods/index",
+        "pages/statcenter/index",
+        "pages/finance/getcashRecord",
+        "pages/finance/getcashRecordDetail",
+        "pages/activity/index",
+        "pages/activity/list",
+        "pages/activity/deliveryFee",
+        "pages/activity/couponCollect",
+        "pages/advertise/index",
+        "pages/advertise/list",
+        "pages/advertise/recommend",
+        "pages/advertise/stick",
+        "pages/auth/forget",
+        "pages/auth/login",
+        "pages/category/index",
+        "pages/category/post",
+        "pages/finance/index",
+        "pages/finance/getcash",
+        "pages/finance/current",
+        "pages/finance/currentDetail",
+        "pages/goods/post",
+        "pages/index/index",
+        "pages/more/password",
+        "pages/news/notice",
+        "pages/news/noticeDetail",
+        "pages/order/detail",
+        "pages/order/op",
+        "pages/order/tangshi/index",
+        "pages/paybill/index",
+        "pages/paybill/detail",
+        "pages/public/footer",
+        "pages/public/message",
+        "pages/public/richtext",
+        "pages/seckill/order",
+        "pages/service/comment",
+        "pages/shop/home",
+        "pages/shop/info",
+        "pages/shop/select",
+        "pages/shop/setting",
+        "pages/shop/part/textarea",
+        "pages/tangshi/table",
+        "pages/tangshi/assign",
+        "pages/tangshi/assignQueue",
+        "pages/tangshi/assignRecord"
+    ],
+    "window": {
+        "backgroundTextStyle": "light",
+        "navigationBarBackgroundColor": "#33aafc",
+        "navigationBarTitleText": "外卖",
+        "navigationBarTextStyle": "white"
+    },
+    "tabBar": {
+        "selectedColor": "#33aafc",
+        "list": [
+            {
+                "pagePath": "pages/order/index",
+                "text": "外卖",
+                "iconPath": "static/img/tabbar/icon-1.png",
+                "selectedIconPath": "static/img/tabbar/icon-1-active.png"
+            },
+            {
+                "pagePath": "pages/order/tangshi/index",
+                "text": "店内",
+                "iconPath": "static/img/tabbar/icon-2.png",
+                "selectedIconPath": "static/img/tabbar/icon-2-active.png"
+            },
+            {
+                "pagePath": "pages/shop/home",
+                "text": "运营",
+                "iconPath": "static/img/tabbar/icon-3.png",
+                "selectedIconPath": "static/img/tabbar/icon-3-active.png"
+            },
+            {
+                "pagePath": "pages/shop/setting",
+                "text": "设置",
+                "iconPath": "static/img/tabbar/icon-4.png",
+                "selectedIconPath": "static/img/tabbar/icon-4-active.png"
+            }
+        ]
+    },
+    "permission": {
+    "scope.userLocation": {
+      "desc": "你的位置信息将用于小程序位置接口的效果展示"
+    }
+  }
+}

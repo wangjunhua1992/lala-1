@@ -1,0 +1,2162 @@
+<template name="tpl-diy">
+    <view class="diy-page container" scrollIntoView="{{scrollToId}}" style="background-color:{{diy.data.page.background}};">
+        <view class="fixed-searchbar {{topSearchBar&&diy.is_has_location==1?'show':''}}" style="background-color: {{diy.fixedsearch.style.fixedbackground=='#ffffff'?'#ff2d4b':diy.fixedsearch.style.fixedbackground}}">
+            <navigator url="{{diy.fixedsearch.params.link}}">{{diy.fixedsearch.params.linkto==1?'搜索信息内容':'搜索商家、商品'}}</navigator>
+        </view>
+        <block wx:for="{{diy.data.items}}" wx:for-index="diyindex" wx:for-item="diyitem" wx:key="{{diyindex}}">
+            <block wx:if="{{diyitem.id=='danmu'}}">
+                <swiper autoplay="true" circular="true" class="swiper-danmu {{diyitem.params.styleType==2?'style2':''}}" duration="0" interval="5000" style="opacity:{{danmu?diyitem.style.opacity:0}}; top: {{diyitem.style.top}}px; left: {{diyitem.style.left}}px;" vertical="true" wx:if="{{diyitem.params.status==1}}">
+                    <swiper-item class="order-danmu " style="background: {{diyitem.style.background}};color:{{diyitem.style.color}};" wx:for="{{diyitem.members}}" wx:key="{{index}}">
+                        <image class="thumb" src="{{item.avatar}}"></image>
+                        <text class="info">新订单来自 {{item.nickname}}</text>
+                        <text class="time">{{item.time}}</text>
+                    </swiper-item>
+                </swiper>
+            </block>
+            <view class="diy-richtext" style="background:{{diyitem.style.background}}; padding:{{diyitem.style.paddingtop}}px {{diyitem.style.paddingleft}}px;" wx:elif="{{diyitem.id=='richtext'}}">
+                <template is="wxParse" data="{{wxParseData:richtext[diyindex].nodes}}"></template>
+            </view>
+            <block wx:elif="{{diyitem.id=='waimai_goods'}}">
+                <view class="diy-waimai-food-list-onerow-box" style="background-color: {{diyitem.style.background}}; padding: {{diyitem.style.paddingtop}}px {{diyitem.style.paddingleft}}px;" wx:if="{{diyitem.style.liststyle=='1'}}">
+                    <view class="item-list">
+                        <view class="goods-item border-1px-t" wx:for="{{diyitem.data}}" wx:for-item="goodsitem" wx:key="{{index}}">
+                            <view class="row item-wrapper">
+                                <view class="col-40 goods-img">
+                                    <image src="{{goodsitem.thumb}}"></image>
+                                    <view class="discount" wx:if="{{diyitem.params.showicon==1&&goodsitem.discount>0&&goodsitem.discount<10}}">{{goodsitem.svip_status==1?'会员':''}}{{goodsitem.discount}}折</view>
+                                </view>
+                                <view class="col-60">
+                                    <view class="goods-name">{{goodsitem.title}}</view>
+                                    <view class="sale-num">已售:{{goodsitem.sailed}} 好评率:{{goodsitem.comment_good_percent}}</view>
+                                    <view class="store-name">
+                                        <view class="icon icon-shop"></view> {{goodsitem.store_title}}
+										</view>
+                                    <view class="price-buybtn">
+                                        <view class="price-wrap">
+                                            <view class="in-b now-price">{{Lang.dollarSign}}{{goodsitem.price}}</view>
+                                            <view class="in-b old-price" style="color: {{diyitem.style.oldpricecolor}}" wx:if="{{diyitem.params.showoldprice==1}}">{{Lang.dollarSign}}{{goodsitem.old_price}}</view>
+                                        </view>
+                                        <navigator class="in-b buy-btn" style="background-color: {{diyitem.style.buybtncolor}}" url="../store/goodsDetail?sid={{goodsitem.sid}}&id={{goodsitem.goods_id}}">{{diyitem.params.buybtntext}}</navigator>
+                                    </view>
+                                </view>
+                            </view>
+                        </view>
+                    </view>
+                </view>
+                <view class="diy-waimai-goods-list-box" style="background-color: {{diyitem.style.background}}; padding: {{diyitem.style.paddingtop}}px {{diyitem.style.paddingleft}}px;" wx:elif="{{diyitem.style.liststyle=='2'}}">
+                    <view class="box-list">
+                        <view class="box-item" wx:for="{{diyitem.data}}" wx:for-item="goodsitem" wx:key="{{index}}">
+                            <view class="main-content-box">
+                                <view class="goods-image" mode="widthFix">
+                                    <image src="{{goodsitem.thumb}}"></image>
+                                    <view class="discount" wx:if="{{diyitem.params.showicon==1&&goodsitem.discount>0&&goodsitem.discount<10}}">{{goodsitem.svip_status==1?'会员':''}}{{goodsitem.discount}}折</view>
+                                </view>
+                                <view class="goods-name">{{goodsitem.title}}</view>
+                                <view class="discount-soldnum">
+                                    <view class="in-b sold-num">已售{{goodsitem.sailed}}</view>
+                                    <view class="in-b praise">好评率 {{goodsitem.comment_good_percent?goodsitem.comment_good_percent:'暂无'}}</view>
+                                </view>
+                                <view class="store-name">
+                                    <view class="icon icon-shop"></view> {{goodsitem.store_title}}
+									</view>
+                                <view class="price-buybtn">
+                                    <view class="in-b price">
+                                        <view class="now-price">{{Lang.dollarSign}}{{goodsitem.price}}</view>
+                                        <view class="old-price" style="color: {{diyitem.style.oldpricecolor}}" wx:if="{{diyitem.params.showoldprice==1}}">{{Lang.dollarSign}}{{goodsitem.old_price}}</view>
+                                    </view>
+                                    <navigator class="in-b buy-btn" style="background-color: {{diyitem.style.buybtncolor}}" url="../store/goodsDetail?sid={{goodsitem.sid}}&id={{goodsitem.goods_id}}">{{diyitem.params.buybtntext}}</navigator>
+                                </view>
+                            </view>
+                        </view>
+                        <view style="clear:both"></view>
+                    </view>
+                </view>
+                <view class="diy-waimai-goods-list-threerow" style="background-color: {{diyitem.style.background}}; padding: {{diyitem.style.paddingtop}}px {{diyitem.style.paddingleft}}px;" wx:elif="{{diyitem.style.liststyle=='3'}}">
+                    <scroll-view class="goods-list" scrollX="{{true}}">
+                        <view bind:tap="onJsEvent" class="goods-item" data-event-type="jsUrl" data-url="pages/store/goodsDetail?sid={{goodsitem.sid}}&id={{goodsitem.goods_id}}" wx:for="{{diyitem.data}}" wx:for-item="goodsitem" wx:key="{{index}}">
+                            <view class="item-inner">
+                                <view class="thumb">
+                                    <image src="{{goodsitem.thumb}}"></image>
+                                    <view class="discount" wx:if="{{diyitem.params.showicon==1&&goodsitem.discount>0&&goodsitem.discount<10}}">{{goodsitem.svip_status==1?'会员':''}}{{goodsitem.discount}}折</view>
+                                </view>
+                                <view class="goods-title" style="color: {{diyitem.style.titlecolor}}">{{goodsitem.title}}</view>
+                                <view class="flex store-info" wx:if="{{diyitem.params.storeshow==2&&goodsitem.store}}">
+                                    <view class="store-title">{{goodsitem.store.title}}</view>
+                                    <view class="delivery-time">{{goodsitem.store.delivery_time}}分钟</view>
+                                </view>
+                                <view class="goods-price">
+                                    <view class="now-price" style="color: {{diyitem.style.pricecolor}}">{{Lang.dollarSign}}{{goodsitem.price}}</view>
+                                    <view class="old-price" style="color: {{diyitem.style.oldpricecolor}}" wx:if="{{diyitem.params.showoldprice==1}}">{{Lang.dollarSign}}{{goodsitem.old_price}}</view>
+                                </view>
+                            </view>
+                        </view>
+                    </scroll-view>
+                </view>
+            </block>
+            <view class="diy-waimai-store-box" style="background-color: {{diyitem.style.background}}; padding: {{diyitem.style.paddingtop}}px {{diyitem.style.paddingleft}}px;" wx:elif="{{diyitem.id=='waimai_stores'}}">
+                <view class="waimai-store-item-list">
+                    <view class="waimai-store-item border-1px-b {{store.is_rest==1?'disabled':''}}" wx:for="{{diyitem.data}}" wx:for-item="store" wx:key="{{store.id}}">
+                        <view class="mian-content-box">
+                            <view class="content-left border-1px">
+                                <navigator class="item-image" url="{{store.url}}">
+                                    <view class="item-rest" wx:if="{{store.is_rest==1}}">休息中</view>
+                                    <image src="{{store.logo}}"></image>
+                                </navigator>
+                            </view>
+                            <view class="content-right">
+                                <navigator url="{{store.url}}">
+                                    <view class="item-name-wrap">
+                                        <view class="item-name" style="color: {{diyitem.style.titlecolor}}">{{store.title}}</view>
+                                    </view>
+                                    <view class="delivery-tip" wx:if="{{store.rest_reserve_cn}}">
+                                        <text>{{store.rest_reserve_cn}}</text>
+                                    </view>
+                                    <view class="item-score-time">
+                                        <view class="item-score-sale">
+                                            <view class="item-star-box">
+                                                <view class="stars" style="color: {{diyitem.style.scorecolor}}; width: {{store.score*20}}%">
+                                                    <view class="icon icon-favor_fill_light"></view>
+                                                    <view class="icon icon-favor_fill_light"></view>
+                                                    <view class="icon icon-favor_fill_light"></view>
+                                                    <view class="icon icon-favor_fill_light"></view>
+                                                    <view class="icon icon-favor_fill_light"></view>
+                                                </view>
+                                                <view class="stars-bg" style="color: {{diyitem.style.scorecolor}};">
+                                                    <view class="icon icon-favor_light"></view>
+                                                    <view class="icon icon-favor_light"></view>
+                                                    <view class="icon icon-favor_light"></view>
+                                                    <view class="icon icon-favor_light"></view>
+                                                    <view class="icon icon-favor_light"></view>
+                                                </view>
+                                            </view>
+                                            <view class="item-sale">月售 {{store.sailed}}</view>
+                                        </view>
+                                        <view class="time-distance">
+                                            <view class="avg_delivery_time">{{store.delivery_time}}分钟</view>
+                                        </view>
+                                    </view>
+                                    <view class="item-min-delivery">
+                                        <view class="item-min-delivery-left">
+                                            <view>起送价{{Lang.dollarSign}}{{store.send_price}}</view>
+                                            <view class="line">|</view>
+                                            <view wx:if="{{store.delivery_price>0}}">配送费{{Lang.dollarSign}}{{store.delivery_price}}</view>
+                                            <view wx:else>免配送费</view>
+                                        </view>
+                                        <view class="item-min-delivery-right-wrap">
+                                            <view class="zhunshibao" wx:if="{{store.zhunshibao_cn}}">{{store.zhunshibao_cn}}</view>
+                                            <view class="item-min-delivery-right" style="background-color: {{diyitem.style.deliverytitlebgcolor}}; color: {{diyitem.style.deliverytitlecolor}}" wx:if="{{store.delivery_title}}">{{store.delivery_title}}</view>
+                                        </view>
+                                    </view>
+                                </navigator>
+                                <view bind:tap="onToggleDiscount" class="discount-box" data-diyindex="{{diyindex}}" data-index="{{index}}" data-type="waimai_stores" wx:if="{{store.activity&&(store.activity.num>0||store.activity.labels_num>0)}}">
+                                    <view class="toggle">
+                                        <view class="icon {{store.activity.is_show_all?'icon-fold':'icon-unfold'}}" wx:if="{{diyitem.params.discountstyle==1&&store.activity.num>2||diyitem.params.discountstyle==2&&store.activity.labels_num>4}}"></view>
+                                    </view>
+                                    <block wx:if="{{diyitem.params.discountstyle==1}}" wx:for="{{store.activity.items}}" wx:key="{{index}}">
+                                        <view class="single-line" wx:if="{{index<2||store.activity.is_show_all&&index>=2}}">
+                                            <image class="discount-icon" src="/static/img/{{item.type}}_b.png"></image>
+                                            <view class="discount-text">{{item.title}}</view>
+                                        </view>
+                                    </block>
+                                    <view class="label-wrap {{store.activity.is_show_all?'autoHeight':''}}" wx:if="{{diyitem.params.discountstyle==2}}">
+                                        <text class="{{item.class}}" wx:if="{{index<4||store.activity.is_show_all&&index>=4}}" wx:for="{{store.activity.labels}}" wx:key="{{index}}">{{item.title}}</text>
+                                    </view>
+                                </view>
+                                <view class="hot-box" wx:if="{{store.hot_goods_num>0&&diyitem.params.showhotgoods==1}}">
+                                    <navigator url="../store/goodsDetail?sid={{store.store_id}}&id={{item.id}}" wx:for="{{store.hot_goods}}" wx:key="{{index}}">
+                                        <view class="hot-box-item">
+                                            <view class="hot-t border-1px">
+                                                <image mode="widthFix" src="{{item.thumb}}"></image>
+                                                <view class="discount" wx:if="{{item.discount>0&&item.discount<10}}">{{item.svip_status==1?'会员':''}}{{item.discount}}折</view>
+                                            </view>
+                                            <view class="hot-b">
+                                                <view class="shop-name">{{item.title}}</view>
+                                                <view class="shop-price">
+                                                    <view class="now-price">{{Lang.dollarSign}}{{item.price}}</view>
+                                                    <view class="old-price" wx:if="{{item.old_price>0}}">{{Lang.dollarSign}}{{item.old_price}}</view>
+                                                </view>
+                                            </view>
+                                        </view>
+                                    </navigator>
+                                </view>
+                            </view>
+                        </view>
+                    </view>
+                </view>
+            </view>
+            <view class="diy-notice" style="background-color: {{diyitem.style.background}}; padding: {{diyitem.style.paddingtop}}px {{diyitem.style.paddingleft}}px;" wx:elif="{{diyitem.id=='notice'&&diyitem.data}}">
+                <view class="diy-notice-container border-1px-tb">
+                    <view class="image border-1px-r">
+                        <image alt="" src="{{diyitem.params.imgurl}}"></image>
+                    </view>
+                    <view class="icon">
+                        <view class="icon icon-notification" style="color: {{diyitem.style.iconcolor}}"></view>
+                    </view>
+                    <view class="notice-text">
+                        <swiper autoplay="true" circular="true" style="color: {{diyitem.style.textcolor}}" vertical="true">
+                            <swiper-item wx:for="{{diyitem.data}}" wx:key="{{index}}">
+                                <view class="swiper-slide swiper-slide-prev">
+                                    <view bind:tap="onJsEvent" data-event-type="jsUrl" data-url="{{item.linkurl}}" wx:if="{{item.linkurl}}">{{item.title}}</view>
+                                    <view bind:tap="onJsEvent" data-event-type="jsUrl" data-url="pages/public/richtext?key=notice&noticeid={{item.id}}" wx:else>{{item.title}}</view>
+                                </view>
+                            </swiper-item>
+                        </swiper>
+                    </view>
+                    <view class="icon icon-arrow-right"></view>
+                </view>
+            </view>
+            <view class="diy-img-card" style="padding: {{diyitem.style.paddingtop}}px {{diyitem.style.paddingleft}}px; background: {{diyitem.style.background}};" wx:elif="{{diyitem.id=='img_card'}}">
+                <image alt="" mode="widthFix" src="{{diyitem.params.imgurl}}"></image>
+            </view>
+            <view class="diy-banner" style="padding: {{diyitem.style.paddingtop}}px {{diyitem.style.paddingleft}}px; background: {{diyitem.style.background}};" wx:elif="{{diyitem.id=='banner'}}">
+                <view bind:tap="onJsEvent" data-event-type="jsUrl" data-url="{{item.linkurl}}" wx:for="{{diyitem.data}}" wx:key="{{index}}">
+                    <image mode="widthFix" src="{{item.imgurl}}"></image>
+                </view>
+            </view>
+            <view class="diy-buttons" style="margin-top: {{diyitem.style.margintop}}px; background: {{diyitem.style.backgroundcolor}};" wx:elif="{{diyitem.id=='buttons'}}">
+                <view class="diy-buttons-container col-{{diyitem.params.rownum}}" wx:for="{{diyitem.data}}" wx:key="{{index}}">
+                    <view bind:tap="onJsEvent" class="diy-button-col" data-event-type="jsUrl" data-url="{{item.linkurl}}" style="background: {{item.backgroundcolor}}; color: {{item.color}};">{{item.text}}</view>
+                </view>
+            </view>
+            <view class="diy-blank" style="height: {{diyitem.style.height}}px; background: {{diyitem.style.background}};" wx:elif="{{diyitem.id=='blank'}}"></view>
+            <view class="swiper-container diy-picture" style="padding: {{diyitem.style.paddingtop}}px {{diyitem.style.paddingleft}}px; background: {{diyitem.style.background}};" wx:elif="{{diyitem.id=='picture'}}">
+                <swiper autoplay="true" circular="true" indicatorActiveColor="{{diyitem.style.dotbackground}}" indicatorColor="#7f7f7f" indicatorDots="true" interval="4000">
+                    <swiper-item wx:for="{{diyitem.data}}" wx:key="{{index}}">
+                        <view bind:tap="onJsEvent" class="swiper-slide" data-event-type="jsUrl" data-url="{{item.linkurl}}">
+                            <image mode="widthFix" src="{{item.imgurl}}"></image>
+                        </view>
+                    </swiper-item>
+                </swiper>
+            </view>
+            <block wx:elif="{{diyitem.id=='picturew'}}">
+                <view class="diy-cube lazyload-container" style="background: {{diyitem.style.background}}; padding: {{diyitem.data_num==1?diyitem.style.paddingtop+'px '+diyitem.style.paddingleft+'px':0}};" wx:if="{{diyitem.params.row==1}}">
+                    <view bind:tap="onJsEvent" data-event-type="jsUrl" data-url="{{diyitem.data[0].linkurl}}" wx:if="{{diyitem.data_num==1}}">
+                        <image class="lazyload lazyload-store" src="{{diyitem.data[0].imgurl}}"></image>
+                    </view>
+                    <view class="diy-cube-container" wx:elif="{{diyitem.data_num>1}}">
+                        <view class="diy-cube-left" style="padding: {{diyitem.style.paddingtop}}px {{diyitem.style.paddingleft}}px; padding-right:0px">
+                            <view bind:tap="onJsEvent" data-event-type="jsUrl" data-url="{{diyitem.data[0].linkurl}}">
+                                <image class="lazyload lazyload-store" src="{{diyitem.data[0].imgurl}}"></image>
+                            </view>
+                        </view>
+                        <view class="diy-cube-right" style="padding: {{diyitem.data_num==2?diyitem.style.paddingtop+'px '+diyitem.style.paddingleft+'px':0}};padding-top:{{diyitem.style.paddingtop}}px">
+                            <view bind:tap="onJsEvent" data-event-type="jsUrl" data-url="{{diyitem.data[1].linkurl}}" wx:if="{{diyitem.data_num==2}}">
+                                <image class="lazyload lazyload-store" src="{{diyitem.data[1].imgurl}}"></image>
+                            </view>
+                            <block wx:elif="{{diyitem.data_num>2}}">
+                                <view class="diy-cube-right1" style="padding: {{diyitem.style.paddingtop}}px {{diyitem.style.paddingleft}}px; padding-bottom:{{diyitem.style.paddingleft/2}}px;padding-top:0px;">
+                                    <view bind:tap="onJsEvent" data-event-type="jsUrl" data-url="{{diyitem.data[1].linkurl}}">
+                                        <image class="lazyload lazyload-store" src="{{diyitem.data[1].imgurl}}"></image>
+                                    </view>
+                                </view>
+                                <view class="diy-cube-right2" style="padding: {{diyitem.data_num==3?diyitem.style.paddingtop+'px '+diyitem.style.paddingleft+'px':0}};padding-bottom:0px;padding-top:{{diyitem.style.paddingleft/2}}px;">
+                                    <view bind:tap="onJsEvent" data-event-type="jsUrl" data-url="{{diyitem.data[2].linkurl}}" wx:if="{{diyitem.data_num==3}}">
+                                        <image class="lazyload lazyload-store" src="{{diyitem.data[2].imgurl}}"></image>
+                                    </view>
+                                    <block wx:if="{{diyitem.data_num>3}}">
+                                        <view class="left" style="padding: 0px {{diyitem.style.paddingleft}}px; padding-right: 0px;">
+                                            <view bind:tap="onJsEvent" data-event-type="jsUrl" data-url="{{diyitem.data[2].linkurl}}">
+                                                <image class="lazyload lazyload-store" src="{{diyitem.data[2].imgurl}}"></image>
+                                            </view>
+                                        </view>
+                                        <view class="right" style="padding: 0px {{diyitem.style.paddingleft}}px;">
+                                            <view bind:tap="onJsEvent" data-event-type="jsUrl" data-url="{{diyitem.data[3].linkurl}}">
+                                                <image src="{{diyitem.data[3].imgurl}}"></image>
+                                            </view>
+                                        </view>
+                                    </block>
+                                </view>
+                            </block>
+                        </view>
+                    </view>
+                </view>
+                <block wx:elif="{{diyitem.params.row>1&&diyitem.params.row<5}}">
+                    <view class="diy-picturew row-{{diyitem.params.row}} lazyload-container" style="padding: {{diyitem.style.paddingtop}}px {{diyitem.style.paddingleft}}px; background: {{diyitem.style.background}};" wx:if="{{diyitem.params.showtype==0||diyitem.data_num<=diyitem.params.pagenum}}">
+                        <view class="item" style="padding: {{diyitem.style.paddingtop}}px {{diyitem.style.paddingleft}}px;" wx:for="{{diyitem.data}}" wx:key="{{index}}">
+                            <view bind:tap="onJsEvent" data-event-type="jsUrl" data-nocache="true" data-url="{{item.linkurl}}">
+                                <image src="{{item.imgurl}}"></image>
+                            </view>
+                        </view>
+                    </view>
+                    <view class="swiper swiper-{{index}}" data-element=".swiper-{{index}}" wx:else>
+                        <view class="swiper-container diy-picturew row-{{diyitem.params.row}} swiper-container-horizontal" data-autoplay="2000" data-pagination=".swiper-pagination-M1516786662941" style="padding: {{diyitem.style.paddingtop}}px {{diyitem.style.paddingleft}}px; background: {{diyitem.style.background}};">
+                            <view class="swiper-wrapper" style="transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;">
+                                <swiper autoplay="true" circular="true" indicatorActiveColor="{{diyitem.style.dotbackground}}" indicatorColor="#7f7f7f" indicatorDots="{{diyitem.style.showdot==0?false:true}}" interval="4000" style="height:{{diyitem.style.base_height*diyitem.style.rows_num}}px">
+                                    <swiper-item wx:for="{{diyitem.data}}" wx:for-item="tempitem" wx:key="{{index}}">
+                                        <view class="swiper-slide swiper-slide-active">
+                                            <view class="item" style="padding: {{diyitem.style.paddingtop}}px {{diyitem.style.paddingleft}}px;" wx:for="{{tempitem}}" wx:key="{{index}}">
+                                                <view bind:tap="onJsEvent" data-event-type="jsUrl" data-nocache="true" data-url="{{item.linkurl}}">
+                                                    <image src="{{item.imgurl}}"></image>
+                                                </view>
+                                            </view>
+                                        </view>
+                                    </swiper-item>
+                                </swiper>
+                            </view>
+                        </view>
+                    </view>
+                </block>
+                <view class="diy-picturew row-{{diyitem.params.row}}" style="background: {{diyitem.style.background}}" wx:elif="{{diyitem.params.row==5}}">
+                    <view bind:tap="onJsEvent" class="diy-picturew-left" data-event-type="jsUrl" data-url="{{diyitem.data[0].linkurl}}" wx:if="{{diyitem.data_num>=1}}">
+                        <image alt="" class="lazyload lazyload-store" src="{{diyitem.data[0].imgurl}}"></image>
+                    </view>
+                    <view class="diy-picturew-right" wx:if="{{diyitem.data_num>=2}}">
+                        <view class="diy-picturew-right-top">
+                            <view bind:tap="onJsEvent" class="left" data-event-type="jsUrl" data-url="{{diyitem.data[1].linkurl}}">
+                                <image alt="" class="lazyload lazyload-store" src="{{diyitem.data[1].imgurl}}"></image>
+                            </view>
+                            <view bind:tap="onJsEvent" class="right" data-event-type="jsUrl" data-url="{{diyitem.data[2].linkurl}}" wx:if="{{diyitem.data_num>=3}}">
+                                <image alt="" class="lazyload lazyload-store" src="{{diyitem.data[2].imgurl}}"></image>
+                            </view>
+                        </view>
+                        <view class="diy-picturew-right-bottom" wx:if="{{diyitem.data_num>=4}}">
+                            <view bind:tap="onJsEvent" class="left" data-event-type="jsUrl" data-url="{{diyitem.data[3].linkurl}}">
+                                <image alt="" class="lazyload lazyload-store" src="{{diyitem.data[3].imgurl}}"></image>
+                            </view>
+                            <view bind:tap="onJsEvent" class="right" data-event-type="jsUrl" data-url="{{diyitem.data[4].linkurl}}" wx:if="{{diyitem.data_num>=5}}">
+                                <image alt="" class="lazyload lazyload-store" src="{{diyitem.data[4].imgurl}}"></image>
+                            </view>
+                        </view>
+                    </view>
+                </view>
+                <view class="diy-picturew row-{{diyitem.params.row}}" style="background: {{diyitem.style.background}}" wx:elif="{{diyitem.params.row==6}}">
+                    <view class="diy-picturew-top" wx:if="{{diyitem.data_num>=1}}">
+                        <view bind:tap="onJsEvent" class="left" data-event-type="jsUrl" data-url="{{diyitem.data[0].linkurl}}">
+                            <image alt="" class="lazyload lazyload-store" src="{{diyitem.data[0].imgurl}}"></image>
+                        </view>
+                        <view bind:tap="onJsEvent" class="right" data-event-type="jsUrl" data-url="{{diyitem.data[1].linkurl}}" wx:if="{{diyitem.data_num>=2}}">
+                            <image alt="" class="lazyload lazyload-store" src="{{diyitem.data[1].imgurl}}"></image>
+                        </view>
+                    </view>
+                    <view class="diy-picturew-bottom" wx:if="{{diyitem.data_num>=3}}">
+                        <view bind:tap="onJsEvent" class="one-picturew" data-event-type="jsUrl" data-url="{{diyitem.data[2].linkurl}}">
+                            <image alt="" class="lazyload lazyload-store" src="{{diyitem.data[2].imgurl}}"></image>
+                        </view>
+                        <view bind:tap="onJsEvent" class="one-picturew" data-event-type="jsUrl" data-url="{{diyitem.data[3].linkurl}}" wx:if="{{diyitem.data_num>=4}}">
+                            <image alt="" class="lazyload lazyload-store" src="{{diyitem.data[3].imgurl}}"></image>
+                        </view>
+                        <view bind:tap="onJsEvent" class="one-picturew" data-event-type="jsUrl" data-url="{{diyitem.data[4].linkurl}}" wx:if="{{diyitem.data_num>=5}}">
+                            <image alt="" class="lazyload lazyload-store" src="{{diyitem.data[4].imgurl}}"></image>
+                        </view>
+                        <view bind:tap="onJsEvent" class="one-picturew" data-event-type="jsUrl" data-url="{{diyitem.data[5].linkurl}}" wx:if="{{diyitem.data_num>=6}}">
+                            <image alt="" class="lazyload lazyload-store" src="{{diyitem.data[5].imgurl}}"></image>
+                        </view>
+                    </view>
+                </view>
+            </block>
+            <view class="diy-bargain-activity" style="margin-top: {{diyitem.style.margintop}}px" wx:elif="{{diyitem.id=='bargain'&&diyitem.data_num>0}}">
+                <view class="activity-header text-center" style="color: {{diyitem.style.titlecolor}};">
+					{{diyitem.params.title}}
+					<view bind:tap="onJsEvent" class="more" data-event-type="jsUrl" data-url="plugin/pages/bargain/index">
+						更多
+						<view class="icon icon-arrow-right"></view>
+                    </view>
+                </view>
+                <view class="goods-list row" wx:if="{{diyitem.params.showtype==0||diyitem.params.showtype==1&&diyitem.data_num<=diyitem.params.pagenum}}">
+                    <view class="goods-item col-25" wx:for="{{diyitem.data}}" wx:for-item="bargainGoods" wx:key="{{index}}">
+                        <navigator url="../store/goodsDetail?sid={{bargainGoods.sid}}&id={{bargainGoods.goods_id}}">
+                            <view class="goods-image">
+                                <view class="label" wx:if="bargainGoods.discount > 0 && bargainGoods.discount < 10">{{bargainGoods.discount}}折</view>
+                                <image src="{{bargainGoods.thumb}}"></image>
+                            </view>
+                            <view class="goods-title" style="color: {{diyitem.style.goodsnamecolor}};">{{bargainGoods.title}}</view>
+                            <view class="price">
+                                <view class="">{{Lang.dollarSign}}</view>
+                                <view class="now-price">{{bargainGoods.discount_price}}</view>
+                                <view class="original-price">{{Lang.dollarSign}}{{bargainGoods.price}}</view>
+                            </view>
+                        </navigator>
+                    </view>
+                </view>
+                <view class="goods-list row" wx:elif="{{diyitem.params.showtype==1}}">
+                    <swiper circular="true" class="swiper-wrapper" indicatorActiveColor="{{diyitem.style.dotbackground}}" indicatorColor="#7f7f7f" indicatorDots="{{diyitem.style.showdot==0?false:true}}" style="height:{{diyitem.params.pagenum>4?265:130}}px">
+                        <swiper-item wx:for="{{diyitem.data}}" wx:key="{{index}}">
+                            <view class="goods-item col-25" wx:for="{{item}}" wx:for-item="bargainGoods" wx:key="{{index}}">
+                                <navigator url="../store/goodsDetail?sid={{bargainGoods.sid}}&id={{bargainGoods.goods_id}}">
+                                    <view class="goods-image">
+                                        <view class="label">{{bargainGoods.discount}}折</view>
+                                        <image src="{{bargainGoods.thumb}}"></image>
+                                    </view>
+                                    <view class="goods-title">{{bargainGoods.title}}</view>
+                                    <view class="price">
+                                        <view class="">{{Lang.dollarSign}}</view>
+                                        <view class="now-price">{{bargainGoods.discount_price}}</view>
+                                        <view class="original-price">{{Lang.dollarSign}}{{bargainGoods.price}}</view>
+                                    </view>
+                                </navigator>
+                            </view>
+                        </swiper-item>
+                    </swiper>
+                </view>
+                <view class="bargain-swiper" wx:elif="{{diyitem.params.showtype==2}}">
+                    <swiper nextMargin="280rpx">
+                        <swiper-item class="padding-15-r" wx:for="{{diyitem.data}}" wx:for-item="bargainGoods" wx:key="{{bargainGoods.id}}">
+                            <view class="goods-item">
+                                <view class="img-wrap">
+                                    <image class="wh-100" src="{{bargainGoods.thumb}}"></image>
+                                </view>
+                                <view class="padding-10-lr w-100 ellipsis margin-10-t goods-title">{{bargainGoods.title}}</view>
+                                <view class="flex padding-10-lr margin-10-tb">
+                                    <text class="icon icon-shop"></text>
+                                    <text class="store-title ellipsis margin-5-l">{{bargainGoods.store_title}}</text>
+                                </view>
+                                <view class="flex-lr padding-10-lr padding-10-b">
+                                    <view class="price-wrap">
+                                        <text class="c-danger">{{Lang.dollarSign}}</text>
+                                        <text class="c-danger font-20">{{bargainGoods.discount_price}}</text>
+                                        <text class="c-gray line-through font-12 margin-5-l">{{Lang.dollarSign}}{{bargainGoods.price}}</text>
+                                    </view>
+                                    <view bind:tap="onJsEvent" class="buy-btn" data-event-type="jsUrl" data-url="pages/store/goodsDetail?sid={{bargainGoods.sid}}&id={{bargainGoods.goods_id}}">立即抢购</view>
+                                </view>
+                            </view>
+                        </swiper-item>
+                    </swiper>
+                </view>
+            </view>
+            <view class="diy-line" style="background: {{diyitem.style.background}}; padding: {{diyitem.style.padding}}px 0;" wx:elif="{{diyitem.id=='line'}}">
+                <view class="line" style="border-top: {{diyitem.style.height}}px {{diyitem.style.linestyle}} {{diyitem.style.bordercolor}};width: 100%;height: 0;"></view>
+            </view>
+            <view class="diy-graphic" style="background: {{diyitem.style.background}}; padding: {{diyitem.style.paddingtop}}px {{diyitem.style.paddingleft}}px" wx:elif="{{diyitem.id=='graphic'}}">
+                <view class="diy-graphic-container clearfix">
+                    <view bind:tap="onJsEvent" class="diy-graphic-list" data-event-type="jsUrl" data-url="{{item.linkurl}}" style="background: {{diyitem.style.cardbackground}};" wx:for="{{diyitem.data}}" wx:key="{{index}}">
+                        <view class="main-title" style="color:{{diyitem.style.titlecolor}};">{{item.title}}</view>
+                        <view class="subhead" style="color:{{diyitem.style.subheadcolor}};">{{item.subhead}}</view>
+                        <view class="img">
+                            <image alt="" src="{{item.imgurl}}"></image>
+                        </view>
+                    </view>
+                </view>
+            </view>
+            <block wx:elif="{{diyitem.id=='navs'}}">
+                <view class="diy-navs" style="margin-top: {{diyitem.style.margintop}}px;" wx:if="{{diyitem.params.showtype==0||diyitem.data_num<=diyitem.params.pagenum}}">
+                    <view class="diy-navs-container {{diyitem.style.navstyle}} col-{{diyitem.params.rownum}}">
+                        <view class="diy-nav-col" wx:for="{{diyitem.data}}" wx:key="{{index}}">
+                            <view bind:tap="onJsEvent" data-event-type="jsUrl" data-url="{{item.linkurl}}">
+                                <view class="nav-icon">
+                                    <image src="{{item.imgurl}}"></image>
+                                </view>
+                                <view class="nav-text" style="color: {{item.color}}">{{item.text}}</view>
+                            </view>
+                        </view>
+                    </view>
+                </view>
+                <view class="diy-navs" style="margin-top: {{diyitem.style.margintop}}px;" wx:else>
+                    <view class="diy-navs-container col-{{diyitem.params.rownum}} {{diyitem.style.navstyle}}">
+                        <swiper circular="true" class="snot-one1" indicatorActiveColor="{{diyitem.style.dotbackground}}" indicatorColor="#7f7f7f" indicatorDots="{{diyitem.params.showdot==0?false:true}}" style="height: {{90*diyitem.row}}px">
+                            <swiper-item class="not-one" wx:for="{{diyitem.data}}" wx:for-index="tempIndex" wx:for-item="tempitem" wx:key="{{tempIndex}}">
+                                <view class="diy-nav-col" wx:for="{{tempitem}}" wx:key="{{index}}">
+                                    <view bind:tap="onJsEvent" data-event-type="jsUrl" data-url="{{item.linkurl}}">
+                                        <view class="nav-icon">
+                                            <image src="{{item.imgurl}}"></image>
+                                        </view>
+                                        <view class="nav-text" style="color: {{item.color}}">{{item.text}}</view>
+                                    </view>
+                                </view>
+                            </swiper-item>
+                        </swiper>
+                    </view>
+                </view>
+            </block>
+            <view class="diy-searchbar" style="background: {{diyitem.style.background}}; padding: {{diyitem.style.paddingtop}}px {{diyitem.style.paddingleft}}px;" wx:elif="{{diyitem.id=='searchbar'}}">
+                <view bind:tap="onJsEvent" class="inner {{diyitem.style.searchstyle}}" data-event-type="jsUrl" data-url="{{diyitem.params.link}}" style="background: {{diyitem.style.searchbackground}}; color: {{diyitem.style.searchcolor}};">
+                    <view class="search-icon" style="color: {{diyitem.style.iconcolor}};">
+                        <view class="icon icon-search"></view>
+                    </view>
+                    <view class="search-input" style="text-align:{{diyitem.style.textalign}}; color: {{diyitem.style.color}};">
+                        <view>{{diyitem.params.placeholder}}</view>
+                    </view>
+                </view>
+            </view>
+            <view class="diy-title" style="background: {{diyitem.style.background}}; color: {{diyitem.style.color}}; text-align: {{diyitem.style.textalign}}; font-size: {{diyitem.style.fontsize}}; padding: {{diyitem.style.paddingtop}}px {{diyitem.style.paddingleft}}px;" wx:elif="{{diyitem.id=='title'}}">
+                <view bind:tap="onJsEvent" data-event-type="jsUrl" data-url="{{diyitem.params.linkurl}}">
+					{{diyitem.params.title}}
+				</view>
+            </view>
+            <view class="diy-listmenu border-1px-tb" style="background: {{diyitem.style.background}}; color: {{diyitem.style.color}}; padding: {{diyitem.style.paddingtop}}px {{diyitem.style.paddingleft}}px;" wx:elif="{{diyitem.id=='listmenu'}}">
+                <view bind:tap="onJsEvent" class="wui-cell wui-cell-access" data-event-type="jsUrl" data-url="{{item.link}}" wx:for="{{diyitem.data}}" wx:key="{{index}}">
+                    <view class="wui-cell-bd">
+                        <view class="icon {{item.icon}}" style="color: {{diyitem.style.iconcolor}}"></view>
+							{{item.text}}
+						</view>
+                    <view class="wui-cell-ft" style="color: {{diyitem.style.remarkcolor}}}">{{item.remark}}</view>
+                </view>
+            </view>
+            <view class="diy-fixedsearch clearfix" style="background: {{diyitem.style.fixedbackground}};" wx:elif="{{diyitem.id=='fixedsearch'}}">
+                <navigator class="loc {{diyitem.style.locstyle}}" style="background: {{diyitem.style.locbackground}}; color: {{diyitem.style.loccolor}};" url="../home/location">
+                    <view class="icon icon-location"></view>
+                    <view class="location-text">{{location.address?location.address:'定位中。。。'}}</view>
+                    <view class="icon icon-xiangyou1"></view>
+                </navigator>
+                <view bind:tap="onJsEvent" class="searchBar {{diyitem.style.searchstyle}}" data-event-type="jsUrl" data-url="{{diyitem.params.link}}" style="background: {{diyitem.style.searchbackground}}; color: {{diyitem.style.searchcolor}};">
+                    <image src="/static/img/icon_search.png"></image>
+                    <text>{{diyitem.params.text}}</text>
+                </view>
+            </view>
+            <block wx:elif="{{diyitem.id=='selective'&&diyitem.data}}">
+                <view class="diy-selective" style="margin-top: {{diyitem.style.margintop}}px;" wx:if="{{diyitem.params.showtype==0||diyitem.data_num<=diyitem.params.pagenum}}">
+                    <view class="selective-tab" style="color: {{diyitem.style.titlecolor}}">
+						{{diyitem.params.title}}
+						<navigator class="more" url="../channel/brand">
+							更多
+							<view class="icon icon-arrow-right"></view>
+                        </navigator>
+                    </view>
+                    <view class="selective-info row">
+                        <navigator class="col-33 selective-item" url="{{selectItem.url}}" wx:for="{{diyitem.data}}" wx:for-item="selectItem" wx:key="{{index}}">
+                            <image src="{{selectItem.logo}}"></image>
+                            <view class="selective-title" style="color: {{diyitem.style.storecolor}}">{{selectItem.title}}</view>
+                        </navigator>
+                    </view>
+                </view>
+                <view class="diy-selective" style="margin-top: {{diyitem.style.margintop}}px;" wx:else>
+                    <view class="selective-tab" style="color: {{diyitem.style.titlecolor}}">
+						{{diyitem.params.title}}
+						<navigator class="more" url="../channel/brand">
+							更多
+							<view class="icon icon-arrow-right"></view>
+                        </navigator>
+                    </view>
+                    <view class="selective-info row">
+                        <swiper class="row-2" indicatorActiveColor="{{diyitem.style.dotbackground}}" indicatorColor="#7f7f7f" indicatorDots="{{diyitem.style.showdot==0?false:true}}" style="height:{{diyitem.params.pagenum>3?250:120}}px">
+                            <swiper-item wx:for="{{diyitem.data}}" wx:for-index="tempIndex" wx:for-item="tempitem" wx:key="{{tempIndex}}">
+                                <navigator class="col-33 selective-item" url="{{item.url}}" wx:for="{{tempitem}}" wx:key="{{index}}">
+                                    <image src="{{item.logo}}"></image>
+                                    <view class="selective-title" style="color: {{diyitem.style.storecolor}}">{{item.title}}</view>
+                                </navigator>
+                            </swiper-item>
+                        </swiper>
+                    </view>
+                </view>
+            </block>
+            <view class="diy-store-list" style="margin-top: {{diy.stores_list.diyitems.style.margintop}}px;" wx:elif="{{diyitem.id=='waimai_allstores'}}">
+                <view class="diy-cate-list border-1px-b" wx:if="{{diyitem.params.datafrom==1&&diyitem.params.showchildcategory==1}}">
+                    <scroll-view class="cate-list" scrollX="{{true}}">
+                        <view bind:tap="onChangeCategory" class="cate-item {{store.filter.categorySelectedId==item.id?'active':''}}" data-id="{{item.id}}" data-parentid="{{item.parentid}}" wx:for="{{diyitem.params.store_categorys}}" wx:key="{{index}}">
+                            <view class="img-wrap">
+                                <image class="wh-100" src="{{item.thumb}}"></image>
+                            </view>
+                            <view class="cate-title ellipsis" style="color: {{store.filter.categorySelectedId==item.id?diyitem.style.childcategoryactivecolor:diyitem.style.childcategorycolor}}">{{item.title}}</view>
+                        </view>
+                    </scroll-view>
+                </view>
+                <view class="diy-store-button-tab border-1px-b">
+                    <view bind:tap="onMultiple" class="col-25 {{storeExtra.condition.order&&storeExtra.condition.order!='sailed'&&storeExtra.condition.order!='distance'?'active':''}}">{{storeExtra.filter_title}} <view class="icon icon-unfold"></view>
+                    </view>
+                    <view bind:tap="onOrderby" class="col-25 {{storeExtra.condition.order=='distance'?'active':''}}" data-order="distance" data-type="order">离我最近</view>
+                    <view bind:tap="onOrderby" class="col-25 {{storeExtra.condition.dis=='svipRedpacket'?'active':''}}" data-order="svipRedpacket" data-type="order" wx:if="{{diy.is_has_svip==1}}">
+                        <view class="icon icon-choiceness font-16 c-danger"></view>会员领红包
+					</view>
+                    <view bind:tap="onOrderby" class="col-25 {{storeExtra.condition.order=='sailed'?'active':''}}" data-order="sailed" data-type="order" wx:else>销量最高</view>
+                    <view bind:tap="onFilter" class="col-25 {{storeExtra.condition.dis||storeExtra.condition.mode?'active':''}}">
+						筛选 <view class="icon icon-unfold"></view>
+                        <text wx:if="{{storeExtra.condition.dis&&!storeExtra.condition.mode||storeExtra.condition.mode&&!storeExtra.condition.dis}}">1</text>
+                        <text wx:if="{{storeExtra.condition.dis&&storeExtra.condition.mode}}">2</text>
+                    </view>
+                </view>
+                <view class="diy-store-other-condition font-13 bg-default padding-15-lr padding-10-tb">
+                    <van-row gutter="10">
+                        <van-col span="6" wx:if="{{diy.is_has_svip==1}}">
+                            <view bind:tap="onOrderby" class="other-condition-item {{storeExtra.condition.dis=='svipRedpacket'?'active':''}}" data-order="svipRedpacket" data-type="order">会员红包</view>
+                        </van-col>
+                        <van-col span="6" wx:else>
+                            <view bind:tap="onOrderby" class="other-condition-item {{storeExtra.condition.dis=='mallNewMember'?'active':''}}" data-dis="mallNewMember" data-title="refresh" data-type="discounts">首单立减</view>
+                        </van-col>
+                        <van-col span="6">
+                            <view bind:tap="onOrderby" class="other-condition-item {{storeExtra.condition.dis=='deliveryFeeDiscount'?'active':''}}" data-dis="deliveryFeeDiscount" data-title="refresh" data-type="discounts">减配送费</view>
+                        </van-col>
+                        <van-col span="6" wx:if="{{diy.is_has_zhunshibao==1}}">
+                            <view bind:tap="onOrderby" class="other-condition-item {{storeExtra.condition.dis=='zhunshibao'?'active':''}}" data-dis="zhunshibao" data-title="refresh" data-type="discounts">赠准时宝</view>
+                        </van-col>
+                        <van-col span="6" wx:else>
+                            <view bind:tap="onOrderby" class="other-condition-item {{storeExtra.condition.dis=='couponCollect'?'active':''}}" data-dis="couponCollect" data-title="refresh" data-type="discounts">进店领券</view>
+                        </van-col>
+                        <van-col span="6">
+                            <view bind:tap="onOrderby" class="other-condition-item {{storeExtra.condition.dis=='discount'?'active':''}}" data-dis="discount" data-title="refresh" data-type="discounts">立减优惠</view>
+                        </van-col>
+                    </van-row>
+                </view>
+                <view class="diy-waimai-store-box">
+                    <view class="waimai-store-item-list" wx:if="{{!store.empty}}">
+                        <view class="waimai-store-item border-1px-b {{storeItem.is_rest==1?'disabled':''}}" wx:for="{{store.data}}" wx:for-index="storeIndex" wx:for-item="storeItem" wx:key="{{storeIndex}}">
+                            <view class="mian-content-box">
+                                <view class="content-left">
+                                    <navigator class="item-image" url="{{storeItem.url}}">
+                                        <view class="item-num" wx:if="{{storeItem.cart_num>0}}">{{storeItem.cart_num}}</view>
+                                        <view class="item-rest" wx:if="{{storeItem.is_rest==1}}">休息中</view>
+                                        <image src="{{storeItem.logo}}"></image>
+                                        <view class="store-label" wx:if="{{storeItem.label>0}}">
+                                            <view class="label" style="background:{{storeItem.label_color}}">{{storeItem.label_cn}}</view>
+                                        </view>
+                                    </navigator>
+                                </view>
+                                <view class="content-right">
+                                    <navigator url="{{storeItem.url}}">
+                                        <view class="item-name-wrap">
+                                            <view class="item-name" style="color: {{diy.stores_list.diyitems.style.titlecolor}}">{{storeItem.title}}</view>
+                                        </view>
+                                        <view class="delivery-tip" wx:if="{{storeItem.rest_reserve_cn}}">
+                                            <text>{{storeItem.rest_reserve_cn}}</text>
+                                        </view>
+                                        <view class="item-score-time">
+                                            <view class="item-score-sale">
+                                                <view class="item-star-box">
+                                                    <view class="stars" style="color: {{diy.stores_list.diyitems.style.scorecolor}}; width: {{storeItem.score*20}}%">
+                                                        <view class="icon icon-favor_fill_light"></view>
+                                                        <view class="icon icon-favor_fill_light"></view>
+                                                        <view class="icon icon-favor_fill_light"></view>
+                                                        <view class="icon icon-favor_fill_light"></view>
+                                                        <view class="icon icon-favor_fill_light"></view>
+                                                    </view>
+                                                    <view class="stars-bg" style="color: {{diy.stores_list.diyitems.style.scorecolor}};">
+                                                        <view class="icon icon-favor_light"></view>
+                                                        <view class="icon icon-favor_light"></view>
+                                                        <view class="icon icon-favor_light"></view>
+                                                        <view class="icon icon-favor_light"></view>
+                                                        <view class="icon icon-favor_light"></view>
+                                                    </view>
+                                                </view>
+                                                <view class="item-sale">月售 {{storeItem.sailed}}</view>
+                                            </view>
+                                            <view class="time-distance">
+                                                <view class="avg_delivery_time">{{storeItem.delivery_time}}分钟</view>
+                                                <view class="line">|</view>
+                                                <view class="avg_distance">{{storeItem.distance}}km</view>
+                                            </view>
+                                        </view>
+                                        <view class="item-min-delivery">
+                                            <view class="item-min-delivery-left">
+                                                <view>起送价{{Lang.dollarSign}}{{storeItem.send_price}}</view>
+                                                <view class="line">|</view>
+                                                <view wx:if="{{storeItem.delivery_price>0}}">配送费{{Lang.dollarSign}}{{storeItem.delivery_price}}</view>
+                                                <view wx:else>免配送费</view>
+                                            </view>
+                                            <view class="item-min-delivery-right-wrap">
+                                                <view class="zhunshibao" wx:if="{{storeItem.zhunshibao_cn}}">{{storeItem.zhunshibao_cn}}</view>
+                                                <view class="item-min-delivery-right" style="background-color: {{diy.stores_list.diyitems.style.deliverytitlebgcolor}}; color: {{diyitem.style.deliverytitlecolor}}" wx:if="{{storeItem.delivery_title}}">{{storeItem.delivery_title}}</view>
+                                            </view>
+                                        </view>
+                                    </navigator>
+                                    <view bind:tap="onToggleDiscount" class="discount-box" data-index="{{storeIndex}}" wx:if="{{storeItem.activity&&(storeItem.activity.num>0||storeItem.activity.labels_num>0)}}">
+                                        <view class="toggle">
+                                            <view class="icon {{storeItem.activity.is_show_all?'icon-fold':'icon-unfold'}}" wx:if="{{diy.stores_list.diyitems.params.discountstyle==1&&storeItem.activity.num>2||diy.stores_list.diyitems.params.discountstyle==2&&storeItem.activity.labels_num>4}}"></view>
+                                        </view>
+                                        <block wx:if="{{diy.stores_list.diyitems.params.discountstyle==1}}" wx:for="{{storeItem.activity.items}}" wx:key="{{index}}">
+                                            <view class="single-line" wx:if="{{index<2||storeItem.activity.is_show_all&&index>=2}}">
+                                                <image class="discount-icon" src="/static/img/{{item.type}}_b.png"></image>
+                                                <view class="discount-text">{{item.title}}</view>
+                                            </view>
+                                        </block>
+                                        <view class="label-wrap {{storeItem.activity.is_show_all?'autoHeight':''}}" wx:if="{{diy.stores_list.diyitems.params.discountstyle==2}}">
+                                            <text class="{{item.class}}" wx:if="{{index<4||storeItem.activity.is_show_all&&index>=4}}" wx:for="{{storeItem.activity.labels}}" wx:key="{{index}}">{{item.title}}</text>
+                                        </view>
+                                    </view>
+                                    <block wx:if="{{storeItem.hot_goods_num>0}}">
+                                        <view class="hot-box" wx:if="{{diy.stores_list.diyitems.params.showhotgoods==1||diy.stores_list.diyitems.params.showhotgoods==2&&diy.stores_list.diyitems.params.hotgoodsnum>storeIndex}}">
+                                            <navigator url="../store/goodsDetail?sid={{storeItem.id}}&id={{item.id}}" wx:for="{{storeItem.hot_goods}}" wx:key="{{index}}">
+                                                <view class="hot-box-item">
+                                                    <view class="hot-t border-1px">
+                                                        <image mode="widthFix" src="{{item.thumb}}"></image>
+                                                        <view class="" wx:if="{{item.discount>0&&item.discount<10}}">{{item.svip_status==1?'会员':''}}{{item.discount}}折</view>
+                                                    </view>
+                                                    <view class="hot-b">
+                                                        <view class="shop-name">{{item.title}}</view>
+                                                        <view class="shop-price">
+                                                            <view class="now-price">{{Lang.dollarSign}}{{item.price}}</view>
+                                                            <view class="old-price" wx:if="{{item.old_price>0}}">{{Lang.dollarSign}}{{item.old_price}}</view>
+                                                        </view>
+                                                    </view>
+                                                </view>
+                                            </navigator>
+                                        </view>
+                                    </block>
+                                </view>
+                            </view>
+                        </view>
+                    </view>
+                    <view class="no-store" wx:else>
+                        <image class="no-coupon" src="http://cos.lalawaimai.com/we7_wmall/wxapp/store_no_con.png"></image>
+                        <view class="no-record">附近没有发现门店,我们正在努力覆盖中</view>
+                        <navigator class="nodata-target" hoverClass="none" url="../home/location">
+                            <view class="target-btn">切换地址</view>
+                        </navigator>
+                    </view>
+                </view>
+                <block wx:if="{{!store.empty}}">
+                    <view class="wui-loadmore wui-loadmore-nomore" wx:if="{{store.loaded==1}}">
+                        <view class="wui-loadmore-tips">我是有底线的</view>
+                        <view class="wui-loadmore-line"></view>
+                    </view>
+                    <view class="wui-loadmore" wx:if="{{store.loading==1}}">
+                        <view class="wui-loading"></view>
+                        <view class="wui-loadmore-tips">正在加载中</view>
+                    </view>
+                </block>
+                <view class="dialog {{storeExtra.multiple?'dialog-show':''}}">
+                    <view bind:tap="onMultiple" class="dialog-mask"></view>
+                    <view class="dialog-container">
+                        <view class="diy-store-button-tab border-1px-b">
+                            <view bind:tap="onMultiple" class="col-25 {{storeExtra.condition.order&&storeExtra.condition.order!='sailed'&&storeExtra.condition.order!='distance'?'active':''}}">{{storeExtra.filter_title}}</view>
+                            <view bind:tap="onOrderby" class="col-25 {{storeExtra.condition.order=='sailed'?'active':''}}" data-order="sailed" data-type="order">销量最高</view>
+                            <view bind:tap="onOrderby" class="col-25 {{storeExtra.condition.order=='distance'?'active':''}}" data-order="distance" data-type="order">离我最近</view>
+                            <view bind:tap="onFilter" class="col-25 {{storeExtra.condition.dis||storeExtra.condition.mode?'active':''}}">
+								筛选<text wx:if="{{storeExtra.condition.dis&&!storeExtra.condition.mode||storeExtra.condition.mode&&!storeExtra.condition.dis}}">1</text>
+                                <text wx:if="{{storeExtra.condition.dis&&storeExtra.condition.mode}}">2</text>
+                            </view>
+                        </view>
+                        <view class="multiple">
+                            <scroll-view scrollY="true">
+                                <view class="list">
+                                    <view bind:tap="onOrderby" class="wui-cell {{storeExtra.condition.order==item.key?'active':''}}" data-order="{{item.key}}" data-title="{{item.title}}" data-type="order" wx:for="{{diy.stores_list.orderbys}}" wx:key="{{index}}">
+                                        <view class="wui-cell-bd">
+                                            <view class="icon icon-{{item.icon}}"></view>{{item.title}}
+											</view>
+                                        <view class="weui-cell__ft weui-cell__ft_in-radio">
+                                            <icon class="weui-icon-radion" size="16" type="success_no_circle"></icon>
+                                        </view>
+                                    </view>
+                                </view>
+                            </scroll-view>
+                        </view>
+                    </view>
+                </view>
+                <view class="dialog {{storeExtra.filter?'dialog-show':''}}">
+                    <view bind:tap="onFilter" class="dialog-mask"></view>
+                    <view class="dialog-container">
+                        <view class="diy-store-button-tab border-1px-b">
+                            <view bind:tap="onMultiple" class="col-25 {{storeExtra.condition.order&&storeExtra.condition.order!='sailed'&&storeExtra.condition.order!='distance'?'active':''}}">{{storeExtra.filter_title}}</view>
+                            <view bind:tap="onOrderby" class="col-25 {{storeExtra.condition.order=='distance'?'active':''}}" data-order="distance" data-type="order">离我最近</view>
+                            <view bind:tap="onOrderby" class="col-25 {{storeExtra.condition.dis=='svipRedpacket'?'active':''}}" data-order="svipRedpacket" data-type="order" wx:if="{{diy.is_has_svip==1}}">
+                                <view class="icon icon-choiceness font-16 c-danger"></view>会员领红包
+							</view>
+                            <view bind:tap="onOrderby" class="col-25 {{storeExtra.condition.order=='sailed'?'active':''}}" data-order="sailed" data-type="order" wx:else>销量最高</view>
+                            <view bind:tap="onFilter" class="col-25 {{storeExtra.condition.dis||storeExtra.condition.mode?'active':''}}">
+								筛选<text wx:if="{{storeExtra.condition.dis&&!storeExtra.condition.mode||storeExtra.condition.mode&&!storeExtra.condition.dis}}">1</text>
+                                <text wx:if="{{storeExtra.condition.dis&&storeExtra.condition.mode}}">2</text>
+                            </view>
+                        </view>
+                        <view class="filter">
+                            <scroll-view scrollY="true">
+                                <view class="new-search-list">
+                                    <view class="new-search-title">配送服务</view>
+                                    <view class="new-search-group">
+                                        <view class="new-search-item">
+                                            <view bind:tap="onOrderby" class="info {{storeExtra.condition.mode==2?'active':''}}" data-mode="2" data-type="mode">
+                                                <i class="icon icon-waimai"></i>
+												{{config.delivery_title}}
+											</view>
+                                        </view>
+                                        <view class="new-search-item">
+                                            <view bind:tap="onOrderby" class="info {{storeExtra.condition.mode==1?'active':''}}" data-mode="1" data-type="mode">
+												商家自送
+											</view>
+                                        </view>
+                                    </view>
+                                </view>
+                                <view class="new-search-list">
+                                    <view class="new-search-title">优惠活动 (单选)</view>
+                                    <view class="new-search-group">
+                                        <view class="new-search-item" wx:for="{{diy.stores_list.discounts}}" wx:key="{{index}}">
+                                            <view bind:tap="onOrderby" class="info {{storeExtra.condition.dis==item.key?'active':''}}" data-dis="{{item.key}}" data-type="discounts">
+                                                <image alt="" src="/static/img/{{item.key}}_b.png"></image>
+												{{item.title}}
+											</view>
+                                        </view>
+                                    </view>
+                                </view>
+                            </scroll-view>
+                        </view>
+                        <view class="search-btn border-1px-t">
+                            <view bind:tap="onOrderby" class="search-btn-left" data-type="clear">清除筛选</view>
+                            <view bind:tap="onOrderby" class="search-btn-right" data-type="finish">完成<text wx:if="{{storeExtra.condition.dis&&!storeExtra.condition.mode||storeExtra.condition.mode&&!storeExtra.condition.dis}}">1</text>
+                                <text wx:if="{{storeExtra.condition.dis&&storeExtra.condition.mode}}">2</text>
+                            </view>
+                        </view>
+                    </view>
+                </view>
+            </view>
+            <block wx:elif="{{diyitem.id=='copyright'}}">
+                <view class="diy-copyright" style="background: {{diyitem.style.background}}" wx:if="{{diyitem.params.datafrom==0}}">
+                    <view class="style2" wx:if="{{diyitem.style.style==1}}">
+                        <image src="{{diyitem.params.imgurl}}" wx:if="{{diyitem.style.showimg==1}}"></image>
+                        <view style="color: {{diyitem.style.color}}">{{diyitem.params.content}}</view>
+                    </view>
+                    <view class="style1" style="color: {{diyitem.style.color}}" wx:if="{{diyitem.style.style==2}}">
+                        <image src="{{diyitem.params.imgurl}}" wx:if="{{diyitem.style.showimg==1}}"></image>
+						{{diyitem.params.content}}
+					</view>
+                </view>
+                <view wx:else>
+                    <template is="wxParse" data="{{wxParseData:richtext[diyindex].nodes}}"></template>
+                </view>
+            </block>
+            <block wx:elif="{{diyitem.id=='redpacket'}}">
+                <view class="dialog dialog-redpacket {{superRedpacket.is_show&&diyitem.params.showredpacket==1?'dialog-show':''}}" wx:if="{{superRedpacket.type==''}}">
+                    <view class="dialog-mask"></view>
+                    <view class="dialog-container">
+                        <view class="banner" style="background-color: {{superRedpacket.page.text.backgroundColor}};">
+                            <image src="{{superRedpacket.page.image}}"></image>
+                        </view>
+                        <view class="container" style="background-color: {{superRedpacket.page.text.backgroundColor}};">
+                            <view class="redpacket" wx:for="{{superRedpacket.redpackets}}" wx:key="{{index}}">
+                                <view class="redpacket-info clearfix" style="color: {{superRedpacket.page.text.color}};">
+                                    <view class="col-75 text-left">
+                                        <view class="redpacket-title">{{item.title}}</view>
+                                    </view>
+                                    <view class="col-25 price text-right">{{Lang.dollarSign}}<view>{{item.discount}}</view>
+                                    </view>
+                                </view>
+                                <view class="circle-container">
+                                    <view class="circle circle-left"></view>
+                                    <view class="circle circle-right"></view>
+                                </view>
+                                <view class="redpacket-limit clearfix">
+                                    <view class="col-70 use-days-limit text-left">{{item.use_days_limit_text}}</view>
+                                    <view class="col-30 use-condition text-right">满{{item.condition}}可用</view>
+                                </view>
+                            </view>
+                            <view class="go-home">
+                                <view bind:tap="onCloseRedpacket" style="background-color: {{superRedpacket.page.button.backgroundColor}}; color: {{superRedpacket.page.button.color}}">进入首页</view>
+                            </view>
+                            <icon bind:tap="onCloseRedpacket" class="icon icon-close"></icon>
+                        </view>
+                    </view>
+                </view>
+                <view class="dialog dialog-redpacket dialog-coupon {{superRedpacket.is_show?'dialog-show':''}}" style="background-color: {{superRedpacket.page.style.backgroundColor}};" wx:elif="{{superRedpacket.type=='coupon'}}">
+                    <view class="dialog-mask"></view>
+                    <view class="dialog-container">
+                        <view class="banner" style="background-color: {{superRedpacket.page.style.backgroundColor}};">
+                            <image src="{{superRedpacket.page.params.image}}"></image>
+                        </view>
+                        <view class="container" style="background-color: {{superRedpacket.page.style.backgroundColor}};">
+                            <view class="coupon-list">
+                                <view bind:tap="onJsEvent" class="coupon-item" data-event-type="jsUrl" data-url="pages/store/goods?sid={{item.sid}}" wx:for="{{superRedpacket.redpackets}}" wx:key="{{index}}">
+                                    <view class="item-inner flex-lr">
+                                        <view class="store-info flex-lr">
+                                            <image alt="" src="{{item.store_logo}}"></image>
+                                            <view class="info">
+                                                <view class="store-title ellipsis" style="color: {{superRedpacket.page.style.storeTitleColor}};">{{item.store_title}}</view>
+                                                <view class="useful-day" style="color: {{superRedpacket.page.style.usefulDayColor}};">有效期{{item.use_days_limit}}天</view>
+                                            </view>
+                                        </view>
+                                        <view class="coupon-price flex-lr">
+                                            <view class="info">
+                                                <view class="number" style="color: {{superRedpacket.page.style.moneyColor}};">{{Lang.dollarSign}} <text>{{item.discount}}</text>
+                                                </view>
+                                                <view class="limit" style="color: {{superRedpacket.page.style.useLimitColor}};">满{{item.condition}}{{Lang.dollarSignCn}}可用</view>
+                                            </view>
+                                            <view class="to-use" style="background-color: {{superRedpacket.page.style.toUseBackgroundColor}}; color: {{superRedpacket.page.style.toUseColor}};">
+                                                <view>去</view>
+                                                <view>使</view>
+                                                <view>用</view>
+                                            </view>
+                                        </view>
+                                    </view>
+                                    <view class="shu">
+                                        <view class="circle top-circle" style="background-color: {{superRedpacket.page.style.backgroundColor}};"></view>
+                                        <view class="line"></view>
+                                        <view class="circle bottom-circle" style="background-color: {{superRedpacket.page.style.backgroundColor}};"></view>
+                                    </view>
+                                </view>
+                            </view>
+                            <view bind:tap="onCloseRedpacket" class="go-home">
+                                <view style="background-color: {{superRedpacket.page.style.buttonBackgroundColor}}; color: {{superRedpacket.page.style.buttonColor}};">进入首页</view>
+                            </view>
+                            <icon bind:tap="onCloseRedpacket" class="icon icon-close"></icon>
+                        </view>
+                    </view>
+                </view>
+            </block>
+            <block wx:elif="{{diyitem.id=='cart'}}">
+                <view class="cartop" wx:if="{{diyitem.params.showcart==1}}">
+                    <navigator hoverClass="none" url="../order/cart">
+                        <view class="num" wx:if="{{cart_sum>0}}">{{cart_sum}}</view>
+                        <view class="icon icon-cartfill"></view>
+                    </navigator>
+                </view>
+            </block>
+            <view class="diy-activity" style="background-color: {{diyitem.style.background}};margin-top: {{diyitem.style.marginTop}}px;margin-bottom: {{diyitem.style.marginBottom}}px;" wx:elif="{{diyitem.id=='activity'}}">
+                <view bind:tap="onJsEvent" class="activity-item {{index%2==0?'border-1px-r':''}}" data-event-type="jsUrl" data-url="{{item.linkurl}}" wx:for="{{diyitem.data}}" wx:key="{{index}}">
+                    <view class="activity-item-container {{index<diyitem.data.length-2&&diyitem.data.length%2==0||index<diyitem.data.length-1&&diyitem.data.length%2==1?'border-1px-b':''}} ">
+                        <view class="col-6">
+                            <view class="heding" style="color: {{item.color}};">{{item.text}}</view>
+                            <view class="sub-heding" style="color: {{item.placeholderColor}};">{{item.placeholder}}</view>
+                        </view>
+                        <view class="col-4">
+                            <image alt="" src="{{item.imgurl}}"></image>
+                        </view>
+                        <view style="clear:both"></view>
+                    </view>
+                </view>
+            </view>
+            <view class="diy-memberHeader" wx:elif="{{diyitem.id=='memberHeader'}}">
+                <view class="member-headinfo" style="background:  {{diyitem.params.headerstyle=='color'?diyitem.style.background:'url('+diyitem.params.backgroundimgurl+') no-repeat'}};">
+                    <view class="headinfo-balance">
+                        <view class="headinfo-balance-price" style="color: {{diyitem.style.color}};">余额</view>
+                        <view class="headinfo-price" style="color: {{diyitem.style.highlightcolor}};">{{Logged?diyitem.member.credit2:0}}</view>
+                        <view bind:tap="onJsEvent" class="headinfo-filling-price" data-event-type="jsUrl" data-url="{{diyitem.params.leftbtn.linkurl}}" style="color: {{diyitem.style.color}}; border-color: {{diyitem.style.color}};">{{diyitem.params.leftbtn.text}}</view>
+                    </view>
+                    <view class="headinfo-user">
+                        <block wx:if="{{Logged}}">
+                            <view class="user-face {{diyitem.params.avatarstyle=='radius'?'party':''}}">
+                                <image src="{{diyitem.member.avatar}}"></image>
+                            </view>
+                            <view class="user-name" style="color: {{diyitem.style.color}};">{{diyitem.member.nickname}}</view>
+                            <view class="user-level" style="color: {{diyitem.style.color}};" wx:if="{{diyitem.member.groupid>0}}">
+									[{{diyitem.member.groupname}}]
+									<text class="icon icon-question1" wx:if="{{0}}"></text>
+                            </view>
+                        </block>
+                        <block wx:else>
+                            <view class="user-face radius">
+                                <image src="../../static/img/head.png"></image>
+                            </view>
+                            <view bind:tap="onToAuth" class="user-name margin-10-t" style="color: {{diyitem.style.color}};">点击登录/注册</view>
+                        </block>
+                    </view>
+                    <view class="headinfo-balance">
+                        <view class="headinfo-balance-price" style="color: {{diyitem.style.color}};">积分</view>
+                        <view class="headinfo-price" style="color: {{diyitem.style.highlightcolor}}; ">{{Logged?diyitem.member.credit1:0}}</view>
+                        <view bind:tap="onJsEvent" class="headinfo-filling-price" data-event-type="jsUrl" data-url="{{diyitem.params.rightbtn.linkurl}}" style="color: {{diyitem.style.color}};  border-color: {{diyitem.style.color}};">{{diyitem.params.rightbtn.text}}</view>
+                    </view>
+                    <view class="icons">
+                        <view bind:tap="onJsEvent" data-event-type="jsUrl" data-url="pages/member/profile">
+                            <text class="icon icon-settings font-20" style="color: {{diyitem.style.color}};"></text>
+                        </view>
+                        <view bind:tap="onJsEvent" class="kefu" data-event-type="jsUrl" data-url="plugin/pages/kefu/index" wx:if="{{diyitem.kefu.status==1}}">
+                            <text class="icon icon-notice font-20" style="color: {{diyitem.style.color}};"></text>
+                            <view class="nums" style="color: {{diyitem.style.background}}; background: {{diyitem.style.color}}" wx:if="{{diyitem.kefu.notread>0}}">{{diyitem.kefu.notread}}</view>
+                        </view>
+                    </view>
+                </view>
+            </view>
+            <block wx:elif="{{diyitem.id=='memberBindMobile'}}">
+                <view bind:tap="onJsEvent" class="diy-mobile-bind " data-event-type="jsUrl" data-url="pages/member/bind" style="margin-top: {{diyitem.style.margintop}}px;background: {{diyitem.style.background}};" wx:if="{{diyitem.has_mobile!=1}}">
+                    <view class="mobile-cell">
+                        <view class="mobile-cell-text">
+                            <text class="icon icon-phone1"></text>
+                            <text style="color: {{diyitem.style.titlecolor}};">绑定手机号</text>
+                            <view class="cell-text-info" style="color:{{diyitem.style.placeholdercolor}};">{{diyitem.params.placeholdertext}}</view>
+                        </view>
+                        <view class="mobile-cell-remark icon icon-right1"></view>
+                    </view>
+                </view>
+            </block>
+            <block wx:elif="{{diyitem.id=='blockNav'}}">
+                <view class="diy-blockNav" style="margin-top: {{diyitem.style.margintop}}px; background: {{diyitem.style.background}};" wx:if="{{diyitem.params.navstyle=='icon'}}">
+                    <view class="blockNav-title border-1px-b" style="color: {{diyitem.style.titlecolor}};" wx:if="{{diyitem.params.has_title==1}}">{{diyitem.params.title}}</view>
+                    <view class="col-4">
+                        <view bind:tap="onJsEvent" class="diy-icon-col" data-event-type="jsUrl" data-url="{{item.linkurl}}" wx:for="{{diyitem.data}}" wx:key="{{index}}">
+                            <view class="icon-img">
+                                <text class="icon {{item.icon}}" style="color: {{item.iconcolor}};"></text>
+                                <text class="nav-mark" style="color: {{item.markcolor}};background:{{item.markbackground}};" wx:if="{{item.marktext}}">{{item.marktext}}</text>
+                            </view>
+                            <view class="text-icon" style="color: {{item.textcolor}};">{{item.text}}</view>
+                            <view class="icon-tips" style="color: {{item.placeholdercolor}};" wx:if="{{diyitem.params.has_placeholder==1}}">{{item.placeholder}}</view>
+                        </view>
+                    </view>
+                </view>
+                <view class="diy-blockNav" style="margin-top: {{diyitem.style.margintop}}px; background: {{diyitem.style.background}};" wx:elif="{{diyitem.params.navstyle=='img'}}">
+                    <view class="blockNav-title border-1px-b" style="color: {{diyitem.style.titlecolor}};" wx:if="{{diyitem.params.has_title==1}}">{{diyitem.params.title}}</view>
+                    <view class="col-4">
+                        <view bind:tap="onJsEvent" class="diy-icon-col" data-event-type="jsUrl" data-url="{{item.linkurl}}" wx:for="{{diyitem.data}}" wx:key="{{index}}">
+                            <view class="icon-img">
+                                <image src="{{item.imgurl}}"></image>
+                                <text class="nav-mark" style="color: {{item.markcolor}};background:{{item.markbackground}};" wx:if="{{item.marktext}}">{{item.marktext}}</text>
+                            </view>
+                            <view class="text-icon" style="color: {{item.textcolor}};">{{item.text}}</view>
+                            <view class="icon-tips" style="color: {{item.placeholdercolor}};" wx:if="{{diyitem.params.has_placeholder==1}}">{{item.placeholder}}</view>
+                        </view>
+                    </view>
+                </view>
+            </block>
+            <view class="diy-gohome-activity" style="margin-top: {{diyitem.style.margintop}}px ;padding-top: {{diyitem.params.headline_show==1?'10px':'0px'}}" wx:elif="{{diyitem.id=='gohomeActivity'}}">
+                <view class="activity-header text-center" style="color: {{diyitem.style.headlinecolor}};" wx:if="{{diyitem.params.headline_show==1}}">
+						{{diyitem.params.headline}}
+						<view bind:tap="onJsEvent" class="more" data-event-type="jsUrl" data-url="{{diyitem.params.more_link}}" style="color: {{diyitem.style.morecolor}}">
+							{{diyitem.params.more}}
+							<view class="icon icon-arrow-right"></view>
+                    </view>
+                </view>
+                <view class="diy-gohome-kanjia" wx:if="{{diyitem.params.type=='kanjia'}}">
+                    <view class="list-row-box" style="background: {{diyitem.style.background}}" wx:if="{{diyitem.style.liststyle==4}}">
+                        <view class="activity-item bg-default padding-10 {{index<diyitem.data.length-1?'border-1px-b':''}}" style="margin-bottom: {{diyitem.style.marginbottom}}px" wx:for="{{diyitem.data}}" wx:key="{{item.id}}">
+                            <view class="flex-lr">
+                                <view class="thumb">
+                                    <image alt="" class="wh-100" src="{{item.thumb}}"></image>
+                                    <view class="mark" wx:if="{{0}}">
+													{{item.peoplenum}}人团
+												</view>
+                                </view>
+                                <view class="info">
+                                    <view class="font-14 w-100">
+                                        <view style="color: {{diyitem.style.titlecolor}}">{{item.title}}</view>
+                                    </view>
+                                    <view class="flex-lr-bottom w-100">
+                                        <view class="price-bar">
+                                            <view class="flex">
+                                                <text class="font-500 font-15 margin-5-r" style="color: {{diyitem.style.pricecolor}}">{{Lang.dollarSign}}{{item.price}}</text>
+                                                <view class="c-gray line-through font-12" style="color: {{diyitem.style.oldpricecolor}}" wx:if="{{diyitem.params.showoldprice==1}}">{{Lang.dollarSign}}{{item.old_price}}</view>
+                                                <view class="discount">{{item.discount}}折</view>
+                                            </view>
+                                            <view class="bar" style="background: {{diyitem.style.barbackground}}">
+                                                <view class="bar-inner" style="width: {{item.sailed_percent}}%" wx:if="{{!diyitem.style.barinnerbackground}}"></view>
+                                                <view class="bar-inner" style="width: {{item.sailed_percent}}%; background: {{diyitem.style.barinnerbackground}}" wx:else></view>
+                                                <view class="bar-text" style="color: {{diyitem.style.bartextcolor}}">已售{{item.falesailed_total}}份</view>
+                                            </view>
+                                        </view>
+                                        <view bind:tap="onJsEvent" class="btn btn-detail" data-event-type="jsUrl" data-url="gohome/pages/kanjia/detail?id={{item.id}}" style="color: {{diyitem.style.buybtncolor}}" wx:if="{{!diyitem.style.buybtnbackground}}">{{diyitem.params.buybtntext_kanjia}}</view>
+                                        <view bind:tap="onJsEvent" class="btn btn-detail" data-event-type="jsUrl" data-url="gohome/pages/kanjia/detail?id={{item.id}}" style="color: {{diyitem.style.buybtncolor}}; background: {{diyitem.style.buybtnbackground}}" wx:else>{{diyitem.params.buybtntext_kanjia}}</view>
+                                    </view>
+                                </view>
+                            </view>
+                        </view>
+                    </view>
+                    <view class="list-one-row-box" wx:elif="{{diyitem.style.liststyle==1}}">
+                        <view class="activity-item {{index<diyitem.data.length-1?'border-1px-b':''}}" wx:for="{{diyitem.data}}" wx:key="{{item.id}}">
+                            <view class="thumb">
+                                <image alt="" class="wh-100" mode="widthFix" src="{{item.thumb}}"></image>
+                            </view>
+                            <view class="title" style="color: {{diyitem.style.titlecolor}}">【邀请好友帮忙砍价】{{item.title}}</view>
+                            <view class="flex-lr">
+                                <view class="flex-lr">
+                                    <view class="flex">
+                                        <view class="font-16 font-bold" style="color: {{diyitem.style.pricecolor}}">{{Lang.dollarSign}}{{item.price}}</view>
+                                        <view class="c-gray font-12 line-through margin-5-l" style="color: {{diyitem.style.oldpricecolor}}" wx:if="{{diyitem.params.showoldprice==1}}">{{Lang.dollarSign}}{{item.old_price}}</view>
+                                    </view>
+                                    <view class="buy-history flex">
+                                        <view class="avatar-list">
+                                            <image src="{{img}}" wx:for="{{item.peopleimg}}" wx:for-item="img" wx:key="{{index}}"></image>
+                                        </view>
+                                        <view class="font-12 c-gray margin-5-l" wx:if="{{item.falesailed_total>0}}">{{item.falesailed_total}}人参与</view>
+                                    </view>
+                                </view>
+                                <view bind:tap="onJsEvent" class="btn btn-detail" data-event-type="jsUrl" data-url="gohome/pages/kanjia/detail?id={{item.id}}" style="color: {{diyitem.style.buybtncolor}}" wx:if="{{!diyitem.style.buybtnbackground}}">{{diyitem.params.buybtntext_kanjia}}</view>
+                                <view bind:tap="onJsEvent" class="btn btn-detail" data-event-type="jsUrl" data-url="gohome/pages/kanjia/detail?id={{item.id}}" style="color: {{diyitem.style.buybtncolor}}; background: {{diyitem.style.buybtnbackground}}" wx:else>{{diyitem.params.buybtntext_kanjia}}</view>
+                            </view>
+                        </view>
+                    </view>
+                    <view class="list-two-row-box" wx:elif="{{diyitem.style.liststyle==2}}">
+                        <view class="activity-list">
+                            <view class="activity-item" wx:for="{{diyitem.data}}" wx:key="{{item.id}}">
+                                <view class="item-inner">
+                                    <view class="thumb">
+                                        <image alt="" class="wh-100" src="{{item.thumb}}"></image>
+                                    </view>
+                                    <view class="goods-title" style="color: {{diyitem.style.titlecolor}}">{{item.title}}</view>
+                                    <view class="flex">
+                                        <text class="font-500 font-15 margin-5-r" style="color: {{diyitem.style.pricecolor}}">{{Lang.dollarSign}}{{item.price}}</text>
+                                        <view class="c-gray line-through font-12" style="color: {{diyitem.style.oldpricecolor}}" wx:if="{{diyitem.params.showoldprice==1}}">{{Lang.dollarSign}}{{item.old_price}}</view>
+                                        <view class="discount">{{item.discount}}折</view>
+                                    </view>
+                                    <view class="flex-lr margin-10-t">
+                                        <view class="bar" style="background: {{diyitem.style.barbackground}}">
+                                            <view class="bar-inner" style="width: {{item.sailed_percent}}%" wx:if="{{!diyitem.style.barinnerbackground}}"></view>
+                                            <view class="bar-inner" style="width: {{item.sailed_percent}}%; background: {{diyitem.style.barinnerbackground}}" wx:else></view>
+                                            <view class="bar-text" style="color: {{diyitem.style.bartextcolor}}">已售{{item.falesailed_total}}份</view>
+                                        </view>
+                                        <view bind:tap="onJsEvent" class="btn btn-detail" data-event-type="jsUrl" data-url="gohome/pages/kanjia/detail?id={{item.id}}" style="color: {{diyitem.style.buybtncolor}}" wx:if="{{!diyitem.style.buybtnbackground}}">{{diyitem.params.buybtntext_kanjia}}</view>
+                                        <view bind:tap="onJsEvent" class="btn btn-detail" data-event-type="jsUrl" data-url="gohome/pages/kanjia/detail?id={{item.id}}" style="color: {{diyitem.style.buybtncolor}}; background: {{diyitem.style.buybtnbackground}}" wx:else>{{diyitem.params.buybtntext_kanjia}}</view>
+                                    </view>
+                                </view>
+                            </view>
+                        </view>
+                    </view>
+                    <view class="list-three-row-box" style="background-color: {{diyitem.style.background}}" wx:elif="{{diyitem.style.liststyle==3}}">
+                        <scroll-view class="seckill-list" scrollX="{{true}}">
+                            <view bind:tap="onJsEvent" class="seckill-item" data-event-type="jsUrl" data-url="gohome/pages/kanjia/detail?id={{item.id}}" wx:for="{{diyitem.data}}" wx:key="{{item.id}}">
+                                <view class="item-inner">
+                                    <view class="thumb">
+                                        <image alt="" class="wh-100" src="{{item.thumb}}"></image>
+                                    </view>
+                                    <view class="goods-title" style="color: {{diyitem.style.titlecolor}}">{{item.title}}</view>
+                                    <view class="flex">
+                                        <text class="c-danger font-500 font-15" style="color: {{diyitem.style.pricecolor}}">{{Lang.dollarSign}}{{item.price}}</text>
+                                        <view class="c-gray line-through font-12 hide" style="color: {{diyitem.style.oldpricecolor}}">{{Lang.dollarSign}}{{item.old_price}}</view>
+                                        <view class="discount">{{item.discount}}折</view>
+                                    </view>
+                                </view>
+                            </view>
+                        </scroll-view>
+                    </view>
+                </view>
+                <view class="diy-gohome-pintuan" wx:if="{{diyitem.params.type=='pintuan'}}">
+                    <view class="list-row-box" style="background: {{diyitem.style.background}}" wx:if="{{diyitem.style.liststyle==4}}">
+                        <view class="activity-item bg-default padding-10 {{index<diyitem.data.length-1?'border-1px-b':''}}" style="margin-bottom: {{diyitem.style.marginbottom}}px" wx:for="{{diyitem.data}}" wx:key="{{index}}">
+                            <view class="flex-lr">
+                                <view class="thumb">
+                                    <image alt="" class="wh-100" src="{{item.thumb}}"></image>
+                                    <view class="mark">
+													{{item.peoplenum}}人团
+												</view>
+                                </view>
+                                <view class="info">
+                                    <view class="font-14 w-100">
+                                        <view style="color: {{diyitem.style.titlecolor}}">{{item.title}}</view>
+                                    </view>
+                                    <view class="flex-lr-bottom w-100">
+                                        <view class="price-bar">
+                                            <view class="flex">
+                                                <text class="font-500 font-15 margin-5-r" style="color: {{diyitem.style.pricecolor}}">{{Lang.dollarSign}}{{item.price}}</text>
+                                                <view class="c-gray line-through font-12" style="color: {{diyitem.style.oldpricecolor}}" wx:if="{{diyitem.params.showoldprice==1}}">{{Lang.dollarSign}}{{item.old_price}}</view>
+                                                <view class="discount">{{item.discount}}折</view>
+                                            </view>
+                                            <view class="bar" style="background: {{diyitem.style.barbackground}}">
+                                                <view class="bar-inner" style="width: {{item.sailed_percent}}%" wx:if="{{!diyitem.style.barinnerbackground}}"></view>
+                                                <view class="bar-inner" style="width: {{item.sailed_percent}}%; background: {{diyitem.style.barinnerbackground}}" wx:else></view>
+                                                <view class="bar-text" style="color: {{diyitem.style.bartextcolor}}">已售{{item.falesailed_total}}份</view>
+                                            </view>
+                                        </view>
+                                        <view bind:tap="onJsEvent" class="btn btn-detail" data-event-type="jsUrl" data-url="gohome/pages/pintuan/detail?id={{item.id}}" style="color: {{diyitem.style.buybtncolor}}" wx:if="{{!diyitem.style.buybtnbackground}}">{{diyitem.params.buybtntext_pintuan}}</view>
+                                        <view bind:tap="onJsEvent" class="btn btn-detail" data-event-type="jsUrl" data-url="gohome/pages/pintuan/detail?id={{item.id}}" style="color: {{diyitem.style.buybtncolor}}; background: {{diyitem.style.buybtnbackground}}" wx:else>{{diyitem.params.buybtntext_pintuan}}</view>
+                                    </view>
+                                </view>
+                            </view>
+                        </view>
+                    </view>
+                    <view class="list-one-row-box" wx:elif="{{diyitem.style.liststyle==1}}">
+                        <view class="activity-item {{index<diyitem.data.length-1?'border-1px-b':''}}" wx:for="{{diyitem.data}}" wx:key="{{item.id}}">
+                            <view class="thumb">
+                                <image alt="" class="wh-100" mode="widthFix" src="{{item.thumb}}"></image>
+                                <view class="mark">
+												{{item.peoplenum}}人团
+											</view>
+                            </view>
+                            <view class="title" style="color: {{diyitem.style.titlecolor}}">【邀请好友一起拼团】{{item.title}}</view>
+                            <view class="flex-lr">
+                                <view class="flex-lr">
+                                    <view class="flex">
+                                        <view class="font-16 font-bold" style="color: {{diyitem.style.pricecolor}}">{{Lang.dollarSign}}{{item.price}}</view>
+                                        <view class="c-gray font-12 line-through margin-5-l" style="color: {{diyitem.style.oldpricecolor}}" wx:if="{{diyitem.params.showoldprice==1}}">{{Lang.dollarSign}}{{item.old_price}}</view>
+                                    </view>
+                                    <view class="bar" style="background: {{diyitem.style.barbackground}}">
+                                        <view class="bar-inner" style="width: {{item.sailed_percent}}%" wx:if="{{!diyitem.style.barinnerbackground}}"></view>
+                                        <view class="bar-inner" style="width: {{item.sailed_percent}}%; background: {{diyitem.style.barinnerbackground}}" wx:else></view>
+                                        <view class="bar-text" style="color: {{diyitem.style.bartextcolor}}">已团{{item.falesailed_total}}份</view>
+                                    </view>
+                                </view>
+                                <view bind:tap="onJsEvent" class="btn btn-detail" data-event-type="jsUrl" data-url="gohome/pages/pintuan/detail?id={{item.id}}" style="color: {{diyitem.style.buybtncolor}}" wx:if="{{!diyitem.style.buybtnbackground}}">{{diyitem.params.buybtntext_pintuan}}</view>
+                                <view bind:tap="onJsEvent" class="btn btn-detail" data-event-type="jsUrl" data-url="gohome/pages/pintuan/detail?id={{item.id}}" style="color: {{diyitem.style.buybtncolor}}; background: {{diyitem.style.buybtnbackground}}" wx:else>{{diyitem.params.buybtntext_pintuan}}</view>
+                            </view>
+                        </view>
+                    </view>
+                    <view class="list-two-row-box" wx:elif="{{diyitem.style.liststyle==2}}">
+                        <view class="activity-list">
+                            <view class="activity-item" wx:for="{{diyitem.data}}" wx:key="{{item.id}}">
+                                <view class="item-inner">
+                                    <view class="thumb">
+                                        <image alt="" class="wh-100" src="{{item.thumb}}"></image>
+                                        <view class="mark">
+														{{item.peoplenum}}人团
+													</view>
+                                    </view>
+                                    <view class="goods-title" style="color: {{diyitem.style.titlecolor}}">{{item.title}}</view>
+                                    <view class="flex">
+                                        <text class="font-500 font-15 margin-5-r" style="color: {{diyitem.style.pricecolor}}">{{Lang.dollarSign}}{{item.price}}</text>
+                                        <view class="c-gray line-through font-12" style="color: {{diyitem.style.oldpricecolor}}" wx:if="{{diyitem.params.showoldprice==1}}">{{Lang.dollarSign}}{{item.old_price}}</view>
+                                        <view class="discount">{{item.discount}}折</view>
+                                    </view>
+                                    <view class="flex-lr margin-10-t">
+                                        <view class="bar" style="background: {{diyitem.style.barbackground}}">
+                                            <view class="bar-inner" style="width: {{item.sailed_percent}}%" wx:if="{{!diyitem.style.barinnerbackground}}"></view>
+                                            <view class="bar-inner" style="width: {{item.sailed_percent}}%; background: {{diyitem.style.barinnerbackground}}" wx:else></view>
+                                            <view class="bar-text" style="color: {{diyitem.style.bartextcolor}}">已售{{item.falesailed_total}}份</view>
+                                        </view>
+                                        <view bind:tap="onJsEvent" class="btn btn-detail" data-event-type="jsUrl" data-url="gohome/pages/pintuan/detail?id={{item.id}}" style="color: {{diyitem.style.buybtncolor}}" wx:if="{{!diyitem.style.buybtnbackground}}">{{diyitem.params.buybtntext_pintuan}}</view>
+                                        <view bind:tap="onJsEvent" class="btn btn-detail" data-event-type="jsUrl" data-url="gohome/pages/pintuan/detail?id={{item.id}}" style="color: {{diyitem.style.buybtncolor}}; background: {{diyitem.style.buybtnbackground}}" wx:else>{{diyitem.params.buybtntext_pintuan}}</view>
+                                    </view>
+                                </view>
+                            </view>
+                        </view>
+                    </view>
+                    <view class="list-three-row-box" style="background-color: {{diyitem.style.background}}" wx:elif="{{diyitem.style.liststyle==3}}">
+                        <scroll-view class="seckill-list" scrollX="{{true}}">
+                            <view bind:tap="onJsEvent" class="seckill-item" data-event-type="jsUrl" data-url="gohome/pages/pintuan/detail?id={{item.id}}" wx:for="{{diyitem.data}}" wx:key="{{item.id}}">
+                                <view class="item-inner">
+                                    <view class="thumb">
+                                        <image alt="" class="wh-100" src="{{item.thumb}}"></image>
+                                        <view class="mark">
+														{{item.peoplenum}}人团
+													</view>
+                                    </view>
+                                    <view class="goods-title" style="color: {{diyitem.style.titlecolor}}">{{item.title}}</view>
+                                    <view class="flex">
+                                        <text class="font-500 font-15" style="color: {{diyitem.style.pricecolor}}">{{Lang.dollarSign}}{{item.price}}</text>
+                                        <view class="c-gray line-through font-12 hide" style="color: {{diyitem.style.oldpricecolor}}">{{Lang.dollarSign}}{{item.old_price}}</view>
+                                        <view class="discount">{{item.discount}}折</view>
+                                    </view>
+                                </view>
+                            </view>
+                        </scroll-view>
+                    </view>
+                </view>
+                <view class="diy-gohome-seckill" wx:if="{{diyitem.params.type=='seckill'}}">
+                    <view class="list-row-box" style="background: {{diyitem.style.background}}" wx:if="{{diyitem.style.liststyle==4}}">
+                        <view class="activity-item bg-default padding-10 {{index<diyitem.data.length-1?'border-1px-b':''}}" style="margin-bottom: {{diyitem.style.marginbottom}}px" wx:for="{{diyitem.data}}" wx:key="{{index}}">
+                            <view class="flex-lr">
+                                <view class="thumb">
+                                    <image alt="" class="wh-100" src="{{item.thumb}}"></image>
+                                </view>
+                                <view class="info">
+                                    <view class="font-14 w-100">
+                                        <view style="color: {{diyitem.style.titlecolor}}">{{item.title}}</view>
+                                    </view>
+                                    <view class="flex-lr-bottom w-100">
+                                        <view class="price-bar">
+                                            <view class="flex">
+                                                <text class="font-500 font-15 margin-5-r" style="color: {{diyitem.style.pricecolor}}">{{Lang.dollarSign}}{{item.price}}</text>
+                                                <view class="c-gray line-through font-12" style="color: {{diyitem.style.oldpricecolor}}" wx:if="{{diyitem.params.showoldprice==1}}">{{Lang.dollarSign}}{{item.old_price}}</view>
+                                                <view class="discount">{{item.discount}}折</view>
+                                            </view>
+                                            <view class="bar" style="background: {{diyitem.style.barbackground}}">
+                                                <view class="bar-inner" style="width: {{item.sailed_percent}}%" wx:if="{{!diyitem.style.barinnerbackground}}"></view>
+                                                <view class="bar-inner" style="width: {{item.sailed_percent}}%; background: {{diyitem.style.barinnerbackground}}" wx:else></view>
+                                                <view class="bar-text" style="color: {{diyitem.style.bartextcolor}}">已抢{{item.falesailed_total}}份</view>
+                                            </view>
+                                        </view>
+                                        <view bind:tap="onJsEvent" class="btn btn-detail" data-event-type="jsUrl" data-url="gohome/pages/seckill/detail?id={{item.id}}" style="color: {{diyitem.style.buybtncolor}}" wx:if="{{!diyitem.style.buybtnbackground}}">{{diyitem.params.buybtntext_seckill}}</view>
+                                        <view bind:tap="onJsEvent" class="btn btn-detail" data-event-type="jsUrl" data-url="gohome/pages/seckill/detail?id={{item.id}}" style="color: {{diyitem.style.buybtncolor}}; background: {{diyitem.style.buybtnbackground}}" wx:else>{{diyitem.params.buybtntext_seckill}}</view>
+                                    </view>
+                                </view>
+                            </view>
+                        </view>
+                    </view>
+                    <view class="list-one-row-box" wx:elif="{{diyitem.style.liststyle==1}}">
+                        <view class="activity-item {{index<diyitem.data.length-1?'border-1px-b':''}}" wx:for="{{diyitem.data}}" wx:key="{{item.id}}">
+                            <view class="thumb">
+                                <image alt="" class="wh-100" mode="widthFix" src="{{item.thumb}}"></image>
+                            </view>
+                            <view class="title" style="color: {{diyitem.style.titlecolor}}">{{item.title}}</view>
+                            <view class="flex-lr">
+                                <view class="flex-lr">
+                                    <view class="flex">
+                                        <view class="font-16 font-bold" style="color: {{diyitem.style.pricecolor}}">{{Lang.dollarSign}}{{item.price}}</view>
+                                        <view class="c-gray font-12 line-through margin-5-l" style="color: {{diyitem.style.oldpricecolor}}" wx:if="{{diyitem.params.showoldprice==1}}">{{Lang.dollarSign}}{{item.old_price}}</view>
+                                    </view>
+                                    <view class="bar" style="background: {{diyitem.style.barbackground}}">
+                                        <view class="bar-inner" style="width: {{item.sailed_percent}}%" wx:if="{{!diyitem.style.barinnerbackground}}"></view>
+                                        <view class="bar-inner" style="width: {{item.sailed_percent}}%; background: {{diyitem.style.barinnerbackground}}" wx:else></view>
+                                        <view class="bar-text" style="color: {{diyitem.style.bartextcolor}}">已抢{{item.falesailed_total}}份</view>
+                                    </view>
+                                </view>
+                                <view bind:tap="onJsEvent" class="btn btn-detail" data-event-type="jsUrl" data-url="gohome/pages/seckill/detail?id={{item.id}}" style="color: {{diyitem.style.buybtncolor}}" wx:if="{{!diyitem.style.buybtnbackground}}">{{diyitem.params.buybtntext_seckill}}</view>
+                                <view bind:tap="onJsEvent" class="btn btn-detail" data-event-type="jsUrl" data-url="gohome/pages/seckill/detail?id={{item.id}}" style="color: {{diyitem.style.buybtncolor}}; background: {{diyitem.style.buybtnbackground}}" wx:else>{{diyitem.params.buybtntext_seckill}}</view>
+                            </view>
+                        </view>
+                    </view>
+                    <view class="list-two-row-box" wx:elif="{{diyitem.style.liststyle==2}}">
+                        <view class="activity-list">
+                            <view class="activity-item" wx:for="{{diyitem.data}}" wx:key="{{item.id}}">
+                                <view class="item-inner">
+                                    <view class="thumb">
+                                        <image alt="" class="wh-100" src="{{item.thumb}}"></image>
+                                    </view>
+                                    <view class="goods-title" style="color: {{diyitem.style.titlecolor}}">{{item.title}}</view>
+                                    <view class="flex">
+                                        <text class="font-500 font-15 margin-5-r" style="color: {{diyitem.style.pricecolor}}">{{Lang.dollarSign}}{{item.price}}</text>
+                                        <view class="c-gray line-through font-12" style="color: {{diyitem.style.oldpricecolor}}" wx:if="{{diyitem.params.showoldprice==1}}">{{Lang.dollarSign}}{{item.old_price}}</view>
+                                        <view class="discount">{{item.discount}}折</view>
+                                    </view>
+                                    <view class="flex-lr margin-10-t">
+                                        <view class="bar" style="background: {{diyitem.style.barbackground}}">
+                                            <view class="bar-inner" style="width: {{item.sailed_percent}}%" wx:if="!diyitem.style.barinnerbackground"></view>
+                                            <view class="bar-inner" style="width: {{item.sailed_percent}}%; background: {{diyitem.style.barinnerbackground}}" wx:else></view>
+                                            <view class="bar-text" style="color: {{diyitem.style.bartextcolor}}">已售{{item.falesailed_total}}份</view>
+                                        </view>
+                                        <view bind:tap="onJsEvent" class="btn btn-detail" data-event-type="jsUrl" data-url="gohome/pages/seckill/detail?id={{item.id}}" style="color: {{diyitem.style.buybtncolor}}" wx:if="{{!diyitem.style.buybtnbackground}}">{{diyitem.params.buybtntext_seckill}}</view>
+                                        <view bind:tap="onJsEvent" class="btn btn-detail" data-event-type="jsUrl" data-url="gohome/pages/seckill/detail?id={{item.id}}" style="color: {{diyitem.style.buybtncolor}}; background: {{diyitem.style.buybtnbackground}}" wx:else>{{diyitem.params.buybtntext_seckill}}</view>
+                                    </view>
+                                </view>
+                            </view>
+                        </view>
+                    </view>
+                    <view class="list-three-row-box" style="background-color: {{diyitem.style.background}}" wx:elif="{{diyitem.style.liststyle==3}}">
+                        <scroll-view class="seckill-list" scrollX="{{true}}">
+                            <view bind:tap="onJsEvent" class="seckill-item" data-event-type="jsUrl" data-url="gohome/pages/seckill/detail?id={{item.id}}" wx:for="{{diyitem.data}}" wx:key="{{item.id}}">
+                                <view class="item-inner">
+                                    <view class="thumb">
+                                        <image alt="" class="wh-100" src="{{item.thumb}}"></image>
+                                    </view>
+                                    <view class="goods-title" style="color: {{diyitem.style.titlecolor}}">{{item.title}}</view>
+                                    <view class="flex">
+                                        <text class="font-500 font-15" style="color: {{diyitem.style.pricecolor}}">{{Lang.dollarSign}}{{item.price}}</text>
+                                        <view class="c-gray line-through font-12 hide" style="color: {{diyitem.style.oldpricecolor}}">{{Lang.dollarSign}}{{item.old_price}}</view>
+                                        <view class="discount">{{item.discount}}折</view>
+                                    </view>
+                                </view>
+                            </view>
+                        </scroll-view>
+                    </view>
+                </view>
+            </view>
+            <view class="dialog dialog-guide {{diy.guide.params.status==1&&dialog.dialogGuide&&!storage.storageGuide?'dialog-show':''}}" wx:elif="{{diyitem.id=='guide'}}">
+                <view class="dialog-mask" style="background: {{diyitem.style.backgroundcolor}}; opacity: 0.7"></view>
+                <view class="dialog-container">
+                    <swiper circular="true" indicatorActiveColor="#ff2d4b" indicatorColor="rgba(255,255,255,0.5)" indicatorDots="true" interval="3000">
+                        <swiper-item wx:for="{{diyitem.data}}" wx:key="{{index}}">
+                            <image bind:tap="onJsEvent" data-event-type="jsUrl" data-url="{{item.pagePath}}" src="{{item.imgUrl}}"></image>
+                        </swiper-item>
+                    </swiper>
+                    <view class="close-adv">
+                        <view bind:tap="onJsEvent" class="close-btn" data-event-type="jsToggle" data-modal="dialog.dialogGuide">
+                            <text class="icon icon-close"></text>
+                        </view>
+                    </view>
+                </view>
+            </view>
+            <view class="diy-tongcheng-tiezi" style="margin-top: {{diyitem.style.margintop}}px;" wx:elif="{{diyitem.id=='tongcheng'}}">
+                <view class="tiezi-header" style="color: {{diyitem.style.headlinecolor}};">
+						{{diyitem.params.headline}}
+						<view bind:tap="onJsEvent" class="more" data-event-type="jsUrl" data-url="{{diyitem.params.more_link}}" style="color: {{diyitem.style.morecolor}};">
+							{{diyitem.params.more}}
+							<view class="icon icon-arrow-right"></view>
+                    </view>
+                </view>
+                <view class="diy-tongcheng-tiezi-list">
+                    <view class="diy-tongcheng-tiezi-item {{informationIndex<diy.tongcheng.data.length-1?'border-1px-b':''}}" wx:if="{{!diy.tongcheng.empty}}" wx:for="{{diy.tongcheng.data}}" wx:for-index="informationIndex" wx:for-item="informationItem" wx:key="{{informationIndex}}">
+                        <view class="diy-tongcheng-tiezi-userinfo">
+                            <view class="diy-tongcheng-userinfo-left">
+                                <view class="avatar">
+                                    <image alt="" src="{{informationItem.ft_avatar}}"></image>
+                                </view>
+                            </view>
+                            <view class="diy-tongcheng-userinfo-right">
+                                <view>
+                                    <view class="tiezi-title">
+                                        <text class="tag-top" wx:if="{{informationItem.is_stick==1}}">置顶</text>
+                                        <text class="tag-cate">{{informationItem.category.title}}</text>
+                                        <text class="nickname">{{informationItem.nickname}}</text>
+                                    </view>
+                                    <view class="tags" wx:if="{{informationItem.keyword}}">
+                                        <view class="tag-item" wx:for="{{informationItem.keyword}}" wx:for-item="tagItem" wx:key="{{index}}">{{tagItem}}</view>
+                                    </view>
+                                </view>
+                                <view bind:tap="onJsEvent" class="icon icon-phone2" data-event-type="jsPhone" data-phonenumber="{{informationItem.mobile}}" wx:if="{{informationItem.mobile}}"></view>
+                            </view>
+                        </view>
+                        <view class="diy-tongcheng-tieziinfo">
+                            <text class="tiezi-text {{!informationItem.showall?'showsome':''}}">{{informationItem.content}}</text>
+                            <view bind:tap="onToggleInformationHeight" class="all-text" data-index="{{informationIndex}}" wx:if="{{informationItem.content_length>44}}">
+                                <text>{{informationItem.showall?'收起':'查看全文'}}</text>
+                                <text class="icon {{informationItem.showall?'icon-fold':'icon-unfold'}}"></text>
+                            </view>
+                            <view class="tiezi-time">
+                                <view>{{informationItem.addtime_cn}}发布</view>
+                                <view bind:tap="onJsEvent" class="tiezi-detail" data-event-type="jsUrl" data-url="gohome/pages/tongcheng/detail?id={{informationItem.id}}">
+                                    <text>查看详情</text>
+                                    <text class="icon icon-right"></text>
+                                </view>
+                            </view>
+                            <view class="thumbs" wx:if="{{informationItem.thumbs&&informationItem.thumbs.length>0}}">
+                                <view class="thumb-item" wx:if="{{thumbIndex<3}}" wx:for="{{informationItem.thumbs}}" wx:for-index="thumbIndex" wx:for-item="thumbItem" wx:key="{{thumbIndex}}">
+                                    <view class="img-group">
+                                        <image alt="" bind:tap="onImgPreview" data-current="{{thumbItem}}" data-urls="{{informationItem.thumbs}}" src="{{thumbItem}}"></image>
+                                    </view>
+                                </view>
+                                <view class="thumb-item" wx:if="{{informationItem.thumbs.length>3}}">
+                                    <view class="img-group">
+                                        <image alt="" src="{{informationItem.thumbs[3]}}"></image>
+                                        <view class="thumb-num">+{{informationItem.thumbs.length}}</view>
+                                    </view>
+                                </view>
+                            </view>
+                            <view class="tiezi-info">
+                                <view class="info">
+                                    <text class="icon icon-attention font-15"></text>
+                                    <text>{{informationItem.looknum}}</text>
+                                </view>
+                                <view class="info">
+                                    <text class="icon icon-appreciate_light font-14"></text>
+                                    <text>{{informationItem.likenum}}</text>
+                                </view>
+                                <view class="info">
+                                    <text class="icon icon-comment font-14"></text>
+                                    <text></text>
+                                </view>
+                            </view>
+                        </view>
+                    </view>
+                </view>
+                <view class="wui-loadmore" wx:if="{{diy.tongcheng.loading}}">
+                    <view class="wui-loading"></view>
+                    <view class="wui-loadmore-tips">正在加载中</view>
+                </view>
+                <view class="no-data-simple" wx:elif="{{diy.tongcheng.empty}}">
+                    <text class="icon icon-cry"></text>
+                    <text>还没有信息，快去发布吧</text>
+                </view>
+            </view>
+            <view class="diy-tongcheng-statistics border-1px-b" style="background-color: {{diyitem.style.backgroundcolor}}; margin-top: {{diyitem.style.margintop}}px;" wx:elif="{{diyitem.id=='tongchengStatistics'}}">
+                <view class="img-wrap" style="background: url({{diyitem.params.imgurl}}) no-repeat center center; background-size: 100% 100%;"></view>
+                <view class="info" style="color: {{diyitem.style.textcolor}}">
+                    <view class="margin-10-r">浏览：{{diyitem.data.falselooknum}}</view>
+                    <view class="margin-10-r">发布：{{diyitem.data.falsefabunum}}</view>
+                </view>
+            </view>
+            <view class="diy-haodian-settle" style="background-color: {{diyitem.style.backgroundcolor}}; margin-top: {{diyitem.style.margintop}}px;" wx:elif="{{diyitem.id=='haodianSettle'}}">
+                <view class="new-info">
+                    <view class="img-settle" style="background: url({{diyitem.params.imgurl}}) no-repeat center center;background-size: 100% 100%;"></view>
+                    <view class="news-swipe">
+                        <swiper autoplay="{{true}}" circular="{{true}}" displayMultipleItems="{{diyitem.data.length>1?2:1}}" interval="{{2500}}" vertical="{{true}}" wx:if="{{diyitem.data.length>0}}">
+                            <swiper-item wx:for="{{diyitem.data}}" wx:for-item="storeitem" wx:key="{{storeitem.id}}">
+                                <view class="font-13 ellipsis w-100" style="color: {{diyitem.style.newscolor}}">恭喜【<text bind:tap="onJsEvent" data-event-type="jsUrl" data-url="gohome/pages/haodian/detail?sid={{storeitem.id}}" style="color: {{diyitem.style.titlecolor}}">{{storeitem.title}}</text>】入驻</view>
+                            </swiper-item>
+                        </swiper>
+                        <view class="no-settle-info" wx:else>
+                            <view>欢迎入驻好店</view>
+                            <view class="margin-5-t">点击右侧按钮赶紧加入吧</view>
+                        </view>
+                    </view>
+                </view>
+                <view bind:tap="onJsEvent" class="btn-settle" data-event-type="jsUrl" data-url="gohome/pages/haodian/settle" style="background-color: {{diyitem.style.btnbackground}}; color: {{diyitem.style.btncolor}}">{{diyitem.params.btntext}}</view>
+            </view>
+            <block wx:elif="{{diyitem.id=='haodianList'}}">
+                <van-popup bind:close="onClose" position="top" show="{{popup.haodianSearch}}" zIndex="20000">
+                    <view class="haodian-filter padding-15-tb padding-10-lr flex-lr bg-default font-14 border-1px-b">
+                        <view bind:tap="onChangeHaodianExtra" class="filter-item {{haodianExtra.orderby=='distance'?'active':''}}" data-type="distance">附近</view>
+                        <view bind:tap="onChangeHaodianExtra" class="filter-item {{haodianExtra.orderby=='new'?'active':''}}" data-type="new">最新</view>
+                        <view bind:tap="onChangeHaodianExtra" class="filter-item {{haodianExtra.orderby=='score'?'active':''}}" data-type="score">评分</view>
+                        <view class="flex filter-item">
+							筛选
+						</view>
+                    </view>
+                    <van-tree-select activeId="{{haodianExtra.haodian_child_id}}" bind:click-item="onClickHaodianChildCategory" bind:click-nav="onClickHaodianParentCategory" class="haodian-tree-select" items="{{diy.haodianCategory}}" mainActiveIndex="{{haodianExtra.cIndexActive}}"></van-tree-select>
+                    <view class="flex border-1px-t">
+                        <view bind:tap="onChangeHaodianExtra" class="flex-1 c-gray text-center padding-15-tb border-1px-r" data-type="filter">取消</view>
+                        <view bind:tap="onHaodianCategoryConfirm" class="flex-1 c-danger text-center padding-15-tb">确定</view>
+                    </view>
+                </van-popup>
+                <view class="diy-haodian-list" style="margin-top: {{diyitem.style.margintop}}px">
+                    <view class="haodian-filter padding-15-tb padding-10-lr flex-lr bg-default font-14 border-1px-b">
+                        <view bind:tap="onChangeHaodianExtra" class="filter-item {{haodianExtra.orderby=='distance'?'active':''}}" data-type="distance">附近</view>
+                        <view bind:tap="onChangeHaodianExtra" class="filter-item {{haodianExtra.orderby=='new'?'active':''}}" data-type="new">最新</view>
+                        <view bind:tap="onChangeHaodianExtra" class="filter-item {{haodianExtra.orderby=='score'?'active':''}}" data-type="score">评分</view>
+                        <view bind:tap="onChangeHaodianExtra" class="flex filter-item" data-type="filter">
+							筛选<text class="icon icon-unfold"></text>
+                            <text class="haodian-search-sign" wx:if="{{showSearchSign}}"></text>
+                        </view>
+                    </view>
+                    <block wx:if="{{!diy.haodian.empty}}">
+                        <view bind:tap="onJsEvent" class="store-item {{haodianIndex>0?'border-1px-t':''}}" data-event-type="jsUrl" data-url="gohome/pages/haodian/detail?sid={{haodianItem.id}}" wx:for="{{diy.haodian.data}}" wx:for-index="haodianIndex" wx:for-item="haodianItem" wx:key="{{haodianItem.id}}">
+                            <view class="img-wrap">
+                                <image alt="" src="{{haodianItem.logo}}"></image>
+                            </view>
+                            <view class="store-main">
+                                <view class="flex-lr">
+                                    <view class="flex">
+                                        <view class="store-title" style="color: {{diyitem.style.storetitlecolor}}">{{haodianItem.title}}</view>
+                                        <van-rate disabled="true" disabledColor="{{diyitem.style.starscolor}}" size="12" value="{{haodianItem.haodian_score}}"></van-rate>
+                                        <text class="font-12 margin-5-l hide" style="color: {{diyitem.style.startextcolor}}">{{haodianItem.haodian_score}}分</text>
+                                    </view>
+                                    <view class="store-distance ellipsis" style="color: {{diyitem.style.storedistancecolor}}">{{haodianItem.distance}}km</view>
+                                </view>
+                                <view class="c-gray font-12 margin-10-t">营业时间: {{haodianItem.business_hours_cn}}</view>
+                                <view class="store-tags" style="color: {{diyitem.style.storetagstextcolor}}" wx:if="{{haodianItem.haodian_tags&&haodianItem.haodian_tags.length>0}}">
+                                    <view class="tag-item" style="background: {{diyitem.style.tagsbackgroundcolor}}" wx:for="{{haodianItem.haodian_tags}}" wx:for-index="haodianTagIndex" wx:for-item="haodianTag" wx:key="{{haodianTagIndex}}">{{haodianTag}}</view>
+                                </view>
+                                <view bind:tap="onToggleDiscount" class="discount-box" data-diyindex="{{diyindex}}" data-index="{{index}}" wx:if="{{diyitem.params.showdiscount==1&&haodianItem.activity&&haodianItem.activity.length>0}}">
+                                    <view class="single-line" wx:for="{{haodianItem.activity}}" wx:for-index="haodianActivityIndex" wx:for-item="haodianActivity" wx:key="{{haodianActivityIndex}}">
+                                        <image class="discount-icon" src="{{haodianActivity.thumb_wxapp}}"></image>
+                                        <view class="discount-text">{{haodianActivity.text}}</view>
+                                    </view>
+                                </view>
+                            </view>
+                        </view>
+                        <view class="wui-loadmore" wx:if="{{diy.haodian.loading&&diy.haodian.loaded!=1}}">
+                            <view class="wui-loading"></view>
+                            <view class="wui-loadmore-tips">正在加载中</view>
+                        </view>
+                        <view class="wui-loadmore wui-loadmore-nomore" wx:if="{{diy.haodian.loaded==1}}">
+                            <view class="wui-loadmore-tips">我是有底线的</view>
+                            <view class="wui-loadmore-line"></view>
+                        </view>
+                    </block>
+                    <view class="no-store" wx:else>
+                        <image class="no-coupon" src="http://cos.lalawaimai.com/we7_wmall/wxapp/collect_no_bg.png"></image>
+                        <view class="no-record">暂无好店，您可以更换筛选条件试试</view>
+                    </view>
+                </view>
+            </block>
+            <view class="diy-haodian-group" style="margin-top: {{diyitem.style.margintop}}px" wx:elif="{{diyitem.id=='haodianGroup'&&diyitem.data_num>0}}">
+                <view class="group-header text-center" style="color: {{diyitem.style.titlecolor}};">
+					{{diyitem.params.title}}
+					<view bind:tap="onJsEvent" class="more" data-event-type="jsUrl" data-url="gohome/pages/haodian/index">
+						更多
+						<view class="icon icon-arrow-right"></view>
+                    </view>
+                </view>
+                <view class="store-list row" wx:if="{{diyitem.params.showtype==0||diyitem.data_num<=diyitem.params.pagenum}}">
+                    <view class="store-item col-25" wx:for="{{diyitem.data}}" wx:for-item="haodianItem" wx:key="{{index}}">
+                        <view bind:tap="onJsEvent" data-event-type="jsUrl" data-url="gohome/pages/haodian/detail?sid={{haodianItem.id}}">
+                            <view class="store-image">
+                                <image src="{{haodianItem.logo}}"></image>
+                            </view>
+                            <view class="store-title" style="color: {{diyitem.style.storetitlecolor}};">{{haodianItem.title}}</view>
+                        </view>
+                    </view>
+                </view>
+                <view class="store-list row" wx:else>
+                    <swiper circular="true" class="swiper-wrapper" indicatorActiveColor="{{diyitem.style.dotbackground}}" indicatorColor="#7f7f7f" indicatorDots="{{diyitem.style.showdot==0?false:true}}" style="height:{{diyitem.params.pagenum>4?220:110}}px">
+                        <swiper-item wx:for="{{diyitem.data}}" wx:key="{{index}}">
+                            <view class="store-item col-25" wx:for="{{item}}" wx:for-item="haodianItem" wx:key="{{haodianItem.id}}">
+                                <view bind:tap="onJsEvent" data-event-type="jsUrl" data-url="gohome/pages/haodian/detail?sid={{haodianItem.id}}">
+                                    <view class="store-image">
+                                        <image src="{{haodianItem.logo}}"></image>
+                                    </view>
+                                    <view class="store-title" style="color: {{diyitem.style.storetitlecolor}};">{{haodianItem.title}}</view>
+                                </view>
+                            </view>
+                        </swiper-item>
+                    </swiper>
+                </view>
+            </view>
+            <block wx:elif="{{diyitem.id=='operation'}}">
+                <block wx:if="{{diyitem.style.style==1}}">
+                    <view class="diy-navs" style="margin-top: {{diyitem.style.margintop}}px;" wx:if="{{diyitem.params.showtype==0||diyitem.data_num<=diyitem.params.pagenum}}">
+                        <view class="diy-navs-container {{diyitem.style.navstyle}} col-{{diyitem.params.rownum}}">
+                            <view class="diy-nav-col" wx:for="{{diyitem.data}}" wx:key="{{index}}">
+                                <view bind:tap="onJsEvent" data-event-type="jsUrl" data-url="{{item.linkurl}}">
+                                    <view class="nav-icon">
+                                        <image src="{{item.imgurl}}"></image>
+                                    </view>
+                                    <view class="nav-text" style="color: {{item.color}}">{{item.text}}</view>
+                                </view>
+                            </view>
+                        </view>
+                    </view>
+                    <view class="diy-navs" style="margin-top: {{diyitem.style.margintop}}px;" wx:else>
+                        <view class="diy-navs-container col-{{diyitem.params.rownum}} {{diyitem.style.navstyle}}">
+                            <swiper circular="true" class="snot-one1" indicatorActiveColor="{{diyitem.style.dotbackground}}" indicatorColor="#7f7f7f" indicatorDots="{{diyitem.params.showdot==0?false:true}}" style="height: {{90*diyitem.row}}px">
+                                <swiper-item class="not-one" wx:for="{{diyitem.data}}" wx:for-index="tempIndex" wx:for-item="tempitem" wx:key="{{tempIndex}}">
+                                    <view class="diy-nav-col" wx:for="{{tempitem}}" wx:key="{{index}}">
+                                        <view bind:tap="onJsEvent" data-event-type="jsUrl" data-url="{{item.linkurl}}">
+                                            <view class="nav-icon">
+                                                <image src="{{item.imgurl}}"></image>
+                                            </view>
+                                            <view class="nav-text" style="color: {{item.color}}">{{item.text}}</view>
+                                        </view>
+                                    </view>
+                                </swiper-item>
+                            </swiper>
+                        </view>
+                    </view>
+                </block>
+                <view class="diy-store-operation-2" style="margin-top:{{diyitem.style.margintop}}px;" wx:else>
+                    <view bind:tap="onJsEvent" class="store-operation-item" data-event-type="jsUrl" data-url="{{item.linkurl}}" hoverClass="none" wx:for="{{diyitem.data}}" wx:key="{{index}}">
+                        <view class="container flex">
+                            <view class="left">
+                                <view class="title ellipsis" style="color:{{item.color}};">{{item.text}}</view>
+                                <view class="description ellipsis" style="color:{{item.dec_color}};">{{item.decoration}}</view>
+                            </view>
+                            <view class="right">
+                                <image class="{{diyitem.style.navstyle}}" mode="widthFix" src="{{item.imgurl}}"></image>
+                            </view>
+                        </view>
+                    </view>
+                </view>
+            </block>
+            <view class="diy-store-info" style="margin-top:{{diyitem.style.margintop}}px;" wx:elif="{{diyitem.id=='info'}}">
+                <view class="title  border-1px-b">
+                    <view class="icon {{diyitem.params.icon}}" style="color: {{diyitem.style.iconcolor}};"></view>
+                    <view style="color: {{diyitem.style.titlecolor}};">{{diyitem.params.titletext}}</view>
+                </view>
+                <view class="info  flex-lr border-1px-b">
+                    <view class="left flex">
+                        <image src="{{diyitem.data.logo}}"></image>
+                        <view class="name-price">
+                            <view class="name ellipsis" style="color: {{diyitem.style.namecolor}};">{{diyitem.data.title}}</view>
+                            <view class="price">{{diyitem.data.consume_per_person}}{{Lang.dollarSignCn}}/人</view>
+                        </view>
+                    </view>
+                    <view class="right {{diyitem.data.is_rest==1?'disabled':''}}" style="background: {{diyitem.style.statusbackground}}; color: {{diyitem.style.statuscolor}};">
+                        <view class="status-title">店铺状态</view>
+                        <view class="line"></view>
+                        <view class="status">{{diyitem.data.is_rest==1?'休息中':'营业中'}}</view>
+                    </view>
+                </view>
+                <view class="time border-1px-b ">
+                    <view class="icon icon-time"></view>
+                    <view>营业时间：{{diyitem.data.business_hours_cn}}</view>
+                </view>
+                <view class="location flex">
+                    <view class="left ">
+                        <view class="icon icon-location"></view>
+                        <view class="address ellipsis ">{{diyitem.data.address}}</view>
+                    </view>
+                    <view class="right flex-lr ">
+                        <view bind:tap="onJsEvent" class="contact border-1px-r" data-address="{{diyitem.data.address}}" data-event-type="jsLocation" data-lat="{{diyitem.data.location_x}}" data-lng="{{diyitem.data.location_y}}" data-name="{{diyitem.data.title}}">
+                            <view class="icon icon-taxi "></view>
+                            <view class="contact-title ">导航</view>
+                        </view>
+                        <view bind:tap="onJsEvent" class="contact" data-event-type="jsPhone" data-phoneNumber="{{diyitem.data.telephone}}">
+                            <view class="icon icon-telephone"></view>
+                            <view class="contact-title">电话</view>
+                        </view>
+                    </view>
+                </view>
+            </view>
+            <view class="diy-store-navs" style="background: {{diyitem.style.background}}; margin-top:{{diyitem.style.margintop}}px;" wx:if="{{diyitem.id=='tags'}}">
+                <view class="nav-tab flex border-1px-b solid">
+                    <view bind:tap="onScrollTo" class="nav-item {{selectedtab==item.binddata?'active':''}}" data-scrollid="{{item.binddata}}" style="color:{{item.color}}; border-bottom-color: {{item.selected?diyitem.style.activecolor:''}}" wx:for="{{diyitem.data}}" wx:key="{{index}}">{{item.text}}</view>
+                </view>
+            </view>
+            <view class="diy-store-coupon" id="{{diyitem.id}}" wx:elif="{{diyitem.id=='coupon'}}">
+                <view class="coupon-list" wx:if="{{diyitem.data.can_collect||diyitem.data.record.length}}">
+                    <view class="coupon-item clearfix" wx:if="{{diyitem.data.can_collect}}">
+                        <view class="coupon-left flex" style="background: {{diyitem.style.leftbackground}};">
+                            <view class="left">
+                                <view class="discount" style="color: {{diyitem.style.pricecolor}};">{{Lang.dollarSign}}<text>{{diyitem.data.price}}</text>
+                                </view>
+                                <view class="condition" style="color: {{diyitem.style.conditioncolor}};">内含{{diyitem.data.num}}张券</view>
+                            </view>
+                            <view class="right">
+                                <view class="coupon-title" style="color: {{diyitem.style.titlecolor}};">{{diyitem.data.title}}</view>
+                                <view class="coupon-scene" style="color: {{diyitem.style.scenecolor}};">店内外卖通用</view>
+                                <view class="coupon-limit">
+                                    <view style="color: {{diyitem.style.limitcolor}};">限{{diyitem.data.endtime_cn}}前使用</view>
+                                </view>
+                            </view>
+                        </view>
+                        <view class="coupon-right" style="background: {{diyitem.style.rightbackground}};">
+                            <view class="triangle-border-right">
+                                <view class="circular0"></view>
+                                <view class="circular1"></view>
+                                <view class="i"></view>
+                                <view class="i"></view>
+                                <view class="i"></view>
+                                <view class="i"></view>
+                                <view class="i"></view>
+                                <view class="i"></view>
+                                <view class="i"></view>
+                                <view class="i"></view>
+                                <view class="i"></view>
+                                <view class="i"></view>
+                                <view class="i"></view>
+                                <view class="i"></view>
+                                <view class="i"></view>
+                                <view class="i"></view>
+                                <view class="i"></view>
+                                <view class="i"></view>
+                                <view class="i"></view>
+                                <view class="i"></view>
+                                <view class="i"></view>
+                                <view class="i"></view>
+                            </view>
+                            <view class="change-block">
+                                <view class="diy-circle">
+                                    <view class="circle" style="background-color: {{diyitem.data.collect_percent>50?diyitem.style.circlecolor:'#fff'}}">
+                                        <view class="circle_left" style="transform: rotate({{diyitem.data.collect_percent>50?diyitem.data.collect_percent/100*360-360:0}}deg);background-color: {{diyitem.data.collect_percent>50?'#fff':diyitem.style.circlecolor}};z-index: 5;">
+                                            <view class="clip_left"></view>
+                                        </view>
+                                        <view class="circle_right" style="transform: rotate({{diyitem.data.collect_percent<=50?diyitem.data.collect_percent/100*360:0}}deg);background-color: {{diyitem.data.collect_percent>50?'#fff':diyitem.style.circlecolor}};z-index: 10;">
+                                            <view class="clip_right"></view>
+                                        </view>
+                                        <view class="mask" style="color: {{diyitem.style.circletextcolor}};">
+											已抢
+											<text>{{diyitem.data.collect_percent}}</text>%
+										</view>
+                                    </view>
+                                </view>
+                                <view bind:tap="onJsEvent" class="coupon-btn" data-event-type="jsUrl" data-url="pages/store/goods?sid={{diyitem.data.sid}}" style="background: {{diyitem.style.getbtnbackground}}; color: {{diyitem.style.getbtncolor}}; border-color: {{diyitem.style.btnbordercolor}};" wx:if="{{is_grant==1}}">
+									{{diyitem.params.usebtntext}}
+								</view>
+                                <view bind:tap="getCoupon" class="coupon-btn" data-id="{{diyitem.data.id}}" data-sid="{{diyitem.data.sid}}" style="background: {{diyitem.style.getbtnbackground}}; color: {{diyitem.style.getbtncolor}}; border-color: {{diyitem.style.btnbordercolor}};" wx:else>
+									{{diyitem.params.getbtntext}}
+								</view>
+                            </view>
+                        </view>
+                    </view>
+                    <view class="coupon-item clearfix" wx:if="{{diyitem.data.record.length}}" wx:for="{{diyitem.data.record}}" wx:for-item="recordItem" wx:key="{{index}}">
+                        <view class="coupon-left flex" style="background: {{diyitem.style.leftbackground}};">
+                            <view class="left">
+                                <view class="discount" style="color: {{diyitem.style.pricecolor}};">{{Lang.dollarSign}}<text>{{recordItem.discount}}</text>
+                                </view>
+                                <view class="condition" style="color: {{diyitem.style.conditioncolor}};">满{{recordItem.condition}}{{Lang.dollarSignCn}}可用</view>
+                            </view>
+                            <view class="right">
+                                <view class="coupon-title" style="color: {{diyitem.style.titlecolor}};">{{recordItem.title}}</view>
+                                <view class="coupon-scene" style="color: {{diyitem.style.scenecolor}};">店内外卖通用</view>
+                                <view class="coupon-limit">
+                                    <view style="color: {{diyitem.style.limitcolor}};">限{{recordItem.endtime_cn}}前使用</view>
+                                </view>
+                            </view>
+                        </view>
+                        <view class="coupon-right" style="background: {{diyitem.style.rightbackground}};">
+                            <view class="triangle-border-right">
+                                <view class="circular0"></view>
+                                <view class="circular1"></view>
+                                <view class="i"></view>
+                                <view class="i"></view>
+                                <view class="i"></view>
+                                <view class="i"></view>
+                                <view class="i"></view>
+                                <view class="i"></view>
+                                <view class="i"></view>
+                                <view class="i"></view>
+                                <view class="i"></view>
+                                <view class="i"></view>
+                                <view class="i"></view>
+                                <view class="i"></view>
+                                <view class="i"></view>
+                                <view class="i"></view>
+                                <view class="i"></view>
+                                <view class="i"></view>
+                                <view class="i"></view>
+                                <view class="i"></view>
+                                <view class="i"></view>
+                                <view class="i"></view>
+                            </view>
+                            <view class="change-block">
+                                <view class="had">
+                                    <image src="http://cos.lalawaimai.com/we7_wmall/wxapp/gone.png"></image>
+                                </view>
+                                <view bind:tap="onJsEvent" class="coupon-btn coupon-btn-yellow" data-event-type="jsUrl" data-url="pages/store/goods?sid={{recordItem.sid}}" style="background: {{diyitem.style.usebtnbackground}}; color: {{diyitem.style.usebtncolor}}; border-color: {{diyitem.style.btnbordercolor}};">{{diyitem.params.usebtntext}}</view>
+                            </view>
+                        </view>
+                    </view>
+                </view>
+                <view class="no-data-simple" wx:else>
+                    <text class="icon icon-cry"></text>
+                    <text>暂无代金券信息!</text>
+                </view>
+            </view>
+            <view class="diy-store-onsale" id="{{diyitem.id}}" style="background: {{diyitem.style.background}}; margin-top:{{diyitem.style.margintop}}px;" wx:elif="{{diyitem.id=='onsale'}}">
+                <view class="title border-1px-b">
+                    <view class="icon {{diyitem.params.icon}}" style="color: {{diyitem.style.iconcolor}};"></view>
+                    <view style="color: {{diyitem.style.titlecolor}};">{{diyitem.params.titletext}}</view>
+                </view>
+                <block wx:if="{{diyitem.data}}">
+                    <view class="goods-list border-1px-b">
+                        <view class="goods-item flex" wx:for="{{diyitem.data}}" wx:key="{{index}}">
+                            <view bind:tap="onJsEvent" data-event-type="jsUrl" data-url="pages/store/goodsDetail?sid={{diyitem.sid}}&id={{item.goods_id}}">
+                                <image src="{{item.thumb}}"></image>
+                            </view>
+                            <view class="goods-info flex ">
+                                <view class="left">
+                                    <view class="goods-title ellipsis" style="color: {{diyitem.style.goodstitlecolor}};">{{item.title}}</view>
+                                    <view class="price ">
+                                        <text class="now" style="color: {{diyitem.style.pricecolor}};">
+                                            <text>{{item.price}}</text> {{Lang.dollarSignCn}}
+											</text>
+                                        <text class="old" style="color: {{diyitem.style.oldpricecolor}};">{{item.old_price}}{{Lang.dollarSignCn}}</text>
+                                    </view>
+                                    <view class="discount" style="color: {{diyitem.style.discountcolor}};" wx:if="{{item.discount>0&&item.discount<10}}">{{item.svip_status==1?'会员':''}}{{item.discount}}折</view>
+                                </view>
+                                <view class="right">
+                                    <view bind:tap="onJsEvent" class="buy-btn" data-event-type="jsUrl" data-url="pages/store/goodsDetail?sid={{diyitem.sid}}&id={{item.goods_id}}" style="background: {{diyitem.style.buybtnbackground}}; color: {{diyitem.style.buybtncolor}};">{{diyitem.params.buybtntext}}</view>
+                                    <view class="sailed" style="color: {{diyitem.style.sailedcolor}};">已售{{item.sailed}}份</view>
+                                </view>
+                            </view>
+                        </view>
+                    </view>
+                    <view bind:tap="onJsEvent" class="look-all" data-event-type="jsUrl" data-url="pages/store/goods?sid={{diyitem.sid}}" style="color: {{diyitem.style.lookallcolor}};">查看全部</view>
+                </block>
+                <view class="no-data-simple" wx:else>
+                    <text class="icon icon-cry"></text>
+                    <text>暂无相关数据!</text>
+                </view>
+            </view>
+            <view class="diy-store-evaluate" id="{{diyitem.id}}" style="background: {{diyitem.style.background}}; margin-top:{{diyitem.style.margintop}}px;" wx:elif="{{diyitem.id=='evaluate'}}">
+                <view class="title border-1px-b">
+                    <view class="icon {{diyitem.params.icon}}" style="color: {{diyitem.style.iconcolor}};"></view>
+                    <view style="color: {{diyitem.style.titlecolor}};">{{diyitem.params.titletext}}</view>
+                </view>
+                <block wx:if="{{diyitem.data}}">
+                    <view class="evaluate-list">
+                        <view class="evaluate-item {{index>0?'border-1px-b':''}}" wx:for="{{diyitem.data}}" wx:key="{{index}}">
+                            <view class="evaluate-sub clearfix">
+                                <view class="evaluate-sub-left">
+                                    <image class="evaluate-user-pic" src="{{item.avatar}}"></image>
+                                </view>
+                                <view class="evaluate-sub-right">
+                                    <view class="evaluate-sub clearfix">
+                                        <view class="evaluate-name" style="color: {{diyitem.style.telcolor}};">{{item.mobile}}</view>
+                                        <view class="evaluate-time" style="color: {{diyitem.style.timecolor}};">{{item.addtime_cn}}</view>
+                                    </view>
+                                    <view class="evaluate-stars clearfix">
+                                        <view class="appr-score appr-score-{{scoreItem}}" wx:for="{{item.score}}" wx:for-index="scoreIndex" wx:for-item="scoreItem" wx:key="{{scoreIndex}}"></view>
+                                        <view class="evaluate-ship-time" style="display: none">44分钟到达</view>
+                                    </view>
+                                    <view class="evaluate-comment clearfix" style="color: {{diyitem.style.contentcolor}};">
+											{{item.note}}
+										</view>
+                                    <view class="evaluate-comment-pics clearfix" wx:if="{{item.thumbs.length==1}}">
+                                        <view class="comment-pics">
+                                            <image src="{{item.thumbs[0]}}"></image>
+                                        </view>
+                                    </view>
+                                    <view class="evaluate-comment-pics pic-multi clearfix" wx:if="{{item.thumbs.length>1}}">
+                                        <view class="comment-pics" wx:for="{{item.thumbs}}" wx:for-item="thumbsItem" wx:key="{{index}}">
+                                            <image src="{{thumbsItem}}"></image>
+                                        </view>
+                                    </view>
+                                    <view class="comment-bottom clearfix" wx:if="{{item.goods_title.length}}">
+                                        <view class="icon icon-appreciate"></view>
+                                        <view class="comment-favor-text" style="color: {{diyitem.style.goodstitlecolor}};">
+												{{item.goods_title_str}}
+											</view>
+                                    </view>
+                                    <view class="replay" style="background: {{diyitem.style.replaybackground}}; color: {{diyitem.style.replaycolor}};" wx:if="{{item.reply}}">
+											商家回复({{item.replytime_cn}}): {{item.reply}}
+										</view>
+                                </view>
+                            </view>
+                        </view>
+                    </view>
+                    <view bind:tap="onJsEvent" class="look-all" data-event-type="jsUrl" data-url="pages/store/comment?sid={{diyitem.sid}}" style="color: {{diyitem.style.lookallcolor}};">查看全部评价</view>
+                </block>
+                <view class="no-data-simple" wx:else>
+                    <text class="icon icon-cry"></text>
+                    <text>暂无相关数据!</text>
+                </view>
+            </view>
+            <view class="diy-svip-guide" style="margin-top: {{diyitem.style.margintop}}px; background: {{diyitem.style.outerbackgroundcolor}}" wx:elif="{{diyitem.id=='svipGuide'}}">
+                <view bind:tap="onJsEvent" class="svip-guide" data-event-type="jsUrl" data-url="{{diyitem.params.link}}" style="background: {{diyitem.style.innerbackgrountcolor}}; color: {{diyitem.style.textcolor}}; padding: {{diyitem.style.paddingtop}}px {{diyitem.style.paddingleft}}px">
+                    <view class="svip-guide-left">
+                        <image alt="" src="http://cos.lalawaimai.com/we7_wmall/wxapp/svip-crown.png"></image>
+                        <text class="svip-title">超级会员</text>
+                        <text class="yuandian" style="background: {{diyitem.style.textcolor}};"></text>
+                        <text class="svip-save">{{diyitem.params.text_left}}</text>
+                    </view>
+                    <view class="svip-guide-right" style="color: {{diyitem.style.textcolor}}">
+						{{diyitem.params.text_right}}
+						<i class="icon icon-right"></i>
+                    </view>
+                </view>
+            </view>
+            <view class="diy-selftake-stores" style="background: {{diyitem.style.background}}; margin-top:{{diyitem.style.margintop}}px;" wx:elif="{{diyitem.id=='selftake_stores'}}">
+                <view class="header-title" style="color: {{diyitem.style.titlecolor}}">
+						{{diyitem.params.title}}
+						<view bind:tap="onJsEvent" class="more" data-event-type="jsUrl" data-url="/pages/home/category?delivery_type=2">
+							更多
+							<view class="icon icon-arrow-right"></view>
+                    </view>
+                </view>
+                <scroll-view class="store-list" scrollX="{{true}}" style="background: {{diyitem.style.background}}">
+                    <view bind:tap="onJsEvent" class="store-item" data-event-type="jsUrl" data-url="{{selfStore.url}}" wx:for="{{diyitem.data}}" wx:for-item="selfStore" wx:key="{{index}}">
+                        <view class="store-logo">
+                            <image alt="" src="{{selfStore.logo}}"></image>
+                        </view>
+                        <view class="store-info">
+                            <view class="store-title w-100 ellipsis font-14 font-bold" style="color: {{diyitem.style.storetitlecolor}}">{{selfStore.title}}</view>
+                            <view class="flex margin-10-tb">
+                                <view class="store-distance" style="color: {{diyitem.style.distancecolor}}; background: {{diyitem.style.distancebackgroundcolor}}">{{selfStore.distance}}km</view>
+                                <view class="delivery-fee" style="color: {{diyitem.style.feecolor}}; background: {{diyitem.style.feebackgroundcolor}}">省{{Lang.dollarSign}}{{selfStore.delivery_price}}{{Lang.dollarSignCn}}配送费</view>
+                            </view>
+                            <view class="store-activity flex" wx:if="{{selfStore.activity}}">
+                                <view class="activity-item" wx:for="{{selfStore.activity.items}}" wx:key="{{index}}">
+                                    <image alt="" src="../../static/img/{{item.type}}_b.png"></image>
+                                </view>
+                            </view>
+                        </view>
+                    </view>
+                </scroll-view>
+            </view>
+            <block wx:elif="{{diyitem.id=='brand_stores'}}">
+                <view class="diy-waimai-store-brand" style="margin-top:{{diyitem.style.margintop}}px" wx:if="{{diyitem.params.showtype==0}}">
+                    <view class="waimai-store-brand-wrap" wx:for="{{diyitem.data}}" wx:key="{{index}}">
+                        <view class="store-brand-bgimg">
+                            <view class="store-brand-title" style="background-image: {{item.shopSign?'url('+item.shopSign+')':' '}}"></view>
+                            <image alt="" class="store-brand-tag" src="http://cos.lalawaimai.com/we7_wmall/wxapp/diy-store-brand-tag.png"></image>
+                            <view bind:tap="onJsEvent" class="store-info" data-event-type="jsUrl" data-url="{{item.url}}">
+                                <view class="info">
+                                    <view class="logo">
+                                        <image alt="" src="{{item.logo}}"></image>
+                                    </view>
+                                    <view class="main-info">
+                                        <view class="store-title" style="color: {{diyitem.style.storetitlecolor}}">{{item.title}}</view>
+                                        <view class="coupon-list" wx:if="{{item.activity.labels_num>0}}">
+                                            <view class="coupon-item" style="color: {{diyitem.style.activitycolor}};background: {{diyitem.style.activitybackgroundcolor}}" wx:if="labelIndex < 3" wx:for="{{item.activity.labels}}" wx:for-index="labelIndex" wx:for-item="label" wx:key="{{labelIndex}}">{{label.title}}</view>
+                                        </view>
+                                    </view>
+                                </view>
+                                <view class="slogan" style="color: {{diyitem.style.descriptioncolor}}">{{item.content}}</view>
+                            </view>
+                            <view class="store-brand-list" style="background: {{diyitem.style.background}}" wx:if="{{item.hot_goods}}">
+                                <view bind:tap="onJsEvent" class="store-brand-item" data-event-type="jsUrl" data-url="/pages/store/goodsDetail?sid={{item.store_id}}&id={{goods.id}}" wx:for="{{item.hot_goods}}" wx:for-item="goods" wx:key="{{goods.id}}">
+                                    <view class="store-brand-inner">
+                                        <image alt="" src="{{goods.thumb}}"></image>
+                                        <view class="goods-title" style="color: {{diyitem.style.goodstitlecolor}}">{{goods.title}}</view>
+                                        <view class="price">
+                                            <text class="new-price" style="color: {{diyitem.style.pricecolor}}">
+                                                <text>{{Lang.dollarSign}}</text>{{goods.price}}</text>
+                                            <text class="old-price" style="color: {{diyitem.style.oldpricecolor}}" wx:if="{{goods.old_price>0}}">{{Lang.dollarSign}}{{goods.old_price}}</text>
+                                        </view>
+                                    </view>
+                                </view>
+                            </view>
+                        </view>
+                    </view>
+                </view>
+                <view class="diy-waimai-store-brand" style="margin-top:{{diyitem.style.margintop}}px" wx:else>
+                    <swiper autoplay="true" circular="true" indicatorActiveColor="{{diyitem.style.dotbackground?diyitem.style.dotbackground:'#ff2d4b'}}" indicatorDots="true" interval="4000" nextMargin="60rpx" previousMargin="30rpx">
+                        <swiper-item class="waimai-store-brand-wrap" wx:for="{{diyitem.data}}" wx:key="{{index}}">
+                            <view class="store-brand-bgimg">
+                                <view class="store-brand-title" style="background-image: {{item.shopSign?'url('+item.shopSign+')':' '}}"></view>
+                                <image alt="" class="store-brand-tag" src="http://cos.lalawaimai.com/we7_wmall/wxapp/diy-store-brand-tag.png"></image>
+                                <view bind:tap="onJsEvent" class="store-info" data-event-type="jsUrl" data-url="{{item.url}}">
+                                    <view class="info">
+                                        <view class="logo">
+                                            <image alt="" src="{{item.logo}}"></image>
+                                        </view>
+                                        <view class="main-info">
+                                            <view class="store-title" style="color: {{diyitem.style.storetitlecolor}}">{{item.title}}</view>
+                                            <view class="coupon-list" wx:if="{{item.activity.labels_num>0}}">
+                                                <view class="coupon-item" style="color: {{diyitem.style.activitycolor}};background: {{diyitem.style.activitybackgroundcolor}}" wx:if="labelIndex < 3" wx:for="{{item.activity.labels}}" wx:for-index="labelIndex" wx:for-item="label" wx:key="{{labelIndex}}">{{label.title}}</view>
+                                            </view>
+                                        </view>
+                                    </view>
+                                    <view class="slogan" style="color: {{diyitem.style.descriptioncolor}}">{{item.content}}</view>
+                                </view>
+                                <view class="store-brand-list" style="background: {{diyitem.style.background}}" wx:if="{{item.hot_goods}}">
+                                    <view bind:tap="onJsEvent" class="store-brand-item" data-event-type="jsUrl" data-url="/pages/store/goodsDetail?sid={{item.store_id}}&id={{goods.id}}" wx:for="{{item.hot_goods}}" wx:for-item="goods" wx:key="{{goods.id}}">
+                                        <view class="store-brand-inner">
+                                            <image alt="" src="{{goods.thumb}}"></image>
+                                            <view class="goods-title" style="color: {{diyitem.style.goodstitlecolor}}">{{goods.title}}</view>
+                                            <view class="price">
+                                                <text class="new-price" style="color: {{diyitem.style.pricecolor}}">
+                                                    <text>{{Lang.dollarSign}}</text>{{goods.price}}</text>
+                                                <text class="old-price" style="color: {{diyitem.style.oldpricecolor}}" wx:if="{{goods.old_price>0}}">{{Lang.dollarSign}}{{goods.old_price}}</text>
+                                            </view>
+                                        </view>
+                                    </view>
+                                </view>
+                            </view>
+                        </swiper-item>
+                    </swiper>
+                </view>
+            </block>
+            <view class="diy-waimai-goods-tab" style="margin-top:{{diyitem.style.margintop}}px" wx:elif="{{diyitem.id=='goodsTab'}}">
+                <van-tabs active="{{goodsTabActive}}" backgroundActiveColor="{{diyitem.style.goodsTabSelectBackground}}" backgroundInactiveColor="{{diyitem.style.goodsTabBackground}}" bind:click="onToggleGoodsTab" color="{{diyitem.style.goodsTabActiveColor}}" sticky="{{goodsTabSticky}}" stickyTop="{{goodsTabStickyTop}}" titleActiveColor="{{diyitem.style.goodsTabActiveColor}}" titleInactiveColor="{{diyitem.style.goodsTabColor}}">
+                    <van-tab title="{{item.TabsTitle}}" wx:for="{{diyitem.data}}" wx:key="{{index}}"></van-tab>
+                </van-tabs>
+                <view class="goods-tab-item" id="goods-tab-item-{{index}}" wx:for="{{diyitem.data}}" wx:key="{{index}}">
+                    <view class="img-title">
+                        <image src="{{item.imgTitle}}"></image>
+                    </view>
+                    <view class="goods-group" wx:if="{{diyitem.params.liststyle=='1'}}">
+                        <view class="goods-list">
+                            <view class="goods-item {{diyitem.style.marginbottom>0?'border-1px-b':''}}" style="margin-bottom: {{diyitem.style.marginbottom}}px" wx:for="{{item.goods}}" wx:for-item="goods" wx:key="{{goods.id}}">
+                                <view class="goods-wrap">
+                                    <view class="goods-img">
+                                        <image src="{{goods.thumb}}"></image>
+                                        <view class="discount" wx:if="{{diyitem.params.showGoodsTag==1&&goods.discount>0&&goods.discount<10}}">{{goods.svip_status==1?'会员':''}}{{goods.discount}}折</view>
+                                    </view>
+                                    <view class="goods-info">
+                                        <view class="goods-name" style="color: {{diyitem.style.goodsTitleColor}}">{{goods.title}}</view>
+                                        <view class="sale-num">已售:{{goods.sailed}} 好评率:{{goods.comment_good_percent}}</view>
+                                        <view class="store-name">
+                                            <view class="icon icon-shop"></view> {{goods.store_title}}
+											</view>
+                                        <view class="price-buybtn">
+                                            <view class="price-wrap">
+                                                <view class="now-price" style="color: {{diyitem.style.goodsPriceColor}}">{{Lang.dollarSign}}{{goods.price}}</view>
+                                                <view class="old-price" style="color: {{diyitem.style.goodsOldPriceColor}}" wx:if="{{diyitem.params.showGoodsOldPrice==1}}">{{Lang.dollarSign}}{{goods.old_price}}</view>
+                                            </view>
+                                            <navigator class="buy-btn" style="background-color: {{diyitem.style.buyBtnColor}}" url="../store/goodsDetail?sid={{goods.sid}}&id={{goods.goods_id}}">{{diyitem.params.buyBtnText}}</navigator>
+                                        </view>
+                                    </view>
+                                </view>
+                                <view class="poi-part" wx:if="{{diyitem.params.goodsTabStoreShow==2&&goods.store}}">
+                                    <view class="poi-img-wrapper">
+                                        <image src="{{goods.store.logo}}"></image>
+                                    </view>
+                                    <view class="poi-message">
+                                        <view class="line1">
+                                            <text class="poi-name">{{goods.store.title}}</text>
+                                            <text class="avg-delivery-time">{{goods.store.delivery_time}}分钟</text>
+                                        </view>
+                                        <view class="line2">
+                                            <text class="price-min">起送价{{Lang.dollarSign}}{{goods.store.send_price}}</text>
+                                            <text class="divide-span">|</text>
+                                            <text class="shipping-fee" wx:if="{{goods.store.delivery_price>0}}">配送费{{Lang.dollarSign}}{{goods.store.delivery_price}}</text>
+                                            <text class="shipping-fee" wx:else>免配送费</text>
+                                        </view>
+                                    </view>
+                                </view>
+                            </view>
+                        </view>
+                    </view>
+                    <view class="box-group" wx:else>
+                        <view class="box-list">
+                            <view class="box-item" wx:for="{{item.goods}}" wx:for-item="goods" wx:key="{{goods.id}}">
+                                <view class="goods-content-box">
+                                    <view class="goods-image">
+                                        <image src="{{goods.thumb}}"></image>
+                                        <view class="discount" wx:if="{{diyitem.params.showGoodsTag==1&&goods.discount>0&&goods.discount<10}}">{{goods.svip_status==1?'会员':''}}{{goods.discount}}折</view>
+                                    </view>
+                                    <view class="goods-name" style="color: {{diyitem.style.goodsTitleColor}}">{{goods.title}}</view>
+                                    <view class="discount-soldnum">
+                                        <view class="in-b sold-num">已售{{goods.sailed}}</view>
+                                        <view class="in-b praise">好评率 {{goods.comment_good_percent?goods.comment_good_percent:'暂无'}}</view>
+                                    </view>
+                                    <view class="store-name">
+                                        <view class="icon icon-shop"></view>{{goods.store_title}}
+										</view>
+                                    <view class="price-buybtn flex-lr">
+                                        <view class="price">
+                                            <view class="now-price" style="color: {{diyitem.style.goodsPriceColor}}">{{Lang.dollarSign}}{{goods.price}}</view>
+                                            <view class="old-price" style="color: {{diyitem.style.goodsOldPriceColor}}" wx:if="{{diyitem.params.showGoodsOldPrice==1}}">{{Lang.dollarSign}}{{goods.old_price}}</view>
+                                        </view>
+                                        <navigator class="buy-btn" style="background-color: {{diyitem.style.buyBtnColor}}" url="../store/goodsDetail?sid={{goods.sid}}&id={{goods.goods_id}}">{{diyitem.params.buyBtnText}}</navigator>
+                                    </view>
+                                </view>
+                            </view>
+                        </view>
+                    </view>
+                </view>
+            </view>
+            <view class="diy-waimai-stores-tab" style="margin-top:{{diyitem.style.margintop}}px" wx:elif="{{diyitem.id=='storesTab'}}">
+                <van-tabs active="{{storesTabActive}}" backgroundActiveColor="{{diyitem.style.storesTabSelectBackground}}" backgroundInactiveColor="{{diyitem.style.storesTabBackground}}" bind:click="onToggleStoresTab" color="{{diyitem.style.storesTabActiveColor}}" sticky="{{storesTabSticky}}" stickyTop="{{storesTabStickyTop}}" titleActiveColor="{{diyitem.style.storesTabActiveColor}}" titleInactiveColor="{{diyitem.style.storesTabColor}}" zIndex="100">
+                    <van-tab title="{{item.TabsTitle}}" wx:for="{{diyitem.data}}" wx:key="{{index}}"></van-tab>
+                </van-tabs>
+                <view class="stores-tab-group">
+                    <view class="stores-tab-list" wx:for="{{diyitem.data}}" wx:for-index="listindex" wx:key="{{index}}">
+                        <view class="img-title">
+                            <image alt="" src="{{item.imgTitle}}"></image>
+                        </view>
+                        <view>{{index}}</view>
+                        <view class="store-tab-item {{stores.is_rest==1?'disabled':''}}" wx:for="{{item.stores}}" wx:for-index="itemindex" wx:for-item="stores" wx:key="{{index}}">
+                            <view>{{index}}</view>
+                            <view class="content-left border-1px">
+                                <navigator class="item-image" url="{{stores.url}}">
+                                    <view class="item-rest" wx:if="{{stores.is_rest==1}}">休息中</view>
+                                    <image src="{{stores.logo}}"></image>
+                                </navigator>
+                            </view>
+                            <view class="content-right">
+                                <navigator url="{{stores.url}}">
+                                    <view class="store-title-group">
+                                        <view class="store-title" style="color: {{diyitem.style.storeTitleColor}}">{{stores.title}}</view>
+                                    </view>
+                                    <view class="delivery-tip" wx:if="{{stores.rest_reserve_cn}}">{{stores.rest_reserve_cn}}</view>
+                                    <view class="store-score-time">
+                                        <view class="store-score-sale">
+                                            <view class="store-star-box">
+                                                <view class="stars" style="color: {{diyitem.style.scoreColor}}; width: {{stores.score*20}}%">
+                                                    <view class="icon icon-favor_fill_light"></view>
+                                                    <view class="icon icon-favor_fill_light"></view>
+                                                    <view class="icon icon-favor_fill_light"></view>
+                                                    <view class="icon icon-favor_fill_light"></view>
+                                                    <view class="icon icon-favor_fill_light"></view>
+                                                </view>
+                                                <view class="stars-bg" style="color: {{diyitem.style.scoreColor}};">
+                                                    <view class="icon icon-favor_light"></view>
+                                                    <view class="icon icon-favor_light"></view>
+                                                    <view class="icon icon-favor_light"></view>
+                                                    <view class="icon icon-favor_light"></view>
+                                                    <view class="icon icon-favor_light"></view>
+                                                </view>
+                                            </view>
+                                            <view class="store-sale">月售 {{stores.sailed}}</view>
+                                        </view>
+                                        <view class="store-delivery-time">
+                                            <view class="delivery-time">{{stores.delivery_time}}分钟</view>
+                                        </view>
+                                    </view>
+                                    <view class="store-min-delivery">
+                                        <view class="store-min-delivery-left">
+                                            <view>起送价{{Lang.dollarSign}}{{stores.send_price}}</view>
+                                            <view class="line">|</view>
+                                            <view wx:if="{{stores.delivery_price>0}}">配送费{{Lang.dollarSign}}{{stores.delivery_price}}</view>
+                                            <view wx:else>免配送费</view>
+                                        </view>
+                                        <view class="item-min-delivery-right-wrap">
+                                            <view class="zhunshibao" wx:if="{{stores.zhunshibao_cn}}">{{stores.zhunshibao_cn}}</view>
+                                            <view class="item-min-delivery-right" style="background-color: {{diyitem.style.deliveryTitleBgcolor}}; color: {{diyitem.style.deliveryTitleColor}}" wx:if="{{stores.delivery_title}}">{{stores.delivery_title}}</view>
+                                        </view>
+                                    </view>
+                                </navigator>
+                                <view bind:tap="onToggleStoresTabDiscount" class="discount-box" data-diyindex="{{diyindex}}" data-itemindex="{{itemindex}}" data-listindex="{{listindex}}" wx:if="{{stores.activity&&(stores.activity.num>0||stores.activity.labels_num>0)}}">
+                                    <view class="toggle">
+                                        <view class="icon {{stores.activity.is_show_all?'icon-fold':'icon-unfold'}}" wx:if="{{diyitem.params.discountstyle==1&&stores.activity.num>2||diyitem.params.discountstyle==2&&stores.activity.labels_num>4}}"></view>
+                                    </view>
+                                    <block wx:if="{{diyitem.params.discountstyle==1}}" wx:for="{{stores.activity.items}}" wx:key="{{index}}">
+                                        <view class="single-line" wx:if="{{index<2||stores.activity.is_show_all&&index>=2}}">
+                                            <image class="discount-icon" src="/static/img/{{item.type}}_b.png"></image>
+                                            <view class="discount-text">{{item.title}}</view>
+                                        </view>
+                                    </block>
+                                    <view class="label-wrap {{stores.activity.is_show_all?'autoHeight':''}}" wx:if="{{diyitem.params.discountstyle==2}}">
+                                        <text class="{{item.class}}" wx:if="{{index<4||stores.activity.is_show_all&&index>=4}}" wx:for="{{stores.activity.labels}}" wx:key="{{index}}">{{item.title}}</text>
+                                    </view>
+                                </view>
+                                <view class="hot-box" wx:if="{{stores.hot_goods_num>0&&diyitem.params.showhotgoods==1}}">
+                                    <navigator url="../store/goodsDetail?sid={{stores.store_id}}&id={{item.id}}" wx:for="{{stores.hot_goods}}" wx:key="{{index}}">
+                                        <view class="hot-box-item">
+                                            <view class="hot-t border-1px">
+                                                <image mode="widthFix" src="{{item.thumb}}"></image>
+                                                <view class="discount" wx:if="{{item.discount>0&&item.discount<10}}">{{item.svip_status==1?'会员':''}}{{item.discount}}折</view>
+                                            </view>
+                                            <view class="hot-b">
+                                                <view class="shop-name">{{item.title}}</view>
+                                                <view class="shop-price">
+                                                    <view class="now-price">{{Lang.dollarSign}}{{item.price}}</view>
+                                                    <view class="old-price" wx:if="{{item.old_price>0}}">{{Lang.dollarSign}}{{item.old_price}}</view>
+                                                </view>
+                                            </view>
+                                        </view>
+                                    </navigator>
+                                </view>
+                            </view>
+                        </view>
+                    </view>
+                </view>
+            </view>
+            <view class="diy-urltags" style="margin-top:{{diyitem.style.margintop}}px" wx:elif="{{diyitem.id=='urltags'}}">
+                <view class="diy-urltags-container" style="font-size:{{diyitem.style.fontSize}}px; background-color: {{diyitem.style.background}}">
+                    <view class="urltags-list">
+                        <view bind:tap="onJsEvent" class="urltags-item" data-event-type="jsUrl" data-url="{{item.linkurl}}" wx:for="{{diyitem.data}}" wx:key="{{index}}">
+                            <text class="urltags-text" style="color: {{item.color}}">{{item.text}}</text>
+                        </view>
+                    </view>
+                </view>
+            </view>
+            <view class="diy-service" wx:elif="{{diyitem.id=='service'}}">
+                <view class="diy-service-inner" wx:if="{{diyitem.params.servicefrom=='system'}}">
+                    <view bind:tap="onJsEvent" class="wh-100" data-event-type="jsUrl" data-url="plugin/pages/kefu/chat?relation=member2kefu">
+                        <image class="wh-100" src="{{diyitem.params.iconImg}}"></image>
+                    </view>
+                </view>
+            </view>
+            <view class="diy-hot-goods" wx:elif="{{diyitem.id=='hot_goods'}}">
+                <view class="hot-goods-item" wx:for="{{10}}" wx:key="{{index}}">
+                    <view class="goods-thumb">
+                        <image alt="" class="img-100" src="http://testlala.oss-cn-qingdao.aliyuncs.com/images/1/2019/06/UBD99r24DG44v2ZO8dedX22XDHg2zV.jpg"></image>
+                        <view class="label" style="color: {{diyitem.style.labelcolor}}; background-color: {{diyitem.style.labelbackground}}" wx:if="{{diyitem.params.showlabel==1}}">人气午餐</view>
+                    </view>
+                    <view class="goods-info" style="background-color: {{diyitem.style.background}}">
+                        <view class="goods-title font-500 margin-5-t w-100 ellipsis" style="color: {{diyitem.style.goodstitlecolor}}">
+							美式薯条
+						</view>
+                        <view class="font-12 flex-lr margin-10-t" style="color: {{diyitem.style.sailedcolor}}">
+                            <text>月售169</text>
+                            <text>40分钟</text>
+                            <text>配送￥1</text>
+                        </view>
+                        <view class="flex margin-10-t">
+                            <view class="c-danger flex" style="color: {{diyitem.style.pricecolor}}!important">
+                                <text class="font-12">￥</text>
+                                <text class="font-bold font-16">12.8</text>
+                            </view>
+                            <view class="font-12 c-gray line-through margin-5-l" style="color: {{diyitem.style.oldpricecolor}}" wx:if="{{diyitem.params.showoldprice==1}}">￥30</view>
+                            <view class="discount" style="color: {{diyitem.style.pricecolor}}; border-color: {{diyitem.style.pricecolor}}" wx:if="{{diyitem.params.showdiscount==1}}">5折</view>
+                        </view>
+                        <view class="store-wrap van-hairline--top" wx:if="{{diyitem.params.showstore==1}}">
+                            <view class="store-logo">
+                                <image alt="" class="img-100" src="http://testlala.oss-cn-qingdao.aliyuncs.com/images/1/2019/06/OeFbZWfO4FWZ9Wtoa9oqExQAoofQm2.jpg"></image>
+                            </view>
+                            <view class="store-info">
+                                <view class="store-title w-100 ellipsis" style="color: {{diyitem.style.storetitlecolor}}">商户名称商户名称商户名称</view>
+                                <view class="flex font-12 c-gray" style="color: {{diyitem.style.storedeliverycolor}}">
+                                    <text class="margin-5-r">4.6分</text>
+                                    <text>起送￥20</text>
+                                </view>
+                            </view>
+                        </view>
+                    </view>
+                </view>
+            </view>
+        </block>
+    </view>
+</template>
+<import src="/library/wxParse/wxParse.wxml"></import>

@@ -1,0 +1,40 @@
+page {
+    background-color: #ff2d4b;
+}
+
+.page-rule {
+    box-sizing: border-box;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    overflow: auto;
+    padding-bottom: 16px;
+}
+
+.page-rule .banner {
+    box-sizing: border-box;
+    width: 100%;
+    height: 110px;
+}
+
+.page-rule .banner image {
+    width: 100%;
+}
+
+.page-rule .rule {
+    box-sizing: border-box;
+    font-size: 13px;
+    position: relative;
+    background-color: #fff;
+    width: 94%;
+    min-height: 80%;
+    margin: 0 auto;
+    padding: 16px;
+    border-radius: 5px;
+}
+
+.page-rule .rule image {
+    max-width: 100%;
+}

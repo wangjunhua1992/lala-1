@@ -1,0 +1,90 @@
+page {
+    background-color: #F5F5F5;
+    font-size: 14px;
+    line-height: 1;
+}
+
+.storebd-commission .commission-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #FF2D4B;
+    color: #fff;
+    padding: 14px 12px;
+}
+
+.storebd-commission .commission-title .commission-left view {
+    font-size: 15px;
+    line-height: 22px;
+}
+
+.storebd-commission .commission-title .commission-right view {
+    display: block;
+    color: #fff;
+    font-size: 14px;
+    padding: 0 6px;
+    border: 1px solid #fff;
+    border-radius: 12px;
+    line-height: 21px;
+}
+
+.storebd-commission .list-block {
+    margin-top: 10px;
+    background-color: #fff;
+}
+
+.storebd-commission .list-block .item-block {
+    display: flex;
+    margin: 0 15px;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.storebd-commission .list-block .item-block:last-child {
+    border-bottom: none;
+}
+
+.storebd-commission .list-block .item-block .item-media {
+    padding: 10px 0;
+    line-height: 22px;
+}
+
+.storebd-commission .list-block .item-block .item-inner {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    padding: 10px 0 10px 15px;
+    line-height: 26px;
+}
+
+.storebd-commission .list-block .item-block .item-inner .item-after {
+    color: #5f646e;
+    display: inline-block;
+    max-width: 300px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: 14px;
+}
+
+.storebd-commission .btn-group {
+    text-align: center;
+    margin-top: 10px;
+}
+
+.storebd-commission .btn-group .button-fill {
+    width: 90%;
+    display: inline-block;
+    padding: 8px 0;
+    height: auto;
+    color: #fff;
+    font-size: 16px;
+    background-color: #ff2d4b;
+    border: none;
+    border-radius: 5px;
+    line-height: 27px;
+}
+
+.storebd-commission .btn-group .button-fill.disabled {
+    background-color: #c8c9cb;
+}

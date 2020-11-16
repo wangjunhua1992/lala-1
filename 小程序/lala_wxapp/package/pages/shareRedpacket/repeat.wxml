@@ -1,0 +1,19 @@
+<view class="shareRedpacket-repeat">
+    <view class="content">
+        <view class="header-img">
+            <image alt="" mode="widthFix" src="../../static/img/shareRedpacket-top.png"></image>
+        </view>
+        <view class="cannot-get">
+            <view class="notice">
+                <view>您已经是平台的老朋友啦</view>
+                <view class="c-danger padding-5-t">仅限新用户参加</view>
+            </view>
+        </view>
+        <view class="invite clearfix">
+            <text class="pull-left"></text>
+            <view bind:tap="onJsEvent" data-event-type="jsUrl" data-url="/package/pages/shareRedpacket/index">邀请好友,可以各赢大红包哦</view>
+            <text class="pull-right"></text>
+        </view>
+        <view bind:tap="onJsEvent" class="invite-btn" data-event-type="jsUrl" data-url="/package/pages/shareRedpacket/index">送好友红包，奖励拿不停</view>
+    </view>
+</view>

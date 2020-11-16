@@ -1,0 +1,89 @@
+<view class="container">
+    <view class="content">
+        <view class="shop-content">
+            <view class="store-name clearfix">
+                <view class="name">兑换商品信息</view>
+            </view>
+            <view class="food-list">
+                <view class="food-item">
+                    <view class="food-item-img">
+                        <image src="{{order.goods_info.thumb}}"></image>
+                    </view>
+                    <view class="food-item-price">
+                        <view class="now-price">
+							{{order.goods_info.use_credit1}}积分
+							<block wx:if="{{order.goods_info.use_credit2>0}}">
+								+{{Lang.dollarSign}}{{order.goods_info.use_credit2}}
+							</block>
+                        </view>
+                        <view class="old-price">{{order.goods_info.old_price}}</view>
+                    </view>
+                    <view class="food-item-info">
+                        <view class="food-item-name">
+							{{order.goods_info.title}}
+						</view>
+                        <view class="food-item-num">x1</view>
+                    </view>
+                </view>
+            </view>
+        </view>
+        <view class="dispatching" wx:if="{{order.goods_type=='goods'}}">
+            <view class="time clearfix">
+                <view class="text">收件人姓名</view>
+                <view class="main">{{order.username}}</view>
+            </view>
+            <view class="divide-line"></view>
+            <view class="server clearfix">
+                <view class="text">联系方式</view>
+                <view class="main clearfix">
+                    <view>{{order.mobile}}</view>
+                </view>
+            </view>
+        </view>
+        <view class="code-qrcode" wx:if="{{order.goods_type=='goods'}}">
+            <canvas canvasId="canvas" style="width: 150px; height: 150px"></canvas>
+            <view class="font-14 margin-10-t">兑换码：{{order.code}}</view>
+        </view>
+        <view class="order">
+            <view class="code">
+                <view class="text">订单号码</view>
+                <view class="main">{{order.order_sn}}</view>
+            </view>
+            <view class="divide-line"></view>
+            <view class="code" wx:if="{{order.goods_type=='credit2'||order.goods_type=='redpacket'}}">
+                <view class="text">商品类型</view>
+                <view class="main">
+                    <block wx:if="{{order.goods_type=='credit2'}}">余额 <text wx:if="{{order.grant_status==1}}">（已发送到您的账户中）</text>
+                    </block>
+                    <block wx:if="{{order.goods_type=='redpacket'}}">红包  <text wx:if="{{order.grant_status==1}}">（已发送到您的账户中）</text>
+                    </block>
+                </view>
+            </view>
+            <view class="divide-line" wx:if="{{order.goods_type=='credit2'||order.goods_type=='redpacket'}}"></view>
+            <view class="time">
+                <view class="text">
+					消耗积分
+					<block wx:if="{{order.use_credit2>0}}">
+						+消耗余额
+					</block>
+                </view>
+                <view class="main">
+					{{order.use_credit1}}积分
+					<block wx:if="{{order.use_credit2>0}}">
+						+{{Lang.dollarSign}}{{order.use_credit2}}
+					</block>
+                </view>
+            </view>
+            <view class="divide-line"></view>
+            <view class="code">
+                <view class="text">兑换时间</view>
+                <view class="main">{{order.addtime}}</view>
+            </view>
+            <view bind:tap="onJsEvent" class="copy" data-event-type="jsCopy" data-text="{{order.order_sn}}">复制</view>
+        </view>
+        <navigator hoverClass="none" url="../public/pay?order_id={{order.id}}&order_type=creditshop" wx:if="{{order.use_credit2>0&&order.is_pay==0&&order.status==1}}">
+            <button style="background:#ff2d4b;margin-top:10px;">立即支付</button>
+        </navigator>
+    </view>
+</view>
+<include src="../public/footer.wxml"></include>

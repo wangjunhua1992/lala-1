@@ -1,0 +1,63 @@
+<tab-bar menufooter="{{menufooter}}" wx:if="{{menufooter&&menufooter.data}}"></tab-bar>
+<view class="container">
+    <view class="content">
+        <view class="head-top">
+            <view class="total-text">累计佣金({{Lang.dollarSignCn}})</view>
+            <view class="text">{{data.commission_grandtotal}}</view>
+            <view bind:tap="onJsEvent" data-event-type="jsUrl" data-url="/plugin/pages/spread/getCashLog">
+                <view class="link">提现明细</view>
+            </view>
+        </view>
+        <view class="group" wx:if="{{can_set_account==1}}">
+            <view bind:tap="onJsEvent" class="cell flex-lr getcash-account" data-event-type="jsUrl" data-url="/plugin/pages/spread/account">
+                <view>
+                    <text class="icon icon-pay font-16"></text>
+                    <view class="cell-text">提现账户</view>
+                </view>
+                <text class="icon icon-right c-gray"></text>
+            </view>
+        </view>
+        <view class="group">
+            <view class="cell">
+                <icon class="icon icon-recharge"></icon>
+                <view class="cell-text">可提现佣金</view>
+                <view class="cell-piece">{{data.spreadcredit2}}{{Lang.dollarSignCn}}</view>
+            </view>
+        </view>
+        <view class="cell-group">
+            <view class="wui-cell">
+                <view class="wui-cell-bd">
+                    <view class="icon icon-countdown"></view>
+                    <view class="cell-code-text">累计佣金</view>
+                </view>
+                <view class="wui-cell-ft">{{data.commission_grandtotal}}{{Lang.dollarSignCn}}</view>
+            </view>
+            <view class="wui-cell">
+                <view class="wui-cell-bd">
+                    <view class="icon icon-rest"></view>
+                    <view class="cell-code-text">待打款佣金</view>
+                </view>
+                <view class="wui-cell-ft">{{data.commission_getcash_apply}}{{Lang.dollarSignCn}}</view>
+            </view>
+            <view class="wui-cell">
+                <view class="wui-cell-bd">
+                    <view class="icon icon-signboard"></view>
+                    <view class="cell-code-text">成功提现佣金</view>
+                </view>
+                <view class="wui-cell-ft">{{data.commission_getcash_success}}{{Lang.dollarSignCn}}</view>
+            </view>
+        </view>
+        <view class="user">
+            <view class="must-title">用户须知</view>
+            <view class="must-text" wx:if="{{settle.balance_condition==1}}">买家确认收货后,佣金将自动打入您的佣金账户余额。</view>
+            <view class="must-text" wx:if="{{settle.balance_condition==2}}">买家确认收货并评价后,佣金将自动打入您的佣金账户余额。</view>
+            <view class="notice">注意:可用佣金满<view class="words">{{settle.withdraw}}</view>{{Lang.dollarSignCn}}后才能申请提现</view>
+            <view class="icon icon-moreunfold"></view>
+        </view>
+        <view class="button">
+            <view bind:tap="onJsEvent" class="btn btn-large btn-success" data-event-type="jsUrl" data-url="/plugin/pages/spread/getCash" wx:if="{{data.spreadcredit2}}">我要提现</view>
+            <view class="btn btn-large btn-disabled" wx:if="{{!data.spreadcredit2}}">我要提现</view>
+        </view>
+    </view>
+</view>
+<include src="../../../pages/public/footer.wxml"></include>

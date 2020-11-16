@@ -1,0 +1,129 @@
+<view class="page-svip">
+    <view class="content">
+        <view class="wrapper">
+            <view class="card">
+                <view class="card-top">
+                    <text>专享红包</text>
+                    <image alt="" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAPCAMAAAAMCGV4AAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAk1BMVEUAAABjTyNjTyNjTyNjTyNjTyNjTyNjTyNjTyNjTyNjTyNjTyNjTyNjTyNjTyNjTyNjTyNjTyNjTyNjTyNjTyNjTyNjTyNjTyNjTyNjTyNjTyNjTyNjTyNjTyNjTyNjTyNjTyNjTyNjTyNjTyNjTyNjTyNjTyNjTyNjTyNjTyNjTyNjTyNjTyNjTyNjTyNjTyMAAADCOUMsAAAAL3RSTlMAGryxDoBhh2lqTBVTVSwDZ1w1UQLa+ytE/sAF8EBd1zmTmZhiJW6PTzSFZughBAdPqfAAAAABYktHRACIBR1IAAAACXBIWXMAAAsSAAALEgHS3X78AAAAcUlEQVQI15WN2xZCUABEJ/fKOaSI6OIIKcz//12Uh/PUWs3Lnv0yA3yyMkwLWmzS0d0lvV++JjdL3fpCyCDcIRJib+EQk0yOQJpN5YS8mMAzcJl5BW6lqu6QddAo1cpl5JEl3T//T/Kle1f0g+7Ixy/fxakKtFH8Z2cAAAAASUVORK5CYII="></image>
+                    <text>下单奖励</text>
+                </view>
+                <view class="card-title">加入即可领{{config.exchange_max}}个红包</view>
+                <view class="card-description">开通超级会员，享受众多会员特权</view>
+            </view>
+            <view class="card-list">
+                <view class="list-header">
+                    <view class="title-header">会员特权</view>
+                </view>
+                <view bind:tap="onJsEvent" class="list-bonus" data-event-type="jsUrl" data-url="/pages/public/richtext?key=agreement_svip">
+					特权说明
+					<view class="icon icon-question1"></view>
+                </view>
+                <view class="list-item">
+                    <view>
+                        <image alt="" src="http://cos.lalawaimai.com/we7_wmall/wxapp/svip-list-bg1.png"></image>
+                        <text>专享红包</text>
+                    </view>
+                    <view>
+                        <image alt="" src="http://cos.lalawaimai.com/we7_wmall/wxapp/svip-list-bg2.png"></image>
+                        <text>奖励金</text>
+                    </view>
+                    <view>
+                        <image alt="" src="http://cos.lalawaimai.com/we7_wmall/wxapp/svip-list-bg3.png"></image>
+                        <text>专属客服</text>
+                    </view>
+                    <view>
+                        <image alt="" src="http://cos.lalawaimai.com/we7_wmall/wxapp/svip-list-bg4.png"></image>
+                        <text>专属折扣</text>
+                    </view>
+                    <view>
+                        <image alt="" src="http://cos.lalawaimai.com/we7_wmall/wxapp/svip-list-bg5.png"></image>
+                        <text>金币特权</text>
+                    </view>
+                </view>
+            </view>
+        </view>
+        <view class="section">
+            <view class="wrapper-item">
+                <view class="title">
+                    <view class="icon icon-redpacket"></view>
+                    <text>每月免费领红包</text>
+                </view>
+                <view class="description">会员期内每月可免费领取<text>{{config.exchange_max}}个</text>红包。</view>
+            </view>
+            <view class="list">
+                <view class="wrapper-list">
+                    <view class="wrapper-group" wx:if="{{item.sid==0}}" wx:for="{{redpackets}}" wx:key="{{item.id}}">
+                        <view class="amount-price">
+                            <text class="price">{{Lang.dollarSign}}</text>
+                            <text>{{item.discount}}</text>
+                        </view>
+                        <view class="info" wx:if="{{item.condition==0}}">无门槛红包</view>
+                        <view class="info" wx:elif="{{item.condition>0}}">满{{item.condition}}{{Lang.dollarSignCn}}可用</view>
+                    </view>
+                </view>
+                <view class="section-list">
+                    <view class="section-group" wx:if="{{item.sid>0}}" wx:for="{{redpackets}}" wx:key="{{item.id}}">
+                        <view class="wrapper-section-list">
+                            <view class="top">
+                                <view class="amount">
+                                    <text class="price">{{Lang.dollarSign}}</text>
+                                    <text>{{item.discount}}</text>
+                                </view>
+                                <text class="condition" wx:if="{{item.condition==0}}">无门槛红包</text>
+                                <text class="condition" wx:elif="{{item.condition>0}}">满{{item.condition}}{{Lang.dollarSignCn}}可用</text>
+                            </view>
+                            <view class="footer">
+                                <text>{{item.store.title}}</text>
+                            </view>
+                        </view>
+                    </view>
+                </view>
+            </view>
+        </view>
+        <view class="section">
+            <view class="wrapper-item">
+                <view class="title">
+                    <view class="icon icon-order"></view>
+                    <text>会员任务奖励</text>
+                </view>
+                <view class="mission-info" wx:if="{{tasks&&tasks.length>0}}" wx:for="{{tasks}}" wx:key="{{item.id}}">{{item.title}} 任务奖励{{item.award_cn}}</view>
+                <view class="mission-info">任务所得奖励金，可兑换各类红包。</view>
+            </view>
+            <view class="section-list">
+                <view class="section-group" wx:if="{{item.can_exchange==1}}" wx:for="{{redpackets}}" wx:key="{{item.id}}">
+                    <view class="wrapper-section-list">
+                        <view class="top">
+                            <view class="amount">
+                                <text class="price">{{Lang.dollarSign}}</text>
+                                <text>{{item.discount}}</text>
+                            </view>
+                            <text class="condition" wx:if="{{item.condition==0}}">无门槛红包</text>
+                            <text class="condition" wx:elif="{{item.condition>0}}">满{{item.condition}}{{Lang.dollarSignCn}}可用</text>
+                        </view>
+                        <view class="footer">
+                            <text>需{{item.exchange_cost}}个奖励金</text>
+                        </view>
+                    </view>
+                </view>
+            </view>
+        </view>
+        <view class="section">
+            <view class="wrapper-item">
+                <view class="title">
+                    <i class="icon icon-discount"></i>
+                    <text>专属折扣</text>
+                </view>
+                <view class="description">购物享专属特价，万款特价菜等您选购。</view>
+            </view>
+            <view class="discount-img">
+                <image alt="" src="../../static/img/svip_discount.png"></image>
+            </view>
+        </view>
+        <view class="go-member">
+            <view bind:tap="onJsEvent" class="button" data-event-type="jsUrl" data-url="/package/pages/svip/purchase">
+                <text>开通会员</text>
+            </view>
+        </view>
+    </view>
+</view>
+<include src="../../../pages/public/footer.wxml"></include>

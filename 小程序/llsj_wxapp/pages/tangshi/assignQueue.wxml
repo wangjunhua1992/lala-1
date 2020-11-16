@@ -1,0 +1,46 @@
+<form bindsubmit="onSubmit" reportSubmit="true">
+    <view class="page page-assignQueue">
+        <view class="content">
+            <view class="zan-form">
+                <view class="zan-cell zan-form__item">
+                    <text class="zan-form__title">队列名称</text>
+                    <input class="zan-form__input zan-cell__bd" name="title" placeholder="请填写队列名称" value=""></input>
+                </view>
+                <view class="zan-cell zan-form__item">
+                    <text class="zan-form__title">排入队列</text>
+                    <input class="zan-form__input zan-cell__bd" name="guest_num" placeholder="客人数量少于多少人" value=""></input>
+                </view>
+            </view>
+            <view class="page-textarea">
+                <view class="zan-panel time-picker flex-lr">
+                    <view class="addtime">排队时间</view>
+                    <view class="flex">
+                        <picker bindchange="onTimeChange" data-index="starttime" end="23:59" mode="time" start="00:00" value="{{starttime}}">
+							{{starttime}}
+						</picker>
+                        <text>至</text>
+                        <picker bindchange="onTimeChange" data-index="endtime" end="23:59" mode="time" start="00:00" value="{{endtime}}">
+							{{endtime}}		
+						</picker>
+                    </view>
+                </view>
+            </view>
+            <view class="zan-form">
+                <view class="zan-cell zan-form__item">
+                    <text class="zan-form__title">队列前缀</text>
+                    <input class="zan-form__input zan-cell__bd" name="prefix" placeholder="请填写编号前缀" value=""></input>
+                </view>
+                <view class="zan-cell zan-form__item">
+                    <text class="zan-form__title">提前通知</text>
+                    <input class="zan-form__input zan-cell__bd" name="notify_num" placeholder="请填写提前通知人数" value=""></input>
+                </view>
+            </view>
+            <view class="assign-button">
+                <view class="page__bd">
+                    <button class="weui-btn" formType="submit" type="primary">点击添加</button>
+                </view>
+            </view>
+        </view>
+    </view>
+</form>
+<include src="../public/footer.wxml"></include>

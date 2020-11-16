@@ -1,0 +1,50 @@
+page {
+    font-size: 14px;
+    box-sizing: border-box;
+    width: 100%;
+    background-color: #F5F5F5;
+}
+
+::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+    color: transparent;
+}
+
+.zan-form input {
+    text-align: right;
+}
+
+.page-assignQueue .assign-button {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    background-color: #fff;
+    height: 56px;
+    width: 100%;
+}
+
+.page-assignQueue .assign-button .page__bd {
+    padding: 8px 10px;
+}
+
+.page-assignQueue .assign-button .page__bd button {
+    height: 40px;
+    line-height: 40px;
+    font-size: 16px;
+}
+
+.page-textarea .time-picker {
+    height: 48px;
+    padding: 0 15px;
+    color: #535353;
+    margin-bottom: 10px;
+}
+
+.page-textarea .time-picker text {
+    padding: 0 20px;
+}
+
+.page-textarea .addtime {
+    color: #333;
+}

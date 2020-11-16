@@ -1,0 +1,36 @@
+<view class="kabao-join">
+    <view class="card-wrap">
+        <view class="card" style="background: url(http://cos.lalawaimai.com/we7_wmall/wxapp/diy-store-brand-bg.png.jpg) no-repeat center center; background-size: 100% 100%;">
+            <view class="store-logo">
+                <image alt="" class="img-100" src="http://testlala.oss-cn-qingdao.aliyuncs.com/images/1/2019/06/RaX3TDRd5ZNfsDzdX0DzLS7d30Rda1.jpg"></image>
+            </view>
+            <view class="store-title ellipsis">鲜菜到家会员卡</view>
+        </view>
+    </view>
+    <view class="padding-15-lr">
+        <view class="powers van-hairline--bottom">
+            <view class="power-item" wx:for="{{2}}" wx:key="{{index}}">
+                <text class="icon icon-bags"></text>
+                <text class="title ellipsis">购物积分</text>
+            </view>
+        </view>
+    </view>
+    <view class="font-12 padding-15 c-gray">
+        <view>通过手机号可免费加入会员</view>
+        <view class="margin-5-t">若您已经是线下会员，可通过手机号绑定线下会员卡</view>
+    </view>
+    <view class="input-wrap">
+        <input placeholder="请输入手机号" type="text"></input>
+        <text bind:tap="onToggleEdit" class="icon icon-edit font-20" wx:if="{{!editStatus}}"></text>
+    </view>
+    <view class="input-wrap margin-15-t" wx:if="{{editStatus}}">
+        <input type="text"></input>
+        <text>获取验证码</text>
+    </view>
+    <view class="tips">
+        <van-checkbox bind:change="onConfirmAgreement" checkedColor="#ff2d4b" customClass="diy-checkbox" labelClass="diy-label" value="{{confirmAgreement}}">
+			我已阅读并同意<text catch:tap="onJsEvent" class="c-danger" data-event-type="jsUrl" data-url="/pages/public/richtext">《用户协议》</text>，包括入会时提供的手机号接受此品牌发送的商业性信息
+		</van-checkbox>
+    </view>
+    <view class="btn-join disabled">免费加入</view>
+</view>

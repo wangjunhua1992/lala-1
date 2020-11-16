@@ -1,0 +1,800 @@
+page {
+    background-color: #f4f4f4;
+    width: 100%;
+    height: 100%;
+}
+
+.ellipsis {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.diy-store {
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+}
+
+.diy-store .diy-store-slider swiper {
+    width: 100%;
+    height: 180px;
+}
+
+.diy-store .diy-store-slider swiper image {
+    width: 100%;
+    height: 100%;
+}
+
+.diy-store .diy-store-operation-1,.diy-store .diy-store-operation-2 {
+    box-sizing: border-box;
+    width: 100%;
+    padding: 10px 10px 0px;
+    display: flex;
+    flex-flow: row wrap;
+    align-items: center;
+    background-color: #fff;
+}
+
+.diy-store .diy-store-operation-1 .store-operation-item {
+    width: 25%;
+    box-sizing: border-box;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.diy-store .diy-store-operation-1 .img-container {
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+}
+
+.diy-store .diy-store-operation-1 .img-container image {
+    width: 100%;
+    height: 100%;
+}
+
+.diy-store .diy-store-operation-1 .img-container image.radius {
+    border-radius: 10px;
+}
+
+.diy-store .diy-store-operation-1 .img-container image.circle {
+    border-radius: 100%;
+}
+
+.diy-store .diy-store-operation-1 .title {
+    font-size: 14px;
+    color: #A9A9A9;
+    height: 16px;
+    line-height: 16px;
+}
+
+.diy-store .diy-store-operation-2 {
+    background-color: #f4f4f4;
+}
+
+.diy-store .diy-store-operation-2 .store-operation-item {
+    width: 50%;
+    box-sizing: border-box;
+    padding-bottom: 10px;
+}
+
+.diy-store .diy-store-operation-2 .store-operation-item:nth-child(2n+1) {
+    padding-right: 5px;
+}
+
+.diy-store .diy-store-operation-2 .store-operation-item:nth-child(2n) {
+    padding-left: 5px;
+}
+
+.store-operation-item .container {
+    box-sizing: border-box;
+    width: 100%;
+    padding: 10px;
+    background-color: #fff;
+    border-radius: 5px;
+}
+
+.diy-store .diy-store-operation-2 .left {
+    width: 70%;
+}
+
+.diy-store .diy-store-operation-2 .right {
+    width: 25%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.diy-store .diy-store-operation-2 image {
+    width: 100%;
+}
+
+.diy-store .diy-store-operation-2 image.radius {
+    border-radius: 10px;
+}
+
+.diy-store .diy-store-operation-2 image.circle {
+    border-radius: 100%;
+}
+
+.diy-store .diy-store-operation-2 .title {
+    font-size: 14px;
+    color: #333;
+    max-width: 100%;
+}
+
+.diy-store .diy-store-operation-2 .description {
+    font-size: 12px;
+    color: #A0A0A0;
+    max-width: 100%;
+}
+
+.diy-store .diy-store-info {
+    box-sizing: border-box;
+    background-color: #fff;
+    width: 100%;
+    padding: 0px 15px 10px;
+    margin-bottom: 10px;
+}
+
+.diy-store .diy-store-info .title {
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+}
+
+.diy-store .diy-store-info .title .icon {
+    font-size: 18px;
+    font-weight: bold;
+    color: #ff2d4b;
+    margin-top: 3px;
+    margin-right: 5px;
+    padding: 5px 0px;
+}
+
+.diy-store .diy-store-info .info {
+    box-sizing: border-box;
+    padding: 10px 0;
+}
+
+.diy-store .diy-store-info .info .left {
+    width: 70%;
+}
+
+.diy-store .diy-store-info .info .right {
+    width: 20%;
+    text-align: center;
+    background-color: #FC6167;
+    border-radius: 4px;
+    color: #fff;
+    font-size: 12px;
+    box-sizing: border-box;
+    padding: 5px;
+}
+
+.diy-store .diy-store-info .info .left image {
+    width: 70px;
+    height: 70px;
+    border-radius: 4px;
+}
+
+.diy-store .diy-store-info .info .left .name-price {
+    width: 66%;
+}
+
+.diy-store .diy-store-info .info .name {
+    font-size: 15px;
+    font-weight: 600;
+    color: #333;
+    max-width: 100%;
+    margin-bottom: 10px;
+}
+
+.diy-store .diy-store-info .info .price {
+    font-size: 14px;
+}
+
+.diy-store .diy-store-info .info .line {
+    width: 100%;
+    border-bottom: 1px solid #fff;
+    margin: 5px 0px;
+}
+
+.diy-store .diy-store-info .info .status {
+    font-size: 16px;
+}
+
+.diy-store .diy-store-info .info .right.disabled {
+    color: #fff!important;
+}
+
+.diy-store .diy-store-info .time {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    font-size: 14px;
+    padding: 5px 0;
+}
+
+.diy-store .diy-store-info .time .icon {
+    font-size: 18px;
+    margin-top: 3px;
+    color: #B5B5B5;
+    margin-right: 5px;
+}
+
+.diy-store .diy-store-info .location {
+    padding-top: 10px;
+}
+
+.diy-store .diy-store-info .location .left {
+    width: 70%;
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    font-size: 14px;
+}
+
+.diy-store .diy-store-info .location .left .icon {
+    font-size: 21px;
+    margin-top: 3px;
+    color: #B5B5B5;
+    margin-right: 5px;
+}
+
+.diy-store .diy-store-info .location .address {
+    max-width: 90%;
+}
+
+.diy-store .diy-store-info .location .right {
+    width: 25%;
+}
+
+.diy-store .diy-store-info .location .contact {
+    width: 50%;
+    box-sizing: border-box;
+    text-align: center;
+    padding-top: 5px;
+}
+
+.diy-store .diy-store-info .location .contact .icon {
+    font-size: 20px;
+    color: #000;
+}
+
+.diy-store .diy-store-info .contact-title {
+    font-size: 12px;
+    font-weight: 500;
+}
+
+.diy-store .diy-store-navs {
+    width: 100%;
+    box-sizing: border-box;
+    margin-top: 10px;
+}
+
+.diy-store .diy-store-navs .nav-item {
+    width: 33.33%;
+    height: 45px;
+    text-align: center;
+    color: #333;
+    font-size: 14px;
+    line-height: 42px;
+    background: #fff;
+    box-sizing: border-box;
+}
+
+.diy-store .diy-store-navs .nav-item.active {
+    border-bottom: 2px solid #ff2d4b;
+}
+
+.diy-store .diy-store-onsale {
+    width: 100%;
+    box-sizing: border-box;
+    padding-left: 15px;
+    margin: 10px 0;
+    background: #fff;
+}
+
+.diy-store .diy-store-onsale .goods-list {
+    padding: 5px 0;
+}
+
+.diy-store .diy-store-onsale .title,.diy-store .diy-store-evaluate .title {
+    font-size: 14px;
+    height: 40px;
+    line-height: 40px;
+    display: flex;
+    align-items: center;
+}
+
+.diy-store .diy-store-onsale .title .icon,.diy-store .diy-store-evaluate .title .icon {
+    font-size: 18px;
+    font-weight: bold;
+    color: #ff2d4b;
+    margin-top: 3px;
+    margin-right: 5px;
+    padding: 5px 0px;
+}
+
+.diy-store .diy-store-onsale .goods-item {
+    padding: 5px 0;
+}
+
+.diy-store .diy-store-onsale .goods-item image {
+    width: 90px;
+    height: 70px;
+}
+
+.diy-store .diy-store-onsale .goods-item .goods-info {
+    width: 73%;
+    box-sizing: border-box;
+    padding-right: 15px;
+}
+
+.diy-store .diy-store-onsale .goods-info .left {
+    width: 60%;
+}
+
+.diy-store .diy-store-onsale .goods-info .goods-title {
+    max-height: 95%;
+    font-size: 15px;
+    font-weight: 600;
+    color: #333;
+}
+
+.diy-store .diy-store-onsale .goods-info .price {
+    display: flex;
+    font-size: 12px;
+    color: #EB3C1E;
+    align-items: baseline;
+}
+
+.diy-store .diy-store-onsale .goods-info .price .now text {
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.diy-store .diy-store-onsale .goods-info .price .old {
+    color: #8E8E8E;
+    text-decoration: line-through;
+    padding-left: 5px;
+}
+
+.diy-store .diy-store-onsale .goods-info .discount {
+    font-size: 12px;
+    color: #EB3C1E;
+}
+
+.diy-store .diy-store-onsale .goods-info .right {
+    width: 40%;
+    text-align: right;
+}
+
+.diy-store .diy-store-onsale .goods-info .right .buy-btn {
+    display: inline-block;
+    margin: 0 auto;
+    width: 55px;
+    height: 30px;
+    border-radius: 30px;
+    background-color: #FD5A00;
+    font-size: 14px;
+    color: #fff;
+    line-height: 30px;
+    text-align: center;
+}
+
+.diy-store .diy-store-onsale .goods-info .right .sailed {
+    font-size: 12px;
+    color: #8E8E8E;
+    margin-top: 5px;
+}
+
+.diy-store .look-all {
+    font-size: 14px;
+    color: #999;
+    padding: 10px 15px 10px 0;
+    text-align: center;
+    width: 100%;
+    height: 40px;
+    box-sizing: border-box;
+}
+
+.diy-store-evaluate .appr-score {
+    display: inline-block;
+    background: url(http://cos.lalawaimai.com/we7_wmall/wxapp/newstars.png) no-repeat;
+    background-size: cover;
+    width: 10px;
+    height: 10px;
+    float: left;
+    margin-right: 4px;
+    background-position: 0 0;
+}
+
+.diy-store-evaluate .appr-score-half {
+    background-position: -13px 0;
+}
+
+.diy-store-evaluate .appr-score-gray {
+    background-position: -27px 0!important;
+}
+
+.diy-store-evaluate {
+    background: #fff;
+    width: 100%;
+    box-sizing: border-box;
+    padding-left: 15px;
+}
+
+.diy-store-evaluate .evaluate-item {
+    padding: 15px 15px 12px 0px;
+}
+
+.diy-store-evaluate .evaluate-sub {
+    line-height: 15px;
+}
+
+.diy-store-evaluate .evaluate-sub-left {
+    float: left;
+    width: 15%;
+    display: inline-block;
+}
+
+.diy-store-evaluate .evaluate-user-pic {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}
+
+.diy-store-evaluate .evaluate-sub-right {
+    float: left;
+    width: 85%;
+    display: inline-block;
+}
+
+.diy-store-evaluate .evaluate-sub {
+    line-height: 15px;
+}
+
+.diy-store-evaluate .evaluate-name {
+    color: #2f2f2f;
+    font-size: 16px;
+    display: inline-block;
+}
+
+.diy-store-evaluate .evaluate-time {
+    font-size: 12px;
+    color: #898989;
+    float: right;
+    display: inline-block;
+}
+
+.diy-store-evaluate .evaluate-stars {
+    margin-top: 6px;
+    margin-bottom: 5px;
+}
+
+.diy-store-evaluate .evaluate-sub .appr-status {
+    margin: 0;
+    float: left;
+    margin-right: 2px;
+}
+
+.diy-store-evaluate .evaluate-ship-time {
+    color: #898989;
+    font-size: 12px;
+    float: left;
+    line-height: 12px;
+    display: inline-block;
+}
+
+.diy-store-evaluate .evaluate-comment {
+    font-size: 14px;
+    margin-top: 10px;
+    margin-bottom: 6px;
+}
+
+.diy-store-evaluate .comment-bottom {
+    margin: 4px 0;
+    font-size: 12px;
+}
+
+.diy-store-evaluate .comment-favor-text {
+    color: #576B95;
+    display: inline-block;
+}
+
+.diy-store-evaluate .comment-tag-text {
+    color: #898989;
+    display: inline-block;
+}
+
+.diy-store-evaluate .comment-pics {
+    float: left;
+    margin-right: 5px;
+    margin-bottom: 5px;
+    width: 175px;
+    height: 175px;
+}
+
+.diy-store-evaluate .comment-pics image {
+    width: 100%;
+    height: 100%;
+}
+
+.diy-store-evaluate .pic-multi .comment-pics {
+    width: 80px;
+    height: 80px;
+}
+
+.diy-store-evaluate .replay {
+    font-size: 14px;
+    color: #898989;
+    padding: 10px;
+    background: #F4F4F4;
+}
+
+.diy-store .diy-store-coupon {
+    padding: 10px 10px 0;
+}
+
+.diy-store .diy-store-coupon .coupon-list .coupon-item {
+    margin-bottom: 15px;
+    height: 100px;
+    display: -webkit-box;
+    box-sizing: border-box;
+}
+
+.diy-store .diy-store-coupon .coupon-list .coupon-item .coupon-left {
+    box-flex: 1;
+    background-color: #fff;
+    position: relative;
+    padding-right: 5px;
+    padding-left: 10px;
+    border-radius: 5px 0px 0px 5px;
+}
+
+.diy-store .diy-store-coupon .coupon-list .coupon-item .coupon-left .left {
+    width: 30%;
+    text-align: center;
+    font-size: 12px;
+    color: #AEAEAE;
+}
+
+.diy-store .diy-store-coupon .coupon-list .coupon-item .coupon-left .left .discount {
+    color: #F9001A;
+    font-size: 14px;
+}
+
+.diy-store .diy-store-coupon .coupon-list .coupon-item .coupon-left .left .discount text {
+    color: #F9001A;
+    font-size: 30px;
+    font-weight: 600;
+}
+
+.diy-store .diy-store-coupon .coupon-list .coupon-item .coupon-left .right {
+    width: 70%;
+}
+
+.diy-store .diy-store-coupon .coupon-list .coupon-item .coupon-left .right .coupon-title {
+    font-size: 15px;
+    font-weight: 600;
+    margin-bottom: -5px;
+}
+
+.diy-store .diy-store-coupon .coupon-list .coupon-item .coupon-left .right .coupon-scene {
+    display: inline-block;
+    font-size: 12px;
+    color: #E28992;
+    height: 20px;
+    padding: 0 5px;
+    line-height: 20px;
+    text-align: center;
+    border-radius: 2px;
+    border: 1px solid #DAA8A3;
+    margin-bottom: 4px;
+}
+
+.diy-store .diy-store-coupon .coupon-list .coupon-item .coupon-left .right .coupon-limit {
+    font-size: 12px;
+    color: #AEAEAE;
+    line-height: 15px;
+}
+
+.diy-store .diy-store-coupon .coupon-list .coupon-item .coupon-right {
+    width: 75px;
+    height: 100%;
+    background-color: #ff2d4b;
+    margin-left: 4px;
+    position: relative;
+    border-radius: 0px 5px 5px 0px;
+}
+
+.diy-store .diy-store-coupon .coupon-list .coupon-item .coupon-right .triangle-border-right {
+    height: 100%;
+    width: 6px;
+    position: absolute;
+    left: -5px;
+    z-index: 1;
+}
+
+.diy-store .diy-store-coupon .coupon-list .coupon-item .coupon-right .triangle-border-right .circular0 {
+    position: absolute;
+    height: 12px;
+    width: 12px;
+    border-radius: 6px 6px 6px 6px;
+    background-color: #f3f5f7;
+    left: -3px;
+    top: -6px;
+    z-index: 2;
+}
+
+.diy-store .diy-store-coupon .coupon-list .coupon-item .coupon-right .triangle-border-right .circular1 {
+    position: absolute;
+    height: 12px;
+    width: 12px;
+    border-radius: 6px 6px 6px 6px;
+    background-color: #f3f5f7;
+    left: -3px;
+    bottom: -6px;
+    z-index: 2;
+}
+
+.diy-store .diy-store-coupon .coupon-list .coupon-item .coupon-right .triangle-border-right .i {
+    display: block;
+    border: 2px solid transparent;
+    border-right: 3px solid #FFD300;
+    border-left: 3px solid #fff;
+    width: 0px;
+    height: 1px;
+}
+
+.diy-store .diy-store-coupon .coupon-list .coupon-item .coupon-right .change-block {
+    width: 75px;
+    height: 100%;
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+}
+
+.diy-store .diy-store-coupon .coupon-list .coupon-item .coupon-right .change-block .progress-bar-block {
+    width: 50px;
+    margin-left: 12px;
+    padding-top: 22px;
+}
+
+.diy-store .diy-store-coupon .coupon-list .coupon-item .coupon-right .change-block .progress-bar-block .progress-bar {
+    width: 50px;
+    height: 10px;
+    border-radius: 5px;
+    background-color: #E3BC03;
+}
+
+.diy-store .diy-store-coupon .coupon-list .coupon-item .coupon-right .change-block .progress-bar-block .progress-bar view {
+    height: 100%;
+    width: 50%;
+    background-color: #fff;
+    border-radius: 5px;
+}
+
+.diy-store .diy-store-coupon .coupon-list .coupon-item .coupon-right .change-block .progress-text {
+    font-size: 12px;
+    color: #fff;
+    width: 100%;
+    text-align: center;
+    height: 10px;
+    line-height: 10px;
+    margin-top: 10px;
+}
+
+.diy-store .diy-store-coupon .coupon-list .coupon-item .coupon-right .change-block .coupon-btn {
+    position: absolute;
+    bottom: 12px;
+    right: 6px;
+    height: 18px;
+    line-height: 19px;
+    width: 57px;
+    border: 3px solid #E3BC03;
+    border-radius: 12px;
+    background-color: #fff;
+    font-size: 12px;
+    color: #ff2d4b;
+    text-align: center;
+}
+
+.diy-store .diy-store-coupon .coupon-list .coupon-item .coupon-right .change-block .coupon-btn.coupon-btn-yellow {
+    background-color: #ffec00;
+    color: #232326;
+}
+
+.diy-store .diy-store-coupon .coupon-list .coupon-item .coupon-right .change-block .had {
+    width: 60px;
+    height: 44px;
+    display: block;
+    margin-top: 0px;
+    margin-left: 6px;
+}
+
+.diy-store .diy-store-coupon .coupon-list .coupon-item .coupon-right .change-block .had image {
+    width: 100%;
+    height: 100%;
+}
+
+.diy-circle {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 30px;
+}
+
+.diy-circle .circle {
+    width: 50px;
+    height: 50px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin: -25px 0 0 -25px;
+    border-radius: 50%;
+    background: #fff;
+}
+
+.diy-circle .clip_left,.diy-circle .clip_right {
+    width: 50px;
+    height: 50px;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+}
+
+.diy-circle .circle_left,.diy-circle .circle_right {
+    width: 50px;
+    height: 50px;
+    position: absolute;
+    border-radius: 50%;
+    top: 0px;
+    left: 0px;
+    background: #E3BC03;
+}
+
+.diy-circle .circle_right,.diy-circle .clip_right {
+    clip: rect(0,auto,auto,25px);
+}
+
+.diy-circle .circle_left,.diy-circle .clip_left {
+    clip: rect(0,25px,auto,0);
+}
+
+.diy-circle .mask {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    left: 5px;
+    top: 5px;
+    background: #FFD300;
+    position: absolute;
+    text-align: center;
+    line-height: 16px;
+    font-size: 12px;
+    color: #fff;
+    box-sizing: border-box;
+    padding-top: 5px;
+    z-index: 15;
+}
+
+.no-data {
+    text-align: center;
+    font-size: 14px;
+    color: #999;
+    padding: 20px 0;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.no-data .icon {
+    margin-right: 5px;
+    font-size: 18px;
+}
+
+@import "5.wxss";

@@ -1,0 +1,66 @@
+<view class="page-wheel">
+    <view class="wheel-info">
+        <view class="content-wheel">
+            <view class="wheel-item {{activeNum==1?'active':''}}">
+                <image class="wheel-img" mode="" src="{{wheelData.data['one'].imgurl}}"></image>
+                <view class="wheel-text" style="color: {{wheelData.data['one'].color}}">{{wheelData.data['one'].text}}</view>
+            </view>
+            <view class="thanks-join {{activeNum==2?'active':''}}">
+                <image class="wheel-img" mode="" src="http://cos.lalawaimai.com/we7_wmall/wxapp/huigu-active.png" wx:if="{{activeNum==2}}"></image>
+                <image class="wheel-img" mode="" src="http://cos.lalawaimai.com/we7_wmall/wxapp/huigu.png" wx:else></image>
+                <view class="wheel-text">谢谢惠顾</view>
+            </view>
+            <view class="thanks-join {{activeNum==3?'active':''}}">
+                <image class="wheel-img" mode="" src="http://cos.lalawaimai.com/we7_wmall/wxapp/huigu-active.png" wx:if="{{activeNum==3}}"></image>
+                <image class="wheel-img" mode="" src="http://cos.lalawaimai.com/we7_wmall/wxapp/huigu.png" wx:else></image>
+                <view class="wheel-text">谢谢惠顾</view>
+            </view>
+            <view class="thanks-join {{activeNum==8?'active':''}}">
+                <image class="wheel-img" mode="" src="http://cos.lalawaimai.com/we7_wmall/wxapp/huigu-active.png" wx:if="{{activeNum==8}}"></image>
+                <image class="wheel-img" mode="" src="http://cos.lalawaimai.com/we7_wmall/wxapp/huigu.png" wx:else></image>
+                <view class="wheel-text">谢谢惠顾</view>
+            </view>
+            <view bind:tap="onStartDraw" class="wheel-item thanks-join start-draw">
+                <text class="draw-click">点击抽奖 
+ <text class="draw-go">GO!</text>
+                </text>
+            </view>
+            <view class="wheel-item {{activeNum==4?'active':''}}">
+                <image class="wheel-img" mode="" src="{{wheelData.data['two'].imgurl}}"></image>
+                <view class="wheel-text" style="color: {{wheelData.data['two'].color}}">{{wheelData.data['two'].text}}</view>
+            </view>
+            <view class="wheel-item {{activeNum==7?'active':''}}">
+                <image class="wheel-img" mode="" src="{{wheelData.data['three'].imgurl}}"></image>
+                <view class="wheel-text" style="color: {{wheelData.data['three'].color}}">{{wheelData.data['three'].text}}</view>
+            </view>
+            <view class="thanks-join {{activeNum==6?'active':''}}">
+                <image class="wheel-img" mode="" src="http://cos.lalawaimai.com/we7_wmall/wxapp/huigu-active.png" wx:if="{{activeNum==6}}"></image>
+                <image class="wheel-img" mode="" src="http://cos.lalawaimai.com/we7_wmall/wxapp/huigu.png" wx:else></image>
+                <view class="wheel-text">谢谢惠顾</view>
+            </view>
+            <view class="thanks-join {{activeNum==5?'active':''}}">
+                <image class="wheel-img" mode="" src="http://cos.lalawaimai.com/we7_wmall/wxapp/huigu-active.png" wx:if="{{activeNum==5}}"></image>
+                <image class="wheel-img" mode="" src="http://cos.lalawaimai.com/we7_wmall/wxapp/huigu.png" wx:else></image>
+                <view class="wheel-text">谢谢惠顾</view>
+            </view>
+        </view>
+        <view class="info-wrap">
+            <view bind:tap="onJsEvent" class="wrap-head" data-event-type="jsUrl" data-url="plugin/pages/wheel/record">查看奖品</view>
+            <view class="wrap-text">
+                <view class="wrap-inner">
+					1.活动有效时间：
+				</view>
+                <view class="activity-info-content">
+					{{wheelData.params.starttime}}~{{wheelData.params.endtime}}
+				</view>
+                <view class="wrap-inner">
+					2.活动说明：
+				</view>
+                <view class="activity-info-content" wx:for="{{wheelData.params.desc}}">
+					{{item}}
+				</view>
+            </view>
+        </view>
+    </view>
+</view>
+<include src="../../../pages/public/footer.wxml"></include>

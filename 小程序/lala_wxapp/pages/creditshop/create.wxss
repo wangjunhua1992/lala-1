@@ -1,0 +1,134 @@
+page {
+    background-color: #f5f5f5;
+    font-size: 14px;
+    line-height: 1;
+}
+
+.content {
+    margin: 10px;
+}
+
+.container .content .goods-info {
+    background-color: #fff;
+    padding: 15px;
+    border-radius: 3px;
+    font-size: 14px;
+}
+
+.container .content .goods-info .goods-title {
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+}
+
+.container .content .goods-info .goods {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px 0;
+}
+
+.container .content .goods-info .goods .thumb {
+    width: 60px;
+    height: 60px;
+    border-radius: 3px;
+    overflow: hidden;
+    font-size: 0px;
+}
+
+.container .content .goods-info .goods .thumb image {
+    width: 100%;
+    height: 100%;
+}
+
+.container .content .goods-info .goods .info {
+    height: 60px;
+    font-size: 14px;
+    flex: 1;
+    padding-left: 10px;
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: flex-start;
+    justify-content: space-between;
+}
+
+.container .content .total-price {
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+}
+
+.container .order-region {
+    margin-top: 10px;
+    background-color: #fff;
+}
+
+.container .order-region .order-region-input {
+    padding-left: 15px;
+}
+
+.container .order-region .order-region-input .input-group {
+    width: 100%;
+    display: flex;
+    padding: 10px 15px 10px 0;
+    box-sizing: border-box;
+    line-height: 24px;
+    position: relative;
+    background-color: #fff;
+    color: #333;
+    font-size: 14px;
+    overflow: hidden;
+}
+
+.container .order-region .order-region-input .title {
+    flex: 1;
+    max-width: 90px;
+}
+
+.container .order-region .order-region-input input {
+    overflow: hidden;
+    text-align: right;
+    vertical-align: middle;
+    flex: 1;
+}
+
+.container .order-btn-field {
+    width: 100%;
+    height: 50px;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    background-color: #fff;
+}
+
+.container .order-btn-field .order-submit {
+    float: right;
+    width: 110px;
+    height: 50px;
+    font-size: 16px;
+    color: #fff;
+    background-color: #ff2d4b;
+    text-align: center;
+    line-height: 50px;
+}
+
+.container .order-btn-field .order-submit.disabled {
+    background-color: #ccc;
+}
+
+.container .order-btn-field .order-total-field {
+    margin-left: 15px;
+    height: 50px;
+    line-height: 50px;
+    color: #2f2f2f;
+    font-size: 16px;
+}
+
+.container .order-btn-field .order-total-field .order-total {
+    display: inline-block;
+    color: #F95339;
+    font-size: 14px;
+    vertical-align: middle;
+    margin-left: 5px;
+}

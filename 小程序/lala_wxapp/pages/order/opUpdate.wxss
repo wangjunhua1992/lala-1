@@ -1,0 +1,77 @@
+page {
+    font-size: 14px;
+    background-color: #f5f5f5;
+    box-sizing: border-box;
+}
+
+.order-opUpdate .content .text {
+    padding: 15px;
+    background-color: #fff;
+}
+
+.order-opUpdate .content .text textarea {
+    max-width: 100%;
+    width: auto;
+    height: 120px;
+    background-color: #f4f4f4;
+    border: 1px solid #ECECEC;
+    padding: 10px;
+    font-size: 16px;
+}
+
+.order-opUpdate .content .text .label-box {
+    margin-top: 10px;
+}
+
+.order-opUpdate .content .text .label-box .label {
+    display: inline-block;
+    padding: 4px 10px;
+    font-size: 12px;
+    border: 1px solid #ECECEC;
+    margin-right: 8px;
+    margin-top: 8px;
+}
+
+.order-opUpdate .content .select {
+    background-color: #fff;
+    margin-top: 10px;
+}
+
+.order-opUpdate .content .select {
+    padding: 5px 0;
+}
+
+.order-opUpdate .content .select .weui-cell {
+    font-size: 14px;
+}
+
+.order-opUpdate .content .select .weui-select {
+    font-size: 14px;
+}
+
+.order-opUpdate .content .mobile {
+    margin-top: 10px;
+}
+
+.order-opUpdate .content .mobile .weui-cells:before,.order-opUpdate .content .mobile .weui-cells:after {
+    border: none;
+}
+
+.order-opUpdate .content .mobile .weui-label {
+    font-size: 14px;
+}
+
+.order-opUpdate .content .mobile .weui-cell_input {
+    padding: 5px 15px;
+}
+
+.order-opUpdate .content .mobile input {
+    text-align: right;
+    font-size: 14px;
+}
+
+.order-opUpdate .btn-box {
+    font-size: 16px;
+    text-align: center;
+    margin-top: 10px;
+}

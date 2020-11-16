@@ -1,0 +1,419 @@
+<view class="page-create">
+    <block wx:for="{{diy.data.items}}" wx:for-index="diyitemIndex" wx:for-item="diyitem" wx:key="{{diyitemIndex}}">
+        <block wx:if="{{diyitem.id=='banner'}}">
+            <view class="new-user-tip" wx:for="{{diyitem.data}}">
+                <image bind:tap="onJsEvent" data-event-type="jsUrl" data-url="{{item.linkurl}}" mode="widthFix" src="{{item.imgurl}}"></image>
+            </view>
+        </block>
+        <view class="swiper-container diy-picture" wx:elif="{{diyitem.id=='picture'}}">
+            <swiper autoplay="true" circular="true" indicatorActiveColor="{{diyitem.style.dotbackground}}" indicatorColor="#7f7f7f" indicatorDots="true" interval="4000">
+                <swiper-item wx:for="{{diyitem.data}}">
+                    <view bind:tap="onJsEvent" class="swiper-slide" data-event-type="jsUrl" data-url="{{item.linkurl}}">
+                        <image mode="widthFix" src="{{item.imgurl}}"></image>
+                    </view>
+                </swiper-item>
+            </swiper>
+        </view>
+        <view class="diy-line" style="background: {{diyitem.style.background}}; padding: {{diyitem.style.padding}}px 0;" wx:elif="{{diyitem.id=='line'}}"></view>
+        <view class="diy-blank" style="height: {{diyitem.style.height}}px; background: {{diyitem.style.background}};" wx:elif="{{diyitem.id=='blank'}}"></view>
+        <block wx:elif="{{diyitem.id=='basic'}}">
+            <view class="shop-content">
+                <view class="shop-content-edit">
+                    <textarea bindinput="onGoodsInfoInput" class="shop-content-textarea" maxlength="100" placeholder="{{diyitem.params.placeholder}}" placeholderClass="shop-textarea-placeholder" value="{{extra.note}}"></textarea>
+                </view>
+                <view class="shop-content-tags border-1px-b">
+                    <view bind:tap="onAddLabel" class="shop-content-tag" data-value="{{item.tags}}" wx:for="{{diyitem.data}}">{{item.tags}}</view>
+                </view>
+            </view>
+            <view bind:tap="onJsEvent" class="shop-amount" data-event-type="jsToggle" data-modal="modal.modalPrefee" wx:if="{{diyitem.params.estimate==1}}">
+                <view class="shop-amount-title">
+                    <view class="shop-amount-icon"></view>
+					骑手垫付商品费，收货后与骑手结清
+				</view>
+                <view class="shop-amount-after">{{extra.goods_price>0?'预估 '+Lang.dollarSign+extra.goods_price:'预估商品费'}}</view>
+            </view>
+            <view class="address-info" wx:if="{{diyitem.params.scene=='buy'}}">
+                <view class="address-item shop-address border-1px-b " wx:if="{{diyitem.params.nearbuy==0||!diyitem.params.nearbuy}}">
+                    <view class="address-item-title">{{diyitem.params.buytitle}}</view>
+                    <view class="address-item-after">
+                        <view class="shop-address-type">
+                            <view bind:tap="onToggleBuyAddressType" class="shop-address-type-item" data-type="store" style="border-color: {{extra.buyAddressType=='store'?diy.data.page.activebackground:'#ccc'}}">
+									{{diyitem.params.buytype1title}}
+								</view>
+                            <view bind:tap="onToggleBuyAddressType" class="shop-address-type-item" data-type="nearby" style="border-color: {{!extra.buyAddressType||extra.buyAddressType=='nearby'?diy.data.page.activebackground:'#ccc'}}">
+									{{diyitem.params.buytype2title}}
+								</view>
+                        </view>
+                        <view bind:tap="onSelectBuyAddress" class="shop-address-text {{!buyaddress.location_x?'shop-address-placeholder':''}}" wx:if="{{extra.buyAddressType=='store'}}">
+                            <block wx:if="{{buyaddress.address}}">
+									{{buyaddress.address}} {{buyaddress.number}}
+								</block>
+                            <block wx:else>
+									{{diyitem.params.buytype1placehode}}
+								</block>
+                        </view>
+                    </view>
+                </view>
+                <view class="address-item shop-address flex border-1px-b" style="padding-top: 0px; margin-top: -20px;" wx:else>
+                    <view class="address-item-title">{{diyitem.params.buytitle}}</view>
+                    <view class="address-item-after">
+                        <view bind:tap="onSelectBuyAddress" class="shop-address-text {{!buyaddress.location_x?'shop-address-placeholder':''}}">
+                            <block wx:if="{{buyaddress.address}}">
+									{{buyaddress.address}} {{buyaddress.number}}
+								</block>
+                            <block wx:else>
+									{{diyitem.params.buytype1placehode}}
+								</block>
+                        </view>
+                    </view>
+                </view>
+                <view class="address-item receive-address flex" style="padding-top: {{acceptaddress.address?17:0}}px">
+                    <view class="address-item-title {{acceptaddress.address?'has-address':''}}">{{diyitem.params.accepttitle}}</view>
+                    <view bind:tap="onJsEvent" class="address-item-after" data-event-type="jsUrl" data-url="pages/member/address?channel=errander&input=accept&erranderId={{diy.id}}&agentid={{diy.agentid}}" wx:if="{{extra.acceptaddress_id}}">
+                        <view class="receive-address-text">
+							{{acceptaddress.address}} {{acceptaddress.number}}
+						</view>
+                        <view class="receive-address-userinfo">
+							{{acceptaddress.realname}} {{acceptaddress.sex}} {{acceptaddress.mobile}}
+						</view>
+                    </view>
+                    <view bind:tap="onJsEvent" class="address-item-after flex" data-event-type="jsUrl" data-url="pages/member/address?channel=errander&input=accept&erranderId={{diy.id}}&agentid={{diy.agentid}}" wx:else>
+                        <view class="shop-address-placeholder">{{diyitem.params.acceptplacehode}}</view>
+                    </view>
+                </view>
+            </view>
+            <view class="delivery-address" wx:elif="{{diyitem.params.scene=='delivery'}}">
+                <view class="address delivery-address-item border-1px-b">
+                    <view class="address-bullet address-send"></view>
+                    <view bind:tap="onJsEvent" class="address-content" data-event-type="jsUrl" data-url="pages/member/address?channel=errander&input=buy&erranderId={{diy.id}}&agentid={{diy.agentid}}">
+                        <view class="address-detail" wx:if="{{extra.buyaddress_id}}">
+                            <view class="address-location">{{buyaddress.address}} {{buyaddress.number}}</view>
+                            <view class="address-contact">{{buyaddress.realname}} {{buyaddress.mobile}}</view>
+                        </view>
+                        <view class="address-placeholder" wx:else>
+								{{diyitem.params.buytype1placehode}}
+							</view>
+                    </view>
+                </view>
+                <view bind:tap="onJsEvent" class="address delivery-address-item" data-event-type="jsUrl" data-url="pages/member/address?channel=errander&input=accept&erranderId={{diy.id}}&agentid={{diy.agentid}}">
+                    <view class="address-bullet address-get" style="background-color: rgb(255, 129, 122);"></view>
+                    <view class="address-content">
+                        <view class="address-detail" wx:if="{{extra.acceptaddress_id}}">
+                            <view class="address-location">{{acceptaddress.address}} {{acceptaddress.number}}</view>
+                            <view class="address-contact">{{acceptaddress.realname}} {{acceptaddress.mobile}}</view>
+                        </view>
+                        <view class="address-placeholder" wx:else>
+								{{diyitem.params.acceptplacehode}}
+							</view>
+                    </view>
+                </view>
+            </view>
+            <view class="delivery-extra-info border-1px-t">
+                <view bind:tap="onJsEvent" class="text-content" data-event-type="jsToggle" data-modal="modal.modalDeliveryTime">
+                    <text class="inner-text">{{extra.delivery_day}} {{extra.delivery_time==order.delivery_nowtime?'立即送出':extra.delivery_time}}</text>
+                </view>
+                <view class="vertical-divider\""></view>
+                <view bind:tap="onJsEvent" class="text-content" data-event-type="jsToggle" data-modal="modal.modalGoodsWeight">
+                    <text class="inner-text" wx:if="{{extra.goods_weight>0}}">选择重量：{{extra.goods_weight}}公斤内</text>
+                    <text class="inner-placeholder" wx:else>请选择重量</text>
+                </view>
+            </view>
+        </block>
+        <view class="multipleChoices" style="margin-top:{{diyitem.style.marginTop}}px" wx:elif="{{diyitem.id=='multipleChoices'}}">
+            <view class="choose-container border-1px-b" wx:for="{{diyitem.data}}" wx:for-index="pindex">
+                <view class="left">{{item.title}}</view>
+                <scroll-view class="right" scrollX="true">
+                    <view bind:tap="onGetPartData" class="choose-container-item" data-cindex="{{cindex}}" data-name="{{diyitemIndex+'_'+pindex}}" data-type="multipleChoices" data-value="{{option.name}}" style="color: {{extra.partData[diyitemIndex+'_'+pindex]&&extra.partData[diyitemIndex+'_'+pindex][cindex]==option.name?diy.data.page.activecolor:'#333'}}; background-color: {{extra.partData[diyitemIndex+'_'+pindex]&&extra.partData[diyitemIndex+'_'+pindex][cindex]==option.name?diy.data.page.activebackground:'#fff'}}; border-color: {{extra.partData[diyitemIndex+'_'+pindex]&&extra.partData[diyitemIndex+'_'+pindex][cindex]==option.name?diy.data.page.activebackground:'#999'}}" wx:for="{{item.options}}" wx:for-index="cindex" wx:for-item="option">
+								{{option.name}}
+							</view>
+                </scroll-view>
+            </view>
+        </view>
+        <view class="text-info weui-cells weui-cells_after-title" style="margin-top:{{diyitem.style.marginTop}}px" wx:elif="{{diyitem.id=='text'}}">
+            <view class="weui-cell weui-cell_input border-1px-b" wx:for="{{diyitem.data}}" wx:for-index="pindex" wx:for-item="text">
+                <view class="weui-cell__hd">
+                    <view class="weui-label">{{text.title}}</view>
+                </view>
+                <view class="weui-cell__bd">
+                    <input bindinput="onGetPartData" class="weui-input" data-name="{{diyitemIndex+'_'+pindex}}" data-type="text" placeholder="{{text.placeholder}}" placeholderClass="input-placeholde" type="text" value="{{extra.partData[diyitemIndex+'_'+pindex]}}"></input>
+                </view>
+            </view>
+        </view>
+        <view class="oneChoice" style="margin-top:{{diyitem.style.marginTop}}px" wx:elif="{{diyitem.id=='oneChoice'}}">
+            <view class="choose-container border-1px-b" wx:for="{{diyitem.data}}" wx:for-index="pindex">
+                <view class="left">{{item.title}}</view>
+                <scroll-view class="right" scrollX="true">
+                    <view bind:tap="onGetPartData" class="choose-container-item" data-index="{{cindex}}" data-name="{{diyitemIndex+'_'+pindex}}" data-type="oneChoice" data-value="{{option.name}}" style="color: {{extra.partData[diyitemIndex+'_'+pindex]&&extra.partData[diyitemIndex+'_'+pindex]==option.name?diy.data.page.activecolor:'#333'}}; background-color: {{extra.partData[diyitemIndex+'_'+pindex]&&extra.partData[diyitemIndex+'_'+pindex]==option.name?diy.data.page.activebackground:'#fff'}}; border-color: {{extra.partData[diyitemIndex+'_'+pindex]&&extra.partData[diyitemIndex+'_'+pindex]==option.name?diy.data.page.activebackground:'#999'}}" wx:for="{{item.options}}" wx:for-index="cindex" wx:for-item="option">
+							{{option.name}}
+							</view>
+                </scroll-view>
+            </view>
+        </view>
+        <view class="diy-uploadImg" style="margin-top:{{diyitem.style.marginTop}}px" wx:elif="{{diyitem.id=='uploadImg'}}">
+            <view class="uploadImg-item" wx:for="{{diyitem.data}}" wx:for-index="pindex" wx:key="{{pindex}}">
+                <view class="uploadImg-title">{{item.title}}</view>
+                <view class="img-list" wx:if="{{extra.thumbs&&extra.thumbs[diyitemIndex+'_'+pindex]&&extra.thumbs[diyitemIndex+'_'+pindex].length>0}}">
+                    <view class="img-group" wx:for="{{extra.thumbs[diyitemIndex+'_'+pindex]}}" wx:for-index="cindex" wx:for-item="thumbsChild" wx:key="{{cindex}}">
+                        <view class="upload-img">
+                            <image alt="" src="{{thumbsChild.url}}"></image>
+                            <text bind:tap="onDelThumb" class="del-img" data-diyitem_index="{{diyitemIndex}}" data-index="{{cindex}}" data-pindex="{{pindex}}" style="color: {{diy.data.page.activecolor}}; background-color: {{diy.data.page.activebackground}}">
+                                <text class="icon icon-close"></text>
+                            </text>
+                        </view>
+                    </view>
+                    <view class="img-group" wx:if="{{extra.thumbs[diyitemIndex+'_'+pindex].length<3}}">
+                        <view bind:tap="onUploadImage" class="upload-img" data-diyitem_index="{{diyitemIndex}}" data-pindex="{{pindex}}">
+                            <image alt="" src="http://cos.lalawaimai.com/we7_wmall/wxapp/add_pic.png"></image>
+                        </view>
+                    </view>
+                </view>
+                <view bind:tap="onUploadImage" class="uploadImg-right" data-diyitem_index="{{diyitemIndex}}" data-pindex="{{pindex}}" wx:else>
+                    <view class="uploadImg-tips">{{item.placeholder}}</view>
+                    <view class="icon icon-right"></view>
+                </view>
+            </view>
+        </view>
+    </block>
+    <view class="choose-extra-fee" wx:if="{{diy.data.fees.extra_fee}}">
+        <view class="choose-container border-1px-b" wx:if="{{feeItem.status==1}}" wx:for="{{diy.data.fees.extra_fee}}" wx:for-index="pindex" wx:for-item="feeItem">
+            <view class="left">{{feeItem.title}}</view>
+            <scroll-view class="right" scrollX="true">
+                <view bind:tap="onGetExtraFee" class="choose-container-item" data-cindex="{{cindex}}" data-name="{{pindex}}" style="color: {{extra.extra_fee[pindex]&&extra.extra_fee[pindex][cindex]==cindex?diy.data.page.activecolor:'#333'}}; background-color: {{extra.extra_fee[pindex]&&extra.extra_fee[pindex][cindex]==cindex?diy.data.page.activebackground:'#fff'}}; border-color: {{extra.extra_fee[pindex]&&extra.extra_fee[pindex][cindex]==cindex?diy.data.page.activebackground:'#999'}}" wx:for="{{feeItem.data}}" wx:for-index="cindex" wx:for-item="option">
+							{{option.fee_name}}-{{Lang.dollarSign}}{{option.fee}}
+						</view>
+            </scroll-view>
+        </view>
+    </view>
+    <block wx:if="{{diyitem.id=='basic'}}" wx:for="{{diy.data.items}}" wx:for-item="diyitem">
+        <view class="permit-time" wx:if="{{basicPart.params.yinsihao&&basicPart.params.yinsihao.status==1}}">
+            <view class="flex-lr">
+                <view class="flex">
+                    <text class="icon icon-lock"></text>
+                    <view class="permit-time-title">号码保护</view>
+                    <text bind:tap="onJsEvent" class="icon icon-question" data-event-type="jsUrl" data-url="/pages/public/richtext?key=yinsihao_agreement"></text>
+                </view>
+                <view class="flex">
+                    <van-switch activeColor="{{diy.data.page.activebackground}}" bind:change="onChangeYinsihaoSwitch" checked="{{extra.yinsihao_status}}" inactiveColor="#eee" size="22px"></van-switch>
+                </view>
+            </view>
+            <view class="font-12 c-gray margin-10-t">对骑手隐藏您的真实手机号, 保护您的隐私</view>
+        </view>
+        <view class="extra-fee">
+            <view class="extra-fee-item border-1px-b">
+                <view class="extra-fee-item-title">{{diyitem.params.redpacketname}}</view>
+                <view bind:tap="onJsEvent" class="extra-fee-item-after" data-event-type="jsToggle" data-modal="modal.modalRedpacket" style="color: {{order.redpacket||redPackets.length>0?diy.data.page.activebackground:diyitem.style.redpackettextcolor}}">
+                    <block wx:if="{{order.redpacket}}">
+							-{{Lang.dollarSign}}{{order.redpacket.discount}}
+						</block>
+                    <block wx:else>
+							{{redPackets.length>0?redPackets.length+'个可用红包':diyitem.params.noredpacketnote}}
+						</block>
+                </view>
+            </view>
+            <view bind:tap="onJsEvent" class="extra-fee-item" data-event-type="jsToggle" data-modal="modal.modalTip" wx:if="{{diyitem.params.showtips==1}}">
+                <view class="extra-fee-item-title">{{diyitem.params.tipsname}}</view>
+                <view class="extra-fee-item-after" style="color: {{extra.delivery_tips>0?diy.data.page.activebackground:''}}">
+						{{extra.delivery_tips>0?Lang.dollarSign+extra.delivery_tips:diyitem.params.tipsnote}}
+					</view>
+            </view>
+        </view>
+        <view class="shop-argeement">
+            <navigator class="user-argeement" hoverClass="none" url="../public/richtext?key=errander_diypage_agreement&pageid={{diy.id}}">
+                <view class="user-argeement-label">点击查看</view>
+                <view class="argeement">{{diy.data.page.scene=='buy'?'《帮买服务协议》':'《帮送服务协议》'}}</view>
+            </navigator>
+        </view>
+        <view class="order-submit border-1px-t">
+            <view class="order-info">
+                <view class="order-info-estimate">
+                    <text class="distance">{{order.distance>0?order.distance+'公里':''}}</text>
+                    <text class="duration hide">预计60分钟内送达</text>
+                </view>
+                <view bind:tap="onJsEvent" class="order-info-fee" data-event-type="jsToggle" data-modal="modal.modalFee">
+                    <text class="desc">{{diyitem.params.feesname}}</text>
+                    <text class="num" style="color: {{diy.data.page.activebackground}}"> {{order.final_fee}}</text>
+                    <text class="unit" style="color: {{diy.data.page.activebackground}}">{{Lang.dollarSignCn}}</text>
+                    <view class="order-info-arrow-wrap">
+                        <view class="order-info-arrow"></view>
+                    </view>
+                </view>
+            </view>
+            <view class="submit-btn disabled" wx:if="{{diy.is_rest==1}}">休息中暂不提供服务</view>
+            <view bind:tap="onOrderSubmit" class="submit-btn" style="color: {{diy.data.page.activecolor}}; background-color: {{diy.data.page.activebackground}}" wx:else>
+					{{diyitem.params.submitname}}
+				</view>
+        </view>
+        <view class="wui-dialog wui-dialog-tip {{modal.modalTip?'wui-dialog-show':''}}">
+            <view bind:tap="onJsEvent" class="wui-dialog-mask" data-event-type="jsToggle" data-modal="modal.modalTip"></view>
+            <view class="wui-dialog-container">
+                <view class="header border-1px-b">
+                    <view bind:tap="onJsEvent" class="header-btn" data-event-type="jsToggle" data-modal="modal.modalTip">取消</view>
+                    <view class="header-title">小费</view>
+                    <view class="header-btn"></view>
+                </view>
+                <view class="tip">
+                    <view class="tip-label">加小费抢单更快哦(单位:{{Lang.dollarSignCn}})</view>
+                    <view class="tip-value" style="color: {{diy.data.page.activebackground}}" wx:if="{{extra.delivery_tips>0}}">
+							{{extra.delivery_tips}}{{Lang.dollarSignCn}}
+						</view>
+                    <view class="slide-bar goods-info-slide-bar">
+                        <slider activeColor="{{diy.data.page.activebackground}}" bindchange="onChangeTips" class="slide-line" max="{{diyitem.params.maxfee}}" min="{{diyitem.params.minfee}}" step="1"></slider>
+                        <view class="slide-line-bottom">
+                            <text class="left">
+                                <text class="left-label">{{diyitem.params.minfee}}{{Lang.dollarSignCn}}</text>
+                            </text>
+                            <text class="right">
+                                <text class="right-label">{{diyitem.params.maxfee}}{{Lang.dollarSignCn}}</text>
+                            </text>
+                        </view>
+                    </view>
+                </view>
+            </view>
+        </view>
+        <view class="wui-dialog wui-dialog-redpacket {{modal.modalRedpacket&&redPackets.length>0?'wui-dialog-show':''}}">
+            <view bind:tap="onJsEvent" class="wui-dialog-mask" data-event-type="jsToggle" data-modal="modal.modalRedpacket"></view>
+            <view class="wui-dialog-container">
+                <view class="header border-1px-b">
+                    <view bind:tap="onJsEvent" class="header-btn" data-event-type="jsToggle" data-modal="modal.modalRedpacket">取消</view>
+                    <view class="header-title">可用红包</view>
+                    <view class="header-btn"></view>
+                </view>
+                <view class="content">
+                    <scroll-view class="redPacket-container" scrollY="true">
+                        <view class="redPacket">
+                            <view class="wui-loadmore wui-loadmore-nodata">
+                                <view class="wui-loadmore-tips">可用红包({{redPackets.length}}个)</view>
+                            </view>
+                            <view class="redPacket-list">
+                                <view bind:tap="onSelectRedpacket" class="item" data-id="{{item.id}}" data-index="{{index}}" wx:for="{{redPackets}}">
+                                    <view class="circle circle-left"></view>
+                                    <view class="circle circle-right"></view>
+                                    <view class="redPacket-info">
+                                        <view class="col-50">{{item.title}}</view>
+                                        <view class="col-50 text-right">
+													{{Lang.dollarSign}}<view class="price">{{item.discount}}</view>
+                                        </view>
+                                    </view>
+                                    <view class="redPacket-uselimit">
+                                        <view class="col-60">{{item.day_cn}}</view>
+                                        <view class="col-40 text-right">满{{item.condition}}{{Lang.dollarSignCn}}可用</view>
+                                    </view>
+                                    <view class="selected-status" wx:if="{{item.id==order.redpacket.id}}">
+                                        <image src="/static/img/selected-success.png"></image>
+                                    </view>
+                                </view>
+                            </view>
+                        </view>
+                    </scroll-view>
+                </view>
+                <view bind:tap="onSelectRedpacket" class="bottom-fixed border-1px-t" data-id="0">
+						不使用红包
+					</view>
+            </view>
+        </view>
+        <view class="wui-dialog wui-dialog-prefee {{modal.modalPrefee?'wui-dialog-show':''}}">
+            <view bind:tap="onJsEvent" class="wui-dialog-mask" data-event-type="jsToggle" data-modal="modal.modalPrefee"></view>
+            <view class="wui-dialog-container">
+                <view class="header border-1px-b">
+                    <view bind:tap="onJsEvent" class="header-btn" data-event-type="jsToggle" data-modal="modal.modalPrefee">取消</view>
+                    <view class="header-title">预估商品费</view>
+                    <view bindtap="onConfirmPrefee" class="header-btn">确定</view>
+                </view>
+                <view class="content">
+                    <view class="prefee-content">
+                        <view class="prefee-tips">供骑手代购时参考（可选填）</view>
+                        <view class="prefee-edit" style="color: {{diy.data.page.activebackground}}; border-color: {{diy.data.page.activebackground}}">
+                            <view class="prefee-edit-input">
+									预估{{Lang.dollarSign}}
+									<input bindinput="onGetPrefee" maxlength="3" type="number" value="{{extra.goods_price}}"></input>
+                            </view>
+                        </view>
+                        <view class="prefee-max">
+                            <view class="icon icon-info"></view>最高500{{Lang.dollarSignCn}}
+							</view>
+                    </view>
+                </view>
+            </view>
+        </view>
+        <view class="wui-dialog wui-dialog-delivery-time {{modal.modalDeliveryTime?'wui-dialog-show':''}}">
+            <view bind:tap="onJsEvent" class="wui-dialog-mask" data-event-type="jsToggle" data-modal="modal.modalDeliveryTime"></view>
+            <view class="wui-dialog-container">
+                <view class="header border-1px-b">
+                    <view bind:tap="onJsEvent" class="header-btn" data-event-type="jsToggle" data-modal="modal.modalDeliveryTime">取消</view>
+                    <view class="header-title">取件时间</view>
+                    <view class="header-btn"></view>
+                </view>
+                <view class="time-side">
+                    <scroll-view class="date" scrollX="true" scrollY="true" style="height: 305px;">
+                        <view class="ul" wx:for="{{order.delivery_info}}" wx:for-index="day">
+                            <view bind:tap="onSelectDay" class="li {{day==extraTemp.delivery_day?'active':''}}" data-value="{{day}}">{{day}}</view>
+                        </view>
+                    </scroll-view>
+                    <scroll-view class="time" scrollX="true" scrollY="true" style="height: 305px">
+                        <view class="ul">
+                            <view bind:tap="onSelectTime" class="li {{item==extraTemp.delivery_time?'active':''}}" data-value="{{item}}" style="color: {{item==extraTemp.delivery_time?diy.data.page.activebackground:'#333'}}" wx:for="{{order.delivery_info[extraTemp.delivery_day].times}}">
+										{{item==order.delivery_nowtime?'立即送出':item}}
+									</view>
+                        </view>
+                    </scroll-view>
+                </view>
+            </view>
+        </view>
+        <view class="wui-dialog wui-dialog-goodsweight {{modal.modalGoodsWeight?'wui-dialog-show':''}}">
+            <view bind:tap="onJsEvent" class="wui-dialog-mask" data-event-type="jsToggle" data-modal="modal.modalGoodsWeight"></view>
+            <view class="wui-dialog-container">
+                <view class="header border-1px-b">
+                    <text bind:tap="onJsEvent" class="header-btn" data-event-type="jsToggle" data-modal="modal.modalGoodsWeight">取消</text>
+                    <text class="header-title">物品重量</text>
+                    <text class="header-btn"></text>
+                </view>
+                <view class="goods-info">
+                    <view class="weight">
+                        <view class="weight-label">重量</view>
+                        <view class="weight-value" style="color: {{diy.data.page.activebackground}}" wx:if="{{extra.goods_weight>diy.data.fees.weight_data.basic}}">
+								{{extra.goods_weight}}公斤
+							</view>
+                        <view class="weight-value" style="color: {{diy.data.page.activebackground}}" wx:elif="{{extra.goods_weight<=diy.data.fees.weight_data.basic}}">
+								小于{{extra.goods_weight}}公斤
+							</view>
+                        <view class="slide-bar goods-info-slide-bar">
+                            <slider activeColor="{{diy.data.page.activebackground}}" bindchange="onListenerWeightSlider" class="slide-line" max="200" min="{{diy.data.fees.weight_data.basic}}"></slider>
+                            <view class="slide-line-bottom">
+                                <text class="left">
+                                    <text class="left-label">小于{{diy.data.fees.weight_data.basic}}公斤</text>
+                                </text>
+                                <text class="right">
+                                    <text class="right-label">200公斤</text>
+                                </text>
+                            </view>
+                        </view>
+                    </view>
+                </view>
+            </view>
+        </view>
+        <view class="wui-dialog wui-dialog-fee {{modal.modalFee?'wui-dialog-show':''}}">
+            <view bind:tap="onJsEvent" class="wui-dialog-mask" data-event-type="jsToggle" data-modal="modal.modalFee"></view>
+            <view class="wui-dialog-container fee-description">
+                <view class="fee-description-title border-1px-b">
+						费用明细
+						<navigator class="fee-rules" style="color: {{diy.data.page.activebackground}}" url="feeRule?id={{diy.id}}">
+						价格规则
+						</navigator>
+                </view>
+                <view class="fee-description-content">
+                    <view class="fee-description-list">
+                        <view class="fee-description-item" wx:for="{{order.fees}}">
+                            <block wx:if="{{item.fee!=''}}">
+                                <view class="fee-description-item-title">{{item.title}}</view>
+                                <view class="fee-description-item-after" style="color: {{item.fee<0?diy.data.page.activebackground:'#333'}}">
+										{{item.fee_cn}}
+									</view>
+                            </block>
+                        </view>
+                    </view>
+                </view>
+            </view>
+        </view>
+    </block>
+</view>
+<include src="../public/footer.wxml"></include>

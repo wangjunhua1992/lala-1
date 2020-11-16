@@ -1,0 +1,114 @@
+page {
+    background-color: #F5F5F5;
+    font-size: 14px;
+    line-height: 1;
+}
+
+.storebd-index .storebd-title {
+    width: 100%;
+    background-color: #ff2d4b;
+}
+
+.storebd-index .storebd-title .storebd-member {
+    text-align: center;
+    color: #fff;
+    opacity: .9;
+    padding: 20px 0px;
+    font-size: 16px;
+    overflow: hidden;
+    position: relative;
+}
+
+.storebd-index .storebd-title .storebd-member .member-img {
+    width: 65px;
+    height: 65px;
+    border: 2px solid #fff;
+    margin: 0 auto 10px;
+    border-radius: 50%;
+}
+
+.storebd-index .storebd-title .storebd-member .member-img image {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+}
+
+.storebd-index .user-getcash {
+    padding: 10px 0;
+    background-color: #fff;
+}
+
+.storebd-index .user-getcash .getcash-item {
+    width: 50%;
+    text-align: center;
+    font-size: 14px;
+}
+
+.storebd-index .user-getcash .getcash-item .price {
+    padding-top: 10px;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.storebd-index .block-nav {
+    position: relative;
+    overflow: hidden;
+    background-color: #fff;
+    border-top: 1px solid #fff;
+    border-bottom: 1px solid #fff;
+    margin-top: 10px;
+}
+
+.storebd-index .block-nav .nav-title {
+    font-size: 14px;
+    height: 40px;
+    line-height: 40px;
+    margin-left: 10px;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.storebd-index .block-nav .col-3 .icon-col {
+    width: 33.33%;
+}
+
+.storebd-index .block-nav .icon-col {
+    display: block;
+    width: 25%;
+    height: auto;
+    position: relative;
+    margin: 10px 0;
+    text-align: center;
+    float: left;
+}
+
+.storebd-index .block-nav .icon-col .icon-img {
+    display: block;
+    width: 100%;
+    text-align: center;
+}
+
+.storebd-index .block-nav .icon-col .icon-img .icon {
+    font-size: 36px;
+    color: #0894ec;
+}
+
+.storebd-index .block-nav .icon-col .text-icon {
+    max-width: 100%;
+    font-size: 14px;
+    padding: 10px 0 5px;
+    color: #333;
+    text-align: center;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.storebd-index .block-nav .icon-col .icon-tips {
+    max-width: 100%;
+    color: #999;
+    font-size: 14px;
+    text-align: center;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}

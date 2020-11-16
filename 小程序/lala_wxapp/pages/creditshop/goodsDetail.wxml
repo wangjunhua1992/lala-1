@@ -1,0 +1,119 @@
+<view class="container">
+    <view class="content">
+        <view class="tips" wx:if="{{result.good.status==0}}">
+            <view class="icon icon-commentfill"></view>
+            <text>商品已下架，无法兑换</text>
+        </view>
+        <scroll-view class="main-scroll" scrollY="true">
+            <view class="goods-thumb">
+                <image mode="aspectFit" src="{{result.good.thumb}}"></image>
+            </view>
+            <swiper class="slide hide">
+                <swiper-item class="slide-item">
+                    <image src="{{result.good.thumb}}"></image>
+                </swiper-item>
+            </swiper>
+            <view class="cell-group detail-group">
+                <view class="cell">
+                    <view class="cell-text name">
+                        <label wx:if="result.good.type == 'goods'">商品</label>
+                        <label wx:elif="result.good.type == 'credit2'">余额</label>
+                        <label wx:elif="result.good.type == 'redpacket'">红包</label>
+                        <text>{{result.good.title}}</text>
+                    </view>
+                </view>
+                <view class="cell cell-credit">
+                    <view class="cell-text">
+                        <text>单人仅限兑换: {{result.good.chance}} 次,该商品目前已累计兑换: {{result.good.records_num}} 次.</text>
+                    </view>
+                </view>
+                <view class="cell">
+                    <view class="cell-text flex">
+                        <text class="price">
+                            <text class="big">{{result.good.use_credit1}}</text>
+                            <text class="text">积分</text>
+                            <text class="text" wx:if="{{result.good.use_credit2>0}}">+ {{result.good.use_credit2}}{{Lang.dollarSignCn}}</text>
+                            <text class="old">原价:{{result.good.old_price}}{{Lang.dollarSignCn}}</text>
+                        </text>
+                    </view>
+                </view>
+            </view>
+            <view class="wui-tab">
+                <view class="wui-tab-bd">
+                    <view bind:tap="onChangeTab" class="wui-tab-item {{tab=='detail'?'wui-tab-item-selected':''}}" data-type="detail">
+                        <view class="wui-tab-title">商品详情</view>
+                    </view>
+                    <view bind:tap="onChangeTab" class="wui-tab-item {{tab=='records'?'wui-tab-item-selected':''}}" data-type="records">
+                        <view class="wui-tab-title">参与记录</view>
+                    </view>
+                </view>
+            </view>
+            <view class="detail-block">
+                <view class="tab-basic {{tab=='detail'?'show':''}}" wx:if="{{!result.good.description}}">
+					暂无商品详情
+				</view>
+                <view class="tab-basic {{tab=='detail'?'show':''}}" wx:if="{{result.good.description}}">
+                    <template is="wxParse" data="{{wxParseData:description.nodes}}"></template>
+                </view>
+                <view class="tab-records {{tab=='records'?'show':''}}">
+                    <block wx:if="{{empty==1}}">
+                        <view class="loglist">
+                            <view class="list" wx:if="{{result.records.length>0}}" wx:for="{{allrecords}}">
+                                <view class="list-media">
+                                    <image src="{{item.avatar}}"></image>
+                                </view>
+                                <view class="list-inner">
+                                    <view class="title">{{item.nickname}}</view>
+                                </view>
+                                <view class="list-media text">
+										{{item.addtime}}
+									</view>
+                            </view>
+                        </view>
+                        <view bind:tap="onGetRecords" class="more logmore" wx:if="{{loaded==0}}">
+                            <text>查看更多{{records.loaded}}</text>
+                        </view>
+                        <view class="more nomore" wx:else>
+                            <text>没有更多了</text>
+                        </view>
+                    </block>
+                    <view class="tab-basic show" wx:else>
+							暂无参与记录
+						</view>
+                </view>
+            </view>
+            <view class="list-group">
+                <view class="list">
+                    <view class="group-list-inner">
+                        <view class="title">为您推荐</view>
+                        <view class="text recommend">
+                            <navigator class="item" hoverClass="none" url="./goodsDetail?id={{item.id}}" wx:for="{{result.goods}}">
+                                <view>
+                                    <image src="{{item.thumb}}"></image>
+                                    <view class="title">{{item.title}}</view>
+                                    <view class="price">
+											{{item.use_credit1}}积分
+											<block wx:if="item.use_credit2 > 0">
+												+ {{item.use_credit2}}{{Lang.dollarSignCn}}
+											</block>
+                                    </view>
+                                </view>
+                            </navigator>
+                        </view>
+                    </view>
+                </view>
+            </view>
+        </scroll-view>
+        <block wx:if="{{result.good.status==1}}">
+            <block wx:if="{{result.good.can==1}}">
+                <view class="bottom-fixed disabled" wx:if="{{result.member.credit1<result.good.use_credit1}}">积分不足</view>
+                <view class="bottom-fixed start" wx:else>
+                    <navigator url="./create?goods_id={{result.good.id}}">立即兑换</navigator>
+                </view>
+            </block>
+            <view class="bottom-fixed disabled" wx:else>兑换已达最大次数</view>
+        </block>
+        <view class="bottom-fixed disabled" wx:else>商品已下架，无法兑换</view>
+    </view>
+</view>
+<include src="../public/footer.wxml"></include>

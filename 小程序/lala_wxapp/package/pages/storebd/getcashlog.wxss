@@ -1,0 +1,59 @@
+page {
+    background-color: #F5F5F5;
+    font-size: 14px;
+    line-height: 1;
+}
+
+.storebd-getcashlog .getcashlog-list {
+    margin-top: 55px;
+}
+
+.storebd-getcashlog .getcashlog-list .getcashlog-item {
+    background-color: #fff;
+    padding-left: 15px;
+    box-sizing: border-box;
+}
+
+.storebd-getcashlog .getcashlog-list .getcashlog-item .getcashlog-wrap {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex: 1;
+    padding: 10px 15px 10px 0;
+    box-sizing: border-box;
+    border-top: 1px solid #e0e0e0;
+}
+
+.storebd-getcashlog .getcashlog-list .getcashlog-item:first-child .getcashlog-wrap {
+    border-top: none;
+}
+
+.storebd-getcashlog .getcashlog-list .getcashlog-item .item-title {
+    position: relative;
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    flex-shrink: 1;
+}
+
+.storebd-getcashlog .getcashlog-list .getcashlog-item .item-title .info {
+    font-size: 12px;
+    padding-top: 5px;
+    color: #3d4145;
+}
+
+.storebd-getcashlog .getcashlog-list .getcashlog-item .item-after {
+    border-left: 1px solid #eee;
+    text-align: right;
+    padding-left: 6px;
+    color: #999;
+    font-size: 12px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.storebd-getcashlog .getcashlog-list .getcashlog-item .item-after view {
+    line-height: 18px;
+}

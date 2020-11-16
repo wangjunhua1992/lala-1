@@ -1,0 +1,43 @@
+.gohome-danmu {
+    height: 34px;
+    width: 250px;
+    border-radius: 34px;
+    position: fixed;
+    top: 120px;
+    left: 10px;
+    z-index: 1000;
+    padding: 2px;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    color: #fff;
+    overflow: hidden;
+    background: #26ce61;
+    display: flex;
+    box-sizing: border-box;
+    transition: opacity .5s;
+}
+
+.gohome-danmu image {
+    border-radius: 100%;
+    height: 30px;
+    width: 30px;
+    margin-right: 5px;
+}
+
+.gohome-danmu text {
+    display: inline-block;
+    font-size: 14px;
+}
+
+.gohome-danmu .info {
+    width: 180px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-right: 5px;
+}
+
+.gohome-danmu.opacity-0 {
+    opacity: 0!important;
+}

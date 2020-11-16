@@ -1,0 +1,22 @@
+<tab-bar menufooter="{{menufooter}}" wx:if="{{menufooter&&menufooter.data}}"></tab-bar>
+<view class="publish-list container">
+    <view class="tab-group border-1px-b">
+        <view bind:tap="onChangeStatus" class="tab-item {{status==-1?'active':''}}" data-status="-1">全部</view>
+        <view bind:tap="onChangeStatus" class="tab-item {{status==1?'active':''}}" data-status="1">待支付</view>
+        <view bind:tap="onChangeStatus" class="tab-item {{status==2?'active':''}}" data-status="2">审核中</view>
+        <view bind:tap="onChangeStatus" class="tab-item {{status==3?'active':''}}" data-status="3">已通过</view>
+        <view bind:tap="onChangeStatus" class="tab-item {{status==4?'active':''}}" data-status="4">未通过</view>
+    </view>
+    <block wx:if="{{!records.empty}}">
+        <informations from="mine" informations="{{records.data}}"></informations>
+        <view class="wui-loadmore wui-loadmore-nomore" wx:if="{{records.loaded}}">
+            <view class="wui-loadmore-tips">我是有底线的</view>
+            <view class="wui-loadmore-line"></view>
+        </view>
+    </block>
+    <view class="no-data" wx:else>
+        <image class="no-coupon" src="http://cos.lalawaimai.com/we7_wmall/wxapp/goods_no_con.png"></image>
+        <text class="no-record">还没有发布信息，快去发布吧</text>
+    </view>
+</view>
+<include src="../../../../pages/public/footer.wxml"></include>

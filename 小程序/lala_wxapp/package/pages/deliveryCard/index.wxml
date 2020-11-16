@@ -1,0 +1,60 @@
+<view class="page-index">
+    <view class="header">
+        <view class="img">
+            <image class="cir" src="{{member.avatar}}"></image>
+        </view>
+        <view class="name">
+            <view class="top">
+                <text class="name1">{{member.nickname}}</text>
+                <view class="ninfo">
+                    <image src="http://cos.lalawaimai.com/we7_wmall/wxapp/vip_effective.png" wx:if="{{deliveryCard_setmeal_ok==1}}"></image>
+                    <image src="http://cos.lalawaimai.com/we7_wmall/wxapp/vip_deprecated.png" wx:else></image>
+                </view>
+            </view>
+            <text class="tex hide">平台会员(免配送费)</text>
+        </view>
+    </view>
+    <view class="card" wx:if="{{deliveryCard_setmeal_ok==1||member.setmeal_id>0}}">
+        <view class="cardimg">
+            <image src="http://cos.lalawaimai.com/we7_wmall/wxapp/card-setmeal.png"></image>
+        </view>
+        <view class="word">
+            <text class="wor">会员期限:{{member.setmeal_starttime}}至{{member.setmeal_endtime}}</text>
+            <view class="free">每日可免减配送 : <text class="num">{{member.setmeal_day_free_limit>0?member.setmeal_day_free_limit+'单':'不限单数'}}</text>
+            </view>
+            <view class="free" wx:if="{{member.setmeal_deliveryfee_free_limit>0}}">每单最高减免配送费 : <text class="num">{{member.setmeal_deliveryfee_free_limit}}</text>{{Lang.dollarSignCn}}</view>
+            <view class="free" wx:else>每单配送费全免</view>
+        </view>
+    </view>
+    <view class="card-img" wx:else>
+        <image class="card-image" src="http://cos.lalawaimai.com/we7_wmall/wxapp/card.png"></image>
+    </view>
+    <view class="card-box" wx:if="{{diypower.length>0}}">
+        <view bind:tap="onJsEvent" class="left" data-event-type="jsUrl" data-url="{{item.url}}" wx:for="{{diypower}}" wx:key="{{index}}">
+            <image class="box-img" src="{{item.img}}"></image>
+            <view class="text w-100 ellipsis">{{item.title}}</view>
+        </view>
+    </view>
+    <view class="card-box" wx:else>
+        <navigator class="left" url="./power">
+            <image class="box-img" src="http://cos.lalawaimai.com/we7_wmall/wxapp/card-mian.png"></image>
+            <view class="text">平台配送免配送费</view>
+        </navigator>
+        <view class="right border-1px-l">
+            <image class="box-img" src="http://cos.lalawaimai.com/we7_wmall/wxapp/card-more.png"></image>
+            <view class="text">敬请期待</view>
+        </view>
+    </view>
+    <view class="card-agreement hide">
+        <view class="card-open" tap:bind="onShowAgreement">
+            <icon class="icon icon-help"></icon>会员卡规则
+		</view>
+    </view>
+    <view class="card-button">
+        <navigator class="pay" url="./apply" wx:if="{{deliveryCard_setmeal_ok==1||member.setmeal_id>0}}">马上续费</navigator>
+        <navigator url="./apply" wx:else>
+            <view class="pay">开通会员</view>
+        </navigator>
+    </view>
+</view>
+<include src="../../../pages/public/footer.wxml"></include>

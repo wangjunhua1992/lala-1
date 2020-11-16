@@ -1,0 +1,5 @@
+@import "../cell-group/index.wxss";
+
+.van-badge-group {
+    width: 85px;
+}

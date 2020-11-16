@@ -1,0 +1,15 @@
+<view class="notice-popup" wx:if="{{noticeShow}}">
+    <view class="popup-modal"></view>
+    <view class="popup-container">
+        <view class="popup-content">
+            <view class="popup-title">
+                <view class="line"></view>
+                <text>温馨提示</text>
+            </view>
+            <view class="popup-main">{{tips}}</view>
+        </view>
+        <view bind:tap="onClose" class="popup-close">
+            <text class="icon icon-close"></text>
+        </view>
+    </view>
+</view>

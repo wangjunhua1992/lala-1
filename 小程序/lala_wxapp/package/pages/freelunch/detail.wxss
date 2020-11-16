@@ -1,0 +1,488 @@
+page {
+    width: 100%;
+}
+
+.br {
+    border: 1px solid #fff;
+}
+
+.wui-loadmore-tips {
+    background-color: #fff!important;
+}
+
+.flex {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.page-detail {
+    width: 100%;
+    background: #eee;
+}
+
+.page-detail .nav-tabs {
+    background-color: #ff2d4b;
+    position: fixed;
+    top: 0px;
+    z-index: 10;
+    width: 100%;
+    height: 60px;
+    box-sizing: border-box;
+    padding: 0px 20px 0px 30px;
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.page-detail .nav-tabs .tab {
+    font-size: 14px;
+    color: #fff;
+    position: relative;
+}
+
+.page-detail .nav-tabs .tab.active:after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%,0);
+    bottom: -15px;
+    width: 60px;
+    height: 2px;
+    background-color: #fff;
+}
+
+.page-detail .nav-tabs .tab:last-child {
+    width: 33%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.page-detail .nav-tabs .tab .badge {
+    position: absolute;
+    right: -40px;
+    top: -16px;
+    height: 16px;
+    line-height: 16px;
+    white-space: nowrap;
+    border-radius: 8px;
+    padding: 0 8px;
+    font-size: 10px;
+    font-weight: normal;
+    color: #fff;
+    background-color: #fc692a;
+}
+
+.page-detail .nav-tabs .tab image {
+    width: 19px;
+    height: 13px;
+    margin-right: 5px;
+}
+
+.page-detail .nav-tabs .tab .tab-container {
+    width: 99%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.page-detail .nav-tabs .tab .dash-line {
+    width: 1px;
+    height: 16px;
+}
+
+.page-detail .prize-status {
+    background-image: url(http://cos.lalawaimai.com/we7_wmall/wxapp/freelunch-detail.png);
+    background-size: 100% auto;
+    min-height: 160px;
+    text-align: center;
+    color: #fff;
+    position: relative;
+}
+
+.page-detail .prize-status .rule {
+    position: absolute;
+    z-index: 10;
+    top: -2px;
+    right: 10px;
+    padding: 8px;
+    font-size: 12px;
+    line-height: 1.1;
+    font-weight: bold;
+    color: #ff3f3f;
+    background-image: url(http://cos.lalawaimai.com/we7_wmall/wxapp/rule.png);
+    backgroud-repeat: no-repeat;
+    background-size: 43px 52px;
+    width: 43px;
+    box-sizing: border-box;
+    min-height: 52px;
+    text-align: center;
+}
+
+.page-detail .prize-status .batch {
+    opacity: 0.8;
+    padding-top: 20px;
+    height: 40px;
+    font-size: 13px;
+}
+
+.page-detail .prize-status .batch text {
+    display: inline-block;
+    padding: 3px;
+    border: 1px solid #fff;
+    border-radius: 2px;
+}
+
+.page-detail .prize-status .h2 {
+    font-weight: bold;
+    font-size: 24px;
+    margin-top: 8px;
+}
+
+.page-detail .prize-status .no-prize {
+    opacity: 0.85;
+    font-size: 13px;
+}
+
+.page-detail .prize-status .winning-detail {
+    padding: 20px 0;
+    font-size: 13px;
+}
+
+.page-detail .prize-status .winning-detail .winning-inner {
+    position: relative;
+    padding-bottom: 0.3rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-image: url(http://cos.lalawaimai.com/we7_wmall/wxapp.png);
+    background-repeat: no-repeat;
+    background-size: 80% 100%;
+    background-position: center;
+}
+
+.page-detail .prize-status .winning-detail .winning-code {
+    margin-top: -8px;
+    font-weight: bold;
+}
+
+.page-detail .prize-status .winning-detail .lucky-number {
+    display: flex;
+}
+
+.page-detail .prize-status .winning-detail .lucky-number .digit {
+    align-items: center;
+    justify-content: center;
+    -webkit-box-pack: center;
+    display: flex;
+    opacity: 0.8;
+    margin: 10px 3px;
+    width: 26px;
+    height: 26px;
+    line-height: 26px;
+    color: #ee2d08;
+    background-color: #fff;
+    border-radius: 4px;
+    font-size: 17px;
+    font-weight: bold;
+}
+
+.page-detail .prize-status .winning-detail .details {
+    display: flex;
+    align-items: center;
+}
+
+.page-detail .prize-status .winning-detail .details image {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}
+
+.page-detail .prize-status .winning-detail .participate-info {
+    margin-left: 10px;
+}
+
+.page-detail .prize-status .winning-detail .participate-info .participate-name {
+    font-weight: bold;
+}
+
+.page-detail .no-participate {
+    margin: 10px;
+    padding: 10px;
+    font-size: 15px;
+    background-color: #fff;
+    border-radius: 5px;
+    color: #999;
+}
+
+.page-detail .no-participate text {
+    color: #fc692a;
+    font-weight: bold;
+}
+
+.page-detail .no-participate text.strong {
+    color: #333;
+    font-weight: 700;
+}
+
+.page-detail .lucky-history {
+    padding: 10px;
+    margin: 10px 0;
+    background-color: #fff;
+}
+
+.page-detail .lucky-history .lucky-inner {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    justify-content: space-between;
+    box-sizing: border-box;
+}
+
+.page-detail .lucky-history .lucky-inner .lucky-tab {
+    width: 22%;
+    color: #ff6000;
+    text-align: center;
+    padding-right: 0.8rem;
+}
+
+.page-detail .lucky-history .lucky-inner .lucky-tab image {
+    width: 100%;
+    height: 18px;
+}
+
+.page-detail .lucky-history .lucky-inner .lucky-tab .subtitle {
+    font-size: 15px;
+    border-top: 1px solid rgba(255,96,0,.50);
+    margin-top: 0.2px;
+    padding-top: 0.2px;
+}
+
+.page-detail .lucky-history .lucky-inner .luckier-list {
+    width: 70%;
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.page-detail .lucky-history .lucky-inner .luckier-list swiper {
+    width: 90%;
+    height: 50px;
+}
+
+.page-detail .lucky-history .lucky-inner .luckier-list .icon {
+    color: #999;
+    font-size: 14px;
+}
+
+.page-detail .lucky-history .lucky-inner .luckier-list .luckier-item {
+    box-sizing: border-box;
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.page-detail .lucky-history .lucky-inner .luckier-list .luckier-logo {
+    width: 40px;
+    height: 40px;
+}
+
+.page-detail .lucky-history .lucky-inner .luckier-list .luckier-logo image {
+    width: 100%;
+    height: 100%;
+    border-radius: 100%;
+}
+
+.page-detail .lucky-history .lucky-inner .luckier-list .luckier-info {
+    width: 80%;
+    height: 50px;
+}
+
+.page-detail .lucky-history .lucky-inner .luckier-list .luckier-info .info-text {
+    height: 22px;
+    line-height: 22px;
+}
+
+.page-detail .lucky-history .lucky-inner .luckier-list .luckier-info text {
+    color: #333;
+    font-size: 14px;
+}
+
+.page-detail .lucky-history .lucky-inner .luckier-list .luckier-info .prize-time {
+    color: #999;
+    display: inline-block;
+    margin-left: 10px;
+}
+
+.page-detail .lucky-history .lucky-inner .luckier-list .luckier-info .prize-money {
+    color: #ff6000;
+    display: inline-block;
+}
+
+.page-detail .prize-status .prize-info {
+    font-size: 14px;
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+    color: #fff;
+    text-align: center;
+}
+
+.page-detail .prize-status .prize-info .draw-condition {
+    opacity: 0.85;
+}
+
+.page-detail .prize-status .prize-info .draw-condition text {
+    opacity: 1;
+    font-weight: bold;
+}
+
+.page-detail .prize-status .prize-info .progress {
+    margin: 10px auto;
+    height: 5px;
+    width: 80%;
+    background-color: rgba(0,0,0,.2);
+    border-radius: 2px;
+}
+
+.page-detail .prize-status .prize-info .progress .progress-bar {
+    height: 100%;
+    border-radius: 2px;
+    background-image: linear-gradient(to right,#efab0b,#fffbba);
+    transform-origin: left;
+    animation: bar-grow 0.5s;
+}
+
+.page-detail .prize-status .prize-info .prize-data {
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.page-detail .prize-status .prize-info .prize-data .vertical-line {
+    opacity: 0.7;
+}
+
+.page-detail .current-participant {
+    margin-top: 10px;
+    padding: 0 10px 70px;
+    background-color: #fff;
+    font-size: 15px;
+}
+
+.page-detail .current-participant .participant-title {
+    padding: 16px 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.page-detail .current-participant .participant-title .start-time {
+    color: #999;
+}
+
+.page-detail .current-participant .participant-list {
+    padding: 0px 10px;
+}
+
+.page-detail .current-participant .participant-list .participant-item {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    justify-content: space-between;
+    box-sizing: border-box;
+}
+
+.page-detail .current-participant .participant-list .participant-item .photo {
+    width: 16%;
+    display: flex;
+    align-items: center;
+}
+
+.page-detail .current-participant .participant-list .participant-item .photo image {
+    width: 40px;
+    height: 40px;
+    border-radius: 100%;
+}
+
+.page-detail .current-participant .participant-list .participant-item .userinfo {
+    width: 82%;
+    padding: 8px 0;
+}
+
+.page-detail .current-participant .participant-list .participant-item .userinfo view {
+    height: 20px;
+    line-height: 20px;
+}
+
+.page-detail .current-participant .participant-list .participant-item .participant-time {
+    color: #999;
+}
+
+.page-detail .fixed-bottom {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    text-align: center;
+    background-color: #fff;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    box-sizing: border-box;
+    justify-content: space-between;
+}
+
+.page-detail .fixed-bottom .tips {
+    width: 50%;
+    font-size: 13px;
+    line-height: 24px;
+    font-weight: bold;
+    display: block;
+    padding: 6px 0;
+    color: #333;
+}
+
+.page-detail .fixed-bottom button {
+    display: inline-block;
+    width: 50%;
+    height: 50px;
+    font-size: 16px;
+    background: #ff2d4b;
+    color: #fff;
+    line-height: 50px;
+    text-align: center;
+}
+
+.page-detail .fixed-bottom .link {
+    width: 60%;
+    height: 100%;
+    font-size: 16px;
+    background: #ff2d4b;
+    color: #fff;
+    line-height: 50px;
+    text-align: center;
+    border-radius: 5px;
+}
+
+.page-detail .fixed-bottom .link.no-partake-times {
+    background-color: #ddd;
+    color: #fff;
+}
+
+.page-detail .fixed-bottom .refresh {
+    width: 36%;
+    height: 100%;
+    font-size: 16px;
+    color: #fff;
+    line-height: 50px;
+    text-align: center;
+    border-radius: 5px;
+    background-color: #fff;
+    color: #ff2d4b;
+    border: 1px solid #ff2d4b;
+}

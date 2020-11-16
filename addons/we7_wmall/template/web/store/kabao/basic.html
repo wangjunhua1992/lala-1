@@ -1,0 +1,128 @@
+{itemplate 'public/header'}
+{if $ta == 'index'}
+<div class="page clearfix">
+	<form class="form-horizontal form form-validate" id="form1" action="" method="post" enctype="multipart/form-data">
+		<h3>基本设置</h3>
+		<div class="form-group">
+			<label class="col-xs-12 col-sm-3 col-md-2 control-label">状态</label>
+			<div class="col-sm-9 col-xs-12">
+				<div class="radio radio-inline">
+					<input type="radio" value="1" name="kabao_status" id="status-1" {if $store['kabao_status'] == '1'}checked{/if}>
+					<label for="status-1">开启</label>
+				</div>
+				<div class="radio radio-inline">
+					<input type="radio" value="0" name="kabao_status" id="status-0" {if empty($store['kabao_status'])}checked{/if}>
+					<label for="status-0">关闭</label>
+				</div>
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-xs-12 col-sm-3 col-md-2 control-label">是否开启积分赠送</label>
+			<div class="col-sm-6 col-xs-6">
+				<div class="radio radio-inline">
+					<input type="radio" name="give_credit1" value="1" id="give-credit1-1" {if $basic['give_credit1'] == 1}checked{/if}/>
+					<label for="give-credit1-1">是</label>
+				</div>
+				<div class="radio radio-inline">
+					<input type="radio" name="give_credit1" value="0" id="give-credit1-0" {if empty($basic['give_credit1'])}checked{/if}/>
+					<label for="give-credit1-0">否</label>
+				</div>
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-xs-12 col-sm-3 col-md-2 control-label">积分赠送模式</label>
+			<div class="col-sm-9 col-xs-12">
+				<div class="input-group">
+					<label class="input-group-addon">
+						<input type="radio" name="grant_type" value="1" {if $basic['grant_type'] == 1 || !$basic['grant_type']}checked{/if}>
+					</label>
+					<span class="input-group-addon">每单固定</span>
+					<input type="text" class="form-control" name="grant_num_1" {if $basic['grant_type'] == 1}value="{$basic['grant_num']}"{/if}>
+					<span class="input-group-addon">积分</span>
+				</div>
+				<br>
+				<div class="input-group">
+					<label class="input-group-addon">
+						<input type="radio" name="grant_type" value="2" {if $basic['grant_type'] == 2}checked{/if}>
+					</label>
+					<span class="input-group-addon">按1{$_W['Lang']['dollarSignCn']}赠送</span>
+					<input type="text" class="form-control" name="grant_num_2" {if $basic['grant_type'] == 2}value="{$basic['grant_num']}"{/if}>
+					<span class="input-group-addon">积分的比例赠送</span>
+				</div>
+				<div class="help-block">例如:设置赠送比例为1{$_W['Lang']['dollarSignCn']}赠送10积分.订单总额为:20{$_W['Lang']['dollarSignCn']}, 那本订单工赠送:20*10=200积分</div>
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-xs-12 col-sm-3 col-md-2 control-label">是否开启积分兑换优惠券</label>
+			<div class="col-sm-6 col-xs-6">
+				<div class="radio radio-inline">
+					<input type="radio" name="credit1_exchage_coupon" value="1" id="credit1-exchage-coupon-1" {if $basic['credit1_exchage_coupon'] == 1}checked{/if}/>
+					<label for="credit1-exchage-coupon-1">是</label>
+				</div>
+				<div class="radio radio-inline">
+					<input type="radio" name="credit1_exchage_coupon" value="0" id="credit1-exchage-coupon-0" {if empty($basic['credit1_exchage_coupon'])}checked{/if}/>
+					<label for="credit1-exchage-coupon-0">否</label>
+				</div>
+				<div class="help-block">
+					开启此项后，请确保已设置类型为积分兑换的优惠券
+					<a href="{php echo iurl('store/kabao/coupon');}" target="_blank">现在去设置</a>
+				</div>
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-xs-12 col-sm-3 col-md-2 control-label">是否开启绑卡赠券特权</label>
+			<div class="col-sm-9 col-xs-12">
+				<div class="radio radio-inline">
+					<input type="radio" name="give_coupon" value="1" id="give-coupon-1" {if $basic['give_coupon'] == 1}checked{/if}/>
+					<label for="give-coupon-1">是</label>
+				</div>
+				<div class="radio radio-inline">
+					<input type="radio" name="give_coupon" value="0" id="give-coupon-0" {if empty($basic['give_coupon'])}checked{/if}/>
+					<label for="give-coupon-0">否</label>
+				</div>
+				<div class="help-block">
+					开启此项后，请确保已经设置类型为绑卡赠券的优惠券
+					<a href="{php echo iurl('store/kabao/coupon');}" target="_blank">现在去设置</a>
+				</div>
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-xs-12 col-sm-3 col-md-2 control-label">是否开启减免运费</label>
+			<div class="col-sm-6 col-xs-6">
+				<div class="radio radio-inline">
+					<input type="radio" name="free_delivery_fee" value="1" id="free-delivery-fee-1" {if $basic['free_delivery_fee'] == 1}checked{/if}/>
+					<label for="free-delivery-fee-1">是</label>
+				</div>
+				<div class="radio radio-inline">
+					<input type="radio" name="free_delivery_fee" value="0" id="free-delivery-fee-0" {if empty($basic['free_delivery_fee'])}checked{/if}/>
+					<label for="free-delivery-fee-0">否</label>
+				</div>
+				<div class="help-block">
+					开启此项后请确保已设置减免配送费规则
+					<a href="{php echo iurl('store/kabao/deliveryFee');}" target="_blank">现在去设置</a>
+				</div>
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-xs-12 col-sm-3 col-md-2 control-label">是否开启会员专享商品</label>
+			<div class="col-sm-6 col-xs-6">
+				<div class="radio radio-inline">
+					<input type="radio" name="vip_goods" value="1" id="vip-goods-1" {if $basic['vip_goods'] == 1}checked{/if}/>
+					<label for="vip-goods-1">是</label>
+				</div>
+				<div class="radio radio-inline">
+					<input type="radio" name="vip_goods" value="0" id="vip-goods-0" {if empty($basic['vip_goods'])}checked{/if}/>
+					<label for="vip-goods-0">否</label>
+				</div>
+			</div>
+		</div>
+		<div class="form-group">
+			<div class="col-sm-9 col-xs-9 col-md-9">
+				<input type="hidden" name="token" value="{$_W['token']}">
+				<input type="submit" value="提交" class="btn btn-primary">
+			</div>
+		</div>
+	</form>
+</div>
+{/if}
+{itemplate 'public/footer'}

@@ -1,0 +1,35 @@
+<view class="container">
+    <view class="content">
+        <view class="recharge-list clearfix">
+            <view bind:tap="changeSelect" class="col-27 recharge-item {{select==index?'selected':''}}" data-price="{{item.charge}}" id="{{index}}" wx:for="{{recharge}}">
+                <view class="activity">
+                    <view class="content">{{Lang.dollarSign}}{{item.charge}}</view>
+                    <view class="content">
+							送{{item.back}}
+							<view class="text" wx:if="{{item.type=='credit2'}}">{{Lang.dollarSignCn}}</view>
+                        <view class="text" wx:if="{{item.type=='credit1'}}">积分</view>
+                    </view>
+                </view>
+                <view class="selected-status">
+                    <image src="/static/img/selected-success.png"></image>
+                </view>
+            </view>
+            <view bind:tap="changeSelect" class="col-28 recharge-item {{select<0?'selected':''}}" id="-1">
+                <input bindinput="changeInput" placeholder="输入金额"></input>
+                <view class="selected-status">
+                    <image src="/static/img/selected-success.png"></image>
+                </view>
+            </view>
+        </view>
+        <view class="list-block">
+            <view class="item-content">
+                <view class="item-title">支付金额</view>
+                <view class="item-after">{{Lang.dollarSign}}{{price}}{{Lang.dollarSignCn}}</view>
+            </view>
+        </view>
+        <view class="content-block">
+            <view bindtap="onSubmit" class="btn btn-danger btn-large">确认充值</view>
+        </view>
+    </view>
+</view>
+<include src="../public/footer.wxml"></include>

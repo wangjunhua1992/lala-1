@@ -1,0 +1,30 @@
+<view class="member-account">
+    <view class="account-title" wx:if="{{status.bank==1&&status.alipay==1}}">
+        <view class="account-group flex">
+            <view bind:tap="onToggleType" class="bank {{type=='bank'?'active':''}}" data-type="bank">提现到银行账户</view>
+            <view bind:tap="onToggleType" class="alipay {{type=='alipay'?'active':''}}" data-type="alipay">提现到支付宝账户</view>
+        </view>
+    </view>
+    <view class="padding-15 c-gray" wx:elif="{{status.bank==1&&status.alipay!=1}}">提现到银行账户</view>
+    <view class="padding-15 c-gray" wx:elif="{{status.bank!=1&&status.alipay==1}}">提现到支付宝账户</view>
+    <van-cell-group wx:if="{{type=='bank'}}">
+        <van-cell title="银行">
+            <view slot="right-icon">
+                <picker bindchange="onSelectBank" mode="selector" range="{{bank_list}}" rangeKey="title">
+                    <text>{{bank.title?bank.title:'请选择开户银行'}}</text>
+                    <text class="icon icon-right c-gray"></text>
+                </picker>
+            </view>
+        </van-cell>
+        <van-field bind:change="onChangeValue" border="{{true}}" data-key="account" data-type="bank" inputAlign="right" label="银行卡号" placeholder="请输入银行卡号" value="{{bank.account}}"></van-field>
+        <van-field bind:change="onChangeValue" border="{{false}}" data-key="realname" data-type="bank" inputAlign="right" label="开户人姓名" placeholder="请输入开户人姓名" value="{{bank.realname}}"></van-field>
+    </van-cell-group>
+    <van-cell-group wx:else>
+        <van-field bind:change="onChangeValue" border="{{true}}" data-key="account" data-type="alipay" inputAlign="right" label="支付宝账号" placeholder="请输入支付宝账号" value="{{alipay.account}}"></van-field>
+        <van-field bind:change="onChangeValue" border="{{false}}" data-key="realname" data-type="alipay" inputAlign="right" label="支付宝姓名" placeholder="请输入支付宝姓名" value="{{alipay.realname}}"></van-field>
+    </van-cell-group>
+    <view class="padding-15 w-100">
+        <button bind:tap="onSubmit" class="btn btn-large {{islegal?'btn-danger':'btn-disabled'}}" disabled="{{!islegal}}" type="primary">提交</button>
+    </view>
+</view>
+<include src="../../../pages/public/footer.wxml"></include>

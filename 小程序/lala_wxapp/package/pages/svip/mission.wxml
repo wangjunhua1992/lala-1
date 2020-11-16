@@ -1,0 +1,43 @@
+<tab-bar menufooter="{{menufooter}}" wx:if="{{menufooter&&menufooter.data}}"></tab-bar>
+<view class="page-mission container">
+    <view class="content">
+        <view class="mission-header">
+            <view class="mission-title">做任务，赢好礼</view>
+            <view bind:tap="onJsEvent" class="mission-tips" data-event-type="jsUrl" data-url="/package/pages/svip/missionList">
+                <text>已完成任务</text>
+                <text class="num">{{stat.total_finish}}</text>个
+				<i class="icon icon-right"></i>
+            </view>
+        </view>
+        <view class="mission-group" wx:if="{{records.data.length>0}}">
+            <view class="mission-group-title">会员任务任你选<text class="font-12 c-gray"></text>
+            </view>
+            <view class="mission-list">
+                <view class="flex-lr mission-item" wx:for="{{records.data}}" wx:key="{{item.id}}">
+                    <view class="avatar">
+                        <image alt="" src="{{item.thumb}}"></image>
+                    </view>
+                    <view class="mission-left flex-lr">
+                        <view class="activity-info">
+                            <view class="mission-name">{{item.title}}</view>
+                            <view class="ellipsis">{{item.content}}</view>
+                            <view class="award">{{item.award_cn}}</view>
+                        </view>
+                        <view bind:tap="onTakepart" class="activity-price" data-id="{{item.id}}" data-link="{{item.button.link}}" data-link_type="{{item.button.link_type}}">
+                            <view class="activity-but">{{item.button.text}}</view>
+                        </view>
+                    </view>
+                </view>
+            </view>
+        </view>
+        <view class="weui-loadmore" wx:if="{{records.loading}}">
+            <view class="weui-loading"></view>
+            <view class="weui-loadmore__tips">正在加载中</view>
+        </view>
+        <view class="no-data" wx:elif="{{records.empty}}">
+            <image class="no-coupon" src="../../static/img/order_no_con.png" wx:if="{{0}}"></image>
+            <text class="no-record">暂无会员任务</text>
+        </view>
+    </view>
+</view>
+<include src="../../../pages/public/footer.wxml"></include>

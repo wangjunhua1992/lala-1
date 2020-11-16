@@ -1,0 +1,56 @@
+<view class="page-getcash">
+    <form bindsubmit="onSubmit" reportSubmit="true">
+        <view class="content">
+            <view class="zan-panel">
+                <view class="zan-cell">
+                    <view class="zan-cell__bd">账户可用余额：<text>{{Lang.dollarSign}}{{account.amount}}</text>
+                    </view>
+                </view>
+            </view>
+            <view class="takeout-list border-1px-tb">
+                <view class="body">
+                    <view class="takeout-item-left">提现金额</view>
+                    <view class="takeout-item-right">
+                        <view class="takeout-item-input">
+                            <input name="fee" placeholder="请输入提现金额" type="digit"></input>
+                        </view>
+                        <view class="takeout-rule">最低提现金额为{{account.fee_limit}}{{Lang.dollarSignCn}}</view>
+                        <view class="takeout-rule">提现费率为{{account.fee_rate}}%，最低收取{{account.fee_min}}{{Lang.dollarSignCn}}，最高收取{{account.fee_max}}{{Lang.dollarSignCn}}</view>
+                    </view>
+                    <block wx:if="{{config&&config.type}}">
+                        <view class="getcash-title">提现方式</view>
+                        <view class="getcash-type">
+                            <view bind:tap="onChangeType" class="type-item" data-channel="weixin">
+                                <view class="type-left">微信提现</view>
+                                <view class="type-right">
+                                    <view class="input-group {{channel=='weixin'?'active':''}}">
+                                        <i class="icon icon-check"></i>
+                                    </view>
+                                </view>
+                            </view>
+                            <view bind:tap="onChangeType" class="type-item" data-channel="alipay" wx:if="{{config.type.alipay==1}}">
+                                <view class="type-left">支付宝提现</view>
+                                <view class="type-right">
+                                    <view class="input-group {{channel=='alipay'?'active':''}}">
+                                        <i class="icon icon-check"></i>
+                                    </view>
+                                </view>
+                            </view>
+                            <view bind:tap="onChangeType" class="type-item" data-channel="bank" wx:if="{{config.type.bank==1}}">
+                                <view class="type-left">银行卡提现</view>
+                                <view class="type-right">
+                                    <view class="input-group {{channel=='bank'?'active':''}}">
+                                        <i class="icon icon-check"></i>
+                                    </view>
+                                </view>
+                            </view>
+                        </view>
+                    </block>
+                </view>
+            </view>
+            <button disabled class="weui-btn btn-footer" type="default" wx:if="{{account.amount-account.fee_limit<0}}">不足{{account.fee_limit}}{{Lang.dollarSignCn}}</button>
+            <button class="weui-btn btn-footer" disabled="{{submit}}" formType="submit" type="warn" wx:else>提现</button>
+        </view>
+    </form>
+</view>
+<include src="../public/footer.wxml"></include>

@@ -1,0 +1,52 @@
+<view class="container">
+    <view class="content">
+        <view class="coupon-list" wx:if="{{showNodata===false}}">
+            <view class="coupon-item {{status==2?'active':''}}" wx:for="{{coupons}}">
+                <view class="coupon-item-top">
+                    <view class="coupon-item-left">
+                        <text class="overdue" wx:if="{{item.status==3}}"></text>
+                        <text class="use" wx:if="{{item.status==2}}"></text>
+                        <view class="seller-img">
+                            <image alt="" src="{{item.logo}}"></image>
+                        </view>
+                        <view class="seller">
+                            <view class="seller-name">{{item.title}}</view>
+                            <view class="seller-type">同享券</view>
+                            <view class="coupon-expires">有效期至:{{item.endtime}}</view>
+                        </view>
+                    </view>
+                    <view class="coupon-item-right">
+                        <view class="coupon-money">
+                            <text class="money-unit">{{Lang.dollarSign}}</text>
+							{{item.discount}}
+						</view>
+                        <view class="coupon-condition">满{{item.condition}}可用</view>
+                    </view>
+                </view>
+                <view class="coupon-item-line">
+                    <view class="line"></view>
+                </view>
+                <view class="coupon-item-bottom">
+                    <view class="explain-text">仅限门店{{item.title}}使用</view>
+                    <navigator class="to-use" url="../../store/goods?sid={{item.sid}}">
+						去使用
+						<text class="icon icon-right"></text>
+                    </navigator>
+                </view>
+            </view>
+            <view class="j-coupon-tip" wx:if="{{!showloading}}">
+				没有更多代金券了 <text bind:tap="onStatus"> | 查看过期券<text class="icon icon-right"></text>
+                </text>
+            </view>
+            <view class="weui-loadmore" wx:if="{{showloading}}">
+                <view class="weui-loading"></view>
+                <view class="weui-loadmore__tips">正在加载中</view>
+            </view>
+        </view>
+        <view class="no-data" wx:if="{{showNodata===true}}">
+            <image class="no-coupon" src="http://cos.lalawaimai.com/we7_wmall/wxapp/coupon_no_con.png"></image>
+            <text class="no-record">您没有代金券记录</text>
+        </view>
+    </view>
+</view>
+<include src="../../public/footer.wxml"></include>

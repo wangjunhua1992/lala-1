@@ -1,0 +1,334 @@
+@import "../../../nmy/0.wxss";
+
+page {
+    background-color: #f5f5f5;
+    font-size: 14px;
+}
+
+.seckill-detail {
+    padding-bottom: 50px;
+    line-height: 1;
+}
+
+.seckill-detail .goods-info .thumb {
+    width: 100%;
+    max-height: 162px;
+    font-size: 0px;
+    border-radius: 3px;
+    overflow: hidden;
+    position: relative;
+}
+
+.seckill-detail .goods-info .thumb image {
+    width: 100%;
+    max-height: 162px;
+}
+
+.seckill-detail .goods-info .thumbs {
+    width: 100%;
+    height: 162px;
+    border-radius: 3px;
+    overflow: hidden;
+}
+
+.seckill-detail .goods-info .title {
+    padding: 8px 0;
+    line-height: 1.3;
+    font-weight: 500;
+}
+
+.seckill-detail .progress {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: flex-end;
+    justify-content: space-between;
+    font-size: 14px;
+    padding-top: 15px;
+}
+
+.seckill-detail .progress .progress-inner {
+    width: 70%;
+    height: 43px;
+    position: relative;
+    flex: 1;
+}
+
+.seckill-detail .progress .progress-inner .bar {
+    position: absolute;
+    bottom: 1px;
+    left: 0;
+    right: 0;
+    height: 10px;
+    z-index: 2;
+    background-color: #FED4D5;
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.seckill-detail .progress .progress-inner .bar .bar-inner {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    background: linear-gradient(to right,#FD6131,#FE0000);
+}
+
+.seckill-detail .progress .progress-inner .now-price {
+    position: absolute;
+    bottom: 19px;
+    background-color: #ff2d4b;
+    border-radius: 3px;
+    color: #fff;
+    font-size: 12px;
+    padding: 5px 10px;
+    transform: translateX(-50%);
+    min-width: 83px;
+    text-align: center;
+}
+
+.seckill-detail .progress .progress-inner .now-price:before {
+    content: "";
+    display: block;
+    border-width: 5px;
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-style: solid dashed dashed;
+    border-color: #ff2d4b transparent transparent;
+    font-size: 0;
+    line-height: 0;
+    z-index: 10;
+}
+
+.seckill-detail .helper-list .helper-item {
+    margin-top: 10px;
+}
+
+.seckill-detail .helper-list .helper-item:first-child {
+    margin-top: 0px;
+}
+
+.seckill-detail .helper-list .helper-item .avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+.seckill-detail .richtext {
+    box-sizing: border-box;
+    width: 100%;
+    overflow-x: hidden;
+}
+
+.seckill-detail .richtext image {
+    max-width: 100%;
+}
+
+.seckill-detail .step .step-number {
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    margin-right: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #000;
+    color: #fff;
+    font-size: 10px;
+}
+
+.comment {
+    background-color: #fff;
+    margin-top: 10px;
+    padding-left: 15px;
+}
+
+.comment .no-comment {
+    padding: 20px 15px 20px 0;
+    text-align: center;
+    background-color: #fff;
+    color: #999;
+    font-size: 14px;
+}
+
+.comment .avatar image {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+
+.comment .basic {
+    padding-left: 10px;
+    flex: 1;
+}
+
+.comment .comment-item {
+    margin-left: 60px;
+}
+
+.comment .comment-item .text {
+    font-size: 13px;
+    line-height: 1.4;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 4;
+    overflow: hidden;
+}
+
+.comment .comment-item .thumbs image {
+    width: 100%;
+    height: 60px;
+    border-radius: 3px;
+}
+
+.comment .comment-item .thumbs {
+    position: relative;
+    font-size: 0px;
+    margin: 0 -5px;
+    box-sizing: border-box;
+}
+
+.comment .comment-item .thumbs .col-25 {
+    box-sizing: border-box;
+    font-size: 0px;
+    padding: 0 5px;
+}
+
+.comment .comment-item .thumbs-num {
+    position: absolute;
+    right: 5px;
+    bottom: 0;
+    color: #fff;
+    background-color: rgba(0,0,0,0.5);
+    font-size: 11px;
+    padding: 3px 5px;
+}
+
+.comment .comment-item .comment-tags {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: flex-start;
+}
+
+.comment .comment-item .comment-tags .icon-tag {
+    margin-top: 2px;
+}
+
+.comment .comment-item .tags-wrap {
+    display: flex;
+    flex-flow: row wrap;
+    align-items: center;
+    line-height: 1.3;
+}
+
+.comment .item-star-box {
+    width: 70px;
+    position: relative;
+}
+
+.comment .stars-bg {
+    color: #ff2d4b;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    white-space: nowrap;
+    margin-top: -2px;
+}
+
+.comment .item-star-box .stars {
+    width: 75%;
+    margin-top: -2px;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.seckill-detail .activity-list {
+    padding: 7.5px;
+    background-color: #fff;
+    display: flex;
+    flex-flow: row wrap;
+    align-items: center;
+    box-sizing: border-box;
+}
+
+.seckill-detail .activity-list .activity-item {
+    width: 50%;
+    padding: 7.5px;
+    box-sizing: border-box;
+}
+
+.seckill-detail .activity-item .thumb {
+    width: 100%;
+    height: 162px;
+    font-size: 0px;
+    border-radius: 3px;
+    overflow: hidden;
+    position: relative;
+}
+
+.seckill-detail .activity-item .goods-title {
+    font-size: 14px;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+    line-height: 1.2;
+    margin: 8px 0;
+    height: 33px;
+}
+
+.goods-action {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    height: 50px;
+    background-color: #fff;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+}
+
+.goods-action .mini-btn {
+    min-width: 15%;
+    height: 50px;
+    font-size: 12px;
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    justify-content: center;
+    color: #666;
+    line-height: 1;
+}
+
+.goods-action .mini-btn.is_favor {
+    color: #ff2d4b;
+}
+
+.goods-action .mini-btn .icon {
+    font-size: 18px;
+    margin-bottom: 5px;
+}
+
+.goods-action .big-btn {
+    flex: 1;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 15px;
+    color: #fff;
+    background: linear-gradient(to right,#FD6131,#FE0000);
+}
+
+.goods-action .big-btn.btn-buy {
+    background: linear-gradient(to right,#FFBC2D,#FF9B2C);
+}
+
+.goods-action .big-btn.btn-disabled {
+    background: #e8e8e8;
+    color: #999;
+}

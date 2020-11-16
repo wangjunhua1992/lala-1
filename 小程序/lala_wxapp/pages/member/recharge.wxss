@@ -1,0 +1,130 @@
+page {
+    background: #f4f4f4;
+}
+
+.container .content .recharge-list {
+    margin: 11px 11px 0 11px;
+}
+
+.container .content .recharge-list .col-27 {
+    background: #fff;
+    position: relative;
+    float: left;
+    margin-right: 2.3%;
+}
+
+.container .content .recharge-list .col-28:nth-child(3n+0) {
+    margin-right: 0;
+}
+
+.container .content .recharge-list .recharge-item {
+    border: 1px solid #e0e0e0;
+    margin-bottom: 11px;
+    position: relative;
+    text-align: center;
+    color: #10aeff;
+    background-color: #fff;
+    padding: 6px;
+    font-size: 13px;
+    height: 60px;
+    line-height: 60px;
+}
+
+.container .content .recharge-list .recharge-item.selected {
+    border-color: #F1563F;
+}
+
+.container .content .recharge-list .recharge-item .entry-text {
+    display: inline-block;
+}
+
+.container .content .recharge-list .recharge-item input {
+    color: #333;
+    width: 100%;
+    height: 44px;
+    padding-top: 10px;
+    outline: 0;
+    border: none;
+    text-align: center;
+}
+
+.container .content .recharge-list .recharge-item .selected-status {
+    display: none;
+}
+
+.container .content .recharge-list .recharge-item.selected .selected-status {
+    display: block;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    width: 31px;
+    height: 24px;
+    display: inline-block;
+    z-index: 2;
+}
+
+.container .content .recharge-list .recharge-item.selected .selected-status image {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    width: 100%;
+    height: 100%;
+}
+
+.container .content .recharge-list .recharge-item .text {
+    color: #333;
+}
+
+.container .content .recharge-list .recharge-item .activity {
+    color: #10aeff;
+    line-height: 1.7;
+}
+
+.container .content .recharge-list .recharge-item .activity .content {
+    height: 27px;
+    line-height: 27px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.container .content .recharge-list .recharge-item .activity view:first-child {
+    font-size: 15px;
+}
+
+.container .content .list-block {
+    padding: 0 11px;
+    font-size: 13px;
+}
+
+.container .content .list-block .item-content {
+    padding: 8px 16px;
+    background: #fff;
+    min-height: 30px;
+    line-height: 30px;
+}
+
+.container .content .list-block .item-content view {
+    display: inline-block;
+}
+
+.container .content .list-block .item-content .item-after {
+    max-height: 30px;
+    max-width: 300px;
+    color: #04be02;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    float: right;
+}
+
+.container .content .content-block {
+    text-align: center;
+    margin-top: 15px;
+}
+
+.container .content .recharge-list .recharge-item .activity view .text {
+    display: inline-block;
+    font-size: 13px;
+    color: #10aeff;
+}

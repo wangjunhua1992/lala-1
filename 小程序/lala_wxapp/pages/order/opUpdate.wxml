@@ -1,0 +1,38 @@
+<view class="order-opUpdate">
+    <view class="content">
+        <view class="text" wx:if="{{type=='note'}}">
+            <textarea bindinput="onNote" placeholder="请输入备注,最多50字哦" value="{{order.note}}"></textarea>
+            <view class="label-box" wx:if="{{order_note}}">
+                <view bind:tap="onChooseLabel" class="label" data-note="{{item}}" wx:for="{{order_note}}" wx:key="{{index}}">{{item}}</view>
+            </view>
+        </view>
+        <view class="select" wx:elif="{{type=='person_num'}}">
+            <view class="weui-cell weui-cell_select">
+                <view class="weui-cell__hd weui-cell__hd_in-select-after">
+                    <view class="weui-label">餐具</view>
+                </view>
+                <view class="weui-cell__bd">
+                    <picker bindchange="bindChange" range="{{person}}" value="{{index}}">
+                        <view class="weui-select weui-select_in-select-after text-right">{{order.person_num}}人</view>
+                    </picker>
+                </view>
+            </view>
+        </view>
+        <view class="mobile" wx:elif="{{type=='mobile'}}">
+            <view class="weui-cells weui-cells_after-title">
+                <view class="weui-cell weui-cell_input">
+                    <view class="weui-cell__hd">
+                        <view class="weui-label">收货电话</view>
+                    </view>
+                    <view class="weui-cell__bd">
+                        <input bindinput="onMobile" class="weui-input" value="{{order.mobile}}"></input>
+                    </view>
+                </view>
+            </view>
+        </view>
+        <view class="btn-box">
+            <view bind:tap="onSubmit" class="btn btn-large {{islegal?'btn-danger':'btn-disabled'}}">保存</view>
+        </view>
+    </view>
+</view>
+<include src="../public/footer.wxml"></include>

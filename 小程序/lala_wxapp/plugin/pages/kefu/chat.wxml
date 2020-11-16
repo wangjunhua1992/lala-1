@@ -1,0 +1,140 @@
+<view class="kefu-chat">
+    <view class="connection">
+        <view class="status" wx:if="{{kefu.isonline==1&&0}}">{{kefu.online_cn}}</view>
+        <view class="call flex c-danger">
+            <view bind:tap="onJsEvent" class="flex" data-event-type="jsPhone" data-phonenumber="{{kefu.mobile}}">
+                <text class="icon icon-telephone"></text>
+                <text>{{kefu.mobile_cn}}</text>
+            </view>
+        </view>
+    </view>
+    <scroll-view bindscrolltoupper="onLoadMore" class="chatlog" scrollTop="{{scrollTop}}" scrollY="{{true}}" style="bottom: {{chatLogBottom}}px;">
+        <view class="weui-loadmore" wx:if="{{!chatlog.finished}}">
+            <view class="weui-loading"></view>
+            <view class="weui-loadmore__tips">正在加载中</view>
+        </view>
+        <view class="log-item {{chatlogItem.isleft==1?'left':'right'}}" wx:for="{{chatlog.data}}" wx:for-item="chatlogItem" wx:key="{{chatlogItem.id}}">
+            <view class="time flex-center margin-15-b" wx:if="{{chatlogItem.addtime_cn}}">
+                <view>{{chatlogItem.addtime_cn}}</view>
+            </view>
+            <view class="detail">
+                <view class="avatar">
+                    <image alt="" class="wh-100" src="{{chatlogItem.avatar}}"></image>
+                </view>
+                <view class="text before" wx:if="{{chatlogItem.type=='text'}}">{{chatlogItem.content}}</view>
+                <view bind:tap="onImagePreview" class="image" data-preview="{{chatlogItem.content}}" wx:elif="{{chatlogItem.type=='image'}}">
+                    <image mode="widthFix" src="{{chatlogItem.content}}"></image>
+                </view>
+                <view bind:tap="onJsEvent" class="order before" data-event-type="jsUrl" data-url="pages/order/detail?id={{chatlogItem.orderid}}" wx:elif="{{chatlogItem.type=='orderTakeout'}}">
+                    <view class="c-gray">订单信息</view>
+                    <view class="flex-lr margin-10-t">
+                        <view class="store-logo">
+                            <image alt="" class="wh-100" src="{{chatlogItem.content.logo}}"></image>
+                        </view>
+                        <view class="order-info">
+                            <view class="flex-lr">
+                                <view class="store-title ellipsis">{{chatlogItem.content.title}}</view>
+                                <view class="order-status font-12 ellipsis">{{chatlogItem.content.status_cn}}</view>
+                            </view>
+                            <view class="flex-lr c-gray">
+                                <view class="goods-title ellipsis">{{chatlogItem.content.goods_title}}</view>
+                                <view class="order-fee font-12 ellipsis">
+									实付<text class="c-default">{{Lang.dollarSign}}{{chatlogItem.content.final_fee}}{{Lang.dollarSignCn}}</text>
+                                </view>
+                            </view>
+                        </view>
+                    </view>
+                </view>
+            </view>
+        </view>
+        <view class="order-card margin-15-t" wx:if="{{relation=='member2clerk'&&order.id>0&&!hasSendOrder}}">
+            <view class="flex-lr padding-15 van-hairline--bottom">
+                <view class="store-logo">
+                    <image alt="" class="wh-100" src="{{order.logo}}"></image>
+                </view>
+                <view class="order-info">
+                    <view class="flex-lr">
+                        <view class="store-title ellipsis">{{order.title}}</view>
+                        <view class="order-status ellipsis">{{order.status_cn}}</view>
+                    </view>
+                    <view class="flex-lr c-gray">
+                        <view class="goods-title ellipsis">{{order.goods_title}}</view>
+                        <view class="order-fee ellipsis">
+							实付<text class="c-default">{{Lang.dollarSign}}{{order.final_fee}}{{Lang.dollarSignCn}}</text>
+                        </view>
+                    </view>
+                </view>
+            </view>
+            <view bind:tap="onSendMessage" class="send flex-center" data-content="{{order.id}}" data-type="orderTakeout">发送订单</view>
+        </view>
+    </scroll-view>
+    <view class="tools" wx:if="{{chat.status==1}}">
+        <view class="guess flex padding-15-lr padding-10-tb van-hairline--bottom">
+            <text class="c-gray margin-10-r">猜你喜欢</text>
+            <view class="guess-list">
+                <view bind:tap="onShowOrders" class="guess-item">咨询订单</view>
+            </view>
+        </view>
+        <view class="main flex-lr">
+            <input bindblur="onBlur" bindfocus="onFocus" bindinput="onBindContentInput" class="text" placeholder="输入消息..." type="text" value="{{content}}"></input>
+            <text bind:tap="onToggleStatus" class="icon icon-sort margin-15-lr" data-key="fastReply"></text>
+            <text bind:tap="onToggleStatus" class="icon icon-add" data-key="others" wx:if="{{!content}}"></text>
+            <view bind:tap="onSendMessage" class="btn-send" data-content="{{content}}" data-type="text" wx:else>发送</view>
+        </view>
+        <scroll-view class="common-reply van-hairline--top" scrollY="{{true}}" wx:if="{{status.fastReply}}">
+            <view bind:tap="onSendMessage" class="reply-item van-hairline--bottom" data-content="{{item}}" data-type="text" wx:for="{{fastReply}}" wx:key="{{index}}">
+				{{item}}
+			</view>
+            <view class="reply-item flex-center c-danger">
+                <text class="icon icon-add margin-5-r"></text>
+                <text bind:tap="onTogglePopup" data-key="fastReply">添加常用语</text>
+            </view>
+        </scroll-view>
+        <view class="others" wx:if="{{status.others}}">
+            <view class="other-item">
+                <view bind:tap="onUploadImg" class="other-item-inner">
+                    <text class="icon icon-pic-filling"></text>
+                    <text class="margin-10-t">照片</text>
+                </view>
+            </view>
+        </view>
+    </view>
+    <view class="close-tips ellipsis van-hairline--top" wx:else>{{chat.reason}}</view>
+    <van-popup bind:close="onTogglePopup" customClass="order-list-popup" data-key="order" position="bottom" show="{{popup.order}}">
+        <view class="title padding-15 flex-lr van-hairline--bottom">
+            <view class="font-15">点击发送订单<span class="c-gray font-12 margin-10-l">展示最近5个订单</span>
+            </view>
+            <text bind:tap="onTogglePopup" class="icon icon-close font-20" data-key="order"></text>
+        </view>
+        <scroll-view class="popup-content" scrollY="{{true}}">
+            <view bind:tap="onOrderClick" class="order-item padding-15-l bg-default font-15" data-id="{{item.id}}" wx:for="{{orders}}" wx:key="{{index}}">
+                <view class="item-inner {{index>0?'van-hairline--top':''}}">
+                    <view class="store-logo">
+                        <image alt="" class="wh-100" src="{{item.logo}}"></image>
+                    </view>
+                    <view class="info">
+                        <view class="flex-lr w-100">
+                            <view class="store-title ellipsis">{{item.title}}</view>
+                            <view class="order-status ellipsis">{{item.status_cn}}</view>
+                        </view>
+                        <view class="flex-lr c-gray padding-10-t">
+                            <view class="goods-title ellipsis">{{item.goods_title}}</view>
+                            <view class="order-fee ellipsis">
+								实付<text class="c-default">{{Lang.dollarSign}}{{item.final_fee}}</text>
+                            </view>
+                        </view>
+                    </view>
+                </view>
+            </view>
+        </scroll-view>
+    </van-popup>
+    <van-popup bind:close="onTogglePopup" customClass="fast-reply-popup" data-key="fastReply" show="{{popup.fastReply}}">
+        <view class="title">添加快捷短语</view>
+        <van-field bind:input="onFastReplyInput" border="{{false}}" placeholder="例如: 我不能吃辣, 麻烦少放些辣椒" type="textarea"></van-field>
+        <view class="flex-center van-hairline--top">
+            <view bind:tap="onTogglePopup" class="flex-1 flex-center padding-15-tb van-hairline--right" data-key="fastReply">取消</view>
+            <view bind:tap="onConfirmFastReply" class="flex-1 flex-center padding-15-tb c-gray">确认添加</view>
+        </view>
+    </van-popup>
+</view>
+<include src="../../../pages/public/footer.wxml"></include>

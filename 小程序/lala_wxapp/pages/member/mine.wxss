@@ -1,0 +1,19 @@
+@import "../../nmy/5.wxss";
+
+page {
+    background: #F3F3F3;
+}
+
+.copyright {
+    background: #fff;
+}
+
+.page-member .page-member-swiper {
+    margin-top: 10px;
+    height: 80px;
+}
+
+.page-member .page-member-swiper image {
+    width: 100%;
+    height: 100%;
+}

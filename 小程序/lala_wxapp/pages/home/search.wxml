@@ -1,0 +1,49 @@
+<tab-bar menufooter="{{menufooter}}" wx:if="{{menufooter&&menufooter.data}}"></tab-bar>
+<view class="container">
+    <view class="content">
+        <view class="search-header-wrap">
+            <view class="search-header">
+                <view class="search-sec">
+                    <form>
+                        <view class="icon icon-search"></view>
+                        <input bindinput="onInput" class="search-input" placeholder="请输入商家或商品名称" value="{{keyword}}"></input>
+                    </form>
+                </view>
+                <view bind:tap="onSearch" class="search-btn">搜索</view>
+            </view>
+        </view>
+        <view class="rmd-history" wx:if="{{hotStores.length>0||searchHistorys.length>0}}">
+            <view class="search-rmd-wrap" wx:if="{{hotStores.length>0}}">
+                <view class="search-rmd-title">
+                    <view>热门搜索</view>
+                </view>
+                <view class="search-rmd">
+                    <navigator url="{{item.url}}" wx:for="{{hotStores}}">{{item.title}}</navigator>
+                </view>
+            </view>
+            <view class="search-history-wrap" wx:if="{{searchHistorys.length>0}}">
+                <view class="search-rmd-title">
+                    <view>历史搜索</view>
+                    <view bind:tap="onClearHistory" class="icon icon-delete"></view>
+                </view>
+                <view class="search-rmd">
+                    <view bind:tap="onKeyword" data-keyword="{{item}}" wx:for="{{searchHistorys}}">{{item}}</view>
+                </view>
+            </view>
+        </view>
+        <view class="guess" wx:if="{{recommendStores.length>0}}">
+            <view class="search-rmd-title">
+                <view>猜你在找</view>
+                <view class="change hide">换一批</view>
+            </view>
+            <navigator class="wui-cell wui-cell-access" url="{{item.url}}" wx:for="{{recommendStores}}">
+                <view class="wui-cell-bd">
+                    <image src="{{item.logo}}"></image>
+						{{item.title}}
+					</view>
+                <view class="wui-cell-ft"></view>
+            </navigator>
+        </view>
+    </view>
+</view>
+<include src="../public/footer.wxml"></include>

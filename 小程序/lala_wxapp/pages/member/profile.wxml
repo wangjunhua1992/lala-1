@@ -1,0 +1,28 @@
+<view class="container">
+    <view class="content">
+        <view class="list">
+            <view class="wui-cell">
+                <view class="wui-cell-bd">会员uid</view>
+                <view class="wui-cell-ft">{{user.uid}}</view>
+            </view>
+            <navigator class="wui-cell wui-cell-access" url="bind?mobile={{user.mobile}}">
+                <view class="wui-cell-bd">手机号</view>
+                <view class="wui-cell-ft" wx:if="{{user.mobile}}">{{user.mobile}}</view>
+                <view class="wui-cell-ft" wx:if="{{!user.mobile}}">绑定手机号</view>
+            </navigator>
+            <navigator class="wui-cell wui-cell-access" url="profileUsername?username={{user.realname}}">
+                <view class="wui-cell-bd">用户名</view>
+                <view class="wui-cell-ft">{{user.realname}}</view>
+            </navigator>
+            <navigator class="wui-cell wui-cell-access" url="profilePassword">
+                <view class="wui-cell-bd">账号密码</view>
+                <view class="wui-cell-ft">修改</view>
+            </navigator>
+            <view bind:tap="onJsEvent" class="wui-cell wui-cell-access" data-event-type="jsRemoveCache">
+                <view class="wui-cell-bd">更新缓存</view>
+                <view class="wui-cell-ft">版本{{ext.siteInfo.version}}</view>
+            </view>
+        </view>
+    </view>
+</view>
+<include src="../public/footer.wxml"></include>

@@ -1,0 +1,241 @@
+<view class="page-index">
+    <view class="content">
+        <view class="header clearfix" style="background-color: {{bgColor}}">
+            <view class="top clearfix">
+                <view class="avatar">
+                    <image src="{{store.logo}}"></image>
+                </view>
+                <view class="campaign">
+                    <view class="text">
+                        <view>起送{{Lang.dollarSign}}{{store.send_price}}</view>
+                        <view class="fg-line"></view>
+                        <view>配送{{Lang.dollarSign}}{{store.delivery_price}}</view>
+                        <view class="fg-line"></view>
+                        <view>{{store.delivery_time}}分钟</view>
+                        <view class="allocation-icon" wx:if="{{store.delivery_title}}">{{store.delivery_title}}</view>
+                    </view>
+                    <view class="notice">
+                        <view class="icon icon-voice"></view>
+						{{store.notice?store.notice:'本店暂无公告'}}
+					</view>
+                </view>
+                <view bind:tap="onFavor" class="collect" data-sid="{{store.id}}" wx:if="{{store.is_favorite==1}}">
+                    <view class="icon icon-favoritesfilling"></view>
+                    <view class="text">已收藏</view>
+                </view>
+                <view bind:tap="onFavor" class="collect" data-sid="{{store.id}}" wx:if="{{!store.is_favorite}}">
+                    <view class="icon icon-favorite"></view>
+                    <view class="text">收藏</view>
+                </view>
+            </view>
+            <view class="activity-box clearfix">
+                <swiper autoplay="true" circular="true" class="activity-scroll" vertical="true" wx:if="{{activity.num&&activity.num>0}}">
+                    <swiper-item wx:for="{{activity.items}}" wx:for-item="activity">
+                        <view class="activity">
+                            <image src="/static/img/{{activity.type}}_b.png"></image>
+                            <view>{{activity.title}}</view>
+                        </view>
+                    </swiper-item>
+                </swiper>
+                <view class="more" wx:if="{{activity.num&&activity.num>0}}">
+                    <navigator url="index?sid={{store.id}}">
+						{{activity.num}}个活动
+						<view class="icon icon-xiangyou1"></view>
+                    </navigator>
+                </view>
+                <view class="interim" wx:if="{{activityStatus}}">
+                    <view>起送{{Lang.dollarSign}}{{store.send_price}}</view>
+                    <view class="fg-line"></view>
+                    <view>配送{{Lang.dollarSign}}{{store.delivery_price}}</view>
+                    <view class="fg-line"></view>
+                    <view>{{store.delivery_time}}分钟</view>
+                </view>
+            </view>
+        </view>
+        <view class="wui-tab">
+            <view class="wui-tab-bd">
+                <navigator class="wui-tab-item" openType="redirect" url="goods?sid={{store.id}}">
+                    <view class="wui-tab-title">商品</view>
+                </navigator>
+                <navigator class="wui-tab-item" openType="redirect" url="comment?sid={{store.id}}">
+                    <view class="wui-tab-title">评价</view>
+                </navigator>
+                <view class="wui-tab-item wui-tab-item-selected">
+                    <view class="wui-tab-title" style="color: {{bgColor}}; border-bottom: 2px solid {{bgColor}}">商家</view>
+                </view>
+            </view>
+        </view>
+        <view class="detail-menu-content">
+            <view class="store-detail">
+                <scroll-view scrollY="true">
+                    <view class="detail-wrap">
+                        <view class="detail-region">
+                            <view class="no-gutter">
+                                <view bind:tap="onJsEvent" class="col-20" data-event-type="jsUrl" data-url="pages/store/goods?sid={{store.id}}">
+                                    <view class="icon icon-takeout"></view>
+                                    <view>{{store.service_titles.takeout}}</view>
+                                </view>
+                                <view bind:tap="onJsEvent" class="col-20" data-event-type="jsUrl" data-url="wx:scanCode" wx:if="{{store.is_meal==1}}">
+                                    <view class="icon icon-qrcode"></view>
+                                    <view>{{store.service_titles.tangshi}}</view>
+                                </view>
+                                <view bind:tap="onJsEvent" class="col-20" data-event-type="jsUrl" data-url="tangshi/pages/reserve/index?sid={{store.id}}" wx:if="{{store.is_reserve==1}}">
+                                    <view class="icon icon-reserve"></view>
+                                    <view>{{store.service_titles.reserve}}</view>
+                                </view>
+                                <view bind:tap="onJsEvent" class="col-20" data-event-type="jsUrl" data-url="pages/store/paybill?sid={{store.id}}" wx:if="{{store.is_paybill==1}}">
+                                    <view class="icon icon-signboard"></view>
+                                    <view>{{store.service_titles.paybill}}</view>
+                                </view>
+                                <view bind:tap="onJsEvent" class="col-20" data-event-type="jsUrl" data-url="tangshi/pages/assign/assign?sid={{store.id}}" wx:if="{{store.is_assign==1}}">
+                                    <view class="icon icon-assign"></view>
+                                    <view>{{store.service_titles.assign}}</view>
+                                </view>
+                            </view>
+                        </view>
+                        <view class="detail-region">
+                            <view class="detail-content" wx:if="{{store.thumbs&&store.thumbs.length>0}}">
+                                <view class="wui-cell wui-cell-access padding-10-tb">
+                                    <view class="wui-cell-bd">
+                                        <view class="icon icon-shop font-18"></view>
+										门店实景
+									</view>
+                                </view>
+                                <view class="pic border-1px-t">
+                                    <scroll-view class="pic-row" scrollX="true">
+                                        <view bind:tap="onImg" class="pic-box" data-type="{{index}}" wx:for="{{store.thumbs}}" wx:key="{{index}}">
+                                            <image src="{{item.image}}"></image>
+                                        </view>
+                                    </scroll-view>
+                                </view>
+                            </view>
+                        </view>
+                        <view class="detail-region">
+                            <view class="detail-content" wx:if="{{store.qualification&&(store.qualification.business&&store.qualification.business.thumb||store.qualification.service&&store.qualification.service.thumb||store.qualification.more1&&store.qualification.more1.thumb||store.qualification.more2&&store.qualification.more2.thumb)}}">
+                                <view class="wui-cell wui-cell-access padding-10-tb">
+                                    <view class="wui-cell-bd">
+                                        <view class="icon icon-pic font-18"></view>
+										营业资质
+									</view>
+                                </view>
+                                <view class="pic border-1px-t">
+                                    <scroll-view class="pic-row" scrollX="true">
+                                        <view bind:tap="onImg" class="pic-box" data-type="business" wx:if="{{store.qualification.business.thumb}}">
+                                            <image src="{{store.qualification.business.thumb}}"></image>
+                                        </view>
+                                        <view bind:tap="onImg" class="pic-box" data-type="service" wx:if="{{store.qualification.service.thumb}}">
+                                            <image src="{{store.qualification.service.thumb}}"></image>
+                                        </view>
+                                        <view bind:tap="onImg" class="pic-box" data-type="more1" wx:if="{{store.qualification.more1.thumb}}">
+                                            <image src="{{store.qualification.more1.thumb}}"></image>
+                                        </view>
+                                        <view bind:tap="onImg" class="pic-box" data-type="more2" wx:if="{{store.qualification.more2.thumb}}">
+                                            <image src="{{store.qualification.more2.thumb}}"></image>
+                                        </view>
+                                    </scroll-view>
+                                </view>
+                            </view>
+                        </view>
+                        <view class="detail-region border-1px-tb custom-url-wrap" wx:if="{{store.custom_url}}">
+                            <view bind:tap="onJsEvent" class="wui-cell wui-cell-access {{index>0?'border-1px-t':''}}" data-event-type="jsUrl" data-url="{{item.wxapp_link}}" wx:for="{{store.custom_url}}">
+                                <view class="wui-cell-bd">
+                                    <view class="icon icon-all font-16"></view>
+										{{item.title}}
+									</view>
+                                <view class="wui-cell-ft"></view>
+                            </view>
+                        </view>
+                        <view class="detail-region">
+                            <view class="detail-content">
+                                <view class="detail-service">
+                                    <view class="rest-ico">
+                                        <view class="icon icon-newshot"></view>
+                                    </view>
+                                    <view class="rest-text">配送服务：
+										<view class="allocation-icon" wx:if="{{store.delivery_title}}">{{store.delivery_title}}</view>
+                                        <view class="inline" wx:else>由 商家 </view>
+										提供配送服务</view>
+                                </view>
+                                <view bind:tap="onJsEvent" class="detail-mobile border-1px-t" data-event-type="jsPhone" data-phoneNumber="{{store.telephone}}" wx:if="{{hide_telephone!=1}}">
+                                    <view class="rest-ico">
+                                        <view class="icon icon-phone"></view>
+                                    </view>
+                                    <view class="rest-text">电话：{{store.telephone}}</view>
+                                </view>
+                                <view bind:tap="onJsEvent" class="detail-mobile border-1px-t" data-address="{{store.address}}" data-event-type="jsLocation" data-lat="{{store.location_x}}" data-lng="{{store.location_y}}" data-name="{{store.title}}">
+                                    <view class="rest-ico">
+                                        <view class="icon icon-phone"></view>
+                                    </view>
+                                    <view class="rest-text">地址：{{store.address}}</view>
+                                </view>
+                                <view class="detail-time border-1px-t">
+                                    <view class="rest-ico">
+                                        <view class="icon icon-time"></view>
+                                    </view>
+                                    <view class="rest-text">营业时间：{{store.business_hours_cn}}</view>
+                                </view>
+                                <view class="detail-qq border-1px-t" wx:if="{{store.sns.qq}}">
+                                    <view class="rest-ico">
+                                        <view class="icon icon-qq"></view>
+                                    </view>
+                                    <view class="rest-text">{{store.sns.qq}}</view>
+                                </view>
+                                <view class="detail-weixin border-1px-t" wx:if="{{store.sns.weixin}}">
+                                    <view class="rest-ico">
+                                        <view class="icon icon-weixin"></view>
+                                    </view>
+                                    <view class="rest-text">{{store.sns.weixin}}</view>
+                                </view>
+                            </view>
+                        </view>
+                        <view class="detail-region">
+                            <view class="detail-content">
+                                <navigator class="wui-cell last" wx:if="{{store.notice}}">
+                                    <view class="wui-cell-bd">
+                                        <view class="icon icon-notification"></view>
+                                        <view class="notice-content">{{store.notice}}</view>
+                                    </view>
+                                    <view class="wui-cell-ft"></view>
+                                </navigator>
+                                <view class="detail-service last">
+                                    <view class="rest-ico">
+                                        <view class="icon icon-roundcheck"></view>
+                                    </view>
+                                    <view class="rest-text clearfix">
+                                        <text>商家服务</text>
+                                        <view class="service">
+                                            <view class="list">
+                                                <view class="img">
+                                                    <image src="/static/img/pay_b.png"></image>
+                                                </view>支持在线支付
+											</view>
+                                            <view class="list" wx:if="{{store.invoice_status==1}}">
+                                                <view class="img">
+                                                    <image src="/static/img/invoice_b.png"></image>
+                                                </view>支持使用代金券抵付现金
+											</view>
+                                        </view>
+                                    </view>
+                                </view>
+                            </view>
+                            <view class="discount-box border-1px-t">
+                                <view class="discount-item clearfix" wx:for="{{activity.items}}">
+                                    <view class="left">
+                                        <view class="icon-b">
+                                            <image src="/static/img/{{item.type}}_b.png"></image>
+                                        </view>
+                                    </view>
+                                    <view class="right">{{item.title}}</view>
+                                </view>
+                            </view>
+                        </view>
+                        <navigator class="report" url="./report?sid={{store.id}}">
+							举报商家
+						</navigator>
+                    </view>
+                </scroll-view>
+            </view>
+        </view>
+    </view>
+</view>
+<include src="../public/footer.wxml"></include>

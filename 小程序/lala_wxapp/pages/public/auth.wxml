@@ -1,0 +1,11 @@
+<view class="page-auth">
+    <view class="logo">
+        <image src="{{logo}}"></image>
+    </view>
+    <view class="title">{{title}} 申请获得以下权限</view>
+    <view class="tips">获得你的公开信息（昵称、头像等）</view>
+    <view class="buttons">
+        <button bind:tap="onCancel">拒绝</button>
+        <button bindgetuserinfo="onJsEvent" data-event-type="jsOauth" openType="getUserInfo" type="primary">授权</button>
+    </view>
+</view>

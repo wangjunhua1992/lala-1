@@ -1,0 +1,58 @@
+<view class="page-record">
+    <view class="wrapper-list border-1px-b">
+        <view bind:tap="onToggleType" class="wrapper-item" data-type="redpacket">
+            <text class="item {{type=='redpacket'?'active':''}}">红包</text>
+        </view>
+        <view bind:tap="onToggleType" class="wrapper-item" data-type="credit">
+            <text class="item {{type=='credit'?'active':''}}">奖励金</text>
+        </view>
+    </view>
+    <view class="record-list" wx:if="{{type=='redpacket'}}">
+        <view class="record-tips">
+            <image alt="" src="../../static/img/svip-shengyin.png"></image>
+            <text class="font-bold">下个月的<text class="c-danger font-bold">{{exchange_max}}次</text>领红包权益将于{{next}}可用</text>
+        </view>
+        <block wx:if="{{!redpacket.empty}}">
+            <view class="record-item" wx:for="{{redpacket.data}}" wx:key="{{item.id}}">
+                <view class="record-info flex-lr {{index>0?'border-1px-t':''}}">
+                    <view>
+                        <view class="font-14 font-bold">{{item.title}}</view>
+                        <view class="record-time">{{item.granttime_cn}}</view>
+                    </view>
+                    <view class="font-14 c-danger font-bold">{{Lang.dollarSign}}{{item.discount}}</view>
+                </view>
+            </view>
+            <view class="wui-loadmore wui-loadmore-nomore" wx:if="{{redpacket.loaded}}">
+                <view class="wui-loadmore-tips">我是有底线的</view>
+                <view class="wui-loadmore-line"></view>
+            </view>
+        </block>
+        <view class="wui-loadmore wui-loadmore-nomore" wx:else>
+            <view class="wui-loadmore-tips">暂无数据</view>
+            <view class="wui-loadmore-line"></view>
+        </view>
+    </view>
+    <view class="record-list" wx:elif="{{type=='credit'}}">
+        <block wx:if="{{!credit.empty}}">
+            <view class="record-item" wx:for="{{credit.data}}" wx:key="{{item.id}}">
+                <view class="record-info flex-lr {{index>0?'border-1px-t':''}}">
+                    <view>
+                        <view class="font-14 font-bold">{{item.title}}</view>
+                        <view class="font-13 mission" wx:if="{{item.remark}}">{{item.remark}}</view>
+                        <view class="record-time">{{item.createtime_cn}}</view>
+                    </view>
+                    <view class="font-14 font-bold {{item.num>0?'c-danger':'c-gray'}}">{{item.num}}个</view>
+                </view>
+            </view>
+            <view class="wui-loadmore wui-loadmore-nomore" wx:if="{{credit.loaded}}">
+                <view class="wui-loadmore-tips">我是有底线的</view>
+                <view class="wui-loadmore-line"></view>
+            </view>
+        </block>
+        <view class="wui-loadmore wui-loadmore-nomore" wx:else>
+            <view class="wui-loadmore-tips">暂无数据</view>
+            <view class="wui-loadmore-line"></view>
+        </view>
+    </view>
+</view>
+<include src="../../../pages/public/footer.wxml"></include>

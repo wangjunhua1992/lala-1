@@ -1,0 +1,9 @@
+<view class="count-down">
+    <text class="time-item">{{wxTimerDay[0]}}{{wxTimerDay[1]}}{{wxTimerDay[2]}}{{wxTimerDay[4]}}</text>
+    <text>:</text>
+    <text class="time-item">{{wxTimerHour[0]}}{{wxTimerHour[1]}}</text>
+    <text>:</text>
+    <text class="time-item">{{wxTimerMinute[0]}}{{wxTimerMinute[1]}}</text>
+    <text>:</text>
+    <text class="time-item">{{wxTimerSecond[0]}}{{wxTimerSecond[1]}}</text>
+</view>

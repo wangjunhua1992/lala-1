@@ -1,0 +1,92 @@
+<view class="content">
+    <view class="cart-list">
+        <view class="cart-item" wx:for="{{cartsInfo}}" wx:for-item="cartsInfoItem">
+            <view class="header flex-lr">
+                <navigator class="clearfix" url="../store/goods?sid={{cartsInfoItem.sid}}">
+                    <view class="avatar">
+                        <image src="{{cartsInfoItem.logo}}"></image>
+                    </view>
+                    <view class="store-title">{{cartsInfoItem.storeName}}</view>
+                    <view class="icon icon-xiangyou1"></view>
+                </navigator>
+                <view bind:tap="onTurncateCart" class="btn-delete" data-index="{{index}}" data-sid="{{cartsInfoItem.sid}}" wx:if="{{cartsInfoItem.is_rest==0}}">
+                    <view class="icon icon-delete"></view>
+                </view>
+                <view class="rest" wx:if="{{cartsInfoItem.is_rest==1}}">休息中</view>
+            </view>
+            <view class="activity-box" wx:if="{{cartsInfoItem.activity}}">
+                <text>促销</text> {{cartsInfoItem.activity}}
+				</view>
+            <block wx:for="{{cartsInfoItem.cart.data}}" wx:for-item="goodsInfo">
+                <view class="food-list" wx:if="{{options.goods_id!='88888'}}" wx:for="{{goodsInfo}}" wx:for-item="options">
+                    <view class="food-item clearfix">
+                        <view class="avatar">
+                            <image src="{{options.thumb}}"></image>
+                        </view>
+                        <view class="food-block">
+                            <view class="food-name flex">
+                                <view class="icon-b" wx:if="{{options.discount_num}}">
+                                    <image src="/static/img/discount_b.png"></image>
+                                </view>
+                                <view class="goods-title">{{options.title}}</view>
+                            </view>
+                            <view class="info-group">
+                                <view class="num">x{{options.num}}</view>
+                                <view class="right">
+                                    <view class="old-price" wx:if="{{options.discount_num}}">{{Lang.dollarSign}}{{options.total_price}}</view>
+                                    <view class="price">{{Lang.dollarSign}}{{options.total_discount_price}}</view>
+                                </view>
+                            </view>
+                        </view>
+                    </view>
+                </view>
+            </block>
+            <view class="discount-box clearfix" wx:if="{{cartsInfoItem.cart.box_price>0}}">
+                <view class="discount-item">
+                    <view class="name">{{cartsInfoItem.cart.data1[88888][0].title}}</view>
+                    <view class="price">{{Lang.dollarSign}}{{cartsInfoItem.cart.box_price}}</view>
+                </view>
+            </view>
+            <view class="discount-box clearfix" wx:if="{{cartsInfoItem.discounts.list}}">
+                <view class="discount-item" wx:for="{{cartsInfoItem.discounts.list}}" wx:for-item="list_item">
+                    <view class="name">{{list_item.name}}</view>
+                    <view class="price">{{list_item.text}}</view>
+                </view>
+            </view>
+            <view class="footer-group border-1px-t">
+                <block wx:if="{{cartsInfoItem.send_limit<=0}}">
+                    <view class="discount" wx:if="{{cartsInfoItem.discounts.total>0}}">
+							已优惠{{cartsInfoItem.discounts.total}}{{Lang.dollarSignCn}}
+						</view>
+                </block>
+                <view class="discount" wx:else>
+							还差{{cartsInfoItem.send_limit}}{{Lang.dollarSignCn}}起送
+						</view>
+                <view class="pay-fee">
+						{{Lang.dollarSign}}{{cartsInfoItem.final_fee}}
+					</view>
+                <navigator class="clearfix" url="./create?sid={{cartsInfoItem.sid}}" wx:if="{{cartsInfoItem.send_limit<=0}}">
+                    <view class="button">
+							去结算
+						</view>
+                </navigator>
+                <navigator class="clearfix" url="../store/goods?sid={{cartsInfoItem.sid}}" wx:else>
+                    <view class="button button-danger">
+							去凑单
+						</view>
+                </navigator>
+            </view>
+            <view class="mask" wx:if="{{cartsInfoItem.is_rest==1}}"></view>
+        </view>
+    </view>
+    <view class="weui-loadmore" wx:if="{{showloading}}">
+        <view class="weui-loading"></view>
+        <view class="weui-loadmore__tips">正在加载中</view>
+    </view>
+    <view class="no-data" wx:if="{{showNodata}}">
+        <image class="no-cart" src="http://cos.lalawaimai.com/we7_wmall/wxapp/cart_con.png"></image>
+        <text class="no-record">您还没有添加购物车，快去购买吧</text>
+        <navigator class="target" openType="switchTab" url="../home/index">现在去购物</navigator>
+    </view>
+</view>
+<include src="../public/footer.wxml"></include>

@@ -1,0 +1,118 @@
+page {
+    background-color: #f4f4f4;
+}
+
+.wui-cell {
+    padding: 15px 0;
+    margin: 0 15px;
+}
+
+.wui-cell::after {
+    border-top: 0;
+}
+
+.container .content .address {
+    background-color: #fff;
+}
+
+.container .content .address .wui-cell .wui-cell-bd>view {
+    display: inline-block;
+    float: left;
+}
+
+.container .content .address .wui-cell .wui-cell-bd .text {
+    font-size: 16px;
+    width: 25%;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.container .content .address .wui-cell .wui-cell-bd picker {
+    float: right;
+    font-size: 16px;
+    width: 75%;
+}
+
+.container .content .address .wui-cell .wui-cell-bd>view:last-child {
+    font-size: 16px;
+    width: 75%;
+}
+
+.container .content .address .wui-cell .wui-cell-bd .name {
+    padding-bottom: 10px;
+}
+
+.container .content .address .wui-cell .wui-cell-bd .sex {
+    margin-top: 12px;
+    padding-bottom: 12px;
+}
+
+.container .content .address .wui-cell .wui-cell-bd .sex radio {
+    margin-right: 20px;
+}
+
+.container .content .address .wui-cell.contact {
+    padding-bottom: 0;
+}
+
+.container .content .btn-box {
+    margin-top: 10px;
+    text-align: center;
+}
+
+.container .content .btn-box button {
+    display: inline-block;
+    line-height: normal;
+    border-radius: 3px;
+    padding: 11px 0;
+}
+
+.btn-danger {
+    color: #fff!important;
+    background: #EF4F4F!important;
+}
+
+.btn-warning {
+    background-color: #ff2d4b!important;
+}
+
+.container .content .address-tag {
+    padding: 15px 0;
+    margin: 0 15px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+}
+
+.container .content .address-tag .tag-title {
+    font-size: 16px;
+    width: 25%;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.container .content .address-tag .tag-list {
+    width: 75%;
+    display: flex;
+    align-items: center;
+    flex: 1;
+    line-height: 1;
+}
+
+.container .content .address-tag .tag-list .tag-item {
+    width: 47px;
+    text-align: center;
+    font-size: 14px;
+    padding: 4px 0;
+    border: 1px solid #f5f5f5;
+    margin-right: 15px;
+}
+
+.container .content .address-tag .tag-list .tag-item.active {
+    background-color: #FF2D4B;
+    color: #fff;
+    border: 1px solid #f5f5f5;
+}

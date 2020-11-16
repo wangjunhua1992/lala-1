@@ -1,0 +1,178 @@
+<view id="yikatong-index">
+    <view class="content">
+        <view class="vip-card bg-default">
+            <view class="card-bg"></view>
+            <view class="card-wrap">
+                <view class="img-wrap">
+                    <image alt="" mode="widthFix" src="../../static/img/vip_bg.png"></image>
+                </view>
+                <view class="card-content">
+                    <view class="card-tip">
+						开通啦啦生活圈一卡通预计将为您节省
+						<text class="margin-5-l font-16 font-500">{{Lang.dollarSign}}123.45</text>
+                    </view>
+                    <view class="btn-buy">立即开通</view>
+                </view>
+            </view>
+        </view>
+        <view class="vip-boon bg-default">
+            <view class="boon-header">
+                <view class="boom-title">尊享权益</view>
+                <view class="bg-line"></view>
+            </view>
+            <view class="flex-lr">
+                <view class="boon-item">
+                    <view class="img-wrap">
+                        <image alt="" src="../../static/img/vip_privilege.png"></image>
+                    </view>
+                    <text class="font-13 margin-10-t">专属特权</text>
+                </view>
+                <view class="boon-item">
+                    <view class="img-wrap">
+                        <image alt="" src="../../static/img/vip_gift.png"></image>
+                    </view>
+                    <text class="font-13 margin-10-t">会员礼包</text>
+                </view>
+                <view class="boon-item">
+                    <view class="img-wrap">
+                        <image alt="" src="../../static/img/vip_discount.png"></image>
+                    </view>
+                    <text class="font-13 margin-10-t">专属折扣</text>
+                </view>
+                <view class="boon-item">
+                    <view class="img-wrap">
+                        <image alt="" src="../../static/img/vip_coupon.png"></image>
+                    </view>
+                    <text class="font-13 margin-10-t">专属卡券</text>
+                </view>
+            </view>
+        </view>
+        <view class="margin-10-t ">
+            <view class="tab-group van-hairline--bottom">
+                <view bind:tap="onToggleTab" class="tab-item {{tabActive=='privilege'?'active':''}}" data-tab="privilege">会员特权</view>
+                <view bind:tap="onToggleTab" class="tab-item {{tabActive=='seckill'?'active':''}}" data-tab="seckill">专享抢购</view>
+                <view bind:tap="onToggleTab" class="tab-item {{tabActive=='gift'?'active':''}}" data-tab="gift">会员礼包</view>
+                <view bind:tap="onToggleTab" class="tab-item {{tabActive=='coupon'?'active':''}}" data-tab="coupon">专属卡券</view>
+            </view>
+            <view class="privilege bg-default" wx:if="{{tabActive=='privilege'}}">
+                <scroll-view class="date" scrollX="true">
+                    <view class="date-item active">
+                        <view>今天</view>
+                        <view>12-14</view>
+                    </view>
+                    <view class="date-item">
+                        <view>明天</view>
+                        <view>12-15</view>
+                    </view>
+                    <view class="date-item">
+                        <view>后天</view>
+                        <view>12-16</view>
+                    </view>
+                    <view class="date-item" wx:for="{{7}}" wx:key="{{item.id}}">
+                        <view>周{{item+1}}</view>
+                        <view>12-{{item+17}}</view>
+                    </view>
+                </scroll-view>
+                <view class="goods-list">
+                    <view class="goods-item">
+                        <view class="goods-inner">
+                            <view class="img-wrap">
+                                <image alt="" src="https://fuss10.elemecdn.com/e/46/02b0c5d2fdfca3e11a13ad3fa4094jpeg.jpeg"></image>
+                            </view>
+                            <view class="w-100 ellipsis font-14 padding-10-tb">葱肉馅饺子葱肉馅饺子葱肉馅饺子葱肉馅饺子</view>
+                            <view class="flex-lr">
+                                <view class="goods-discount">会员专享1.1折</view>
+                                <view class="to-use">立即使用</view>
+                            </view>
+                        </view>
+                    </view>
+                    <view class="goods-item" wx:for="{{5}}" wx:key="{{item.id}}">
+                        <view class="goods-inner">
+                            <view class="img-wrap">
+                                <image alt="" src="https://fuss10.elemecdn.com/e/46/02b0c5d2fdfca3e11a13ad3fa4094jpeg.jpeg"></image>
+                            </view>
+                            <view class="w-100 ellipsis font-14 padding-10-tb">葱肉馅饺子</view>
+                            <view class="flex-lr">
+                                <view class="goods-discount">会员专享1.1折</view>
+                                <view class="to-use">立即使用</view>
+                            </view>
+                        </view>
+                    </view>
+                </view>
+            </view>
+            <view class="seckill" wx:elif="{{tabActive=='seckill'}}">
+                <scroll-view class="category bg-default" scrollX="true">
+                    <view class="cate-item active">全部</view>
+                    <view class="cate-item " wx:for="{{5}}" wx:key="{{item.id}}">抢购分类{{item}}</view>
+                </scroll-view>
+                <view class="goods-list margin-10-t bg-default">
+                    <view class="goods-item van-hairline--bottom" wx:for="{{5}}" wx:key="{{item.id}}">
+                        <view class="img-wrap">
+                            <image alt="" src="https://fuss10.elemecdn.com/e/46/02b0c5d2fdfca3e11a13ad3fa4094jpeg.jpeg"></image>
+                        </view>
+                        <view class="info">
+                            <view class="store-title font-15 font-500 ellipsis">茶不思</view>
+                            <view class="goods-title font-13 w-100 ellipsis">葱肉馅饺子</view>
+                            <view class="c-gray font-13">结束时间: 2018-12-23 23:59</view>
+                            <view>
+                                <span class="c-danger font-15 font-500">{{Lang.dollarSign}}10.00</span>
+                                <span class="c-gray margin-5-l line-through font-12">{{Lang.dollarSign}}20.00</span>
+                            </view>
+                            <view class="distance">3.4km</view>
+                            <view class="btn-buy">立即抢购</view>
+                        </view>
+                    </view>
+                </view>
+            </view>
+            <view class="gift" wx:elif="{{tabActive=='gift'}}">
+                <scroll-view class="category bg-default" scrollX="true">
+                    <view class="cate-item active">全部</view>
+                    <view class="cate-item " wx:for="{{5}}" wx:key="{{item.id}}">分类{{item}}</view>
+                </scroll-view>
+                <view class="store-list bg-default margin-10-t">
+                    <view class="store-item van-hairline--bottom" wx:for="{{6}}" wx:key="{{item.id}}">
+                        <view class="flex w-100">
+                            <view class="img-wrap">
+                                <image alt="" src="http://1.xinzuowl.com/attachment/images/1/2016/08/D6uWzXWwXTGU59w97t73QG399953Tx.jpg"></image>
+                            </view>
+                            <view class="store-title ellipsis font-500">茶不思</view>
+                        </view>
+                        <view class="margin-10-tb flex w-100">
+                            <span class="coupon-title ellipsis">芒柚水果茶免费券</span>
+                            <span class="c-gray margin-5-l">x3</span>
+                        </view>
+                        <view class="c-danger">价值120{{Lang.dollarSignCn}}</view>
+                        <view class="distance">3.4km</view>
+                        <view class="btn-buy">立即抢购</view>
+                    </view>
+                </view>
+            </view>
+            <view class="coupon" wx:elif="{{tabActive=='coupon'}}">
+                <scroll-view class="category bg-default" scrollX="true">
+                    <view class="cate-item active">全部</view>
+                    <view class="cate-item " wx:for="{{5}}" wx:key="{{item.id}}">分类{{item}}</view>
+                </scroll-view>
+                <view class="coupon-list">
+                    <view class="coupon-item flex-lr" wx:for="{{8}}" wx:key="{{item.id}}">
+                        <view class="left">
+                            <view class="left-inner">
+                                <view class="c-white font-500 w-100 flex">
+                                    <view class="img-wrap">
+                                        <image alt="" src="http://1.xinzuowl.com/attachment/images/1/2016/08/D6uWzXWwXTGU59w97t73QG399953Tx.jpg"></image>
+                                    </view>
+                                    <view class="coupon-title ellipsis">茶不思港式烧腊馆茶不思港式烧腊馆茶不思港式烧腊馆茶不思港式烧腊馆</view>
+                                </view>
+                                <view class="c-white margin-10-t font-12">满100{{Lang.dollarSignCn}}可用</view>
+                                <view class="c-white margin-10-t font-12">限 2018-12-31 前使用</view>
+                            </view>
+                        </view>
+                        <view class="right">
+                            <span class="font-18 font-bold c-white">{{Lang.dollarSign}}5</span>
+                            <view class="btn-take">立即领取</view>
+                        </view>
+                    </view>
+                </view>
+            </view>
+        </view>
+    </view>
+</view>

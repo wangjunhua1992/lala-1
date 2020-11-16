@@ -1,0 +1,10 @@
+<view class="page-rule">
+    <view class="banner">
+        <image mode="widthFix" src="http://cos.lalawaimai.com/we7_wmall/wxapp/freeLunch_rule.png"></image>
+    </view>
+    <view class="rule">
+        <template is="wxParse" data="{{wxParseData:agreement.nodes}}"></template>
+    </view>
+</view>
+<include src="../../../pages/public/footer.wxml"></include>
+<import src="/library/wxParse/wxParse.wxml"></import>

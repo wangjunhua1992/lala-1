@@ -1,0 +1,72 @@
+{itemplate 'public/header'}
+{if $op == 'index'}
+<div class="page clearfix">
+	<h2>基础设置</h2>
+	<form class="form-horizontal form form-validate" id="form1" action="" method="post" enctype="multipart/form-data">
+		<div class="form-group">
+			<label class="col-xs-12 col-sm-3 col-md-2 control-label">货币符号</label>
+			<div class="col-sm-9 col-xs-12">
+				<div class="radio radio-inline">
+					<input type="radio" value="zh-cn" name="dollar" id="dollar-zh-cn" {if $config['dollar'] == 'zh-cn'}checked{/if} required>
+					<label for="dollar-zh-cn">人民币</label>
+				</div>
+				<div class="radio radio-inline">
+					<input type="radio" value="europe" name="dollar" id="dollar-europe" {if $config['dollar'] == 'europe'}checked{/if} required>
+					<label for="dollar-europe">欧元</label>
+				</div>
+				<div class="radio radio-inline">
+					<input type="radio" value="en" name="dollar" id="dollar-en" {if $config['dollar'] == 'en'}checked{/if} required>
+					<label for="dollar-en">美元</label>
+				</div>
+				<div class="radio radio-inline">
+					<input type="radio" value="HKD" name="dollar" id="dollar-HKD" {if $config['dollar'] == 'HKD'}checked{/if} required>
+					<label for="dollar-HKD">港元</label>
+				</div>
+				<div class="radio radio-inline">
+					<input type="radio" value="RUB" name="dollar" id="dollar-RUB" {if $config['dollar'] == 'RUB'}checked{/if} required>
+					<label for="dollar-RUB">卢布</label>
+				</div>
+				<div class="radio radio-inline">
+					<input type="radio" value="RM" name="dollar" id="dollar-RM" {if $config['dollar'] == 'RM'}checked{/if} required>
+					<label for="dollar-RM">马来西亚林吉特</label>
+				</div>
+				<div class="radio radio-inline">
+					<input type="radio" value="PHP" name="dollar" id="dollar-PHP" {if $config['dollar'] == 'PHP'}checked{/if} required>
+					<label for="dollar-PHP">菲律宾比索</label>
+				</div>
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-xs-12 col-sm-3 col-md-2 control-label">地图选择</label>
+			<div class="col-sm-9 col-xs-12">
+				<div class="radio radio-inline">
+					<input type="radio" value="gaode" name="map_type" id="map-type-gaode" {if $config['map_type'] == 'gaode'}checked{/if} required>
+					<label for="map-type-gaode">高德地图</label>
+				</div>
+				<div class="radio radio-inline">
+					<input type="radio" value="google" name="map_type" id="map-type-google" {if $config['map_type'] == 'google'}checked{/if} required>
+					<label for="map-type-google">谷歌地图</label>
+				</div>
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-xs-12 col-sm-3 col-md-2 control-label"><span class="require">*</span>货币汇率</label>
+			<div class="col-sm-9 col-xs-12">
+				<div class="input-group">
+					<span class="input-group-addon">1 美元/欧元/xx = </span>
+					<input type="text" name="dollarrate" value="{$config['dollarrate']}" class="form-control" required>
+					<span class="input-group-addon">人民币</span>
+				</div>
+				<div class="help-block">此处设置其他国家货币与人民币的兑换汇率。如果你选择欧洲运营,因系统采用的货币符号是欧元,但是在结算时,系统会将欧元转化为人名币,使用微信支付或支付宝支付。</div>
+			</div>
+		</div>
+		<div class="form-group">
+			<div class="col-sm-9 col-xs-9 col-md-9">
+				<input type="hidden" name="token" value="{$_W['token']}">
+				<input type="submit" value="提交" class="btn btn-primary">
+			</div>
+		</div>
+	</form>
+</div>
+{/if}
+{itemplate 'public/footer'}

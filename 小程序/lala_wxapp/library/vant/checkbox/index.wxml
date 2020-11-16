@@ -1,0 +1,9 @@
+<view class="van-checkbox custom-class">
+    <view bindtap="toggle" class="van-checkbox__icon-wrap">
+        <slot name="icon" wx:if="{{useIconSlot}}"></slot>
+        <van-icon class="{{iconClass}}" customClass="icon-class" customStyle="line-height: 20px;" name="success" style="{{iconStyle}}" wx:else></van-icon>
+    </view>
+    <view bindtap="onClickLabel" class="van-checkbox__label van-checkbox__label--{{labelPosition}} label-class">
+        <slot></slot>
+    </view>
+</view>

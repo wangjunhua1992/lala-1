@@ -1,0 +1,327 @@
+page {
+    background-color: #f4f4f4;
+}
+
+.container .content .list-block {
+    margin: 10px 0;
+}
+
+.container .content .list-block .item-content {
+    background: #fff;
+    display: flex;
+    box-sizing: border-box;
+    padding-left: 16px;
+}
+
+.container .content .list-block .item-content.border {
+    margin: 11px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.container .content .list-block .item-content .item-inner {
+    position: relative;
+    display: flex;
+    width: 100%;
+    box-sizing: border-box;
+    padding-top: 9px;
+    padding-bottom: 8px;
+    -webkit-box-flex: 1;
+    justify-content: space-between;
+    -webkit-box-align: center;
+    align-items: center;
+}
+
+.container .content .list-block .item-content .item-inner .item-title {
+    position: relative;
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.container .content .list-block .item-content .item-inner .item-title.label {
+    width: 55%;
+    margin: 4px 0;
+    font-size: 14px;
+}
+
+.container .content .list-block .item-content .item-inner .item-title .coupon {
+    display: inline-block;
+    color: #6b450a;
+    background-color: #ff2d4b;
+    padding: 0 3px;
+    font-size: 15px;
+}
+
+.container .content .list-block .item-content .item-inner .item-input {
+    position: relative;
+    width: 100%;
+    -webkit-box-flex: 1;
+    flex-shrink: 1;
+}
+
+.container .content .list-block .item-content .item-inner .item-input .icon {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    color: #ccc;
+    transform: translate(0,-50%);
+}
+
+.container .content .list-block .item-content .item-inner .item-input .coupon-price {
+    padding-right: 27px;
+    text-align: right;
+}
+
+.container .content .list-block .item-content .item-inner .item-input .coupon-price .no-use {
+    font-size: 14px;
+}
+
+.container .content .list-block .item-content .item-inner .item-input .coupon-price .coupon-text {
+    color: #ff2d4b;
+    font-size: 18px;
+}
+
+.container .content .list-block .item-content .item-inner .item-input .price {
+    color: #ff2d4b;
+    font-weight: bold;
+    font-size: 18px;
+    text-align: right;
+    padding-right: 18px;
+}
+
+.container .content .list-block .item-content .item-inner .item-input input {
+    width: 100%;
+    box-sizing: border-box;
+    -webkit-appearance: none;
+    text-align: right;
+    padding: 0 10px;
+    font-size: 14px;
+    border: none;
+    border-radius: 0;
+}
+
+.container .content .list-block .weui-agree {
+    margin: 0 10px;
+    color: #999;
+    font-size: 16px;
+    margin-bottom: 10px;
+    padding: 0;
+}
+
+.weui-agree__checkbox-icon {
+    width: 17px;
+    height: 17px;
+    margin-right: 3px;
+    top: 4px;
+}
+
+.container .content .list-block .item-content radio-group {
+    width: 100%;
+    padding: 5px 0;
+}
+
+.container .content .list-block .item-content radio {
+    width: 100%;
+    text-align: right;
+    box-sizing: border-box;
+    padding-right: 10px;
+    position: relative;
+    line-height: 40px;
+}
+
+.container .content .list-block .item-content radio .radio-text {
+    position: absolute;
+    top: 0;
+    left: 0px;
+    margin: auto;
+    font-size: 14px;
+    color: #333;
+}
+
+.container .content .submit {
+    margin-top: 15px;
+    text-align: center;
+}
+
+.container .wui-dialog .coupon {
+    padding-top: 21px;
+}
+
+.container .wui-dialog .wui-loadmore-nodata {
+    margin-top: 0;
+}
+
+.container .wui-dialog .wui-loadmore {
+    margin-bottom: 0;
+    width: 93%;
+}
+
+.container .wui-dialog .pop-container scroll-view {
+    background-color: #f4f4f4;
+}
+
+.container .wui-dialog .coupon-list {
+    margin: 0 15px 10px 15px;
+}
+
+.container .wui-dialog .coupon-list .item:first-child {
+    margin-top: 0;
+}
+
+.container .wui-dialog .coupon-list .item {
+    background-color: #fff;
+    margin-top: 13px;
+    padding: 17px;
+    overflow: hidden;
+    position: relative;
+}
+
+.container .wui-dialog .coupon-list .item .left {
+    width: 70%;
+    float: left;
+    display: inline-block;
+}
+
+.container .wui-dialog .coupon-list .item .left .store-logo {
+    display: inline-block;
+    float: left;
+    width: 32%;
+}
+
+.container .wui-dialog .coupon-list .item .left .coupon-detail {
+    display: inline-block;
+    float: left;
+    width: 60%;
+}
+
+.container .wui-dialog .coupon-list .item .left .store-logo image {
+    display: inline-block;
+    margin-top: 5px;
+    width: 61px;
+    height: 61px;
+}
+
+.container .wui-dialog .coupon-list .item .left .coupon-title {
+    font-weight: bold;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    color: #ff2b4d;
+    width: 100%;
+    margin-top: 4px;
+    font-size: 18px;
+    display: inline-block;
+}
+
+.container .wui-dialog .coupon-list .item .left .use-time {
+    width: 100%;
+    font-size: 13px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    color: #808080;
+    margin-top: 15px;
+    display: inline-block;
+}
+
+.container .wui-dialog .coupon-list .item .right {
+    width: 29%;
+    border-left: 1px dashed #ccc;
+    text-align: center;
+    float: left;
+}
+
+.container .wui-dialog .coupon-list .item .right .price {
+    color: #ff2b4d;
+    font-size: 15px;
+}
+
+.container .wui-dialog .coupon-list .item .right .price view {
+    display: inline-block;
+    font-size: 26px;
+    margin-left: 3px;
+}
+
+.container .wui-dialog .coupon-list .item .right .condition {
+    margin-top: 8px;
+    font-size: 13px;
+    display: -webkit-box;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    word-wrap: break-word;
+    white-space: normal;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    padding: 0 2px;
+    color: #808080;
+}
+
+.container .wui-dialog .coupon-list .item .circle {
+    display: inline-block;
+    width: 18px;
+    height: 18px;
+    background-color: #f4f4f4;
+    position: absolute;
+    top: 50%;
+    z-index: 20;
+    transform: translate(0,-50%);
+    border-radius: 100%;
+}
+
+.container .wui-dialog .coupon-list .item .circle-left {
+    left: -9px;
+}
+
+.container .wui-dialog .coupon-list .item .circle-right {
+    right: -9px;
+}
+
+.container .wui-dialog .coupon-list .item.selected .selected-status {
+    display: block;
+}
+
+.container .wui-dialog .coupon-list .item .selected-status {
+    display: none;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 31px;
+    height: 24px;
+    z-index: 3;
+}
+
+.container .wui-dialog .coupon-list .item .selected-status image {
+    width: 100%;
+    height: 100%;
+}
+
+.container .content .text {
+    padding: 15px;
+    background-color: #fff;
+}
+
+.container .content .text textarea {
+    max-width: 100%;
+    width: auto;
+    height: 100px;
+    background-color: #f4f4f4;
+    border: 1px solid #ECECEC;
+    padding: 10px;
+    font-size: 16px;
+}
+
+.container .content .select {
+    background-color: #fff;
+    margin: 10px 0;
+    padding: 5px 0;
+}
+
+.container .content .select .weui-cell {
+    font-size: 14px;
+}
+
+.container .content .select .weui-select {
+    font-size: 14px;
+}

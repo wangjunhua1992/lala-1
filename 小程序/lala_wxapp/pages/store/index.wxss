@@ -1,0 +1,376 @@
+.header {
+    padding: 10px 10px 7px 10px;
+    background-color: #333333;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+}
+
+.header .avatar {
+    width: 40px;
+    height: 40px;
+    overflow: hidden;
+    display: inline-block;
+    float: left;
+}
+
+.header .avatar image {
+    width: 100%;
+    height: 100%;
+}
+
+.header .campaign {
+    float: left;
+    height: 40px;
+    font-size: 12px;
+    max-width: 70%;
+    margin-left: 10px;
+}
+
+.header .campaign .text {
+    font-size: 12px;
+    color: #fff;
+    vertical-align: middle;
+}
+
+.header .campaign .text view {
+    display: inline-block;
+}
+
+.header .campaign .text view:nth-child(2) {
+    margin-right: 5px;
+}
+
+.header .campaign .text .allocation-icon {
+    margin-left: 5px;
+}
+
+.header .campaign .text .allocation-icon::before,.header .text .allocation-icon::after {
+    content: '';
+    position: absolute;
+    border: 2px solid #484242;
+    width: 0;
+    height: 0;
+    font-size: 0;
+}
+
+.header .campaign .text .allocation-icon::before {
+    left: 0;
+    top: 0;
+    border-color: #484242 #ff2d4b #ff2d4b #484242;
+}
+
+.header .campaign .text .allocation-icon::after {
+    right: 0;
+    bottom: 0;
+    border-color: #ff2d4b #484242 #484242 #ff2d4b;
+}
+
+.header .campaign .notice {
+    margin-top: 2px;
+    color: #fff;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.header .collect {
+    float: right;
+    color: #fff;
+}
+
+.header .collect .icon {
+    font-size: 20px;
+    width: 100%;
+    text-align: center;
+}
+
+.header .collect .text {
+    font-size: 12px;
+}
+
+.header .activity-box {
+    padding-top: 5px;
+    width: 100%;
+    height: 19px;
+    position: relative;
+}
+
+.header .activity-box .interim {
+    font-size: 12px;
+    color: #fff;
+    vertical-align: middle;
+}
+
+.header .activity-box .interim>view {
+    display: inline-block;
+}
+
+.header .activity-box .activity-scroll {
+    height: 100%;
+}
+
+.header .activity-box .activity {
+    width: 80%;
+    display: flex;
+    align-items: center;
+}
+
+.header .activity-box .activity image {
+    width: 15px;
+    height: 15px;
+    margin-right: 5px;
+}
+
+.header .activity-box .activity view {
+    flex: 1;
+    font-size: 12px;
+    color: #fff;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.header .activity-box .more {
+    position: absolute;
+    right: 0px;
+    top: 5px;
+    color: #fff;
+    font-size: 12px;
+}
+
+.header .activity-box .more .icon {
+    font-size: 12px;
+}
+
+.content .wui-tab {
+    position: fixed;
+    top: 92px;
+    z-index: 100;
+}
+
+.detail-menu-content {
+    background: #f4f4f4;
+    padding-top: 137px;
+}
+
+.detail-menu-content .store-detail {
+    height: 100%;
+    display: -webkit-flex;
+    box-sizing: border-box;
+}
+
+.detail-menu-content scroll-view {
+    height: 100%;
+}
+
+.detail-menu-content .store-detail .report {
+    margin: 10px 0;
+    padding: 10px 0;
+    background-color: #fff;
+    font-size: 16px;
+    text-align: center;
+    color: #ff2d4b;
+    line-height: 1.5;
+}
+
+.detail-region {
+    margin-top: 10px;
+    color: #2f2f2f;
+    background-color: #fff;
+    font-size: 14px;
+}
+
+.detail-region .no-gutter {
+    padding: 10px 0;
+}
+
+.detail-region .col-20 {
+    text-align: center;
+}
+
+.col-20 .icon {
+    font-size: 26px;
+}
+
+.detail-region.custom-url-wrap .wui-cell::after {
+    border-top: 0;
+}
+
+.detail-content {
+    padding-left: 15px;
+}
+
+.detail-content view:last-child {
+    border-bottom: 0;
+}
+
+.detail-content .wui-cell.last .icon-notification {
+    position: absolute;
+    top: 50%;
+    left: 0px;
+    transform: translate(0,-50%);
+}
+
+.detail-content .wui-cell.last .notice-content {
+    margin-left: 27px;
+    display: inline-block;
+}
+
+.detail-phone {
+    position: relative;
+    margin-bottom: -1px;
+}
+
+.detail-phone,.detail-address,.detail-mobile,.detail-time,.detail-service,.detail-qq,.detail-weixin {
+    padding: 15px 0;
+}
+
+.rest-ico {
+    float: left;
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    margin-top: 2px;
+    line-height: 20px;
+    text-align: center;
+}
+
+.rest-ico .icon {
+    font-size: 16px;
+}
+
+.call-phone {
+    padding: 0 15px;
+    height: 38px;
+    line-height: 38px;
+    border-left: 1px solid #D8D8D8;
+}
+
+.call-phone .icon {
+    font-size: 24px;
+}
+
+.detail-mobile .rest-text,.detail-service .rest-text,.detail-time .rest-text,.detail-qq .rest-text,.detail-weixin .rest-text {
+    margin-left: 27px;
+}
+
+.detail-service,.detail-qq,.detail-time,.detail-mobile {
+}
+
+.rest-text text {
+    float: left;
+}
+
+.rest-text .service {
+    float: left;
+}
+
+.rest-text .service .list {
+    position: relative;
+}
+
+.rest-text .service .list:first-child {
+    margin-bottom: 10px;
+}
+
+.rest-text .service .list .img {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    float: left;
+    margin: 0 10px;
+}
+
+.rest-text .service .list .img image {
+    width: 100%;
+    height: 100%;
+}
+
+.rest-text .allocation-icon {
+    margin-right: 5px;
+}
+
+.detail-content .pic {
+    padding: 10px 0;
+}
+
+.pic-row {
+    height: 60px!important;
+    padding-bottom: 0!important;
+    line-height: 100px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.pic-row .pic-box {
+    display: inline-block;
+    height: 100%;
+    width: 100px;
+    margin-right: 10px;
+}
+
+.pic-row .pic-box image {
+    width: 100%;
+    height: 100%;
+}
+
+.detail-content .wui-cell {
+    padding-left: 0;
+}
+
+.detail-content .wui-cell::after {
+    border-top: 0;
+}
+
+.detail-content .wui-cell-bd .icon {
+    margin-right: 10px;
+    margin-left: 3px;
+}
+
+.detail-service .tags::before {
+    padding: 2px 4px;
+}
+
+.detail-service .tags {
+    margin-left: 10px;
+}
+
+.wui-cell.last {
+    border-top: 0;
+}
+
+.detail-region .discount-box {
+    padding-bottom: 20px;
+}
+
+.discount-item {
+    padding: 10px 0 0px 15px;
+}
+
+.discount-item .left {
+    float: left;
+    display: inline-block;
+}
+
+.discount-item .left .icon-b {
+    width: 18px;
+    height: 18px;
+}
+
+.discount-item .left .tags::before {
+    padding: 2px 4px;
+}
+
+.discount-item .right {
+    margin-left: 27px;
+    margin-right: 15px;
+}
+
+.wui-cell-bd .icon,.rest-ico .icon {
+    line-height: 1;
+    font-size: 20px;
+}

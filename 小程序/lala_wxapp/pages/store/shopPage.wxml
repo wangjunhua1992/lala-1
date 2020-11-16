@@ -1,0 +1,202 @@
+<view class="detail-content">
+    <view class="scroll-content">
+        <scroll-view class="main" scrollY="true">
+            <view class="banner">
+                <image src="{{store.data.shopPage[shopPageKey].thumb}}"></image>
+            </view>
+            <view class="goods-list clearfix">
+                <view class="col-50 goods-item border-1px-r" wx:for="{{goodsItem.data}}" wx:for-item="goodItem">
+                    <view class="goods-info border-1px-b">
+                        <navigator class="avatar" url="./goodsDetail?id={{goodItem.id}}&sid={{store.id}}&pindan_id={{pindan_id}}">
+                            <view class="discount" wx:if="{{(goodItem.svip_status!=1||goodItem.discount_price>0)&&goodItem.discount>0}}">
+                                <view>
+                                    <view class="icon icon-tag"></view> {{goodItem.discount}}折 限{{goodItem.max_buy_limit}}份
+								</view>
+                            </view>
+                            <image src="{{goodItem.thumb}}"></image>
+                        </navigator>
+                        <view class="goods-name">
+							{{goodItem.title}}
+						</view>
+                        <view class="svip-price-tips" wx:if="{{goodItem.svip_status==1&&!goodItem.discount_price}}">
+                            <view class="svip-price">
+                                <text>{{goodItem.discount}}折</text>
+                            </view>
+                            <view class="svip-activity ellipsis">超级会员专享</view>
+                        </view>
+                        <view class="solid" wx:else>
+							已售{{goodItem.sailed}} <view>赞{{goodItem.comment_good}}</view>
+                        </view>
+                        <view class="price">{{Lang.dollarSign}}{{goodItem.price}}</view>
+                        <view class="old-price" wx:if="{{goodItem.old_price}}">{{Lang.dollarSign}}{{goodItem.old_price}}</view>
+                        <view class="goods-unitnum" wx:if="{{goodItem.unitnum>1}}">{{goodItem.unitnum_multi_cn}}购</view>
+                        <block wx:if="{{!rest}}">
+                            <block wx:if="{{goodItem.is_sail_now==1}}">
+                                <block wx:if="{{goodItem.is_options=='0'&&goodItem.is_attrs==0}}">
+                                    <view class="foodop clearfix" wx:if="{{goodItem.total!=0}}">
+                                        <view bind:tap="onPlus" class="icon icon-plus" data-from="list" data-goodsid="{{goodItem.id}}" data-index="{{index}}" style="background-color: {{bgColor}}"></view>
+                                        <view class="num" wx:if="{{goodItem.totalnum>0}}">{{goodItem.totalnum}}</view>
+                                        <view bind:tap="onMinus" class="icon icon-minus" data-from="list" data-goodsid="{{goodItem.id}}" data-index="{{index}}" wx:if="{{goodItem.totalnum>0}}"></view>
+                                    </view>
+                                    <view class="foodop" wx:else>
+                                        <text>已售完</text>
+                                    </view>
+                                </block>
+                                <view class="foodop" wx:else>
+                                    <view bind:tap="onSelectOption" class="spec" data-id="{{goodItem.id}}" data-index="{{index}}" style="background-color: {{bgColor}}">选规格
+											<view class="badge" style="background-color: {{bgColor}}" wx:if="{{goodItem.totalnum>0}}">{{goodItem.totalnum}}</view>
+                                    </view>
+                                </view>
+                            </block>
+                            <view bind:tap="onSailTime" class="foodop no-sail" data-index="{{index}}" wx:else>
+                                <text>非可售时间</text>
+                                <text class="icon icon-question1"></text>
+                            </view>
+                        </block>
+                        <view class="foodop" wx:else>
+                            <text>本店打烊了</text>
+                        </view>
+                    </view>
+                </view>
+            </view>
+        </scroll-view>
+    </view>
+    <view class="cart" wx:if="{{!rest}}">
+        <view bindtap="onShowCartDetail" class="cart-tips">
+            <view class="cart-icon {{cart.num>0?'active':''}}" style="background:{{cart.num>0?bgColor:''}}">
+                <view class="icon icon-cart1"></view>
+                <view class="cart-num" style="background: {{bgColor}}" wx:if="{{cart.num>0}}">{{cart.num}}</view>
+            </view>
+            <view class="cart-empty" wx:if="{{!cart.num>0}}">
+				购物车空空如也~~
+			</view>
+            <view class="cart-noempty" wx:else>
+                <view class="cart-price">{{Lang.dollarSign}}{{cart.price+cart.box_price}}</view>
+                <view class="cart-shipping">另需配送费{{Lang.dollarSign}}{{store.delivery_price}}</view>
+            </view>
+        </view>
+        <view class="cart-btns">
+            <block wx:if="{{pindan_id>0}}">
+                <view class="cart-btn-unavail" wx:if="{{!cart.num||cart.num<=0}}">
+                    <view class="inner">未选择商品</view>
+                </view>
+                <view bind:tap="onSubmit" class="cart-btn-confirm" wx:else>
+                    <view class="inner" style="background: {{bgColor}}">选好了</view>
+                </view>
+            </block>
+            <block wx:else>
+                <view class="cart-btn-unavail">
+                    <view class="inner" wx:if="{{!cart.num||cart.num<=0}}">{{Lang.dollarSign}}{{store.send_price}}起送</view>
+                    <view class="inner" wx:if="{{cart.num>0&&store.send_condition>0}}">差{{Lang.dollarSign}}{{store.send_condition}}起送</view>
+                </view>
+                <view bind:tap="onSubmit" class="cart-btn-confirm" wx:if="{{store.send_condition<=0}}">
+                    <view class="inner" style="background: {{bgColor}}">去结算</view>
+                </view>
+            </block>
+        </view>
+    </view>
+    <view class="rest" wx:else>本店打烊了</view>
+    <van-popup bind:close="onCloseSvip" show="{{buySvipInfo.show}}" zIndex="1000">
+        <svip-vs bind:onParentPlus="onPlus" goods="{{buySvipInfo.goods}}"></svip-vs>
+    </van-popup>
+</view>
+<view class="wui-dialog wui-dialog-{{!showCartDetail?'hide':'show'}}">
+    <view bind:tap="onHideCartDetail" class="wui-dialog-mask"></view>
+    <view class="wui-dialog-container" hidden="{{!showCartDetail}}">
+        <view class="cart-dtl">
+            <view class="cart-dtl-head">
+                <view class="box-fee">{{store.cn.box_price}}{{cart.box_price}}{{Lang.dollarSignCn}}</view>
+                <view bind:tap="onTurncateCart" class="cart-dusbin">
+                    <view class="icon icon-delete"></view>
+					清空购物车
+				</view>
+            </view>
+            <scroll-view class="cart-list" scrollY="true">
+                <view class="list">
+                    <block wx:for="{{cart.data}}">
+                        <view class="cart-dtl-item border-1px-b" wx:for="{{item}}" wx:for-index="optionindex" wx:for-item="option">
+                            <view class="cart-dtl-item-inner">
+                                <view class="goods-name">{{option.title}}</view>
+                                <view class="cart-dtl-oprt" wx:if="{{option.goods_id!='88888'}}">
+                                    <view bind:tap="onPlus" class="icon icon-plus" data-cid="{{option.cid}}" data-from="cart" data-goodsid="{{option.goods_id}}" data-optionid="{{optionindex}}" style="background-color: {{bgColor}}; border: 1px solid {{bgColor}}"></view>
+                                    <view class="num">{{option.num}}</view>
+                                    <view bind:tap="onMinus" class="icon icon-minus" data-cid="{{option.cid}}" data-from="cart" data-goodsid="{{option.goods_id}}" data-optionid="{{optionindex}}"></view>
+                                </view>
+                                <view class="cart-dtl-price">{{Lang.dollarSign}}{{option.total_discount_price}}</view>
+                            </view>
+                        </view>
+                    </block>
+                </view>
+            </scroll-view>
+        </view>
+    </view>
+</view>
+<view class="container">
+    <view class="modal {{modelSpecShow?'':'hide'}}">
+        <view bind:tap="onHideOption" class="wui-dialog-mask"></view>
+        <view class="dialog-container">
+            <view class="muti-dialog">
+                <view bind:tap="onHideOption" class="muti-close"></view>
+                <view class="muti-wrap">
+                    <view class="muti-food-title">
+						{{goodsActive.title}}
+					</view>
+                    <scroll-view class="muti-cont" scrollY="true">
+                        <view class="muti-cont-inner">
+                            <view class="muti-sec first" wx:if="{{goodsActive.is_options==1}}">
+                                <view class="muti-sec-title">规格</view>
+                                <view class="muti-choice">
+                                    <view bind:tap="onToggleOption" class="{{goodsActive.activeOptions.optionSelected==item.id?'selected':''}}" data-id="{{item.id}}" data-index="0" data-type="option" wx:for="{{goodsActive.options}}">{{item.name}}</view>
+                                </view>
+                            </view>
+                            <view wx:if="{{goodsActive.is_attrs==1}}">
+                                <view class="muti-sec" wx:for="{{goodsActive.attrs}}" wx:for-index="attr_index">
+                                    <view class="muti-sec-title">{{item.name}}</view>
+                                    <view class="muti-choice">
+                                        <view bind:tap="onToggleOption" class="{{goodsActive.activeOptions.attrsSelected[attr_index]==label_index?'selected':''}}" data-id="{{attr_index}}s{{label_index}}" data-index="{{attr_index}}" data-originId="{{label_index}}" data-type="attr" wx:for="{{item.label}}" wx:for-index="label_index" wx:for-item="label">{{label}}</view>
+                                    </view>
+                                </view>
+                            </view>
+                        </view>
+                    </scroll-view>
+                    <view class="muti-choose">
+                        <view class="muti-oprt">
+                            <view class="muti-cart-oprt clearfix">
+                                <view class="add-food">
+                                    <view bind:tap="onPlus" class="icon icon-plus" data-from="selectOption" data-id="{{goodsActive.id}}" data-index="{{goodsActive.index}}" style="background-color: {{bgColor}};"></view>
+                                </view>
+                                <view class="food-num" wx:if="{{goodsActive.activeOption.num>0}}">{{goodsActive.activeOption.num||0}}</view>
+                                <view class="remove-food">
+                                    <view bind:tap="onMinus" class="icon icon-minus" data-from="selectOption" data-id="{{goodsActive.id}}" data-index="{{goodsActive.index}}" wx:if="{{goodsActive.activeOption.num>0}}"></view>
+                                </view>
+                            </view>
+                        </view>
+                        <view class="muti-info">
+                            <view class="muti-price">{{Lang.dollarSign}}{{goodsActive.activeOption.price}}</view>
+                            <view class="muti-type">({{goodsActive.activeOption.name}})</view>
+                        </view>
+                    </view>
+                </view>
+            </view>
+        </view>
+    </view>
+</view>
+<view class="page-popup" wx:if="{{sail_time==1}}">
+    <view class="mask"></view>
+    <view class="popup-main">
+        <view class="popup-top">
+            <view class="popup-item" wx:if="{{week_cn}}">
+                <view class="popup-title">每周可售日期</view>
+                <view class="popup-text">{{week_cn}}</view>
+            </view>
+            <view class="popup-item" wx:if="{{time_cn}}">
+                <view class="popup-title">每天可售时间</view>
+                <view class="popup-text">
+				{{time_cn}}
+			</view>
+            </view>
+        </view>
+        <view bind:tap="onKnow" class="popup-bottom border-1px-t">知道了</view>
+    </view>
+</view>
+<include src="../public/footer.wxml"></include>

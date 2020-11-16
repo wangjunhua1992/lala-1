@@ -1,0 +1,68 @@
+<view class="kaijiang-index">
+    <view class="content bg-default font-14">
+        <view class="count-down">
+            <image mode="widthFix" src="../../static/img/kaijiang.jpg"></image>
+            <view class="days">距下次开奖时间：
+				<view>{{wxTimerDay[0]}}</view>
+                <view>{{wxTimerDay[1]}}</view>
+                <text>:</text>
+                <view>{{wxTimerHour[0]}}</view>
+                <view>{{wxTimerHour[1]}}</view>
+                <text>:</text>
+                <view>{{wxTimerMinute[0]}}</view>
+                <view>{{wxTimerMinute[1]}}</view>
+                <text>:</text>
+                <view>{{wxTimerSecond[0]}}</view>
+                <view>{{wxTimerSecond[1]}}</view>
+            </view>
+        </view>
+        <view class="list-wrap">
+            <view class="list-title">
+                <view class="font-18">本期中奖名单</view>
+                <view class="font-14 margin-5-t">本期幸运日：{{benqi.rewarddate}}</view>
+            </view>
+            <view class="list-winner">
+                <view class="winner-item flex font-16">
+                    <view>微信名称</view>
+                    <view>手机号码</view>
+                </view>
+                <scroll-view class="winner-inner" scrollY="true" style="height:200px">
+                    <view class="winner-item flex" wx:for="{{benqi.logs}}">
+                        <view class="ellipsis">{{item.nickname}}</view>
+                        <view class="ellipsis">{{item.mobile}}</view>
+                    </view>
+                </scroll-view>
+            </view>
+        </view>
+        <view class="list-wrap">
+            <view class="list-title">
+                <view class="font-18">上期中奖名单</view>
+                <view class="font-14 margin-5-t">本期幸运日：{{shangqi.rewarddate}}</view>
+            </view>
+            <view class="list-winner">
+                <view class="winner-item flex font-16">
+                    <view>微信名称</view>
+                    <view>手机号码</view>
+                </view>
+                <scroll-view class="winner-inner" scrollY="true" style="height:200px">
+                    <view class="winner-item flex" wx:for="{{shangqi.logs}}">
+                        <view class="ellipsis">{{item.nickname}}</view>
+                        <view class="ellipsis">{{item.mobile}}</view>
+                    </view>
+                </scroll-view>
+            </view>
+        </view>
+        <view class="list-wrap rules">
+            <view class="list-title">
+                <view class="font-18">活动规则</view>
+            </view>
+            <view class="list-winner">
+                <scroll-view class="winner-inner" scrollY="true" style="height:200px">
+                    <template is="wxParse" data="{{wxParseData:content.nodes}}"></template>
+                </scroll-view>
+            </view>
+        </view>
+    </view>
+</view>
+<include src="../../../pages/public/footer.wxml"></include>
+<import src="/library/wxParse/wxParse.wxml"></import>

@@ -1,0 +1,60 @@
+<view class="container">
+    <view class="content">
+        <form bindreset="formReset" bindsubmit="onSubmit">
+            <view class="list">
+                <view class="item border-1px-b clearfix">
+                    <view class="item-title">手机号</view>
+                    <view class="item-inner">
+                        <input bindinput="onMobile" name="mobile" placeholder="请输入手机号" value="{{mobile}}"></input>
+                    </view>
+                </view>
+                <view class="item border-1px-b clearfix" wx:if="{{mobile_verify_status=='1'}}">
+                    <view class="item-title">图形验证码</view>
+                    <view class="item-inner">
+                        <input bindinput="onCaptcha" name="store_captcha" placeholder="请输入图形证码"></input>
+                        <view bind:tap="onRefreshCaptcha" class="email-img">
+                            <image src="{{captcha}}"></image>
+                        </view>
+                    </view>
+                </view>
+                <view class="item border-1px-b clearfix" wx:if="{{mobile_verify_status=='1'}}">
+                    <view class="item-title">手机验证码</view>
+                    <view class="item-inner">
+                        <input name="code" placeholder="请输入6位短信验证码"></input>
+                        <view bind:tap="getCode" class="item-remark">{{code.text}}</view>
+                    </view>
+                </view>
+                <view class="item border-1px-b clearfix">
+                    <view class="item-title">登录密码</view>
+                    <view class="item-inner">
+                        <input name="password" password="true" placeholder="请输入您的登录密码"></input>
+                    </view>
+                </view>
+                <view class="item border-1px-b clearfix">
+                    <view class="item-title">确认密码</view>
+                    <view class="item-inner">
+                        <input name="repassword" password="true" placeholder="请输入确认登录密码"></input>
+                    </view>
+                </view>
+                <view class="item clearfix">
+                    <view class="item-title">姓名</view>
+                    <view class="item-inner">
+                        <input name="title" placeholder="您的姓名"></input>
+                    </view>
+                </view>
+                <view class="item clearfix" wx:if="{{isagent==1}}">
+                    <view class="item-title">所属区域</view>
+                    <view class="item-inner">
+                        <picker bindchange="onSelectAgent" range="{{agents}}" rangeKey="text">
+							{{agent.id?agent.text:'请选择所属区域'}}
+						</picker>
+                    </view>
+                </view>
+            </view>
+            <view class="submit">
+                <button class="btn btn-large btn-danger" formType="submit">下一步</button>
+            </view>
+        </form>
+    </view>
+</view>
+<include src="../public/footer.wxml"></include>

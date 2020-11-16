@@ -1,0 +1,50 @@
+<view class="page page-assign">
+    <view class="content">
+        <view class="assign-title">
+            <view class="head">排队列表</view>
+        </view>
+        <view class="assign-item" wx:for="{{queues}}">
+            <view class="assign-body">
+                <view class="now-assign">
+                    <view>当前叫号</view>
+                    <view class="info" wx:if="{{item.now_number}}">{{item.now_number}}</view>
+                    <view class="info" wx:else>暂无排队信息</view>
+                </view>
+                <view class="now-assign">
+                    <view>桌号分类</view>
+                    <view class="tables-type">{{item.title}}</view>
+                </view>
+                <view class="take-assign">
+                    <view class="takeout">
+                        <view>取号</view>
+                        <view>({{item.total}}/{{item.position}})</view>
+                    </view>
+                </view>
+            </view>
+            <view class="assign-foot">
+                <view catch:tap="onJsEvent" class="small-button" data-event-type="jsUrl" data-url="pages/tangshi/assignRecord?id={{item.id}}">
+                    <view class="icon icon-viewgallery"></view>
+					查看已领
+				</view>
+                <view catch:tap="onJsEvent" class="small-button active" data-confirm="确定通知吗?" data-event-type="jsPost" data-href="manage/tangshi/assign/notice?id={{item.id}}&status=3&number={{item.now_number}}" data-success-url="./assign">
+                    <text class="icon icon-remind2"></text>
+					叫号
+				</view>
+                <view catch:tap="onJsEvent" class="small-button active" data-confirm="确定该号已入座吗" data-event-type="jsPost" data-href="manage/tangshi/assign/status?id={{item.id}}&status=2&number={{item.now_number}}" data-success-url="./assign">
+                    <text class="icon icon-home2"></text>
+					入座
+				</view>
+                <view catch:tap="onJsEvent" class="small-button active" data-confirm="确定过号吗" data-event-type="jsPost" data-href="manage/tangshi/assign/status?id={{item.id}}&status=3&number={{item.now_number}}" data-success-url="./assign">
+                    <text class="icon icon-forward"></text>
+					跳过
+				</view>
+            </view>
+        </view>
+    </view>
+    <view class="assign-button">
+        <view class="page__bd">
+            <button catch:tap="onJsEvent" class="weui-btn" data-event-type="jsUrl" data-url="pages/tangshi/assignQueue" type="primary">添加队列</button>
+        </view>
+    </view>
+</view>
+<include src="../public/footer.wxml"></include>

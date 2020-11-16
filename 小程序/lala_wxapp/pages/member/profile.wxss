@@ -1,0 +1,12 @@
+page {
+    background-color: #f4f4f4;
+}
+
+.container .content {
+    background-color: #fff;
+    margin-top: 10px;
+}
+
+.container .content .list .wui-cell:last-child::after {
+    border-top: 0;
+}

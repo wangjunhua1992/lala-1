@@ -1,0 +1,19 @@
+<import src="../diy/template.wxml"></import>
+<tab-bar menufooter="{{menufooter}}" wx:if="{{menufooter&&menufooter.data}}"></tab-bar>
+<template is="tpl-diy" data="{{diy:diy,storeExtra:storeExtra,store:store,location:location,config:config,config_wxapp:config_wxapp,cart_sum:cart_sum,richtext:richtext,superRedpacket:superRedpacket,danmu:danmu,dialog:dialog,storage:storage,topSearchBar:topSearchBar,goodsTabSticky:goodsTabSticky,goodsTabStickyTop:goodsTabStickyTop,goodsTabActive:goodsTabActive,storesTabSticky:storesTabSticky,storesTabStickyTop:storesTabStickyTop,storesTabActive:storesTabActive,Lang:Lang}}"></template>
+<view class="dialog dialog-guide  {{!has_diy_guide&&guide.params.status==1&&dialog.dialogGuide&&!storage.storageGuide?'dialog-show':''}}">
+    <view class="dialog-mask" style="background: {{guide.css.backgroundColor}}; opacity: 0.6"></view>
+    <view class="dialog-container">
+        <swiper circular="true" indicatorActiveColor="#ff2d4b" indicatorColor="rgba(255,255,255,0.5)" indicatorDots="true">
+            <swiper-item wx:for="{{guide.data}}" wx:key="{{index}}">
+                <image bind:tap="onJsEvent" data-event-type="jsUrl" data-url="{{item.pagePath}}" src="{{item.imgUrl}}"></image>
+            </swiper-item>
+        </swiper>
+        <view class="close-adv">
+            <view bind:tap="onJsEvent" class="close-btn" data-event-type="jsToggle" data-modal="dialog.dialogGuide">
+                <text class="icon icon-close"></text>
+            </view>
+        </view>
+    </view>
+</view>
+<include src="../public/footer.wxml"></include>

@@ -1,0 +1,4 @@
+<view class="gohome-danmu {{danmu.show?'':'opacity-0'}}">
+    <image alt="" class="thumb" src="{{danmu.item.avatar}}"></image>
+    <text class="info">{{danmu.item.nickname}} {{danmu.item.time}}购买了此商品</text>
+</view>

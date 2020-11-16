@@ -1,0 +1,69 @@
+page {
+    background-color: #f4f4f4;
+}
+
+.container .content {
+    margin-top: 10px;
+}
+
+.container .content .list {
+    background: #fff;
+    padding: 3px 0;
+    padding-left: 15px;
+}
+
+.container .content .list .item {
+    padding: 10px 0;
+    font-size: 14px;
+}
+
+.container .content .list .item .item-title {
+    float: left;
+    display: inline-block;
+    width: 30%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    height: 24px;
+    line-height: 24px;
+}
+
+.container .content .list .item .item-inner {
+    float: left;
+    width: 60%;
+    position: relative;
+}
+
+.container .content .list .item .item-inner .item-remark {
+    position: absolute;
+    right: -20px;
+    top: 50%;
+    transform: translate(0,-50%);
+    color: #888;
+    z-index: 100;
+}
+
+.container .content .submit {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.container .content .submit .btn {
+    line-height: normal;
+}
+
+.container .content .list .item .item-inner .email-img {
+    height: 32px;
+    width: 90px;
+    position: absolute;
+    right: -20px;
+    top: 50%;
+    transform: translate(0,-50%);
+    z-index: 100;
+}
+
+.container .content .list .item .item-inner .email-img image {
+    border: none;
+    width: 100%;
+    height: 100%;
+}

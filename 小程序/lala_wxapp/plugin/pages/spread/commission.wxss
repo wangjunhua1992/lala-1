@@ -1,0 +1,158 @@
+page {
+    background-color: #f4f4f4;
+}
+
+.wui-cell {
+    padding: 12px 15px;
+}
+
+.content {
+    padding-bottom: 20px;
+}
+
+.container .content .head-top {
+    position: relative;
+    width: 100%;
+    height: 80px;
+    background-color: #ff2d4b;
+}
+
+.container .content .total-text {
+    color: white;
+    font-size: 16px;
+    padding-top: 15px;
+    padding-left: 10px;
+}
+
+.container .content .head-top .text {
+    font-size: 16px;
+    color: white;
+    padding-left: 10px;
+}
+
+.container .content .head-top .link {
+    position: absolute;
+    top: 27px;
+    right: 15px;
+    color: white;
+    font-size: 14px;
+    width: 80px;
+    padding: 5px 0;
+    line-height: 1;
+    text-align: center;
+    border-radius: 20px;
+    border: 1rpx solid #fff;
+}
+
+.container .content .group {
+    overflow: hidden;
+    position: relative;
+    margin-top: 10px;
+    background-color: #fff;
+    font-size: 20px;
+}
+
+.container .content .group .cell {
+    margin: 10px 0px;
+}
+
+.container .content .group .cell .icon-recharge {
+    float: left;
+    font-size: 18px;
+    margin-top: 3px;
+    margin-left: 12px;
+}
+
+.cell-code-text {
+    padding-top: 2px;
+    margin-left: 25px;
+}
+
+.container .content .cell-text {
+    display: inline-block;
+    color: #000;
+    padding-left: 10px;
+    font-size: 15px;
+}
+
+.container .content .group .cell .cell-piece {
+    float: right;
+    color: red;
+    font-size: 16px;
+    margin-right: 15px;
+}
+
+.cell-group .icon {
+    float: left;
+    font-size: 18px;
+}
+
+.container .content .user {
+    position: relative;
+    margin-top: 10px;
+    width: 100%;
+    height: 100%;
+    background: #fff;
+}
+
+.container .content .user .must-title {
+    font-size: 14px;
+    padding-left: 15px;
+    padding-top: 10px;
+}
+
+.container .content .user .must-text {
+    font-size: 15px;
+    padding-left: 15px;
+    padding-top: 2px;
+    color: #ccc;
+}
+
+.container .content .user .notice {
+    padding-left: 15px;
+    color: #666;
+    font-size: 15px;
+    padding-bottom: 10px;
+}
+
+.container .content .user .notice .words {
+    display: inline-block;
+    color: red;
+}
+
+.container .content .user .icon-moreunfold {
+    position: absolute;
+    top: 10px;
+    right: 25px;
+    font-size: 14px;
+}
+
+.container .content .btn-disabled {
+    margin: 18px;
+    background: #ccc;
+    border: 0px;
+    border-radius: 5px;
+    color: #fff;
+}
+
+.container .content .btn-success {
+    margin: 18px;
+    background: #FF5355;
+    border: 0px;
+    border-radius: 5px;
+    color: #fff;
+}
+
+.container .content .cell-group {
+    margin-top: 10px;
+    width: 100%;
+    background: #fff;
+}
+
+.container .content .cell-group .wui-cell:last-child::after {
+    border-top: 0px;
+}
+
+.container .content .group .getcash-account {
+    padding: 0 12px;
+}

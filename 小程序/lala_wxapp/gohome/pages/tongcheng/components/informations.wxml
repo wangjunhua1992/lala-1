@@ -1,0 +1,74 @@
+<view class="tiezi">
+    <view class="tiezi-item" wx:for="{{informations}}" wx:key="{{item.id}}">
+        <view class="userinfo flex-lr">
+            <view class="left">
+                <view class="avatar">
+                    <image class="wh-100" src="{{item.ft_avatar}}"></image>
+                </view>
+            </view>
+            <view class="right flex-lr">
+                <view>
+                    <view class="flex">
+                        <text class="tag-top" wx:if="{{item.is_stick==1}}">置顶</text>
+                        <text class="tag-cate">{{item.category.title}}</text>
+                        <text class="nickname ellipsis">{{item.nickname}}</text>
+                    </view>
+                    <view class="tags flex" wx:if="{{item.keyword}}">
+                        <view class="tag-item" wx:for="{{item.keyword}}" wx:for-item="tag" wx:key="{{index}}">{{tag}}</view>
+                    </view>
+                </view>
+                <block wx:if="{{from=='mine'}}">
+                    <text class="font-14 c-danger" wx:if="{{item.status==1}}">{{item.status_all.text}}</text>
+                    <text class="font-14 c-danger" wx:if="{{item.status==2}}">{{item.status_all.text}}</text>
+                    <text class="font-14 c-primary" wx:if="{{item.status==3}}">{{item.status_all.text}}</text>
+                    <text class="font-14 c-gray" wx:if="{{item.status==4}}">{{item.status_all.text}}</text>
+                </block>
+                <block wx:else>
+                    <view bind:tap="onJsEvent" class="icon icon-phone2 c-danger font-20" data-event-type="jsPhone" data-phonenumber="{{item.mobile}}" wx:if="{{item.mobile}}"></view>
+                </block>
+            </view>
+        </view>
+        <view class="tiezi-info">
+            <view class="text {{!item.showall?'showsome':''}}">{{item.content}}</view>
+            <view bind:tap="onToggleTextHeight" class="flex c-gray " data-index="{{index}}" wx:if="{{item.content_length>44}}">
+                <text class="margin-5-r font-13">{{item.showall?'收起':'查看全文'}}</text>
+                <text class="icon {{item.showall?'icon-fold':'icon-unfold'}} font-14"></text>
+            </view>
+            <view class="flex-lr c-gray margin-10-t">
+                <view class="font-12 ">{{item.addtime_cn}}发布</view>
+                <view bind:tap="onJsEvent" class="flex" data-event-type="jsUrl" data-url="/gohome/pages/tongcheng/detail?id={{item.id}}">
+                    <text class="font-12 ">查看详情</text>
+                    <text class="icon icon-right font-14 c-gray"></text>
+                </view>
+            </view>
+            <view class="thumbs" wx:if="{{item.thumbs&&item.thumbs.length>0}}">
+                <view class="thumb-item" wx:if="{{thumbIndex<3}}" wx:for="{{item.thumbs}}" wx:for-index="thumbIndex" wx:for-item="thumbItem" wx:key="{{thumbIndex}}">
+                    <image bind:tap="onImgPreview" class="wh-100 radius-3" data-current="{{thumbItem}}" data-urls="{{item.thumbs}}" src="{{thumbItem}}"></image>
+                </view>
+                <view class="thumb-item" wx:if="{{item.thumbs.length>3}}">
+                    <image class="wh-100 radius-3" src="{{item.thumbs[3]}}"></image>
+                    <view class="thumb-num">+{{item.thumbs.length}}</view>
+                </view>
+            </view>
+            <view bind:tap="onJsEvent" class="flex font-13 c-gray margin-10-t" data-event-type="jsUrl" data-url="/gohome/pages/tongcheng/detail?id={{item.id}}">
+                <view class="flex margin-10-r">
+                    <text class="icon icon-attention font-15"></text>
+                    <text>{{item.looknum}}</text>
+                </view>
+                <view class="flex margin-10-r">
+                    <text class="icon icon-appreciate_light font-14"></text>
+                    <text>{{item.likenum}}</text>
+                </view>
+                <view class="flex margin-10-r">
+                    <text class="icon icon-comment font-14"></text>
+                    <text></text>
+                </view>
+            </view>
+        </view>
+        <view class="btn-group" wx:if="{{from=='mine'}}">
+            <view bind:tap="onJsEvent" class="btn-item bg-danger" data-event-type="jsUrl" data-url="/gohome/pages/tongcheng/publish/stick?information_id={{item.id}}&parentid={{item.parentid}}&childid={{item.childid}}">置顶</view>
+            <view bind:tap="onJsEvent" class="btn-item bg-warning" data-event-type="jsUrl" data-url="/gohome/pages/tongcheng/publish/post?information_id={{item.id}}&parentid={{item.parentid}}&childid={{item.childid}}">编辑</view>
+            <view bind:tap="onJsEvent" class="btn-item" data-confirm="确定删除帖子吗" data-event-type="jsPost" data-url="tongcheng/index/del?id={{item.id}}&type=information">删除</view>
+        </view>
+    </view>
+</view>

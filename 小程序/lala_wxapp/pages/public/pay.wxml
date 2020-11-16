@@ -1,0 +1,59 @@
+<view class="container">
+    <swiper wx:if="{{slides}}">
+        <swiper-item wx:for="{{slides}}">
+            <image bind:tap="onJsEvent" data-event-type="jsUrl" data-url="{{item.wxapp_link}}" src="{{item.thumb}}"></image>
+        </swiper-item>
+    </swiper>
+    <view class="content">
+        <view class="time-box" wx:if="{{order.pay_endtime>0}}">
+            <view class="text">支付剩余时间</view>
+            <view class="time">
+                <view>{{wxTimerMinute[0]}}</view>
+                <view>{{wxTimerMinute[1]}}</view>
+                <text>:</text>
+                <view>{{wxTimerSecond[0]}}</view>
+                <view>{{wxTimerSecond[1]}}</view>
+            </view>
+        </view>
+        <view class="goods-box flex">
+            <view class="pic">
+                <image src="{{order.logo}}"></image>
+            </view>
+            <view class="right">
+                <view class="price">{{Lang.dollarSign}}{{order.fee}}</view>
+                <view class="note">
+                    <view>{{order.title}}</view>
+                </view>
+            </view>
+        </view>
+        <form bindsubmit="onSubmit" reportSubmit="true">
+            <view class="pay-box">
+                <radio-group name="pay_type">
+                    <radio checked="{{item.value=='wechat'}}" class="border-1px-b" color="#ff2d4b" value="{{item.value}}" wx:for="{{payment}}">
+                        <view class="radio-text">
+                            <view class="title">{{item.title}}</view>
+                            <view class="tips" wx:if="{{item.value=='wechat'}}">
+                                <span class="pay-recommend">推荐使用</span>微信支付,安全快捷</view>
+                            <view class="tips" wx:if="{{item.value=='delivery'}}">线下当面交心，到店付款，货到付款</view>
+                            <view class="tips" wx:if="{{item.value=='credit'}}">当前账户余额:<span class="c-danger">{{Lang.dollarSign}}{{member.credit2||0}}</span>
+                            </view>
+                        </view>
+                        <view class="radio-logo">
+                            <image src="http://cos.lalawaimai.com/we7_wmall/wxapp/money-icon.png" wx:if="{{item.value=='credit'}}"></image>
+                            <image src="http://cos.lalawaimai.com/we7_wmall/wxapp/delivery-icon.png" wx:if="{{item.value=='delivery'}}"></image>
+                            <image src="http://cos.lalawaimai.com/we7_wmall/wxapp/wx-icon.png" wx:if="{{item.value=='wechat'}}"></image>
+                            <image src="http://cos.lalawaimai.com/we7_wmall/wxapp/finishMeal-icon.png" wx:if="{{item.value=='finishMeal'}}"></image>
+                        </view>
+                    </radio>
+                </radio-group>
+            </view>
+            <view class="fixed-bottom border-1px-t">
+                <button disabled="{{submitDisabled==1?true:false}}" formType="submit">
+					确认支付
+					<text>{{Lang.dollarSign}}{{order.fee}}</text>
+                </button>
+            </view>
+        </form>
+    </view>
+</view>
+<include src="../public/footer.wxml"></include>

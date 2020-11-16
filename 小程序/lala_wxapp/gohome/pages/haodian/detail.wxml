@@ -1,0 +1,239 @@
+<view class="haodian-detail">
+    <view class="padding-10-lr padding-10-t bg-default">
+        <swiper circular="true" class="thumbs" wx:if="{{store.thumbs.length>0}}">
+            <swiper-item bind:tap="onJsEvent" data-event-type="jsUrl" data-url="{{item.url}}" wx:for="{{store.thumbs}}">
+                <image class="wh-100" src="{{item.image}}"></image>
+            </swiper-item>
+        </swiper>
+    </view>
+    <view class="store-info bg-default font-14 flex-lr padding-10-lr padding-15-tb">
+        <view class="store-logo">
+            <image alt="" src="{{store.logo}}"></image>
+        </view>
+        <view class="info-inner">
+            <view class="w-100 flex">
+                <view class="store-title font-15 font-500 ellipsis">{{store.title}}</view>
+                <view class="flex">
+                    <view class="store-tag" wx:if="{{store.haodian_cid>0}}">{{store.haodian_cid_cn}}</view>
+                    <view class="store-tag" wx:if="{{store.haodian_child_id>0}}">{{store.haodian_child_id_cn}}</view>
+                </view>
+            </view>
+            <view class="flex font-12">
+                <van-rate disabled disabledColor="#ff2d4b" size="12" value="{{store.haodian_score}}"></van-rate>
+                <text class="c-gray  margin-5-l">{{store.haodian_score}}分</text>
+                <view class="flex margin-10-l">
+                    <text class="icon icon-hotfill c-danger"></text>
+                    <text class="c-gray">人气:100</text>
+                </view>
+            </view>
+            <view class="flex c-gray font-12">
+                <text class="icon icon-time"></text>
+                <text class="margin-5-l">营业时间: {{store.business_hours_cn}}</text>
+            </view>
+            <view class="flex c-gray font-12 store-address">
+                <text class="icon icon-location"></text>
+                <text class="margin-5-l ellipsis">{{store.address}}</text>
+            </view>
+            <view class="store-other c-danger flex ">
+                <text bind:tap="onJsEvent" class="font-20 icon icon-taxi border-1px-r padding-5-r" data-address="{{store.address}}" data-event-type="jsLocation" data-lat="{{store.location_x}}" data-lng="{{store.location_y}}" data-name="{{store.title}}"></text>
+                <text bind:tap="onJsEvent" class="font-20 icon icon-phone padding-5-l" data-event-type="jsPhone" data-phoneNumber="{{store.telephone}}"></text>
+            </view>
+        </view>
+    </view>
+    <view class="store-feature bg-default font-14 padding-10-lr padding-15-t padding-5-b border-1px-t" wx:if="{{store.haodian_tags.length>0}}">
+        <view class="feature-item flex" wx:for="{{store.haodian_tags}}" wx:key="{{item.index}}">
+            <text class="icon icon-tag font-14 c-danger margin-5-r"></text>
+            <text class="ellipsis">{{item}}</text>
+        </view>
+    </view>
+    <view class="store-coupon margin-10-t padding-10-t bg-default" wx:if="{{coupon.coupons.length>0||coupon.record.length>0}}">
+        <view class="activity-header ">店铺优惠券</view>
+        <view class="coupon-list padding-5-b">
+            <view class="coupon-item flex-lr" wx:if="{{coupon.can_collect==1}}">
+                <view class="left">
+                    <view class="c-danger font-500">{{coupon.title}}</view>
+                    <view class="c-gray margin-10-t font-12">满{{coupon.coupons[0].condition}}{{Lang.dollarSignCn}}可用</view>
+                    <view class="c-gray margin-10-t font-12">限{{coupon.endtime_cn}}前领取</view>
+                </view>
+                <view class="right">
+                    <text class="font-18 font-bold c-danger">{{Lang.dollarSign}}{{coupon.coupons[0].discount}}</text>
+                    <view bind:tap="getCoupon" class="btn-take" data-sid="{{store.id}}" wx:if="{{!is_grant}}">立即领取</view>
+                    <view class="c-danger font-14 margin-10-t" wx:else>已领取</view>
+                </view>
+            </view>
+            <block wx:if="{{coupon.record.length>0}}">
+                <view class="coupon-item flex-lr" wx:for="{{coupon.record}}" wx:key="{{item.id}}">
+                    <view class="left">
+                        <view class="c-danger font-500">{{item.title}}</view>
+                        <view class="c-gray margin-10-t font-12">满{{item.condition}}{{Lang.dollarSignCn}}可用</view>
+                        <view class="c-gray margin-10-t font-12">限{{item.endtime_cn}}前使用</view>
+                    </view>
+                    <view class="right">
+                        <text class="font-18 font-bold c-danger">{{Lang.dollarSign}}{{item.discount}}</text>
+                        <view class="c-danger font-14 margin-10-t">已领取</view>
+                    </view>
+                </view>
+            </block>
+        </view>
+    </view>
+    <view class="haodian-kanjia bg-default margin-10-t padding-10-t" wx:if="{{kanjia.length>0}}">
+        <view class="activity-header">
+			本店砍价
+			<view bind:tap="onJsEvent" class="more" data-event-type="jsUrl" data-url="gohome/pages/kanjia/index?sid={{sid}}">
+				更多
+				<view class="icon icon-arrow-right"></view>
+            </view>
+        </view>
+        <view class="activity-list">
+            <view bind:tap="onJsEvent" class="activity-item" data-event-type="jsUrl" data-url="gohome/pages/kanjia/detail?id={{item.id}}" wx:for="{{kanjia}}" wx:key="{{item.id}}">
+                <view class="item-inner">
+                    <view class="thumb">
+                        <image alt="" src="{{item.thumb}}"></image>
+                    </view>
+                    <view class="goods-title">{{item.name}}</view>
+                    <view class="flex">
+                        <text class="c-danger font-500 font-15">{{Lang.dollarSign}}{{item.price}}</text>
+                        <view class="c-gray line-through font-12">{{Lang.dollarSign}}{{item.oldprice}}</view>
+                        <view class="discount">{{item.discount}}折</view>
+                    </view>
+                </view>
+            </view>
+        </view>
+    </view>
+    <view class="haodian-seckill bg-default margin-10-t padding-10-t" wx:if="{{seckill.length>0}}">
+        <view class="activity-header">
+			本店抢购
+			<view bind:tap="onJsEvent" class="more" data-event-type="jsUrl" data-url="gohome/pages/seckill/index?sid={{sid}}">
+				更多
+				<view class="icon icon-arrow-right"></view>
+            </view>
+        </view>
+        <view class="activity-list">
+            <view class="activity-item bg-default padding-10 {{index<seckill.length-1?'border-1px-b':''}}" wx:for="{{seckill}}" wx:key="{{item.id}}">
+                <view class="flex-lr">
+                    <view class="thumb">
+                        <image alt="" src="{{item.thumb}}"></image>
+                    </view>
+                    <view class="info">
+                        <view class="font-14 w-100">
+                            <view>{{item.name}}</view>
+                        </view>
+                        <view class="flex-lr-bottom w-100">
+                            <view class="price-bar">
+                                <view class="flex">
+                                    <text class="font-500 font-15 margin-5-r">{{Lang.dollarSign}}{{item.price}}</text>
+                                    <view class="c-gray line-through font-12">{{Lang.dollarSign}}{{item.oldprice}}</view>
+                                    <view class="discount">{{item.discount}}折</view>
+                                </view>
+                                <view class="bar">
+                                    <view class="bar-inner" style="width:{{item.sailed_percent}}%"></view>
+                                    <view class="bar-text">已抢{{item.sailed}}份</view>
+                                </view>
+                            </view>
+                            <view bind:tap="onJsEvent" class="btn btn-detail" data-event-type="jsUrl" data-url="gohome/pages/seckill/detail?id={{item.id}}">去抢购</view>
+                        </view>
+                    </view>
+                </view>
+            </view>
+        </view>
+    </view>
+    <view class="haodian-pintuan bg-default margin-10-t padding-10-t" wx:if="{{pintuan.length>0}}">
+        <view class="activity-header">
+			本店拼团
+			<view bind:tap="onJsEvent" class="more" data-event-type="jsUrl" data-url="gohome/pages/pintuan/index?sid={{sid}}">
+				更多
+				<view class="icon icon-arrow-right"></view>
+            </view>
+        </view>
+        <view class="activity-list">
+            <view class="activity-item" wx:for="{{pintuan}}" wx:key="{{item.id}}">
+                <view class="item-inner">
+                    <view class="thumb">
+                        <image alt="" src="{{item.thumb}}"></image>
+                        <view class="mark">
+							{{item.peoplenum}}人团
+						</view>
+                    </view>
+                    <view class="goods-title">{{item.name}}</view>
+                    <view class="flex">
+                        <span class="font-500 font-15 margin-5-r">{{Lang.dollarSign}}{{item.price}}</span>
+                        <view class="c-gray line-through font-12">{{Lang.dollarSign}}{{item.oldprice}}</view>
+                        <view class="discount">{{item.discount}}折</view>
+                    </view>
+                    <view class="flex-lr margin-10-t">
+                        <view class="bar">
+                            <view class="bar-inner" style="width:{{item.sailed_percent}}%"></view>
+                            <view class="bar-text">已售{{item.falesailed_total}}份</view>
+                        </view>
+                        <view bind:tap="onJsEvent" class="btn btn-detail" data-event-type="jsUrl" data-url="gohome/pages/pintuan/detail?id={{item.id}}">拼团</view>
+                    </view>
+                </view>
+            </view>
+        </view>
+    </view>
+    <view class="detail-comment bg-default margin-10-t">
+        <view class="tab-group border-1px-b">
+            <view bind:tap="onToggleDetailOrComment" class="tab-item {{detailOrComment=='detail'?'active':''}}" data-type="detail">商户详情</view>
+            <view bind:tap="onToggleDetailOrComment" class="tab-item {{detailOrComment=='comment'?'active':''}}" data-type="comment">用户评价</view>
+        </view>
+        <view class="richtext" wx:if="{{detailOrComment=='detail'}}">
+            <template is="wxParse" data="{{wxParseData:content.nodes}}"></template>
+        </view>
+        <view class="comment-list" wx:elif="{{detailOrComment=='comment'}}">
+            <block wx:if="{{!comment.empty}}">
+                <view class="comment-item padding-15-tb padding-10-lr border-1px-b" wx:if="{{comment.data.length>0}}" wx:for="{{comment.data}}" wx:key="{{item.id}}">
+                    <view class="consumer-info flex-lr">
+                        <view class="avatar">
+                            <image alt="" src="{{item.avatar}}"></image>
+                        </view>
+                        <view class="basic flex-lr">
+                            <view>
+                                <view class="font-14">{{item.username}}</view>
+                                <view class="c-gray font-12 margin-5-t">{{item.addtime_cn}}</view>
+                            </view>
+                            <van-rate disabled disabledColor="#ff2d4b" size="12" value="{{item.store_service}}"></van-rate>
+                        </view>
+                    </view>
+                    <view class="comment-item">
+                        <view class="text">{{item.note}}</view>
+                        <view class="thumbs margin-10-t" wx:if="{{item.thumbs.length>0}}">
+                            <view class="thumb-item" wx:if="{{thumbIndex<4}}" wx:for="{{item.thumbs}}" wx:for-index="thumbIndex" wx:for-item="thumb" wx:key="{{thumbIndex}}">
+                                <view class="img-group">
+                                    <image alt="" bind:tap="onShowImage" data-current="{{thumbIndex}}" data-preview="{{thumb}}" src="{{thumb}}"></image>
+                                    <div class="thumb-num" wx:if="{{item.thumbs.length>4&&thumbIndex==3}}">+{{item.thumbs.length-4}}</div>
+                                </view>
+                            </view>
+                        </view>
+                    </view>
+                </view>
+                <view class="wui-loadmore wui-loadmore-nodata" wx:if="{{comment.loaded}}">
+                    <view class="wui-loadmore-tips">没有更多了</view>
+                </view>
+            </block>
+            <view class="no-data-simple" wx:else>
+                <text class="icon icon-cry"></text>
+                <text>暂无评价~</text>
+            </view>
+        </view>
+    </view>
+</view>
+<view class="fixed-actions border-1px-t">
+    <view bind:tap="onComment" class="action-icon border-1px-r" data-event-type="jsUrl" data-url="gohome/pages/haodian/comment?sid={{store.id}}">
+        <text class="icon icon-comment"></text>
+        <text>评价</text>
+    </view>
+    <view bind:tap="onFavor" class="action-icon border-1px-r {{store.is_favorite?'is_favor':''}}" data-sid="{{store.id}}">
+        <text class="icon {{store.is_favorite?'icon-favor_fill_light':'icon-favor1'}} {{store.is_favorite?'c-danger':''}}"></text>
+        <text class="{{store.is_favorite?'c-danger':''}}">{{store.is_favorite?'已收藏':'收藏'}}</text>
+    </view>
+    <view bind:tap="onToggleZhezhao" class="action-icon">
+        <text class="icon icon-share"></text>
+        <text>分享</text>
+    </view>
+    <view bind:tap="onJsEvent" class="action-btn" data-event-type="jsPhone" data-phoneNumber="{{store.telephone}}">联系商家</view>
+</view>
+<view bind:tap="onToggleZhezhao" class="share-zhezhao" wx:if="{{zhezhaoShow}}">
+    <image mode="widthFix" src="../../static/img/share-layer.png"></image>
+</view>
+<import src="/library/wxParse/wxParse.wxml"></import>
+<include src="../../../pages/public/footer.wxml"></include>

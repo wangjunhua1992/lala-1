@@ -1,0 +1,18 @@
+{
+    "navigationBarTitleText": "首页",
+    "navigationBarBackgroundColor": "#ff2d4b",
+    "enablePullDownRefresh": true,
+    "onReachBottomDistance": 0,
+    "usingComponents": {
+        "van-tab": "/library/vant/tab/index",
+        "van-tabs": "/library/vant/tabs/index",
+        "van-button": "/library/vant/button/index",
+        "van-cell": "/library/vant/cell/index",
+        "van-cell-group": "/library/vant/cell-group/index",
+        "van-row": "/library/vant/row/index",
+        "van-col": "/library/vant/col/index",
+        "van-popup": "/library/vant/popup/index",
+        "van-rate": "/library/vant/rate/index",
+        "tab-bar": "/components/tabBar"
+    }
+}

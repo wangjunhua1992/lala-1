@@ -1,0 +1,548 @@
+.page-guide {
+    box-sizing: border-box;
+}
+
+tab-bar~.container .paotui-feature-panel {
+    padding-bottom: 78px!important;
+}
+
+.page-guide .nav {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    background-color: #fafafa;
+    height: 44px;
+    font-size: 16px;
+}
+
+.page-guide .nav .nav-item {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50%;
+    height: 100%;
+    text-align: center;
+}
+
+.page-guide .nav .nav-item.active {
+    color: #ff2d4b;
+}
+
+.page-guide .nav .nav-item.active:after {
+    position: absolute;
+    content: " ";
+    top: 39px;
+    left: 50%;
+    transform: translate(-50%);
+    height: 2px;
+    width: 33px;
+    display: block;
+    background: #ff2d4b;
+    border-radius: 999px;
+}
+
+.page-guide .shop-wrapper {
+    position: relative;
+    width: 100%;
+    flex: 1;
+}
+
+.page-guide .shop-wrapper .shop {
+    position: absolute;
+    backface-visibility: hidden;
+    background: #fff;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    transition: transform .2s linear;
+    transition: transform .2s linear,-webkit-transform .2s linear;
+}
+
+.page-guide .shop-wrapper .shop-banner {
+    position: relative;
+    width: 100%;
+    height: 243px;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
+
+.page-guide .shop-wrapper .shop-banner .rider-nearby-content {
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    right: 0;
+    bottom: 90px;
+    left: 50%;
+    transform: translate3d(-50%,0,0);
+    align-items: center;
+    width: 142px;
+    height: 25px;
+    background-color: #623c15;
+    border-radius: 55px;
+    line-height: 18px;
+    white-space: nowrap;
+    padding: 0 11px;
+    color: #fff;
+    font-size: 13px;
+    z-index: 100;
+    box-sizing: border-box;
+}
+
+.page-guide .shop-wrapper .shop-banner .rider-nearby-icon {
+    display: inline-block;
+    width: 20px;
+    height: 17px;
+    background-image: url(http://cos.lalawaimai.com/we7_wmall/wxapp/paotui_rider.png);
+    background-size: 100% 100%;
+    margin-right: 6px;
+}
+
+.page-guide .shop-wrapper .shop-banner .rider-nearby-content .num {
+    color: #f6ce00;
+}
+
+.page-guide .shop-wrapper .shop-banner .swiper-container {
+    height: 100%;
+    width: 100%;
+    padding: 0;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.page-guide .shop-wrapper .swiper-container .swiper-wrapper {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    display: flex;
+    transition-property: transform;
+    transition-property: transform,-webkit-transform;
+    box-sizing: content-box;
+}
+
+.page-guide .shop-wrapper .swiper-container .swiper-wrapper .swiper-slide {
+    width: 100%;
+    height: 100%;
+}
+
+.page-guide image {
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+.page-guide .shop-wrapper .good-edit {
+    position: absolute;
+    z-index: 10;
+    width: 93%;
+    top: 163px;
+    left: 50%;
+    transform: translateX(-50%);
+    min-height: 241px;
+    background: #fff;
+    box-shadow: 0 0 56px 0 rgba(0,0,0,.14);
+    padding: 17px 11px 0;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    box-sizing: border-box;
+    z-index: 2000;
+}
+
+.page-guide .shop-wrapper .good-edit .good-input {
+    position: relative;
+    flex: 1;
+    padding: 0 6px;
+}
+
+.page-guide .shop-wrapper .good-edit .good-input-placeholder.active {
+    display: inline-flex;
+}
+
+.page-guide .shop-wrapper .good-edit .good-input-placeholder {
+    width: 100%;
+    height: 110px;
+    line-height: 1;
+    color: #999;
+    font-size: 18px;
+    align-items: flex-start;
+    display: none;
+}
+
+.page-guide .shop-wrapper .good-edit .good-input-icon {
+    width: 16px;
+    height: 18px;
+    margin-right: 7px;
+}
+
+.page-guide .shop-wrapper .good-edit .good-tags {
+    overflow: hidden;
+    width: 100%;
+    min-height: 93px;
+    margin: 11px 0 7px;
+}
+
+.page-guide .shop-wrapper .good-edit .good-tags .good-tag-list {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+}
+
+.page-guide .shop-wrapper .good-edit .good-tag-list .good-tag {
+    position: relative;
+    width: 24%;
+    box-sizing: border-box;
+    padding: 0 6px;
+    margin-bottom: 4px;
+    height: 44px;
+    line-height: 44px;
+    background: #fef7df;
+    font-size: 15px;
+    color: #83490d;
+    text-align: center;
+}
+
+.page-guide .shop-wrapper .good-edit .good-tag-list .good-tag-hot {
+    width: 43px;
+    height: 25px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 99;
+    max-width: 43px;
+}
+
+.page-guide .shop-wrapper .good-edit .good-input-content {
+    height: 110px;
+    width: 100%;
+    padding-bottom: 7px;
+    justify-content: center;
+    align-items: center;
+    display: none;
+}
+
+.page-guide .shop-wrapper .good-edit .good-input-content.active {
+    display: flex;
+}
+
+.page-guide .shop-wrapper .good-edit .good-input-content .good-input-textarea {
+    flex: 1;
+    height: 100%;
+    color: #333;
+    resize: none;
+    border: none;
+    overflow-x: hidden;
+    overflow-y: auto;
+    font-size: 18px;
+    padding-left: 6px;
+    line-height: 26px;
+}
+
+.page-guide .shop-wrapper .good-edit .good-input-content .good-input-submit {
+    width: 73px;
+    height: 72px;
+    margin-top: 18px;
+    background-image: url(http://cos.lalawaimai.com/we7_wmall/wxapp/goods_submit.png);
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    font-size: 15px;
+}
+
+.page-guide .brand-show-panel,.page-guide .paotui-feature-panel {
+    position: relative;
+    padding-top: 28px;
+    background: #fff;
+}
+
+.page-guide .paotui-feature-panel {
+    padding-bottom: 28px;
+    padding-top: 220px;
+    position: relative;
+}
+
+.page-guide .paotui-feature-panel .paotui-feature-title {
+    text-align: center;
+    font-size: 15px;
+    font-weight: 700;
+    color: #666;
+    margin-bottom: 19px;
+}
+
+.page-guide .paotui-feature-panel .paotui-feature-list {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.page-guide .paotui-feature-panel .paotui-feature-list .paotui-feature-item {
+    margin-right: 64px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.page-guide .paotui-feature-panel .paotui-feature-list .paotui-feature-item:last-of-type {
+    margin-right: 0;
+}
+
+.page-guide .paotui-feature-panel .paotui-feature-list .paotui-feature-item-icon {
+    width: 43px;
+    height: 43px;
+    border-radius: 43px;
+    line-height: 43px;
+    text-align: center;
+    display: block;
+    border: 1px solid #FFD56F;
+    color: #FFD56F;
+    margin-bottom: 11px;
+}
+
+.page-guide .paotui-feature-panel .paotui-feature-list .paotui-feature-item-icon .icon {
+    font-size: 28px;
+}
+
+.page-guide .paotui-feature-panel .paotui-feature-list .paotui-feature-item-text {
+    color: #333;
+    font-size: 13px;
+}
+
+.paotui-order {
+    position: fixed;
+    bottom: 80px;
+    right: 10px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50px;
+    text-align: center;
+    border: 1px solid #FFD56F;
+    background: #fff;
+    z-index: 9999;
+}
+
+.paotui-order .icon {
+    color: #FFD56F;
+    font-size: 24px;
+}
+
+.paotui-order .order-text {
+    color: #FFD56F;
+    font-size: 12px;
+    margin-top: -8px;
+}
+
+.dialog .dialog-mask {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 9001;
+    background: rgba(0,0,0,0.7);
+}
+
+.dialog.dialog-show .dialog-mask {
+    display: block;
+}
+
+.dialog .dialog-container {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background: white;
+    transform: translateY(-150%);
+    transition: all 0.4s ease;
+    z-index: 9002;
+}
+
+.dialog-show .dialog-container {
+    transform: translateY(0);
+}
+
+.dialog .dialog-container .wui-cell::after {
+    border-top: 1rpx solid #e5e5e5;
+}
+
+.dialog .dialog-container .multiple {
+    height: 260px;
+}
+
+.dialog .dialog-container .multiple scroll-view {
+    height: 100%;
+}
+
+.dialog .dialog-container .multiple .wui-cell::after {
+    left: 0;
+    right: 0;
+}
+
+.dialog .dialog-container .multiple .wui-cell:last-child::after {
+    border-top: 0;
+}
+
+.dialog .dialog-container .multiple .wui-cell.active {
+    color: #ff2d4b;
+}
+
+.dialog .dialog-container .multiple .wui-cell.active .weui-cell__ft {
+    display: block;
+}
+
+.dialog .dialog-container .multiple .weui-cell__ft {
+    display: none;
+}
+
+.dialog .dialog-container .multiple .wui-cell-bd .icon {
+    margin-right: 5px;
+}
+
+.dialog .dialog-container .filter {
+    height: 370px;
+}
+
+.dialog .dialog-container .filter scroll-view {
+    height: 100%;
+}
+
+.dialog.dialog-redpacket .dialog-container {
+    display: block;
+    width: 90%;
+    margin: 0 auto;
+    left: 0;
+    right: 0;
+    position: fixed;
+    text-align: center;
+    overflow: visible;
+    z-index: 9002;
+    border-radius: 10px;
+}
+
+.dialog-show.dialog-redpacket .dialog-container {
+    transform: translateY(30%);
+}
+
+.dialog.dialog-redpacket .dialog-container .banner {
+    background-color: #b80404;
+    height: 76px;
+    margin: 0 auto;
+    position: relative;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+.dialog.dialog-redpacket .dialog-container .banner image {
+    width: 100%;
+    min-height: 80px;
+    max-height: 100px;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+}
+
+.dialog.dialog-redpacket .dialog-container .container {
+    margin: 0 auto;
+    padding: 5px 15px 10px;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+.dialog.dialog-redpacket .dialog-container .redpacket {
+    background-color: #fff;
+    margin-bottom: 12px;
+    border-radius: 6px;
+    padding: 8px 16px;
+}
+
+.dialog.dialog-redpacket .dialog-container .redpacket .redpacket-info {
+    height: 26px;
+    line-height: 26px;
+    clear: both;
+    width: 100%;
+}
+
+.dialog.dialog-redpacket .dialog-container .redpacket .redpacket-info .col-75 {
+    font-size: 18px;
+    float: left;
+}
+
+.dialog.dialog-redpacket .dialog-container .redpacket .redpacket-info .redpacket-title {
+    height: 32px;
+    line-height: 32px;
+}
+
+.dialog.dialog-redpacket .dialog-container .redpacket .price {
+    width: 25%;
+    float: left;
+    text-align: right;
+}
+
+.dialog.dialog-redpacket .dialog-container .redpacket .price view {
+    display: inline-block;
+    font-size: 26px;
+}
+
+.dialog.dialog-redpacket .dialog-container .redpacket .circle-container {
+    position: relative;
+}
+
+.dialog.dialog-redpacket .dialog-container .redpacket .circle-container .circle {
+    background-color: #b80404;
+    width: 16px;
+    height: 16px;
+    position: absolute;
+    border-radius: 16px;
+    top: -8px;
+    z-index: 20;
+}
+
+.dialog.dialog-redpacket .dialog-container .redpacket .circle-container .circle-left {
+    left: -24px;
+}
+
+.dialog.dialog-redpacket .dialog-container .redpacket .circle-container .circle-right {
+    right: -24px;
+}
+
+.dialog.dialog-redpacket .dialog-container .redpacket-limit {
+    height: 24px;
+    line-height: 24px;
+    font-size: 13px;
+    color: #666;
+    width: 100%;
+    margin: 0 auto;
+}
+
+.dialog.dialog-redpacket .dialog-container .redpacket-limit>view {
+    float: left;
+}
+
+.dialog.dialog-redpacket .dialog-container .go-home view {
+    padding: 8px 4px;
+    border-radius: 4px;
+    font-size: 16px;
+    max-width: 50%;
+    margin: 0 auto;
+    background-color: #ff2d4b;
+    text-align: center;
+}
+
+.dialog.dialog-redpacket .dialog-container .icon-close {
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%,0);
+    display: inline-block;
+    font-size: 20px;
+    width: 36px;
+    height: 36px;
+    text-align: center;
+    line-height: 40px;
+    color: #fff;
+    background: rgba(0,0,0,.7);
+    border-radius: 100%;
+    margin-top: 16px;
+}

@@ -1,0 +1,212 @@
+page {
+    font-size: 14px;
+    line-height: 1;
+    background-color: #f5f5f5;
+    box-sizing: border-box;
+}
+
+.page-order .list-block {
+    background-color: #fff;
+    margin: 10px 0;
+    padding: 5px 10px;
+}
+
+.page-order .list-block .errander-block image {
+    width: 38px;
+    height: 38px;
+    border: none;
+}
+
+.page-order .list-block .errander-block .list-block-text {
+    margin-left: 10px;
+    color: #333;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.page-order .list-block .icon-right {
+    color: #969799;
+    font-size: 16px;
+}
+
+.page-order .order-list {
+    background-color: #fff;
+    margin-bottom: 10px;
+}
+
+.page-order .order-list .order-item {
+    padding: 0 10px;
+}
+
+.page-order .order-list .order-item .store-info {
+    position: relative;
+    height: 50px;
+    line-height: 50px;
+    font-size: 16px;
+}
+
+.page-order .order-list .order-item .store-info image {
+    margin-right: 10px;
+    width: 30px;
+    height: 30px;
+    border-radius: 100%;
+    border: none;
+}
+
+.page-order .order-list .order-item .store-info .store-title {
+    font-weight: bold;
+    color: #333;
+    line-height: 21px;
+}
+
+.page-order .order-list .order-item .store-info .icon-right {
+    font-size: 16px;
+    color: #999;
+    margin-left: 6px;
+    line-height: 15px;
+}
+
+.page-order .order-list .order-item .store-info .plateform-delivery text {
+    height: 20px;
+    line-height: 20px;
+    font-size: 12px;
+    background: linear-gradient(to right,#FF930F,#FF5E4E);
+    border-radius: 7px 0 7px 0;
+    color: #fff;
+    display: block;
+    padding: 0 6px;
+}
+
+.page-order .order-list .order-item .goods-info {
+    padding: 10px 5px;
+    color: #3d4145;
+    box-sizing: border-box;
+}
+
+.page-order .order-list .order-item .goods-info .goods-info-left {
+    width: 75%;
+}
+
+.page-order .order-list .order-item .goods-info .goods-info-left .goods-title {
+    font-size: 16px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-bottom: 3px;
+    line-height: 24px;
+}
+
+.page-order .order-list .order-item .goods-info .goods-info-left .date {
+    color: #999;
+    font-size: 12px;
+    line-height: 18px;
+}
+
+.page-order .order-list .order-item .goods-info .goods-info-right {
+    width: 25%;
+    text-align: right;
+}
+
+.page-order .order-list .order-item .goods-info .goods-info-right .price {
+    font-size: 16px;
+    color: #707070;
+    margin-bottom: 3px;
+}
+
+.page-order .order-list .order-item .goods-info .goods-info-right .status {
+    color: #ff2d4b;
+    font-size: 14px;
+    line-height: 21px;
+}
+
+.page-order .order-list .order-item .order-status {
+    padding: 10px 5px 10px 50px;
+    position: relative;
+}
+
+.page-order .order-list .order-item .order-status:before {
+    content: "";
+    width: 1px;
+    height: 20px;
+    border-left: 1px solid #CBCBCB;
+    position: absolute;
+    top: 10px;
+    left: 17.5px;
+    margin-left: -1px;
+}
+
+.page-order .order-list .order-item .order-status .pic {
+    width: 35px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+}
+
+.page-order .order-list .order-item .order-status .pic image {
+    width: 35px;
+    height: 35px;
+    position: absolute;
+    top: 50%;
+    margin-top: -17.5px;
+    z-index: 10;
+}
+
+.page-order .order-list .order-item .order-status .order-status-detail {
+    position: relative;
+    font-size: 16px;
+    border: 1px solid #e7e6e6;
+    border-radius: 3px;
+    background: #fafafa;
+    padding: 12px 10px;
+}
+
+.page-order .order-list .order-item .order-status .order-status-detail .arrow-left,.page-order .order-list .order-item .order-status .order-status-detail .arrow-left:after {
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 10px 12px 10px 0;
+    border-color: transparent #e7e6e6 transparent transparent;
+    position: absolute;
+    left: -12px;
+    top: 50%;
+    margin-top: -10px;
+}
+
+.page-order .order-list .order-item .order-status .order-status-detail .arrow-left:after {
+    content: "";
+    border-right-color: #fafafa;
+    left: 2px;
+    top: 0px;
+}
+
+.page-order .order-list .order-item .order-status .order-status-detail .pay-status {
+    line-height: 24px;
+}
+
+.page-order .order-list .order-item .order-status .order-status-detail .tips {
+    color: #999;
+    font-size: 12px;
+    line-height: 18px;
+}
+
+.page-order .order-list .order-btn {
+    display: table;
+    table-layout: fixed;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    background: #fff;
+    font-size: 14px;
+    min-height: 40px;
+}
+
+.page-order .order-list .order-btn .table-cell {
+    display: table-cell;
+    overflow: hidden;
+    text-align: center;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    vertical-align: middle;
+    color: #333;
+}

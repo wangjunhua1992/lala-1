@@ -1,0 +1,113 @@
+<view class="page-detail">
+    <view class="prize-status">
+        <view bind:tap="onJsEvent" class="rule" data-event-type="jsUrl" data-url="package/pages/freelunch/rule">计算规则</view>
+        <view class="batch">
+            <text>第{{record.serial_sn}}期</text>
+        </view>
+        <block wx:if="{{record.status==2}}">
+            <block wx:if="{{record.reward_uid==uid}}">
+                <view class="h2">恭喜您 中奖了</view>
+                <view class="no-prize">
+					获得{{record.reward_fee}}{{Lang.dollarSignCn}}红包
+				</view>
+            </block>
+            <block wx:else>
+                <view class="h2">很遗憾 未中奖</view>
+                <view class="no-prize">
+					{{record.reward_fee}}{{Lang.dollarSignCn}}红包与你擦肩而过
+				</view>
+            </block>
+            <view class="winning-detail">
+                <view class="winning-inner">
+                    <view class="winning-code">中奖号码</view>
+                    <view class="lucky-number">
+                        <view class="digit" wx:for="{{record.reward_number}}">{{item}}</view>
+                    </view>
+                    <view class="details">
+                        <image src="{{member.avatar}}"></image>
+                        <view class="participate-info">
+                            <text class="participate-name">{{member.nickname}} 本期参与 {{winner_partaker.nums}} 次</text>
+                            <view class="participate-time" wx:for="{{winner_partaker.data}}">参与时间: {{item.addtime_cn}}</view>
+                        </view>
+                    </view>
+                </view>
+            </view>
+        </block>
+        <block wx:if="{{record.status==1}}">
+            <view class="h2">活动进行中</view>
+            <view class="prize-info">
+                <view class="price-inner">
+                    <view class="draw-condition">
+                        <text>{{record.reward_fee}}{{Lang.dollarSignCn}}无门槛红包</text>
+                    </view>
+                    <view class="progress">
+                        <view class="progress-bar" style="width:{{record.percent}}%;"></view>
+                    </view>
+                    <view class="prize-data">
+						总需人次: {{record.partaker_total}}
+						<text class="vertical-line">|</text>
+						剩余人次: {{record.partaker_dosage}}
+					</view>
+                </view>
+            </view>
+        </block>
+    </view>
+    <view class="no-participate">
+        <block wx:if="{{mine_partaker.nums>0}}">
+            <view class="participate-num">
+				我参与了:
+				<text>{{mine_partaker.nums}}</text>
+                <text class="strong">次</text>
+            </view>
+            <view class="participate-code" wx:for="{{mine_partaker.data}}">
+					参与号码:
+					<text class="strong">{{item.number}}</text>
+            </view>
+        </block>
+        <view style="text-align: center;" wx:else>您没有参与本期活动，立即参与领红包吧！</view>
+    </view>
+    <view class="current-participant">
+        <view class="participant-title border-1px-b">
+            <text>本期参与人</text>
+            <text class="start-time">{{record.startime_cn}} 开始</text>
+        </view>
+        <view class="participant-list">
+            <block wx:if="{{partakers.empty==0}}">
+                <view class="participant-item" wx:for="{{partakers.data}}" wx:key="{{index}}">
+                    <view class="photo">
+                        <image src="{{item.avatar}}"></image>
+                    </view>
+                    <view class="userinfo border-1px-b">
+                        <view class="participant-name">{{item.nickname}}</view>
+                        <view class="participant-time">{{item.addtime}}</view>
+                    </view>
+                </view>
+                <view class="wui-loadmore wui-loadmore-nomore" wx:if="{{partakers.loaded==1}}">
+                    <view class="wui-loadmore-tips">没有更多了</view>
+                    <view class="wui-loadmore-line"></view>
+                </view>
+                <view class="wui-loadmore" wx:else>
+                    <view class="wui-loading"></view>
+                    <view class="wui-loadmore-tips">正在加载中</view>
+                </view>
+            </block>
+            <view class="wui-loadmore wui-loadmore-nomore" wx:if="{{partakers.empty==1}}">
+                <view class="wui-loadmore-tips">暂无记录</view>
+                <view class="wui-loadmore-line"></view>
+            </view>
+        </view>
+    </view>
+    <view class="fixed-bottom border-1px-t" wx:if="{{record.status==2}}">
+        <view class="tips">新的一期正在火热进行中…</view>
+        <button bind:tap="onJsEvent" data-event-type="jsUrl" data-url="package/pages/freelunch/index">立即参与</button>
+    </view>
+    <view class="fixed-bottom border-1px-t" wx:else>
+        <navigator class="link" hoverClass="none" url="./index" wx:if="{{partake_status.errno==0}}">
+            <block wx:if="{{mine_partaker.nums}}">再次参与,中奖率翻倍</block>
+            <block wx:else>立即参与</block>
+        </navigator>
+        <view class="link no-partake-times" hoverClass="none" wx:else>{{partake_status.message}}</view>
+        <view bind:tap="onRefresh" class="refresh">刷新进度</view>
+    </view>
+</view>
+<include src="../../../pages/public/footer.wxml"></include>

@@ -1,0 +1,7 @@
+<view class="failed-tips">
+    <view class="wrapper">
+        <image class="img" src="{{failedTips.img}}"></image>
+        <view class="tips">{{failedTips.tips}}</view>
+        <view bind:tap="onJsEvent" class="link" data-event-type="jsUrl" data-url="{{failedTips.link}}">{{failedTips.btnText}}</view>
+    </view>
+</view>

@@ -1,0 +1,475 @@
+.header {
+    padding: 10px 10px 7px 10px;
+    background-color: #333333;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+}
+
+.header .avatar {
+    width: 40px;
+    height: 40px;
+    overflow: hidden;
+    display: inline-block;
+    float: left;
+}
+
+.header .avatar image {
+    width: 100%;
+    height: 100%;
+}
+
+.header .campaign {
+    float: left;
+    height: 40px;
+    font-size: 12px;
+    max-width: 70%;
+    margin-left: 10px;
+}
+
+.header .campaign .text {
+    font-size: 12px;
+    color: #fff;
+    vertical-align: middle;
+}
+
+.header .campaign .text view {
+    display: inline-block;
+}
+
+.header .campaign .text view:nth-child(2) {
+    margin-right: 5px;
+}
+
+.header .campaign .text .allocation-icon {
+    margin-left: 5px;
+}
+
+.header .campaign .text .allocation-icon::before,.header .text .allocation-icon::after {
+    content: '';
+    position: absolute;
+    border: 2px solid #484242;
+    width: 0;
+    height: 0;
+    font-size: 0;
+}
+
+.header .campaign .text .allocation-icon::before {
+    left: 0;
+    top: 0;
+    border-color: #484242 #ff2d4b #ff2d4b #484242;
+}
+
+.header .campaign .text .allocation-icon::after {
+    right: 0;
+    bottom: 0;
+    border-color: #ff2d4b #484242 #484242 #ff2d4b;
+}
+
+.header .campaign .notice {
+    margin-top: 2px;
+    color: #fff;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.header .collect {
+    float: right;
+    color: #fff;
+}
+
+.header .collect .icon {
+    font-size: 20px;
+    width: 100%;
+    text-align: center;
+}
+
+.header .collect .text {
+    font-size: 12px;
+}
+
+.header .activity-box {
+    padding-top: 5px;
+    width: 100%;
+    height: 19px;
+    position: relative;
+}
+
+.header .activity-box .interim {
+    font-size: 12px;
+    color: #fff;
+    vertical-align: middle;
+}
+
+.header .activity-box .interim>view {
+    display: inline-block;
+}
+
+.header .activity-box .activity-scroll {
+    height: 100%;
+}
+
+.header .activity-box .activity {
+    width: 80%;
+    display: flex;
+    align-items: center;
+}
+
+.header .activity-box .activity image {
+    width: 15px;
+    height: 15px;
+    margin-right: 5px;
+}
+
+.header .activity-box .activity view {
+    flex: 1;
+    font-size: 12px;
+    color: #fff;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.header .activity-box .more {
+    position: absolute;
+    right: 0px;
+    top: 5px;
+    color: #fff;
+    font-size: 12px;
+}
+
+.header .activity-box .more .icon {
+    font-size: 12px;
+}
+
+.content .wui-tab {
+    position: fixed;
+    top: 92px;
+    z-index: 100;
+}
+
+.comment-menu {
+    background: #f4f4f4;
+    padding-top: 137px;
+}
+
+.comment-main {
+    display: -webkit-flex;
+    box-sizing: border-box;
+    height: 100%;
+}
+
+.comment-menu .list {
+    height: 100%;
+}
+
+.cmt-detail-info {
+    height: 80px;
+    background-color: #FFF;
+    margin-top: 10px;
+    overflow: hidden;
+}
+
+.cmt-detail-info-left-cell {
+    float: left;
+    width: 26%;
+    text-align: center;
+    display: inline-block;
+}
+
+.cmt-detail-info-data {
+    line-height: 32px;
+    margin-top: 14px;
+    font-size: 23px;
+}
+
+.cmt-detail-info-receive {
+    font-size: 32px;
+}
+
+.cmt-detail-info-receive,.cmt-detail-info-ship,.cmt-detail-info-rate {
+    color: #ff2d4b;
+}
+
+.cmt-detail-info-desc {
+    line-height: 22px;
+    font-size: 12px;
+    color: #656565;
+}
+
+.cmt-detail-info-middle-cell {
+    float: left;
+    width: 45%;
+    display: inline-block;
+}
+
+.cmt-detail-info-stars:first-child {
+    margin-top: 10px;
+}
+
+.cmt-detail-info-stars {
+    overflow: hidden;
+}
+
+.cmt-detail-info-stars .cmt-detail-info-desc {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.comment-grade {
+    margin-top: 10px;
+    background-color: #fff;
+}
+
+.comment-grade .grade-list {
+    display: flex;
+    align-items: center;
+    padding: 10px 7.5px;
+    box-sizing: border-box;
+}
+
+.comment-grade .grade-list .grade-group {
+    width: 25%;
+    padding: 0px 7.5px;
+    text-align: center;
+    box-sizing: border-box;
+}
+
+.comment-grade .grade-list .grade-group .grade-item {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+    font-size: 12px;
+    background-color: #EDF4FE;
+    color: #78828C;
+    border-radius: 3px;
+    line-height: 1;
+    box-sizing: border-box;
+}
+
+.comment-grade .grade-list .grade-group .grade-item.active {
+    color: #fff;
+    background-color: #ff2d4b;
+}
+
+.comment-grade .read-comment {
+    padding-left: 15px;
+}
+
+.comment-grade .read-comment .read-comment-group {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 10px 15px 10px 0;
+    font-size: 13px;
+    color: #656565;
+    line-height: 21px;
+    border-top: 1px dashed #ebedf0;
+}
+
+.comment-grade .read-comment .read-comment-group .icon {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    border: 1px solid #ccc;
+    text-align: center;
+    line-height: 18px;
+    margin-right: 5px;
+}
+
+.comment-grade .read-comment .read-comment-group .icon.icon-check {
+    color: #fff;
+    background-color: #ff2d4b;
+    border-color: #ff2d4b;
+}
+
+.appr-status {
+    display: inline-block;
+    height: 10px;
+    margin: 0 5px 0 8px;
+    vertical-align: middle;
+}
+
+.appr-score {
+    display: inline-block;
+    background: url(http://cos.lalawaimai.com/we7_wmall/wxapp/newstars.png) no-repeat;
+    background-size: cover;
+    width: 10px;
+    height: 10px;
+    float: left;
+    margin-right: 4px;
+    background-position: 0 0;
+}
+
+.appr-score-half {
+    background-position: -13px 0;
+}
+
+.appr-score-gray {
+    background-position: -27px 0!important;
+}
+
+.cmt-detail-info-stars .cmt-detail-info-receive {
+    font-size: 15px;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.cmt-detail-info-right-cell {
+    float: right;
+    display: inline-block;
+    width: 28%;
+    height: 65px;
+    margin-top: 7px;
+    text-align: center;
+    border-left: 1px solid #D8D8D8;
+}
+
+.cmt-detail-info-dvy {
+    font-size: 24px;
+    color: #999;
+}
+
+.cmt-detail-info-right-cell .cmt-detail-info-desc {
+    color: #999;
+}
+
+.cmt-detail-info-desc {
+    line-height: 22px;
+    font-size: 12px;
+    color: #656565;
+}
+
+.evaluates-field {
+    background-color: #fff;
+    box-flex: 1;
+    -ms-flex: 1 0 auto;
+    margin-top: 10px;
+}
+
+.evaluate-item {
+    padding: 15px 15px 12px 15px;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.evaluate-sub {
+    line-height: 15px;
+}
+
+.evaluate-sub-left {
+    float: left;
+    width: 15%;
+    display: inline-block;
+}
+
+.evaluate-user-pic {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}
+
+.evaluate-sub-right {
+    float: left;
+    width: 85%;
+    display: inline-block;
+}
+
+.evaluate-sub {
+    line-height: 15px;
+}
+
+.evaluate-name {
+    color: #2f2f2f;
+    font-size: 16px;
+    display: inline-block;
+}
+
+.evaluate-time {
+    font-size: 12px;
+    color: #898989;
+    float: right;
+    display: inline-block;
+}
+
+.evaluate-stars {
+    margin-top: 6px;
+    margin-bottom: 5px;
+}
+
+.evaluate-sub .appr-status {
+    margin: 0;
+    float: left;
+    margin-right: 2px;
+}
+
+.evaluate-ship-time {
+    color: #898989;
+    font-size: 12px;
+    float: left;
+    line-height: 12px;
+    display: inline-block;
+}
+
+.evaluate-comment {
+    font-size: 14px;
+    margin-top: 10px;
+    margin-bottom: 6px;
+}
+
+.comment-bottom {
+    margin: 4px 0;
+    font-size: 12px;
+}
+
+.comment-bottom .icon {
+    color: #576B95;
+    margin-right: 5px;
+}
+
+.comment-favor-text {
+    color: #576B95;
+    display: inline-block;
+}
+
+.comment-tag-text {
+    color: #898989;
+    display: inline-block;
+}
+
+.comment-pics {
+    float: left;
+    margin-right: 5px;
+    margin-bottom: 5px;
+    width: 175px;
+    height: 175px;
+}
+
+.comment-pics image {
+    width: 100%;
+    height: 100%;
+}
+
+.pic-multi .comment-pics {
+    width: 80px;
+    height: 80px;
+}
+
+.replay {
+    font-size: 14px;
+    color: #898989;
+    padding: 10px;
+    background: #F4F4F4;
+}
+
+.no-data .no-coupon {
+    top: 50px;
+}
+
+.no-data .no-record {
+    top: 170px;
+}

@@ -1,0 +1,40 @@
+page {
+    background: #f4f4f4;
+}
+
+.page-getcash-log .getcash-list {
+    margin-top: 10px;
+    width: 100%;
+    background: #fff;
+}
+
+.page-getcash-log .getcash-list .wui-cell:first-child {
+    border-top: 1px solid #e5e5e5;
+}
+
+.page-getcash-log .getcash-list .wui-cell:last-child {
+    border-bottom: 1px solid #e5e5e5;
+}
+
+.page-getcash-log .getcash-list .cell-order {
+    font-size: 14px;
+    color: #666;
+}
+
+.page-getcash-log .getcash-list .cell-num-position {
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+.page-getcash-log .getcash-list .wui-getcash {
+    padding: 10px 0;
+}
+
+.page-getcash-log .getcash-list .wui-cell-getcash {
+    padding-left: 10px;
+    bordre: 0px;
+}
+
+.page-getcash-log .getcash-list .wui-cell:last-child::after {
+    border: 0px;
+}

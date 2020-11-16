@@ -1,0 +1,110 @@
+page {
+    background-color: #f4f4f4;
+}
+
+.container {
+    padding-bottom: 20px;
+}
+
+.container .content .text {
+    padding: 15px;
+    background-color: #fff;
+}
+
+.container .content .text textarea {
+    max-width: 100%;
+    width: auto;
+    height: 120px;
+    background-color: #f4f4f4;
+    border: 1px solid #ECECEC;
+    padding: 10px;
+    font-size: 16px;
+}
+
+.container .content .text .label-box {
+    margin-top: 10px;
+}
+
+.container .content .text .label-box .label {
+    display: inline-block;
+    padding: 4px 10px;
+    font-size: 12px;
+    border: 1px solid #ECECEC;
+    margin-right: 8px;
+    margin-top: 8px;
+}
+
+.container .content .select {
+    background-color: #fff;
+    margin-top: 10px;
+}
+
+.container .content .select {
+    padding: 5px 0;
+}
+
+.container .content .select .weui-cell {
+    font-size: 14px;
+}
+
+.container .content .select .weui-select {
+    font-size: 14px;
+}
+
+.container .content .invoice {
+    margin-top: 10px;
+    background-color: #fff;
+}
+
+.container .content .invoice radio-group {
+    font-size: 14px;
+}
+
+.container .content .invoice .add {
+    text-align: center;
+    font-size: 16px;
+    color: #ff2d4b;
+    padding: 10px 0;
+}
+
+.container .content .invoice .wui-cell::after {
+    right: 0;
+}
+
+.container .content .invoice .invoice-list .wui-cell:last-child::after {
+    border-top: 0;
+}
+
+.container .content .invoice .wui-cell .wui-cell-ft {
+    color: #333;
+}
+
+.container .content .invoice .weui-cell:last-child::after {
+    content: "";
+    position: absolute;
+    left: 15px;
+    bottom: 0;
+    right: 0;
+    height: 1px;
+    border-bottom: 1rpx solid #d9d9d9;
+    color: #d9d9d9;
+}
+
+.container .content .invoice .add>view {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    text-align: center;
+    line-height: 14px;
+    border: 1px solid #ff2d4b;
+    border-radius: 100%;
+}
+
+.container .content .invoice .add .icon {
+    font-size: 12px;
+}
+
+.container .btn-box {
+    text-align: center;
+    margin-top: 10px;
+}

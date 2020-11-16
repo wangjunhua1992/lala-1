@@ -1,0 +1,4 @@
+<button appParameter="{{appParameter}}" bind:tap="onClick" bindcontact="bindContact" binderror="bindError" bindgetphonenumber="bindGetPhoneNumber" bindgetuserinfo="bindGetUserInfo" bindopensetting="bindOpenSetting" class="{{classes}}" id="{{id}}" lang="{{lang}}" openType="{{openType}}" sendMessageImg="{{sendMessageImg}}" sendMessagePath="{{sendMessagePath}}" sendMessageTitle="{{sendMessageTitle}}" sessionFrom="{{sessionFrom}}" showMessageCard="{{showMessageCard}}">
+    <van-loading color="{{type==='default'?'#c9c9c9':''}}" customClass="loading-class" size="20px" wx:if="{{loading}}"></van-loading>
+    <slot wx:else></slot>
+</button>

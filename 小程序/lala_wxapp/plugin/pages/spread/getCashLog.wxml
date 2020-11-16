@@ -1,0 +1,43 @@
+<tab-bar menufooter="{{menufooter}}" wx:if="{{menufooter&&menufooter.data}}"></tab-bar>
+<view class="page-getcash-log container">
+    <view class="wui-tab">
+        <view class="wui-tab-bd">
+            <view class="wui-tab-item {{num==-1?'wui-tab-item-selected':''}}">
+                <view bind:tap="onSubmit" class="wui-tab-title" data-status="-1">所有</view>
+            </view>
+            <view class="wui-tab-item {{num==2?'wui-tab-item-selected':''}}">
+                <view bind:tap="onSubmit" class="wui-tab-title" data-status="2">申请中</view>
+            </view>
+            <view class="wui-tab-item {{num==1?'wui-tab-item-selected':''}}">
+                <view bind:tap="onSubmit" class="wui-tab-title" data-status="1">提现成功</view>
+            </view>
+            <view class="wui-tab-item {{num==3?'wui-tab-item-selected':''}}">
+                <view bind:tap="onSubmit" class="wui-tab-title" data-status="3">已撤销</view>
+            </view>
+        </view>
+    </view>
+    <view class="getcash-list">
+        <view class="wui-cell wui-getcash" wx:for="{{records}}">
+            <view class="wui-cell-bd wui-cell-getcash">
+                <view class="cell-order">编号: {{item.trade_no}}</view>
+                <view class="cell-descriptions">申请佣金:{{item.get_fee}}实际金额:{{item.final_fee}},个人所得税:{{item.take_fee}}{{Lang.dollarSignCn}}</view>
+                <view class="cell-time">申请时间:{{item.addtime}}</view>
+            </view>
+            <view class="wui-cell-ft border-1px-l">
+                <view class="cell-num cell-num-position">+{{item.status==3?item.get_fee:item.final_fee}}</view>
+                <view class="cell-description cell-num-position" wx:if="{{item.status==1}}">已成功</view>
+                <view class="cell-description cell-num-position" wx:if="{{item.status==2}}">申请中</view>
+                <view class="cell-description cell-num-position" wx:if="{{item.status==3}}">已撤销</view>
+            </view>
+        </view>
+    </view>
+    <view class="weui-loadmore" wx:if="{{showloading}}">
+        <view class="weui-loading"></view>
+        <view class="weui-loadmore__tips">正在加载中</view>
+    </view>
+    <view class="no-data no-bottom" wx:if="{{showNodata}}">
+        <image class="no-coupon" src="http://cos.lalawaimai.com/we7_wmall/wxapp/coupon_no_con.png"></image>
+        <text class="no-record">没有更多明细</text>
+    </view>
+</view>
+<include src="../../../pages/public/footer.wxml"></include>

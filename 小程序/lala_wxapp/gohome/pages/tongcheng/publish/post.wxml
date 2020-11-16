@@ -1,0 +1,76 @@
+<form bindsubmit="onSubmit">
+    <view class="publish-post">
+        <view class="bg-default">
+            <view class="c-gray padding-15-lr padding-15-t">信息内容：</view>
+            <view class="padding-15">
+                <textarea bindblur="onInput" maxlength="-1" name="content" placeholder="请输入信息内容" value="{{publish.content}}"></textarea>
+            </view>
+        </view>
+        <view class="bg-default margin-10-t">
+            <view class="c-gray padding-15-lr padding-15-t font-14">添加图片</view>
+            <view class="pic-box">
+                <view class="col-25" wx:for="{{thumbs}}" wx:key="{{index}}">
+                    <view class="pic">
+                        <image src="{{item.url}}"></image>
+                        <view bind:tap="onJsEvent" data-event-type="jsDelImg" data-index="{{index}}" data-key="thumbs">-</view>
+                    </view>
+                </view>
+                <view class="col-25">
+                    <view bind:tap="onJsEvent" class="pic-icon" data-count="8" data-event-type="jsUploadImg" data-key="thumbs">
+                        <view class="icon icon-camerafill"></view>
+                    </view>
+                </view>
+            </view>
+        </view>
+        <view class="bg-default margin-10-t">
+            <view class="c-gray padding-15-lr padding-15-t font-14">选择标签</view>
+            <view class="tags">
+                <view bind:tap="onToggleTags" class="tag-item {{tagsSelect[index]==index?'active':''}}" data-index="{{index}}" data-tag="{{item}}" wx:for="{{category.tags}}" wx:key="{{index}}">{{item}}</view>
+            </view>
+        </view>
+        <view class="bg-default padding-15-l margin-10-t">
+            <view class="field flex-lr border-1px-b">
+                <view>联系人</view>
+                <input class="text-right" name="nickname" placeholder="请输入联系人姓名" value="{{publish.nickname}}"></input>
+            </view>
+            <view class="field flex-lr border-1px-b">
+                <view>联系方式</view>
+                <input class="text-right" name="mobile" placeholder="请输入联系方式" value="{{publish.mobile}}"></input>
+            </view>
+            <view class="field flex-lr border-1px-b" wx:if="{{0}}">
+                <view>位置</view>
+                <view class="flex">
+                    <view>打开GPS,自动识别</view>
+                    <text class="icon icon-right font-14 c-gray margin-5-l"></text>
+                </view>
+            </view>
+            <view class="field flex-lr border-1px-b" wx:if="{{!publish.id||publish.id==0}}">
+                <view>发布费用</view>
+                <view class="flex">
+                    <view>{{category.price}}{{Lang.dollarSignCn}}</view>
+                    <text class="icon icon-right font-14 c-gray margin-5-l"></text>
+                </view>
+            </view>
+        </view>
+        <view class="bg-default margin-10-t padding-15-l" wx:if="{{(!publish.id||publish.id==0)&&category.config&&category.config.stick_price}}">
+            <view class="field flex-lr border-1px-b">
+                <view>置顶设置</view>
+                <view wx:if="{{publish.days>0}}">置顶{{publish.days}}天</view>
+            </view>
+            <view bind:tap="onSelectStick" class="field flex-lr" data-day="{{item.day}}" wx:for="{{category.config.stick_price}}" wx:key="{{index}}">
+                <view>置顶{{item.day}}天</view>
+                <view class="icon icon-check {{publish.days==item.day?'checked':''}}"></view>
+            </view>
+            <view bind:tap="onSelectStick" class="field flex-lr" data-day="0">
+                <view>不置顶</view>
+                <view class="icon icon-check {{publish.days==0?'checked':''}}"></view>
+            </view>
+        </view>
+        <view class="padding-15">
+            <button class="{{islegal?'bg-danger':'btn-disabled'}}" formType="submit" wx:if="{{publish.id>0}}">确认修改{{calculate.final_fee>0?Lang.dollarSign+'（'+calculate.final_fee+')':''}}</button>
+            <button class="{{islegal?'bg-danger':'btn-disabled'}}" formType="submit" wx:else>确认发布{{calculate.final_fee>0?'（'+Lang.dollarSign+calculate.final_fee+')':''}}</button>
+        </view>
+    </view>
+</form>
+<failed-tips failedTips="{{failedTips}}" wx:if="{{black_member.status}}"></failed-tips>
+<include src="../../../../pages/public/footer.wxml"></include>

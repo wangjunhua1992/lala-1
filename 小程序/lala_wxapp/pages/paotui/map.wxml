@@ -1,0 +1,11 @@
+<map bindmarkertap="onMarker" includePoints="{{points}}" markers="{{markers}}" showLocation="true">
+    <cover-view bind:tap="onRefresh" class="map-refresh">
+        <cover-view class="bg"></cover-view>
+        <cover-image class="img" src="/static/img/refresh.png"></cover-image>
+    </cover-view>
+    <cover-view bind:tap="onQuestion" class="map-question">
+        <cover-view class="bg"></cover-view>
+        <cover-image class="img" src="/static/img/question.png"></cover-image>
+    </cover-view>
+</map>
+<include src="../public/footer.wxml"></include>

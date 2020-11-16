@@ -1,0 +1,155 @@
+<view class="kanjia-share">
+    <view class="top-logo">
+        <image alt="" class="w-100" mode="widthFix" src="../../static/img/kanjia_share_top.jpg"></image>
+    </view>
+    <view class="bottom">
+        <view class="flex padding-15-l c-white padding-15-b" wx:if="{{activity.status==1}}">
+            <view class="font-12 margin-5-r">距结束</view>
+            <count-down class="count-down-share" endtime="{{activity.endtime_cn}}" wx:if="{{activity&&activity.endtime}}"></count-down>
+        </view>
+        <view class="margin-15-lr margin-15-b padding-15 bg-default radius-3">
+            <view class="flex-lr">
+                <view class="avatar">
+                    <image alt="" class="wh-100" src="{{takeinfo.avatar}}"></image>
+                </view>
+                <view class="user-info">
+                    <view class="font-12 margin-5-b">{{takeinfo.nickname}}</view>
+                    <view class="font-500">我正在{{activity.price}}{{Lang.dollarSignCn}}抢这件商品，快来帮帮我吧!</view>
+                </view>
+            </view>
+            <view bind:tap="onJsEvent" class="bg-gray padding-15 radius-3 margin-15-t flex-lr" data-event-type="jsUrl" data-url="gohome/pages/kanjia/detail?id={{activity.id}}">
+                <view class="goods-thumb">
+                    <image alt="" class="wh-100" src="{{activity.thumb}}"></image>
+                </view>
+                <view class="goods-info">
+                    <view class="">
+                        <view class="font-500">{{activity.store.title}}</view>
+                        <view class="margin-5-t">{{activity.name}}</view>
+                    </view>
+                    <view class="flex">
+                        <view class="c-danger font-15 font-500 margin-5-r">{{Lang.dollarSign}}{{activity.price}}</view>
+                        <view class="c-gray font-13 line-through">{{Lang.dollarSign}}{{activity.oldprice}}</view>
+                    </view>
+                </view>
+            </view>
+            <view class="progress margin-15-t" wx:if="{{takeinfo.status==1}}">
+                <view class="progress-inner">
+                    <view class="now-price" style="left: {{takeinfo.per_price}}%;">现价{{Lang.dollarSign}}{{takeinfo.price}}</view>
+                    <view class="bar">
+                        <view class="bar-inner" style="width: {{takeinfo.per_price}}%"></view>
+                    </view>
+                </view>
+                <view class="flex-lr font-14 margin-5-t">
+                    <view>{{Lang.dollarSign}}{{activity.oldprice}}</view>
+                    <view class="c-danger">{{Lang.dollarSign}}{{activity.price}}</view>
+                </view>
+            </view>
+            <view class="kanjia-success" wx:elif="{{takeinfo.status==2}}">
+                <image alt="" mode="widthFix" src="../../static/img/kanjia_success.png"></image>
+            </view>
+            <view class="btn-group margin-15-t flex-center" wx:if="{{self==1}}">
+                <view bind:tap="onToggleZhezhao" class="btn-item he margin-10-r">找人帮砍</view>
+                <view bind:tap="onJsEvent" class="btn-item me margin-10-r" data-event-type="jsUrl" data-url="gohome/pages/kanjia/order/create?activityid={{activity.id}}" wx:if="{{takeinfo.now_price_buy==1}}">当前价格购买</view>
+                <view bind:tap="onJsEvent" class="btn-item me" data-event-type="jsUrl" data-url="gohome/pages/kanjia/order/create?activityid={{activity.id}}" wx:if="{{takeinfo.price==activity.price}}">立即下单</view>
+            </view>
+            <view class="btn-group margin-15-t flex-lr" wx:elif="{{self==0}}">
+                <view bind:tap="onBargain" class="btn-item he">帮TA砍价</view>
+                <view class="btn-item he">帮TA分享</view>
+                <view bind:tap="onJsEvent" class="btn-item me" data-event-type="jsUrl" data-url="gohome/pages/kanjia/detail?id={{activity.id}}">我也要抢</view>
+            </view>
+        </view>
+        <view class="margin-15 bg-default rank">
+            <view class="flex-lr rank-title">
+                <view bind:tap="onToggleRank" class="title-item {{rankType=='helper'?'active':''}}" data-type="helper">帮砍团</view>
+                <view bind:tap="onToggleRank" class="title-item {{rankType=='rank'?'active':''}}" data-type="rank">排行榜</view>
+            </view>
+            <view class="padding-15-lr padding-15-b" wx:if="{{rankType=='helper'}}">
+                <block wx:if="{{takeinfo.helper&&takeinfo.helper.length>0}}">
+                    <view class="rank-item margin-15-t flex-lr" wx:for="{{takeinfo.helper}}" wx:key="{{index}}">
+                        <view class="avatar">
+                            <image alt="" class="wh-100" src="{{item.avatar}}"></image>
+                        </view>
+                        <view class="user-info flex-lr padding-10-f">
+                            <view>
+                                <view class="margin-5-b">{{item.nickname}}</view>
+                                <view class="font-12 c-gray">{{item.createtime_cn}}</view>
+                            </view>
+                            <view class="flex">
+                                <view class="icon-axe margin-5-r"></view>
+                                <view class="c-danger">砍掉 {{Lang.dollarSign}}{{item.bargainprice}}</view>
+                            </view>
+                        </view>
+                    </view>
+                </block>
+                <view wx:else>
+                    <view class="margin-15-t text-center font-14 c-gray">
+						暂时没有人帮忙砍价哦~
+					</view>
+                </view>
+            </view>
+            <view class="padding-15-lr padding-15-b" wx:elif="{{rankType=='rank'}}">
+                <block wx:if="{{rank.length>0}}">
+                    <view class="rank-item margin-15-t flex-lr" wx:for="{{rank}}" wx:key="{{index}}">
+                        <view class="avatar">
+                            <image alt="" class="wh-100" src="{{item.avatar}}"></image>
+                        </view>
+                        <view class="user-info flex-lr padding-10-f">
+                            <view>
+                                <view class="margin-5-b">{{item.nickname}}</view>
+                                <view class="font-12 c-gray">{{item.createtime_cn}}</view>
+                            </view>
+                            <view class="flex">
+                                <view class="icon-axe margin-5-r"></view>
+                                <view class="c-danger">砍掉 {{Lang.dollarSign}}{{item.bargainprice}}</view>
+                            </view>
+                        </view>
+                    </view>
+                </block>
+                <view wx:else>
+                    <view class="margin-15-t text-center font-14 c-gray">
+						暂时没有人帮忙砍价哦~
+					</view>
+                </view>
+            </view>
+        </view>
+        <block wx:if="{{more.length>0}}">
+            <view class="margin-15-t c-white text-center font-14">更多活动</view>
+            <view class="activity-list">
+                <view bind:tap="onJsEvent" class="activity-item" data-event-type="jsUrl" data-url="gohome/pages/kanjia/detail?id={{item.id}}" wx:for="{{more}}" wx:key="{{index}}">
+                    <view class="item-inner">
+                        <view class="thumb">
+                            <image alt="" class="wh-100" src="{{item.thumb}}"></image>
+                        </view>
+                        <view class="goods-title">{{item.name}}</view>
+                        <view class="flex-lr">
+                            <view class="flex">
+                                <text class="c-danger font-500 font-15 margin-5-r">{{Lang.dollarSign}}{{item.price}}</text>
+                                <view class="c-gray line-through font-12">{{Lang.dollarSign}}{{item.oldprice}}</view>
+                            </view>
+                            <view class="c-gray font-12">已售{{item.sailed}}份</view>
+                        </view>
+                    </view>
+                </view>
+            </view>
+        </block>
+    </view>
+</view>
+<view class="wui-dialog wui-dialog-qrcode bargain-success {{bargainSuccessPopup?'wui-dialog-show':''}}">
+    <view class="wui-dialog-mask"></view>
+    <view class="wui-dialog-container">
+        <view class="remind-tip">
+            <view>恭喜! 你成功帮</view>
+            <view class="c-danger w-100 ellipsis">{{takeinfo.nickname}}</view>
+            <view>砍掉了</view>
+            <view class="c-danger">
+                <text class="font-20">{{Lang.dollarSign}}</text>
+                <text class="cut-price">{{bargainprice}}</text>
+            </view>
+        </view>
+        <view bind:tap="onTogglePopup" class="remind-close">我知道了</view>
+    </view>
+</view>
+<view bind:tap="onToggleZhezhao" class="share-zhezhao" wx:if="{{zhezhaoShow}}">
+    <image mode="widthFix" src="../../static/img/share-layer.png"></image>
+</view>
+<include src="../../../pages/public/footer.wxml"></include>

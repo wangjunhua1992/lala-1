@@ -1,0 +1,165 @@
+page {
+    background: #fff;
+}
+
+.br {
+    border: 1px solid red;
+}
+
+.wui-loadmore-tips {
+    background-color: #fff!important;
+}
+
+.flex {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.page-mealCoupon {
+    width: 100%;
+}
+
+.page-mealCoupon .myticket {
+    box-sizing: border-box;
+    font-size: 12px;
+    padding: 36px;
+    align-items: center;
+    height: 150px;
+    color: #fff;
+    background-color: #ff2d4b;
+    background-image: url(http://cos.lalawaimai.com/we7_wmall/wxapp/mealcoupon.png);
+    background-repeat: no-repeat;
+    background-size: 100%;
+    background-position: bottom;
+    text-align: center;
+}
+
+.page-mealCoupon .myticket .ticket-value text {
+    font-weight: bold;
+    font-size: 32px;
+}
+
+.page-mealCoupon .nav-tab {
+    height: 50px;
+    font-size: 15px;
+    background: #fff;
+}
+
+.page-mealCoupon .nav-tab .nav-item {
+    height: 100%;
+    width: 50%;
+    text-align: center;
+    line-height: 50px;
+    color: #333;
+    position: relative;
+}
+
+.page-mealCoupon .nav-tab .nav-item.active {
+    font-weight: bold;
+    color: #ff2d4b;
+}
+
+.page-mealCoupon .nav-tab .nav-item.active:after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    right: 30%;
+    width: 84px;
+    height: 3px;
+    background-color: #ff2d4b;
+}
+
+swiper {
+    box-sizing: border-box;
+}
+
+swiper-item {
+    box-sizing: border-box;
+}
+
+.page-mealCoupon .participant-list,.page-mealCoupon .win-list {
+    background-color: #fff;
+    font-size: 15px;
+}
+
+.page-mealCoupon .participant-item {
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+.page-mealCoupon .participant-item .participant-icon {
+    width: 36px;
+    height: 36px;
+}
+
+.page-mealCoupon .participant-item .participant-icon image {
+    width: 100%;
+    height: 100%;
+}
+
+.page-mealCoupon .participant-item .right {
+    width: 86%;
+}
+
+.page-mealCoupon .participant-item .participant-info {
+    color: #999;
+}
+
+.page-mealCoupon .participant-item .participant-title {
+    color: #333;
+}
+
+.page-mealCoupon .participant-item .has-participant {
+    font-size: 13px;
+}
+
+.page-mealCoupon .participant-item .has-participant text {
+    color: #333;
+}
+
+.page-mealCoupon .participant-item .status {
+    color: #999;
+    font-size: 12px;
+}
+
+.page-mealCoupon .no-result {
+    text-align: center;
+    font-size: 15px;
+    background: #fff;
+}
+
+.page-mealCoupon .no-result image {
+    display: block;
+    width: 120px;
+    margin: 0 auto;
+}
+
+.page-mealCoupon .no-result .text1 {
+    color: #666;
+    font-size: 18px;
+    margin: 6px 0;
+}
+
+.page-mealCoupon .no-result .text2 {
+    color: #999;
+    font-size: 13px;
+    margin-bottom: 20px;
+}
+
+.page-mealCoupon .no-result .go-darw-pirze {
+    margin: 0 auto;
+}
+
+.page-mealCoupon .no-result .go-darw-pirze .totry {
+    line-height: 1;
+    color: #fff;
+    background-color: #f6383a;
+    display: inline-block;
+    box-sizing: border-box;
+    padding: 12px 20px;
+    font-size: 14px;
+    cursor: pointer;
+    border-radius: 5px;
+}

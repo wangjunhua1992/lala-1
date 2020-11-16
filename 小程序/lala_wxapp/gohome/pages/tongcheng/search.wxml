@@ -1,0 +1,39 @@
+<view class="tongcheng-search">
+    <view class="search-header">
+        <view class="search-content">
+            <i class="icon icon-search"></i>
+            <input bindblur="onInput" class="search-input" placeholder="请输入帖子名称或发帖人名称" type="text"></input>
+        </view>
+        <view bind:tap="onSubmit" class="search-btn">搜索</view>
+    </view>
+    <view class="rmd-history">
+        <view class="search-rmd-wrap" wx:if="{{categorys&&categorys.length>0}}">
+            <view class="search-rmd-title border-1px-b">热门搜索</view>
+            <view class="search-rmd">
+                <view bind:tap="onJsEvent" data-event-type="jsUrl" data-url="/gohome/pages/tongcheng/category?id={{item.parentid==0?item.id:item.parentid}}&childid={{item.parentid==0?0:item.id}}" wx:for="{{categorys}}">{{item.title}}</view>
+            </view>
+        </view>
+        <view class="search-history-wrap" wx:if="{{searchHistory&&searchHistory.length>0}}">
+            <view class="search-rmd-title">
+                <view class="border-1px-b">历史搜索</view>
+                <view bind:tap="onDeleteHistory" class="icon icon-delete"></view>
+            </view>
+            <view class="search-rmd">
+                <view wx:for="{{searchHistory}}">{{item}}</view>
+            </view>
+        </view>
+    </view>
+    <view class="bg-default padding-15-l" wx:if="{{0}}">
+        <view class="guess-title border-1px-b">猜你在找</view>
+        <view class="guess-list border-1px-b flex-lr">
+            <view class="flex">
+                <view class="thumb">
+                    <image alt="" src=""></image>
+                </view>
+                <view>技术人才</view>
+            </view>
+            <view class="icon icon-right"></view>
+        </view>
+    </view>
+</view>
+<include src="../../../pages/public/footer.wxml"></include>

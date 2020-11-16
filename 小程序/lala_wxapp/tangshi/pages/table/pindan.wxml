@@ -1,0 +1,98 @@
+<view class="page-pindan">
+    <view class="lock" wx:if="{{extra.is_founder==1&&pindan.mine.pindan_status==2}}">
+        <view class="lock-container">
+            <view class="tip">锁定状态，手动解锁后可继续拼单</view>
+            <view bind:tap="onContinue" class="deblock">解锁</view>
+        </view>
+    </view>
+    <block wx:else>
+        <view class="store padding-15 bg-default">
+            <image src="{{store.logo}}"></image>
+            <view class="name ellipsis">{{store.title}} {{table.category.title}}~{{table.title}}桌</view>
+            <block wx:if="{{pindan.pindan_status==1}}">
+                <view bind:tap="onTakePindan" class="join" wx:if="{{extra.not_takepart==1}}">参与点餐</view>
+            </block>
+            <view class="text-center font-15" wx:elif="{{pindan.pindan_status==2}}">正在提交订单中...</view>
+            <view class="text-center font-15" wx:elif="{{pindan.pindan_status==3}}">拼单订单已提交成功</view>
+        </view>
+        <block wx:if="{{pindan.mine}}">
+            <view class="margin-10 c-gray">点餐详情</view>
+            <view class="order-info padding-10-l margin-10-b bg-default">
+                <view class="user padding-10-t flex-lr" wx:if="{{pindan.mine.member}}">
+                    <view class="left flex">
+                        <image class="avatar" mode="widthFix" src="{{pindan.mine.member.avatar}}"></image>
+                    </view>
+                    <view class="right flex-lr border-1px-b">
+                        <view class="nickname ">
+                            <text class="ellipsis">{{pindan.mine.member.nickname}}</text>
+                            <text class="label label-mine">我</text>
+                            <text class="label label-start" wx:if="{{pindan.mine.id==pindan.pindan_id}}">发起</text>
+                        </view>
+                        <view class="btn-group flex" wx:if="{{pindan.pindan_status==1}}">
+                            <view bind:tap="onJsEvent" class="btn-item edit-btn" data-event-type="jsUrl" data-url="/tangshi/pages/table/goods?sid={{store.id}}&table_id={{table.id}}&pindan_id={{pindan_id}}">编辑商品</view>
+                            <view bind:tap="onGiveUp" class="btn-item cancle-btn" data-id="{{pindan.mine.id}}" data-type="0">不点了</view>
+                        </view>
+                    </view>
+                </view>
+                <view class="goods flex-lr" wx:if="{{pindan.mine.data}}">
+                    <view class="left"></view>
+                    <view class="right">
+                        <block wx:for="{{pindan.mine.data}}" wx:key="{{index}}">
+                            <view class="goods-item" wx:for="{{item}}" wx:for-index="optionIndex" wx:for-item="option" wx:key="{{optionIndex}}">
+                                <view class="goods-title ellipsis">{{option.title}}</view>
+                                <view class="goods-num">x{{option.num}}</view>
+                                <view class="goods-price c-danger">{{Lang.dollarSign}}{{option.total_discount_price}}</view>
+                            </view>
+                        </block>
+                    </view>
+                </view>
+            </view>
+        </block>
+        <block wx:if="{{pindan.other&&pindan.other.length>0}}">
+            <view class="margin-10 c-gray">其他桌友</view>
+            <view class="order-info padding-10-l bg-default margin-10-b" wx:for="{{pindan.other}}" wx:for-item="cart" wx:key="{{cart.id}}">
+                <view class="user padding-10-t flex-lr">
+                    <view class="left flex">
+                        <image class="avatar" mode="widthFix" src="{{cart.member.avatar}}"></image>
+                    </view>
+                    <view class="right flex-lr border-1px-b">
+                        <view class="nickname ">
+                            <text class="ellipsis">{{cart.member.nickname}}</text>
+                            <text class="label label-start" wx:if="{{cart.id==pindan.pindan_id}}">发起</text>
+                        </view>
+                        <view bind:tap="onGiveUp" class="icon icon-delete font-18 margin-10-r c-gray" data-id="{{cart.id}}" data-type="1" wx:if="{{extra.is_founder}}"></view>
+                    </view>
+                </view>
+                <view class="goods flex-lr">
+                    <view class="left"></view>
+                    <view class="right">
+                        <block wx:for="{{cart.data}}" wx:key="index">
+                            <view class="goods-item" wx:for="{{item}}" wx:for-item="option" wx:key="option.id">
+                                <view class="goods-title ellipsis">{{option.title}}</view>
+                                <view class="goods-num">x{{option.num}}</view>
+                                <view class="goods-price c-danger">{{Lang.dollarSign}}{{option.total_discount_price}}</view>
+                            </view>
+                        </block>
+                    </view>
+                </view>
+            </view>
+        </block>
+        <van-cell-group class="margin-10-t">
+            <van-cell title="商品费用">
+                <view class="c-danger" slot="right-icon">{{Lang.dollarSign}}{{pindan.price}}</view>
+            </van-cell>
+        </van-cell-group>
+        <view style="width: 100%;height: 92px;" wx:if="{{extra.is_founder==1}}"></view>
+        <view class="pay flex-lr" wx:if="{{extra.is_founder==1}}">
+            <view class="takepart-tips" wx:if="{{pindan.takepart_num>1}}">
+				共<text class="c-danger">{{pindan.takepart_num}}</text>人在同时点餐
+			</view>
+            <view class="total">
+                <view class="price">{{Lang.dollarSign}}{{pindan.price}}</view>
+            </view>
+            <view bind:tap="onSubmit" class="topay" wx:if="{{pindan.num>0}}">去结算</view>
+            <view class="topay disabled" wx:else>未选择商品</view>
+        </view>
+    </block>
+</view>
+<include src="../../../pages/public/footer.wxml"></include>

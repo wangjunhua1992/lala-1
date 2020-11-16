@@ -1,0 +1,80 @@
+<view class="page-diy">
+    <view class="activity-banner border-1px-t">
+        <navigator>
+            <image class="top-img" src="{{config.thumb}}"></image>
+        </navigator>
+    </view>
+    <block wx:if="{{bargain.empty!=1}}">
+        <view class="diy-waimai-food-list-onerow-box" wx:if="{{config.template==1}}">
+            <view class="item-list">
+                <view class="goods-item {{index>0?'border-1px-t':''}}" wx:for="{{bargain.goods}}" wx:for-item="goodsitem" wx:key="{{index}}">
+                    <view class="row item-wrapper">
+                        <view class="col-40 goods-img">
+                            <image src="{{goodsitem.thumb}}"></image>
+                            <view class="discount" wx:if="goodsitem.discount > 0 && goodsitem.discount < 10">{{goodsitem.discount}}折</view>
+                        </view>
+                        <view class="col-60">
+                            <view class="goods-name">{{goodsitem.title}}</view>
+                            <view class="sale-num">已售:{{goodsitem.sailed}} 库存:{{goodsitem.discount_available_total}}</view>
+                            <view class="store-name">
+                                <view class="icon icon-shop"></view> {{goodsitem.store_title}}
+								</view>
+                            <view class="price-buybtn">
+                                <view class="price-wrap">
+                                    <view class="in-b now-price">{{Lang.dollarSign}}{{goodsitem.discount_price}}</view>
+                                    <view class="in-b old-price">{{Lang.dollarSign}}{{goodsitem.price}}</view>
+                                </view>
+                                <view bind:tap="onJsEvent" class="in-b buy-btn" data-event-type="jsUrl" data-url="pages/store/goodsDetail?sid={{goodsitem.sid}}&id={{goodsitem.goods_id}}" wx:if="{{goodsitem.is_in_business==1}}">
+										立即抢购
+									</view>
+                                <view class="in-b buy-btn disabled" wx:else>休息中</view>
+                            </view>
+                        </view>
+                    </view>
+                </view>
+            </view>
+        </view>
+        <view class="diy-waimai-goods-list-box" wx:else>
+            <view class="box-list">
+                <view class="box-item" wx:for="{{bargain.goods}}" wx:for-item="goodsitem" wx:key="{{index}}">
+                    <view class="main-content-box">
+                        <view class="goods-image" mode="widthFix">
+                            <image src="{{goodsitem.thumb}}"></image>
+                            <view class="discount" wx:if="goodsitem.discount > 0 && goodsitem.discount < 10">{{goodsitem.discount}}折</view>
+                        </view>
+                        <view class="goods-name">{{goodsitem.title}}</view>
+                        <view class="discount-soldnum">
+                            <view class="in-b sold-num">已售{{goodsitem.sailed}}份</view>
+                            <view class="in-b praise">库存{{goodsitem.discount_available_total}}</view>
+                        </view>
+                        <view class="store-name">
+								{{goodsitem.store_title}}
+							</view>
+                        <view class="price-buybtn">
+                            <view class="in-b price">
+                                <view class="now-price">{{Lang.dollarSign}}{{goodsitem.discount_price}}</view>
+                                <view class="old-price">{{Lang.dollarSign}}{{goodsitem.price}}</view>
+                            </view>
+                            <view bind:tap="onJsEvent" class="in-b buy-btn" data-event-type="jsUrl" data-url="pages/store/goodsDetail?sid={{goodsitem.sid}}&id={{goodsitem.goods_id}}" wx:if="{{goodsitem.is_in_business==1}}">
+									立即抢购
+								</view>
+                            <view class="in-b buy-btn disabled" wx:else>休息中</view>
+                        </view>
+                    </view>
+                </view>
+            </view>
+        </view>
+        <view class="weui-loadmore" wx:if="{{bargain.loaded==0}}">
+            <view class="weui-loading"></view>
+            <view class="weui-loadmore__tips">正在加载中</view>
+        </view>
+        <view class="wui-loadmore wui-loadmore-nodata" wx:else>
+            <view class="wui-loadmore-tips">我是有底线的</view>
+            <view class="wui-loadmore-line"></view>
+        </view>
+    </block>
+    <view class="no-data" wx:else>
+        <text class="no-record">暂时没有特价商品</text>
+    </view>
+</view>
+<include src="../../../pages/public/footer.wxml"></include>

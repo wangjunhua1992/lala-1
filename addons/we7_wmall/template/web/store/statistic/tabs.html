@@ -1,0 +1,22 @@
+<div class="second-sidebar-title">
+	分析
+</div>
+<div class="nav slimscroll">
+	<ul class="menu-item">
+		<li {if $_W['_op'] == 'order'}class="active"{/if}>
+			<a href="{php echo iurl('store/statistic/order');}">营业统计</a>
+		</li>
+		<li {if $_W['_op'] == 'goods'}class="active"{/if}>
+			<a href="{php echo iurl('store/statistic/goods');}">热门商品</a>
+		</li>
+		<li {if $_W['_ta'] == 'newAndOld'}class="active"{/if}>
+			<a href="{php echo iurl('store/statistic/member/newAndOld');}">新老顾客统计</a>
+		</li>
+		<li {if $_W['_ta'] == 'scanAnalysis'}class="active"{/if}>
+			<a href="{php echo iurl('store/statistic/member/scanAnalysis');}">客流分析</a>
+		</li>
+		<li {if $_W['_ta'] == 'keep'}class="active"{/if}>
+			<a href="{php echo iurl('store/statistic/member/keep');}">顾客留存统计</a>
+		</li>
+	</ul>
+</div>

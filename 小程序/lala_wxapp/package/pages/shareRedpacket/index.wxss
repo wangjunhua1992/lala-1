@@ -1,0 +1,232 @@
+page {
+    background-color: #fe6241;
+    font-size: 14px;
+    line-height: 1;
+    box-sizing: border-box;
+}
+
+.shareRedpacket-index .content .init-area image {
+    width: 100%;
+    border: none;
+}
+
+.shareRedpacket-index .content .init-info {
+    position: relative;
+    padding: 10px;
+}
+
+.shareRedpacket-index .content .init-info image {
+    width: 100%;
+    border: none;
+}
+
+.shareRedpacket-index .content .init-info .init-con {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    text-align: center;
+}
+
+.shareRedpacket-index .content .init-info .init-con .init-text {
+    margin-top: 24px;
+    font-size: 14px;
+    line-height: 21px;
+}
+
+.shareRedpacket-index .content .init-info .init-con .init-money {
+    position: absolute;
+    top: 15%;
+    font-size: 48px;
+    color: #f00;
+    width: 100%;
+    line-height: 72px;
+}
+
+.shareRedpacket-index .content .init-info .init-con .init-money text {
+    font-style: normal;
+    font-size: 20px;
+}
+
+.shareRedpacket-index .content .init-info .init-con .init-btn {
+    position: absolute;
+    top: 52%;
+    width: 84%;
+    height: 50px;
+    line-height: 50px;
+    background: #ffd400;
+    margin: 0 8%;
+    border-radius: 6px;
+}
+
+.shareRedpacket-index .content .init-info .init-con .init-btn div {
+    color: #cc5400;
+}
+
+.shareRedpacket-index .content .init-status {
+    background: #fff;
+    border-radius: 6px;
+    margin: 0 10px 10px;
+    padding-bottom: 10px;
+}
+
+.shareRedpacket-index .content .init-status .buttons-tab {
+    border: none;
+    background-color: #fe6241;
+    position: relative;
+    z-index: 10;
+    display: flex;
+    align-self: center;
+    flex-wrap: nowrap;
+}
+
+.shareRedpacket-index .content .init-status .buttons-tab .button.active {
+    border: 0;
+    background-color: #fff;
+    color: #ff2d4b;
+}
+
+.shareRedpacket-index .content .init-status .buttons-tab .button {
+    position: relative;
+    display: block;
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+    margin-right: 6px;
+    background-color: #b30f18;
+    color: #fff;
+    bottom: 0;
+    z-index: 100;
+    font-size: 14px;
+    width: 100%;
+    height: 40px;
+    line-height: 40px;
+    -webkit-box-flex: 1;
+    text-align: center;
+    text-decoration: none;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    cursor: pointer;
+    box-sizing: border-box;
+    -webkit-appearance: none;
+    padding: 0 10px;
+}
+
+.shareRedpacket-index .content .init-status .buttons-tab .button:last-child {
+    margin-right: 0;
+}
+
+.shareRedpacket-index .content .init-status .init-title {
+    height: 80px;
+    background: #f2f2f2;
+    text-align: center;
+    padding: 10px 0;
+    overflow: hidden;
+}
+
+.shareRedpacket-index .content .init-status .init-title .init-tab {
+    width: 50%;
+    border-right: 1px solid #e0e0e0;
+}
+
+.shareRedpacket-index .content .init-status .init-title .init-tab .init-tab-h {
+    font-size: 14px;
+    line-height: 24px;
+    margin: 0;
+}
+
+.shareRedpacket-index .content .init-status .init-title .init-tab .init-tab-h .van-icon {
+    font-size: 16px;
+    color: #666;
+}
+
+.shareRedpacket-index .content .init-status .init-title .init-tab .init-tab-c {
+    color: #ccc;
+    font-size: 30px;
+    line-height: 1.4;
+    margin: 0;
+}
+
+.shareRedpacket-index .content .init-status .init-friend {
+    text-align: center;
+    position: relative;
+    margin: 20px 0;
+    color: #9d9390;
+    font-size: 16px;
+    line-height: 24px;
+}
+
+.shareRedpacket-index .content .init-status .init-friend:before {
+    position: absolute;
+    left: 10px;
+    content: "";
+    width: 40px;
+    height: 2px;
+    background: #efeceb;
+    top: 50%;
+}
+
+.shareRedpacket-index .content .init-status .init-friend:after {
+    position: absolute;
+    right: 10px;
+    content: "";
+    width: 40px;
+    height: 2px;
+    background: #efeceb;
+    top: 50%;
+}
+
+.shareRedpacket-index .content .init-status .list-block {
+    margin: 0;
+    font-size: 17px;
+    padding: 0 10px;
+}
+
+.shareRedpacket-index .content .init-status .list-block .invite-list {
+    position: relative;
+    padding: 10px 0;
+    background-color: #fff;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.shareRedpacket-index .content .init-status .list-block .invite-list:last-child {
+    border-bottom: none;
+}
+
+.shareRedpacket-index .content .init-status .list-block .invite-list .item-media image {
+    display: block;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}
+
+.shareRedpacket-index .content .init-status .list-block .invite-list .item-inner {
+    flex: 1;
+    padding-left: 10px;
+}
+
+.shareRedpacket-index .content .init-status .list-block .invite-list .item-inner .item-title-row {
+    line-height: 18px;
+}
+
+.shareRedpacket-index .content .init-status .list-block .invite-list .item-inner .item-title-row .item-after {
+    font-weight: normal;
+    font-size: 12px;
+    display: inline-block;
+    max-width: 300px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-left: 5px;
+    color: #5f646e;
+    flex-shrink: 0;
+}
+
+.shareRedpacket-index .content .init-status .list-block .invite-list .item-inner .item-subtitle {
+    font-size: 13px;
+    line-height: 18px;
+}
+
+.shareRedpacket-index .content .init-status .agreement {
+    padding: 10px 16px 0;
+}

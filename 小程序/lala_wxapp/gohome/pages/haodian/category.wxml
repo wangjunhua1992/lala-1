@@ -1,0 +1,70 @@
+<failed-tips failedTips="{{failedTips}}" wx:if="{{!getLocationStatus}}"></failed-tips>
+<tab-bar menufooter="{{menufooter}}" wx:if="{{menufooter&&menufooter.data}}"></tab-bar>
+<view class="haodian-category container">
+    <view class="diy-haodian-list">
+        <view class="haodian-filter fixed padding-15-tb padding-10-lr flex-lr bg-default font-14 border-1px-b">
+            <view bind:tap="onChangeHaodianExtra" class="filter-item {{haodianExtra.orderby=='distance'?'active':''}}" data-type="distance">附近</view>
+            <view bind:tap="onChangeHaodianExtra" class="filter-item {{haodianExtra.orderby=='new'?'active':''}}" data-type="new">最新</view>
+            <view bind:tap="onChangeHaodianExtra" class="filter-item {{haodianExtra.orderby=='score'?'active':''}}" data-type="score">评分</view>
+            <view bind:tap="onChangeHaodianExtra" class="flex filter-item" data-type="filter">
+				筛选<text class="icon icon-unfold"></text>
+                <text class="haodian-search-sign"></text>
+            </view>
+        </view>
+        <block wx:if="{{!haodian.empty}}">
+            <view bind:tap="onJsEvent" class="store-item {{haodianIndex>0?'border-1px-t':''}}" data-event-type="jsUrl" data-url="/gohome/pages/haodian/detail?sid={{haodianItem.id}}" wx:for="{{haodian.data}}" wx:for-index="haodianIndex" wx:for-item="haodianItem" wx:key="{{haodianItem.id}}">
+                <view class="img-wrap">
+                    <image alt="" src="{{haodianItem.logo}}"></image>
+                </view>
+                <view class="store-main">
+                    <view class="flex-lr">
+                        <view class="flex">
+                            <view class="store-title">{{haodianItem.title}}</view>
+                            <van-rate disabled="true" disabledColor="#ff2d4b" size="12" value="{{haodianItem.haodian_score}}"></van-rate>
+                            <text class="font-12 margin-5-l c-danger">{{haodianItem.haodian_score}}分</text>
+                        </view>
+                        <view class="c-danger">{{haodianItem.distance}}km</view>
+                    </view>
+                    <view class="c-gray font-12 margin-10-t">营业时间: {{haodianItem.business_hours_cn}}</view>
+                    <view class="store-tags" wx:if="{{haodianItem.haodian_tags&&haodianItem.haodian_tags.length>0}}">
+                        <view class="tag-item" wx:for="{{haodianItem.haodian_tags}}" wx:for-index="haodianTagIndex" wx:for-item="haodianTag" wx:key="{{haodianTagIndex}}">{{haodianTag}}</view>
+                    </view>
+                    <view class="discount-box" wx:if="{{haodianItem.activity&&haodianItem.activity.length>0}}">
+                        <view class="single-line" wx:for="{{haodianItem.activity}}" wx:for-index="haodianActivityIndex" wx:for-item="haodianActivity" wx:key="haodianActivityIndex">
+                            <image class="discount-icon" src="{{haodianActivity.thumb_wxapp}}"></image>
+                            <div class="discount-text">{{haodianActivity.text}}</div>
+                        </view>
+                    </view>
+                </view>
+            </view>
+            <view class="wui-loadmore" wx:if="{{haodian.loading&&haodian.loaded!=1}}">
+                <view class="wui-loading"></view>
+                <view class="wui-loadmore-tips">正在加载中</view>
+            </view>
+            <view class="wui-loadmore wui-loadmore-nomore" wx:if="{{haodian.loaded==1}}">
+                <view class="wui-loadmore-tips">我是有底线的</view>
+                <view class="wui-loadmore-line"></view>
+            </view>
+        </block>
+        <view class="no-data" wx:else>
+            <image class="no-coupon" src="http://cos.lalawaimai.com/we7_wmall/wxapp/collect_no_bg.png"></image>
+            <view class="no-record">暂无好店，您可以更换筛选条件试试</view>
+        </view>
+    </view>
+</view>
+<van-popup bind:close="onClose" position="top" show="{{popup.haodianSearch}}" zIndex="20000">
+    <view class="haodian-filter padding-15-tb padding-10-lr flex-lr bg-default font-14 border-1px-b">
+        <view bind:tap="onChangeHaodianExtra" class="filter-item {{haodianExtra.orderby=='distance'?'active':''}}" data-type="distance">附近</view>
+        <view bind:tap="onChangeHaodianExtra" class="filter-item {{haodianExtra.orderby=='new'?'active':''}}" data-type="new">最新</view>
+        <view bind:tap="onChangeHaodianExtra" class="filter-item {{haodianExtra.orderby=='score'?'active':''}}" data-type="score">评分</view>
+        <view class="flex filter-item">
+			筛选
+		</view>
+    </view>
+    <van-tree-select activeId="{{haodianTemp.haodian_child_id}}" bind:click-item="onClickHaodianChildCategory" bind:click-nav="onClickHaodianParentCategory" class="haodian-tree-select" items="{{haodianCategory}}" mainActiveIndex="{{haodianTemp.cIndexActive}}"></van-tree-select>
+    <view class="flex border-1px-t">
+        <view bind:tap="onChangeHaodianExtra" class="flex-1 c-gray text-center padding-15-tb border-1px-r" data-type="filter">取消</view>
+        <view bind:tap="onHaodianCategoryConfirm" class="flex-1 c-danger text-center padding-15-tb">确定</view>
+    </view>
+</van-popup>
+<include src="../../../pages/public/footer.wxml"></include>

@@ -1,0 +1,145 @@
+@import "../../../nmy/0.wxss";
+
+page {
+    background-color: #f5f5f5;
+    font-size: 15px;
+}
+
+.haodian-comment {
+    line-height: 1;
+}
+
+.haodian-comment .avatar-wrap {
+    width: 40px;
+    height: 40px;
+    font-size: 0px;
+    border-radius: 50%;
+    border: 1px solid #eee;
+}
+
+.haodian-comment .avatar-wrap image {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+}
+
+.haodian-comment .basic-info {
+    flex: 1;
+    padding-left: 10px;
+}
+
+.haodian-comment .rate-tip {
+    padding-top: 20px;
+    text-align: center;
+}
+
+.haodian-comment .rate {
+    padding-top: 20px;
+}
+
+.haodian-comment .comment-tags {
+    padding: 5px 0;
+    margin: 0 -5px;
+    overflow: hidden;
+}
+
+.haodian-comment .comment-tags .comment-tag {
+    float: left;
+    box-sizing: border-box;
+    width: 33.33333%;
+    padding: 0 5px;
+}
+
+.haodian-comment .comment-tags .comment-tag .tag-item {
+    border-radius: 3px;
+    border: 1px solid #eee;
+    margin: 5px 0;
+    padding: 8px 0;
+    font-size: 12px;
+    text-align: center;
+}
+
+.haodian-comment .comment-tags .comment-tag .tag-item.active {
+    border-color: #ff2d4b;
+    color: #ff2d4b;
+}
+
+.haodian-comment .comment-text {
+    display: flex;
+    padding: 10px 15px;
+    box-sizing: border-box;
+    line-height: 24px;
+    position: relative;
+    color: #333;
+    overflow: hidden;
+    background-color: #f5f5f5;
+    font-size: 14px;
+}
+
+.haodian-comment .comment-text .text {
+    height: auto;
+    min-height: 90px;
+}
+
+.haodian-comment .pic-box {
+    display: flex;
+    flex-flow: wrap;
+    align-items: center;
+    justify-content: flex-start;
+    position: relative;
+    padding-top: 15px;
+    padding-bottom: 5px;
+}
+
+.haodian-comment .pic-box .pic-icon {
+    width: 65px;
+    height: 65px;
+    line-height: 65px;
+    text-align: center;
+    border: 1px solid #ececec;
+}
+
+.haodian-comment .pic-box .pic {
+    width: 65px;
+    height: 65px;
+    border: 1px solid #fff;
+    margin-right: 10px;
+    position: relative;
+}
+
+.haodian-comment .pic-box .pic image {
+    width: 100%;
+    height: 100%;
+}
+
+.haodian-comment .pic-box .pic view {
+    position: absolute;
+    right: -5px;
+    top: -5px;
+    color: #fff;
+    background-color: #FA553E;
+    width: 18px;
+    height: 18px;
+    line-height: 15px;
+    text-align: center;
+    border-radius: 100%;
+}
+
+.haodian-comment .pic-box .pic-icon .icon {
+    font-size: 20px;
+}
+
+.haodian-comment .pic-box .discription>view:first-child {
+    font-size: 16px;
+}
+
+.haodian-comment .pic-box .discription>view:last-child {
+    font-size: 12px;
+    color: #797979;
+}
+
+.haodian-comment .order-submit {
+    background-color: #ff2d4b;
+    color: #fff;
+    border-color: #ff2d4b;
+}

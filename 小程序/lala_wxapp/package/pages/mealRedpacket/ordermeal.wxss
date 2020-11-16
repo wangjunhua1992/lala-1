@@ -1,0 +1,33 @@
+page {
+    background: #F3F2F2;
+}
+
+.page-mealorder {
+    width: 100%;
+    background: #F3F2F2;
+}
+
+.page-mealorder .order-item {
+    width: 100%;
+    box-sizing: border-box;
+    background-color: #fff;
+    padding: 15px;
+}
+
+.page-mealorder .order-item .order-info {
+    width: 100%;
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 14px;
+}
+
+.page-mealorder .order-item .order-info .time {
+    color: #878787;
+}
+
+.page-mealorder .order-item .order-info .price {
+    color: #FF5338;
+    font-size: 20px;
+}

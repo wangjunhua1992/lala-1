@@ -1,0 +1,39 @@
+<view class="page-poster">
+    <view class="weui-loadmore" wx:if="{{showloading}}">
+        <view class="weui-loading"></view>
+        <view class="weui-loadmore__tips">加载中</view>
+    </view>
+    <view class="no-data" wx:if="{{showNodata}}">
+        <image class="no-coupon" src="http://cos.lalawaimai.com/we7_wmall/wxapp/coupon_no_con.png"></image>
+        <text class="no-record">加载失败</text>
+    </view>
+    <view class="page-photo">
+        <image bindload="onImageLoad" class="user-img" mode="widthFix" src="{{respon}}" style="width: 100%;"></image>
+    </view>
+    <view class="no-data" wx:if="{{!showNodata}}">
+        <view class="text-title">
+            <icon class="icon icon-emoji"></icon>
+			如何赚钱
+		</view>
+        <view class="list-group">
+            <view class="wui-cell-bd wui-cell">
+                <view class="cell-text-title">第一步</view>
+                <view class="cell-list-text">保存海报到相册,转发此海报给微信好友或分享到朋友圈;</view>
+            </view>
+            <view class="wui-cell-bd wui-cell">
+                <view class="cell-text-title">第二步</view>
+                <view class="cell-list-text">好友扫描您分享海报上的二维码,并且下单;</view>
+            </view>
+            <view class="wui-cell-bd wui-cell">
+                <view class="cell-text-title">第三步</view>
+                <view class="cell-list-text" wx:if="{{settle.balance_condition==1}}">确认收货之后,您就可以获得佣金。</view>
+                <view class="cell-list-text" wx:else>好友下单后,确认收货并评价后,您就可以获得佣金。</view>
+            </view>
+        </view>
+    </view>
+    <view class="save">
+        <view bind:tap="onJsEvent" class="save-btn" data-event-type="jsSaveImg" data-url="{{respon}}">保存图片</view>
+        <view class="cue">保存至相册可以分享到朋友圈</view>
+    </view>
+</view>
+<include src="../../../pages/public/footer.wxml"></include>

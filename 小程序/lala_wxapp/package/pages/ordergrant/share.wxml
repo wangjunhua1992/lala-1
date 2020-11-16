@@ -1,0 +1,52 @@
+<view class="page-share">
+    <view class="order-share-list">
+        <view class="order-share-item row" wx:for="{{comments}}" wx:for-item="comment">
+            <view class="col-15">
+                <image class="userphoto" src="{{comment.avatar}}"></image>
+            </view>
+            <view class="col-85">
+                <view class="user">
+                    <view class="username">{{comment.username}}<view class="order-time pull-right">{{comment.addtime}}</view>
+                    </view>
+                    <view class="stars">
+                        <view class="star-rank-outline">
+                            <view class="appr-score appr-score-{{type}}" wx:for="{{comment.scores}}" wx:for-item="type"></view>
+                        </view>
+                        <view class="delivery-time">{{comment.lasttime}}分钟送达</view>
+                    </view>
+                </view>
+                <view class="comment" wx:if="{{!empty(comment.note)}}">{{comment.note}}</view>
+                <view class="list-block media-list">
+                    <view bind:tap="onJsEvent" class="item-link item-content" data-event-type="jsUrl" data-url="/pages/store/goods?sid={{comment.sid}}">
+                        <view class="item-media">
+                            <image class="item-img" src="{{comment.logo}}"></image>
+                        </view>
+                        <view class="item-inner">
+                            <view class="item-title">{{comment.store.title}}</view>
+                            <view class="tags tags-{{activityItem.type}} item-text" wx:if="{{activityItem.int_num<=1}}" wx:for="{{comment.activity.items}}" wx:for-item="activityItem">{{activityItem.title}}</view>
+                        </view>
+                    </view>
+                </view>
+                <view class="order">
+                    <view class="order-text">TA的订单:</view>
+                    <view class="order-goods row">
+                        <view class="goods-item col-25" wx:for="{{comment.goods}}" wx:for-item="good">
+                            <image class="good-img" src="{{good.thumb}}"></image>
+                            <view class="goods-num">{{good.goods_num}}份</view>
+                            <view class="goods-title">{{good.goods_title}}</view>
+                        </view>
+                    </view>
+                    <view class="other">
+                        <view class="other-text">实付:</view>
+                        <view class="price">{{Lang.dollarSign}}</view>
+                        <view class="price-num">{{comment.final_fee}}</view>
+                        <view bind:tap="onJsEvent" data-event-type="jsUrl" data-url="/pages/store/goods?sid={{comment.sid}}&order_id={{comment.oid}}&f=1">
+                            <view class="reorder pull-right">跟一单</view>
+                        </view>
+                    </view>
+                </view>
+            </view>
+        </view>
+    </view>
+</view>
+<include src="../../../pages/public/footer.wxml"></include>

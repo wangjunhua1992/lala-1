@@ -1,0 +1,33 @@
+<tab-bar menufooter="{{menufooter}}" wx:if="{{menufooter&&menufooter.data}}"></tab-bar>
+<view class="page-member-favorite container">
+    <view class="content" wx:if="{{!records.empty}}">
+        <view class="favorite-list">
+            <view bind:tap="onJsEvent" class="favorite-item" data-event-type="jsUrl" data-url="gohome/pages/{{item.type}}/detail?id={{item.goods_id}}" wx:for="{{records.data}}" wx:key="{{item.id}}">
+                <view class="favorite-img">
+                    <image alt="" src="{{item.goods.thumb}}"></image>
+                    <view class="mark" wx:if="{{item.type=='pintuan'}}">{{item.goods.peoplenum}}人团</view>
+                </view>
+                <view class="favorite-info">
+                    <view class="store">
+                        <view class="name">{{item.store.title}}</view>
+                        <view class="order-type {{item.type_all.css}}">{{item.type_all.text}}</view>
+                    </view>
+                    <view class="goods">{{item.goods.name}}</view>
+                    <view class="price">
+                        <view class="new-price">{{Lang.dollarSign}}{{item.goods.price}}</view>
+                        <view class="old-price">{{Lang.dollarSign}}{{item.goods.oldprice}}</view>
+                    </view>
+                </view>
+            </view>
+        </view>
+        <view class="wui-loadmore wui-loadmore-nomore" wx:if="{{records.loaded}}">
+            <view class="wui-loadmore-tips">我是有底线的</view>
+            <view class="wui-loadmore-line"></view>
+        </view>
+    </view>
+    <view class="no-data" wx:else>
+        <image class="no-coupon" src="../../static/img/order_no_con.png"></image>
+        <text class="no-record">您还没有收藏哦</text>
+    </view>
+</view>
+<include src="../../../pages/public/footer.wxml"></include>

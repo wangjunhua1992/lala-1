@@ -1,0 +1,35 @@
+page {
+    background-color: #F5F5F5;
+    font-size: 14px;
+    line-height: 1;
+}
+
+.storebd-current .current-list {
+    margin-top: 55px;
+}
+
+.storebd-current .current-list .current-item {
+    padding-left: 15px;
+    box-sizing: border-box;
+    background-color: #fff;
+}
+
+.storebd-current .current-list .current-item .current-wrap {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex: 1;
+    padding: 10px 15px 10px 0;
+    box-sizing: border-box;
+    border-top: 1px solid #e0e0e0;
+}
+
+.storebd-current .current-list .current-item:first-child .current-wrap {
+    border-top: none;
+}
+
+.storebd-current .current-list .current-item .item-info {
+    flex: 1;
+    padding-right: 5px;
+    box-sizing: border-box;
+}

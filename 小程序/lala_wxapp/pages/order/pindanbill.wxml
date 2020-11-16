@@ -1,0 +1,78 @@
+<view class="page-pindanbill">
+    <view class="inner">
+        <view class="store-logo">
+            <image alt="" src="{{order.store_logo}}"></image>
+        </view>
+        <view class="store-title ellipsis font-16 text-center margin-10-t">{{order.store_title}}</view>
+        <view class="text-center font-bold font-18 margin-10-t">*** 结账单：共付{{order.final_fee}}{{Lang.dollarSignCn}} ***</view>
+        <view class="c-gray font-14 text-center margin-10-t">已帮您计算好配送费和活动优惠咯~</view>
+        <view class="divide">
+            <view class="divide-line"></view>
+        </view>
+        <view class="user-list" wx:if="{{order.data.pindan}}">
+            <view class="user-item padding-10-lr margin-10-tb font-14" wx:for="{{order.data.pindan}}" wx:for-index="pindanIndex" wx:for-item="pindanItem" wx:key="{{item.id}}">
+                <view class="flex-lr">
+                    <view class="avatar">
+                        <image alt="" src="{{pindanItem.member.avatar}}"></image>
+                    </view>
+                    <view class="flex-1 flex-lr padding-10-l">
+                        <view class="nickname font-bold ellipsis">{{pindanItem.member.nickname}}</view>
+                        <view>
+                            <text class="c-gray">需支付：</text>
+                            <text class="c-danger font-bold">{{Lang.dollarSign}}{{pindanItem.pindan_fee}}</text>
+                        </view>
+                    </view>
+                </view>
+                <view class="goods-list c-gray">
+                    <block wx:for="{{pindanItem.data}}" wx:for-item="goodsItem">
+                        <van-row wx:for="{{goodsItem}}" wx:for-index="optionIndex" wx:for-item="option" wx:key="optionIndex">
+                            <van-col span="14">
+                                <view class="ellipsis w-100">{{option.title}}</view>
+                            </van-col>
+                            <van-col class="text-right" span="4">x{{option.num}}</van-col>
+                            <van-col class="text-right" span="6">{{Lang.dollarSign}}{{option.total_discount_price}}</van-col>
+                        </van-row>
+                    </block>
+                    <block wx:if="{{order.order_type<=2}}">
+                        <van-row class="padding-10-t" wx:if="{{pindanItem.box_price>0}}">
+                            <van-col class="ellipsis" span="18">餐盒费</van-col>
+                            <van-col class="text-right" span="6">{{Lang.dollarSign}}{{pindanItem.box_price}}</van-col>
+                        </van-row>
+                        <van-row class="padding-10-t" wx:if="{{pindanItem.avg_pack_fee>0}}">
+                            <van-col class="ellipsis" span="18">包装费</van-col>
+                            <van-col class="text-right" span="6">{{Lang.dollarSign}}{{pindanItem.avg_pack_fee}}</van-col>
+                        </van-row>
+                        <van-row class="padding-10-t" wx:if="{{pindanItem.avg_delivery_fee>0}}">
+                            <van-col class="ellipsis" span="18">配送费</van-col>
+                            <van-col class="text-right" span="6">{{Lang.dollarSign}}{{pindanItem.avg_delivery_fee}}</van-col>
+                        </van-row>
+                        <van-row class="padding-10-t" wx:if="{{pindanItem.avg_extra_fee>0}}">
+                            <van-col class="ellipsis" span="18">附加费</van-col>
+                            <van-col class="text-right" span="6">{{Lang.dollarSign}}{{pindanItem.avg_extra_fee}}</van-col>
+                        </van-row>
+                    </block>
+                    <block wx:else>
+                        <van-row class="padding-10-t" wx:if="{{pindanItem.avg_serve_fee>0}}">
+                            <van-col class="ellipsis" span="18">服务费</van-col>
+                            <van-col class="text-right" span="6">{{Lang.dollarSign}}{{pindanItem.avg_serve_fee}}</van-col>
+                        </van-row>
+                    </block>
+                    <van-row class="padding-10-t" wx:if="{{pindanItem.avg_discount_fee>0}}">
+                        <van-col class="ellipsis" span="18">活动优惠</van-col>
+                        <van-col class="text-right" span="6">-{{Lang.dollarSign}}{{pindanItem.avg_discount_fee}}</van-col>
+                    </van-row>
+                </view>
+            </view>
+        </view>
+        <view class="plateform">
+            <view class="flex-center">
+                <view class="plateform-logo">
+                    <image alt="" src="{{config.logo}}"></image>
+                </view>
+                <text class="font-bold font-15">{{config.title}}</text>
+            </view>
+            <view class="c-gray ellipsis text-center font-14 margin-5-t hide">{{config.desc}}</view>
+        </view>
+    </view>
+</view>
+<include src="../public/footer.wxml"></include>

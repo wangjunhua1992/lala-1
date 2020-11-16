@@ -1,0 +1,15 @@
+<view class="page-invoice">
+    <view class="content">
+        <form bindsubmit="onSubmit">
+            <view class="title">
+                <input name="title" placeholder="发票抬头"></input>
+            </view>
+            <view class="number">
+                <input name="recognition" placeholder="纳税人识别号"></input>
+            </view>
+            <view class="btn-box">
+                <button class="btn btn-large btn-danger" formType="submit">保存</button>
+            </view>
+        </form>
+    </view>
+</view>

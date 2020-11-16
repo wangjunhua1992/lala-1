@@ -1,0 +1,61 @@
+.page-feerule {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    font-family: PingFang-SC-Regular,Helvetica Neue,Helvetica,PingFang SC,Hiragino Sans GB,Microsoft YaHei,SimSun,sans-serif;
+    line-height: 1;
+    color: #333;
+    background: #f4f4f4;
+}
+
+.page-feerule .rule-wrap {
+    padding: 0 17px;
+    padding-bottom: 20px;
+    background: #fff;
+}
+
+.page-feerule .rule-wrap .rule-section {
+    padding: 17px 0 6px;
+}
+
+.page-feerule .rule-wrap .title {
+    color: #333;
+    line-height: 44px;
+    font-size: 17px;
+}
+
+.page-feerule .rule-wrap .base-price {
+    font-size: 14px;
+    float: right;
+}
+
+.page-feerule .rule-wrap .rule-repeater {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.page-feerule .rule-section .step-detail {
+    display: flex;
+    justify-content: space-between;
+    margin: 9px 0;
+    height: 22px;
+    line-height: 22px;
+    font-size: 14px;
+}
+
+.page-feerule .rule-section .step-detail .step-title {
+    color: #666;
+}
+
+.page-feerule .rule-section .step-detail .step-price {
+    color: #333;
+}
+
+.page-feerule .rule-wrap .rule-section .introduction {
+    color: #666;
+    line-height: 22px;
+    font-size: 14px;
+}

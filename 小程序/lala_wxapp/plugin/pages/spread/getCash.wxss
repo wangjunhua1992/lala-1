@@ -1,0 +1,99 @@
+page {
+    background: #f4f4f4;
+}
+
+.page-getCash .list-block .item {
+    display: inline-block;
+}
+
+.page-getCash .list-block {
+    position: relative;
+    margin-top: 10px;
+    background: #fff;
+}
+
+.page-getCash .list-block .item-title {
+    font-size: 18px;
+    padding: 10px 10px 10px 15px;
+}
+
+.page-getCash .list-item {
+    background: #fff;
+    margin-top: 10px;
+    padding-bottom: 5px;
+}
+
+.page-getCash .list-item .item-input {
+    width: 90%;
+    height: 39px;
+    line-height: 39px;
+    text-align: left;
+    margin: auto;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+.page-getCash .list-item .item-input .wui-input {
+    height: 39px;
+    margin-left: 10px;
+}
+
+.page-getCash .list-item .item-text {
+    font-size: 16px;
+    padding: 10px 15px;
+}
+
+.page-getCash .list-item .list-text {
+    font-size: 16px;
+    color: #999;
+    padding: 0px 25px;
+    padding-bottom: 3px;
+    position: relative;
+}
+
+.page-getCash .list-item .icon {
+    position: absolute;
+    top: 50%;
+    left: 10px;
+    transform: translate(0,-50%);
+    font-size: 6px;
+    color: #ccc;
+}
+
+.page-getCash .list-block .wui-cell:last-child::after {
+    border: 0px;
+}
+
+.page-getCash .list-block .list-title {
+    font-size: 16px;
+}
+
+.page-getCash .btn-submit {
+    width: 90%;
+    margin: 10px 5%;
+}
+
+radio-group {
+    width: 100%;
+    margin-left: 10px;
+}
+
+radio-group radio {
+    width: 100%;
+    text-align: right;
+    box-sizing: border-box;
+    position: relative;
+    line-height: 40px;
+    padding: 5px 20px 5px 0;
+}
+
+radio-group radio .radio-text {
+    position: absolute;
+    top: 50%;
+    transform: translate(0,-50%);
+    left: 10px;
+    margin: auto;
+    font-size: 18px;
+    color: #333;
+}

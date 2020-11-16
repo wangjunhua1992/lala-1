@@ -1,0 +1,18 @@
+<form bindsubmit="onSubmit">
+    <view class="publish-post">
+        <view class="bg-default margin-10-t padding-15-l" vIf="{{category.config&&category.config.stick_price}}">
+            <view class="field flex-lr border-1px-b">
+                <view>选择置顶</view>
+                <view wx:if="{{days>0}}">置顶{{days}}天</view>
+            </view>
+            <view bind:tap="onSelectStick" class="field flex-lr" data-day="{{item.day}}" wx:for="{{category.config.stick_price}}" wx:key="{{index}}">
+                <view>置顶{{item.day}}天（{{item.price}}{{Lang.dollarSignCn}}）</view>
+                <view class="icon icon-check {{days==item.day?'checked':''}}"></view>
+            </view>
+        </view>
+        <view class="padding-15">
+            <button class="{{islegal?'bg-danger':'btn-disabled'}}" formType="submit">立即置顶</button>
+        </view>
+    </view>
+</form>
+<include src="../../../../pages/public/footer.wxml"></include>

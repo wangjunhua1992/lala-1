@@ -1,0 +1,107 @@
+<view class="reserve-yuding">
+    <view class="content">
+        <view class="yuding-header-wrap">
+            <scroll-view class="yuding-header" scrollX="true">
+                <view bind:tap="onSelectDay" class="yuding-date {{extra.dayIndex==index?'active':''}}" data-day="{{dayItem.day}}" data-index="{{index}}" wx:for="{{days}}" wx:for-item="dayItem" wx:key="{{index}}">
+                    <view>{{dayItem.day_cn}}</view>
+                    <view class="time">{{dayItem.day}} {{dayItem.week_cn}}</view>
+                </view>
+            </scroll-view>
+            <view class="yuding-filter border-1px-t">
+                <view bind:tap="onChangeSearch" class="filter-item" data-searchtype="tables">{{extra.SearchCategoryItem}} <i class="icon icon-unfold"></i>
+                </view>
+                <view bind:tap="onChangeSearch" class="filter-item" data-searchtype="times">{{extra.SearchTime}} <i class="icon icon-unfold"></i>
+                </view>
+                <view bind:tap="onChangeSearch" class="filter-item" data-searchtype="discounts">全部折扣 <i class="icon icon-unfold"></i>
+                </view>
+            </view>
+        </view>
+        <view class="tables-list">
+            <block wx:for="{{categorys_new}}" wx:for-item="categoryItem" wx:key="{{index}}">
+                <view class="tables-item" wx:for="{{reserves_new[categoryItem.id]}}" wx:key="{{index}}">
+                    <view class="tables-left">
+                        <view class="tables-info">
+                            <view class="tables-time">{{item.title}}</view>
+                            <view class="tables-date">{{days[extra.dayIndex].day_cn}}</view>
+                            <view class="font-14">{{categoryItem.title}}</view>
+                        </view>
+                        <view class="flex">
+                            <block wx:if="{{tables_info[extra.day][categoryItem.id]}}">
+                                <block wx:if="{{tables_info[extra.day][categoryItem.id][item.time]>0}}">
+                                    <view class="tables-bar">
+                                        <view class="bar-inner" style="width: {{tables_info[extra.day][categoryItem.id][item.time]/item.total_num*100}}%;"></view>
+                                    </view>
+                                    <view class="tables-text" wx:if="{{!item.total_num}}">剩0桌</view>
+                                    <view class="tables-text" wx:else>剩{{item.total_num-tables_info[extra.day][categoryItem.id][item.time]}}桌</view>
+                                </block>
+                                <block wx:else>
+                                    <view class="tables-bar">
+                                        <view class="bar-inner" style="width: 0%"></view>
+                                    </view>
+                                    <view class="tables-text">剩{{item.total_num}}桌</view>
+                                </block>
+                            </block>
+                            <block wx:else>
+                                <view class="tables-bar">
+                                    <view class="bar-inner" style="width: 0%"></view>
+                                </view>
+                                <view class="tables-text">剩{{item.total_num}}桌</view>
+                            </block>
+                        </view>
+                    </view>
+                    <view class="tables-right flex">
+                        <view bind:tap="onSelectTime" class="btn-tables" data-cid="{{categoryItem.id}}" data-time="{{item.time}}" data-total_num="{{item.total_num}}" wx:if="{{extra.dayIndex==0&&item.timeout==1||extra.dayIndex>0}}">预订</view>
+                        <view bind:tap="onSelectTime" class="btn-tables border-gray" data-cid="-1" data-time="-1" data-total_num="{{item.total_num}}" wx:else>预订</view>
+                    </view>
+                </view>
+            </block>
+        </view>
+    </view>
+    <view class="dialog {{showPopupSearch?'dialog-show':''}}">
+        <view bind:tap="onMultiple" class="dialog-mask"></view>
+        <view class="dialog-container">
+            <view class="diy-store-button-tab border-1px-b">
+                <view class="search-btn-tab border-1px-b">
+                    <view bind:tap="onChangeSearchType" class="search-btn-item {{searchtype=='tables'?'active':''}}" data-searchtype="tables">全部桌型</view>
+                    <view bind:tap="onChangeSearchType" class="search-btn-item {{searchtype=='times'?'active':''}}" data-searchtype="times">全部时间</view>
+                    <view bind:tap="onChangeSearchType" class="search-btn-item {{searchtype=='discounts'?'active':''}}" data-searchtype="discounts">全部折扣</view>
+                </view>
+                <view class="search-alltable" wx:if="{{searchtype=='tables'}}">
+                    <view class="new-search-group">
+                        <view bind:tap="onChangeCategory" class="new-search-item" data-id="-1" data-index="-1">
+                            <view class="info {{SearchCategoryId==-1?'active':''}}">全部桌型</view>
+                        </view>
+                        <view bind:tap="onChangeCategory" class="new-search-item" data-id="{{item.id}}" data-index="{{index}}" wx:for="{{categorys}}" wx:key="{{index}}">
+                            <view class="info {{SearchCategoryId==item.id?'active':''}}">{{item.title}}</view>
+                        </view>
+                    </view>
+                </view>
+                <view class="search-alltable" wx:elif="{{searchtype=='times'}}">
+                    <view class="new-search-group">
+                        <view bind:tap="onChangeTimes" class="new-search-item" data-index="-1" data-time="-1">
+                            <view class="info {{extra.SearchTime=='全部时间'?'active':''}}">全部时间</view>
+                        </view>
+                        <block wx:if="{{SearchCategoryId=='-1'}}">
+                            <view bind:tap="onChangeTimes" class="new-search-item" data-index="{{index}}" data-time="{{timeItem.time}}" wx:for="{{reserves[categorys[0].id]}}" wx:for-item="timeItem" wx:key="{{index}}">
+                                <view class="info {{extra.SearchTime==timeItem.time?'active':''}}">{{timeItem.time}}</view>
+                            </view>
+                        </block>
+                        <block wx:else>
+                            <view bind:tap="onChangeTimes" class="new-search-item" data-index="{{index}}" data-time="{{timeItem.time}}" wx:for="{{reserves[SearchCategoryId]}}" wx:for-item="timeItem" wx:key="{{index}}">
+                                <view class="info {{extra.SearchTime==timeItem.time?'active':''}}">{{timeItem.time}}</view>
+                            </view>
+                        </block>
+                    </view>
+                </view>
+                <view class="search-alltable" wx:elif="{{searchtype=='discounts'}}">
+                    <view class="new-search-group">
+                        <view class="new-search-item">
+                            <view class="info active">全部折扣</view>
+                        </view>
+                    </view>
+                </view>
+            </view>
+        </view>
+    </view>
+</view>
+<include src="../../../pages/public/footer.wxml"></include>

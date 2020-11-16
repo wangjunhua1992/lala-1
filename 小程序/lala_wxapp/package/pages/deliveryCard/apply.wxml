@@ -1,0 +1,53 @@
+<view class="page-apply">
+    <view class="scorll">
+        <scroll-view scrollY="true">
+            <view class="block-title">会员选择</view>
+            <view class="row clearfix">
+                <view bind:tap="onChooseCard" class="col-30 {{num==index?'active':''}}" data-id="{{index}}" wx:for="{{cards}}">
+                    <view class="col money">{{item.price}}{{Lang.dollarSignCn}}</view>
+                    <view class="col name">{{item.title}}</view>
+                </view>
+                <view class="block-info">
+                    <view class="border-1px-t block-text">
+						当前选择会员有效期为
+						<view class="block-time">{{card.starttime}}</view>至
+						<view class="block-time">{{card.endtime}}</view>
+                    </view>
+                </view>
+            </view>
+            <view class="list-block">
+                <view class="list-group">
+                    <view class="item"></view>仅支持平台配送商户使用
+				</view>
+                <view class="list-group">
+                    <view class="item"></view>下单配送费直接扣除
+				</view>
+                <view class="list-group" wx:if="{{card.day_free_limit>0}}">
+                    <view class="item  order-num"></view>每日仅限 <view class="order-num">{{card.day_free_limit}}</view> 单享受特权
+				</view>
+                <view class="list-group" wx:else>
+                    <view class="item  order-num"></view>每日不限次享受特权
+				</view>
+                <view class="list-group" wx:if="{{card.delivery_fee_free_limit>0}}">
+                    <view class="item  order-num"></view>每单最高减免配送费 <view class="order-num">{{card.delivery_fee_free_limit}}</view>
+                </view>
+                <view class="list-group" wx:else>
+                    <view class="item  order-num"></view>每单配送费全免
+				</view>
+            </view>
+            <view class="margin-10-t">
+                <van-cell-group>
+                    <van-cell isLink title="使用兑换码兑换配送会员卡" url="/package/pages/deliveryCard/deliveryCardExchange"></van-cell>
+                </van-cell-group>
+            </view>
+        </scroll-view>
+    </view>
+    <view class="list-bottom">
+        <view class="list-bottom-left">
+            <view>{{Lang.dollarSign}}</view>
+            <view>{{card.price}}</view>
+        </view>
+        <view bind:tap="onSubmit1" class="apply-btn">去支付</view>
+    </view>
+</view>
+<include src="../../../pages/public/footer.wxml"></include>

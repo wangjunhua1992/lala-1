@@ -1,0 +1,101 @@
+<tab-bar menufooter="{{menufooter}}" wx:if="{{menufooter&&menufooter.data}}"></tab-bar>
+<view class="page-pintuan-share container">
+    <view class="content">
+        <view class="goods-info">
+            <view class="thumb">
+                <image alt="" src="{{detail.thumb}}"></image>
+                <div class="mark">{{detail.peoplenum}}人团</div>
+            </view>
+            <view class="info">
+                <view class="info-store">
+                    <view>{{detail.store.title}}</view>
+                    <view>{{detail.name}}</view>
+                </view>
+                <view class="info-price">
+                    <view class="price">
+                        <view class="now-price">{{Lang.dollarSign}}{{detail.price}}</view>
+                        <view class="old-price">{{Lang.dollarSign}}{{detail.oldprice}}</view>
+                        <view class="discount">{{detail.discount}}折</view>
+                    </view>
+                    <view class="progress-bar {{detail.total==0?'bar-end':''}}">
+                        <view class="bar-inner" style="width: {{detail.sailed_percent}}%" wx:if="{{detail.total!=-1}}"></view>
+                        <view class="bar-text">已团{{detail.falesailed_total}}份</view>
+                    </view>
+                </view>
+            </view>
+        </view>
+        <view class="share-info">
+            <view class="step border-1px-b">
+                <view class="step-item active">
+                    <view class="step-number active">
+                        <view class="step-number-inner">1</view>
+                    </view>
+                    <view class="step-title active">发起拼团</view>
+                </view>
+                <view class="step-item {{team[0].status>2&&team[0].status<7?'active':''}}">
+                    <view class="step-number active">
+                        <view class="step-number-inner">2</view>
+                    </view>
+                    <view class="step-title active">邀请好友参团</view>
+                </view>
+                <view class="step-item {{team[0].status>2&&team[0].status<7?'active':''}}">
+                    <view class="step-number {{team[0].status>2&&team[0].status<7?'active':''}}">
+                        <view class="step-number-inner">3</view>
+                    </view>
+                    <view class="step-title {{team[0].status>2&&team[0].status<7?'active':''}}">拼团成功</view>
+                </view>
+            </view>
+            <view class="take-info border-1px-b">
+                <block wx:if="{{team[0].status==2}}">
+                    <view>已有{{team[0].takepart_num}}人参与, 还差<text class="join-num">{{team[0].team_num-team[0].takepart_num}}</text>人拼团成功</view>
+                    <view class="down-time">
+                        <text class="down-time-text">距结束仅剩</text>
+                        <count-down endtime="{{team[0].overtime_cn}}" wx:if="{{team[0].overtime}}"></count-down>
+                    </view>
+                </block>
+                <view class="take-info-status" wx:elif="{{team[0].status>2&&team[0].status<7}}">
+                    <image alt="" class="success-star" src="../../static/img/pintuan_success_star.png"></image>
+                    <text class="success-roll">恭喜，顺利成团啦!</text>
+                </view>
+                <view class="avatars">
+                    <view class="avatar-item" wx:if="{{index<3}}" wx:for="{{team}}">
+                        <image alt="" src="{{item.avatar}}"></image>
+                        <view class="mark" wx:if="{{item.id==item.team_id}}">团长</view>
+                    </view>
+                    <view class="avatar-item empty" wx:if="{{team[0].status<3}}">
+                        <text>?</text>
+                    </view>
+                </view>
+                <view bind:tap="onToggleZhezhao" class="btn-invite" wx:if="{{member.is_takepart}}">邀请好友</view>
+                <view class="btn-group" wx:else>
+                    <view bind:tap="onJsEvent" class="btn-item" data-event-type="jsUrl" data-url="/gohome/pages/pintuan/create?id={{detail.id}}&team_id={{team[0].team_id}}">我要参团</view>
+                    <view bind:tap="onJsEvent" class="btn-item new" data-event-type="jsUrl" data-url="/gohome/pages/pintuan/create?id={{detail.id}}&is_team=1">我要开团</view>
+                </view>
+            </view>
+            <view class="explain">邀请好友来参团，{{detail.grouptime}}小时内拼团成功发货，不成功自动退款</view>
+        </view>
+        <view class="tips">更多拼团</view>
+        <view class="activity-list">
+            <view class="activity-item" wx:for="{{more_activity}}">
+                <view bind:tap="onJsEvent" class="item-inner" data-event-type="jsUrl" data-url="gohome/pages/pintuan/detail?id={{item.id}}">
+                    <view class="thumb">
+                        <image alt="" src="{{item.thumb}}"></image>
+                        <view class="mark">{{item.peoplenum}}人团</view>
+                    </view>
+                    <view class="goods-title">{{item.name}}</view>
+                    <view class="goods-price">
+                        <view class="price">
+                            <view class="new-price">{{Lang.dollarSign}}{{item.price}}</view>
+                            <view class="old-price">{{Lang.dollarSign}}{{item.oldprice}}</view>
+                        </view>
+                        <view class="sell">已售{{item.falesailed_total}}份</view>
+                    </view>
+                </view>
+            </view>
+        </view>
+    </view>
+</view>
+<view bind:tap="onToggleZhezhao" class="share-zhezhao" wx:if="{{zhezhaoShow}}">
+    <image mode="widthFix" src="../../static/img/share-layer.png"></image>
+</view>
+<include src="../../../pages/public/footer.wxml"></include>

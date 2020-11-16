@@ -1,0 +1,13 @@
+<view class="poster-index">
+    <view class="content">
+        <view class="img-wrap">
+            <image alt="" mode="widthFix" src="{{respon}}"></image>
+        </view>
+        <view bind:tap="onJsEvent" class="save-img" data-event-type="jsSaveImg" data-url="{{respon}}">保存图片</view>
+        <view class="tip">
+            <image alt="" src="../../static/img/postershare.png"></image>
+            <view class="font-16 c-white">保存至相册可以分享到朋友圈</view>
+        </view>
+    </view>
+</view>
+<include src="../../../pages/public/footer.wxml"></include>

@@ -1,0 +1,37 @@
+<tab-bar menufooter="{{menufooter}}" wx:if="{{menufooter&&menufooter.data}}"></tab-bar>
+<view class="publish-index container">
+    <view class="tip">免责声明：本平台只负责信息的发布与展示，信息本身与平台无关，平台本身不负任何责任。</view>
+    <view class="store-settle flex-lr hide">
+        <view class="flex">
+            <text class="icon icon-store"></text>
+            <view class="margin-10-l">
+                <view class="font-15 margin-5-b">我是商家，点击入驻</view>
+                <view class="c-gray font-13">超低成本，帮您快速宣传店铺</view>
+            </view>
+        </view>
+        <text class="icon icon-right font-14 c-gray"></text>
+    </view>
+    <view class="bg-default margin-10-t">
+        <view class="padding-15-tb text-center font-13 border-1px-b">请选择您要发布的消息类型</view>
+        <view class="categorys padding-15-t">
+            <view bind:tap="onPublish" class="cate-item" data-id="{{item.id}}" wx:for="{{categorys}}" wx:key="{{index}}">
+                <view class="thumb-wrap">
+                    <image alt="" src="{{item.thumb}}"></image>
+                </view>
+                <div class="title ellipsis">{{item.title}}</div>
+            </view>
+        </view>
+    </view>
+</view>
+<view class="wui-dialog dialog-children {{onChildCategory?'wui-dialog-show':''}}">
+    <view class="wui-dialog-mask"></view>
+    <view class="wui-dialog-container bg-gray">
+        <view class="title-parent padding-15-tb text-center font-14 bg-danger">选择{{categorySelected.title}}子分类</view>
+        <scroll-view class="child-list" scrollY="{{true}}">
+            <view bind:tap="onJsEvent" class="child-item {{index<categorySelected.child.length-1?'border-1px-b':''}}" data-event-type="jsUrl" data-url="/gohome/pages/tongcheng/publish/post?parentid={{item.parentid}}&childid={{item.id}}" wx:for="{{categorySelected.child}}" wx:key="{{index}}">{{item.title}}</view>
+        </scroll-view>
+        <view bind:tap="onChangeStatus" class="title-parent padding-15-tb text-center font-14 margin-10-t bg-default">取消</view>
+    </view>
+</view>
+<failed-tips failedTips="{{failedTips}}" wx:if="{{black_member.status}}"></failed-tips>
+<include src="../../../../pages/public/footer.wxml"></include>

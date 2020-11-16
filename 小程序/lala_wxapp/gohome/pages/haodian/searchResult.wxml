@@ -1,0 +1,49 @@
+<view class="container">
+    <view class="content">
+        <view class="search-header-wrap">
+            <view class="search-header">
+                <view class="search-sec">
+                    <form>
+                        <view class="icon icon-search"></view>
+                        <input bindinput="onInput" class="search-input" value="{{keyword}}"></input>
+                    </form>
+                </view>
+                <view bind:tap="onSearch" class="search-btn">搜索</view>
+            </view>
+        </view>
+        <view class="haodian-list" wx:if="{{stores.store.length>0}}">
+            <view bind:tap="onJsEvent" class="store-item {{index>0?'border-1px-t':''}}" data-event-type="jsUrl" data-url="gohome/pages/haodian/detail?sid={{item.id}}" wx:for="{{stores.store}}" wx:key="{{item.id}}">
+                <view class="img-wrap">
+                    <image alt="" src="{{item.logo}}"></image>
+                </view>
+                <view class="store-main">
+                    <view class="flex-lr">
+                        <view class="flex">
+                            <view class="store-title">{{item.title}}</view>
+                            <van-rate disabled disabledColor="#ff2d4b" size="12" value="{{item.haodian_score}}"></van-rate>
+                            <text class="font-12 margin-5-l">{{item.haodian_score}}分</text>
+                        </view>
+                        <view class="c-danger">{{item.distance}}km</view>
+                    </view>
+                    <view class="c-gray font-12 margin-10-t">营业时间: {{item.business_hours_cn}}</view>
+                    <view class="store-tags" wx:if="{{item.haodian_tags.length>0}}">
+                        <view class="tag-item" wx:for="{{item.haodian_tags}}" wx:key="{{index}}">{{item}}</view>
+                    </view>
+                    <view class="discount-box" wx:if="{{item.activity.length>0}}">
+                        <view class="single-line" wx:for="{{item.activity}}" wx:key="{{index}}">
+                            <image class="discount-icon" src="{{item.thumb_wxapp}}"></image>
+                            <div class="discount-text">{{item.text}}</div>
+                        </view>
+                    </view>
+                </view>
+            </view>
+        </view>
+        <view class="no-result" wx:else>
+            <view class="img">
+                <view class="icon icon-store"></view>
+            </view>
+            <view class="text">抱歉,没有找到合适的商户</view>
+        </view>
+    </view>
+</view>
+<include src="../../../pages/public/footer.wxml"></include>

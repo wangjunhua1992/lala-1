@@ -1,0 +1,124 @@
+page {
+    font-size: 14px;
+    box-sizing: border-box;
+    width: 100%;
+    background-color: #F5F5F5;
+}
+
+.page-statistic .content .statistic-head {
+    width: 100%;
+    background-color: #fff;
+}
+
+.page-statistic .content .statistic-head .statistic-title {
+    padding: 10px 15px 0 15px;
+    color: #3d4145;
+    font-size: 16px;
+}
+
+.page-statistic .content .statistic-head .statistic-data {
+    overflow: hidden;
+    border-bottom: 1px solid #eaeaea;
+    margin-bottom: 15px;
+}
+
+.page-statistic .content .statistic-head .statistic-data .statistic-list {
+    width: 33.3333333%;
+    float: left;
+    text-align: center;
+    background: #fff;
+    padding: 15px 0;
+    font-size: 12px;
+    color: #3d4145;
+}
+
+.page-statistic .content .statistic-head .statistic-data .statistic-list .statistic-border {
+    border-left: 1px solid #e8e9eb;
+}
+
+.page-statistic .content .statistic-head .statistic-data .statistic-list:first-child .statistic-border {
+    border-left: 0;
+}
+
+.page-statistic .content .statistic-head .statistic-data .store-data-sum {
+    font-size: 20px;
+    line-height: 1.3;
+}
+
+.page-statistic .content .statistic-head .statistic-data .store-data-info {
+    color: #878787;
+}
+
+.page-statistic .content .tabs-list {
+    position: relative;
+    width: 100%;
+    height: 45px;
+    background: #fff;
+    color: #333;
+    border-top: 1px solid #eaeaea;
+    overflow: hidden;
+}
+
+.page-statistic .content .tabs-list::-webkit-scrollbar {
+    display: none;
+}
+
+.page-statistic .content .tabs-list .tabs-item {
+    float: left;
+    height: 100%;
+    width: 25%;
+    line-height: 45px;
+    text-align: center;
+    position: relative;
+    font-size: 14px;
+}
+
+.page-statistic .content .tabs-list .tabs-item.active {
+    color: #33aafc;
+}
+
+.page-statistic .content .tabs-list .tabs-item.active:after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 0;
+    border-bottom: 2px solid #33aafc;
+}
+
+.page-statistic .content .time-limit {
+    display: block;
+    background-color: #fff;
+    padding: 10px 15px;
+}
+
+.page-statistic .content .time-limit .time-wrap {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.page-statistic .content .time-limit .time-wrap picker {
+    width: 37%;
+}
+
+.page-statistic .content .time-limit .time-wrap input {
+    border: 1px solid #e7e7e7;
+    border-radius: 3px;
+    font-size: 14px;
+    padding: 1px 0 1px 6px;
+    height: 30px;
+}
+
+.page-statistic .content .time-limit .time-wrap button {
+    font-size: 14px;
+    background-color: #33aafc;
+    color: #fff;
+    padding: 0 10px;
+}
+
+.page-statistic .content .time-limit .time-wrap view {
+    padding: 0 5px;
+}

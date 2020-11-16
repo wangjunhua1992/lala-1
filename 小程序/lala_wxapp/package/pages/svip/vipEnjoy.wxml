@@ -1,0 +1,48 @@
+<view class="page-vipEnjoy">
+    <view class="content">
+        <view class="title-img">
+            <image alt="" src="http://cos.lalawaimai.com/we7_wmall/wxapp/svip-vipenjoy.png"></image>
+        </view>
+        <view class="goods-list" wx:if="{{!goods.empty}}">
+            <view bind:tap="onJsEvent" class="goods-item" data-event-type="jsUrl" data-url="/pages/store/goodsDetail?sid={{item.sid}}&id={{item.id}}" wx:for="{{goods.data}}" wx:key="{{item.id}}">
+                <view class="goods-img">
+                    <image alt="" class="img-100" src="{{item.thumb}}"></image>
+                </view>
+                <view class="goods-info">
+                    <view class="goods-title ellipsis">{{item.title}}</view>
+                    <view class="flex">
+                        <view class="discount">
+                            <i class="icon icon-crownfill font-12"></i>
+							{{item.svip_discount}}折
+						</view>
+                        <view class="font-12 c-gray padding-5-l">月售{{item.sailed}}份</view>
+                    </view>
+                    <view class="padding-5-t">
+                        <text class="c-danger">
+                            <text class="font-12">{{Lang.dollarSign}}</text>
+                            <text class="font-20">{{item.svip_price}}</text>
+                        </text>
+                        <text class="font-12 c-gray line-through">{{Lang.dollarSign}}{{item.price}}</text>
+                    </view>
+                    <view class="buy-btn"></view>
+                </view>
+                <view class="goods-footer flex-lr">
+                    <view class="flex c-gray font-12">
+                        <i class="icon icon-store"></i>
+                        <text class="padding-5-l">{{item.store_title}}</text>
+                    </view>
+                    <view class="font-12 c-gray">{{item.store_score}}分</view>
+                </view>
+            </view>
+            <view class="wui-loadmore wui-loadmore-nomore" wx:if="{{goods.loaded}}">
+                <view class="wui-loadmore-tips">我是有底线的</view>
+                <view class="wui-loadmore-line"></view>
+            </view>
+        </view>
+        <view class="no-data" wx:else>
+            <image class="no-coupon" src="http://cos.lalawaimai.com/we7_wmall/wxapp/goods_no_con.png"></image>
+            <text class="no-record">暂无会员专属商品!</text>
+        </view>
+    </view>
+</view>
+<include src="../../../pages/public/footer.wxml"></include>

@@ -1,0 +1,22 @@
+<view class="page-feerule">
+    <view class="rule-wrap">
+        <view class="rule-section" wx:for="{{feeRule}}" wx:for-item="feeItem">
+            <text class="title">{{feeItem.title}}</text>
+            <view class="rule-repeater">
+                <view class="rule-item" wx:for="{{feeItem.items}}" wx:for-item="childItem">
+                    <view class="step-detail">
+                        <text class="step-title">{{childItem.note}}</text>
+                        <text class="step-price">{{childItem.fee_cn}}</text>
+                    </view>
+                </view>
+            </view>
+        </view>
+        <view class="rule-section">
+            <text class="title">溢价说明</text>
+            <view class="introduction">
+				在恶劣天气、下单高峰等情况下，为促进骑手接单，平台可能会临时适当调整价格，以保障良好的服务体验。
+			</view>
+        </view>
+    </view>
+</view>
+<include src="../public/footer.wxml"></include>

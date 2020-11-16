@@ -1,0 +1,84 @@
+<view class="page-share">
+    <view class="share-redpacket">
+        <block wx:if="{{template==2}}">
+            <view class="banner">
+                <image class="top-img" mode="" src="{{activity.data.activity.image}}"></image>
+            </view>
+            <view class="redpacket-item activity-empty" wx:if="{{activity.status!=1}}">
+				活动已经过期啦
+			</view>
+            <view class="redpacket-item activity-empty" wx:elif="{{redpackets.length==0}}">
+				红包抢光啦
+			</view>
+            <view class="redpacket" wx:elif="{{redpackets.length>0}}">
+                <view class="redpacket-item" wx:for="{{redpackets}}">
+                    <view class="clearfix">
+                        <view class="pull-left image">
+                            <image class="img" mode="" src="../../static/img/superredpacket.png"></image>
+                        </view>
+                        <view class="pull-left redpacket-info">
+                            <view class="redpacket-title">{{item.title}}</view>
+                            <view class="use-condition text-left">{{item.condition}}</view>
+                        </view>
+                        <view class="price pull-right">
+                            <text class="price-rmb">{{Lang.dollarSign}}</text>
+                            <text>{{item.discount}}</text>
+                        </view>
+                    </view>
+                    <view class="clearfix redpacket-bottom">
+                        <view class="pull-left use-days-limit">{{item.condition_cn}} {{item.category_cn?item.category_cn:''}} {{item.times_cn?item.times_cn:''}}</view>
+                        <view bind:tap="onJsEvent" class="pull-right use-redpack" data-event-type="jsUrl" data-url="pages/home/index">去使用</view>
+                    </view>
+                </view>
+                <view class="get-success">
+                    <text>红包已放入账号:</text>
+                    <text>{{member.nickname}} {{member.mobile}}</text>
+                </view>
+                <view bind:tap="onJsEvent" class="immediate-use" data-event-type="jsUrl" data-url="pages/home/index">立即使用</view>
+                <view bind:tap="onJsEvent" class="give-redpacket" data-event-type="jsUrl" data-url="pages/member/redPacket/index">查看我的红包</view>
+            </view>
+            <view class="records-agreement">
+                <view class="records-title title-line">看看大家手气</view>
+                <view class="records-container" wx:for="{{rankings}}">
+                    <view class="item-content">
+                        <view class="content-body">
+                            <view class="item-media">
+                                <image class="head-img" mode="" src="{{item.avatar}}"></image>
+                            </view>
+                            <view class="item-inner">
+                                <view class="item-title-row item-top">
+                                    <view class="item-title">{{item.nickname}}</view>
+                                    <view class="item-after">{{item.total_discount}}{{Lang.dollarSignCn}}</view>
+                                </view>
+                                <view class="item-title-row item-bottom">
+                                    <view class="item-subtitle">{{item.granttime_cn}}</view>
+                                    <view class="item-after item-header" wx:if="{{member.ranking==1}}">手气最佳</view>
+                                </view>
+                            </view>
+                        </view>
+                    </view>
+                </view>
+                <view class="agreement-title title-line">活动规则</view>
+                <view class="agreement-inner">
+                    <template is="wxParse" data="{{wxParseData:agreement.nodes}}"></template>
+                </view>
+            </view>
+        </block>
+        <block wx:if="{{template==1}}">
+            <view class="banner">
+                <image class="top-img" mode="" src="{{activity_img}}"></image>
+            </view>
+            <view class="receive">
+                <input bindinput="onInput" class="mobile-input" name="mobile" placeholder="请输入您的手机号" type="text"></input>
+                <view bind:tap="onSubmit" class="receive-immediately">立即领取</view>
+            </view>
+            <view class="records-agreement">
+                <view class="agreement-title title-line">活动规则</view>
+                <view class="agreement-inner">
+                    <template is="wxParse" data="{{wxParseData:agreement.nodes}}"></template>
+                </view>
+            </view>
+        </block>
+    </view>
+</view>
+<include src="../../../pages/public/footer.wxml"></include>

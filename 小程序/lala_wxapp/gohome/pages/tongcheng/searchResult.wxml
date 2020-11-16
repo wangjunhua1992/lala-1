@@ -1,0 +1,14 @@
+<view class="tongcheng-search-result">
+    <block wx:if="{{!records.empty}}">
+        <informations from="index" informations="{{records.data}}"></informations>
+        <view class="wui-loadmore wui-loadmore-nomore" wx:if="{{records.loaded}}">
+            <view class="wui-loadmore-tips">我是有底线的</view>
+            <view class="wui-loadmore-line"></view>
+        </view>
+    </block>
+    <view class="no-data" wx:else>
+        <image class="no-coupon" src="http://cos.lalawaimai.com/we7_wmall/wxapp/goods_no_con.png"></image>
+        <text class="no-record">暂无符合条件的帖子</text>
+    </view>
+</view>
+<include src="../../../pages/public/footer.wxml"></include>

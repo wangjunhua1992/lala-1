@@ -1,0 +1,117 @@
+<view class="tongcheng-detail">
+    <view class="detail">
+        <view class="userinfo flex-lr">
+            <view class="left">
+                <image class="wh-100" src="{{detail.ft_avatar}}"></image>
+            </view>
+            <view class="right flex-lr">
+                <ul>
+                    <li class="flex">
+                        <span class="tag-top" wx:if="{{detail.is_stick==1}}">置顶</span>
+                        <span class="tag-cate" wx:if="{{detail.category}}">{{detail.category.title}}</span>
+                        <span class="nickname ellipsis">{{detail.nickname}}</span>
+                    </li>
+                    <li class="c-gray font-12 margin-5-t">
+						{{detail.addtime_cn}}发布
+					</li>
+                </ul>
+                <view bind:tap="onJsEvent" class="icon icon-phone2 c-danger font-20" data-event-type="jsPhone" data-phoneNumber="{{detail.mobile}}"></view>
+            </view>
+        </view>
+        <li class="tags flex">
+            <view class="tag-item" wx:for="{{detail.keyword}}" wx:key="{{item.id}}">{{item}}</view>
+        </li>
+        <view class="tiezi-info">
+            <view class="text">
+                <template is="wxParse" data="{{wxParseData:content.nodes}}"></template>
+            </view>
+            <view class="thumbs">
+                <view class="thumb-item" wx:for="{{detail.thumbs}}" wx:key="{{item.id}}">
+                    <image class="w-100" mode="widthFix" src="{{item}}"></image>
+                </view>
+            </view>
+        </view>
+        <view class="flex font-13 c-gray margin-10-t">
+            <view class="flex margin-10-r">
+                <text class="icon icon-attention font-15"></text>
+                <text>{{detail.looknum}}</text>
+            </view>
+            <view bind:tap="onLike" class="flex margin-10-r">
+                <text class="icon icon-appreciate_light font-14"></text>
+                <text>{{detail.likenum}}</text>
+            </view>
+        </view>
+        <view class="zan-wrap">
+            <view class="zan-total">
+                <text>{{detail.likenum}}</text>
+                <span>赞</span>
+            </view>
+            <view class="avatar" wx:for="{{detail.like_avatar}}" wx:key="{{item.id}}">
+                <image class="wh-100" src="{{item}}"></image>
+            </view>
+        </view>
+    </view>
+    <view class="comment bg-default margin-10-t">
+        <view class="comment-title flex-lr border-1px-b">
+            <text class="c-gray">评论</text>
+            <text bind:tap="onComment" class="c-danger" data-id="{{detail.id}}" data-to_uid="{{detail.uid}}" data-type="comment">我要评论</text>
+        </view>
+        <view class="comment-list" wx:if="{{comments&&comments.length>0}}">
+            <view class="comment-item van-hairline--bottom" wx:for="{{comments}}" wx:key="item.id">
+                <view class="userinfo flex-lr">
+                    <view class="left">
+                        <image class="wh-100" src="{{item.avatar}}"></image>
+                    </view>
+                    <view class="right flex-lr">
+                        <view>
+                            <view class="flex">
+                                <text class="nickname ellipsis">{{item.nickname}}</text>
+                            </view>
+                            <view class="c-gray font-12 margin-5-t">
+								{{item.addtime_cn}}
+							</view>
+                        </view>
+                        <text bind:tap="onComment" class="c-info font-14" data-id="{{item.id}}" data-to_nickname="{{item.nickname}}" data-to_uid="{{item.uid}}" data-type="reply">回复</text>
+                    </view>
+                </view>
+                <view class="comment-inner">
+                    <view class="text">{{item.content}}</view>
+                    <view class="reply-list" wx:if="{{item.reply&&item.reply.length>0}}">
+                        <view class="reply-item {{replyIndex<item.reply.length-1?'border-1px-b':''}}" wx:for="{{item.reply}}" wx:for-index="replyIndex" wx:for-item="replyItem" wx:key="item.id">
+                            <view class="userinfo flex-lr">
+                                <view class="left" wx:if="{{0}}">
+                                    <view class="avatar">
+                                        <image class="wh-100" src="{{replyItem.from_avatar}}"></image>
+                                    </view>
+                                </view>
+                                <view class="right flex-lr">
+                                    <view>
+                                        <view class="flex">
+                                            <text bind:tap="onComment" class="nickname ellipsis" data-id="{{item.id}}" data-to_nickname="{{replyItem.from_nickname}}" data-to_uid="{{replyItem.from_uid}}" data-type="reply">{{replyItem.from_nickname}}</text>
+                                            <text class="c-gray margin-5-l">回复</text>
+                                            <text bind:tap="onComment" class="nickname ellipsis margin-5-l" data-id="{{item.id}}" data-to_nickname="{{replyItem.to_nickname}}" data-to_uid="{{replyItem.to_uid}}" data-type="reply">{{replyItem.to_nickname}}</text>
+                                        </view>
+                                        <view class="c-gray font-12 margin-5-t">
+											{{replyItem.addtime_cn}}
+										</view>
+                                    </view>
+                                    <text class="c-info font-14" wx:if="{{0}}">回复</text>
+                                </view>
+                            </view>
+                            <view class="comment-inner">
+                                <view class="text">{{replyItem.content}}</view>
+                            </view>
+                        </view>
+                    </view>
+                </view>
+            </view>
+        </view>
+        <view class="padding-15-tb c-gray font-14 text-center" wx:else>暂无任何评论~</view>
+    </view>
+    <Dialog bind:confirm="onCommentSubmit" show="{{comment.dialogShow}}" showCancelButton="true" title="{{comment.title}}" useSlot="true">
+        <view class="dialog-comment">
+            <textarea bindinput="onInput" maxlength="-1" name="content" placeholder="{{comment.placeholder}}" value="{{comment.content}}"></textarea>
+        </view>
+    </Dialog>
+</view>
+<include src="../../../pages/public/footer.wxml"></include>

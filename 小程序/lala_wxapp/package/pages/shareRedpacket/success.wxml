@@ -1,0 +1,33 @@
+<view class="shareRedpacket-success">
+    <view class="content">
+        <view class="header-img">
+            <image alt="" mode="widthFix" src="../../static/img/shareRedpacket-top.png"></image>
+        </view>
+        <view class="shareRedpacket-title">
+            <view>恭喜你，成功领取了新用户红包</view>
+            <view>快去 <text bind:tap="onJsEvent" class="c-danger" data-event-type="jsUrl" data-url="/pages/home/index">{{mall_title}}</text>订餐吧</view>
+        </view>
+        <view class="newuser-share">
+            <view class="share-title">新用户专享红包</view>
+            <view class="use-limit">仅限首单使用</view>
+            <view class="limit-time">有效期{{record.follow_redpacket_days_limit}}天</view>
+            <view class="packet-money">
+				{{Lang.dollarSign}}<text>{{record.follow_redpacket_discount}}</text>
+            </view>
+        </view>
+        <view class="use-now">
+            <view bind:tap="onJsEvent" data-event-type="jsUrl" data-url="/pages/home/index">立即使用</view>
+        </view>
+        <view class="invite">
+            <view bind:tap="onJsEvent" data-event-type="jsUrl" data-url="/package/pages/shareRedpacket/index">邀请好友最高得{{redPacket.share_redpacket_max}}{{Lang.dollarSignCn}}</view>
+        </view>
+        <view class="activity-rule">
+            <view class="rule-title">活动规则</view>
+            <view class="agreement">
+                <template is="wxParse" data="{{wxParseData:richtext.nodes}}"></template>
+            </view>
+        </view>
+    </view>
+</view>
+<include src="../../../pages/public/footer.wxml"></include>
+<import src="/library/wxParse/wxParse.wxml"></import>

@@ -1,0 +1,104 @@
+<failed-tips wx:if="{{!getLocationStatus}}"></failed-tips>
+<tab-bar menufooter="{{menufooter}}" wx:if="{{menufooter&&menufooter.data}}"></tab-bar>
+<view class="container">
+    <block wx:for="{{home.items}}" wx:for-item="homeitem" wx:key="{{homeitem.id}}">
+        <view class="page-guide " style="background:{{homeitem.style.background}}" wx:if="{{homeitem.id=='guide'}}">
+            <view class="shop-wrapper">
+                <view class="shop">
+                    <view class="shop-banner">
+                        <view class="rider-nearby-content">
+                            <view class="rider-nearby-icon"></view>
+                            <view style="color: {{homeitem.rider.color}}">
+								{{homeitem.rider.text.left}}
+								<text class="num" style="color: {{homeitem.rider.num_color}}">{{homeitem.rider.text.num}}</text>
+								{{homeitem.rider.text.right}}
+							</view>
+                        </view>
+                        <view class="swiper-container">
+                            <swiper autoplay="true" circular="true" class="swiper-wrapper" interval="4000">
+                                <navigator hoverClass="none" url="{{item.linkurl}}" wx:for="{{homeitem.picture}}" wx:key="{{index}}">
+                                    <swiper-item class="swiper-slide">
+                                        <image src="{{item.imgurl}}"></image>
+                                    </swiper-item>
+                                </navigator>
+                            </swiper>
+                        </view>
+                    </view>
+                    <view class="good-edit">
+                        <view class="good-input">
+                            <view bind:tap="onChangeShowText" class="good-input-placeholder {{showText?'active':''}}">
+                                <view class="good-input-icon">
+                                    <image src="http://cos.lalawaimai.com/we7_wmall/wxapp/edit_icon.png"></image>
+                                </view>
+								{{homeitem.params.placeholder}}
+							</view>
+                            <view class="good-input-content {{showText?'':'active'}}">
+                                <textarea bindinput="onGoodsInfo" class="good-input-textarea" maxlength="100" placeholder="{{homeitem.params.placeholder}}" value="{{extra.note}}"></textarea>
+                                <view bind:tap="onJsEvent" class="good-input-submit" data-event-type="jsUrl" data-url="{{homeitem.params.submiturl+'&note='+extra.note}}"></view>
+                            </view>
+                        </view>
+                        <view class="good-tags">
+                            <view class="good-tag-list">
+                                <view bind:tap="onJsEvent" class="good-tag" data-event-type="jsUrl" data-url="{{item.linkurl}}" style="color: {{item.color}};background-color: {{item.background_color}};" wx:for="{{homeitem.lanmu}}" wx:key="{{index}}">
+										{{item.text}}
+										<view class="good-tag-hot" wx:if="{{item.is_hot==1}}">
+                                        <image src="http://cos.lalawaimai.com/we7_wmall/wxapp/goods_hot.png"></image>
+                                    </view>
+                                </view>
+                            </view>
+                        </view>
+                    </view>
+                    <view class="paotui-feature-panel">
+                        <view class="paotui-feature-title">跑腿特色</view>
+                        <view class="paotui-feature-list">
+                            <view bind:tap="onJsEvent" class="paotui-feature-item" data-event-type="jsUrl" data-url="{{item.linkurl}}" hoverClass="none" wx:for="{{homeitem.feature}}" wx:key="{{index}}">
+                                <view class="paotui-feature-item-icon" style="border-color: {{item.icon_color}};">
+                                    <view class="icon {{item.icon}}" style="color: {{item.icon_color}};"></view>
+                                </view>
+                                <view class="paotui-feature-item-text" style="color: {{item.color}};">{{item.text}}</view>
+                            </view>
+                        </view>
+                    </view>
+                </view>
+            </view>
+            <view bind:tap="onJsEvent" class="paotui-order hide" data-event-type="jsUrl" data-url="pages/paotui/order" style="color: {{homeitem.order.color}}; border-color: {{homeitem.order.border_color}};">
+                <view class="icon {{homeitem.order.icon}}" style="color: {{homeitem.order.color}}"></view>
+                <view class="order-text" style="color: {{homeitem.order.color}}">{{homeitem.order.text}}</view>
+            </view>
+        </view>
+        <block wx:elif="{{homeitem.id=='redpacket'}}">
+            <view class="dialog dialog-redpacket {{superRedpacket.is_show?'dialog-show':''}}" wx:if="{{!superRedpacket.type&&superRedpacket.redpackets&&superRedpacket.redpackets.length>0}}">
+                <view class="dialog-mask"></view>
+                <view class="dialog-container">
+                    <view class="banner" style="background-color: {{superRedpacket.page.text.backgroundColor}};">
+                        <image src="{{superRedpacket.page.image}}"></image>
+                    </view>
+                    <view class="container" style="background-color: {{superRedpacket.page.text.backgroundColor}};">
+                        <view class="redpacket" wx:for="{{superRedpacket.redpackets}}" wx:key="{{index}}">
+                            <view class="redpacket-info clearfix" style="color: {{superRedpacket.page.text.color}};">
+                                <view class="col-75 text-left">
+                                    <view class="redpacket-title">{{item.title}}</view>
+                                </view>
+                                <view class="col-25 price text-right">{{Lang.dollarSign}}<view>{{item.discount}}</view>
+                                </view>
+                            </view>
+                            <view class="circle-container">
+                                <view class="circle circle-left"></view>
+                                <view class="circle circle-right"></view>
+                            </view>
+                            <view class="redpacket-limit clearfix">
+                                <view class="col-70 use-days-limit text-left">{{item.use_days_limit_text}}</view>
+                                <view class="col-30 use-condition text-right">满{{item.condition}}可用</view>
+                            </view>
+                        </view>
+                        <view class="go-home">
+                            <view bind:tap="onCloseRedpacket" style="background-color: {{superRedpacket.page.button.backgroundColor}}; color: {{superRedpacket.page.button.color}}">进入首页</view>
+                        </view>
+                        <icon bind:tap="onCloseRedpacket" class="icon icon-close"></icon>
+                    </view>
+                </view>
+            </view>
+        </block>
+    </block>
+</view>
+<include src="../public/footer.wxml"></include>

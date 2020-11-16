@@ -1,0 +1,1022 @@
+page {
+    height: 100%;
+    overflow: hidden;
+}
+
+radio {
+    width: 100%;
+    text-align: right;
+    box-sizing: border-box;
+    padding-right: 10px;
+    position: relative;
+    line-height: 40px;
+}
+
+.radio-text {
+    position: absolute;
+    top: 0;
+    left: 15px;
+    margin: auto;
+    font-size: 14px;
+    color: #333;
+}
+
+.container {
+    height: 100%;
+    overflow: hidden;
+}
+
+.container .content {
+    background-color: #F4F4F4;
+    height: 100%;
+    padding-bottom: 50px;
+    display: -webkit-flex;
+    box-sizing: border-box;
+}
+
+.container .content .main {
+    background-color: #F4F4F4;
+}
+
+.container form .content .main {
+    margin: 10px 10px;
+    display: block;
+}
+
+.container form .content .main .create-header {
+    text-align: center;
+    font-size: 16px;
+}
+
+.container form .content .main .create-header .line {
+    display: inline-block;
+    padding: 0 5px;
+    color: #999;
+}
+
+.container form .content .main .plateform-box {
+    background-color: #fff;
+    margin-top: 10px;
+}
+
+.container form .content .main .plateform-box .address {
+    color: #ff2d4b;
+    font-weight: 500;
+}
+
+.container form .content .main .plateform-box .address .icon {
+    width: 15px;
+    height: 15px;
+    line-height: 15px;
+    text-align: center;
+    border-radius: 100%;
+    background-color: #ff2d4b;
+    font-size: 12px;
+    color: #fff;
+    margin-right: 5px;
+}
+
+.container form .content .main .plateform-box .send {
+    font-weight: 500;
+}
+
+.container form .content .main .plateform-box .send .icon {
+    width: 15px;
+    height: 15px;
+    line-height: 15px;
+    text-align: center;
+    border-radius: 100%;
+    font-size: 16px;
+    color: #555555;
+    margin-right: 5px;
+}
+
+.container form .content .main .plateform-box .wui-cell:last-child::after {
+    border-top: 0;
+}
+
+.container form .content .main .plateform-box .checked-address .icon {
+    position: absolute;
+    top: 50%;
+    left: 15px;
+    transform: translate(0,-50%);
+    width: 15px;
+    height: 15px;
+    line-height: 15px;
+    text-align: center;
+    border-radius: 100%;
+    font-size: 16px;
+    color: #555555;
+}
+
+.container form .content .main .plateform-box .checked-address .address-list {
+    margin-left: 20px;
+}
+
+.container form .content .main .plateform-box .checked-address .address-list .detail {
+    font-weight: bold;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.container form .content .main .plateform-box .checked-address .address-list .more view {
+    display: inline-block;
+    color: #999;
+}
+
+.container form .content .main .plateform-box .checked-address .address-list .more .name {
+    margin-right: 10px;
+}
+
+.container form .content .main .instore-box {
+    background-color: #fff;
+    margin-top: 10px;
+}
+
+.container form .content .main .instore-box .instore-inner .wui-cell:last-child::after {
+    border-top: 0;
+}
+
+.container form .content .main .instore-box .instore-inner .address {
+    position: relative;
+}
+
+.container form .content .main .instore-box .instore-inner .address .address-icon {
+    display: inline-block;
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translate(0,-50%);
+}
+
+.container form .content .main .instore-box .instore-inner .address .address-icon .icon {
+    width: 15px;
+    height: 15px;
+    line-height: 15px;
+    text-align: center;
+    border-radius: 100%;
+    font-size: 16px;
+    color: #555;
+}
+
+.container form .content .main .instore-box .instore-inner .address .address-inner {
+    display: inline-block;
+    width: 90%;
+    margin-left: 25px;
+}
+
+.container form .content .main .instore-box .instore-inner .address .address-inner .loc {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-weight: 500;
+    font-size: 16px;
+}
+
+.container form .content .main .instore-box .instore-inner .address .address-inner .store-name {
+    color: #555;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.container form .content .main .instore-box .instore-inner .tel {
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.container form .content .main .instore-box .instore-inner .tel .icon {
+    color: #555;
+    width: 15px;
+    height: 15px;
+    line-height: 15px;
+    text-align: center;
+    border-radius: 100%;
+    font-size: 16px;
+    margin-right: 5px;
+}
+
+.container form .content .main .instore-box .instore-inner .time {
+    position: relative;
+}
+
+.container form .content .main .instore-box .instore-inner .time .time-icon {
+    display: inline-block;
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translate(0,-50%);
+}
+
+.container form .content .main .instore-box .instore-inner .time .time-icon .icon {
+    width: 15px;
+    height: 15px;
+    line-height: 15px;
+    border-radius: 100%;
+    font-size: 16px;
+    color: #555;
+}
+
+.container form .content .main .instore-box .instore-inner .time .time-inner {
+    display: inline-block;
+    width: 90%;
+    margin-left: 25px;
+}
+
+.container form .content .main .instore-box .instore-inner .time .time-inner {
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.container form .content .main .instore-box .instore-inner .time .time-inner .time-text view {
+    display: inline-block;
+    margin-left: 5px;
+    color: #358DE0;
+    font-size: 14px;
+}
+
+.container form .content .main .instore-box .instore-inner .time .time-inner .attention {
+    color: #ff2d4b;
+    font-size: 14px;
+}
+
+.container form .content .main .order-food-region {
+    background-color: #fff;
+    margin-top: 10px;
+}
+
+.container form .content .main .order-food-region .order-food-title {
+    position: relative;
+    height: 50px;
+    line-height: 50px;
+    padding: 0 15px;
+    color: #898989;
+    font-size: 14px;
+    overflow: hidden;
+}
+
+.container form .content .main .order-food-region .order-food-title .food-shop {
+    float: left;
+    box-sizing: border-box;
+    padding-right: 75px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.container form .content .main .order-food-region .order-food-title .order-tips-thirpart {
+    position: absolute;
+    right: 15px;
+    height: 15px;
+    line-height: 15px;
+    margin-top: 17px;
+    display: inline-block;
+    padding: 0 5px;
+    color: #333;
+    font-size: 10px;
+    background-color: #ff2d4b;
+}
+
+.container form .content .main .order-food-region .order-food-title .order-tips-thirpart::before,.container form .content .main .order-food-region .order-food-title .order-tips-thirpart::after {
+    content: "";
+    position: absolute;
+    border: 2px solid #fff;
+}
+
+.container form .content .main .order-food-region .order-food-title .order-tips-thirpart::before {
+    left: 0;
+    top: 0;
+    border-color: #fff #ff2d4b #ff2d4b #fff;
+}
+
+.container form .content .main .order-food-region .order-food-title .order-tips-thirpart::after {
+    right: 0;
+    bottom: 0;
+    border-color: #ff2d4b #fff #fff #ff2d4b;
+}
+
+.container form .content .main .order-food-region .food-list .food-item {
+    padding: 10px;
+    background-color: #f8f8f8;
+    overflow: hidden;
+    margin-bottom: 10px;
+}
+
+.container form .content .main .order-food-region .food-list .food-item:last-child {
+    margin-bottom: 0;
+}
+
+.container form .content .main .order-food-region .food-list .food-item .food-item-img {
+    display: inline-block;
+    float: left;
+    width: 55px;
+    height: 55px;
+    overflow: hidden;
+}
+
+.container form .content .main .order-food-region .food-list .food-item .food-item-img image {
+    width: 100%;
+    height: 100%;
+}
+
+.container form .content .main .order-food-region .food-list .food-item .food-item-price {
+    float: right;
+    display: inline-block;
+    width: 45px;
+    line-height: 20px;
+}
+
+.container form .content .main .order-food-region .food-list .food-item .food-item-price .now-price {
+    text-align: right;
+    font-size: 15px;
+    color: #333;
+    font-weight: 500;
+}
+
+.container form .content .main .order-food-region .food-list .food-item .food-item-price .old-price {
+    text-align: right;
+    font-size: 12px;
+    color: #999;
+    text-decoration: line-through;
+}
+
+.container form .content .main .order-food-region .food-list .food-item .food-item-info {
+    margin: 0 55px 0 65px;
+}
+
+.container form .content .main .order-food-region .food-list .food-item .food-item-info .food-item-name {
+    line-height: 20px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+}
+
+.container form .content .main .order-food-region .food-list .food-item .food-item-info .food-item-name image {
+    width: 15px;
+    height: 15px;
+    margin-right: 5px;
+}
+
+.container form .content .main .order-food-region .food-list .food-item .food-item-info .food-item-num {
+    line-height: 18px;
+    color: #999;
+    font-size: 12px;
+}
+
+.container .content .main .select {
+    background-color: #fff;
+    margin-top: 10px;
+}
+
+.container .content .main .select {
+    padding: 5px 0;
+}
+
+.container .content .main .select .weui-cell {
+    font-size: 14px;
+}
+
+.container .content .main .select .weui-select {
+    font-size: 14px;
+}
+
+.container form .content .main .order-food-region .order-region-entries {
+    margin-left: 15px;
+}
+
+.container form .content .main .order-food-region .order-region-entries .order-region-entry {
+    font-size: 14px;
+    position: relative;
+    color: #2f2f2f;
+    overflow: hidden;
+    padding-bottom: 5px;
+}
+
+.container form .content .main .order-food-region .order-region-entries .order-region-entry:first-child {
+    padding-top: 9px;
+}
+
+.container form .content .main .order-food-region .order-region-entries .order-region-entry:last-child {
+    padding-bottom: 3px;
+}
+
+.container form .content .main .order-region-entries .order-region-entry .order-entry-price {
+    position: absolute;
+    right: 15px;
+    font-size: 12px;
+}
+
+.container form .content .main .order-food-region .discount-box {
+    background: #fff;
+}
+
+.container form .content .main .order-food-region .discount-box .coupon {
+    padding-top: 8px;
+    padding-bottom: 0px;
+}
+
+.container form .content .main .order-food-region .discount-box .wui-cell:last-child {
+    padding-bottom: 8px;
+}
+
+.container form .content .main .order-food-region .discount-box .wui-cell::after {
+    border-top: 0;
+}
+
+.container form .content .main .order-food-region .discount-box .discount {
+    margin-left: 15px;
+    padding: 9px 0;
+    line-height: 20px;
+}
+
+.container form .content .main .order-food-region .discount-box .discount .discount-name {
+    display: inline-block;
+    font-size: 14px;
+}
+
+.container form .content .main .order-food-region .discount-box .discount .discount-name .icon-b {
+    width: 17px;
+    height: 17px;
+}
+
+.container form .content .main .order-food-region .discount-box .discount .discount-name .tags {
+    display: inline-block;
+    font-size: 14px;
+    text-align: center;
+}
+
+.container form .content .main .order-food-region .discount-box .discount .discount-name .tags::before {
+    padding: 0 3px;
+}
+
+.container form .content .main .order-food-region .discount-box .discount .discount-price {
+    float: right;
+    margin-right: 15px;
+    display: inline-block;
+    font-size: 14px;
+    color: #F95339;
+}
+
+.container form .content .main .order-food-region .discount-box .wui-cell:last-child::after {
+    border-top: 0;
+}
+
+.container form .content .main .order-food-region .discount-box .wui-cell-ft {
+    color: #F95339;
+}
+
+.container form .content .main .order-food-region .discount-box .wui-cell-ft.disabled {
+    color: #ccc;
+}
+
+.container form .content .main .order-region-entries .order-pay-info {
+    font-size: 14px;
+    padding: 9px 0;
+    position: relative;
+}
+
+.container form .content .main .order-region-entries .order-pay-info .pay-price {
+    display: inline-block;
+    float: right;
+    margin-right: 15px;
+    line-height: 24px;
+}
+
+.container form .content .main .order-region-entries .order-pay-info .pay-price view {
+    display: inline-block;
+    color: #F95339;
+    font-size: 16px;
+}
+
+.container form .content .main .order-region-entries .order-pay-info .total-original {
+    display: inline-block;
+    float: right;
+    line-height: 24px;
+    margin-right: 10px;
+    color: #898989;
+    font-size: 12px;
+}
+
+.container form .content .main .order-region-entries .order-pay-info .discount-fee {
+    display: inline-block;
+    float: right;
+    line-height: 24px;
+    margin-right: 10px;
+    color: #898989;
+    font-size: 12px;
+}
+
+.container form .content .main .order-region {
+    margin-top: 10px;
+    background-color: #fff;
+    font-size: 14px;
+}
+
+.container form .content .main .order-region .order-region-entries .order-region-entry {
+    padding: 13px 15px 13px 0;
+    margin-left: 15px;
+    font-size: 14px;
+    position: relative;
+    color: #2f2f2f;
+    overflow: hidden;
+}
+
+.container form .content .main .order-region .order-region-entries .order-region-entry view {
+    display: inline-block;
+}
+
+.container form .content .main .order-region .order-region-entries .order-region-entry .order-pay-type {
+    float: right;
+    font-size: 13px;
+}
+
+.container form .content .main .order-region .order-field .wui-cell-ft {
+    color: #999;
+    font-size: 14px;
+}
+
+.container form .content .main .order-region .order-field .wui-cell::after {
+    border-top: 0;
+}
+
+.container .order-btn-field {
+    width: 100%;
+    height: 50px;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    background-color: #fff;
+}
+
+.container .order-btn-field .order-submit {
+    float: right;
+    width: 110px;
+    height: 50px;
+    font-size: 16px;
+    color: #333;
+    background-color: #ff2d4b;
+    color: #fff;
+    text-align: center;
+    line-height: 50px;
+}
+
+.container .order-btn-field .order-submit.disabled {
+    background-color: #ccc;
+}
+
+.container .order-btn-field .order-total-field {
+    float: right;
+    margin-right: 10px;
+    height: 50px;
+    line-height: 50px;
+    color: #2f2f2f;
+    font-size: 14px;
+}
+
+.container .order-btn-field .order-total-field .order-total {
+    display: inline-block;
+    color: #F95339;
+    font-size: 21px;
+    vertical-align: middle;
+    margin-left: 5px;
+}
+
+.container .order-btn-field .order-benefit {
+    display: inline-block;
+    height: 50px;
+    margin-left: 15px;
+    font-size: 14px;
+    line-height: 50px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.container .order-btn-field .order-benefit view {
+    display: inline-block;
+    margin-left: 5px;
+}
+
+.pop {
+    height: 400px;
+}
+
+.pop-title {
+    text-align: center;
+    font-size: 16px;
+    height: 43px;
+    line-height: 43px;
+}
+
+.pop-title>view {
+    float: left;
+    display: inline-block;
+    margin-left: 15px;
+}
+
+.pop .pop-container {
+    height: 100%;
+    padding-bottom: 93px;
+    display: -webkit-flex;
+    box-sizing: border-box;
+}
+
+.pop .pop-container scroll-view {
+    height: 100%;
+}
+
+.pop .pop-container .weui-cells {
+    margin-top: 0;
+    padding-left: 10px;
+}
+
+.pop .pop-container .weui-cell__label.disabled {
+    background-color: #F6F6F6;
+}
+
+.pop .pop-container .weui-cell__label {
+    position: relative;
+}
+
+.pop .pop-container .weui-cell__label.disabled .address-noscope {
+    display: block;
+}
+
+.pop .pop-container .weui-cell__label .address-noscope {
+    display: none;
+    position: absolute;
+    width: 58px;
+    height: 58px;
+    right: 10px;
+    top: 50%;
+    transform: translate(0,-50%);
+    z-index: 100;
+}
+
+.pop .pop-container .weui-cell__label .address-noscope image {
+    width: 100%;
+    height: 100%;
+}
+
+.pop .pop-container .weui-cell__bd {
+    position: relative;
+}
+
+.pop .pop-container .weui-cell__bd .left {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translate(0,-50%);
+    display: inline-block;
+}
+
+.pop .pop-container .weui-cell__bd .left .icon {
+    font-size: 16px;
+    color: #ff2d4b;
+}
+
+.pop .pop-container .weui-cell__bd .right {
+    margin-left: 30px;
+    font-size: 15px;
+}
+
+.pop .pop-container .weui-cell__bd .right .detail>view {
+    display: inline-block;
+    color: #B2B2B2;
+}
+
+.pop .pop-container .weui-cell__bd .right .detail .name {
+    margin-right: 10px;
+}
+
+.pop .pop-container .weui-cell__bd .right .detail .tel {
+    float: right;
+}
+
+.pop .pop-container .weui-cell__bd .right .address {
+    margin-top: 5px;
+}
+
+.pop .pop-container .redPacket-container {
+    background: #F4F4F4;
+}
+
+.pop .pop-container .redPacket {
+    padding-top: 21px;
+}
+
+.pop .pop-container .redPacket .wui-loadmore {
+    margin-top: 0;
+    margin-bottom: 0;
+    width: 93%;
+}
+
+.pop .pop-container .redPacket .redPacket-list {
+    margin: 0px 15px 10px 15px;
+}
+
+.pop .pop-container .redPacket .redPacket-list .item {
+    background: #fff;
+    margin-bottom: 13px;
+    padding: 17px;
+    overflow: hidden;
+    position: relative;
+}
+
+.pop .pop-container .redPacket .redPacket-list .item .circle {
+    display: block;
+    width: 17px;
+    height: 17px;
+    background: #F4F4F4;
+    position: absolute;
+    border-radius: 100%;
+    top: 50%;
+    transform: translate(0,-50%);
+    z-index: 20;
+}
+
+.pop .pop-container .redPacket .redPacket-list .item .circle-left {
+    left: -7px;
+}
+
+.pop .pop-container .redPacket .redPacket-list .item .circle-right {
+    right: -7px;
+}
+
+.pop .pop-container .redPacket .redPacket-list .item .redPacket-info {
+    font-size: 17px;
+    color: #ff2d4b;
+}
+
+.pop .pop-container .redPacket .redPacket-list .item .redPacket-info .price {
+    display: inline-block;
+    font-size: 22px;
+}
+
+.pop .pop-container .redPacket .redPacket-list .item .redPacket-uselimit {
+    color: #666;
+    font-size: 14px;
+    margin-top: 5px;
+}
+
+.pop .pop-container .redPacket .redPacket-list .item .selected-status {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    width: 31px;
+    height: 24px;
+}
+
+.pop .pop-container .redPacket .redPacket-list .item .selected-status image {
+    width: 100%;
+    height: 100%;
+}
+
+.pop .pop-container .coupons-container {
+    background-color: #F4F4F4;
+}
+
+.pop .pop-container .coupons-container .coupons {
+    padding-top: 21px;
+}
+
+.pop .pop-container .coupons-container .coupons .wui-loadmore {
+    margin-top: 0;
+    margin-bottom: 0;
+    width: 93%;
+}
+
+.pop .pop-container .coupon-list {
+    margin: 0 11px 11px 11px;
+}
+
+.pop .pop-container .coupon-list .content-padded {
+    margin: 11px;
+}
+
+.pop .pop-container .coupon-list .content-padded .item {
+    background-color: #fff;
+    margin-bottom: 13px;
+    padding: 17px;
+    overflow: hidden;
+    position: relative;
+}
+
+.pop .pop-container .coupon-list .content-padded .item .left {
+    width: 70%;
+    float: left;
+    display: inline-block;
+}
+
+.pop .pop-container .coupon-list .content-padded .item .left .store-logo {
+    display: inline-block;
+    float: left;
+    width: 32%;
+}
+
+.pop .pop-container .coupon-list .content-padded .item .left .coupon-detail {
+    display: inline-block;
+    float: left;
+    width: 60%;
+}
+
+.pop .pop-container .coupon-list .content-padded .item .left .store-logo image {
+    display: inline-block;
+    margin-top: 5px;
+    width: 61px;
+    height: 61px;
+}
+
+.pop .pop-container .coupon-list .content-padded .item .left .coupon-title {
+    font-weight: bold;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    color: #ff2b4d;
+    width: 100%;
+    margin-top: 4px;
+    font-size: 18px;
+    display: inline-block;
+}
+
+.pop .pop-container .coupon-list .content-padded .item .left .use-time {
+    width: 100%;
+    font-size: 13px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    color: #808080;
+    margin-top: 15px;
+    display: inline-block;
+}
+
+.pop .pop-container .coupon-list .content-padded .item .right {
+    width: 29%;
+    border-left: 1px dashed #ccc;
+    text-align: center;
+    float: left;
+}
+
+.pop .pop-container .coupon-list .content-padded .item .right .price {
+    color: #ff2b4d;
+    font-size: 15px;
+}
+
+.pop .pop-container .coupon-list .content-padded .item .right .price view {
+    display: inline-block;
+    font-size: 26px;
+    margin-left: 3px;
+}
+
+.pop .pop-container .coupon-list .content-padded .item .right .condition {
+    margin-top: 8px;
+    font-size: 13px;
+    display: -webkit-box;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    word-wrap: break-word;
+    white-space: normal;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    padding: 0 2px;
+    color: #808080;
+}
+
+.pop .pop-container .coupon-list .content-padded .item .circle {
+    display: inline-block;
+    width: 18px;
+    height: 18px;
+    background-color: #f4f4f4;
+    position: absolute;
+    top: 50%;
+    z-index: 20;
+    transform: translate(0,-50%);
+    border-radius: 100%;
+}
+
+.pop .pop-container .coupon-list .content-padded .item .circle-left {
+    left: -9px;
+}
+
+.pop .pop-container .coupon-list .content-padded .item .circle-right {
+    right: -9px;
+}
+
+.pop .pop-container .coupon-list .content-padded .item.expire .overdue,.pop .pop-container .coupon-list .content-padded .item.is-use .use {
+    display: block;
+}
+
+.pop .pop-container .coupon-list .content-padded .item .overdue,.pop .pop-container .coupon-list .content-padded .item .use {
+    display: none;
+    position: absolute;
+    width: 77px;
+    height: 77px;
+    top: 11px;
+    right: 11px;
+}
+
+.pop .pop-container .coupon-list .content-padded .item .overdue image,.pop .pop-container .coupon-list .content-padded .item .use image {
+    width: 100%;
+    height: 100%;
+}
+
+.pop .pop-container .coupon-list .content-padded .item .selected-status {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    width: 31px;
+    height: 24px;
+}
+
+.pop .pop-container .coupon-list .content-padded .item .selected-status image {
+    width: 100%;
+    height: 100%;
+}
+
+.pop.time .pop-container {
+    padding-bottom: 50px;
+}
+
+.pop.time .pop-container .left {
+    display: inline-block;
+    width: 35%;
+    float: left;
+}
+
+.pop.time .pop-container .left scroll-view {
+    background-color: #f4f4f4;
+}
+
+.pop.time .pop-container .left .item {
+    text-align: center;
+    background-color: #fff;
+    font-size: 14px;
+    font-weight: 500;
+    padding: 15px 0;
+    border-bottom: 1rpx solid #e0e0e0;
+    border-right: 1rpx solid #e0e0e0;
+}
+
+.pop.time .pop-container .left .item.active {
+    border-right: 1rpx solid #fff;
+}
+
+.pop.time .pop-container .right {
+    width: 75%;
+}
+
+.pop.time .pop-container .right .wui-cell.active {
+    color: #348BED;
+}
+
+.pop.time .pop-container .right .wui-cell.active .wui-cell-ft {
+    color: #348BED;
+}
+
+.pop.time .pop-container .right .wui-cell::after {
+    border-top: 0;
+}
+
+.pop.time .pop-container .right .wui-cell .text {
+    width: 88%;
+    display: flex;
+}
+
+.weui-cells:after,.weui-cells:before {
+    content: none;
+}
+
+.weui-cell:before {
+    content: none;
+}
+
+.container .content .wui-cell-bd .list-title {
+    float: left;
+    width: 20%;
+    margin-right: 3%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.container .content .wui-cell-bd .list-content {
+    float: left;
+    width: 77%;
+    height: 22px;
+    line-height: 22px;
+    position: relative;
+}
+
+.container .content .wui-cell-bd .list-content input {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translate(0,-50%);
+    width: 100%;
+}

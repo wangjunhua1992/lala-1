@@ -1,0 +1,53 @@
+@import "../../../nmy/0.wxss";
+
+page {
+    background-color: #F5F5F5;
+    font-size: 14px;
+    line-height: 1;
+}
+
+.yikatong-create .vip-group {
+    width: 100%;
+    padding-top: 45px;
+}
+
+.yikatong-create .vip-list {
+    white-space: nowrap;
+    background-color: #fff;
+    font-size: 0;
+}
+
+.yikatong-create .vip-list .vip-item {
+    display: inline-block;
+    width: 21%;
+    margin-right: 15px;
+    border: 1px solid #eee;
+    border-radius: 5px;
+    text-align: center;
+    font-size: 14px;
+    padding: 15px;
+}
+
+.yikatong-create .vip-list .vip-item.active {
+    border-color: #FF2D4B;
+    background-color: #FFF5F6;
+}
+
+.yikatong-create .create-button {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 15px;
+    background-color: #fff;
+}
+
+.yikatong-create .create-button button {
+    background-color: #ff2d4b;
+    color: #fff;
+    border: 1px solid #ff2d4b;
+}
+
+.yikatong-create .code-exchange {
+    padding-top: 45px;
+}

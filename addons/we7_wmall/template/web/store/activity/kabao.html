@@ -1,0 +1,438 @@
+{itemplate 'public/header'}
+{if $ta== 'post'}
+<div class="page clearfix">
+	<form class="form-horizontal form form-validate" id="form-kabao-post" style="max-width: 100%" action="" method="post" enctype="multipart/form-data">
+		<h3>基本信息</h3>
+		<div class="form-group">
+			<label class="col-xs-12 col-sm-3 col-md-2 control-label">会员卡背景图</label>
+			<div class="col-sm-6 col-xs-6">
+				{php echo tpl_form_field_image('thumb', $kabao['thumb']);}
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-xs-12 col-sm-3 col-md-2 control-label">会员等级</label>
+			<div class="col-sm-9 col-xs-12 col-md-10">
+				<a href="javascript:;" class="btn btn-primary btn-sm btn-level-edit">添加会员等级</a> <br>
+				<div id="level-container" style="margin-top: 10px;">
+					<div class="level-item">
+						<label class="control-label">升级条件：</label>
+						<div class="input-group" style="margin-top: 5px;">
+							<span class="input-group-addon">积分总额满</span>
+							<input type="text" class="form-control" name="credit1[grant_num_1]" {if $kabao['credit1']['grant_type'] == 1}value="{$kabao['credit1']['grant_num']}"{/if}>
+							<span class="input-group-addon">积分</span>
+						</div>
+						<label class="control-label">会员特权：</label>
+						<div>
+							<div class="checkbox checkbox-inline">
+								<input type="checkbox" value="give_credit1" name="" id="fee-selfDelivery-items-price" >
+								<label for="fee-selfDelivery-items-price">购物赠送积分</label>
+							</div>
+							<div class="checkbox checkbox-inline">
+								<input type="checkbox" value="credit1_exchage_coupon" name="fee_selfDelivery[items_yes][]" id="fee-selfDelivery-items-box-price" {if in_array('box_price', $account['fee_selfDelivery']['items_yes'])}checked{/if}>
+								<label for="fee-selfDelivery-items-box-price">会员商品折扣</label>
+							</div>
+							<div class="checkbox checkbox-inline">
+								<input type="checkbox" value="pack_fee" name="fee_selfDelivery[items_yes][]" id="fee-selfDelivery-items-pack-fee" {if in_array('pack_fee', $account['fee_selfDelivery']['items_yes'])}checked{/if}>
+								<label for="fee-selfDelivery-items-pack-fee">积分兑换优惠券</label>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-xs-12 col-sm-3 col-md-2 control-label">开启积分赠送</label>
+			<div class="col-sm-6 col-xs-6">
+				<div class="radio radio-inline">
+					<input type="radio" name="give_credit1" value="1" id="give-credit1-1" {if $kabao['give_credit1'] == 1}checked{/if}/>
+					<label for="give-credit1-1">开启</label>
+				</div>
+				<div class="radio radio-inline">
+					<input type="radio" name="give_credit1" value="0" id="give-credit1-0" {if empty($kabao['give_credit1'])}checked{/if}/>
+					<label for="give-credit1-0">关闭</label>
+				</div>
+			</div>
+		</div>
+		<div class="form-group credit1-setting {if empty($kabao['give_credit1'])}hide{/if}">
+			<label class="col-xs-12 col-sm-3 col-md-2 control-label">积分赠送模式</label>
+			<div class="col-sm-6 col-xs-6">
+				<div class="input-group">
+					<label class="input-group-addon">
+						<input type="radio" name="credit1[grant_type]" value="1" {if $kabao['credit1']['grant_type'] == 1}checked{/if}>
+					</label>
+					<span class="input-group-addon">每单固定</span>
+					<input type="text" class="form-control" name="credit1[grant_num_1]" {if $kabao['credit1']['grant_type'] == 1}value="{$kabao['credit1']['grant_num']}"{/if}>
+					<span class="input-group-addon">积分</span>
+				</div>
+				<br>
+				<div class="input-group">
+					<label class="input-group-addon">
+						<input type="radio" name="credit1[grant_type]" value="2" {if $kabao['credit1']['grant_type'] == 2}checked{/if}>
+					</label>
+					<span class="input-group-addon">按1{$_W['Lang']['dollarSignCn']}赠送</span>
+					<input type="text" class="form-control" name="credit1[grant_num_2]" {if $kabao['credit1']['grant_type'] == 2}value="{$kabao['credit1']['grant_num']}"{/if}>
+					<span class="input-group-addon">积分的比例赠送</span>
+				</div>
+				<div class="help-block">例如:设置赠送比例为1{$_W['Lang']['dollarSignCn']}赠送10积分.订单总额为:20{$_W['Lang']['dollarSignCn']}, 那本订单工赠送:20*10=200积分</div>
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-xs-12 col-sm-3 col-md-2 control-label">开通时赠送优惠券</label>
+			<div class="col-sm-6 col-xs-6">
+				<div class="radio radio-inline">
+					<input type="radio" name="give_coupon" value="1" id="give-coupon-1" {if $kabao['give_coupon'] == 1}checked{/if}/>
+					<label for="give-coupon-1">开启</label>
+				</div>
+				<div class="radio radio-inline">
+					<input type="radio" name="give_coupon" value="0" id="give-coupon-0" {if empty($kabao['give_coupon'])}checked{/if}/>
+					<label for="give-coupon-0">关闭</label>
+				</div>
+				<div class="help-block">开启此项后，顾客开通门店会员卡时会赠送优惠券列表中的金额最小的一张优惠券，请确认已添加优惠券</div>
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-xs-12 col-sm-3 col-md-2 control-label">开启积分兑换优惠券</label>
+			<div class="col-sm-6 col-xs-6">
+				<div class="radio radio-inline">
+					<input type="radio" name="credit1_exchage_coupon" value="1" id="credit1-exchage-coupon-1" {if $kabao['credit1_exchage_coupon'] == 1}checked{/if}/>
+					<label for="credit1-exchage-coupon-1">开启</label>
+				</div>
+				<div class="radio radio-inline">
+					<input type="radio" name="credit1_exchage_coupon" value="0" id="credit1-exchage-coupon-0" {if empty($kabao['credit1_exchage_coupon'])}checked{/if}/>
+					<label for="credit1-exchage-coupon-0">关闭</label>
+				</div>
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-xs-12 col-sm-3 col-md-2 control-label">优惠券</label>
+			<div class="col-sm-9 col-xs-12 col-md-10">
+				<a href="javascript:;" class="btn btn-primary btn-sm btn-coupon-edit">添加优惠券</a> <br>
+				<div id="coupon-container" style="margin-top: 10px;"></div>
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-xs-12 col-sm-3 col-md-2 control-label">开启减免运费</label>
+			<div class="col-sm-6 col-xs-6">
+				<div class="radio radio-inline">
+					<input type="radio" name="credit1_exchage_coupon" value="1" id="credit1-exchage-coupon-1" {if $kabao['credit1_exchage_coupon'] == 1}checked{/if}/>
+					<label for="credit1-exchage-coupon-1">开启</label>
+				</div>
+				<div class="radio radio-inline">
+					<input type="radio" name="credit1_exchage_coupon" value="0" id="credit1-exchage-coupon-0" {if empty($kabao['credit1_exchage_coupon'])}checked{/if}/>
+					<label for="credit1-exchage-coupon-0">关闭</label>
+				</div>
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-xs-12 col-sm-3 col-md-2 control-label">开启会员专享商品</label>
+			<div class="col-sm-6 col-xs-6">
+				<div class="radio radio-inline">
+					<input type="radio" name="vip_goods" value="1" id="vip-goods-1" {if $kabao['vip_goods'] == 1}checked{/if}/>
+					<label for="vip-goods-1">开启</label>
+				</div>
+				<div class="radio radio-inline">
+					<input type="radio" name="vip_goods" value="0" id="vip-goods-0" {if empty($kabao['vip_goods'])}checked{/if}/>
+					<label for="vip-goods-0">关闭</label>
+				</div>
+			</div>
+		</div>
+		<div class="form-group goods-setting {if empty($kabao['vip_goods'])}hide{/if}">
+			<label class="col-xs-12 col-sm-3 col-md-2 control-label">参与的商品<span class="text-danger">(不支持多规格商品， 已参与特价活动的商品不能再次选择)</span></label>
+			<div class="col-sm-9 col-xs-12 table-responsive">
+				<table class="table table-hover table-bordered text-center">
+					<thead>
+					<tr>
+						<th>缩略图</th>
+						<th>菜品名称</th>
+						<th>原价</th>
+						<th>
+							门店会员价
+						</th>
+						<th>
+							库存
+						</th>
+						<th>活动状态</th>
+						<th>操作</th>
+					</tr>
+					</thead>
+					<tbody id="goods-container">
+					{if !empty($kabao['goods'])}
+						{loop $kabao['goods'] $goods}
+						<tr id="goods-{$goods['goods_id']}">
+							<td>
+								<input type="hidden" name="goods_id[]" value="{$goods['goods_id']}"/>
+								<img src="{php echo tomedia($goods['thumb']);}" width="50" alt=""/>
+							</td>
+							<td>{$goods['title']}</td>
+							<td>{$_W['Lang']['dollarSign']}{$goods['price']}</td>
+							<td>
+								<div class="input-group">
+									<input type="text" name="discount_price[]" value="{$goods['discount_price']}" class="form-control">
+									<span class="input-group-addon">{$_W['Lang']['dollarSignCn']}</span>
+								</div>
+							</td>
+							<td>
+								<div class="input-group">
+									<input type="text" name="discount_available_total[]" value="{$goods['discount_available_total']}" class="form-control">
+									<span class="input-group-addon">件</span>
+								</div>
+							</td>
+							<td>
+								{if $goods['discount_available_total'] == -1 || $goods['discount_available_total'] > 0}
+									生效
+								{else}
+								<span class="text-danger">活动库存不足</span>
+								{/if}
+							</td>
+							<td>
+								<a href="javascript:;" class="btn btn-default btn-goods-item" data-id="{$goods['id']}">删除</a>
+							</td>
+						</tr>
+						{/loop}
+					{/if}
+					</tbody>
+					<tfooter>
+						<tr>
+							<td colspan="10" style="text-align: left">
+								<a href="javascript:;" id="btn-select-goods"><i class="fa fa-plus-circle"></i> 选择商品</a>
+							</td>
+						</tr>
+					</tfooter>
+				</table>
+			</div>
+		</div>
+		<div class="form-group">
+			<div class="col-sm-9 col-xs-9 col-md-9">
+				<input type="submit" value="提交" class="btn btn-primary">
+			</div>
+		</div>
+	</form>
+</div>
+
+<div class="modal fade" id="modal-coupon">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<form class="form-horizontal form form-validate" id="" action="" method="post">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+					<h4 class="modal-title">优惠券信息</h4>
+				</div>
+				<div class="modal-body">
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+					<input type="submit" value="确认并添加" class="btn btn-primary btn-coupon-submit">
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+
+<script type="text/html" id="coupon-editor">
+	<div class="form-group">
+		<label class="col-xs-12 col-sm-4 col-md-3 control-label">优惠券金额</label>
+		<div class="col-sm-7 col-md-8">
+			<div class="input-group">
+				<input type="number" class="form-control" name="discount" value="<{d.discount}>" required="true" digtis="true"/>
+				<span class="input-group-addon">{$_W['Lang']['dollarSignCn']}</span>
+			</div>
+			<span class="help-block">必须填写整数</span>
+		</div>
+	</div>
+	<div class="form-group">
+		<label class="col-xs-12 col-sm-4 col-md-3 control-label">满多少{$_W['Lang']['dollarSignCn']}可用</label>
+		<div class="col-sm-7 col-md-8">
+			<div class="input-group">
+				<input type="number" class="form-control" name="condition" value="<{d.condition}>" required="true" digtis="true"/>
+				<span class="input-group-addon">{$_W['Lang']['dollarSignCn']}</span>
+			</div>
+			<span class="help-block">必须填写整数,且大于优惠券面额</span>
+		</div>
+	</div>
+	<div class="form-group">
+		<label class="col-xs-12 col-sm-4 col-md-3 control-label">领取后几天内有效</label>
+		<div class="col-sm-7 col-md-8">
+			<div class="input-group">
+				<input type="number" class="form-control" name="use_days_limit" value="<{d.use_days_limit}>" required="true" digtis="true"/>
+				<span class="input-group-addon">天</span>
+			</div>
+			<span class="help-block">必须填写整数,且必须大于0</span>
+		</div>
+	</div>
+</script>
+
+<script type="text/html" id="coupon-item">
+	<{# for(var i in d){ }>
+		<{# if(!d[i]) {continue;} }>
+		<div class="coupon-detail">
+			<div class="coupon-operation">
+				<a href="javascript:;" class="btn-coupon-edit" data-key="<{i}>">编辑</a>
+				<a href="javascript:;" class="btn-coupon-del" data-key="<{i}>">删除</a>
+			</div>
+			<div class="coupon-amount pull-left">
+				<span class="discount-amount"><i></i><{d[i].discount}></span>
+				<p>满<i class="max-amount"><{d[i].condition}></i>可用</p>
+			</div>
+			<div class="coupon-term pull-left">领券后<i class="deadline"><{d[i].use_days_limit}></i>天内有效</div>
+		</div>
+	<{# } }>
+</script>
+
+<script type="text/html" id="tpl-goods-item">
+	<{# for(var i = 0, len = d.length; i < len; i++){ }>
+	<tr id="goods-<{d[i].id}>">
+		<td>
+			<input type="hidden" name="goods_id[]" value="<{d[i].id}>"/>
+			<img src="<{d[i].thumb}>" width="50" alt=""/>
+		</td>
+		<td><{d[i].title}></td>
+		<td><{iLang('dollarSign')}><{d[i].price}></td>
+		<td>
+			<div class="input-group">
+				<input type="text" name="discount_price[]" value="<{d[i].price}>" class="form-control">
+				<span class="input-group-addon">{$_W['Lang']['dollarSignCn']}</span>
+			</div>
+		</td>
+		<td>
+			<div class="input-group">
+				<input type="number" name="discount_available_total[]" value="-1" class="form-control">
+				<span class="input-group-addon">件</span>
+			</div>
+		</td>
+		<td>生效</td>
+		<td>
+			<a href="javascript:;" class="btn btn-default btn-goods-item" data-id="<{d[i].id}>">删除</a>
+		</td>
+	</tr>
+	<{# } }>
+</script>
+<script type="text/javascript">
+	irequire(['tiny','laytpl'], function(tiny,laytpl){
+		var kabao = {
+			coupons: []
+		};
+
+		kabao.init = function(params) {
+
+			$(document).on('click', "input[name=give_credit1]", function(){
+				var value = $(this).val();
+				if(value == 1) {
+					$('.credit1-setting').removeClass('hide')
+				} else {
+					$('.credit1-setting').addClass('hide')
+				}
+			});
+
+			$(document).on('click', "input[name=vip_goods]", function(){
+				var value = $(this).val();
+				if(value == 1) {
+					$('.goods-setting').removeClass('hide')
+				} else {
+					$('.goods-setting').addClass('hide')
+				}
+			});
+
+			$(document).on('click', '.btn-coupon-edit', function(){
+				var index = $(this).data('key');
+				kabao.couponEditor = {};
+				kabao.couponIndex = -1;
+				if(typeof index !== "undefined" && index >= 0) {
+					kabao.couponEditor = kabao.coupons[index];
+					kabao.couponIndex = index;
+				}
+				if(!kabao.couponEditor || typeof kabao.couponEditor.discount == "undefined") {
+					kabao.couponEditor = {};
+				}
+				kabao.tplCouponEditor();
+			});
+
+			$(document).on('click', '.btn-coupon-submit', function(){
+				var item = {
+					discount: parseFloat($('#modal-coupon input[name="discount"]').val()),
+					condition: parseFloat($('#modal-coupon input[name="condition"]').val()),
+					use_days_limit: parseFloat($('#modal-coupon input[name="use_days_limit"]').val())
+				};
+				if(!item.discount) {
+					Notify.info('优惠券金额不能为空');
+					return false;
+				}
+				if(!item.condition) {
+					Notify.info('优惠券使用条件不能为空');
+					return false;
+				}
+				if(!item.discount) {
+					Notify.info('优惠券金额不能为空');
+					return false;
+				}
+				if(item.discount >= item.condition) {
+					Notify.info('优惠金额不能大于使用条件');
+					return false;
+				}
+				if(!item.use_days_limit) {
+					Notify.info('优惠券限制使用天数必须大于0');
+					return false;
+				}
+				if(typeof kabao.couponIndex != "undefined" && kabao.couponIndex >= 0) {
+					kabao.coupons[kabao.couponIndex] = item;
+				} else {
+					kabao.coupons.push(item);
+				}
+				kabao.tplCoupon();
+				$('#modal-coupon').modal('hide');
+				return false;
+			});
+
+			$('#btn-select-goods').click(function(){
+				tiny.selectgoods(function(goods){
+					for(var n in goods) {
+						if(goods[n]['id']) {
+							$('#goods-' + goods[n]['id']).remove();
+						}
+					}
+					var gettpl = $('#tpl-goods-item').html();
+					laytpl(gettpl).render(goods, function(html){
+						$('#goods-container').append(html);
+					});
+				}, {mutil: 1, is_options: 0, svip_status: 0, store_id: "{$store['id']}", from: 'kabao'});
+			});
+
+			$('#form-kabao-post').submit(function(){
+				var goods = $('#goods-container tr').size();
+				$(this).attr('stop', 0);
+				if(!goods) {
+					$(this).attr('stop', 1);
+					Notify.error('请选择参与活动的商品');
+					return false;
+				}
+				return true;
+			});
+		};
+
+		kabao.tplCoupon = function() {
+			var html = $('#coupon-item').html();
+			laytpl(html).render(this.coupons, function(html){
+				$('#coupon-container').html(html);
+				$(':hidden[name="coupons"]').val('');
+				if(kabao.coupons.length > 0) {
+					$(':hidden[name="coupons"]').val(JSON.stringify(kabao.coupons));
+				}
+			});
+		};
+
+		kabao.tplCouponEditor = function() {
+			var html = $('#coupon-editor').html();
+			laytpl(html).render(kabao.couponEditor, function(html){
+				$('#modal-coupon .modal-body').html(html);
+				$('#modal-coupon').modal('show');
+			});
+		};
+
+		kabao.init({
+			coupons: []
+		})
+	});
+</script>
+{/if}
+
+
+{itemplate 'public/footer'}

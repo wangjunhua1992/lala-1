@@ -1,0 +1,1 @@
+(0, require("../common/component").VantComponent)();

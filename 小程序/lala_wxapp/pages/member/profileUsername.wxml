@@ -1,0 +1,10 @@
+<view class="container">
+    <view class="content">
+        <view class="username">
+            <input bindinput="onInput" placeholder="请输入新的用户名" value="{{username}}"></input>
+        </view>
+        <view class="submit">
+            <view bind:tap="onSubmit" class="btn btn-large btn-danger">确定</view>
+        </view>
+    </view>
+</view>

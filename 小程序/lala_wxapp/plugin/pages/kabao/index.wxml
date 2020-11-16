@@ -1,0 +1,65 @@
+<view class="vip-card-bag">
+    <view class="headline">我的会员卡</view>
+    <view class="mycard padding-15-lr">
+        <view class="mycard-item" style="background: url(http://cos.lalawaimai.com/we7_wmall/wxapp/diy-store-brand-bg.png.jpg) no-repeat center center; background-size: 100% 100%;" wx:for="{{4}}" wx:key="index">
+            <view class="store-logo">
+                <image alt="" class="img-100" src="http://testlala.oss-cn-qingdao.aliyuncs.com/images/1/2019/06/RaX3TDRd5ZNfsDzdX0DzLS7d30Rda1.jpg"></image>
+            </view>
+            <view class="store-info">
+                <view class="store-title ellipsis">百果园</view>
+                <view class="font-12">普通VIP</view>
+            </view>
+            <view class="vip-detail">会员详情</view>
+        </view>
+    </view>
+    <view class="headline">附近商家</view>
+    <view class="nearby-stores padding-15-lr">
+        <view class="nearby-store-item" wx:for="{{5}}" wx:key="index">
+            <view class="store padding-15-tb">
+                <view class="store-logo">
+                    <image alt="" class="img-100" src="http://testlala.oss-cn-qingdao.aliyuncs.com/images/1/2019/06/RaX3TDRd5ZNfsDzdX0DzLS7d30Rda1.jpg"></image>
+                </view>
+                <view class="store-info">
+                    <view class="store-title w-100 ellipsis font-bold">百果园</view>
+                    <view class="power margin-5-t">
+                        <view class="power-item">购物积分</view>
+                        <view class="power-item">购物积分</view>
+                    </view>
+                </view>
+                <view class="join flex">
+                    <text class="icon icon-plus font-12"></text>
+                    <text>免费加入</text>
+                </view>
+            </view>
+            <view class="van-hairline--top padding-15-tb">
+                <van-row>
+                    <van-col span="18">
+                        <view class="flex w-100">
+                            <text class="icon icon-location margin-5-r"></text>
+                            <text class="store-address ellipsis">同城酒库（58号店）</text>
+                        </view>
+                    </van-col>
+                    <van-col span="5">
+                        <view class="padding-10-l van-hairline--left">1.3km</view>
+                    </van-col>
+                    <van-col span="1">
+                        <text class="icon icon-right text-right font-12 c-gray"></text>
+                    </van-col>
+                </van-row>
+            </view>
+        </view>
+    </view>
+    <view class="headline">同城其他商家</view>
+    <view class="tongcheng-stores">
+        <view class="tc-store-item" wx:for="{{10}}" wx:key="index">
+            <view class="store-logo">
+                <image alt="" class="img-100" src="http://testlala.oss-cn-qingdao.aliyuncs.com/images/1/2019/06/RaX3TDRd5ZNfsDzdX0DzLS7d30Rda1.jpg"></image>
+            </view>
+            <view class="store-title ellipsis">名优创品名优创品名优创品</view>
+        </view>
+    </view>
+    <view class="wui-loadmore wui-loadmore-nomore">
+        <view class="wui-loadmore-tips">更多商家会员，敬请期待</view>
+        <view class="wui-loadmore-line"></view>
+    </view>
+</view>

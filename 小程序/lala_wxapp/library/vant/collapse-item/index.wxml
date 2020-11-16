@@ -1,0 +1,13 @@
+<view class="van-collapse-item van-hairline--top custom-class">
+    <van-cell arrowDirection="{{expanded?'up':'down'}}" bind:click="onClick" border="{{border&&expanded}}" class="{{titleClass}}" customClass="van-cell" icon="{{icon}}" isLink="{{isLink}}" label="{{label}}" rightIconClass="van-cell__right-icon" title="{{title}}" value="{{value}}">
+        <slot name="title" slot="title"></slot>
+        <slot name="icon" slot="icon"></slot>
+        <slot name="value"></slot>
+        <slot name="right-icon" slot="right-icon"></slot>
+    </van-cell>
+    <view class="van-collapse-item__wrapper" style="max-height: {{contentHeight}};">
+        <view class="van-collapse-item__content content-class">
+            <slot></slot>
+        </view>
+    </view>
+</view>

@@ -1,0 +1,107 @@
+<view class="container">
+    <view class="content">
+        <view class="coupon-list" wx:if="{{!showNodata}}">
+            <view class="coupon-item clearfix" wx:for="{{coupons}}">
+                <view class="coupon-left">
+                    <view class="triangle-border-left">
+                        <view></view>
+                        <view></view>
+                        <view></view>
+                        <view></view>
+                        <view></view>
+                        <view></view>
+                        <view></view>
+                        <view></view>
+                        <view></view>
+                        <view></view>
+                        <view></view>
+                        <view></view>
+                        <view></view>
+                        <view></view>
+                        <view></view>
+                        <view></view>
+                        <view></view>
+                        <view></view>
+                        <view></view>
+                        <view></view>
+                    </view>
+                    <view class="img-div-backg">
+                        <view class="img-div">
+                            <image src="{{item.logo}}"></image>
+                        </view>
+                    </view>
+                    <view class="pro-content">
+                        <view class="pro-info">
+								{{item.store_title}}
+							</view>
+                        <view class="pro-price">
+                            <view class="coupon-discount">{{item.discount}}{{Lang.dollarSignCn}}</view>
+                            <view class="coupon-title">{{item.title}}</view>
+                        </view>
+                        <view class="pro-condition">
+								{{item.couponInfo}}
+							</view>
+                    </view>
+                </view>
+                <view class="coupon-right">
+                    <view class="triangle-border-right">
+                        <view class="circular0"></view>
+                        <view class="circular1"></view>
+                        <view class="i"></view>
+                        <view class="i"></view>
+                        <view class="i"></view>
+                        <view class="i"></view>
+                        <view class="i"></view>
+                        <view class="i"></view>
+                        <view class="i"></view>
+                        <view class="i"></view>
+                        <view class="i"></view>
+                        <view class="i"></view>
+                        <view class="i"></view>
+                        <view class="i"></view>
+                        <view class="i"></view>
+                        <view class="i"></view>
+                        <view class="i"></view>
+                        <view class="i"></view>
+                        <view class="i"></view>
+                        <view class="i"></view>
+                        <view class="i"></view>
+                        <view class="i"></view>
+                    </view>
+                    <view class="change-block">
+                        <view class="diy-circle" wx:if="{{!item.get}}">
+                            <view class="circle" style="background-color: {{item.percent>50?'#E3BC03':'#fff'}}">
+                                <view class="circle_left" style="transform: rotate({{item.percent>50?item.percent/100*360-360:0}}deg);background-color: {{item.percent>50?'#fff':'#E3BC03'}};z-index: 5;">
+                                    <view class="clip_left"></view>
+                                </view>
+                                <view class="circle_right" style="transform: rotate({{item.percent<=50?item.percent/100*360:0}}deg);background-color: {{item.percent>50?'#fff':'#E3BC03'}};z-index: 10;">
+                                    <view class="clip_right"></view>
+                                </view>
+                                <view class="mask">
+										已抢
+										<text>{{item.percent}}</text>%
+									</view>
+                            </view>
+                        </view>
+                        <view bind:tap="getCoupon" class="coupon-btn" data-id="{{index}}" data-sid="{{item.sid}}" wx:if="{{!item.get}}">
+								立即领取
+							</view>
+                        <view class="had" wx:if="{{item.get}}">
+                            <image src="http://cos.lalawaimai.com/we7_wmall/wxapp/gone.png"></image>
+                        </view>
+                        <navigator class="coupon-btn coupon-btn-yellow" url="../store/goods?sid={{item.sid}}" wx:if="{{item.get}}">去使用</navigator>
+                    </view>
+                </view>
+            </view>
+        </view>
+        <view class="weui-loadmore" wx:if="{{showloading}}">
+            <view class="weui-loading"></view>
+            <view class="weui-loadmore__tips">正在加载中</view>
+        </view>
+        <view class="no-data" wx:if="{{showNodata}}">
+            <image class="no-coupon" src="http://cos.lalawaimai.com/we7_wmall/wxapp/coupon_no_con.png"></image>
+            <text class="no-record">没有可以领取的代金券</text>
+        </view>
+    </view>
+</view>
+<include src="../public/footer.wxml"></include>

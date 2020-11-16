@@ -1,0 +1,239 @@
+page {
+    background: #f4f4f4;
+}
+
+.page-share .order-share-list .order-share-item {
+    background-color: #fff;
+    padding: 10px;
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+
+.page-share .order-share-list .row {
+    margin-left: -4%;
+    overflow: hidden;
+}
+
+.page-share .order-share-list .col-15 {
+    float: left;
+    width: 11%;
+    margin-left: 4%;
+}
+
+.page-share .order-share-list .col-15 .userphoto {
+    width: 43px;
+    height: 43px;
+}
+
+.page-share .order-share-list .col-85 {
+    width: 80%;
+    margin-left: 18%;
+}
+
+.page-share .order-share-list .col-85 .user .pull-right {
+    padding-top: 3px;
+    float: right;
+    font-size: 13px;
+    color: #999;
+}
+
+.page-share .order-share-list .col-85 .user .username {
+    font-size: 18px;
+}
+
+.page-share .order-share-list .col-85 .star-rank-outline .star-img {
+    display: inline-block;
+    width: 75px;
+    height: 14px;
+    position: relative;
+    background-size: cover;
+}
+
+.page-share .order-share-list .col-85 .star-rank-outline .appr-score {
+    display: inline-block;
+    width: 14px;
+    height: 14px;
+    float: left;
+    margin-right: 4px;
+    background: url(http://cos.lalawaimai.com/we7_wmall/wxapp/newstars.png) no-repeat;
+    background-position: 0 0;
+    background-size: cover;
+}
+
+.page-share .order-share-list .col-85 .star-rank-outline .appr-score-half {
+    background-position: -17px 0;
+}
+
+.page-share .order-share-list .col-85 .star-rank-outline .appr-score-gray {
+    background-position: -35px 0!important;
+}
+
+.page-share .order-share-list .col-85 .user .stars {
+    margin-top: 8px;
+    height: 20px;
+}
+
+.page-share .order-share-list .col-85 .user .stars .delivery-time {
+    display: inline-block;
+    position: relative;
+    top: -6px;
+    left: 10px;
+    font-size: 14px;
+    color: #999;
+}
+
+.page-share .order-share-list .col-85 .comment {
+    font-size: 14px;
+}
+
+.page-share .order-share-list .col-85 .list-block {
+    width: 100%;
+    height: 76px;
+    margin-top: 5px;
+    margin-bottom: 10px;
+}
+
+.page-share .order-share-list .col-85 .list-block .list-text {
+    position: relative;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    background: #f4f4f4;
+}
+
+.page-share .order-share-list .col-85 .list-block .item-link {
+    width: 100%;
+    position: relative;
+    height: 76px;
+    background: #f4f4f4;
+}
+
+.page-share .order-share-list .col-85 .list-block .item-link .item-media {
+    padding-top: 10px;
+    padding-left: 10px;
+    width: 55px;
+    height: 55px;
+    float: left;
+}
+
+.page-share .order-share-list .col-85 .list-block .item-link .item-img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+}
+
+.page-share .order-share-list .col-85 .list-block .item-link .item-inner {
+    float: left;
+    display: block;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    margin-left: 10px;
+}
+
+.item-link::after {
+    position: absolute;
+    top: 35px;
+    right: 20px;
+    content: "";
+    display: inline-block;
+    height: 6px;
+    width: 6px;
+    border-width: 2px 2px 0 0;
+    border-color: #c8c8c8;
+    border-style: solid;
+    transform: translateY(-50%) matrix(0.71,0.71,-0.71,0.71,0,0);
+}
+
+.page-share .order-share-list .col-85 .order {
+    background-color: rgba(211,211,211,0.2);
+    padding-bottom: 10px;
+}
+
+.page-share .order-share-list .col-85 .order .order-text {
+    font-size: 13px;
+    margin-right: 150px;
+    margin-left: 10px;
+    padding-top: 5px;
+}
+
+.page-share .order-share-list .col-85 .order .order-goods {
+    padding-top: 5px;
+    width: 330px;
+    margin-left: 0;
+    line-height: 1;
+    overflow: hidden;
+}
+
+.page-share .order-share-list .col-85 .order .order-goods .goods-item {
+    position: relative;
+}
+
+.page-share .order-share-list .col-85 .order .order-goods .goods-item .good-img {
+    width: 69px;
+    height: 66px;
+    padding-left: 10px;
+}
+
+.page-share .order-share-list .col-85 .order .order-goods .goods-item .goods-num {
+    position: absolute;
+    top: 0;
+    right: 4px;
+    height: 20px;
+    display: inline-block;
+    text-align: center;
+    line-height: 20px;
+    background: #ff2d4b;
+    font-size: 12px;
+    color: #fff;
+    padding: 0 5px;
+}
+
+.page-share .order-share-list .col-85 .order .order-goods .goods-item .goods-title {
+    position: absolute;
+    bottom: 1px;
+    left: 10px;
+    font-size: 12px;
+    background-color: rgba(0,0,0,0.6);
+    width: 69px;
+    color: #fff;
+    height: 20px;
+    line-height: 20px;
+    text-align: center;
+}
+
+.page-share .order-share-list .col-85 .order .other {
+    position: relative;
+    padding: 10px 10px 0px 10px;
+    margin-top: 10px;
+    font-size: 12px;
+}
+
+.page-share .order-share-list .col-85 .order .other .price {
+    font-size: 18px;
+    display: inline-block;
+    color: #ff2d4b;
+}
+
+.page-share .order-share-list .col-85 .order .other .other-text {
+    padding-top: 5px;
+    float: left;
+    display: inline-block;
+}
+
+.page-share .order-share-list .col-85 .order .other .price-num {
+    font-size: 18px;
+    display: inline-block;
+    color: #ff2d4b;
+}
+
+.page-share .order-share-list .col-85 .order .other .reorder {
+    position: absolute;
+    float: right;
+    top: 11px;
+    right: 10px;
+    border: 1px solid #ff2d4b;
+    color: #ff2d4b;
+    padding: 2px 8px;
+    font-size: 12px;
+    border-radius: 5px;
+}

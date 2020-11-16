@@ -1,0 +1,28 @@
+<view class="haodian-settle">
+    <view class="content">
+        <van-cell-group>
+            <van-field bindinput="onInput" data-type="mobile" label="手机号" placeholder="请输入手机号" type="number" value="{{mobile}}"></van-field>
+            <van-field bindinput="onInput" data-type="settle_captcha" label="图形验证码" placeholder="请输入图形验证码" type="number" value="{{settle_captcha}}" wx:if="{{mobile_verify_status==1}}"></van-field>
+            <van-field bindinput="onInput" data-type="code" label="短信验证码" placeholder="请输入6位短信验证码" type="number" value="{{code.value}}" wx:if="{{mobile_verify_status==1}}"></van-field>
+            <van-field bindinput="onInput" data-type="password" label="登陆密码" placeholder="请输入您的登陆密码" type="password" value="{{password}}"></van-field>
+            <van-field bindinput="onInput" data-type="repassword" label="确认密码" placeholder="请输入确认登陆密码" type="password" value="{{repassword}}"></van-field>
+            <van-field bindinput="onInput" data-type="title" label="姓名" placeholder="您的姓名" value="{{title}}"></van-field>
+            <van-cell title="选择区域" wx:if="{{isagent==1}}">
+                <picker bindchange="onSelectAgent" range="{{agents}}" rangeKey="text">
+					{{agent.id?agent.text:'请选择所属区域'}}
+				</picker>
+            </van-cell>
+        </van-cell-group>
+        <view bind:tap="onRefreshCaptcha" class="email-img" wx:if="{{mobile_verify_status==1}}">
+            <image src="{{captcha}}"></image>
+        </view>
+        <view bind:tap="getCode" class="list-password" wx:if="{{mobile_verify_status==1}}">
+			获取验证码
+			<i class="icon icon-right"></i>
+        </view>
+        <view class="submit">
+            <van-button bind:tap="onSubmit" block="true" size="normal" type="danger">下一步</van-button>
+        </view>
+    </view>
+</view>
+<include src="../../../pages/public/footer.wxml"></include>

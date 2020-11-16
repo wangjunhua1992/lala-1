@@ -1,0 +1,72 @@
+{itemplate 'public/header'}
+<div class="page clearfix">
+	<form class="form-horizontal form form-validate" id="form1" action="" method="post" enctype="multipart/form-data">
+		{if !empty($activity['id']) && empty($_W['ismanager']) && empty($_W['isagenter'])}
+			<div class="form-group">
+				<label class="col-xs-12 col-sm-3 col-md-2 control-label">门店会员满减配送费</label>
+				<div class="col-sm-8">
+					<p class="form-control-static">
+						{loop $activity $item}
+						{if !empty($item['condition'])}
+						在线支付满{$item['condition']}{$_W['Lang']['dollarSignCn']}返{$item['back']}{$_W['Lang']['dollarSignCn']} (平台承担: {$item['plateform_charge']}{$_W['Lang']['dollarSignCn']}, 代理商承担: {$item['agent_charge']}{$_W['Lang']['dollarSignCn']}, 商户承担: {$item['store_charge']}{$_W['Lang']['dollarSignCn']})
+						<br><br>
+						{/if}
+						{/loop}
+					</p>
+				</div>
+			</div>
+		{else}
+			<h3>门店会员满减配送费</h3>
+			{loop $activity $item}
+				<div class="form-group item">
+					<label class="col-xs-12 col-sm-3 col-md-2 control-label">满减配送费{$item['condition']}</label>
+					<div class="col-sm-8">
+						<div class="input-group">
+							<span class="input-group-addon">满</span>
+							<input type="text" name="condition[]" value="{$item['condition']}" class="form-control">
+							<span class="input-group-addon">{$_W['Lang']['dollarSignCn']}</span>
+							<span class="input-group-addon">减</span>
+							<input type="text" name="back[]" value="{$item['back']}" class="form-control">
+							{if !empty($_W['ismanager'])}
+								<span class="input-group-addon">平台承担</span>
+								<input type="text" name="plateform_charge[]" value="{$item['plateform_charge']}" class="form-control">
+								<span class="input-group-addon">{$_W['Lang']['dollarSignCn']}</span>
+								<span class="input-group-addon">代理商承担</span>
+								<input type="text" name="agent_charge[]" value="{$item['agent_charge']}" class="form-control">
+								<span class="input-group-addon">{$_W['Lang']['dollarSignCn']}</span>
+							{elseif !empty($_W['isagenter'])}
+								<span class="input-group-addon">代理商承担</span>
+								<input type="text" name="agent_charge[]" value="{$item['agent_charge']}" class="form-control">
+								<span class="input-group-addon">{$_W['Lang']['dollarSignCn']}</span>
+							{/if}
+							<div class="input-group-btn">
+								<a href="javascript:;" class="btn btn-danger btn-turncate">清空</a>
+							</div>
+						</div>
+						<span class="help-block">
+								在线支付满{$item['condition']}{$_W['Lang']['dollarSignCn']}减{$item['back']}{$_W['Lang']['dollarSignCn']} (平台承担: {$item['plateform_charge']}{$_W['Lang']['dollarSignCn']}, 代理商承担: {$item['agent_charge']}{$_W['Lang']['dollarSignCn']}, 商户承担: {$item['store_charge']}{$_W['Lang']['dollarSignCn']})
+						</span>
+					</div>
+				</div>
+			{/loop}
+		{/if}
+		<div class="form-group">
+			<div class="col-sm-9 col-xs-9 col-md-9">
+				{if empty($activity) || !empty($_W['ismanager']) || !empty($_W['isagenter'])}
+					<input type="submit" value="提交" class="btn btn-primary">
+				{/if}
+				{if !empty($activity)}
+					<a href="{php echo iurl('store/kabao/deliveryFee/del');}" class="btn btn-danger js-post" data-confirm="确定撤销此活动?">撤销此活动</a>
+				{/if}
+			</div>
+		</div>
+	</form>
+</div>
+<script>
+	$(function(){
+		$(document).on('click', '.btn-turncate', function(){
+			$(this).parents('.input-group').find(':text').val('');
+		})
+	});
+</script>
+{itemplate 'public/footer'}

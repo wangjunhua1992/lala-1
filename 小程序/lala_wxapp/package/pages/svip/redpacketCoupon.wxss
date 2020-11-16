@@ -1,0 +1,645 @@
+page {
+    background-color: #F5F5F5;
+    font-size: 14px;
+    line-height: 1;
+}
+
+.page-redpacketCoupon {
+    padding-top: 40px;
+}
+
+.page-redpacketCoupon .wrapper-list {
+    display: flex;
+    width: 100%;
+    height: 40px;
+    background: #272320;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1;
+}
+
+.page-redpacketCoupon .wrapper-list .wrapper-item {
+    display: flex;
+    flex: 1;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+
+.page-redpacketCoupon .wrapper-list .wrapper-item .item {
+    padding: 7px 0 5px;
+    border-bottom: 2px solid transparent;
+    color: #fff;
+    font-size: 14px;
+    line-height: 16px;
+    opacity: .7;
+}
+
+.page-redpacketCoupon .wrapper-list .wrapper-item .item.active {
+    border-color: #fff;
+    font-weight: 700;
+    opacity: 1;
+}
+
+.page-redpacketCoupon .redpacket-group {
+    padding: 0 15px;
+    box-sizing: border-box;
+}
+
+.page-redpacketCoupon .use-redpacket {
+    margin: 15px 0;
+    padding: 0 10px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px 0 rgba(0,0,0,.03);
+    border: 1px solid rgba(0,0,0,.08);
+    background-color: #fff;
+}
+
+.page-redpacketCoupon .use-redpacket .use-redpacket-title {
+    font-size: 13px;
+    padding: 10px 0;
+    color: #666;
+}
+
+.page-redpacketCoupon .use-redpacket .use-redpacket-title .num {
+    font-size: 22px;
+    font-weight: 500;
+    color: #333;
+}
+
+.page-redpacketCoupon .use-redpacket .use-redpacket-list {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    padding-bottom: 10px;
+    box-sizing: border-box;
+}
+
+.page-redpacketCoupon .use-redpacket .use-redpacket-item {
+    position: relative;
+    width: 160px;
+    height: 60px;
+    margin-bottom: 4px;
+    border-radius: 2px;
+    box-sizing: border-box;
+}
+
+.page-redpacketCoupon .use-redpacket .use-redpacket-item image {
+    width: 160px;
+    height: 60px;
+}
+
+.page-redpacketCoupon .use-redpacket .use-redpacket-item.active {
+    background-color: #fef9f0;
+    border: .5px solid rgba(64,33,10,.03);
+}
+
+.page-redpacketCoupon .use-redpacket .use-redpacket-item .redpacket-info {
+    display: flex;
+    width: 100%;
+    padding: 15px 10px;
+    box-sizing: border-box;
+}
+
+.page-redpacketCoupon .use-redpacket .use-redpacket-item .redpacket-info .price {
+    width: 40%;
+    overflow: hidden;
+    font-weight: bold;
+    color: #333;
+}
+
+.page-redpacketCoupon .use-redpacket .use-redpacket-item .redpacket-info .price i {
+    font-style: normal;
+    font-size: 12px;
+    line-height: 17px;
+    float: left;
+}
+
+.page-redpacketCoupon .use-redpacket .use-redpacket-item .redpacket-info .price text {
+    margin-right: 5px;
+    font-size: 32px;
+    line-height: 30px;
+}
+
+.page-redpacketCoupon .use-redpacket .use-redpacket-item .redpacket-info .info {
+    width: 60%;
+}
+
+.page-redpacketCoupon .use-redpacket .use-redpacket-item .redpacket-info .info .condition {
+    font-size: 12px;
+    color: #999;
+    padding-top: 5px;
+}
+
+.page-redpacketCoupon .redpacket-title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 15px;
+}
+
+.page-redpacketCoupon .redpacket-title .text {
+    font-size: 13px;
+    font-weight: 600;
+    color: #333;
+}
+
+.page-redpacketCoupon .redpacket-title .text:before,.page-redpacketCoupon .redpacket-title .text:after {
+    display: block;
+    margin: 0 3.5px;
+    width: 23px;
+    height: 10px;
+    background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAC4AAAAUCAYAAADyWA/8AAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAABmJLR0QAAAAAAAD5Q7t/AAAACXBIWXMAAAsSAAALEgHS3X78AAAD20lEQVRIx8WWbWiWVRjHf/9MN+fmZDk3l65trU1MaKRhIycuY8pCJvYmRrB9sTIKeiFGlC0SjMIioheiksLIJEcZQ33i0UKWLYUVmtiYY/kyxbmpm61tOa4+3O+PBeEt7Hx4nvu5znOu8zv/87/uc9Sxv2k90AgME7QLgLnPI8BQqG9TWWXTF4xzE0DHT680CjaCg2tK+QNg5gfGMB4sq3y5edzBATrbNjxr2BsgCcMAIXCf/QFOxyhoZenCF3eOOzjAsQMbn8DsHZAcQpwdcJfgfJgXHhKsuPmOF/aMOzhA18HX10p8YGaSwEzI1d/kLMEMnD4bEqopXvB867iDA3S3b6rH9BEwwVceHPP7pvczXMS4p+j2Zw6m5unY31QP5AF/A5fc8GVg0H0eAwaAI2WVTT2xwQGO//r2GtBnwASP1NU7NNRfVB+ouvC2pw6Fc3S2vTrHsKRMBd54FFS/MEwCrAeouWXh+t9igwOcOPTeAxKfY0yMyKyQXcDblF7E4lnz1h0N5+g68FopIgkUOsDmb5w5DvQKvg+oLVnQ+HNscICeIx+uBL40NElBYQYDLZgZOAm2pGDu2mPhHH/88lYRsAdUDOYsOoXCFWLQoK6o4um9scEBzvz+Sa2h7YJ0c8kVGh0UKwi6TVTNLG84Gc5x6vD7s4HvDMqDqCc5IdcxDDw0a97jO2KDA5zt3LIMoxnICMS2SO36GU2dJlucV/rI6YgARzfnIyUxm+vN7FhGhBMJLhtqyC+v3xIbHOBc19Zq4FtgSqTDcCSPHFUcBu6eXrK6NyVHLpAAKiKeC9e889sQT04vWf1ubHCA/u7tixAtwFR/Ys8/YRmdUDuiOuem+y6Gc5w//nUOkBDMR84B59jPfAG8K4bQS9MK6zbEBge4cOKbO4FdQHaqQf+ltQE102bXDYSDg6d3ZQM7gcqIAGELBX9/E3gua+ZyP3RV4AADp1rmIxIYOZFZw9cC868KP2BWO/XGe8O3TIZ692aBtQhV2RW7h1/xkjCzj0GPZsyoHosFDnDpzO4KjIRJufKulQp9471xBFgCWJGZv2w0nGOkf18Gph0GS71FB/yKLkZ8BXo4PWfRaCxwgD/PJm/FSCLLw/VqsNWOZ+Wdmk5h3z9lxtIU+B8nI2sGlvuFHn7Hhk5ckyVkWhUbHOCvc9/PMSMpVJD6foxcEByWbRhrJucuGYvAn2+dhLEOkeaesNnAdW53JjDR9Uc6Rvs1AQcY7ttXCpYEFQbI/5n+U6Ah/YYq+3/Zr2zXDBxgpL+1GNiMyHRVSyM4sK5HZDlbIIFtAx5Ly7nrquD/AdLdhfjY+4ZKAAAAAElFTkSuQmCC);
+    background-position: 0 0;
+    background-size: 100% auto;
+    background-repeat: no-repeat;
+    content: "";
+}
+
+.page-redpacketCoupon .redpacket-title .text:after {
+    transform: scaleX(-1);
+}
+
+.page-redpacketCoupon .redpacket-item {
+    position: relative;
+    margin-bottom: 8px;
+    border-radius: 2px;
+    background: #fff;
+}
+
+.page-redpacketCoupon .redpacket-item .top {
+    display: flex;
+    justify-content: space-between;
+    padding: 12px 12px 8px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.page-redpacketCoupon .redpacket-item .top .left {
+    display: flex;
+    width: 75%;
+}
+
+.page-redpacketCoupon .redpacket-item .top .left image {
+    display: block;
+    margin: 1px 10px 1px 0;
+    width: 72px;
+    height: 72px;
+    border: 1px solid #eee;
+    border-radius: 2px;
+}
+
+.page-redpacketCoupon .redpacket-item .top .left .main {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 62%;
+}
+
+.page-redpacketCoupon .redpacket-item .top .left .main .name {
+    display: flex;
+    align-items: center;
+    line-height: 18px;
+    width: 100%;
+}
+
+.page-redpacketCoupon .redpacket-item .top .left .main .name h3 {
+    overflow: hidden;
+    color: #333;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-weight: 700;
+    font-size: 14px;
+}
+
+.page-redpacketCoupon .redpacket-item .top .left .main .price {
+    display: flex;
+    align-items: baseline;
+    width: 100%;
+}
+
+.page-redpacketCoupon .redpacket-item .top .left .main .price text {
+    color: #fc3a2c;
+    font-weight: 500;
+    font-style: normal;
+    font-size: 16px;
+}
+
+.page-redpacketCoupon .redpacket-item .top .left .main .price .price-num {
+    font-size: 36px;
+}
+
+.page-redpacketCoupon .redpacket-item .top .left .main .price view {
+    color: #666;
+    font-size: 12px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.page-redpacketCoupon .redpacket-item .top .right {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 25%;
+}
+
+.page-redpacketCoupon .redpacket-item .top .right .button {
+    display: block;
+    padding: 4px 20px;
+    border-radius: 85px;
+    background-image: linear-gradient(90deg,#faeaa7,#e0c470);
+    font-size: 12px;
+    box-sizing: border-box;
+}
+
+.page-redpacketCoupon .redpacket-item .bottom {
+    display: flex;
+    align-items: center;
+    margin: 0 12px;
+    padding: 0 2px;
+    line-height: 28px;
+    border-top: 1px dashed #eee;
+    color: #666;
+    white-space: nowrap;
+    font-size: 12px;
+}
+
+.page-redpacketCoupon .redpacket-item .bottom .bottom-city {
+    color: #ff5339;
+}
+
+.page-redpacketCoupon .redpacket-item .bottom .van-icon-right {
+    color: #ff5339;
+    padding-top: 2px;
+}
+
+.page-redpacketCoupon .redpacket-group .store-redpacket-item {
+    position: relative;
+    margin-bottom: 8px;
+    border-radius: 3px;
+    background: #fff;
+}
+
+.page-redpacketCoupon .redpacket-group .store-redpacket-item .limit-today {
+    position: absolute;
+    right: -1px;
+    top: -1px;
+    text-align: center;
+    border-radius: 2px;
+    background-color: #f76e4d;
+    color: #fff;
+    font-size: 12px;
+    padding: 1px 2px;
+}
+
+.page-redpacketCoupon .redpacket-group .store-redpacket-item .item-header {
+    display: flex;
+    justify-content: space-between;
+    padding: 12px 12px 8px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.page-redpacketCoupon .redpacket-group .store-redpacket-item .item-header .item-left {
+    display: flex;
+    width: 75%;
+}
+
+.page-redpacketCoupon .redpacket-group .store-redpacket-item .item-header .item-left image {
+    display: block;
+    margin: 1px 10px 1px 0;
+    width: 72px;
+    height: 72px;
+    border: 1px solid #eee;
+    border-radius: 2px;
+}
+
+.page-redpacketCoupon .redpacket-group .store-redpacket-item .item-header .item-left .item-main {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 62%;
+}
+
+.page-redpacketCoupon .redpacket-group .store-redpacket-item .item-header .item-left .item-main .shop-name {
+    display: flex;
+    align-items: center;
+    line-height: 18px;
+    width: 100%;
+}
+
+.page-redpacketCoupon .redpacket-group .store-redpacket-item .item-header .item-left .item-main .shop-name h3 {
+    overflow: hidden;
+    color: #333;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-weight: 700;
+    font-size: 14px;
+}
+
+.page-redpacketCoupon .redpacket-group .store-redpacket-item .item-header .item-left .item-main .meta {
+    display: flex;
+    margin-top: 2.5px;
+    color: #999;
+    font-size: 12px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 100%;
+}
+
+.page-redpacketCoupon .redpacket-group .store-redpacket-item .item-header .item-left .item-main .shop-name .van-icon-right {
+    color: #666;
+}
+
+.page-redpacketCoupon .redpacket-group .store-redpacket-item .item-header .item-left .item-main .price {
+    display: flex;
+    align-items: baseline;
+    width: 100%;
+}
+
+.page-redpacketCoupon .redpacket-group .store-redpacket-item .item-header .item-left .item-main .price text {
+    padding-bottom: 1px;
+    color: #fc3a2c;
+    font-weight: 500;
+    font-style: normal;
+    font-size: 16px;
+}
+
+.page-redpacketCoupon .redpacket-group .store-redpacket-item .item-header .item-left .item-main .price .price-num {
+    font-size: 36px;
+}
+
+.page-redpacketCoupon .redpacket-group .store-redpacket-item .item-header .item-left .item-main .price view {
+    color: #666;
+    font-size: 12px;
+}
+
+.page-redpacketCoupon .redpacket-group .store-redpacket-item .item-header .item-right {
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 22.7%;
+}
+
+.page-redpacketCoupon .redpacket-group .store-redpacket-item .item-header .item-right .item-button {
+    display: block;
+    padding: 4px 20px;
+    border-radius: 85px;
+    background-image: linear-gradient(90deg,#faeaa7,#e0c470);
+    font-size: 12px;
+}
+
+.page-redpacketCoupon .redpacket-group .store-redpacket-item .item-footer {
+    position: relative;
+    margin: 0 12px;
+    padding: 5px 2px;
+    color: #666;
+    font-size: 12px;
+    border-top: 1px dashed #eee;
+}
+
+.page-redpacketCoupon .redpacket-group .store-redpacket-item .item-footer .footer-title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 4px;
+    padding: 0 5px;
+    line-height: 16px;
+    border-radius: 1px;
+    background: #ffe7e0;
+    color: #fc3a2c;
+}
+
+.page-redpacketCoupon .redpacket-group .store-redpacket-item .item-footer .text {
+    width: 75%;
+}
+
+.page-redpacketCoupon .redpacket-group .header-bounty {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    line-height: 40px;
+    width: 100%;
+}
+
+.page-redpacketCoupon .redpacket-group .header-bounty .left-header-bounty {
+    display: flex;
+    align-items: center;
+    color: #262626;
+    font-size: 14px;
+}
+
+.page-redpacketCoupon .redpacket-group .header-bounty .left-header-bounty text {
+    color: #262626;
+    font-size: 14px;
+}
+
+.page-redpacketCoupon .redpacket-group .header-bounty .left-header-bounty i {
+    margin: 0 7px;
+    color: #fe3523;
+    font-style: normal;
+}
+
+.page-redpacketCoupon .redpacket-group .header-bounty .right-header-bounty {
+    display: flex;
+    align-items: center;
+    color: #9b803f;
+    font-size: 12px;
+}
+
+.page-redpacketCoupon .redpacket-group .header-bounty .right-header-bounty text {
+    color: #9b803f;
+    font-size: 12px;
+}
+
+.page-redpacketCoupon .redpacket-group .redpacket-item .top .right .status {
+    width: 100%;
+    margin-bottom: 8px;
+    color: #535353;
+    font-size: 12px;
+}
+
+.page-redpacketCoupon .redpacket-group .redpacket-item .top .right .status i {
+    color: #fe3523;
+    font-style: normal;
+}
+
+.page-redpacketCoupon .redpacket-group .redpacket-item .top .right .button.active {
+    background: transparent;
+    border: 1px dashed currentColor;
+    color: #e2c773;
+    padding: 4px 15px;
+}
+
+.page-redpacketCoupon .redpacket-group .redpacket-item .item-footer {
+    position: relative;
+    margin: 0 12px;
+    padding: 5px 2px;
+    color: #666;
+    font-size: 12px;
+    border-top: 1px dashed #eee;
+}
+
+.page-redpacketCoupon .redpacket-group .redpacket-item .item-footer .footer-title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 4px;
+    padding: 0 5px;
+    line-height: 16px;
+    border-radius: 1px;
+    background: #ffe7e0;
+    color: #fc3a2c;
+}
+
+.page-redpacketCoupon .redpacket-group .redpacket-item .item-footer .text {
+    width: 75%;
+}
+
+.page-redpacketCoupon .redpacket-group .store-redpacket-item .item-header .item-right .status {
+    margin-bottom: 8px;
+    color: #535353;
+    font-size: 12px;
+}
+
+.page-redpacketCoupon .redpacket-group .store-redpacket-item .item-header .item-right .status i {
+    color: #fe3523;
+    font-style: normal;
+}
+
+.page-redpacketCoupon .redpacket-pop {
+    width: 100%;
+    padding: 15px 10px;
+    background-color: #f5f5f5;
+    box-sizing: border-box;
+}
+
+.page-redpacketCoupon .redpacket-pop .redpacket-pop-title {
+    margin-bottom: 15px;
+    color: #333;
+    text-align: center;
+    font-weight: 700;
+    font-size: 17px;
+}
+
+.page-redpacketCoupon .redpacket-pop .redpacket-info {
+    padding: 0 10px;
+    border: 1px solid #f5d9d5;
+    border-radius: 2px;
+    background: #fff;
+    margin-bottom: 15px;
+}
+
+.page-redpacketCoupon .redpacket-pop .redpacket-info .redpacket-top {
+    padding: 20px 0;
+}
+
+.page-redpacketCoupon .redpacket-pop .redpacket-info .redpacket-top .price {
+    align-items: baseline;
+    justify-content: center;
+    padding: 0 25px;
+    color: #ff2d4b;
+}
+
+.page-redpacketCoupon .redpacket-pop .redpacket-info .redpacket-top .price i {
+    font-weight: 500;
+    font-style: normal;
+    font-size: 16px;
+    margin-right: -5px;
+}
+
+.page-redpacketCoupon .redpacket-pop .redpacket-info .redpacket-top .price text {
+    font-weight: 600;
+    font-size: 32px;
+}
+
+.page-redpacketCoupon .redpacket-pop .redpacket-info .redpacket-top .redpacket-left {
+    width: 65%;
+}
+
+.page-redpacketCoupon .redpacket-pop .redpacket-info .redpacket-top .redpacket-left .redpacket-validity {
+    padding-top: 5px;
+    font-size: 12px;
+    color: #999;
+}
+
+.page-redpacketCoupon .redpacket-pop .redpacket-info .redpacket-bottom {
+    padding: 5px 0;
+    border-top: 1px dashed #f5d9d5;
+}
+
+.page-redpacketCoupon .redpacket-pop .redpacket-info .redpacket-bottom .redpacket-tips {
+    margin-right: 5px;
+    padding: 2px 5px;
+    border-radius: 1px;
+    background-color: #ffe7e0;
+    color: #ff5339;
+    font-size: 12px;
+    white-space: nowrap;
+}
+
+.page-redpacketCoupon .redpacket-pop .hot-goods {
+    margin: 15px 0;
+}
+
+.page-redpacketCoupon .redpacket-pop .hot-goods .goods-item:last-child {
+    margin-right: 0;
+}
+
+.page-redpacketCoupon .redpacket-pop .hot-goods .goods-item {
+    width: 33%;
+    background-color: #fff;
+    margin-right: 10px;
+}
+
+.page-redpacketCoupon .redpacket-pop .hot-goods .goods-item image {
+    width: 100%;
+    height: 115px;
+    border: none;
+}
+
+.page-redpacketCoupon .redpacket-pop .hot-goods .goods-item .goods-title {
+    padding: 10px 10px 5px;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.page-redpacketCoupon .redpacket-pop .hot-goods .goods-item .goods-price {
+    display: flex;
+    align-items: baseline;
+    color: #ff3618;
+    padding: 0 10px 10px;
+}
+
+.page-redpacketCoupon .redpacket-pop .hot-goods .goods-item .goods-price i {
+    font-style: normal;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.page-redpacketCoupon .redpacket-pop .hot-goods .goods-item .goods-price text {
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.page-redpacketCoupon .redpacket-pop .bounty {
+    text-align: center;
+    font-size: 13px;
+    color: #999;
+    margin-top: 15px;
+}
+
+.page-redpacketCoupon .redpacket-pop .van-button {
+    background-color: #ff2d4b;
+    color: #fff;
+    border: 1px solid #ff2d4b;
+    font-size: 16px;
+}

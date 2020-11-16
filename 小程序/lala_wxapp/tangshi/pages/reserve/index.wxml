@@ -1,0 +1,31 @@
+<view class="page-reserve">
+    <view class="order-days">
+        <scroll-view scrollLeft="{{scroll_left}}" scrollX="true">
+            <view bind:tap="onSelectDay" class="day-item {{extra.dayIndex==index?'active':''}}" data-index="{{index}}" data-value="{{dayItem.day}}" wx:for="{{days}}" wx:for-item="dayItem">
+                <view class="day-title ">{{dayItem.day_cn}}</view>
+                <view class="day-date">{{dayItem.day}} {{dayItem.week_cn}}</view>
+            </view>
+        </scroll-view>
+    </view>
+    <view class="order-con">
+        <view class="order-con-item" wx:for="{{categorys}}" wx:for-item="categoryItem">
+            <view class="title">{{categoryItem.title}}</view>
+            <view class="order-price">{{Lang.dollarSign}}{{categoryItem.reservation_price}}{{Lang.dollarSignCn}}起订</view>
+            <view class="times">
+                <view class="times-wrap" wx:for="{{reserves[categoryItem.id]}}">
+                    <view bind:tap="onSelectTime" class="time-item border-red" data-cid="{{categoryItem.id}}" data-time="{{item.time}}" wx:if="{{extra.dayIndex>0||extra.dayIndex==0&&item.timeout==1}}">
+							{{item.title}}
+							<block wx:if="{{tables_info[extra.day][categoryItem.id][item.time]>0}}">
+								(桌位{{item.total_num-tables_info[extra.day][categoryItem.id][item.time]}})
+							</block>
+                        <block wx:else>
+								(桌位{{item.total_num}})
+							</block>
+                    </view>
+                    <view bind:tap="onSelectOutTime" class="time-item" wx:else>{{item.time}}</view>
+                </view>
+            </view>
+        </view>
+    </view>
+</view>
+<include src="../../../pages/public/footer.wxml"></include>

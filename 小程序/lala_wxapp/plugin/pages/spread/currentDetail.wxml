@@ -1,0 +1,28 @@
+<view class="container">
+    <view class="content">
+        <view class="wui-form-preview">
+            <view class="wui-form-preview-hd">
+                <view class="wui-form-preview-label">金额</view>
+                <view class="wui-form-preview-value" wx:if="{{detail.fee>0}}">+{{detail.fee}}</view>
+                <view class="wui-form-preview-value" wx:else>{{detail.fee}}</view>
+            </view>
+            <view class="wui-form-preview-bd">
+                <view class="wui-form-preview-item">
+                    <view class="wui-form-preview-label">类型</view>
+                    <view class="wui-form-preview-value" wx:if="{{detail.trade_type==1}}">订单入账</view>
+                    <view class="wui-form-preview-value" wx:elif="{{detail.trade_type==2}}">申请提现</view>
+                    <view class="wui-form-preview-value" wx:elif="{{detail.trade_type==3}}">其他变动</view>
+                </view>
+                <view class="wui-form-preview-item">
+                    <view class="wui-form-preview-label">申请时间</view>
+                    <view class="wui-form-preview-value">{{detail.addtime}}</view>
+                </view>
+                <view class="wui-form-preview-item">
+                    <view class="wui-form-preview-label">详细信息</view>
+                    <view class="wui-form-preview-value">{{detail.remark}}</view>
+                </view>
+            </view>
+        </view>
+    </view>
+</view>
+<include src="../../../pages/public/footer.wxml"></include>

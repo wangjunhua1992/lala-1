@@ -1,0 +1,203 @@
+{itemplate 'public/header'}
+<form action="./index.php?" class="form-horizontal form-filter" id="form1">
+	{php echo tpl_form_filter_hidden('member/redpacket/list');}
+	<input name="status" type="hidden" value="{$status}"/>
+	<div class="form-group">
+		<label class="col-xs-12 col-sm-3 col-md-2 control-label">红包使用状态</label>
+		<div class="col-sm-9 col-xs-12">
+			<div class="btn-group">
+				<a href="{php echo iurl('member/redpacket/list', array('status' => 0))}" class="btn {if $status == 0}btn-primary{else}btn-default{/if}">不限</a>
+				<a href="{php echo iurl('member/redpacket/list', array('status' => 1))}" class="btn {if $status == 1}btn-primary{else}btn-default{/if}">未使用</a>
+				<a href="{php echo iurl('member/redpacket/list', array('status' => 2))}" class="btn {if $status == 2}btn-primary{else}btn-default{/if}">已使用</a>
+				<a href="{php echo iurl('member/redpacket/list', array('status' => 3))}" class="btn {if $status == 3}btn-primary{else}btn-default{/if}">已过期</a>
+			</div>
+		</div>
+	</div>
+	<div class="form-group form-inline">
+		<label class="col-xs-12 col-sm-3 col-md-2 control-label">获取渠道</label>
+		<div class="col-sm-9 col-xs-12">
+			<select name="channel" class="form-control">
+				<option value="">选择获取渠道</option>
+				{loop $redpacket_channels $channelKey $channelItem}
+					{if !empty($channelKey)}
+						<option value="{$channelKey}" {if $channel == $channelKey}selected{/if}>{$channelItem['text']}</option>
+					{/if}
+				{/loop}
+			</select>
+		</div>
+	</div>
+	<div class="form-group">
+		<label class="col-xs-12 col-sm-3 col-md-2 control-label">获取和使用时间</label>
+		<div class="col-sm-9 col-xs-12">
+			{php echo itpl_form_field_daterange('granttime', array('placeholder' => '获取时间'));}
+			{php echo itpl_form_field_daterange('usetime', array('placeholder' => '使用时间'));}
+
+		</div>
+	</div>
+	<div class="form-group form-inline">
+		<label class="col-xs-12 col-sm-3 col-md-2 control-label">搜索</label>
+		<div class="col-sm-9 col-xs-12">
+			<input class="form-control" name="keyword" placeholder="请输入会员名/手机号/UID" type="text" value="{$_GPC['keyword']}">
+		</div>
+	</div>
+	<div class="form-group">
+		<label class="col-xs-12 col-sm-3 col-md-2 control-label"></label>
+		<div class="col-sm-9 col-xs-12">
+			<button class="btn btn-primary">筛选</button>
+		</div>
+	</div>
+</form>
+<form action="" class="form-table form" method="post">
+	<div class="panel panel-table">
+		<div class="panel-body table-responsive js-table">
+			{if empty($redpackets)}
+				<div class="no-result">还没有相关数据</div>
+			{else}
+				<table class="table table-hover">
+					<thead class="navbar-inner">
+						<tr>
+							<th width="40">
+								<div class="checkbox checkbox-inline">
+									<input type="checkbox" name="ids[]"/>
+									<label></label>
+								</div>
+							</th>
+							<th>会员</th>
+							<th>会员uid</th>
+							<th>获取渠道</th>
+							<th>
+								{if $_W['is_agent']}
+									限制使用地区
+								{/if}
+								限制使用场景<br>
+								限制商户分类/跑腿场景<br>
+								限制使用时段<br>
+							</th>
+							<th>满减金额</th>
+							<th>获得时间</th>
+							<th>有效时间</th>
+							<th>使用状态</th>
+							<th>使用时间/使用单号</th>
+							<th style="text-align: right">操作</th>
+						</tr>
+					</thead>
+					<tbody>
+						{loop $redpackets $redpacket}
+							{if !empty($redpacket['uid'])}
+							<tr>
+								<td>
+									<div class="checkbox checkbox-inline">
+										<input type="checkbox" name="ids[]" value="{$redpacket['id']}"/>
+										<label></label>
+									</div>
+								</td>
+								<td><img width="48" height="48" src="{php echo tomedia($redpacket['avatar'])}" alt=""/>&nbsp;&nbsp;&nbsp;&nbsp;{$redpacket['realname']}</td>
+								<td>{$redpacket['uid']}</td>
+								<td><span class="label {$redpacket_channels[$redpacket['channel']]['css']}">{$redpacket_channels[$redpacket['channel']]['text']}</span></td>
+								<td>
+									{if $_W['is_agent']}
+										{if $redpacket['agentid'] > 0}
+											<span class="label  label-br {php echo $redpacket['scene'] == 'waimai' ? 'label-success' : 'label-danger'}">限{$_W['agents'][$redpacket['agentid']]['area']}地区使用</span>
+										{else}
+											<span class="label  label-br {php echo $redpacket['scene'] == 'waimai' ? 'label-success' : 'label-danger'}">不限地区</span>
+										{/if}
+										<br>
+									{/if}
+									{if $redpacket['scene'] == 'waimai'}
+										{if $redpacket['order_type_limit'] == 0}
+											<span class="label label-success">外卖订单可用</span>
+										{elseif $redpacket['order_type_limit'] == 1}
+											<span class="label label-success">外卖配送订单可用</span>
+										{elseif $redpacket['order_type_limit'] == 2}
+											<span class="label label-success">外卖到店自提订单可用</span>
+										{/if}
+										<br/>
+										<span class="label label-success label-br">
+											{if empty($redpacket['category_limit'])}
+												所有商户分类可用
+											{else}
+												{loop $redpacket['category_limit'] $climit}
+													{$store_categorys[$climit]['title']} &nbsp;
+												{/loop}
+											{/if}
+										</span>
+										<br/>
+										<span class="label label-success label-br">
+											{if empty($redpacket['times_limit'])}
+												所有时间段可用
+											{else}
+												{loop $redpacket['times_limit'] $time}
+													{$time['start_hour']}~{$time['end_hour']} &nbsp;
+												{/loop}
+											{/if}
+										</span>
+									{elseif $redpacket['scene'] == 'paotui'}
+										<span class="label label-danger">跑腿订单可用</span>
+										<br/>
+										<span class="label label-danger label-br">
+											{if empty($redpacket['category_limit'])}
+												所有跑腿场景可用
+											{else}
+												{loop $redpacket['category_limit'] $climit}
+													{$paotui_scene[$climit]['name']} &nbsp;
+												{/loop}
+											{/if}
+										</span>
+										<br/>
+										<span class="label label-danger label-br">
+											{if empty($redpacket['times_limit'])}
+												所有时间段可用
+											{else}
+												{loop $redpacket['times_limit'] $time}
+													{$time['start_hour']}~{$time['end_hour']} &nbsp;
+												{/loop}
+											{/if}
+										</span>
+									{/if}
+								</td>
+								<td>
+									满
+									<span class="text-danger"> {php echo floatval($redpacket['condition'])} </span>{$_W['Lang']['dollarSignCn']}
+									可优惠
+									<span class="text-danger"> {$redpacket['discount']} </span>
+									{$_W['Lang']['dollarSignCn']}
+									</td>
+								<td>{php echo date('Y-m-d H:i:s', $redpacket['granttime'])}</td>
+								<td>
+									从
+									{if $redpacket['starttime'] > 0}
+										{php echo date('Y-m-d H:i:s', $redpacket['starttime'])}
+									{else}
+										{php echo date('Y-m-d H:i:s', $redpacket['granttime'])}
+									{/if}
+									<br>至
+									{php echo date('Y-m-d H:i:s', $redpacket['endtime'])}
+								</td>
+								<td><span class="label {$redpacket_status[$redpacket['status']]['css']}">{$redpacket_status[$redpacket['status']]['text']}</span></td>
+								<td>
+									{if $redpacket['usetime'] > 0}
+										{php echo date('Y-m-d H:i:s', $redpacket['usetime'])}
+									{/if}
+									{if $redpacket['order_id'] > 0}
+										<br>订单ID: {$redpacket['order_id']}
+									{/if}
+								</td>
+								<td align="right"><a class="btn btn-danger btn-sm js-remove" data-confirm="删除后将不可恢复，确定删除吗" href="{php echo iurl('member/redpacket/del', array('id' => $redpacket['id']))}">删除</a></td>
+							</tr>
+							{/if}
+						{/loop}
+					</tbody>
+				</table>
+				<div class="btn-region clearfix">
+					<div class="pull-left">
+						<a href="{php echo iurl('member/redpacket/del')}" class="btn btn-primary btn-danger js-batch" data-batch="remove" data-confirm="删除后将不可恢复，确定删除吗">删除</a>
+					</div>
+					<div class="pull-right">
+						{$pager}
+					</div>
+				</div>
+			{/if}
+		</div>
+	</div>
+</form>
+{itemplate 'public/footer'}

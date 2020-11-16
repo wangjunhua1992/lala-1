@@ -1,0 +1,49 @@
+<view class="page-getcash">
+    <form bindsubmit="onGetCash" reportSubmit="true">
+        <view class="useful-account">
+			账户可用余额：<text>{{Lang.dollarSign}}{{deliveryer.credit2}}</text>
+        </view>
+        <view class="getcash-operation">
+            <view class="title">提现金额</view>
+            <input name="get_fee" type="digit"></input>
+            <view class="tips">
+                <view class="tip">最低提现金额为{{deliveryer.fee_getcash.get_cash_fee_limit}}{{Lang.dollarSignCn}}</view>
+                <view class="tip">提现费率为{{deliveryer.fee_getcash.get_cash_fee_rate}}%,最低收取{{deliveryer.fee_getcash.get_cash_fee_min}}{{Lang.dollarSignCn}}{{deliveryer.fee_getcash.get_cash_fee_max>0?',最高收取'+deliveryer.fee_getcash.get_cash_fee_max+Lang.dollarSignCn:''}}</view>
+            </view>
+            <block wx:if="{{config&&config.type}}">
+                <view class="getcash-title">提现方式</view>
+                <view class="getcash-type">
+                    <view bind:tap="onChangeType" class="type-item" data-channel="weixin">
+                        <view class="type-left">微信提现</view>
+                        <view class="type-right">
+                            <view class="input-group {{channel=='weixin'?'active':''}}">
+                                <i class="icon icon-check"></i>
+                            </view>
+                        </view>
+                    </view>
+                    <view bind:tap="onChangeType" class="type-item" data-channel="alipay" wx:if="{{config.type.alipay==1}}">
+                        <view class="type-left">支付宝提现</view>
+                        <view class="type-right">
+                            <view class="input-group {{channel=='alipay'?'active':''}}">
+                                <i class="icon icon-check"></i>
+                            </view>
+                        </view>
+                    </view>
+                    <view bind:tap="onChangeType" class="type-item" data-channel="bank" wx:if="{{config.type.bank==1}}">
+                        <view class="type-left">银行卡提现</view>
+                        <view class="type-right">
+                            <view class="input-group {{channel=='bank'?'active':''}}">
+                                <i class="icon icon-check"></i>
+                            </view>
+                        </view>
+                    </view>
+                </view>
+            </block>
+        </view>
+        <view class="save-btn">
+            <button disabled="{{submit}}" formType="submit" wx:if="{{deliveryer.credit2-deliveryer.fee_getcash.get_cash_fee_limit>0}}">提现</button>
+            <view class="disabled" wx:else>余额不足</view>
+        </view>
+    </form>
+</view>
+<include src="../public/footer.wxml"></include>

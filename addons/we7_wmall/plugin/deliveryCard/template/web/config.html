@@ -1,0 +1,154 @@
+{itemplate 'public/header'}
+<style>
+	.form-items .col-sm-10.color{padding-right: 0;}
+	.form-items .item{background: #fff; padding: 10px; margin-bottom: 10px; border: 1px solid #e7eaec; border-radius: 3px;}
+	.form-items .item .btn-del,.form-items .item .del-btn{height: 0; width: 100%; display: block; position: relative;}
+	.form-items .item .btn-del:before,.form-items .item .del-btn:before{content: "×"; position: absolute; height: 16px; width: 16px; text-align: center; line-height: 14px; color: #fff; cursor: pointer; background: rgba(0,0,0,0.3); border-radius: 16px; top: -6px; right: -6px; z-index: 10;}
+	.form-items .item .item-image{height: 70px; min-width: 40px; max-width: 220px; background: #eee; float: left; margin-right: 10px; border: 1px solid #e7eaec; position: relative;}
+	.form-items .item .item-image img{height: 68px; max-width: 220px; display: block;}
+	.form-items .item .item-image .icon-main{height: 50px; width: 68px; line-height: 50px; text-align: center; background: #fff;}
+	.form-items .item .item-image .icon-main .icon{font-size: 30px; color: #676a6c}
+	.form-items .item .item-image .tabbar-icon{height: 50px; overflow: hidden; text-align: center; line-height: 48px;}
+	.form-items .item .item-image .tabbar-icon img{display: inline-block; width: 30px; height: auto;}
+	.form-items .item .item-image .select-icon{height: 20px; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.5); color: #fff; text-align: center; font-size: 12px; line-height: 20px; position: absolute; cursor: pointer;}
+	.form-items .item .input-group{margin-bottom: 0;}
+	.form-items .item .input-group:last-child{margin-top: 10px;}
+	.form-items .item .item-image img {height: 68px;max-width: 68px;display: block;}
+	.form-items .item .item-image .text {height: 20px!important; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.5) !important; color: #fff!important; text-align: center; font-size: 12px; line-height: 20px!important; position: absolute; cursor: pointer;}
+	.tips-item{margin-bottom: 10px;}
+</style>
+<div class="page clearfix">
+	<h2>基础设置</h2>
+	<form class="form-horizontal form form-validate" id="form1" action="" method="post" enctype="multipart/form-data">
+		<div class="form-group">
+			<label class="col-xs-12 col-sm-3 col-md-2 control-label">是否开启会员卡申请</label>
+			<div class="col-sm-9 col-xs-12">
+				<div class="radio radio-inline">
+					<input type="radio" name="card_apply_status" id="card-apply-status-1" value="1" {if $_config_plugin['card_apply_status'] == 1}checked{/if} require="true">
+					<label for="card-apply-status-1">开启</label>
+				</div>
+				<div class="radio radio-inline">
+					<input type="radio" name="card_apply_status" id="card-apply-status-0" value="0" {if !$_config_plugin['card_apply_status']}checked{/if} require="true">
+					<label for="card-apply-status-0">关闭</label>
+				</div>
+				<div class="help-block">开启此选项后, 需要配置会员卡套餐.<a href="{php echo iurl('deliveryCard/setmeal/list');}" target="_blank">现在去配置</a></div>
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-xs-12 col-sm-3 col-md-2 control-label">自定义会员卡特权</label>
+			<div class="col-sm-9 col-xs-12">
+				<div class="form-items diy-power">
+					{loop $_config_plugin['diypower'] $diypower}
+					<div class="inner">
+						<div class="item clearfix" data-id="{$diypower['id']}">
+							<input type="hidden" name="id[]" value="{$diypower['id']}">
+							<span class="btn-del" title="删除"></span>
+							<div class="item-image square ">
+								<div class="text js-selectImg" data-input="#cimg-{$diypower['id']}" data-img="#pimg-{$diypower['id']}" data-element="#pimg-{$diypower['id']}">选择图片</div>
+								<img src="{php echo tomedia($diypower['img'])}" onerror="this.src='../addons/we7_wmall/static/img/nopic.jpg';" id="pimg-{$diypower['id']}" />
+								<input type="hidden"  id="cimg-{$diypower['id']}" name="img[]" value="{$diypower['img']}" />
+							</div>
+							<div class="item-form">
+								<div class="input-group" style="margin-bottom:8px; ">
+									<span class="input-group-addon">特权描述</span>
+									<input type="text" class="form-control input-sm" placeholder="请输入特权描述" name="title[]" value="{$diypower['title']}" />
+								</div>
+								<div class="input-group" style="margin-top:8px; margin-bottom:0px; ">
+									<input type="text" class="form-control input-sm" id="curl-{$diypower['id']}" placeholder="请选择链接或输入链接地址(http://开头)" value="{$diypower['url']}" name="url[]" />
+									<span class="input-group-addon btn btn-default js-selectWxappLink" data-input="#curl-{$diypower['id']}">选择链接</span>
+								</div>
+							</div>
+						</div>
+					</div>
+					{/loop}
+				</div>
+				<div class="btn btn-primary" id="add-diy-power"><i class="fa fa-plus"></i> 添加一个</div>
+				<div class="help-block">此处若不设置，则默认显示系统默认数据</div>
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-xs-12 col-sm-3 col-md-2 control-label">自定义特权说明</label>
+			<div class="col-sm-9 col-xs-12 ">
+				<div class="diy-tips">
+					{loop $_config_plugin['diytips'] $diytips}
+					<div class="input-group tips-item">
+						<input class="form-control" type="text" name="tips[]" value="{$diytips['text']}" placeholder="请填写特权说明，最好不要超过11个字">
+						<span class="input-group-btn">
+							<button class="btn btn-danger del-tips" type="button"> <i class="fa fa-times"></i></button>
+						</span>
+					</div>
+					{/loop}
+				</div>
+				<div class="btn btn-primary" id="add-diy-tips"><i class="fa fa-plus"></i> 添加一个</div>
+				<div class="help-block">此处若不设置，则默认显示系统默认数据</div>
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-xs-12 col-sm-3 col-md-2 control-label">会员卡规则</label>
+			<div class="col-sm-9 col-xs-12">
+				{php echo tpl_ueditor('agreement_card', $agreement_card);}
+				<div class="help-block">设置会员卡规则</div>
+			</div>
+		</div>
+		<div class="form-group">
+			<div class="col-sm-9 col-xs-9 col-md-9">
+				<input type="hidden" name="token" value="{$_W['token']}">
+				<input type="submit" value="提 交" class="btn btn-primary">
+			</div>
+		</div>
+	</form>
+</div>
+
+<script>
+
+	$(function(){
+		function getId(S, N) {
+			var date = +new Date();
+			var id = S + (date + N);
+			return id;
+		}
+		$(document).on("click", '#add-diy-power', function() {
+			var itemid = getId('M', 0)
+			var html =
+				'<div class="inner">' +
+					'<div class="item clearfix" data-id="' + itemid + '">' +
+						'<input type="hidden" name="id[]" value="' + itemid + '">' +
+						'<span class="btn-del" title="删除"></span>' +
+						'<div class="item-image square ">' +
+							'<div class="text js-selectImg" data-input="#cimg-' + itemid + '" data-img="#pimg-' + itemid + '" data-element="#pimg-' + itemid + '">选择图片</div>' +
+							'<img src="" onerror="this.src=\'../addons/we7_wmall/static/img/nopic.jpg\';" id="pimg-' + itemid + '"/>' +
+							'<input type="hidden"  id="cimg-' + itemid + '" value="" name="img[]" />' +
+						'</div>' +
+						'<div class="item-form">' +
+							'<div class="input-group" style="margin-bottom:8px; ">' +
+								'<span class="input-group-addon">特权描述</span>' +
+								'<input type="text" class="form-control input-sm" placeholder="请输入特权描述" value="" name="title[]" />' +
+							'</div>' +
+							'<div class="input-group" style="margin-top:8px; margin-bottom:0px; ">' +
+								'<input type="text" class="form-control input-sm" id="curl-' + itemid + '" placeholder="请选择链接或输入链接地址(http://开头)" value="" name="url[]" />' +
+								'<span class="input-group-addon btn btn-default js-selectWxappLink" data-input="#curl-' + itemid + '">选择链接</span>' +
+							'</div>' +
+						'</div>' +
+					'</div>' +
+				'</div>';
+			$('.diy-power').append(html);
+		});
+		$(document).on("click", '.btn-del', function() {
+			$(this).closest(".inner").remove();
+		});
+		$(document).on("click", '#add-diy-tips', function() {
+			var html = 
+				'<div class="input-group tips-item">' +
+					'<input class="form-control" type="text" name="tips[]" value="" placeholder="请填写特权说明，最好不要超过11个字">' +
+					'<span class="input-group-btn">' +
+						'<button class="btn btn-danger del-tips" type="button"> <i class="fa fa-times"></i></button>' +
+					'</span>' +
+				'</div>';
+			$('.diy-tips').append(html);
+		});
+		$(document).on("click", '.del-tips', function() {
+			$(this).closest(".tips-item").remove();
+		});
+	});
+</script>
+{itemplate 'public/footer'}

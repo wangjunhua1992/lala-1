@@ -1,0 +1,39 @@
+<tab-bar menufooter="{{menufooter}}" wx:if="{{menufooter&&menufooter.data}}"></tab-bar>
+<view class="page-down container">
+    <view class="wui-tab">
+        <view class="wui-tab-bd">
+            <view bind:tap="onSubmit" class="wui-tab-item {{status=='spread1'?'wui-tab-item-selected':''}}" data-spreadid="spread1">
+                <view class="wui-tab-title">一级({{level1}})</view>
+            </view>
+            <view bind:tap="onSubmit" class="wui-tab-item {{status=='spread2'?'wui-tab-item-selected':''}}" data-spreadid="spread2" wx:if="{{config.level==2}}">
+                <view class="wui-tab-title">二级({{level2}})</view>
+            </view>
+        </view>
+    </view>
+    <view class="scroll">
+        <scroll-view scrollY="true">
+            <view class="wui-cell page-cell" wx:for="{{down}}">
+                <view class="photo">
+                    <image class="user-photo" src="{{item.avatar}}"></image>
+                </view>
+                <view class="wui-cell-bd">
+                    <view class="cell-user">{{item.nickname}}</view>
+                    <view class="cell-time">注册时间:{{item.addtime}}</view>
+                </view>
+                <view class="wui-cell-ft border-1px-l cell-down-ft">
+                    <view class="cell-num cell-num-position">消费：{{item.price}}{{Lang.dollarSignCn}}</view>
+                    <view class="cell-description cell-num-order">{{item.frquency}}个订单</view>
+                </view>
+            </view>
+        </scroll-view>
+    </view>
+    <view class="no-data no-bottom" wx:if="{{showNodata}}">
+        <image class="no-coupon" src="http://cos.lalawaimai.com/we7_wmall/wxapp/coupon_no_con.png"></image>
+        <text class="no-record">暂无数据</text>
+    </view>
+    <view class="weui-loadmore" wx:if="{{showloading}}">
+        <view class="weui-loading"></view>
+        <view class="weui-loadmore__tips">正在加载中</view>
+    </view>
+</view>
+<include src="../../../pages/public/footer.wxml"></include>

@@ -1,0 +1,175 @@
+<tab-bar menufooter="{{menufooter}}" wx:if="{{menufooter&&menufooter.data}}"></tab-bar>
+<view class="svip-mine container">
+    <view class="content">
+        <view class="svip-header">
+            <view class="flex margin-10-b">
+                <view class="avatar">
+                    <image alt="" src="{{member.avatar}}"></image>
+                </view>
+                <view class="margin-10-lr member-info">
+                    <view class="user-title">{{member.nickname}}</view>
+                    <view class="font-12 flex padding-5-t">
+                        <block wx:if="{{0}}">
+                            <i class="icon icon-location"></i>
+                            <text>太原</text>
+                            <i class="icon icon-right"></i>
+                        </block>
+                        <text>{{member.svip_endtime_cn}} 到期 </text>
+                        <i class="icon icon-question1"></i>
+                    </view>
+                </view>
+                <view bind:tap="onJsEvent" class="pay-button" data-event-type="jsUrl" data-url="/package/pages/svip/purchase">管理续费</view>
+            </view>
+            <view class="discounts-group">
+                <view class="discounts-list flex">
+                    <view class="discounts-item">
+                        <view class="font-14">免费红包</view>
+                        <view class="num">
+                            <text>{{member.exchange_max}}</text>
+							个
+						</view>
+                        <view bind:tap="onJsEvent" class="discounts-but" data-event-type="jsUrl" data-url="/package/pages/svip/redpacketCoupon">领取</view>
+                    </view>
+                    <view class="discounts-item">
+                        <view class="font-12">奖励金</view>
+                        <view class="num">
+                            <text>{{member.svip_credit1}}</text>
+							个
+						</view>
+                        <view bind:tap="onJsEvent" class="discounts-but" data-event-type="jsUrl" data-url="/package/pages/svip/redpacketCoupon?exchange_cost=1">兑换</view>
+                    </view>
+                    <view class="discounts-item">
+                        <view class="font-12">已节省</view>
+                        <view class="num">
+                            <text>{{member.total_discount}}</text>
+							{{Lang.dollarSignCn}}
+						</view>
+                        <view bind:tap="onJsEvent" class="discounts-but" data-event-type="jsUrl" data-url="/package/pages/svip/record">查看</view>
+                    </view>
+                </view>
+                <view class="notice">
+                    <view class="notice-group">
+                        <i class="icon icon-shengyin"></i>
+                        <text>每月可免费领取{{member.exchange_max}}个红包，本月已领取{{member.num_taked}}个</text>
+                    </view>
+                </view>
+            </view>
+        </view>
+        <view class="padding-15">
+            <view class="svip-body" wx:if="{{tasks&&tasks.length>0}}">
+                <view class="margin-10-b flex-lr">
+                    <view class="font-16 font-bold">会员特属任务</view>
+                    <view bind:tap="onJsEvent" class="font-14 c-gray" data-event-type="jsUrl" data-url="/package/pages/svip/mission">更多<i class="icon icon-right"></i>
+                    </view>
+                </view>
+                <view class="activity-list">
+                    <view class="activity-item" wx:for="{{tasks}}" wx:key="{{item.id}}">
+                        <view class="activity-left">
+                            <image alt="" src="{{item.thumb}}"></image>
+                        </view>
+                        <view class="activity-right flex-lr">
+                            <view class="activity-info">
+                                <view class="font-15 c-default">{{item.title}}</view>
+                                <view class="ellipsis">{{item.content}}</view>
+                            </view>
+                            <view class="activity-price">
+                                <view class="font-12 c-danger">{{item.award_cn}}</view>
+                                <view bind:tap="onTakepartTask" class="activity-btn" data-id="{{item.id}}" data-link="{{item.button.link}}" data-link_type="{{item.button.link_type}}">{{item.button.text}}</view>
+                            </view>
+                        </view>
+                    </view>
+                </view>
+            </view>
+            <scroll-view class="svip-body" wx:if="{{redpackets&&redpackets.length>0}}">
+                <view class="margin-10-b flex-lr">
+                    <view class="font-16 font-bold">会员专享红包</view>
+                    <view bind:tap="onJsEvent" class="font-14 c-gray" data-event-type="jsUrl" data-url="/package/pages/svip/redpacketCoupon">详情<i class="icon icon-right"></i>
+                    </view>
+                </view>
+                <view class="redpacket-list flex">
+                    <view class="redpacket-item" wx:for="{{redpackets}}" wx:key="{{item.id}}">
+                        <view class="redpacket-title">
+                            <view class="font-bold c-default price ellipsis">
+                                <i>{{Lang.dollarSign}}</i>
+                                <text>{{item.discount}}</text>
+                            </view>
+                            <view class="info">
+                                <view class="font-14 ellipsis">{{item.title}}</view>
+                                <view class="condition ellipsis" wx:if="{{item.condition==0}}">无门槛</view>
+                                <view class="condition ellipsis" wx:elif="{{item.condition>0}}">满{{item.condition}}{{Lang.dollarSignCn}}</view>
+                            </view>
+                        </view>
+                        <view bind:tap="onExchange" class="redpacket-but" data-id="{{item.id}}">领取</view>
+                    </view>
+                </view>
+            </scroll-view>
+            <view class="svip-body">
+                <view class="margin-10-b flex-lr">
+                    <view class="font-16 font-bold">会员特权</view>
+                    <view bind:tap="onJsEvent" class="font-14 c-gray" data-event-type="jsUrl" data-url="/pages/public/richtext?key=agreement_svip">详情<i class="icon icon-right"></i>
+                    </view>
+                </view>
+                <view class="tequan-list">
+                    <view class="tequan-item">
+                        <image alt="" src="http://cos.lalawaimai.com/we7_wmall/wxapp/svip-list-bg1.png"></image>
+                        <text>专享红包</text>
+                    </view>
+                    <view class="tequan-item">
+                        <image alt="" src="http://cos.lalawaimai.com/we7_wmall/wxapp/svip-list-bg2.png"></image>
+                        <text>奖励金</text>
+                    </view>
+                    <view class="tequan-item">
+                        <image alt="" src="http://cos.lalawaimai.com/we7_wmall/wxapp/svip-list-bg3.png"></image>
+                        <text>专属客服</text>
+                    </view>
+                    <view class="tequan-item">
+                        <image alt="" src="http://cos.lalawaimai.com/we7_wmall/wxapp/svip-list-bg4.png"></image>
+                        <text>专属折扣</text>
+                    </view>
+                    <view class="tequan-item">
+                        <image alt="" src="http://cos.lalawaimai.com/we7_wmall/wxapp/svip-list-bg5.png"></image>
+                        <text>金币特权</text>
+                    </view>
+                </view>
+            </view>
+            <view class="svip-body" wx:if="{{goods.length>0}}">
+                <view class="margin-10-b flex-lr">
+                    <view class="font-16 font-bold">专享商品</view>
+                    <view bind:tap="onJsEvent" class="font-14 c-gray" data-event-type="jsUrl" data-url="/package/pages/svip/vipEnjoy">更多<i class="icon icon-right"></i>
+                    </view>
+                </view>
+                <view class="goods-list">
+                    <view class="goods-item" wx:for="{{goods}}" wx:key="{{item.id}}">
+                        <view class="flex-lr">
+                            <view class="goods-img">
+                                <image alt="" src="{{item.thumb}}"></image>
+                            </view>
+                            <view class="goods-info">
+                                <view>
+                                    <view class="font-14 flex-lr c-gray">
+                                        <view>{{item.store_title}}</view>
+                                        <view>{{item.store_score}}分</view>
+                                    </view>
+                                    <view class="font-16 c-default padding-5-t">{{item.title}}</view>
+                                    <view class="goods-discount">
+                                        <i class="icon icon-crownfill font-12"></i>
+										{{item.svip_discount}}折
+									</view>
+                                </view>
+                                <view class="flex-lr">
+                                    <view>
+                                        <text class="font-14 c-danger">{{Lang.dollarSign}}<text class="font-20">{{item.svip_price}}</text>
+                                        </text>
+                                        <text class="font-14 c-gray line-through">{{Lang.dollarSign}}{{item.price}}</text>
+                                    </view>
+                                    <view bind:tap="onJsEvent" class="goods-but" data-event-type="jsUrl" data-url="/pages/store/goodsDetail?sid={{item.sid}}&id={{item.id}}">立即抢</view>
+                                </view>
+                            </view>
+                        </view>
+                    </view>
+                </view>
+            </view>
+        </view>
+    </view>
+</view>
+<include src="../../../pages/public/footer.wxml"></include>

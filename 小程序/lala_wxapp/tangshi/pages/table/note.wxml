@@ -1,0 +1,45 @@
+<view class="container">
+    <view class="content">
+        <view class="text">
+            <textarea bindinput="onNote" placeholder="请输入备注,最多50字哦" value="{{note}}"></textarea>
+            <view class="label-box" wx:if="{{order_note}}">
+                <view bind:tap="onChooseLabel" class="label" data-note="{{item}}" wx:for="{{order_note}}">{{item}}</view>
+            </view>
+        </view>
+        <view class="invoice">
+            <view wx:if="{{invoice_status==1}}">
+                <view class="invoice-list">
+                    <view class="wui-cell" data-id="0" data-type="0">
+                        <view class="wui-cell-bd">发票</view>
+                    </view>
+                    <view bind:tap="onChooseInvoice" class="wui-cell" data-id="0">
+                        <view class="wui-cell-bd">不需要发票</view>
+                        <view class="weui-cell__ft weui-cell__ft_in-radio" wx:if="{{invoiceId==0}}">
+                            <icon class="weui-icon-radio" size="16" type="success_no_circle"></icon>
+                        </view>
+                    </view>
+                    <view bind:tap="onChooseInvoice" class="wui-cell" data-id="{{item.id}}" wx:for="{{invoices}}">
+                        <view class="wui-cell-bd">{{item.title}}</view>
+                        <view class="weui-cell__ft weui-cell__ft_in-radio" wx:if="{{invoiceId==item.id}}">
+                            <icon class="weui-icon-radio" size="16" type="success_no_circle"></icon>
+                        </view>
+                    </view>
+                </view>
+                <navigator class="add" url="invoice?sid={{sid}}&is_pindan={{is_pindan}}&pindan_id={{pindan_id}}">
+                    <view>
+                        <view class="icon icon-plus"></view>
+                    </view>
+					添加发票抬头
+				</navigator>
+            </view>
+            <view class="wui-cell" wx:if="{{invoice_status==0}}">
+                <view class="wui-cell-bd">发票</view>
+                <view class="wui-cell-ft">该商家不支持开发票</view>
+            </view>
+        </view>
+    </view>
+    <view class="btn-box">
+        <view bind:tap="onSubmit" class="btn btn-danger btn-large">保存</view>
+    </view>
+</view>
+<include src="../../../pages/public/footer.wxml"></include>

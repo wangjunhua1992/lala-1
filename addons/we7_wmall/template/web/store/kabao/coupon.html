@@ -1,0 +1,148 @@
+{itemplate 'public/header'}
+{if $ta == 'list'}
+	<form action="./index.php?" class="form-horizontal form-filter" id="form1">
+		{php echo tpl_form_filter_hidden('store/kabao/coupon/list');}
+		<div class="form-group">
+			<label class="col-xs-12 col-sm-3 col-md-2 control-label">优惠券类型</label>
+			<div class="col-sm-9 col-xs-12">
+				<div class="btn-group">
+					<a href="{php echo ifilter_url('type:');}" class="btn {if $type == ''}btn-primary{else}btn-default{/if}">不限</a>
+					{loop $types $tkey $tval}
+					<a href="{php echo ifilter_url('type:' . $tkey);}" class="btn {if $type == $tkey}btn-primary{else}btn-default{/if}">{$tval['text']}</a>
+					{/loop}
+				</div>
+			</div>
+		</div>
+	</form>
+	<form action="./index.php?" class="form-table">
+		<div class="panel panel-table">
+			<div class="panel-heading">
+				<a href="{php echo iurl('store/kabao/coupon/post');}" class="btn btn-primary btn-sm">添加优惠券</a>
+			</div>
+			<div class="panel-body table-responsive js-table">
+				{if empty($coupons)}
+				<div class="no-result">
+					<p>还没有相关数据</p>
+				</div>
+				{else}
+				<table class="table table-hover">
+					<thead>
+					<tr>
+						<th>ID</th>
+						<th>优惠券名称</th>
+						<th>优惠券类型</th>
+						<th>优惠券金额</th>
+						<th>兑换所需积分</th>
+						<th>使用条件</th>
+						<th>有效期</th>
+						<th>创建时间</th>
+						<th class="text-right">操作</th>
+					</tr>
+					</thead>
+					{loop $coupons $coupon}
+					<tr>
+						<td>{$coupon['id']}</td>
+						<td>
+							{$coupon['title']}
+						</td>
+						<td>
+							<span class="label {$types[$coupon['type']]['css']}">{$types[$coupon['type']]['text']}</span>
+						</td>
+						<td>
+							<span class="text-danger">{$coupon['discount']}</span> {$_W['Lang']['dollarSignCn']}
+						</td>
+						<td>
+							<span class="text-danger">{$coupon['credit1']}</span> 积分
+						</td>
+						<td>
+							满 <span class="text-danger">{$coupon['condition']}</span> {$_W['Lang']['dollarSignCn']}可用
+						</td>
+						<td>
+							领取后 <span class="text-danger">{$coupon['use_days_limit']}</span> 天内有效
+						</td>
+						<td>{php echo date('Y-m-d H:i:s', $coupon['addtime'])}</td>
+						<td class="text-right">
+							<a href="{php echo iurl('store/kabao/coupon/post', array('id' => $coupon['id']))}" class="btn btn-default btn-sm" title="编辑" data-toggle="tooltip" data-placement="top" >编辑</a>
+							<a href="{php echo iurl('store/kabao/coupon/delete', array('id' => $coupon['id']))}" class="btn btn-default btn-sm js-remove" data-confirm="确定删除该优惠券吗?">删除</a>
+						</td>
+					</tr>
+					{/loop}
+				</table>
+				{/if}
+			</div>
+		</div>
+	</form>
+{elseif $ta == 'post'}
+	<div class="page clearfix">
+		<form class="form-horizontal form form-validate" action="" method="post" enctype="multipart/form-data">
+			<div class="alert alert-info">注意：绑卡赠券类型的优惠券只能创建一个</div>
+			<h3>优惠券信息</h3>
+			<div class="form-group">
+				<label class="col-xs-12 col-sm-3 col-md-2 control-label">优惠券名称</label>
+				<div class="col-sm-6 col-xs-6">
+					<input type="text" name="title" value="{php echo empty($coupon['title']) ? '店铺通用满减券' : $coupon['title']}" class="form-control" required="true">
+					<div class="help-block">8个字以内。例如：店铺通用满减券</div>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-xs-12 col-sm-3 col-md-2 control-label">优惠券金额</label>
+				<div class="col-sm-6 col-xs-6">
+					<input type="number" name="discount" value="{$coupon['discount']}" class="form-control" required="true">
+					<div class="help-block">必须填写正整数</div>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-xs-12 col-sm-3 col-md-2 control-label">优惠券类型</label>
+				<div class="col-sm-6 col-xs-6">
+					<div class="radio radio-inline">
+						<input type="radio" name="type" value="exchange" id="type-exchange" {if empty($coupon['type']) || $coupon['type'] == 'exchange'}checked{/if}/>
+						<label for="type-exchange">积分兑换</label>
+					</div>
+					<div class="radio radio-inline">
+						<input type="radio" name="type" value="bind" id="type-bind" {if $coupon['type'] == 'bind'}checked{/if}/>
+						<label for="type-bind">绑卡赠券</label>
+					</div>
+				</div>
+			</div>
+			<div class="form-group {if $coupon['type'] == 'bind'}hide{/if}" id="credit1-wrap" >
+				<label class="col-xs-12 col-sm-3 col-md-2 control-label">兑换所需积分</label>
+				<div class="col-sm-6 col-xs-6">
+					<input type="number" name="credit1" value="{$coupon['credit1']}" class="form-control" required="true">
+					<div class="help-block">必须填写正整数</div>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-xs-12 col-sm-3 col-md-2 control-label">满多少元可用</label>
+				<div class="col-sm-6 col-xs-6">
+					<input type="number" name="condition" value="{$coupon['condition']}" class="form-control" required="true">
+					<div class="help-block">必须填写正整数</div>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-xs-12 col-sm-3 col-md-2 control-label">领取后几天内有效</label>
+				<div class="col-sm-6 col-xs-6">
+					<input type="number" name="use_days_limit" value="{$coupon['use_days_limit']}" class="form-control" required="true">
+					<div class="help-block">必须填写正整数</div>
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="col-sm-9 col-xs-9 col-md-9">
+					<input type="submit" value="提交" class="btn btn-primary">
+				</div>
+			</div>
+		</form>
+	</div>
+	<script>
+		$(function() {
+			$(document).on('click', 'input[name=type]', function(){
+				var value = $(this).val();
+				if(value == 'bind') {
+					$('#credit1-wrap').addClass('hide');
+				} else {
+					$('#credit1-wrap').removeClass('hide');
+				}
+			});
+		})
+	</script>
+{/if}
+{itemplate 'public/footer'}

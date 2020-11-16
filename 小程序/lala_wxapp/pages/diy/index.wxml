@@ -1,0 +1,3 @@
+<import src="./template.wxml"></import>
+<template is="tpl-diy" data="{{diy:diy,storeExtra:storeExtra,store:store,location:location,config:config,config_wxapp:config_wxapp,cart_sum:cart_sum,richtext:richtext,superRedpacket:superRedpacket,danmu:danmu,dialog:dialog,storage:storage,topSearchBar:topSearchBar,goodsTabSticky:goodsTabSticky,goodsTabStickyTop:goodsTabStickyTop,goodsTabActive:goodsTabActive,storesTabSticky:storesTabSticky,storesTabStickyTop:storesTabStickyTop,storesTabActive:storesTabActive,Lang:Lang,popup:popup,haodianExtra:haodianExtra,showSearchSign:showSearchSign}}"></template>
+<include src="../public/footer.wxml"></include>

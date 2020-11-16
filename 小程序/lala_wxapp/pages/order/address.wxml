@@ -1,0 +1,65 @@
+<view class="order-address">
+    <view class="content">
+        <view class="header-remind flex">
+            <view class="icon icon-notice font-18 c-gray"></view>
+            <view class="c-gray">温馨提示: 当前订单仅能修改{{config.address_update_num}}次, 只支持将地址修改为距离原地址{{config.newaddress_distance}}km以内的地点</view>
+        </view>
+        <view class="address-now">
+            <view class="icon icon-location font-18 c-gray"></view>
+            <view class="padding-10-l">
+                <view class="font-14 c-gray">当前下单地址</view>
+                <view class="font-16 padding-10-t">{{order.address}}</view>
+                <view class="font-14 c-gray padding-10-t flex">
+                    <view>{{order.username}}({{order.sex}})</view>
+                    <view class="padding-15-l">{{order.mobile}}</view>
+                </view>
+            </view>
+        </view>
+        <view class="c-danger flex-center padding-10-t">
+            <view bind:tap="onJsEvent" class="flex" data-event-type="jsUrl" data-url="/pages/member/addressPost?sid={{order.sid}}&orderId={{order.id}}">
+                <text class="icon icon-add"></text>
+				新增地址
+			</view>
+        </view>
+        <block wx:if="{{addresses&&addresses.available&&addresses.available.length>0}}">
+            <view class="padding-10-tb padding-15-lr c-gray font-14">可更改地址</view>
+            <view class="address-list">
+                <view bind:tap="onSelectAddress" class="address-item flex" data-index="{{index}}" wx:for="{{addresses.available}}" wx:key="{{item.id}}">
+                    <view class="address-icon">
+                        <text class="icon {{selectIndex==index?'icon-check':''}}"></text>
+                    </view>
+                    <view class="flex-lr address-info-group">
+                        <view class="address-info">
+                            <view class="font-14 ellipsis">{{item.address}}</view>
+                            <view class="font-14 c-gray">{{item.realname}}({{item.sex}})<span class="padding-15-l font-14 c-gray">{{item.mobile}}</span>
+                            </view>
+                        </view>
+                        <view catch:tap="onJsEvent" class="icon icon-edit" data-event-type="jsUrl" data-url="/pages/member/addressPost?id={{item.id}}&sid={{order.sid}}&orderId={{order.id}}"></view>
+                    </view>
+                </view>
+            </view>
+        </block>
+        <block wx:if="{{addresses&&addresses.dis_available&&addresses.dis_available.length>0}}">
+            <view class="padding-10-tb padding-15-lr c-gray font-14">超出可更改范围地址</view>
+            <view class="address-list address-more">
+                <view class="address-item flex" wx:for="{{addresses.dis_available}}" wx:key="{{item.id}}">
+                    <view class="address-icon"></view>
+                    <view class="flex-lr address-info-group">
+                        <view class="address-info">
+                            <view class="font-14 ellipsis c-gray flex">{{item.address}}</view>
+                            <view class="font-14 c-gray">
+								{{item.realname}}
+								<block wx:if="{{item.sex}}">
+									({{item.sex}})
+								</block>
+                                <span class="padding-15-l font-14 c-gray">{{item.mobile}}</span>
+                            </view>
+                        </view>
+                    </view>
+                </view>
+            </view>
+        </block>
+        <view bind:tap="onSubmit" class="address-btn {{selectIndex<0||!islegal?'disabled':''}}">确认修改</view>
+    </view>
+</view>
+<include src="../public/footer.wxml"></include>

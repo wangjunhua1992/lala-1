@@ -1,0 +1,376 @@
+<tab-bar menufooter="{{menufooter}}" wx:if="{{menufooter&&menufooter.data}}"></tab-bar>
+<view class="container">
+    <view class="content">
+        <view class="order-status">
+            <view bindtap="chooseStatus" class="status">订单{{status}}<view class="icon icon-xiangyou1"></view>
+            </view>
+            <view class="text" wx:if="{{detail.log&&detail.order.delivery_status!=7}}">{{detail.log.note}}</view>
+            <view class="become-time" wx:if="{{detail.order.status>=2&&detail.order.status<5&&detail.order.order_type==1}}">
+                <view class="icon icon-timefill"></view>
+				配送时间: <view class="time">{{detail.order.delivery_time}}</view>
+            </view>
+            <view class="order-btn">
+                <block wx:if="{{detail.order.is_pay==0&&detail.order.status<5}}">
+                    <view bind:tap="onFinishMealPay" class="btn" wx:if="{{detail.order.order_type==3&&detail.order.pay_type=='finishMeal'}}">立即支付</view>
+                    <view bind:tap="onJsEvent" class="btn" data-event-type="jsPay" data-order-id="{{detail.order.id}}" data-order-type="takeout" data-success-url="detail?id={{detail.order.id}}" wx:else>立即支付</view>
+                    <view bind:tap="onJsEvent" class="btn" data-event-type="jsUrl" data-url="tangshi/pages/table/goods?table_id={{detail.order.table_id}}&sid={{detail.order.sid}}&order_id={{detail.order.id}}" wx:if="{{detail.order.order_type==3}}">加菜</view>
+                    <view bind:tap="onJsEvent" class="btn" data-event-type="jsUrl" data-url="/pages/order/op?id={{detail.order.id}}" wx:if="{{detail.order.order_type==1&&detail.order.update_order_info_status==1}}">修改备注等信息</view>
+                </block>
+                <block wx:if="{{detail.order.status==1}}">
+                    <view bind:tap="onJsEvent" class="btn" data-confirm="确定取消订单吗?" data-event-type="jsPost" data-href="wmall/order/index/cancel?id={{detail.order.id}}" data-success-url="detail?id={{detail.order.id}}">取消订单</view>
+                    <view bind:tap="onJsEvent" class="btn" data-event-type="jsPost" data-href="wmall/order/index/remind?id={{detail.order.id}}" data-success-url="detail?id={{detail.order.id}}" wx:if="{{detail.order.is_pay==1}}">催单</view>
+                </block>
+                <block wx:elif="{{detail.order.status>1&&detail.order.status<5}}">
+                    <view bind:tap="onJsEvent" class="btn" data-confirm="确定取消订单吗?" data-event-type="jsPost" data-href="wmall/order/index/cancel?id={{detail.order.id}}" data-success-url="detail?id={{detail.order.id}}" wx:if="{{detail.order.customer_cancel_status==1}}">取消订单</view>
+                    <view bind:tap="onJsEvent" class="btn" data-event-type="jsPost" data-href="wmall/order/index/remind?id={{detail.order.id}}" data-success-url="detail?id={{detail.order.id}}" wx:if="{{detail.order.is_pay==1}}">催单</view>
+                    <view bind:tap="onJsEvent" class="btn" data-confirm="你确定收到该商家的外卖?" data-event-type="jsPost" data-href="wmall/order/index/end?id={{detail.order.id}}" data-success-url="comment?id={{detail.order.id}}" wx:if="{{detail.order.order_type==1&&detail.order.status==4}}">确认送达</view>
+                    <view bind:tap="onJsEvent" class="btn" data-confirm="确认已到店自提?" data-event-type="jsPost" data-href="wmall/order/index/end?id={{detail.order.id}}" data-success-url="comment?id={{detail.order.id}}" wx:if="{{detail.order.order_type==2}}">我已提货</view>
+                    <view bind:tap="onJsEvent" class="btn" data-event-type="jsUrl" data-url="tangshi/pages/table/goods?table_id={{detail.order.table_id}}&sid={{detail.order.sid}}&order_id={{detail.order.id}}" wx:if="{{detail.order.order_type==3&&detail.order.is_pay==1&&detail.order.pay_type=='finishMeal'}}">加菜</view>
+                </block>
+                <block wx:elif="{{detail.order.status==5}}">
+                    <navigator class="btn" url="../store/goods?sid={{detail.order.sid}}&order_id={{detail.order.id}}">再来一单</navigator>
+                    <navigator class="btn" url="comment?id={{detail.order.id}}" wx:if="{{detail.order.is_comment==0}}">{{detail.order.comment_cn}}</navigator>
+                    <view class="btn" style="display:none" wx:if="{{detail.order.is_comment==1}}">查看评价</view>
+                </block>
+                <navigator class="btn more" url="../store/goods?sid={{detail.order.sid}}&order_id={{detail.order.id}}" wx:else>再来一单</navigator>
+                <view bind:tap="onJsEvent" class="btn" data-event-type="jsUrl" data-url="pages/order/address?id={{detail.order.id}}" wx:if="{{detail.order.update_address_status==1}}">修改收货地址</view>
+                <view bind:tap="onJsEvent" class="btn" data-event-type="jsUrl" data-url="pages/order/pindanbill?id={{detail.order.id}}" wx:if="{{detail.order.data&&detail.order.data.pindan}}">拼单分账</view>
+                <view bind:tap="onJsEvent" class="btn" data-confirm="确定删除该订单吗?" data-event-type="jsPost" data-href="wmall/order/index/delete?id={{detail.order.id}}" data-success-url="index" wx:if="{{detail.can_delete==1}}">删除订单</view>
+                <view bind:tap="onJsEvent" class="btn" data-event-type="jsUrl" data-url="/pages/order/refund?id={{detail.order.id}}" wx:if="{{detail.order.refund_status>0}}">退款详情</view>
+            </view>
+            <block wx:if="{{detail.order.deliveryer_id>0}}">
+                <view class="divide">
+                    <view class="divide-line"></view>
+                </view>
+                <view class="deliveryer-container clearfix">
+                    <view class="avatar">
+                        <image src="{{detail.deliveryer.avatar}}"></image>
+                    </view>
+                    <view class="deliveryer-info">
+                        <view class="name">
+							{{detail.deliveryer.title}}
+							<view class="allocation-icon">{{detail.order.delivery_title}}</view>
+                            <view class="mobile">{{detail.deliveryer.mobile}}</view>
+                        </view>
+                        <view class="star hide" style="display: none">
+                            <view class="appr-score"></view>
+                            <view class="appr-score"></view>
+                            <view class="appr-score"></view>
+                            <view class="appr-score"></view>
+                            <view class="appr-score"></view>
+                        </view>
+                        <view class="deliveryer-divide" style="display: none">
+							4.9分
+						</view>
+                    </view>
+                    <view class="operate">
+                        <navigator class="hide">
+                            <view class="reward">
+                                <view class="icon icon-money"></view>
+                            </view>
+                        </navigator>
+                        <view bind:tap="onCallStoreOrDeliveryer" class="tel" data-type="deliveryer">
+                            <view class="icon icon-telephone icon-telephone-circle"></view>
+                        </view>
+                        <view bind:tap="onJsEvent" class="location" data-event-type="jsUrl" data-url="pages/order/map?id={{detail.order.id}}" wx:if="{{detail.show_location}}">
+                            <view class="icon icon-zuobiao"></view>
+                        </view>
+                    </view>
+                </view>
+                <view class="divide">
+                    <view class="divide-line"></view>
+                </view>
+                <view class="contact flex-lr font-14">
+                    <view bind:tap="onJsEvent" class="contact-item" data-event-type="jsUrl" data-url="plugin/pages/kefu/chat?relation=member2deliveryer&kefuopenid={{detail.deliveryer.token}}&orderid={{detail.order.id}}" wx:if="{{detail.order.kefu&&detail.order.kefu.deliveryer_status==1}}">
+                        <text class="icon icon-wang margin-5-r"></text>
+						联系骑手
+					</view>
+                    <view bind:tap="onCallStoreOrDeliveryer" class="contact-item" data-type="deliveryer">
+                        <text class="icon icon-telephone margin-5-r"></text>
+						致电骑手
+					</view>
+                </view>
+            </block>
+            <view class="yinsihao-baohu-img" wx:if="{{detail.order.data&&detail.order.data.yinsihao_status==1}}">
+                <image src="http://cos.lalawaimai.com/we7_wmall/wxapp/yinsihao_baohu.png"></image>
+            </view>
+        </view>
+        <swiper wx:if="{{detail.slides}}">
+            <swiper-item wx:for="{{detail.slides}}">
+                <image bind:tap="onJsEvent" data-event-type="jsUrl" data-url="{{item.wxapp_link}}" src="{{item.thumb}}"></image>
+            </swiper-item>
+        </swiper>
+        <view class="shop-content">
+            <view class="store-name">
+                <navigator class="store-left" url="/pages/store/goods?sid={{detail.store.id}}">
+                    <view class="avatar">
+                        <image src="{{detail.store.logo}}"></image>
+                    </view>
+                    <view class="name">{{detail.store.title}}</view>
+                    <view class="icon icon-xiangyou1"></view>
+                </navigator>
+                <view bind:tap="onCallStoreOrDeliveryer" class="icon icon-telephone icon-telephone-circle" data-type="store"></view>
+            </view>
+            <view class="food-list">
+                <view class="food-item" wx:for="{{detail.goods}}">
+                    <view class="food-item-img">
+                        <image src="{{item.thumb}}"></image>
+                    </view>
+                    <view class="food-item-price">
+                        <view class="now-price">{{Lang.dollarSign}}{{item.goods_price}}</view>
+                        <view class="old-price">{{Lang.dollarSign}}{{item.goods_original_price}}</view>
+                    </view>
+                    <view class="food-item-info">
+                        <view class="food-item-name">
+								{{item.goods_title}}
+							</view>
+                        <view class="food-item-num">x{{item.goods_num}}</view>
+                    </view>
+                </view>
+            </view>
+            <view class="order-region-entries">
+                <view class="order-region-entry">
+                    <view class="order-entry-price">{{Lang.dollarSign}}{{detail.order.delivery_fee}}</view>
+                    <view class="order-entry-name">配送费</view>
+                </view>
+                <view class="order-region-entry" wx:if="{{detail.order.box_price>0}}">
+                    <view class="order-entry-price">{{Lang.dollarSign}}{{detail.order.box_price}}</view>
+                    <view class="order-entry-name">{{detail.order.order_type==3?'餐具费':detail.store.cn.box_price}}</view>
+                </view>
+                <view class="order-region-entry">
+                    <view class="order-entry-price">{{Lang.dollarSign}}{{detail.order.pack_fee}}</view>
+                    <view class="order-entry-name">{{detail.store.cn.pack_fee}}</view>
+                </view>
+                <view class="order-region-entry" wx:if="{{detail.order.person_num>0}}">
+                    <view class="order-entry-price">{{detail.order.person_num}}套</view>
+                    <view class="order-entry-name">餐具数量</view>
+                </view>
+                <view class="order-region-entry" wx:if="{{detail.order.order_type==3}}">
+                    <view class="order-entry-price">{{Lang.dollarSign}}{{detail.order.serve_fee}}</view>
+                    <view class="order-entry-name">服务费</view>
+                </view>
+                <view class="order-region-entry" wx:for="{{detail.order.data.extra_fee}}">
+                    <view class="order-entry-price">{{Lang.dollarSign}}{{item.fee}}</view>
+                    <view class="order-entry-name">{{item.name}}</view>
+                </view>
+            </view>
+            <view class="divide" wx:if="{{detail.activityed}}">
+                <view class="divide-line"></view>
+            </view>
+            <view class="discount-box">
+                <view class="discount" wx:for="{{detail.activityed}}">
+                    <view class="discount-name">
+                        <view class="icon-b">
+                            <image src="/static/img/{{item.type}}_b.png"></image>
+                        </view>
+							{{item.name}}
+						</view>
+                    <view class="discount-price">{{item.note}}</view>
+                </view>
+            </view>
+            <view class="divide">
+                <view class="divide-line"></view>
+            </view>
+            <view class="price clearfix">
+                <view class="total">
+					总计 <view>{{Lang.dollarSign}}{{detail.order.final_fee}}</view>
+                </view>
+                <view class="discount">
+					订单 {{Lang.dollarSign}}{{detail.order.total_fee}}
+				</view>
+                <view class="discount">
+					已优惠 {{Lang.dollarSign}}{{detail.order.discount_fee}}
+				</view>
+            </view>
+            <view class="divide">
+                <view class="divide-line"></view>
+            </view>
+            <view class="contact flex-lr font-14">
+                <view bind:tap="onJsEvent" class="contact-item" data-event-type="jsUrl" data-url="plugin/pages/kefu/chat?relation=member2clerk&kefuopenid={{detail.order.sid}}&kefuunionid={{detail.order.sid}}&orderid={{detail.order.id}}" wx:if="{{detail.order.kefu&&detail.order.kefu.store_status==1}}">
+                    <text class="icon icon-wang margin-5-r"></text>
+					联系商家
+				</view>
+                <view bind:tap="onCallStoreOrDeliveryer" class="contact-item" data-type="store">
+                    <text class="icon icon-telephone margin-5-r"></text>
+					致电商家
+				</view>
+            </view>
+        </view>
+        <view class="code-qrcode" wx:if="{{detail.order.order_type==2}}">
+            <canvas canvasId="canvas" style="width: 150px; height: 150px"></canvas>
+            <view class="font-14 margin-10-t">核销码：{{detail.order.code}}</view>
+            <view class="code-text">请商家扫描二维码或者填写核销码即可消费</view>
+        </view>
+        <view class="dispatching" wx:if="{{detail.order.order_type==2||detail.order.order_type==1}}">
+            <view class="time clearfix">
+                <view class="text" wx:if="{{detail.order.order_type==1}}">配送时间</view>
+                <view class="text" wx:if="{{detail.order.order_type==2}}">自提时间</view>
+                <view class="main">{{detail.order.delivery_day}} {{detail.order.delivery_time}}</view>
+            </view>
+            <view class="address clearfix">
+                <view class="text" wx:if="{{detail.order.order_type==1}}">配送地址</view>
+                <view class="text" wx:if="{{detail.order.order_type==2}}">自提地址</view>
+                <view class="main">
+                    <block wx:if="{{detail.order.order_type==1}}">
+                        <view>{{detail.order.username}}({{detail.order.sex}}){{detail.order.mobile}}</view>
+                        <view>{{detail.order.address}}</view>
+                    </block>
+                    <block wx:if="{{detail.order.order_type==2}}">
+                        <view>{{detail.store.title}}</view>
+                        <view>{{detail.store.address}}</view>
+                    </block>
+                </view>
+            </view>
+            <view class="server clearfix" wx:if="{{detail.order.order_type==1}}">
+                <view class="text">配送服务</view>
+                <view class="main clearfix">
+                    <view class="allocation-icon" wx:if="{{detail.order.delivery_type==2}}">{{detail.order.delivery_title}}</view>
+                    <view class="inline" wx:if="{{detail.order.delivery_type==1}}">由 商家</view>
+                    <view>提供高品质配送服务</view>
+                </view>
+            </view>
+            <view class="server clearfix" wx:if="{{detail.order.zhunshibao_status>0}}">
+                <view class="text">准时宝</view>
+                <view bind:tap="onJsEvent" class="main clearfix" data-event-type="jsUrl" data-url="/pages/order/zhunshibao?id={{detail.order.id}}">
+                    <view>查看准时宝详情</view>
+                </view>
+            </view>
+        </view>
+        <view class="order">
+            <view class="code">
+                <view class="text">订单号码</view>
+                <view class="main">{{detail.order.ordersn}}</view>
+            </view>
+            <view class="time" wx:if="{{detail.order.order_type==3}}">
+                <view class="text">桌台号</view>
+                <view class="main">{{detail.order.table.title}}</view>
+            </view>
+            <block wx:if="{{detail.order.order_type==4}}">
+                <view class="time">
+                    <view class="text">预定时间</view>
+                    <view class="main">{{detail.order.reserve_time}}</view>
+                </view>
+                <view class="time">
+                    <view class="text">桌台类型</view>
+                    <view class="main">{{detail.order.table_category.title}}</view>
+                </view>
+                <view class="time" wx:if="{{detail.order.table_id>0}}">
+                    <view class="text">预定桌号</view>
+                    <view class="main">{{detail.order.table.title}}</view>
+                </view>
+                <view class="time">
+                    <view class="text">预定类型</view>
+                    <view class="main">{{detail.order.reserve_type_cn}}</view>
+                </view>
+            </block>
+            <view class="time" wx:if="{{detail.order.order_type==1}}">
+                <view class="text">配送时间</view>
+                <view class="main">{{detail.order.delivery_day}}~{{detail.order.delivery_time}}</view>
+            </view>
+            <view class="pay-type">
+                <view class="text">支付方式</view>
+                <view class="main">{{detail.order.pay_type_cn}}</view>
+            </view>
+            <view class="pay-type" wx:if="{{detail.order.invoice.title}}">
+                <view class="text">发票抬头</view>
+                <view class="main">{{detail.order.invoice.title}}</view>
+            </view>
+            <view class="pay-type" wx:if="{{detail.order.invoice.recognition}}">
+                <view class="text">纳税人识别号</view>
+                <view class="main">{{detail.order.invoice.recognition}}</view>
+            </view>
+            <view class="note" wx:if="{{detail.order.note}}">
+                <view class="text">订单备注</view>
+                <view class="main">{{detail.order.note}}</view>
+            </view>
+            <view bind:tap="onJsEvent" class="copy" data-event-type="jsCopy" data-text="{{detail.order.ordersn}}">复制</view>
+        </view>
+    </view>
+    <view class="wui-dialog {{showStatus?'wui-dialog-show':''}}">
+        <view bindtap="chooseStatus" catchtouchmove="{{true}}" class="wui-dialog-mask"></view>
+        <view class="wui-dialog-container">
+            <view class="pop">
+                <view catchtouchmove="{{true}}" class="pop-title">订单跟踪</view>
+                <view class="pop-container">
+                    <scroll-view scrollY="true">
+                        <view class="wui-steps wui-steps-vsteps wui-steps-3 my-class">
+                            <view class="wui-steps-step {{detail.minid==index?'wui-steps-step-first-child':''}} {{detail.maxid==index?'wui-steps-step-last-child':''}} {{detail.maxid==index?' wui-steps-step-done wui-steps-step-cur':''}}" data-id="{{index}}" wx:for="{{detail.logs}}">
+                                <view class="wui-steps-title">
+										{{item.title}}
+										<view class="time">{{item.addtime}}</view>
+                                </view>
+                                <view class="explan">{{item.note}}</view>
+                                <view class="wui-steps-icons">
+                                    <view class="wui-steps-circle"></view>
+                                </view>
+                                <view class="wui-steps-line"></view>
+                            </view>
+                        </view>
+                    </scroll-view>
+                </view>
+                <view bindtap="chooseStatus" class="bottom-fixed close border-1px-t">
+					关闭
+				</view>
+            </view>
+        </view>
+    </view>
+    <block wx:if="{{detail.share.superRedpacket_share_status==1}}">
+        <view bind:tap="onToggleSuperredpacket" class="send-redpacket">
+            <image mode="widthFix" src="http://cos.lalawaimai.com/we7_wmall/wxapp/send-redpacket.png"></image>
+        </view>
+        <view class="redpacket-dialog {{onShowSuperredpacket?'redpacket-dialog-show':''}}">
+            <view class="dialog-mask"></view>
+            <view class="dialog-container">
+                <view class="dialog-inner">
+                    <view class="dialog-inner-text">
+                        <image class="inner-image" mode="widthFix" src="http://cos.lalawaimai.com/we7_wmall/wxapp/wv.png"></image>
+                        <text class="get_repackets_nums">恭喜获得{{detail.share.superRedpacket.packet_total}}个红包</text>
+                        <text class="go-to-share">分享给小伙伴，大家一起抢。</text>
+                    </view>
+                </view>
+                <view class="dialog-bottons">
+                    <view bind:tap="onToggleSuperredpacket" class="button-cancel">取消</view>
+                    <view bind:tap="onToggleSuperredpacket" class="button-go-redpacket" data-force="true">发红包</view>
+                </view>
+            </view>
+        </view>
+    </block>
+    <view bind:tap="onToggleZhezhao" class="share-zhezhao" wx:if="{{zhezhaoShow}}">
+        <image mode="widthFix" src="../../static/img/share-layer.png"></image>
+    </view>
+    <van-popup class="yinsihao-popup" show="{{yinsihao.status}}">
+        <view class="popup-title">
+            <image class="yinsihao-img" src="http://cos.lalawaimai.com/we7_wmall/wxapp/yinsihao_bg.png"></image>
+        </view>
+        <view class="popup-container van-hairline--bottom">
+            <view class="font-14">将通过转播的方式保护您的隐私</view>
+            <view class="yinsihao-mobile">{{yinsihao.secret_mobile}} 转 <text class="c-danger">{{yinsihao.extension}}</text>
+            </view>
+            <view class="yinsihao-tips">
+                <view>
+					拨打{{yinsihao.secret_mobile}}
+				</view>
+                <view>
+					接通后输入分机号{{yinsihao.extension}}#即可
+				</view>
+            </view>
+        </view>
+        <view class="popup-footer">
+            <view bind:tap="onToggleYinsihaoStatus" class="yinsihao-cancel">取消</view>
+            <view bind:tap="onCallSecretMobile" class="yinsihao-confirm van-hairline--left">立即呼叫</view>
+        </view>
+    </van-popup>
+    <van-popup class="yinsihao-popup" show="{{servicePopupStatus}}">
+        <view class="popup-title font-16 font-500">
+			订单已不能使用隐私号联系
+		</view>
+        <view class="popup-container padding-15-b font-14 van-hairline--bottom">
+			为您联系客服
+		</view>
+        <view class="popup-footer">
+            <view bind:tap="onToggleServicePopupStatus" class="yinsihao-cancel">取消</view>
+            <view bind:tap="onCallService" class="yinsihao-confirm van-hairline--left">继续呼叫</view>
+        </view>
+    </van-popup>
+</view>
+<include src="../public/footer.wxml"></include>

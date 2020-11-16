@@ -1,0 +1,62 @@
+<view class="container">
+    <view class="content">
+        <view class="goods-info">
+            <view class="goods-title">
+                <text class="margin-10-l">商品详情</text>
+            </view>
+            <view class="goods border-1px-b">
+                <view class="thumb">
+                    <image alt="" class="wh-100" src="{{good.thumb}}"></image>
+                </view>
+                <div class="info">
+                    <p>{{good.title}}</p>
+                    <div class="flex">
+                        <div class="c-danger">{{good.use_credit1}}积分 </div>
+                        <div class="c-danger" wx:if="{{good.use_credit2>0}}"> + {{Lang.dollarSign}}{{good.use_credit2}}</div>
+                        <div class="c-gray font-12 line-through margin-5-l">{{Lang.dollarSign}}{{good.old_price}}</div>
+                    </div>
+                </div>
+            </view>
+            <view class="padding-15-t total-price">
+                <view class="margin-15-l">
+                    <span>小计</span>
+                    <span class="c-danger font-16 font-500">
+						{{good.use_credit1}}积分
+						<block wx:if="{{good.use_credit2>0}}">
+							+ {{good.use_credit2}}{{Lang.dollarSignCn}}
+						</block>
+                    </span>
+                </view>
+            </view>
+        </view>
+        <view class="order-region" wx:if="{{good.type=='goods'}}">
+            <view class="order-region-input">
+                <view class="border-1px-b input-group">
+                    <text class="title">姓名</text>
+                    <input bindinput="onInput" class="zan-form__input zan-cell__bd" id="username" placeholder="请输入您的名字" type="text" value="{{username}}"></input>
+                </view>
+            </view>
+            <view class="order-region-input">
+                <view class="input-group">
+                    <text class="title">联系方式</text>
+                    <input bindinput="onInput" class="zan-form__input zan-cell__bd" id="mobile" placeholder="请输入您的联系方式" type="text" value="{{mobile}}"></input>
+                </view>
+            </view>
+        </view>
+    </view>
+    <view class="order-btn-field border-1px-t">
+        <view bind:tap="{{islegal?'onOrderSubmit':''}}" class="order-submit {{islegal?'':'disabled'}}">提交订单</view>
+        <view class="order-total-field">
+			待支付
+			<view class="order-total">
+                <block wx:if="{{good.use_credit1>0}}">
+					{{good.use_credit1}} 积分
+				</block>
+                <block wx:if="{{good.use_credit2>0}}">
+					+{{Lang.dollarSign}}{{good.use_credit2}}
+				</block>
+            </view>
+        </view>
+    </view>
+</view>
+<include src="../public/footer.wxml"></include>

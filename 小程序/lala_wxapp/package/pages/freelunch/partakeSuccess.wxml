@@ -1,0 +1,27 @@
+<view class="page-partakeSuccess">
+    <view class="partake-info">
+        <view class="partake-h3">参与成功</view>
+        <view class="partake-serial">您是本期第{{num}}位参与者,奖券号<text>{{partaker.number}}</text>
+        </view>
+        <view class="pre-reward-time">预计1小时内开奖,若与当期开奖号码相同即为中奖</view>
+        <view class="scan">
+            <navigator class="scan-btn" hoverClass="none" url="./detail?record_id={{partaker.record_id}}">查看本期开奖进度</navigator>
+        </view>
+    </view>
+    <view class="repartake">
+        <view class="remission">
+            <block wx:if="{{freelunch.partake_grant_type==1}}">
+				返还的{{partaker.final_fee}}{{Lang.dollarSignCn}}红包已经放入您的账户,每次参与都会立返哦
+			</block>
+            <block wx:if="{{freelunch.partake_grant_type==2}}">
+				返还的{{partaker.final_fee}}{{Lang.dollarSignCn}}现金已经放入您的账户,每次参与都会立返哦
+			</block>
+        </view>
+        <view class="repartake-invite">
+            <view bind:tap="onJsEvent" class="repartake-btn" data-event-type="jsUrl" data-url="package/pages/freelunch/index">再次参与,中奖率加倍</view>
+        </view>
+        <view bind:tap="onJsEvent" class="partake-plus" data-event-type="jsUrl" data-url="package/pages/freelunch/index?type=plus" wx:if="{{freelunch.status==1}}">参加霸王餐Plus,赢{{Lang.dollarSignCn}}红包 <text class="icon icon-right"></text>
+        </view>
+    </view>
+</view>
+<include src="../../../pages/public/footer.wxml"></include>

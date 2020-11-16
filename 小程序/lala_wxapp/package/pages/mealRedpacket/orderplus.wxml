@@ -1,0 +1,29 @@
+<view class="page-mealorder">
+    <block wx:if="{{orders.empty==0}}">
+        <view class="order-item {{index<orders.data.length-1?'border-1px-b':''}}" wx:for="{{orders.data}}">
+            <view class="order-info">
+                <view class="name-time">
+                    <view class="name">{{item.data.meal.name}}</view>
+                    <view class="time">{{item.addtime}}</view>
+                </view>
+                <view class="price">{{Lang.dollarSign}}{{item.final_fee}}</view>
+            </view>
+        </view>
+        <view class="wui-loadmore wui-loadmore-nomore" wx:if="{{orders.loaded==1}}">
+            <view class="wui-loadmore-tips">我是有底线的</view>
+            <view class="wui-loadmore-line"></view>
+        </view>
+        <view class="wui-loadmore" wx:else>
+            <view class="wui-loading"></view>
+            <view class="wui-loadmore-tips">正在加载中</view>
+        </view>
+    </block>
+    <view class="no-data" wx:else>
+        <image class="no-coupon" src="../../static/img/order_no_con.png"></image>
+        <view class="no-record">您还没有购买记录，赶紧购买吧！</view>
+        <view class="button">
+            <button bind:tap="onJsEvent" data-event-type="jsUrl" data-url="package/pages/mealRedpacket/plus">现在购买</button>
+        </view>
+    </view>
+</view>
+<include src="../public/footer.wxml"></include>

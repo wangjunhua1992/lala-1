@@ -1,0 +1,148 @@
+page {
+    background: #F02940;
+}
+
+.wheel-info {
+    background: url(http://cos.lalawaimai.com/we7_wmall/wxapp/background.png) no-repeat;
+    background-size: 100%;
+    text-align: center;
+    height: 100%;
+    width: 100%;
+    box-sizing: border-box;
+    padding-top: 1px;
+}
+
+.wheel-info .content-wheel {
+    width: 16rem;
+    height: 16rem;
+    margin: 0 auto;
+    margin-top: 12rem;
+    background: url(http://cos.lalawaimai.com/we7_wmall/wxapp/wheel-background.png) no-repeat;
+    background-size: 100% 100%;
+    display: flex;
+    flex-wrap: wrap;
+    padding: 0.6rem 0 0 0.46rem;
+    box-sizing: border-box;
+}
+
+.wheel-info .content-wheel .thanks-join {
+    width: 4.5rem;
+    height: 4.5rem;
+    background: #fff;
+    border-radius: 0.128rem;
+    text-align: center;
+    margin-left: 0.4rem;
+    box-sizing: border-box;
+}
+
+.wheel-info .content-wheel .thanks-join .wheel-img {
+    width: 2.5rem;
+    height: 2.7rem;
+    margin: 0 auto;
+    margin-top: 0.384rem;
+    display: block;
+    vertical-align: top;
+}
+
+.wheel-info .content-wheel .thanks-join .wheel-text {
+    display: block;
+    font-size: 0.7rem;
+    color: #ff2d4b;
+    line-height: 1.2rem;
+}
+
+.wheel-info .content-wheel .wheel-item {
+    width: 4.5rem;
+    height: 4.5rem;
+    background: #fff;
+    border-radius: 0.128rem;
+    text-align: center;
+    margin-left: 0.4rem;
+    box-sizing: border-box;
+}
+
+.wheel-info .content-wheel .wheel-item .wheel-img {
+    width: 2.5rem;
+    height: 2.7rem;
+    margin: 0 auto;
+    margin-top: 0.384rem;
+    display: block;
+    vertical-align: top;
+}
+
+.wheel-info .content-wheel .wheel-item .wheel-text {
+    display: block;
+    font-size: 0.7rem;
+    color: #f87a7c;
+    line-height: 1.2rem;
+}
+
+.wheel-info .content-wheel .start-draw {
+    background: #ffeb18;
+}
+
+.wheel-info .content-wheel .start-draw .draw-click {
+    font-size: 0.8rem;
+    color: #ff0007;
+    margin-top: 0.853rem;
+    display: inline-block;
+}
+
+.wheel-info .content-wheel .start-draw .draw-click .draw-go {
+    font-size: 0.8rem;
+    color: #ff0007;
+    display: inline-block;
+    font-weight: 600;
+}
+
+.wheel-info .info-wrap {
+    width: 16rem;
+    padding: 0.5rem 0 1rem;
+    margin: 0 auto;
+    overflow: hidden;
+}
+
+.wheel-info .info-wrap .wrap-head {
+    color: #000;
+    text-align: right;
+    font-size: 0.7rem;
+}
+
+.wheel-info .info-wrap .wrap-text {
+    margin-top: 0.5rem;
+    font-size: 0.9rem;
+    color: #000;
+    text-align: left;
+}
+
+.wheel-info .info-wrap .wrap-text .wrap-inner {
+    margin-bottom: 0.4rem;
+    cursor: pointer;
+    display: inline-block;
+    font-size: .7rem;
+}
+
+.wheel-info .info-wrap .wrap-text .activity-info-content {
+    margin-left: 1rem;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.wheel-info .content-wheel .active {
+    background: #ffcdd3;
+}
+
+.wheel-info .content-wheel .active .wheel-img {
+    width: 2.5rem;
+    height: 2.7rem;
+    margin: 0 auto;
+    margin-top: 0.384rem;
+    display: block;
+    vertical-align: top;
+}
+
+.wheel-info .content-wheel .active .wheel-text {
+    font-size: 0.65rem;
+    color: #fff;
+    display: block;
+}

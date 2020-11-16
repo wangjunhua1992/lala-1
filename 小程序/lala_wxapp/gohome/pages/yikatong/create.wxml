@@ -1,0 +1,50 @@
+<view class="yikatong-create">
+    <view class="wrap-search">
+        <view class="tab-group">
+            <view class="tab-item active">在线开通</view>
+            <view class="tab-item">激活码兑换</view>
+        </view>
+    </view>
+    <view class="vip-group" wx:if="{{1}}">
+        <scroll-view class="vip-list margin-10-b" scrollX="true">
+            <view class="padding-15">
+                <view class="vip-item active">
+                    <view>银卡</view>
+                    <view class="padding-10-t c-danger font-bold font-15">{{Lang.dollarSign}}8.00</view>
+                </view>
+                <view class="vip-item">
+                    <view>金卡</view>
+                    <view class="padding-10-t c-danger font-bold">{{Lang.dollarSign}}8.00</view>
+                </view>
+                <view class="vip-item">
+                    <view class="ellipsis">至尊白金卡</view>
+                    <view class="padding-10-t c-danger font-bold">{{Lang.dollarSign}}8.00</view>
+                </view>
+                <view class="vip-item">
+                    <view>金卡</view>
+                    <view class="padding-10-t c-danger font-bold">{{Lang.dollarSign}}8.00</view>
+                </view>
+                <view class="vip-item">
+                    <view class="ellipsis">至尊白金卡</view>
+                    <view class="padding-10-t c-danger font-bold">{{Lang.dollarSign}}8.00</view>
+                </view>
+            </view>
+        </scroll-view>
+        <van-cell-group>
+            <van-field label="姓名" placeholder="请输入姓名" vModel="value"></van-field>
+            <van-field label="联系方式" placeholder="请输入联系方式" vModel="value"></van-field>
+            <van-cell isLink title="适用区域"></van-cell>
+        </van-cell-group>
+        <view class="create-button">
+            <van-button block size="normal">确认支付{{Lang.dollarSign}}8.00</van-button>
+        </view>
+    </view>
+    <view class="code-exchange" wx:if="{{0}}">
+        <van-cell-group>
+            <van-field label="激活码" placeholder="请输入您要兑换的激活码" vModel="value"></van-field>
+        </van-cell-group>
+        <view class="create-button">
+            <van-button block size="normal">立即兑换</van-button>
+        </view>
+    </view>
+</view>

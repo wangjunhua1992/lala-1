@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns="http://www.yunziyuan.com.cn" versionCode="0.6,0.8,1.0">
+	<application setting="false">
+		<name><![CDATA[啦啦外卖跑腿开源版]]></name>
+		<identifie><![CDATA[we7_wmall]]></identifie>
+		<version><![CDATA[20.7.0]]></version>
+		<type><![CDATA[business]]></type>
+		<ability><![CDATA[微外卖|扫码点餐|微餐饮|微点餐|微外送|生鲜|便利店|超市系统|跑腿|随意购|配送员]]></ability>
+		<description><![CDATA[微外卖|扫码点餐|微餐饮|微点餐|微外送|生鲜|便利店|超市系统]]></description>
+		<author><![CDATA[ONESTOP团队]]></author>
+		<url><![CDATA[https://www.yunziyuan.com.cn/]]></url>
+	</application>
+
+	<platform>
+		<subscribes>
+		</subscribes>
+		<handles>
+			<message type="location" />
+			<message type="text" />
+		</handles>
+	</platform>
+
+	<bindings>
+		<menu>
+			<entry title="后台管理" do="web" state="" direct="false" />
+        </menu>
+	</bindings>
+
+    <install><![CDATA[install.php]]></install>
+
+		<uninstall><![CDATA[DROP TABLE IF EXISTS `ims_tiny_wmall_activity_bargain`;
+DROP TABLE IF EXISTS `ims_tiny_wmall_activity_bargain_goods`;
+DROP TABLE IF EXISTS `ims_tiny_wmall_activity_coupon`;
+DROP TABLE IF EXISTS `ims_tiny_wmall_activity_coupon_grant_log`;
+DROP TABLE IF EXISTS `ims_tiny_wmall_activity_coupon_record`;
+DROP TABLE IF EXISTS `ims_tiny_wmall_activity_redpacket_record`;
+DROP TABLE IF EXISTS `ims_tiny_wmall_activity_share`;
+DROP TABLE IF EXISTS `ims_tiny_wmall_address`;
+DROP TABLE IF EXISTS `ims_tiny_wmall_advertise_trade`;
+DROP TABLE IF EXISTS `ims_tiny_wmall_agent`;
+DROP TABLE IF EXISTS `ims_tiny_wmall_agent_current_log`;
+DROP TABLE IF EXISTS `ims_tiny_wmall_agent_getcash_log`;
+DROP TABLE IF EXISTS `ims_tiny_wmall_agent_users`;
+DROP TABLE IF EXISTS `ims_tiny_wmall_area_list`;
+DROP TABLE IF EXISTS `ims_tiny_wmall_assign_board`;
+DROP TABLE IF EXISTS `ims_tiny_wmall_assign_queue`;
+DROP TABLE IF EXISTS `ims_tiny_wmall_cache`;
+DROP TABLE IF EXISTS `ims_tiny_wmall_category`;
+DROP TABLE IF EXISTS `ims_tiny_wmall_clerk`;
+DROP TABLE IF EXISTS `ims_tiny_wmall_cloudgoods_goods`;
+DROP TABLE IF EXISTS `ims_tiny_wmall_cloudgoods_goods_category`;
+DROP TABLE IF EXISTS `ims_tiny_wmall_cloudgoods_goods_options`;
+DROP TABLE IF EXISTS `ims_tiny_wmall_cloudgoods_menu_category`;
+DROP TABLE IF EXISTS `ims_tiny_wmall_complain`;
+DROP TABLE IF EXISTS `ims_tiny_wmall_config`;
+DROP TABLE IF EXISTS `ims_tiny_wmall_creditshop_adv`;
+DROP TABLE IF EXISTS `ims_tiny_wmall_creditshop_category`;
+DROP TABLE IF EXISTS `ims_tiny_wmall_creditshop_goods`;
+DROP TABLE IF EXISTS `ims_tiny_wmall_creditshop_order`;
+DROP TABLE IF EXISTS `ims_tiny_wmall_creditshop_order_new`;
+DROP TABLE IF EXISTS `ims_tiny_wmall_cube`;
+DROP TABLE IF EXISTS `ims_tiny_wmall_delivery_cards`;
+DROP TABLE IF EXISTS `ims_tiny_wmall_delivery_cards_code`;
+DROP TABLE IF EXISTS `ims_tiny_wmall_delivery_cards_order`;
+DROP TABLE IF EXISTS `ims_tiny_wmall_deliveryer`;
+DROP TABLE IF EXISTS `ims_tiny_wmall_deliveryer_current_log`;
+DROP TABLE IF EXISTS `ims_tiny_wmall_deliveryer_getcash_log`;
+DROP TABLE IF EXISTS `ims_tiny_wmall_deliveryer_groups`;
+DROP TABLE IF EXISTS `ims_tiny_wmall_deliveryer_location_log`;
+DROP TABLE IF EXISTS `ims_tiny_wmall_deliveryer_transfer_log`;
+DROP TABLE IF EXISTS `ims_tiny_wmall_diypage`;
+DROP TABLE IF EXISTS `ims_tiny_wmall_diypage_menu`;
+DROP TABLE IF EXISTS `ims_tiny_wmall_diypage_template`;
+DROP TABLE IF EXISTS `ims_tiny_wmall_errander_category`;
+DROP TABLE IF EXISTS `ims_tiny_wmall_errander_order`;
+DROP TABLE IF EXISTS `ims_tiny_wmall_errander_order_discount`;
+DROP TABLE IF EXISTS `ims_tiny_wmall_errander_order_status_log`;
+DROP TABLE IF EXISTS `ims_tiny_wmall_errander_page`;
+DROP TABLE IF EXISTS `ims_tiny_wmall_freelunch`;
+DROP TABLE IF EXISTS `ims_tiny_wmall_freelunch_partaker`;
+DROP TABLE IF EXISTS `ims_tiny_wmall_freelunch_record`;
+DROP TABLE IF EXISTS `ims_tiny_wmall_gohome_category`;
+DROP TABLE IF EXISTS `ims_tiny_wmall_gohome_comment`;
+DROP TABLE IF EXISTS `ims_tiny_wmall_gohome_favorite`;
+DROP TABLE IF EXISTS `ims_tiny_wmall_gohome_notice`;
+DROP TABLE IF EXISTS `ims_tiny_wmall_gohome_order`;
+DROP TABLE IF EXISTS `ims_tiny_wmall_gohome_slide`;
+DROP TABLE IF EXISTS `ims_tiny_wmall_goods`;
+DROP TABLE IF EXISTS `ims_tiny_wmall_goods_category`;
+DROP TABLE IF EXISTS `ims_tiny_wmall_goods_options`;
+DROP TABLE IF EXISTS `ims_tiny_wmall_haodian_category`;
+DROP TABLE IF EXISTS `ims_tiny_wmall_haodian_order`;
+DROP TABLE IF EXISTS `ims_tiny_wmall_help`;
+DROP TABLE IF EXISTS `ims_tiny_wmall_kanjia`;
+DROP TABLE IF EXISTS `ims_tiny_wmall_kanjia_category`;
+DROP TABLE IF EXISTS `ims_tiny_wmall_kanjia_helprecord`;
+DROP TABLE IF EXISTS `ims_tiny_wmall_kanjia_userlist`;
+DROP TABLE IF EXISTS `ims_tiny_wmall_kefu_chat`;
+DROP TABLE IF EXISTS `ims_tiny_wmall_kefu_chat_log`;
+DROP TABLE IF EXISTS `ims_tiny_wmall_kefu_fastreply`;
+DROP TABLE IF EXISTS `ims_tiny_wmall_lewaimai_log`;
+DROP TABLE IF EXISTS `ims_tiny_wmall_mealredpacket_exchange`;
+DROP TABLE IF EXISTS `ims_tiny_wmall_member_black`;
+DROP TABLE IF EXISTS `ims_tiny_wmall_member_footmark`;
+DROP TABLE IF EXISTS `ims_tiny_wmall_member_groups`;
+DROP TABLE IF EXISTS `ims_tiny_wmall_member_invoice`;
+DROP TABLE IF EXISTS `ims_tiny_wmall_member_recharge`;
+DROP TABLE IF EXISTS `ims_tiny_wmall_member_scan_record`;
+DROP TABLE IF EXISTS `ims_tiny_wmall_member_union_log`;
+DROP TABLE IF EXISTS `ims_tiny_wmall_members`;
+DROP TABLE IF EXISTS `ims_tiny_wmall_news`;
+DROP TABLE IF EXISTS `ims_tiny_wmall_news_category`;
+DROP TABLE IF EXISTS `ims_tiny_wmall_notice`;
+DROP TABLE IF EXISTS `ims_tiny_wmall_notice_read_log`;
+DROP TABLE IF EXISTS `ims_tiny_wmall_oauth_fans`;
+DROP TABLE IF EXISTS `ims_tiny_wmall_operate_log`;
+DROP TABLE IF EXISTS `ims_tiny_wmall_order`;
+DROP TABLE IF EXISTS `ims_tiny_wmall_order_cart`;
+DROP TABLE IF EXISTS `ims_tiny_wmall_order_comment`;
+DROP TABLE IF EXISTS `ims_tiny_wmall_order_discount`;
+DROP TABLE IF EXISTS `ims_tiny_wmall_order_grant`;
+DROP TABLE IF EXISTS `ims_tiny_wmall_order_grant_record`;
+DROP TABLE IF EXISTS `ims_tiny_wmall_order_peerpay`;
+DROP TABLE IF EXISTS `ims_tiny_wmall_order_peerpay_payinfo`;
+DROP TABLE IF EXISTS `ims_tiny_wmall_order_refund`;
+DROP TABLE IF EXISTS `ims_tiny_wmall_order_refund_log`;
+DROP TABLE IF EXISTS `ims_tiny_wmall_order_remind_log`;
+DROP TABLE IF EXISTS `ims_tiny_wmall_order_stat`;
+DROP TABLE IF EXISTS `ims_tiny_wmall_order_status_log`;
+DROP TABLE IF EXISTS `ims_tiny_wmall_paybill_order`;
+DROP TABLE IF EXISTS `ims_tiny_wmall_paylog`;
+DROP TABLE IF EXISTS `ims_tiny_wmall_perm_account`;
+DROP TABLE IF EXISTS `ims_tiny_wmall_perm_role`;
+DROP TABLE IF EXISTS `ims_tiny_wmall_perm_user`;
+DROP TABLE IF EXISTS `ims_tiny_wmall_pintuan_category`;
+DROP TABLE IF EXISTS `ims_tiny_wmall_pintuan_goods`;
+DROP TABLE IF EXISTS `ims_tiny_wmall_plugin`;
+DROP TABLE IF EXISTS `ims_tiny_wmall_plugincenter_grant_log`;
+DROP TABLE IF EXISTS `ims_tiny_wmall_plugincenter_order`;
+DROP TABLE IF EXISTS `ims_tiny_wmall_plugincenter_package`;
+DROP TABLE IF EXISTS `ims_tiny_wmall_plugincenter_plugin`;
+DROP TABLE IF EXISTS `ims_tiny_wmall_plugincenter_slide`;
+DROP TABLE IF EXISTS `ims_tiny_wmall_printer`;
+DROP TABLE IF EXISTS `ims_tiny_wmall_printer_label`;
+DROP TABLE IF EXISTS `ims_tiny_wmall_queue`;
+DROP TABLE IF EXISTS `ims_tiny_wmall_reply`;
+DROP TABLE IF EXISTS `ims_tiny_wmall_report`;
+DROP TABLE IF EXISTS `ims_tiny_wmall_reserve`;
+DROP TABLE IF EXISTS `ims_tiny_wmall_seckill_goods`;
+DROP TABLE IF EXISTS `ims_tiny_wmall_seckill_goods_category`;
+DROP TABLE IF EXISTS `ims_tiny_wmall_seckill_order`;
+DROP TABLE IF EXISTS `ims_tiny_wmall_shareredpacket`;
+DROP TABLE IF EXISTS `ims_tiny_wmall_shareredpacket_invite_record`;
+DROP TABLE IF EXISTS `ims_tiny_wmall_slide`;
+DROP TABLE IF EXISTS `ims_tiny_wmall_spread_current_log`;
+DROP TABLE IF EXISTS `ims_tiny_wmall_spread_getcash_log`;
+DROP TABLE IF EXISTS `ims_tiny_wmall_spread_groups`;
+DROP TABLE IF EXISTS `ims_tiny_wmall_store`;
+DROP TABLE IF EXISTS `ims_tiny_wmall_store_account`;
+DROP TABLE IF EXISTS `ims_tiny_wmall_store_activity`;
+DROP TABLE IF EXISTS `ims_tiny_wmall_store_category`;
+DROP TABLE IF EXISTS `ims_tiny_wmall_store_clerk`;
+DROP TABLE IF EXISTS `ims_tiny_wmall_store_current_log`;
+DROP TABLE IF EXISTS `ims_tiny_wmall_store_delivery_policy`;
+DROP TABLE IF EXISTS `ims_tiny_wmall_store_delivery_policy_log`;
+DROP TABLE IF EXISTS `ims_tiny_wmall_store_deliveryer`;
+DROP TABLE IF EXISTS `ims_tiny_wmall_store_favorite`;
+DROP TABLE IF EXISTS `ims_tiny_wmall_store_getcash_log`;
+DROP TABLE IF EXISTS `ims_tiny_wmall_store_members`;
+DROP TABLE IF EXISTS `ims_tiny_wmall_store_page`;
+DROP TABLE IF EXISTS `ims_tiny_wmall_store_yucunjin_log`;
+DROP TABLE IF EXISTS `ims_tiny_wmall_storebd_current_log`;
+DROP TABLE IF EXISTS `ims_tiny_wmall_storebd_getcash_log`;
+DROP TABLE IF EXISTS `ims_tiny_wmall_storebd_store`;
+DROP TABLE IF EXISTS `ims_tiny_wmall_storebd_user`;
+DROP TABLE IF EXISTS `ims_tiny_wmall_supercoupon_coupon`;
+DROP TABLE IF EXISTS `ims_tiny_wmall_supercoupon_member_group`;
+DROP TABLE IF EXISTS `ims_tiny_wmall_superredpacket`;
+DROP TABLE IF EXISTS `ims_tiny_wmall_superredpacket_grant`;
+DROP TABLE IF EXISTS `ims_tiny_wmall_superredpacket_meal_order`;
+DROP TABLE IF EXISTS `ims_tiny_wmall_superredpacket_share`;
+DROP TABLE IF EXISTS `ims_tiny_wmall_svip_code`;
+DROP TABLE IF EXISTS `ims_tiny_wmall_svip_meal`;
+DROP TABLE IF EXISTS `ims_tiny_wmall_svip_meal_order`;
+DROP TABLE IF EXISTS `ims_tiny_wmall_svip_redpacket`;
+DROP TABLE IF EXISTS `ims_tiny_wmall_svip_task`;
+DROP TABLE IF EXISTS `ims_tiny_wmall_svip_task_records`;
+DROP TABLE IF EXISTS `ims_tiny_wmall_system_log`;
+DROP TABLE IF EXISTS `ims_tiny_wmall_table_call_record`;
+DROP TABLE IF EXISTS `ims_tiny_wmall_tables`;
+DROP TABLE IF EXISTS `ims_tiny_wmall_tables_category`;
+DROP TABLE IF EXISTS `ims_tiny_wmall_tables_scan`;
+DROP TABLE IF EXISTS `ims_tiny_wmall_text`;
+DROP TABLE IF EXISTS `ims_tiny_wmall_tongcheng_category`;
+DROP TABLE IF EXISTS `ims_tiny_wmall_tongcheng_comment`;
+DROP TABLE IF EXISTS `ims_tiny_wmall_tongcheng_information`;
+DROP TABLE IF EXISTS `ims_tiny_wmall_tongcheng_order`;
+DROP TABLE IF EXISTS `ims_tiny_wmall_tongcheng_reply`;
+DROP TABLE IF EXISTS `ims_tiny_wmall_wheel`;
+DROP TABLE IF EXISTS `ims_tiny_wmall_wheel_record`;
+DROP TABLE IF EXISTS `ims_tiny_wmall_wxapp_formid_log`;
+DROP TABLE IF EXISTS `ims_tiny_wmall_wxapp_live_room`;
+DROP TABLE IF EXISTS `ims_tiny_wmall_wxapp_page`;
+DROP TABLE IF EXISTS `ims_tiny_wmall_yinsihao_bind_list`;
+DROP TABLE IF EXISTS `ims_tiny_wmalldeliveryer_config`;
+]]></uninstall>
+	<upgrade><![CDATA[upgrade.php]]></upgrade>
+
+</manifest>

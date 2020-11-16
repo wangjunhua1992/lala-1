@@ -1,0 +1,20 @@
+<view class="page-help">
+    <scroll-view class="list" scrollY="true">
+        <view class="title border-box">常见问题</view>
+        <view bind:tap="onJsEvent" class="list-item flex border-box" data-event-type="jsUrl" data-url="pages/public/richtext?key=help&helpid={{item.id}}" wx:for="{{helps}}">
+            <view class="content">{{item.title}}</view>
+            <view class="icon icon-right"></view>
+        </view>
+    </scroll-view>
+    <view class="service flex border-box border-1px-t">
+        <button class="service-container online-service border-box" openType="contact" sessionFrom="weapp">
+            <view class="icon icon-service1"></view>
+            <view>在线客服</view>
+        </button>
+        <view bind:tap="onJsEvent" class="service-container tel-service border-1px-l" data-event-type="jsPhone" data-phonenumber="{{mobile}}">
+            <view class="icon icon-phone "></view>
+            <view>电话客服</view>
+        </view>
+    </view>
+</view>
+<include src="../public/footer.wxml"></include>

@@ -1,0 +1,118 @@
+page {
+    background-color: #f5f5f5;
+    font-size: 15px;
+}
+
+.page-member-favorite {
+    line-height: 1;
+}
+
+.page-member-favorite .favorite-item {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    justify-content: space-between;
+    margin: 15px;
+    background-color: #fff;
+    border-radius: 5px;
+    padding: 15px;
+}
+
+.page-member-favorite .favorite-item .favorite-img {
+    position: relative;
+    width: 80px;
+    height: 80px;
+    margin-right: 10px;
+}
+
+.page-member-favorite .favorite-item .favorite-img image {
+    width: 100%;
+    height: 100%;
+}
+
+.page-member-favorite .favorite-item .favorite-img .mark {
+    position: absolute;
+    width: 44px;
+    height: 28px;
+    top: 0;
+    left: 10px;
+    padding-top: 4px;
+    background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFQAAABCCAYAAADJ5PFHAAAABGdBTUEAALGPC/xhBQAAAAFzUkdCAK7OHOkAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAAZiS0dEAP8A/wD/oL2nkwAABShJREFUeNrtmF1MFFcUx//nzmIULPhFFCui5cXWCqYaSbQfNl3EhZaFtmtrCS3tbngpfWj1hfSFF/tS26ZJfehiGyuiKBEQHyhCNViJVivRYGibNLUfSRNJy6coysw9fQDiri7L4swwkN7f2505d+45/8w5+5+lkXw3Ywxtz14YH+6G4uERoQt6MtPpfGY9wvwj/ueszQhbKkFN4vrok7B1mKB6+ftO5zfrCX9Du645nc+sR7W8SWTn1bA1hdomhXnC3lBtz16n85n1KB9qMWqGmkX5UGtRPtRmlA+1GNXyJlE+1GaUD7UY5UMtRs1Qsygfai3Kh9qM8qEWo1reJMqH2ozyoRajfKjFqBlqFuVDrUX5UJtRPtRiVMubRPlQm1E+1GKUD7UYNUPNonyotSgfajPKh1qManmTKB9qM8qHWozyoRajZqhZlA+1FuVDbUb5UIuJ2PK05VlgzVqnc5v5JCTAOPhV2KWIgnJvD7T3PoC272tQgQ8QatQiPgGUmw+kpt27NjQEPl4TFuaKuLnrGox3/cCaJyCyPeDUNOCP606X5AxLkiGKSkBZW8Adl8BnWqOGk+51V4PxMgNzJ44igMc+qBLmQ3hfhWxtArpvOF2u7VCeF3DFgU+fAgYHJo4D3QFQRwDAb+QtlEMjxZKlH0BG1BOEgHi7FLQ1G3z9V8jqA8AvPzldtzWszQCtywTXVE1hE/0sBPYLmn+A6uv/pftvc0HOJoM5AMjXmfHIhM9xuUBZW4BlKQ/MkdkGvVgAkecFdB2ypgrcfjZ6PDAMwnFNUCXVt7Tddy8yXLwtwejHa0zsB/PmmJPbUQT09YK/PwPcvu20VjEhSssg276bvNMIXYJQKeK0g1Tb3BM5JAa40P24zhQgiWIGJ0cNXrkKYueboMynwBfOQe77DDAMpzUbZcFC0As5wO+/gS9fjGkLEW4DqNUEKqm+9dyk8VPJh32+OcadPi8IAQBuZp7YTyUmgZ7PBp9pAQb6R68JAUg5/UIuWgxRWgZatx7c3gb5zX5g6OZkynQKEpUC8VXU0NAX61FTEjQU9rlX6nfJT8wlDKyMadOjKyCK/eCWJnDHpXvOwWZoYxawaDH47GlgeDiKGHQLhGOa0IJU/+35hzrLbLJcUSH0q+e3kTQCAPKZERf1wGwPRLYHWJIM+cWno8JahRCgDZtAm5+B/PzjKahAVwSoUszXDlF100DsGyM8yrpqAPZ5kuXdkbckkx/gNVGDU9NAKcvBF0NeBBMjgTwvQewoArpvQDbWgdvboscTboLpqCZEkBqaYxuoseRhoZ5hcKH7acOgAAAfg+Nj2SN2lQP9/ZAtTVP+MqNCH/jHH4C//pwstEMQBQXPO0yNjYNW122boONwkSdR3tR3SiAA5o1RgxOTIPK8IPd2oLcHxu6yB2OWLoPYlgf+pxvcdDK2IgmDYBzRXNqXVNfcYWe9tgsaChfmZBqGDAAoYvDCaArQ+g3gK5fv/XAlLYDYVQ5anQ4+fQry2OHJf6mBS0QU1BLpCFWdGpqOGqdV0HG4pGSu0fP3KyAZAOM5jiWPVY+BVqSCL7QDuh6lIBoAuFoTFKSGlivTXZsjgobCBZ50Xep+IpQwc4qJUi4QcVBbOu8oBU/ecqoexwUdhysqXEZHe+7YR0MuM2uTJk/oA9MhjThIJ1o7na4BmEGChsL52csloYTB7zAjPULa7UQiqM1JrKXa2hn1h8GMFHQcZibdu30rkREAaCsTal3sCtKJpi6nc5uI/wAdYc5UJdnTiAAAAABJRU5ErkJggg==) no-repeat;
+    background-size: 100% 100%;
+    color: #fff;
+    font-size: 12px;
+    text-align: center;
+}
+
+.page-member-favorite .favorite-item .favorite-info {
+    flex: 1;
+    height: 80px;
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: flex-start;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.page-member-favorite .favorite-item .favorite-info .store {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.page-member-favorite .favorite-item .favorite-info .store .name {
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.page-member-favorite .favorite-item .favorite-info .store .order-type {
+    display: inline-block;
+    background-color: #ff2d4b;
+    color: #fff;
+    font-size: 12px;
+    line-height: 12px;
+    padding: 3px 5px;
+    border-radius: 3px;
+    margin-right: 5px;
+}
+
+.page-member-favorite .favorite-item .favorite-info .label {
+    color: #fff;
+}
+
+.page-member-favorite .favorite-item .favorite-info .label.label-info {
+    background-color: #5bc0de;
+}
+
+.page-member-favorite .favorite-item .favorite-info .label.label-danger {
+    background-color: #ff2d4b;
+}
+
+.page-member-favorite .favorite-item .favorite-info .label.label-warning {
+    background-color: #f0ad4e;
+}
+
+.page-member-favorite .favorite-item .favorite-info .goods {
+    font-size: 14px;
+    color: #333;
+}
+
+.page-member-favorite .favorite-item .favorite-info .price {
+    display: flex;
+    align-items: center;
+}
+
+.page-member-favorite .favorite-item .favorite-info .price .new-price {
+    font-size: 16px;
+    color: #ff2d4b;
+    font-weight: bold;
+}
+
+.page-member-favorite .favorite-item .favorite-info .price .old-price {
+    font-size: 14px;
+    margin-left: 5px;
+    color: #999;
+    text-decoration: line-through;
+}

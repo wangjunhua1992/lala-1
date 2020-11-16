@@ -1,0 +1,71 @@
+page {
+    background: #f4f4f4;
+    box-sizing: border-box;
+    font-size: 14px;
+}
+
+.br {
+    border: 1px solid red;
+}
+
+.flex {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.border-box {
+    box-sizing: border-box;
+}
+
+.page-help {
+    width: 100%;
+}
+
+.page-help .list {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 71px;
+    left: 0;
+}
+
+.page-help .title {
+    width: 100%;
+    padding: 10px 15px;
+}
+
+.page-help .list-item {
+    width: 100%;
+    padding: 10px 15px;
+    background: #fff;
+    color: #A1A1A1;
+}
+
+.page-help .service {
+    width: 100%;
+    padding: 10px 0;
+    position: fixed;
+    z-index: 10;
+    bottom: 0;
+    background-color: #fff;
+}
+
+.page-help .online-service {
+    background-color: #fff;
+    line-height: inherit;
+}
+
+.page-help .service .service-container {
+    width: 49.9%;
+    text-align: center;
+    font-size: 15px;
+}
+
+.page-help .service .service-container .icon {
+    color: #ff2d4b;
+    font-size: 25px;
+    height: 25px;
+    line-height: 25px;
+}

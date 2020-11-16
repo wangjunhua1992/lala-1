@@ -1,0 +1,259 @@
+page {
+    background: #F3F2F2;
+}
+
+.page-mealindex {
+    width: 100%;
+    background: #F3F2F2;
+}
+
+.br {
+    border: 1px solid red;
+}
+
+.page-mealindex .meal-container {
+    width: 100%;
+    background-color: #fff;
+    box-sizing: border-box;
+    padding: 20px 15px;
+}
+
+.page-mealindex .meal-container .top {
+    margin-bottom: 10px;
+}
+
+.page-mealindex .meal-container .top .title {
+    font-size: 18px;
+    color: #3F3F3F;
+    height: 26px;
+    line-height: 26px;
+}
+
+.page-mealindex .meal-container .top .tip {
+    font-size: 12px;
+    color: #7B7B79;
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.page-mealindex .meal-container .top .tip text {
+    color: #FF5D43;
+}
+
+.page-mealindex .meal-container .meal-item {
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.page-mealindex .meal-container .meal-item:last-child {
+    margin-bottom: 0px;
+}
+
+.page-mealindex .meal-container .meal-item .item-container {
+    border: 2px solid #ddd;
+    padding: 15px;
+    min-height: 50px;
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.page-mealindex .meal-container .meal-item .item-container.active {
+    background-color: #FFFDEF;
+    border: 2px solid #E9D8A8;
+}
+
+.page-mealindex .meal-container .meal-item .item-container .left {
+    width: 70%;
+    overflow: hidden;
+    color: #333;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.page-mealindex .meal-container .meal-item .item-container .right {
+    width: 30%;
+    text-align: right;
+}
+
+.page-mealindex .meal-container .meal-item .item-container .right .price {
+    margin-left: 5px;
+    color: #FF5338;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.page-mealindex .meal-container .meal-item .item-container .right .old-price {
+    color: #B4B3B0;
+    font-size: 12px;
+    text-decoration: line-through;
+}
+
+.page-mealindex .meal-explain {
+    width: 100%;
+    font-size: 14px;
+    color: #717171;
+    text-align: center;
+    margin-top: 20px;
+}
+
+.page-mealindex .meal-explain .icon-question {
+    display: inline-block;
+    border: 1px solid #717171;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 12px;
+}
+
+.page-mealindex .submit-container {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 50px;
+    background: #fff;
+    box-sizing: border-box;
+    padding-left: 15px;
+    line-height: 50px;
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.page-mealindex .submit-container .final-price {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.page-mealindex .submit-container .final-price .text {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.page-mealindex .submit-container .final-price .price {
+    font-size: 16px;
+    font-weight: bold;
+    color: #FF5338;
+    margin: 0px 5px;
+}
+
+.page-mealindex .submit-container .final-price .old-price {
+    color: #B4B3B0;
+    font-size: 14px;
+    text-decoration: line-through;
+}
+
+.page-mealindex .submit-container .submit-button {
+    width: 110px;
+    height: 100%;
+    background-color: #CDBC70;
+    text-align: center;
+    font-size: 16px;
+    color: #624A19;
+}
+
+.page-mealindex .submit-container .submit-button.disabled {
+    background: #ccc;
+}
+
+.page-mealindex .mealorder-url {
+    width: 100%;
+    height: 50px;
+    background: #fff;
+    box-sizing: border-box;
+    padding: 0 15px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 16px;
+    margin-top: 20px;
+    margin-bottom: 100px;
+}
+
+.page-mealindex .mealorder-url .icon {
+    color: #9B9B9B;
+    font-size: 18px;
+}
+
+.page-mealindex .redpacket-wrap {
+    width: 100%;
+    height: auto;
+    background: #fff;
+    overflow: hidden;
+}
+
+.page-mealindex .redpacket-wrap .redpacket-wrap-title {
+    font-size: 18px;
+    color: #3f3f3f;
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+
+.page-mealindex .redpacket-wrap .redpacket-item {
+    width: 48%;
+    background: #fff7e7;
+    float: left;
+    border-radius: 3px;
+    margin-bottom: 10px;
+    padding: 10px;
+    overflow: hidden;
+    box-sizing: border-box;
+}
+
+.page-mealindex .redpacket-wrap .redpacket-item:nth-child(2n) {
+    margin-right: 10px;
+}
+
+.page-mealindex .redpacket-wrap .redpacket-item .redpacket-item-body {
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.page-mealindex .redpacket-wrap .redpacket-item .item-body-price {
+    width: 48%;
+    color: #fb5227;
+    white-space: nowrap;
+}
+
+.page-mealindex .redpacket-wrap .redpacket-item .item-body-price .body-price-number {
+    font-size: 39px;
+}
+
+.page-mealindex .redpacket-wrap .redpacket-item .item-body-name {
+    width: 50%;
+    text-align: left;
+}
+
+.page-mealindex .redpacket-wrap .redpacket-item .item-body-name .name-general {
+    height: 26px;
+    font-size: 16px;
+    line-height: 26px;
+    color: #000;
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.page-mealindex .redpacket-wrap .redpacket-item .item-body-name .name-reduction {
+    height: 26px;
+    line-height: 26px;
+    font-size: 14px;
+    color: #bf9a42;
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}

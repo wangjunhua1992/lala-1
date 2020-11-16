@@ -1,0 +1,58 @@
+<view class="storebd-commission">
+    <view class="content">
+        <view class="commission-title">
+            <view class="commission-left">
+                <view>累计佣金({{Lang.dollarSignCn}})</view>
+                <view>{{commission.total}}</view>
+            </view>
+            <view class="commission-right">
+                <view bind:tap="onJsEvent" data-event-type="jsUrl" data-url="package/pages/storebd/getcashlog">提现明细</view>
+            </view>
+        </view>
+        <view class="list-block">
+            <view class="item-block">
+                <view class="item-media">
+                    <text class="icon icon-recharge"></text>
+                </view>
+                <view class="item-inner">
+                    <view class="item-title">可提现佣金</view>
+                    <view class="item-after c-danger">{{Lang.dollarSign}}{{storebd_user.credit2}}</view>
+                </view>
+            </view>
+        </view>
+        <view class="list-block">
+            <view bind:tap="onJsEvent" class="item-block" data-event-type="jsUrl" data-url="package/pages/storebd/current">
+                <view class="item-media">
+                    <text class="icon icon-time"></text>
+                </view>
+                <view class="item-inner">
+                    <view class="item-title">累计佣金</view>
+                    <view class="item-after">{{Lang.dollarSign}}{{commission.total}}</view>
+                </view>
+            </view>
+            <view class="item-block">
+                <view class="item-media">
+                    <text class="icon icon-rest"></text>
+                </view>
+                <view class="item-inner">
+                    <view class="item-title">待打款佣金</view>
+                    <view class="item-after">{{Lang.dollarSign}}{{commission.getcash_apply}}</view>
+                </view>
+            </view>
+            <view class="item-block">
+                <view class="item-media">
+                    <text class="icon icon-signboard"></text>
+                </view>
+                <view class="item-inner">
+                    <view class="item-title">成功提现佣金</view>
+                    <view class="item-after">{{Lang.dollarSign}}{{commission.getcash_success}}</view>
+                </view>
+            </view>
+        </view>
+        <view class="btn-group">
+            <view bind:tap="onJsEvent" class="button-fill" data-event-type="jsUrl" data-url="package/pages/storebd/getcash" wx:if="{{storebd_user.credit2>0}}">我要提现</view>
+            <view class="button-fill disabled" wx:else>我要提现</view>
+        </view>
+    </view>
+</view>
+<include src="../../../pages/public/footer.wxml"></include>

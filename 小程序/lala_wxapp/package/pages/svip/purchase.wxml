@@ -1,0 +1,66 @@
+<view class="page-purchase">
+    <view class="content">
+        <view class="header">
+            <view class="user">
+                <image alt="" class="avatar" src="{{member.avatar}}"></image>
+                <view>
+                    <view class="info">
+                        <text>{{member.nickname}}</text>
+                        <text wx:if="{{member.mobile}}">（{{member.mobile}}）</text>
+                    </view>
+                    <view class="svip">
+                        <text wx:if="{{member.svip_status==1}}">{{member.svip_endtime_cn}}到期，购买后有效期将顺延</text>
+                        <text wx:else>您还不是超级会员</text>
+                    </view>
+                </view>
+            </view>
+        </view>
+        <view class="wrapper-item">
+            <view class="header-title">
+                <view class="title">
+					选择优惠套餐
+				</view>
+            </view>
+            <view class="meal-list" wx:if="{{meals.length>0}}">
+                <view bind:tap="onSelectMeal" class="container" data-index="{{index}}" wx:for="{{meals}}" wx:key="{{item.id}}">
+                    <view class="meal-item {{index==selectIndex?'active':''}}">
+                        <view class="meal-info">
+                            <view class="meal-time">{{item.title}}</view>
+                            <view class="price">
+                                <view class="nums">
+                                    <text class="yuan">
+                                        <text>{{Lang.dollarSign}}</text>{{item.price}}
+									</text>
+                                    <view class="old-price">{{Lang.dollarSign}}{{item.oldprice}}</view>
+                                </view>
+                            </view>
+                        </view>
+                        <text class="tag" wx:if="{{item.description}}">{{item.description}}</text>
+                        <text class="tips" wx:if="{{0}}"></text>
+                    </view>
+                </view>
+            </view>
+            <view class="description" wx:else>
+                <view>暂时没有可购买会员套餐</view>
+            </view>
+        </view>
+        <van-cell-group>
+            <van-cell isLink title="使用兑换码兑换会员" url="/package/pages/svip/svipExchange"></van-cell>
+        </van-cell-group>
+        <view class="description">
+            <view bind:tap="onJsEvent" class="font-13 c-gray" data-event-type="jsUrl" data-url="/pages/public/richtext?key=agreement_svip">会员特权说明</view>
+        </view>
+        <view class="bottomBar" wx:if="{{meals.length>0}}">
+            <view class="allprice">
+                <view class="total">
+					总价
+					<text class="price">{{Lang.dollarSign}}<text class="new-price">{{meals[selectIndex].price}}</text>
+                    </text>
+                    <text class="old-price">{{Lang.dollarSign}}{{meals[selectIndex].oldprice}}</text>
+                </view>
+            </view>
+            <button bind:tap="onSubmit" disabled="{{submitting}}">{{member.svip_status==1?'立即续费':'立即开通'}}</button>
+        </view>
+    </view>
+</view>
+<include src="../../../pages/public/footer.wxml"></include>

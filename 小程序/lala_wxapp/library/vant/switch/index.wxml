@@ -1,0 +1,5 @@
+<view bind:tap="onClick" class="{{classes}}" style="{{style}}">
+    <view class="van-switch__node node-class">
+        <van-loading customClass="van-switch__loading" size="50%" wx:if="{{loading}}"></van-loading>
+    </view>
+</view>

@@ -1,0 +1,61 @@
+page {
+    background-color: #f5f5f5;
+    line-height: 1;
+}
+
+.kefu-index .chat-list .chat-item {
+    background-color: #fff;
+    padding-left: 15px;
+}
+
+.kefu-index .chat-list .chat-item .item-inner {
+    padding: 15px 15px 15px 0;
+    display: flex;
+    flex-flow: row wrap;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+}
+
+.kefu-index .chat-list .chat-item .item-inner .avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+.kefu-index .chat-list .chat-item .item-inner .info {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    left: 55px;
+    bottom: 15px;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: space-between;
+}
+
+.kefu-index .chat-list .chat-item .item-inner .info .nickname {
+    width: 70%;
+    font-size: 14px;
+}
+
+.kefu-index .chat-list .chat-item .item-inner .info .lasttime {
+    width: 30%;
+    font-size: 12px;
+    text-align: right;
+}
+
+.kefu-index .chat-list .chat-item .item-inner .not-read {
+    position: absolute;
+    z-index: 10;
+    top: 12px;
+    left: 30px;
+    min-width: 12px;
+    padding: 0 2px;
+    border-radius: 50px;
+    font-size: 12px;
+    background-color: #ff2d4b;
+    color: #fff;
+    text-align: center;
+}

@@ -1,0 +1,24 @@
+<view class="container">
+    <view class="content">
+        <view class="wrapper">
+            <view class="logo">
+                <image src="{{store.logo}}"></image>
+            </view>
+            <view class="title">{{store.title}}</view>
+            <view class="divide">
+                <view class="divide-line"></view>
+            </view>
+            <view class="operation">
+                <view bind:tap="onSelectQueue" class="operation-item {{queueid_select==index?'active':''}}" data-index="{{index}}" wx:for="{{queues}}">{{item.title}}{{item.guest_num>0?'(推荐'+item.guest_num+'人)':''}}<text class="font-12">(目前有{{item.wait}}人等待)</text>
+                </view>
+            </view>
+            <view bind:tap="onSubmit" class="submit">立即取号</view>
+            <view class="tip">
+                <text class="icon icon-question1"></text>
+				过号请重新取号，谢谢配合！
+			</view>
+            <view class="line"></view>
+        </view>
+    </view>
+</view>
+<include src="../../../pages/public/footer.wxml"></include>

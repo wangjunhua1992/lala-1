@@ -1,0 +1,211 @@
+<view class="kanjia-detail">
+    <view class="goods-info padding-15-lr padding-15-t bg-default">
+        <swiper circular="{{true}}" class="thumbs" wx:if="{{activity.thumbs&&activity.thumbs.length>0}}">
+            <swiper-item wx:for="{{activity.thumbs}}" wx:key="{{index}}">
+                <image class="wh-100" src="{{item}}"></image>
+            </swiper-item>
+        </swiper>
+        <view class="thumb" wx:else>
+            <image mode="widthFix" src="{{activity.thumb}}"></image>
+        </view>
+        <view class="title">【邀请好友帮忙砍价】{{activity.name}}</view>
+        <view class="border-1px-b flex-lr padding-15-b">
+            <view class="flex">
+                <view class="c-danger font-16 font-bold">{{Lang.dollarSign}}{{activity.price}}</view>
+                <view class="c-gray font-12 line-through margin-5-l">{{Lang.dollarSign}}{{activity.oldprice}}</view>
+            </view>
+            <view class="flex">
+                <text class="c-gray font-12 margin-5-r">距结束</text>
+                <count-down endtime="{{activity.endtime_cn}}" wx:if="{{activity&&activity.endtime}}"></count-down>
+            </view>
+        </view>
+        <view class="padding-15-tb flex-lr font-12 c-gray">
+            <view class="col-33 border-1px-r">
+                <text class="icon icon-browse"></text>
+                <span>{{activity.total_looknum}}人浏览</span>
+            </view>
+            <view class="col-33 text-center border-1px-r">
+                <text class="icon icon-share"></text>
+                <text>{{activity.total_sharenum}}人分享</text>
+            </view>
+            <view class="col-33 text-right">
+                <text class="icon icon-friend font-15"></text>
+                <text>{{activity.total_joinnum}}人参与</text>
+            </view>
+        </view>
+    </view>
+    <view class="margin-10-t bg-default" wx:if="{{take_status==1}}">
+        <view class="progress">
+            <text class="max-price margin-5-r font-13 padding-15-l">{{Lang.dollarSign}}{{activity.oldprice}}</text>
+            <view class="progress-inner">
+                <view class="now-price" style="left: {{member_takeinfo.per_price}}%;">现价{{Lang.dollarSign}}{{member_takeinfo.price}}</view>
+                <view class="bar">
+                    <view class="bar-inner" style="width: {{member_takeinfo.per_price}}%"></view>
+                </view>
+            </view>
+            <text class="min-price c-danger margin-5-l font-13 padding-15-r">{{Lang.dollarSign}}{{activity.price}}</text>
+        </view>
+        <view class="flex-lr font-12 padding-15-lr padding-15-b padding-10-t">
+            <view>目前{{member_takeinfo.helper.length}}位好友帮忙砍价，已砍掉{{Lang.dollarSign}}{{member_takeinfo.has_bargain}}，还需砍{{Lang.dollarSign}}{{member_takeinfo.still_bargain}}</view>
+            <view bind:tap="onToggleHelpStatus" class="flex c-gray" wx:if="{{member_takeinfo.helper.length>0}}">
+                <text>查看详情</text>
+                <text class="icon {{helpStatus?'icon-fold':'icon-unfold'}}"></text>
+            </view>
+        </view>
+        <view class="helper-list padding-15-lr padding-10-tb border-1px-t" wx:if="{{member_takeinfo.helper.length>0&&helpStatus}}">
+            <view class="helper-item flex-lr {{index>0?'margin-10-t':''}}" wx:for="{{member_takeinfo.helper}}" wx:key="{{index}}">
+                <view class="flex">
+                    <view class="avatar">
+                        <image class="wh-100" src="{{item.avatar}}"></image>
+                    </view>
+                    <view class="margin-10-l">
+                        <view class="font-14 ">{{item.nickname}}</view>
+                        <view class="font-12 c-gray margin-5-t">{{item.createtime_cn}}</view>
+                    </view>
+                </view>
+                <view class="flex">
+                    <view class="icon-axe margin-5-r"></view>
+                    <view class="c-gray font-14 margin-5-l">帮您砍掉{{Lang.dollarSign}}{{item.bargainprice}}</view>
+                </view>
+            </view>
+        </view>
+    </view>
+    <view class="margin-10-t padding-15-l bg-default">
+        <view class="flex-lr padding-15-tb padding-15-r font-14 border-1px-b">适用门店</view>
+        <view class="padding-15-tb padding-15-r flex-lr">
+            <view class="font-14 store-info">
+                <view class="margin-10-b w-100 ellipsis">{{store.title}}</view>
+                <view class="flex c-gray w-100">
+                    <text class="icon icon-location margin-5-r font-15"></text>
+                    <view bind:tap="onJsEvent" class="ellipsis" data-address="{{store.address}}" data-event-type="jsLocation" data-lat="{{store.location_x}}" data-lng="{{store.location_y}}" data-name="{{store.title}}">{{store.address}}</view>
+                </view>
+            </view>
+            <text bind:tap="onJsEvent" class="icon icon-telephone icon-telephone-circle" data-event-type="jsPhone" data-phoneNumber="{{store.telephone}}"></text>
+        </view>
+    </view>
+    <view class="margin-10-t padding-15-l bg-default">
+        <view class="flex-lr padding-15-tb padding-15-r font-14 border-1px-b">
+            <view class="font-14">活动规则</view>
+        </view>
+        <view class="padding-15-tb padding-15-r richtext">
+            <template is="wxParse" data="{{wxParseData:activity_rules.nodes}}"></template>
+        </view>
+    </view>
+    <view class="margin-10-t padding-15-l bg-default">
+        <view class="flex-lr padding-15-tb padding-15-r font-14 border-1px-b">
+            <view class="font-14">商品详情</view>
+        </view>
+        <view class="padding-15-tb padding-15-r richtext">
+            <template is="wxParse" data="{{wxParseData:detail.nodes}}"></template>
+        </view>
+    </view>
+    <view class="comment">
+        <view class="flex-lr padding-15-tb padding-15-r border-1px-b">用户评价</view>
+        <block wx:if="{{!comment.empty}}">
+            <view class="padding-15-tb padding-15-r {{index<comment.data.length-1?'border-1px-b':''}}" wx:for="{{comment.data}}" wx:key="{{item.id}}">
+                <view class="consumer-info flex-lr">
+                    <view class="avatar">
+                        <image src="{{item.avatar}}"></image>
+                    </view>
+                    <view class="basic flex-lr">
+                        <view>
+                            <view class="font-14">{{item.nickname}}</view>
+                            <view class="c-gray font-12 margin-5-t">{{item.addtime_cn}}</view>
+                        </view>
+                        <view class="item-star-box">
+                            <view class="stars" style="color:#ff2d4b; width:{{item.goods_quality*20}}%">
+                                <view class="icon icon-favor_fill_light"></view>
+                                <view class="icon icon-favor_fill_light"></view>
+                                <view class="icon icon-favor_fill_light"></view>
+                                <view class="icon icon-favor_fill_light"></view>
+                                <view class="icon icon-favor_fill_light"></view>
+                                <view class="icon icon-favor_fill_light"></view>
+                            </view>
+                            <view class="stars-bg">
+                                <view class="icon icon-favor_light"></view>
+                                <view class="icon icon-favor_light"></view>
+                                <view class="icon icon-favor_light"></view>
+                                <view class="icon icon-favor_light"></view>
+                                <view class="icon icon-favor_light"></view>
+                            </view>
+                        </view>
+                    </view>
+                </view>
+                <view class="comment-item">
+                    <view class="text">{{item.note}}</view>
+                    <view class="comment-tags margin-5-t" wx:if="{{item.tag_goods&&item.tag_goods.length>0}}">
+                        <view class="icon icon-tag margin-5-r font-14"></view>
+                        <view class="tags-wrap font-13 c-gray">
+                            <view class="tag-item margin-5-r" wx:for="{{item.tag_goods}}" wx:for-index="tagIndex" wx:for-item="tag" wx:key="{{tagIndex}}">{{tag.title}}</view>
+                        </view>
+                    </view>
+                    <view class="thumbs margin-10-t" wx:if="{{item.thumbs.length>0}}">
+                        <view class="col-25" wx:if="{{thumbIndex<4}}" wx:for="{{item.thumbs}}" wx:for-index="thumbIndex" wx:for-item="thumb" wx:key="thumbIndex">
+                            <image bind:tap="onImgPreview" data-current="{{thumb}}" data-urls="{{item.thumbs}}" src="{{thumb}}"></image>
+                        </view>
+                        <view class="thumbs-num" wx:if="{{item.thumbs.length>4}}">共{{item.thumbs.length}}张</view>
+                    </view>
+                </view>
+            </view>
+            <view bind:tap="onGetComment" class="padding-15-tb text-center border-1px-t" wx:if="{{!comment.loaded}}">查看更多评价</view>
+            <view class="padding-15-tb text-center border-1px-t c-gray" wx:else>已加载全部评价</view>
+        </block>
+        <view class="no-comment" wx:else>暂时没有商品评价</view>
+    </view>
+</view>
+<view class="right-btn">
+    <view bind:tap="onJsEvent" class="btn-item" data-event-type="jsUrl" data-url="gohome/pages/poster/index?goods_id={{activity.id}}&type=kanjia">
+        <text>生成</text>
+        <text>海报</text>
+    </view>
+</view>
+<view class="goods-action border-1px-t">
+    <view bind:tap="onJsEvent" class="mini-btn border-1px-r" data-event-type="jsUrl" data-url="gohome/pages/haodian/detail?sid={{store.id}}">
+        <view class="icon icon-shop"></view>
+        <view>店铺</view>
+    </view>
+    <view bind:tap="onToggleFavor" class="mini-btn border-1px-r {{activity.is_favor?'is_favor':''}}">
+        <view class="icon {{activity.is_favor?'icon-favor_fill_light':'icon-favor1'}}"></view>
+        <view>{{activity.is_favor?'已收藏':'收藏'}}</view>
+    </view>
+    <view bind:tap="onToggleZhezhao" class="mini-btn">
+        <view class="icon icon-share"></view>
+        <view>分享</view>
+    </view>
+    <block wx:if="{{activity.status==1}}">
+        <block wx:if="{{activity.total!=0}}">
+            <view bind:tap="onParticipate" class="big-btn" wx:if="{{take_status==0}}">立即参与</view>
+            <block wx:elif="{{take_status==1}}">
+                <view bind:tap="onJsEvent" class="big-btn btn-buy" data-event-type="jsUrl" data-url="gohome/pages/kanjia/order/create?activityid={{activity.id}}" wx:if="{{member_takeinfo.now_price_buy==1}}">现价购买</view>
+                <view bind:tap="onJsEvent" class="big-btn" data-event-type="jsUrl" data-url="gohome/pages/kanjia/order/create?activityid={{activity.id}}" wx:if="{{member_takeinfo.price==activity.price}}">立即下单</view>
+                <view bind:tap="onJsEvent" class="big-btn" data-event-type="jsUrl" data-url="gohome/pages/kanjia/share?activityid={{activity.id}}&uid={{member_takeinfo.uid}}" wx:else>找人帮砍</view>
+            </block>
+        </block>
+        <view class="big-btn btn-disabled" wx:else>商品已抢光</view>
+    </block>
+    <view class="big-btn btn-disabled" wx:elif="{{activity.status==2}}">活动未开始</view>
+    <view class="big-btn btn-disabled" wx:elif="{{activity.status==3}}">活动已结束</view>
+</view>
+<view class="wui-dialog wui-dialog-qrcode dialog-success {{dialogShow?'wui-dialog-show':''}}">
+    <view class="wui-dialog-mask"></view>
+    <view class="wui-dialog-container">
+        <view class="popup-content">
+            <view class="img-wrap">
+                <image class="w-100" mode="widthFix" src="../../static/img/bargain_success.png"></image>
+            </view>
+            <view class="success-tip" style="color: #F1C90A;">恭喜您砍价成功</view>
+            <view class="font-14 margin-15-tb line-12">
+                <view>亲友们合力帮您砍到最低价</view>
+                <view>立即购买吧~</view>
+            </view>
+            <view bind:tap="onJsEvent" class="success-btn" data-event-type="jsUrl" data-url="gohome/pages/kanjia/order/create?activityid={{activity.id}}">立即购买</view>
+        </view>
+        <view bind:tap="onToggleDialog" class="icon icon-close"></view>
+    </view>
+</view>
+<view bind:tap="onToggleZhezhao" class="share-zhezhao" wx:if="{{zhezhaoShow}}">
+    <image mode="widthFix" src="../../static/img/share-layer.png"></image>
+</view>
+<danmu danmus="{{danmu}}" wx:if="{{danmu}}"></danmu>
+<failed-tips failedTips="{{failedTips}}" wx:if="{{black_member.status}}"></failed-tips>
+<include src="../../../pages/public/footer.wxml"></include>

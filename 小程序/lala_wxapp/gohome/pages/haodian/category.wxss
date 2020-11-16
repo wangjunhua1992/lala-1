@@ -1,0 +1,19 @@
+@import "../../../nmy/1.wxss";
+
+page {
+    background-color: #f5f5f5;
+    font-size: 14px;
+    line-height: 1;
+}
+
+.diy-haodian-list {
+    padding-top: 44px;
+}
+
+.diy-haodian-list .haodian-filter.fixed {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1;
+}

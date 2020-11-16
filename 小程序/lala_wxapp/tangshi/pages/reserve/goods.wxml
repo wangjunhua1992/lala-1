@@ -1,0 +1,391 @@
+<view class="container" wx:if="{{1}}">
+    <view class="header clearfix" style="background-color: {{bgColor}}">
+        <view class="top clearfix">
+            <view class="avatar">
+                <image src="{{store.logo}}"></image>
+            </view>
+            <view class="campaign">
+                <view class="text">
+                    <view>{{table_category.title}}</view>
+                    <view class="fg-line"></view>
+                    <view>{{extra.day}} ~ {{extra.time}}</view>
+                </view>
+                <view class="notice">
+                    <view class="icon icon-voice"></view>
+					{{store.notice?store.notice:'本店暂无公告'}}
+				</view>
+            </view>
+            <view bind:tap="onFavor" class="collect" data-sid="{{store.id}}" wx:if="{{store.is_favorite==1}}">
+                <view class="icon icon-favoritesfilling"></view>
+                <view class="text">已收藏</view>
+            </view>
+            <view bind:tap="onFavor" class="collect" data-sid="{{store.id}}" wx:if="{{!store.is_favorite}}">
+                <view class="icon icon-favorite"></view>
+                <view class="text">收藏</view>
+            </view>
+        </view>
+        <view class="activity-box clearfix">
+            <swiper autoplay="true" circular="true" class="activity-scroll" interval="2000" vertical="true" wx:if="{{store.activity.num&&store.activity.num>0}}">
+                <swiper-item wx:for="{{store.activity.items}}" wx:for-item="activity">
+                    <view class="activity">
+                        <image src="/static/img/{{activity.type}}_b.png"></image>
+                        <view>{{activity.title}}</view>
+                    </view>
+                </swiper-item>
+            </swiper>
+            <view class="more" wx:if="{{store.activity.num&&store.activity.num>0}}">
+                <navigator url="index?sid={{store.id}}">
+					{{store.activity.num}}个活动
+					<view class="icon icon-xiangyou1"></view>
+                </navigator>
+            </view>
+        </view>
+    </view>
+    <view class="wui-tab">
+        <view class="wui-tab-bd">
+            <view class="wui-tab-item wui-tab-item-selected">
+                <view class="wui-tab-title" style="color: {{bgColor}}; border-bottom: 2px solid {{bgColor}}">商品</view>
+            </view>
+            <navigator class="wui-tab-item" url="../../../pages/store/comment?sid={{store.id}}">
+                <view class="wui-tab-title">评价</view>
+            </navigator>
+            <navigator class="wui-tab-item" url="../../../pages/store/index?sid={{store.id}}">
+                <view class="wui-tab-title">商家</view>
+            </navigator>
+        </view>
+    </view>
+    <view class="main-scroll">
+        <view class="variety">
+            <view class="content-container">
+                <scroll-view class="tag-list" scrollY="true">
+                    <view bind:tap="onToggleCategory" class="tag border-1px-b {{index==categorySelectedIndex?'active':''}}" data-cid="{{item.id}}" data-index="{{index}}" wx:for="{{categoryAll}}">
+                        <view class="tag-inner">
+                            <view class="tag-text">
+									{{item.title}}
+								</view>
+                            <view class="tag-num {{item.total>9?'twotag-num':''}}" wx:if="{{item.total>0}}">{{item.total}}</view>
+                        </view>
+                    </view>
+                    <view class="tag" style="height:22px;" wx:if="{{cart.discount_notice.note}}"></view>
+                </scroll-view>
+                <scroll-view bindscrolltolower="onReachBottom" class="goods-container" scrollY="true" wx:if="{{template==2}}">
+                    <view class="coupon-show-container" wx:if="{{coupon.id>0&&couponStatus==1}}">
+                        <view class="coupon-price">
+							{{Lang.dollarSign}}<view>{{coupon.price}}</view>
+                        </view>
+                        <view class="coupon-detail">
+                            <view class="coupon-title">商家代金券</view>
+                            <view class="coupon-desc">内含{{coupon.num}}张券</view>
+                        </view>
+                        <view bind:tap="onCollectCoupon" class="coupon-fetch">去领取</view>
+                    </view>
+                    <view class="banner" wx:if="{{0&&store.data.shopPage}}">
+                        <block wx:for="{{store.data.shopPage}}" wx:for-index="shopPageKey" wx:for-item="shopPageItem">
+                            <navigator class="banner-item" data-index="{{index}}" url="./goodsDetail?sid={{store.id}}&id={{shopPageItem.goods[0]}}" wx:if="{{shopPageItem.goodsLength==1}}">
+                                <image src="{{shopPageItem.thumb}}"></image>
+                            </navigator>
+                            <navigator class="banner-item" data-index="{{index}}" url="../../../pages/store/shopPage?sid={{store.id}}&shopPageKey={{shopPageKey}}" wx:else>
+                                <image src="{{shopPageItem.thumb}}"></image>
+                            </navigator>
+                        </block>
+                    </view>
+                    <view class="tag2-list" wx:if="{{categorySelected.child.length>0}}">
+                        <view bind:tap="onToggleCategory" class="tag2-item {{index==childSelectedIndex?'selected':''}}" data-child-index="{{index}}" data-cid="{{item.id}}" data-from="child" wx:for="{{categorySelected.child}}">
+								{{item.title}}
+								<view class="{{item.total>0?'dot':''}}" wx:if="{{item.total>0}}"></view>
+                        </view>
+                    </view>
+                    <view class="title border-1px-t">
+                        <view class="title-line" style="border-color: {{bgColor}}"></view>
+						{{categorySelected.child?categorySelected.child[childSelectedIndex].title:categorySelected.title}}
+						<view class="title-rank">
+                            <view bind:tap="onOrderby" class="sales {{goodsItem.orderby.type=='sailed'?'selected':''}}" data-type="sailed" data-value="desc">销量</view>
+                            <view class="shu">|</view>
+                            <view class="price-container">
+                                <view bind:tap="onOrderby" class="price" data-type="price" data-value="{{goodsItem.orderby.value=='asc'?'desc':'asc'}}">价格</view>
+                                <view class="triangle">
+                                    <view class="triangle-top {{goodsItem.orderby.type=='price'&&goodsItem.orderby.value=='asc'?'selected':''}}"></view>
+                                    <view class="triangle-bottom {{goodsItem.orderby.type=='price'&&goodsItem.orderby.value=='desc'?'selected':''}}"></view>
+                                </view>
+                            </view>
+                        </view>
+                    </view>
+                    <view class="goods clearfix" wx:if="{{goodsItem.data.length>0}}" wx:for="{{goodsItem.data}}">
+                        <navigator class="image-box" url="./goodsDetail?id={{item.id}}&sid={{store.id}}&table_cid={{table_category.id}}">
+                            <image class="pic" src="{{item.thumb}}"></image>
+                            <view class="label" wx:if="{{item.label}}">{{item.label}}</view>
+                        </navigator>
+                        <view class="shop-info clearfix">
+                            <view class="name ellipsis">{{item.title}}</view>
+                            <view class="description">{{item.content}}</view>
+                            <view class="sold">已售{{item.sailed}} 赞{{item.comment_good}}</view>
+                            <view class="price">
+                                <view class="now-price">
+                                    <view class="price-icon">{{Lang.dollarSign}}</view>{{item.price}}
+									</view>
+                                <view class="old-price" wx:if="{{item.old_price}}">
+                                    <view class="price-icon">{{Lang.dollarSign}}</view>{{item.old_price}}
+									</view>
+                            </view>
+                            <view class="discount" wx:if="{{item.discount}}">
+                                <view class="icon icon-tag"></view>
+									{{item.discount}}折 限{{item.max_buy_limit}}份 {{item.unitnum>1?item.unitnum_multi_cn+'购':''}}
+								</view>
+                            <view class="discount" wx:elif="{{item.unitnum>1}}">
+                                <view class="icon icon-tag"></view> {{item.unitnum_multi_cn}}购
+								</view>
+                        </view>
+                        <block wx:if="{{store.is_in_business_hours&&store.is_reserve==1}}">
+                            <block wx:if="{{item.is_sail_now==1}}">
+                                <block wx:if="{{item.is_options=='0'&&item.is_attrs==0}}">
+                                    <view class="foodop" wx:if="{{item.total!=0}}">
+                                        <view bind:tap="onPlus" class="icon icon-plus" data-from="list" data-id="{{item.id}}" data-index="{{index}}" style="background-color: {{bgColor}};"></view>
+                                        <view class="num" wx:if="{{item.totalnum>0}}">{{item.totalnum}}</view>
+                                        <view bind:tap="onMinus" class="icon icon-minus" data-from="list" data-id="{{item.id}}" data-index="{{index}}" wx:if="{{item.totalnum>0}}"></view>
+                                    </view>
+                                    <view class="foodop" wx:else>
+                                        <text>已售完</text>
+                                    </view>
+                                </block>
+                                <view class="foodop" wx:else>
+                                    <view bind:tap="onSelectOption" class="spec" data-id="{{item.id}}" data-index="{{index}}" style="background-color: {{bgColor}}">
+												选规格
+												<view class="badge" style="background-color: {{bgColor}}" wx:if="{{item.totalnum>0}}">{{item.totalnum}}</view>
+                                    </view>
+                                </view>
+                            </block>
+                            <view bind:tap="onSailTime" class="foodop no-sail" data-index="{{index}}" wx:else>
+                                <text>非可售时间</text>
+                                <view class="icon icon-question1"></view>
+                            </view>
+                        </block>
+                    </view>
+                    <view class="wui-loadmore wui-loadmore-nodata" style="margin-top: 100px" wx:if="{{goodsItem.empty==1}}">
+                        <view class="wui-loadmore-tips">暂无商品</view>
+                    </view>
+                    <view class="wui-loadmore wui-loadmore-nodata" wx:elif="{{goodsItem.loaded==1}}">
+                        <view class="wui-loadmore-tips">已经到底了</view>
+                    </view>
+                    <view class="weui-loadmore" wx:else>
+                        <view class="weui-loading"></view>
+                        <view class="weui-loadmore__tips">正在加载中</view>
+                    </view>
+                </scroll-view>
+                <scroll-view bindscrolltolower="onReachBottom" class="goods-type-container" scrollTop="{{scrolltop}}" scrollY="true" wx:else>
+                    <view class="coupon-show-container" wx:if="{{coupon.id>0&&couponStatus==1}}">
+                        <view class="coupon-price">
+							{{Lang.dollarSign}}<view>{{coupon.price}}</view>
+                        </view>
+                        <view class="coupon-detail">
+                            <view class="coupon-title">商家代金券</view>
+                            <view class="coupon-desc">内含{{coupon.num}}张券</view>
+                        </view>
+                        <view bind:tap="onCollectCoupon" class="coupon-fetch">去领取</view>
+                    </view>
+                    <view class="banner" wx:if="{{0&&store.data.shopPage}}">
+                        <block wx:for="{{store.data.shopPage}}" wx:for-index="shopPageKey" wx:for-item="shopPageItem">
+                            <navigator class="banner-item" data-index="{{index}}" url="./goodsDetail?sid={{store.id}}&id={{shopPageItem.goods[0]}}" wx:if="{{shopPageItem.goodsLength==1}}">
+                                <image src="{{shopPageItem.thumb}}"></image>
+                            </navigator>
+                            <navigator class="banner-item" data-index="{{index}}" url="../../../pages/store/shopPage?sid={{store.id}}&shopPageKey={{shopPageKey}}" wx:else>
+                                <image src="{{shopPageItem.thumb}}"></image>
+                            </navigator>
+                        </block>
+                    </view>
+                    <view class="tag2-list" wx:if="{{categorySelected.child.length>0}}">
+                        <view bind:tap="onToggleCategory" class="tag2-item {{index==childSelectedIndex?'selected':''}}" data-child-index="{{index}}" data-cid="{{item.id}}" data-from="child" wx:for="{{categorySelected.child}}">
+								{{item.title}}
+								<view class="{{item.total>0?'dot':''}}" wx:if="{{item.total>0}}"></view>
+                        </view>
+                    </view>
+                    <view class="title border-1px-t">
+                        <view class="title-line" style="border-color: {{bgColor}}"></view>
+						{{categorySelected.child?categorySelected.child[childSelectedIndex].title:categorySelected.title}}
+					</view>
+                    <view class="goods-list clearfix">
+                        <view class="col-50 goods-item" wx:if="{{goodsItem.data.length>0}}" wx:for="{{goodsItem.data}}">
+                            <view class="goods-info">
+                                <navigator class="avatar" url="./goodsDetail?id={{item.id}}&sid={{store.id}}&table_cid={{table_category.id}}">
+                                    <image src="{{item.thumb}}"></image>
+                                </navigator>
+                                <view class="goods-name">{{item.title}}</view>
+                                <view class="solid">
+										已售{{item.sailed}} <view>赞{{item.comment_good}}</view>
+                                </view>
+                                <view class="price">{{Lang.dollarSign}}
+										<view>{{item.price}}</view>
+                                </view>
+                                <view class="old-price" wx:if="{{item.old_price}}">{{Lang.dollarSign}}{{item.old_price}}</view>
+                                <view class="discount">
+                                    <view wx:if="{{item.discount}}">
+                                        <view class="icon icon-tag"></view> {{item.discount}}折 限{{item.max_buy_limit}}份 {{item.unitnum>1?item.unitnum_multi_cn+'购':''}}
+										</view>
+                                    <view wx:elif="{{item.unitnum>1}}">
+                                        <view class="icon icon-tag"></view> {{item.unitnum_multi_cn}}购
+										</view>
+                                </view>
+                                <block wx:if="{{store.is_in_business_hours&&store.is_reserve==1}}">
+                                    <block wx:if="{{item.is_sail_now==1}}">
+                                        <block wx:if="{{item.is_options=='0'&&item.is_attrs==0}}">
+                                            <view class="foodop" wx:if="{{item.total!=0}}">
+                                                <view bind:tap="onPlus" class="icon icon-plus" data-from="list" data-id="{{item.id}}" data-index="{{index}}" style="background-color: {{bgColor}};">
+                                                    <view class="num" style="background-color: {{bgColor}}" wx:if="{{item.totalnum>0}}">{{item.totalnum}}</view>
+                                                </view>
+                                            </view>
+                                            <view class="foodop" wx:else>
+                                                <text>已售完</text>
+                                            </view>
+                                        </block>
+                                        <view class="foodop" wx:else>
+                                            <view bind:tap="onSelectOption" class="spec" data-id="{{item.id}}" data-index="{{index}}" style="background-color: {{bgColor}}">
+														选规格
+														<view class="badge" style="background-color: {{bgColor}}" wx:if="{{item.totalnum>0}}">{{item.totalnum}}</view>
+                                            </view>
+                                        </view>
+                                    </block>
+                                    <view bind:tap="onSailTime" class="foodop" data-index="{{index}}" wx:else>
+                                        <text>非可售时间</text>
+                                    </view>
+                                </block>
+                            </view>
+                        </view>
+                    </view>
+                    <view class="wui-loadmore wui-loadmore-nodata" style="margin-top: 100px" wx:if="{{goodsItem.empty==1}}">
+                        <view class="wui-loadmore-tips">暂无商品</view>
+                    </view>
+                    <view class="wui-loadmore wui-loadmore-nodata" wx:elif="{{goodsItem.loaded==1}}">
+                        <view class="wui-loadmore-tips">已经到底了</view>
+                    </view>
+                    <view class="weui-loadmore" wx:else>
+                        <view class="weui-loading"></view>
+                        <view class="weui-loadmore__tips">正在加载中</view>
+                    </view>
+                </scroll-view>
+            </view>
+            <view class="cart" wx:if="{{!rest&&store.is_reserve==1}}">
+                <view bindtap="onShowCartDetail" class="cart-tips">
+                    <view class="cart-icon {{cart.num>0?'active':''}}" style="background:{{cart.num>0?bgColor:''}}">
+                        <view class="icon icon-cart1"></view>
+                        <view class="cart-num" style="background: {{bgColor}}" wx:if="{{cart.num>0}}">{{cart.num}}</view>
+                    </view>
+                    <view class="cart-empty" wx:if="{{!cart.num>0}}">
+						购物车空空如也~~
+					</view>
+                    <view class="cart-noempty" wx:else>
+                        <view class="cart-price">{{Lang.dollarSign}}{{cart.price}}</view>
+                    </view>
+                </view>
+                <view class="cart-btns">
+                    <view class="cart-btn-unavail">
+                        <view class="inner" wx:if="{{cart.price<table_category.limit_price}}">还差{{table_category.limit_price-cart.price}}{{Lang.dollarSignCn}}</view>
+                    </view>
+                    <navigator bind:tap="onSubmit" class="cart-btn-confirm" url="./create?sid={{store.id}}" wx:if="{{cart.price>=table_category.limit_price}}">
+                        <view class="inner" style="background: {{bgColor}}">去结算</view>
+                    </navigator>
+                </view>
+            </view>
+            <view class="wui-dialog wui-dialog-{{!showCartDetail?'hide':'show'}}">
+                <view bind:tap="onHideCartDetail" class="wui-dialog-mask"></view>
+                <view class="wui-dialog-container" hidden="{{!showCartDetail}}">
+                    <view class="cart-dtl">
+                        <view class="cart-dtl-head">
+                            <view bind:tap="onTurncateCart" class="cart-dusbin">
+                                <view class="icon icon-delete"></view>
+								清空购物车
+							</view>
+                        </view>
+                        <scroll-view class="cart-list" scrollY="true">
+                            <view class="list">
+                                <block wx:for="{{cart.data}}">
+                                    <view class="cart-dtl-item border-1px-b" wx:for="{{item}}" wx:for-index="optionindex" wx:for-item="option">
+                                        <view class="cart-dtl-item-inner">
+                                            <view class="goods-name">{{option.title}}</view>
+                                            <view class="cart-dtl-oprt" wx:if="{{option.goods_id!='88888'}}">
+                                                <view bind:tap="onPlus" class="icon icon-plus" data-childid="{{option.child_id}}" data-cid="{{option.cid}}" data-from="cart" data-goodsid="{{option.goods_id}}" data-optionid="{{optionindex}}" style="background-color: {{bgColor}}; border: 1px solid {{bgColor}}"></view>
+                                                <view class="num">{{option.num}}</view>
+                                                <view bind:tap="onMinus" class="icon icon-minus" data-childid="{{option.child_id}}" data-cid="{{option.cid}}" data-from="cart" data-goodsid="{{option.goods_id}}" data-optionid="{{optionindex}}"></view>
+                                            </view>
+                                            <view class="cart-dtl-price">{{Lang.dollarSign}}{{option.total_discount_price}}</view>
+                                        </view>
+                                    </view>
+                                </block>
+                            </view>
+                        </scroll-view>
+                    </view>
+                </view>
+            </view>
+        </view>
+    </view>
+    <view class="rest" wx:if="{{rest}}">本店打烊啦</view>
+    <view class="rest" wx:elif="{{store.is_reserve!=1}}">预定点餐暂未开启</view>
+    <view class="modal {{modelSpecShow?'':'hide'}}">
+        <view bind:tap="onHideOption" class="mask"></view>
+        <view class="dialog-container">
+            <view class="muti-dialog">
+                <view bind:tap="onHideOption" class="muti-close"></view>
+                <view class="muti-wrap">
+                    <view class="muti-food-title">
+						{{goodsActive.title}}
+					</view>
+                    <view class="muti-cont">
+                        <view class="muti-cont-inner">
+                            <view class="muti-sec first" wx:if="{{goodsActive.is_options==1}}">
+                                <view class="muti-sec-title">规格</view>
+                                <view class="muti-choice">
+                                    <view bind:tap="onToggleOption" class="{{goodsActive.activeOptions.optionSelected==item.id?'selected':''}}" data-id="{{item.id}}" data-index="0" data-type="option" wx:for="{{goodsActive.options}}">{{item.name}}</view>
+                                </view>
+                            </view>
+                            <view wx:if="{{goodsActive.is_attrs==1}}">
+                                <view class="muti-sec" wx:for="{{goodsActive.attrs}}" wx:for-index="attr_index">
+                                    <view class="muti-sec-title">{{item.name}}</view>
+                                    <view class="muti-choice">
+                                        <view bind:tap="onToggleOption" class="{{goodsActive.activeOptions.attrsSelected[attr_index]==label_index?'selected':''}}" data-id="{{attr_index}}s{{label_index}}" data-index="{{attr_index}}" data-originId="{{label_index}}" data-type="attr" wx:for="{{item.label}}" wx:for-index="label_index" wx:for-item="label">{{label}}</view>
+                                    </view>
+                                </view>
+                            </view>
+                        </view>
+                    </view>
+                    <view class="muti-choose">
+                        <view class="muti-oprt">
+                            <view class="muti-cart-oprt clearfix">
+                                <view class="add-food">
+                                    <view bind:tap="onPlus" class="icon icon-plus" data-from="selectOption" data-id="{{goodsActive.id}}" data-index="{{goodsActive.index}}" style="background-color: {{bgColor}};"></view>
+                                </view>
+                                <view class="food-num" wx:if="{{goodsActive.activeOption.num>0}}">{{goodsActive.activeOption.num||0}}</view>
+                                <view class="remove-food">
+                                    <view bind:tap="onMinus" class="icon icon-minus" data-from="selectOption" data-id="{{goodsActive.id}}" data-index="{{goodsActive.index}}" wx:if="{{goodsActive.activeOption.num>0}}"></view>
+                                </view>
+                            </view>
+                        </view>
+                        <view class="muti-info">
+                            <view class="muti-price">{{Lang.dollarSign}}{{goodsActive.activeOption.price}}</view>
+                            <view class="muti-type">({{goodsActive.activeOption.name}})</view>
+                        </view>
+                    </view>
+                </view>
+            </view>
+        </view>
+    </view>
+    <view class="page-popup" wx:if="{{sail_time==1}}">
+        <view class="mask"></view>
+        <view class="popup-main">
+            <view class="popup-top">
+                <view class="popup-item" wx:if="{{week_cn}}">
+                    <view class="popup-title">每周可售日期</view>
+                    <view class="popup-text">{{week_cn}}</view>
+                </view>
+                <view class="popup-item" wx:if="{{time_cn}}">
+                    <view class="popup-title">每天可售时间</view>
+                    <view class="popup-text">
+						{{time_cn}}
+					</view>
+                </view>
+            </view>
+            <view bind:tap="onKnow" class="popup-bottom border-1px-t">知道了</view>
+        </view>
+    </view>
+    <view class="cartTipContainer aboveCart" wx:if="{{cart.discount_notice.note}}">
+        <text>{{cart.discount_notice.note}}</text>
+    </view>
+</view>
+<include src="../../../pages/public/footer.wxml"></include>

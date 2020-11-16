@@ -1,0 +1,22 @@
+<view class="svip-vs">
+    <view class="popup-svip-title">客官，专享价限超级会员享受哦</view>
+    <view class="svip-img">
+        <view class="svip-vs-left">
+            <text class="icon icon-crownfill"></text>
+            <view class="font-12">会员专享价</view>
+            <view class="svip-vs-price">
+                <text class="font-14">{{Lang.dollarSign}}</text>{{goods.svip_price}}</view>
+        </view>
+        <view class="svip-vs-right">
+            <view class="svip-putong-title">普通用户价格</view>
+            <view class="svip-putong-price">
+                <text class="font-14">{{Lang.dollarSign}}</text>{{goods.price}}</view>
+        </view>
+    </view>
+    <view class="buy-svip-text">即刻加入超级会员，尊享众多会员优惠</view>
+    <button bind:tap="onParentPlus" class="svip-price-btn font-16 margin-15-t" data-buysvip_status="3">
+        <view class="font-bold">会员专享价购买</view>
+        <view class="font-12 margin-5-t">(订单结算时成为会员享优惠)</view>
+    </button>
+    <button bind:tap="onParentPlus" class="price-btn font-16 margin-15-t" data-buysvip_status="2">原价购买</button>
+</view>

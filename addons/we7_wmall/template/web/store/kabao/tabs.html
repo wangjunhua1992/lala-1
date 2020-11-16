@@ -1,0 +1,30 @@
+<div class="second-sidebar-title">会员卡</div>
+<div class="nav slimscroll">
+	<div class="menu-header">会员</div>
+	<ul class="menu-item">
+		<li {if $_W['_op'] == 'member'}class="active"{/if}>
+			<a href="{php echo iurl('store/kabao/member');}">会员列表</a>
+		</li>
+		<li {if $_W['_op'] == 'record'}class="active"{/if}>
+			<a href="{php echo iurl('store/kabao/record');}">会员积分明细</a>
+		</li>
+	</ul>
+	<div class="menu-header">设置</div>
+	<ul class="menu-item">
+		<li {if $_W['_op'] == 'basic'}class="active"{/if}>
+			<a href="{php echo iurl('store/kabao/basic');}">基本设置</a>
+		</li>
+		<li {if $_W['_op'] == 'diy'}class="active"{/if}>
+			<a href="{php echo iurl('store/kabao/diy');}">自定义详情页</a>
+		</li>
+		<li {if $_W['_op'] == 'group'}class="active"{/if}>
+			<a href="{php echo iurl('store/kabao/group');}">会员等级</a>
+		</li>
+		<li {if $_W['_op'] == 'coupon'}class="active"{/if}>
+			<a href="{php echo iurl('store/kabao/coupon');}">会员优惠券</a>
+		</li>
+		<li {if $_W['_op'] == 'deliveryFee'}class="active"{/if}>
+			<a href="{php echo iurl('store/kabao/deliveryFee');}">减免配送费</a>
+		</li>
+	</ul>
+</div>

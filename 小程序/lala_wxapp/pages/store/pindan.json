@@ -1,0 +1,16 @@
+{
+    "navigationBarTitleText": "拼单",
+    "navigationBarTextStyle": "white",
+    "enablePullDownRefresh": true,
+    "usingComponents": {
+        "failed-tips": "/components/failedTips",
+        "van-button": "/library/vant/button/index",
+        "van-cell": "/library/vant/cell/index",
+        "van-cell-group": "/library/vant/cell-group/index",
+        "van-row": "/library/vant/row/index",
+        "van-col": "/library/vant/col/index",
+        "van-popup": "/library/vant/popup/index",
+        "van-rate": "/library/vant/rate/index",
+        "tab-bar": "/components/tabBar"
+    }
+}

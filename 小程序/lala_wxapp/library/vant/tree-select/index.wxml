@@ -1,0 +1,13 @@
+<view class="van-tree-select" style="height: {{mainHeight}}px">
+    <scroll-view scrollY class="van-tree-select__nav">
+        <view bind:tap="onClickNav" class="van-tree-select__nitem van-ellipsis {{mainActiveIndex===index?'van-tree-select__nitem--active':''}}" data-index="{{index}}" wx:for="{{items}}" wx:key="index">
+      {{item.text}}
+    </view>
+    </scroll-view>
+    <scroll-view scrollY class="van-tree-select__content" style="height: {{itemHeight}}px">
+        <view bind:tap="onSelectItem" class="van-tree-select__item van-ellipsis {{activeId===item.id?'van-tree-select__item--active':''}} {{item.disabled?'van-tree-select__item--disabled':''}}" data-item="{{item}}" wx:for="{{subItems}}" wx:key="item.id">
+      {{item.text}}
+      <van-icon class="van-tree-select__selected" name="success" wx:if="{{activeId===item.id}}"></van-icon>
+        </view>
+    </scroll-view>
+</view>

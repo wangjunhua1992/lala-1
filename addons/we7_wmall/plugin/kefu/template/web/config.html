@@ -1,0 +1,398 @@
+{itemplate 'public/header'}
+{if $op == 'basic'}
+<div class="page clearfix">
+	<form class="form-horizontal form form-validate" id="form2" action="" method="post" enctype="multipart/form-data">
+		<ul class="nav nav-tabs" role="tablist">
+			<li role="presentation" {if $_GPC['type'] == 'system' || !$_GPC['type']}class="active"{/if}><a href="#system" aria-controls="system" role="tab" data-toggle="pill">系统设置</a></li>
+			<li role="presentation" {if $_GPC['type'] == 'autoreply'}class="active"{/if}><a href="#autoreply" aria-controls="autoreply" role="tab" data-toggle="pill">自动回复</a></li>
+			<li role="presentation" class="hide" {if $_GPC['type'] == 'overtime'}class="active"{/if}><a href="#overtime" aria-controls="overtime" role="tab" data-toggle="pill">超时设置</a></li>
+		</ul>
+		<div class="tab-content">
+			<div class="tab-pane {if $_GPC['type'] == 'system' || !$_GPC['type']}active{/if}" role="tabpanel" id="system">
+				<div class="form-group">
+					<label class="col-xs-12 col-sm-3 col-md-2 control-label">客服系统</label>
+					<div class="col-sm-9 col-xs-12">
+						<div class="radio radio-inline">
+							<input type="radio" value="1" name="system[status]" id="system_status-1" {if $setting['system']['status'] == 1}checked{/if}>
+							<label for="system_status-1">开启</label>
+						</div>
+						<div class="radio radio-inline">
+							<input type="radio" value="0" name="system[status]" id="system_status-0" {if $setting['system']['status'] == 0 || !$setting['system']['status']}checked{/if}>
+							<label for="system_status-0">关闭</label>
+						</div>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-xs-12 col-sm-3 col-md-2 control-label">平台客服系统</label>
+					<div class="col-sm-9 col-xs-12">
+						<div class="radio radio-inline">
+							<input type="radio" value="1" name="system[kefu_status]" id="kefu_status-1" {if $setting['system']['kefu_status'] == 1}checked{/if}>
+							<label for="kefu_status-1">开启</label>
+						</div>
+						<div class="radio radio-inline">
+							<input type="radio" value="0" name="system[kefu_status]" id="kefu_status-0" {if $setting['system']['kefu_status'] == 0 || !$setting['system']['kefu_status']}checked{/if}>
+							<label for="kefu_status-0">关闭</label>
+						</div>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-xs-12 col-sm-3 col-md-2 control-label">门店客服系统</label>
+					<div class="col-sm-9 col-xs-12">
+						<div class="radio radio-inline">
+							<input type="radio" value="1" name="system[store_status]" id="store_status-1" {if $setting['system']['store_status'] == 1}checked{/if}>
+							<label for="store_status-1">开启</label>
+						</div>
+						<div class="radio radio-inline">
+							<input type="radio" value="0" name="system[store_status]" id="store_status-0" {if $setting['system']['store_status'] == 0 || !$setting['system']['store_status']}checked{/if}>
+							<label for="store_status-0">关闭</label>
+						</div>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-xs-12 col-sm-3 col-md-2 control-label">配送员客服系统</label>
+					<div class="col-sm-9 col-xs-12">
+						<div class="radio radio-inline">
+							<input type="radio" value="1" name="system[deliveryer_status]" id="deliveryer_status-1" {if $setting['system']['deliveryer_status'] == 1}checked{/if}>
+							<label for="deliveryer_status-1">开启</label>
+						</div>
+						<div class="radio radio-inline">
+							<input type="radio" value="0" name="system[deliveryer_status]" id="deliveryer_status-0" {if $setting['system']['deliveryer_status'] == 0 || !$setting['system']['deliveryer_status']}checked{/if}>
+							<label for="deliveryer_status-0">关闭</label>
+						</div>
+					</div>
+				</div>
+				<div class="form-group hide">
+					<label class="col-xs-12 col-sm-3 col-md-2 control-label">客服入口</label>
+					<div class="col-sm-9 col-xs-12">
+						<div class="checkbox checkbox-inline">
+							<input type="checkbox" value="home" name="system[portal][]" id="system-portal-home" {if in_array('home', $setting['system']['portal'])}checked{/if}>
+							<label for="system-portal-home">首页</label>
+						</div>
+						<div class="checkbox checkbox-inline">
+							<input type="checkbox" value="orderDetail" name="system[portal][]" id="system-portal-order-detail" {if in_array('orderDetail', $setting['system']['portal'])}checked{/if}>
+							<label for="system-portal-order-detail">订单详情</label>
+						</div>
+					</div>
+				</div>
+				<div class="form-group hide">
+					<label class="col-xs-12 col-sm-3 col-md-2 control-label">消息数据保留</label>
+					<div class="col-sm-9 col-xs-12">
+						<div class="radio radio-inline">
+							<input type="radio" value="1" name="system[recordSave]" id="system_record_save-1" {if $setting['system']['recordSave'] == 1 }checked{/if}>
+							<label for="system_record_save-1">一个月</label>
+						</div>
+						<div class="radio radio-inline">
+							<input type="radio" value="3" name="system[recordSave]" id="system_record_save-3" {if $setting['system']['recordSave'] == 3}checked{/if}>
+							<label for="system_record_save-3">三个月</label>
+						</div>
+						<div class="radio radio-inline">
+							<input type="radio" value="6" name="system[recordSave]" id="system_record_save-6" {if $setting['system']['recordSave'] == 6}checked{/if}>
+							<label for="system_record_save-6">半年</label>
+						</div>
+						<div class="radio radio-inline">
+							<input type="radio" value="0" name="system[recordSave]" id="system_record_save-0" {if $setting['system']['recordSave'] == 0 || !$setting['system']['recordSave']}checked{/if}>
+							<label for="system_record_save-0">永久</label>
+						</div>
+						<div class="help-block">超过保留时间，消息数据将会自动删除</div>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-xs-12 col-sm-3 col-md-2 control-label">分配规则</label>
+					<div class="col-sm-9 col-xs-12">
+						<div class="radio radio-inline">
+							<input type="radio" value="0" name="system[allotRule]" id="system_allot_rule-0" {if $setting['system']['allotRule'] == 0 || !$setting['system']['allotRule']}checked{/if}>
+							<label for="system_allot_rule-0">最近联系人优先</label>
+						</div>
+						<div class="radio radio-inline">
+							<input type="radio" value="1" name="system[allotRule]" id="system_allot_rule-1" {if $setting['system']['allotRule'] == 1}checked{/if}>
+							<label for="system_allot_rule-1">随机分配</label>
+						</div>
+						<div class="help-block">最近联系人优先: 客户再次咨询时，自动分配给上一次服务的客服</div>
+					</div>
+				</div>
+			</div>
+			<div class="tab-pane {if $_GPC['type'] == 'autoreply'}active{/if}" role="tabpanel" id="autoreply">
+				<div class="form-group hide">
+					<label class="col-xs-12 col-sm-3 col-md-2 control-label">首句欢迎语</label>
+					<div class="col-sm-9 col-xs-12">
+						<div class="radio radio-inline">
+							<input class="status-radio" data-element="first-message-content" type="radio" value="1" name="autoreply[firstMessage][status]" id="autoreply_first_message_status-1" {if $setting['autoreply']['firstMessage']['status'] == 1}checked{/if}>
+							<label for="autoreply_first_message_status-1">是</label>
+						</div>
+						<div class="radio radio-inline">
+							<input class="status-radio" data-element="first-message-content" type="radio" value="0" name="autoreply[firstMessage][status]" id="autoreply_first_message_status-0" {if $setting['autoreply']['firstMessage']['status'] == 0 || !$setting['autoreply']['firstMessage']['status']}checked{/if}>
+							<label for="autoreply_first_message_status-0">否</label>
+						</div>
+						<div class="help-block">当客户发送第一条消息，系统自动分配到在线客服时，会进行自动回复。为避免客户感到骚扰，同样的内容一天内只会发送一次</div>
+					</div>
+				</div>
+				<div class="form-group first-message-content hide {if $setting['autoreply']['firstMessage']['status'] == 0 || !$setting['autoreply']['firstMessage']['status']}hide{/if}">
+					<label class="col-xs-12 col-sm-3 col-md-2 control-label">*内容</label>
+					<div class="col-sm-9 col-xs-12">
+						<textarea style="height:50px;" class="form-control" cols="70" name="autoreply[firstMessage][content]" placeholder="请填写首句欢迎语" autocomplete="off" required>{$setting['autoreply']['firstMessage']['content']}</textarea>
+					</div>
+				</div>
+				<div class="form-group first-message-content">
+					<label class="col-xs-12 col-sm-3 col-md-2 control-label">*忙碌状态自动回复</label>
+					<div class="col-sm-9 col-xs-12">
+						<textarea style="height:50px;" class="form-control" cols="70" name="autoreply[busyReply][content]" placeholder="请填写忙碌状态自动回复内容" autocomplete="off" required>{$setting['autoreply']['busyReply']['content']}</textarea>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-xs-12 col-sm-3 col-md-2 control-label">下班提醒</label>
+					<div class="col-sm-9 col-xs-12">
+						<div class="radio radio-inline">
+							<input class="status-radio" data-element="autoreply-closing-time" type="radio" value="1" name="autoreply[closingTime][status]" id="autoreply_closing_time_status-1" {if $setting['autoreply']['closingTime']['status'] == 1}checked{/if}>
+							<label for="autoreply_closing_time_status-1">是</label>
+						</div>
+						<div class="radio radio-inline">
+							<input class="status-radio" data-element="autoreply-closing-time" type="radio" value="0" name="autoreply[closingTime][status]" id="autoreply_closing_time_status-0" {if $setting['autoreply']['closingTime']['status'] == 0 || !$setting['autoreply']['closingTime']['status']}checked{/if}>
+							<label for="autoreply_closing_time_status-0">否</label>
+						</div>
+						<div class="help-block">当客户在下班时间发来消息，且所有客服均不在线时，会进行自动回复</div>
+					</div>
+				</div>
+				<div class="autoreply-closing-time {if $setting['autoreply']['closingTime']['status'] == 0 || !$setting['autoreply']['closingTime']['status']}hide{/if}">
+					<div class="form-group">
+						<label class="col-xs-12 col-sm-3 col-md-2 control-label">*内容</label>
+						<div class="col-sm-9 col-xs-12">
+							<textarea style="height:50px;" class="form-control" cols="70" name="autoreply[closingTime][content]" placeholder="请填写下班提醒" autocomplete="off" required>{$setting['autoreply']['closingTime']['content']}</textarea>
+						</div>
+					</div>
+					<div class="clockpicker">
+						<div class="form-group">
+							<label class="col-xs-12 col-sm-3 col-md-2 control-label">上班时间</label>
+							<div class="col-sm-9 col-xs-12" id="hour-container">
+								{if empty($setting['autoreply']['worktime'])}
+								<div class="hour-item clearfix" style="margin-bottom: 10px;">
+									<label class="col-xs-12 col-sm-3 col-md-2 control-label">工作时间</label>
+									<div class="col-sm-9 col-xs-4 col-md-9">
+										<div class="input-group">
+											<input type="text" readonly name="starttime[]" class="form-control" value="">
+											<span class="input-group-addon">至</span>
+											<input type="text" readonly name="endtime[]" class="form-control" value="">
+										</div>
+									</div>
+									<div class="col-sm-9 col-xs-4 col-md-1" style="padding-top: 6px;">
+										<a href="javascript:;" class="remove-time">
+											<i class="fa fa-times-circle" title="删除时间段"></i>
+										</a>
+									</div>
+								</div>
+								{else}
+									{loop $setting['autoreply']['worktime'] $index $wt}
+									<div class="hour-item clearfix" style="margin-bottom: 10px;">
+										<label class="col-xs-12 col-sm-3 col-md-2 control-label">{if $index == 0}工作时间{/if}</label>
+										<div class="col-sm-9 col-xs-4 col-md-9">
+											<div class="input-group">
+												<input type="text" readonly name="starttime[]" class="form-control" value="{$wt['start']}">
+												<span class="input-group-addon">至</span>
+												<input type="text" readonly name="endtime[]" class="form-control" value="{$wt['end']}">
+											</div>
+										</div>
+										<div class="col-sm-9 col-xs-4 col-md-1" style="padding-top: 6px;">
+											<a href="javascript:;" class="remove-time">
+												<i class="fa fa-times-circle" title="删除时间段"></i>
+											</a>
+										</div>
+									</div>
+									{/loop}
+								{/if}
+							</div>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-xs-12 col-sm-3 col-md-2 control-label"></label>
+						<div class="col-sm-9 col-xs-12">
+							<label class="col-xs-12 col-sm-3 col-md-2 control-label"></label>
+							<div class="col-sm-9 col-xs-12">
+								<a href="javascript:;" id="hour-add"><i class="fa fa-plus-circle"></i>添加工作时间</a>
+								<div class="help-block">工作时间最多只能添加两个</div>
+							</div>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-xs-12 col-sm-3 col-md-2 control-label"></label>
+						<div class="col-sm-9 col-xs-12">
+							<label class="col-xs-12 col-sm-3 col-md-2 control-label">工作日</label>
+							<div class="checkbox checkbox-inline">
+								<input type="checkbox" name="workday[]" id="workday-1" value="1" {if $setting['autoreply']['workday'] && in_array(1, $setting['autoreply']['workday'])}checked{/if}>
+								<label for="workday-1">星期一</label>
+							</div>
+							<div class="checkbox checkbox-inline">
+								<input type="checkbox" name="workday[]" id="workday-2" value="2" {if $setting['autoreply']['workday'] && in_array(2, $setting['autoreply']['workday'])}checked{/if}>
+								<label for="workday-2">星期二</label>
+							</div>
+							<div class="checkbox checkbox-inline">
+								<input type="checkbox" name="workday[]" id="workday-3" value="3" {if $setting['autoreply']['workday'] && in_array(3, $setting['autoreply']['workday'])}checked{/if}>
+								<label for="workday-3">星期三</label>
+							</div>
+							<div class="checkbox checkbox-inline">
+								<input type="checkbox" name="workday[]" id="workday-4" value="4" {if $setting['autoreply']['workday'] && in_array(4, $setting['autoreply']['workday'])}checked{/if}>
+								<label for="workday-4">星期四</label>
+							</div>
+							<div class="checkbox checkbox-inline">
+								<input type="checkbox" name="workday[]" id="workday-5" value="5" {if $setting['autoreply']['workday'] && in_array(5, $setting['autoreply']['workday'])}checked{/if}>
+								<label for="workday-5">星期五</label>
+							</div>
+							<div class="checkbox checkbox-inline">
+								<input type="checkbox" name="workday[]" id="workday-6" value="6" {if $setting['autoreply']['workday'] && in_array(6, $setting['autoreply']['workday'])}checked{/if}>
+								<label for="workday-6">星期六</label>
+							</div>
+							<div class="checkbox checkbox-inline">
+								<input type="checkbox" name="workday[]" id="workday-7" value="7" {if $setting['autoreply']['workday'] && in_array(7, $setting['autoreply']['workday'])}checked{/if}>
+								<label for="workday-7">星期日</label>
+							</div>
+							<div class="help-block" style="padding-left: 15px;">
+								此项若不勾选，默认为周一至周日均为工作日。
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="tab-pane hide {if $_GPC['type'] == 'overtime'}active{/if}" role="tabpanel" id="overtime">
+				<h3>客户未响应设置</h3>
+				<div class="alert alert-info">温情提示：在设置的时间内客户没有新消息产生，系统将自动结束服务，客户再发消息会触发重新分配；在自动关闭前2分钟，客户会收到即将关闭的提示语。</div>
+				<div class="form-group">
+					<label class="col-xs-12 col-sm-3 col-md-2 control-label">客户未响应设置</label>
+					<div class="col-sm-9 col-xs-12">
+						<div class="radio radio-inline">
+							<input class="status-radio" data-element="overtime-member" type="radio" value="1" name="overtime[member][status]" id="overtime_member_status-1" {if $setting['overtime']['member']['status'] == 1}checked{/if} required >
+							<label for="overtime_member_status-1">是</label>
+						</div>
+						<div class="radio radio-inline">
+							<input class="status-radio" data-element="overtime-member" type="radio" value="0" name="overtime[member][status]" id="overtime_member_status-0" {if $setting['overtime']['member']['status'] == 0 || !$setting['overtime']['member']['status']}checked{/if}>
+							<label for="overtime_member_status-0">否</label>
+						</div>
+					</div>
+				</div>
+				<div class="overtime-member {if $setting['overtime']['member']['status'] == 0 || !$setting['overtime']['member']['status']}hide{/if}">
+					<div class="form-group">
+						<label class="col-xs-12 col-sm-3 col-md-2 control-label">*超时时间</label>
+						<div class="col-sm-4 col-xs-6">
+							<div class="input-group">
+								<input type="number" class="form-control" name="overtime[member][closetime]" value="{$setting['overtime']['member']['closetime']}" placeholder="超时时间" required>
+								<div class="input-group-addon">分钟</div>
+							</div>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-xs-12 col-sm-3 col-md-2 control-label">*超时提醒</label>
+						<div class="col-sm-9 col-xs-12">
+							<textarea style="height:50px;" class="form-control" cols="70" name="overtime[member][content]" placeholder="请填写超时提醒" autocomplete="off" required>{$setting['overtime']['member']['content']}</textarea>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-xs-12 col-sm-3 col-md-2 control-label">*发送消息时间</label>
+						<div class="col-sm-4 col-xs-6">
+							<div class="input-group">
+								<div class="input-group-addon">关闭前</div>
+								<input type="number" class="form-control" name="overtime[member][tipstime]" value="{$setting['overtime']['member']['tipstime']}" required>
+								<div class="input-group-addon">分钟, 发送超时提示</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<h3>客服未接待设置</h3>
+				<div class="alert alert-info">温情提示：温情提示：在设置的时间内客服没有回复客户，系统将自动关闭会话，客户继续发消息会触发重新分配；在自动关闭前2分钟，客服会收到即将关闭的提示语。</div>
+				<div class="form-group">
+					<label class="col-xs-12 col-sm-3 col-md-2 control-label">客服未接待设置</label>
+					<div class="col-sm-9 col-xs-12">
+						<div class="radio radio-inline">
+							<input class="status-radio" data-element="overtime-kefu" type="radio" value="1" name="overtime[kefu][status]" id="overtime_kefu_status-1" {if $setting['overtime']['kefu']['status'] == 1}checked{/if} required >
+							<label for="overtime_kefu_status-1">是</label>
+						</div>
+						<div class="radio radio-inline">
+							<input class="status-radio" data-element="overtime-kefu" type="radio" value="0" name="overtime[kefu][status]" id="overtime_kefu_status-0" {if $setting['overtime']['kefu']['status'] == 0 || !$setting['overtime']['kefu']['status']}checked{/if}>
+							<label for="overtime_kefu_status-0">否</label>
+						</div>
+					</div>
+				</div>
+				<div class="overtime-kefu {if $setting['overtime']['kefu']['status'] == 0 || !$setting['overtime']['kefu']['status']}hide{/if}">
+					<div class="form-group">
+						<label class="col-xs-12 col-sm-3 col-md-2 control-label">*超时时间</label>
+						<div class="col-sm-4 col-xs-6">
+							<div class="input-group">
+								<input type="number" class="form-control" name="overtime[kefu][closetime]" value="{$setting['overtime']['kefu']['closetime']}">
+								<div class="input-group-addon">分钟</div>
+							</div>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-xs-12 col-sm-3 col-md-2 control-label">*超时提醒</label>
+						<div class="col-sm-9 col-xs-12">
+							<textarea style="height:50px;" class="form-control" cols="70" name="overtime[kefu][content]" placeholder="请填写超时提醒" autocomplete="off" required>{$setting['overtime']['kefu']['content']}</textarea>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-xs-12 col-sm-3 col-md-2 control-label">*发送消息时间</label>
+						<div class="col-sm-4 col-xs-6">
+							<div class="input-group">
+								<div class="input-group-addon">关闭前</div>
+								<input type="number" class="form-control" name="overtime[kefu][tipstime]" value="{$setting['overtime']['kefu']['tipstime']}" required>
+								<div class="input-group-addon">分钟, 发送超时提示</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="col-sm-9 col-xs-9 col-md-9">
+					<input type="hidden" name="token" value="{$_W['token']}">
+					<input type="submit" value="提交" class="btn btn-primary">
+				</div>
+			</div>
+		</div>
+	</form>
+</div>
+
+<script type="text/javascript">
+	require(['clockpicker'], function($){
+		$('.clockpicker :text').clockpicker({autoclose: true});
+
+		$(document).on('click', '#hour-add', function() {
+			var length = $('.clockpicker .hour-item').length;
+			if(length >= 2) {
+				Notify.info('最多可添加2个工作时间段');
+				return false;
+			}
+			var html = 	'<div class="hour-item clearfix" style="margin-bottom: 10px;">'+
+				'<label class="col-xs-12 col-sm-3 col-md-2 control-label"></label>' +
+				'<div class="col-sm-9 col-xs-4 col-md-9">' +
+				'<div class="input-group">' +
+				'<input type="text" readonly name="starttime[]" class="form-control" value="">' +
+				'<span class="input-group-addon">至</span>' +
+				'<input type="text" readonly name="endtime[]" class="form-control" value="">' +
+				'</div>' +
+				'</div>' +
+				'<div class="col-sm-9 col-xs-4 col-md-1" style="padding-top: 6px;">' +
+				'<a href="javascript:;" class="remove-time">' +
+				'<i class="fa fa-times-circle" title="删除时间段"></i>' +
+				'</a>' +
+				'</div>' +
+				'</div>';
+			$('#hour-container').append(html);
+			$('.clockpicker :text').clockpicker({autoclose: true});
+		});
+		$(document).on('click', '.remove-time', function() {
+			var length = $('.clockpicker .hour-item').length;
+			if(length <= 1) {
+				Notify.info('最少需添加1个工作时间段');
+				return false;
+			}
+			$(this).parent().parent().remove();
+		});
+
+		$(document).on('click', '.status-radio', function() {
+			var value = $(this).val();
+			var element = '.' + $(this).data('element');
+			if(value == 1) {
+				$(element).removeClass('hide')
+			} else {
+				$(element).addClass('hide')
+			}
+		});
+	});
+</script>
+{/if}
+{itemplate 'public/footer'}

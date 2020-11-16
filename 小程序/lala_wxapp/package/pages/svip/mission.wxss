@@ -1,0 +1,185 @@
+page {
+    background-color: #F5F5F5;
+    font-size: 14px;
+    line-height: 1;
+}
+
+.page-mission .mission-header {
+    background-color: #14110f;
+    padding: 37px 23px 75px 23px;
+}
+
+.page-mission .mission-header .mission-title {
+    margin-bottom: 10px;
+    font-size: 24px;
+    color: #edd992;
+    font-weight: 600;
+}
+
+.page-mission .mission-header .mission-tips {
+    color: #aba192;
+    font-size: 14px;
+}
+
+.page-mission .mission-header .mission-tips .num {
+    font-size: 20px;
+    color: #f1d48f;
+}
+
+.page-mission .mission-group {
+    position: absolute;
+    top: 130px;
+    left: 15px;
+    right: 15px;
+    border-radius: 3px;
+    background-color: #fff;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,.05);
+    color: #333;
+}
+
+.page-mission .mission-group .mission-group-title {
+    padding: 15px;
+    font-size: 16px;
+    color: #333;
+    font-weight: 800;
+}
+
+.page-mission .mission-group .mission-group-title text {
+    padding-left: 5px;
+}
+
+.page-mission .mission-group .mission-list {
+    padding: 0 15px;
+}
+
+.page-mission .mission-group .mission-item:first-child {
+    padding-top: 0;
+}
+
+.page-mission .mission-group .mission-item:last-child .mission-left,.page-mission .mission-group .mission-item:last-child .mission-left {
+    border: none;
+}
+
+.page-mission .mission-group .mission-item {
+    overflow: hidden;
+    padding-top: 10px;
+}
+
+.page-mission .mission-group .mission-item .avatar {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 20%;
+    height: 70px;
+}
+
+.page-mission .mission-group .mission-item .avatar image {
+    width: 36px;
+    height: 36px;
+}
+
+.page-mission .mission-group .mission-item .mission-left {
+    width: 80%;
+    padding-bottom: 15px;
+    border-bottom: 1px solid hsla(0,0%,93%,.5);
+}
+
+.page-mission .mission-group .mission-item .activity-info {
+    width: 65%;
+    font-size: 12px;
+    color: #999;
+}
+
+.page-mission .mission-group .mission-item .activity-info .mission-name {
+    font-size: 15px;
+    color: #333;
+    padding-bottom: 5px;
+}
+
+.page-mission .mission-group .mission-item .activity-info .award {
+    color: #ff2d4b;
+    font-size: 13px;
+    padding-top: 5px;
+}
+
+.page-mission .mission-group .mission-item .activity-price .activity-but {
+    padding: 4px 15px;
+    font-size: 13px;
+    border-radius: 50px;
+    color: #594519;
+    background-image: linear-gradient(90deg,#faeaa7,#d4b96a);
+    background-size: 110% 110%;
+}
+
+.page-mission .mission-group .mission-tips {
+    display: inline-flex;
+    align-items: center;
+    background-color: #ffe9e9;
+    font-size: 12px;
+    color: #ff7373;
+    padding: 3px 10px;
+    border-radius: 100px 0 0 100px;
+    margin-right: -15px;
+}
+
+.page-mission .mission-group .mine-mission {
+    padding-top: 10px;
+}
+
+.page-mission .mission-group .mine-mission .avatar {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 20%;
+    height: 80px;
+}
+
+.page-mission .mission-group .mine-mission .avatar image {
+    width: 36px;
+    height: 36px;
+}
+
+.page-mission .mission-group .mine-mission .mission-left {
+    width: 80%;
+    padding-bottom: 15px;
+}
+
+.page-mission .mission-group .mine-mission .mission-left .activity-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 65px;
+    width: 65%;
+    font-size: 12px;
+    color: #999;
+}
+
+.page-mission .mission-group .mine-mission .activity-price {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 65px;
+}
+
+.page-mission .mission-group .mine-mission .activity-price .activity-btn {
+    padding: 4px 15px;
+    font-size: 13px;
+    border-radius: 50px;
+    color: #594519;
+    background-image: linear-gradient(90deg,#faeaa7,#d4b96a);
+    background-size: 110% 110%;
+    width: 70px;
+    box-sizing: border-box;
+}
+
+.page-mission .mission-group .mine-mission .activity-price .jindu {
+    padding-right: 5px;
+}
+
+.page-mission .mission-group .mine-mission .activity-price .steps {
+    display: block;
+    height: 4px;
+    background-color: #e9e9e9;
+    margin: 0 2px;
+    width: 15px;
+}

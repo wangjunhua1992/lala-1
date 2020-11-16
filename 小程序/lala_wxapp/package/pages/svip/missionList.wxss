@@ -1,0 +1,75 @@
+page {
+    background-color: #F5F5F5;
+    font-size: 14px;
+    line-height: 1;
+}
+
+.page-missionList .mission-list {
+    padding-top: 45px;
+}
+
+.page-missionList .mission-item {
+    margin-top: 10px;
+    background-color: #fff;
+}
+
+.page-missionList .mission-item:first-child {
+    margin-top: 0;
+}
+
+.page-missionList .mission-item .mission-group {
+    display: flex;
+    padding: 10px 0;
+    margin: 0 15px;
+    border-bottom: 1px solid #eee;
+}
+
+.page-missionList .mission-item .mission-group .mission-award {
+    font-size: 13px;
+    color: #ff2d4b;
+    padding-top: 5px;
+    line-height: 15px;
+}
+
+.page-missionList .mission-item .mission-group .mission-img {
+    width: 50px;
+    height: 50px;
+}
+
+.page-missionList .mission-item .mission-group .mission-img image {
+    width: 100%;
+    height: 100%;
+}
+
+.page-missionList .mission-item .mission-group .mission-info {
+    width: 85%;
+    padding-left: 10px;
+}
+
+.page-missionList .mission-item .mission-group .mission-info .finish-time,.page-missionList .mission-item .mission-group .mission-info .limit-time {
+    display: flex;
+    align-items: center;
+    font-size: 13px;
+    color: #999;
+    padding-top: 5px;
+}
+
+.page-missionList .mission-item .mission-footer {
+    display: flex;
+    justify-content: flex-end;
+    padding: 10px 15px;
+    background-color: #fff;
+}
+
+.page-missionList .mission-item .mission-footer .itag {
+    display: inline-block;
+    border-radius: 3px;
+    font-size: 14px;
+    padding: 6px 15px;
+    color: #fff;
+    margin-left: 10px;
+}
+
+.page-missionList .mission-item .mission-footer .itag.itag-danger {
+    background-color: #FF2C4C;
+}

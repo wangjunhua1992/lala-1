@@ -1,0 +1,30 @@
+{itemplate 'public/header'}
+<div class="page my-page" id="page-statcenter">
+	<header class="bar bar-nav common-bar-nav">
+		<a class="icon pull-left icon icon-arrow-left back"></a>
+		<h1 class="title">今日配送订单统计</h1>
+	</header>
+	{itemplate 'public/nav'}
+	<div class="content">
+		<table class="table text-center">
+			<thead>
+			<tr class="border-1px-tb">
+				<th class="border-1px-r">门店</th>
+				<th class="border-1px-r">今日配送总单数</th>
+				<th>今日配送商品总数</th>
+			</tr>
+			</thead>
+			<tbody>
+			{loop $records $rkey $record}
+			<tr class="border-1px-b">
+				<td class="border-1px-r">{$record['title']}</td>
+				<td class="border-1px-r">{$record['order_num']}</td>
+				<td>{$record['goods_num']}</td>
+			</tr>
+			{/loop}
+			</tbody>
+		</table>
+	</div>
+</div>
+
+{itemplate 'public/footer'}

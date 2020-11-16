@@ -1,0 +1,341 @@
+2019-07-24 10:25:03 pid:1 exception 'Exception' with message 'You can't send(array) to client, you need to convert it to a string. ' in D:\soft\xamp\htdocs\project\we7\addons\we7_wmall\library\GatewayWorker\vendor\workerman\workerman\Protocols\Websocket.php:236
+Stack trace:
+#0 D:\soft\xamp\htdocs\project\we7\addons\we7_wmall\library\GatewayWorker\vendor\workerman\workerman\Connection\TcpConnection.php(344): Workerman\Protocols\Websocket::encode(Array, Object(Workerman\Connection\TcpConnection))
+#1 D:\soft\xamp\htdocs\project\we7\addons\we7_wmall\library\GatewayWorker\vendor\workerman\gateway-worker\src\Gateway.php(569): Workerman\Connection\TcpConnection->send(Array)
+#2 [internal function]: GatewayWorker\Gateway->onWorkerMessage(Object(Workerman\Connection\TcpConnection), Array)
+#3 D:\soft\xamp\htdocs\project\we7\addons\we7_wmall\library\GatewayWorker\vendor\workerman\workerman\Connection\TcpConnection.php(658): call_user_func(Array, Object(Workerman\Connection\TcpConnection), Array)
+#4 [internal function]: Workerman\Connection\TcpConnection->baseRead(Resource id #68)
+#5 D:\soft\xamp\htdocs\project\we7\addons\we7_wmall\library\GatewayWorker\vendor\workerman\workerman\Events\Select.php(294): call_user_func_array(Array, Array)
+#6 D:\soft\xamp\htdocs\project\we7\addons\we7_wmall\library\GatewayWorker\vendor\workerman\workerman\Worker.php(2321): Workerman\Events\Select->loop()
+#7 D:\soft\xamp\htdocs\project\we7\addons\we7_wmall\library\GatewayWorker\vendor\workerman\gateway-worker\src\Gateway.php(276): Workerman\Worker->run()
+#8 D:\soft\xamp\htdocs\project\we7\addons\we7_wmall\library\GatewayWorker\vendor\workerman\workerman\Worker.php(1315): GatewayWorker\Gateway->run()
+#9 D:\soft\xamp\htdocs\project\we7\addons\we7_wmall\library\GatewayWorker\vendor\workerman\workerman\Worker.php(1258): Workerman\Worker::forkWorkersForWindows()
+#10 D:\soft\xamp\htdocs\project\we7\addons\we7_wmall\library\GatewayWorker\vendor\workerman\workerman\Worker.php(507): Workerman\Worker::forkWorkers()
+#11 D:\soft\xamp\htdocs\project\we7\addons\we7_wmall\library\GatewayWorker\Applications\YourApp\start_gateway.php(63): Workerman\Worker::runAll()
+#12 {main}
+2019-07-24 10:25:03 pid:1 Worker process terminated
+2019-07-24 10:25:29 pid:1 exception 'Exception' with message 'You can't send(array) to client, you need to convert it to a string. ' in D:\soft\xamp\htdocs\project\we7\addons\we7_wmall\library\GatewayWorker\vendor\workerman\workerman\Protocols\Websocket.php:236
+Stack trace:
+#0 D:\soft\xamp\htdocs\project\we7\addons\we7_wmall\library\GatewayWorker\vendor\workerman\workerman\Connection\TcpConnection.php(344): Workerman\Protocols\Websocket::encode(Array, Object(Workerman\Connection\TcpConnection))
+#1 D:\soft\xamp\htdocs\project\we7\addons\we7_wmall\library\GatewayWorker\vendor\workerman\gateway-worker\src\Gateway.php(569): Workerman\Connection\TcpConnection->send(Array)
+#2 [internal function]: GatewayWorker\Gateway->onWorkerMessage(Object(Workerman\Connection\TcpConnection), Array)
+#3 D:\soft\xamp\htdocs\project\we7\addons\we7_wmall\library\GatewayWorker\vendor\workerman\workerman\Connection\TcpConnection.php(658): call_user_func(Array, Object(Workerman\Connection\TcpConnection), Array)
+#4 [internal function]: Workerman\Connection\TcpConnection->baseRead(Resource id #38)
+#5 D:\soft\xamp\htdocs\project\we7\addons\we7_wmall\library\GatewayWorker\vendor\workerman\workerman\Events\Select.php(294): call_user_func_array(Array, Array)
+#6 D:\soft\xamp\htdocs\project\we7\addons\we7_wmall\library\GatewayWorker\vendor\workerman\workerman\Worker.php(2321): Workerman\Events\Select->loop()
+#7 D:\soft\xamp\htdocs\project\we7\addons\we7_wmall\library\GatewayWorker\vendor\workerman\gateway-worker\src\Gateway.php(276): Workerman\Worker->run()
+#8 D:\soft\xamp\htdocs\project\we7\addons\we7_wmall\library\GatewayWorker\vendor\workerman\workerman\Worker.php(1315): GatewayWorker\Gateway->run()
+#9 D:\soft\xamp\htdocs\project\we7\addons\we7_wmall\library\GatewayWorker\vendor\workerman\workerman\Worker.php(1258): Workerman\Worker::forkWorkersForWindows()
+#10 D:\soft\xamp\htdocs\project\we7\addons\we7_wmall\library\GatewayWorker\vendor\workerman\workerman\Worker.php(507): Workerman\Worker::forkWorkers()
+#11 D:\soft\xamp\htdocs\project\we7\addons\we7_wmall\library\GatewayWorker\Applications\YourApp\start_gateway.php(63): Workerman\Worker::runAll()
+#12 {main}
+2019-07-24 10:25:29 pid:1 Worker process terminated
+2019-07-24 10:26:39 pid:1 exception 'Exception' with message 'You can't send(array) to client, you need to convert it to a string. ' in D:\soft\xamp\htdocs\project\we7\addons\we7_wmall\library\GatewayWorker\vendor\workerman\workerman\Protocols\Websocket.php:236
+Stack trace:
+#0 D:\soft\xamp\htdocs\project\we7\addons\we7_wmall\library\GatewayWorker\vendor\workerman\workerman\Connection\TcpConnection.php(344): Workerman\Protocols\Websocket::encode(Array, Object(Workerman\Connection\TcpConnection))
+#1 D:\soft\xamp\htdocs\project\we7\addons\we7_wmall\library\GatewayWorker\vendor\workerman\gateway-worker\src\Gateway.php(569): Workerman\Connection\TcpConnection->send(Array)
+#2 [internal function]: GatewayWorker\Gateway->onWorkerMessage(Object(Workerman\Connection\TcpConnection), Array)
+#3 D:\soft\xamp\htdocs\project\we7\addons\we7_wmall\library\GatewayWorker\vendor\workerman\workerman\Connection\TcpConnection.php(658): call_user_func(Array, Object(Workerman\Connection\TcpConnection), Array)
+#4 [internal function]: Workerman\Connection\TcpConnection->baseRead(Resource id #38)
+#5 D:\soft\xamp\htdocs\project\we7\addons\we7_wmall\library\GatewayWorker\vendor\workerman\workerman\Events\Select.php(294): call_user_func_array(Array, Array)
+#6 D:\soft\xamp\htdocs\project\we7\addons\we7_wmall\library\GatewayWorker\vendor\workerman\workerman\Worker.php(2321): Workerman\Events\Select->loop()
+#7 D:\soft\xamp\htdocs\project\we7\addons\we7_wmall\library\GatewayWorker\vendor\workerman\gateway-worker\src\Gateway.php(276): Workerman\Worker->run()
+#8 D:\soft\xamp\htdocs\project\we7\addons\we7_wmall\library\GatewayWorker\vendor\workerman\workerman\Worker.php(1315): GatewayWorker\Gateway->run()
+#9 D:\soft\xamp\htdocs\project\we7\addons\we7_wmall\library\GatewayWorker\vendor\workerman\workerman\Worker.php(1258): Workerman\Worker::forkWorkersForWindows()
+#10 D:\soft\xamp\htdocs\project\we7\addons\we7_wmall\library\GatewayWorker\vendor\workerman\workerman\Worker.php(507): Workerman\Worker::forkWorkers()
+#11 D:\soft\xamp\htdocs\project\we7\addons\we7_wmall\library\GatewayWorker\Applications\YourApp\start_gateway.php(63): Workerman\Worker::runAll()
+#12 {main}
+2019-07-24 10:26:39 pid:1 Worker process terminated
+2019-07-25 11:42:35 pid:1 Bad request for Register service. Request info(IP:127.0.0.1, Request Buffer:GET / HTTP/1.1). See http://wiki.workerman.net/Error4 for detail
+2019-07-25 11:42:35 pid:1 Bad request for Register service. Request info(IP:127.0.0.1, Request Buffer:GET / HTTP/1.1). See http://wiki.workerman.net/Error4 for detail
+2019-07-25 11:42:35 pid:1 Bad request for Register service. Request info(IP:127.0.0.1, Request Buffer:GET / HTTP/1.1). See http://wiki.workerman.net/Error4 for detail
+2019-07-25 11:42:35 pid:1 Bad request for Register service. Request info(IP:127.0.0.1, Request Buffer:GET / HTTP/1.1). See http://wiki.workerman.net/Error4 for detail
+2019-07-25 11:42:35 pid:1 Bad request for Register service. Request info(IP:127.0.0.1, Request Buffer:GET / HTTP/1.1). See http://wiki.workerman.net/Error4 for detail
+2019-07-25 11:42:35 pid:1 Bad request for Register service. Request info(IP:127.0.0.1, Request Buffer:GET / HTTP/1.1). See http://wiki.workerman.net/Error4 for detail
+2019-07-25 11:42:35 pid:1 Bad request for Register service. Request info(IP:127.0.0.1, Request Buffer:GET / HTTP/1.1). See http://wiki.workerman.net/Error4 for detail
+2019-07-25 11:42:35 pid:1 Bad request for Register service. Request info(IP:127.0.0.1, Request Buffer:GET / HTTP/1.1). See http://wiki.workerman.net/Error4 for detail
+2019-07-25 11:42:35 pid:1 Bad request for Register service. Request info(IP:127.0.0.1, Request Buffer:GET / HTTP/1.1). See http://wiki.workerman.net/Error4 for detail
+2019-07-25 11:42:35 pid:1 Bad request for Register service. Request info(IP:127.0.0.1, Request Buffer:GET / HTTP/1.1). See http://wiki.workerman.net/Error4 for detail
+2019-07-25 11:42:35 pid:1 Bad request for Register service. Request info(IP:127.0.0.1, Request Buffer:GET / HTTP/1.1). See http://wiki.workerman.net/Error4 for detail
+2019-07-25 11:42:35 pid:1 Bad request for Register service. Request info(IP:127.0.0.1, Request Buffer:GET / HTTP/1.1). See http://wiki.workerman.net/Error4 for detail
+2019-07-25 11:42:35 pid:1 Bad request for Register service. Request info(IP:127.0.0.1, Request Buffer:GET / HTTP/1.1). See http://wiki.workerman.net/Error4 for detail
+2019-07-25 11:42:35 pid:1 Bad request for Register service. Request info(IP:127.0.0.1, Request Buffer:GET / HTTP/1.1). See http://wiki.workerman.net/Error4 for detail
+2019-07-25 11:42:35 pid:1 Bad request for Register service. Request info(IP:127.0.0.1, Request Buffer:GET / HTTP/1.1). See http://wiki.workerman.net/Error4 for detail
+2019-07-25 11:42:35 pid:1 Bad request for Register service. Request info(IP:127.0.0.1, Request Buffer:GET / HTTP/1.1). See http://wiki.workerman.net/Error4 for detail
+2019-07-25 11:42:35 pid:1 Bad request for Register service. Request info(IP:127.0.0.1, Request Buffer:GET / HTTP/1.1). See http://wiki.workerman.net/Error4 for detail
+2019-07-25 11:42:35 pid:1 Bad request for Register service. Request info(IP:127.0.0.1, Request Buffer:GET / HTTP/1.1). See http://wiki.workerman.net/Error4 for detail
+2019-07-25 11:42:35 pid:1 Bad request for Register service. Request info(IP:127.0.0.1, Request Buffer:GET / HTTP/1.1). See http://wiki.workerman.net/Error4 for detail
+2019-07-25 11:42:35 pid:1 Bad request for Register service. Request info(IP:127.0.0.1, Request Buffer:GET / HTTP/1.1). See http://wiki.workerman.net/Error4 for detail
+2019-07-25 11:42:35 pid:1 Bad request for Register service. Request info(IP:127.0.0.1, Request Buffer:GET / HTTP/1.1). See http://wiki.workerman.net/Error4 for detail
+2019-07-25 11:42:35 pid:1 Bad request for Register service. Request info(IP:127.0.0.1, Request Buffer:GET / HTTP/1.1). See http://wiki.workerman.net/Error4 for detail
+2019-07-25 11:42:35 pid:1 Bad request for Register service. Request info(IP:127.0.0.1, Request Buffer:GET / HTTP/1.1). See http://wiki.workerman.net/Error4 for detail
+2019-07-25 11:42:35 pid:1 Bad request for Register service. Request info(IP:127.0.0.1, Request Buffer:GET / HTTP/1.1). See http://wiki.workerman.net/Error4 for detail
+2019-07-25 11:42:35 pid:1 Bad request for Register service. Request info(IP:127.0.0.1, Request Buffer:GET / HTTP/1.1). See http://wiki.workerman.net/Error4 for detail
+2019-07-25 11:42:35 pid:1 Bad request for Register service. Request info(IP:127.0.0.1, Request Buffer:GET / HTTP/1.1). See http://wiki.workerman.net/Error4 for detail
+2019-07-25 11:42:35 pid:1 Bad request for Register service. Request info(IP:127.0.0.1, Request Buffer:GET / HTTP/1.1). See http://wiki.workerman.net/Error4 for detail
+2019-07-25 11:42:35 pid:1 Bad request for Register service. Request info(IP:127.0.0.1, Request Buffer:GET / HTTP/1.1). See http://wiki.workerman.net/Error4 for detail
+2019-07-25 11:42:35 pid:1 Bad request for Register service. Request info(IP:127.0.0.1, Request Buffer:GET / HTTP/1.1). See http://wiki.workerman.net/Error4 for detail
+2019-07-25 11:42:35 pid:1 Bad request for Register service. Request info(IP:127.0.0.1, Request Buffer:GET / HTTP/1.1). See http://wiki.workerman.net/Error4 for detail
+2019-07-25 11:42:36 pid:1 Bad request for Register service. Request info(IP:127.0.0.1, Request Buffer:GET / HTTP/1.1). See http://wiki.workerman.net/Error4 for detail
+2019-07-25 11:42:36 pid:1 Bad request for Register service. Request info(IP:127.0.0.1, Request Buffer:GET / HTTP/1.1). See http://wiki.workerman.net/Error4 for detail
+2019-07-25 11:42:36 pid:1 Bad request for Register service. Request info(IP:127.0.0.1, Request Buffer:GET / HTTP/1.1). See http://wiki.workerman.net/Error4 for detail
+2019-07-25 11:42:36 pid:1 Bad request for Register service. Request info(IP:127.0.0.1, Request Buffer:GET / HTTP/1.1). See http://wiki.workerman.net/Error4 for detail
+2019-07-25 11:42:36 pid:1 Bad request for Register service. Request info(IP:127.0.0.1, Request Buffer:GET / HTTP/1.1). See http://wiki.workerman.net/Error4 for detail
+2019-07-25 11:42:36 pid:1 Bad request for Register service. Request info(IP:127.0.0.1, Request Buffer:GET / HTTP/1.1). See http://wiki.workerman.net/Error4 for detail
+2019-07-25 11:42:36 pid:1 Bad request for Register service. Request info(IP:127.0.0.1, Request Buffer:GET / HTTP/1.1). See http://wiki.workerman.net/Error4 for detail
+2019-07-25 11:42:36 pid:1 Bad request for Register service. Request info(IP:127.0.0.1, Request Buffer:GET / HTTP/1.1). See http://wiki.workerman.net/Error4 for detail
+2019-07-25 11:42:36 pid:1 Bad request for Register service. Request info(IP:127.0.0.1, Request Buffer:GET / HTTP/1.1). See http://wiki.workerman.net/Error4 for detail
+2019-07-25 11:42:36 pid:1 Bad request for Register service. Request info(IP:127.0.0.1, Request Buffer:GET / HTTP/1.1). See http://wiki.workerman.net/Error4 for detail
+2019-07-25 11:42:36 pid:1 Bad request for Register service. Request info(IP:127.0.0.1, Request Buffer:GET / HTTP/1.1). See http://wiki.workerman.net/Error4 for detail
+2019-07-25 11:42:36 pid:1 Bad request for Register service. Request info(IP:127.0.0.1, Request Buffer:GET / HTTP/1.1). See http://wiki.workerman.net/Error4 for detail
+2019-07-25 11:42:36 pid:1 Bad request for Register service. Request info(IP:127.0.0.1, Request Buffer:GET / HTTP/1.1). See http://wiki.workerman.net/Error4 for detail
+2019-07-25 11:42:36 pid:1 Bad request for Register service. Request info(IP:127.0.0.1, Request Buffer:GET / HTTP/1.1). See http://wiki.workerman.net/Error4 for detail
+2019-07-25 11:42:36 pid:1 Bad request for Register service. Request info(IP:127.0.0.1, Request Buffer:GET / HTTP/1.1). See http://wiki.workerman.net/Error4 for detail
+2019-07-25 11:42:36 pid:1 Bad request for Register service. Request info(IP:127.0.0.1, Request Buffer:GET / HTTP/1.1). See http://wiki.workerman.net/Error4 for detail
+2019-07-25 11:42:36 pid:1 Bad request for Register service. Request info(IP:127.0.0.1, Request Buffer:GET / HTTP/1.1). See http://wiki.workerman.net/Error4 for detail
+2019-07-25 11:42:36 pid:1 Bad request for Register service. Request info(IP:127.0.0.1, Request Buffer:GET / HTTP/1.1). See http://wiki.workerman.net/Error4 for detail
+2019-07-25 11:42:36 pid:1 Bad request for Register service. Request info(IP:127.0.0.1, Request Buffer:GET / HTTP/1.1). See http://wiki.workerman.net/Error4 for detail
+2019-07-25 11:42:36 pid:1 Bad request for Register service. Request info(IP:127.0.0.1, Request Buffer:GET / HTTP/1.1). See http://wiki.workerman.net/Error4 for detail
+2019-07-25 11:42:36 pid:1 Bad request for Register service. Request info(IP:127.0.0.1, Request Buffer:GET / HTTP/1.1). See http://wiki.workerman.net/Error4 for detail
+2019-07-25 11:42:36 pid:1 Bad request for Register service. Request info(IP:127.0.0.1, Request Buffer:GET / HTTP/1.1). See http://wiki.workerman.net/Error4 for detail
+2019-07-25 11:42:36 pid:1 Bad request for Register service. Request info(IP:127.0.0.1, Request Buffer:GET / HTTP/1.1). See http://wiki.workerman.net/Error4 for detail
+2019-07-25 11:42:36 pid:1 Bad request for Register service. Request info(IP:127.0.0.1, Request Buffer:GET / HTTP/1.1). See http://wiki.workerman.net/Error4 for detail
+2019-07-25 11:42:36 pid:1 Bad request for Register service. Request info(IP:127.0.0.1, Request Buffer:GET / HTTP/1.1). See http://wiki.workerman.net/Error4 for detail
+2019-07-25 11:42:36 pid:1 Bad request for Register service. Request info(IP:127.0.0.1, Request Buffer:GET / HTTP/1.1). See http://wiki.workerman.net/Error4 for detail
+2019-07-25 11:42:36 pid:1 Bad request for Register service. Request info(IP:127.0.0.1, Request Buffer:GET / HTTP/1.1). See http://wiki.workerman.net/Error4 for detail
+2019-07-25 11:42:36 pid:1 Bad request for Register service. Request info(IP:127.0.0.1, Request Buffer:GET / HTTP/1.1). See http://wiki.workerman.net/Error4 for detail
+2019-07-25 11:42:36 pid:1 Bad request for Register service. Request info(IP:127.0.0.1, Request Buffer:GET / HTTP/1.1). See http://wiki.workerman.net/Error4 for detail
+2019-07-25 11:42:36 pid:1 Bad request for Register service. Request info(IP:127.0.0.1, Request Buffer:GET / HTTP/1.1). See http://wiki.workerman.net/Error4 for detail
+2019-07-25 11:42:36 pid:1 Bad request for Register service. Request info(IP:127.0.0.1, Request Buffer:GET / HTTP/1.1). See http://wiki.workerman.net/Error4 for detail
+2019-07-25 11:42:36 pid:1 Bad request for Register service. Request info(IP:127.0.0.1, Request Buffer:GET / HTTP/1.1). See http://wiki.workerman.net/Error4 for detail
+2019-07-25 11:42:36 pid:1 Bad request for Register service. Request info(IP:127.0.0.1, Request Buffer:GET / HTTP/1.1). See http://wiki.workerman.net/Error4 for detail
+2019-07-25 11:42:36 pid:1 Bad request for Register service. Request info(IP:127.0.0.1, Request Buffer:GET / HTTP/1.1). See http://wiki.workerman.net/Error4 for detail
+2019-07-25 11:42:36 pid:1 Bad request for Register service. Request info(IP:127.0.0.1, Request Buffer:GET / HTTP/1.1). See http://wiki.workerman.net/Error4 for detail
+2019-07-25 11:42:36 pid:1 Bad request for Register service. Request info(IP:127.0.0.1, Request Buffer:GET / HTTP/1.1). See http://wiki.workerman.net/Error4 for detail
+2019-07-25 11:42:36 pid:1 Bad request for Register service. Request info(IP:127.0.0.1, Request Buffer:GET / HTTP/1.1). See http://wiki.workerman.net/Error4 for detail
+2019-07-25 11:42:36 pid:1 Bad request for Register service. Request info(IP:127.0.0.1, Request Buffer:GET / HTTP/1.1). See http://wiki.workerman.net/Error4 for detail
+2019-07-25 11:42:36 pid:1 Bad request for Register service. Request info(IP:127.0.0.1, Request Buffer:GET / HTTP/1.1). See http://wiki.workerman.net/Error4 for detail
+2019-07-25 11:42:36 pid:1 Bad request for Register service. Request info(IP:127.0.0.1, Request Buffer:GET / HTTP/1.1). See http://wiki.workerman.net/Error4 for detail
+2019-07-25 11:42:36 pid:1 Bad request for Register service. Request info(IP:127.0.0.1, Request Buffer:GET / HTTP/1.1). See http://wiki.workerman.net/Error4 for detail
+2019-07-25 11:42:36 pid:1 Bad request for Register service. Request info(IP:127.0.0.1, Request Buffer:GET / HTTP/1.1). See http://wiki.workerman.net/Error4 for detail
+2019-07-25 11:42:36 pid:1 Bad request for Register service. Request info(IP:127.0.0.1, Request Buffer:GET / HTTP/1.1). See http://wiki.workerman.net/Error4 for detail
+2019-07-25 11:42:36 pid:1 Bad request for Register service. Request info(IP:127.0.0.1, Request Buffer:GET / HTTP/1.1). See http://wiki.workerman.net/Error4 for detail
+2019-07-25 11:42:37 pid:1 Bad request for Register service. Request info(IP:127.0.0.1, Request Buffer:GET / HTTP/1.1). See http://wiki.workerman.net/Error4 for detail
+2019-07-25 11:42:37 pid:1 Bad request for Register service. Request info(IP:127.0.0.1, Request Buffer:GET / HTTP/1.1). See http://wiki.workerman.net/Error4 for detail
+2019-07-25 11:42:37 pid:1 Bad request for Register service. Request info(IP:127.0.0.1, Request Buffer:GET / HTTP/1.1). See http://wiki.workerman.net/Error4 for detail
+2019-07-25 11:42:37 pid:1 Bad request for Register service. Request info(IP:127.0.0.1, Request Buffer:GET / HTTP/1.1). See http://wiki.workerman.net/Error4 for detail
+2019-07-25 11:42:37 pid:1 Bad request for Register service. Request info(IP:127.0.0.1, Request Buffer:GET / HTTP/1.1). See http://wiki.workerman.net/Error4 for detail
+2019-07-25 11:42:37 pid:1 Bad request for Register service. Request info(IP:127.0.0.1, Request Buffer:GET / HTTP/1.1). See http://wiki.workerman.net/Error4 for detail
+2019-07-25 11:42:37 pid:1 Bad request for Register service. Request info(IP:127.0.0.1, Request Buffer:GET / HTTP/1.1). See http://wiki.workerman.net/Error4 for detail
+2019-07-25 11:42:37 pid:1 Bad request for Register service. Request info(IP:127.0.0.1, Request Buffer:GET / HTTP/1.1). See http://wiki.workerman.net/Error4 for detail
+2019-07-25 11:42:37 pid:1 Bad request for Register service. Request info(IP:127.0.0.1, Request Buffer:GET / HTTP/1.1). See http://wiki.workerman.net/Error4 for detail
+2019-07-25 11:42:37 pid:1 Bad request for Register service. Request info(IP:127.0.0.1, Request Buffer:GET / HTTP/1.1). See http://wiki.workerman.net/Error4 for detail
+2019-07-25 11:42:37 pid:1 Bad request for Register service. Request info(IP:127.0.0.1, Request Buffer:GET / HTTP/1.1). See http://wiki.workerman.net/Error4 for detail
+2019-07-25 11:42:37 pid:1 Bad request for Register service. Request info(IP:127.0.0.1, Request Buffer:GET / HTTP/1.1). See http://wiki.workerman.net/Error4 for detail
+2019-07-25 11:42:37 pid:1 Bad request for Register service. Request info(IP:127.0.0.1, Request Buffer:GET / HTTP/1.1). See http://wiki.workerman.net/Error4 for detail
+2019-07-25 11:42:37 pid:1 Bad request for Register service. Request info(IP:127.0.0.1, Request Buffer:GET / HTTP/1.1). See http://wiki.workerman.net/Error4 for detail
+2019-07-25 11:42:37 pid:1 Bad request for Register service. Request info(IP:127.0.0.1, Request Buffer:GET / HTTP/1.1). See http://wiki.workerman.net/Error4 for detail
+2019-07-25 11:42:37 pid:1 Bad request for Register service. Request info(IP:127.0.0.1, Request Buffer:GET / HTTP/1.1). See http://wiki.workerman.net/Error4 for detail
+2019-07-25 11:42:37 pid:1 Bad request for Register service. Request info(IP:127.0.0.1, Request Buffer:GET / HTTP/1.1). See http://wiki.workerman.net/Error4 for detail
+2019-07-25 11:42:37 pid:1 Bad request for Register service. Request info(IP:127.0.0.1, Request Buffer:GET / HTTP/1.1). See http://wiki.workerman.net/Error4 for detail
+2019-07-25 11:42:37 pid:1 Bad request for Register service. Request info(IP:127.0.0.1, Request Buffer:GET / HTTP/1.1). See http://wiki.workerman.net/Error4 for detail
+2019-07-25 11:42:37 pid:1 Bad request for Register service. Request info(IP:127.0.0.1, Request Buffer:GET / HTTP/1.1). See http://wiki.workerman.net/Error4 for detail
+2019-07-25 11:42:37 pid:1 Bad request for Register service. Request info(IP:127.0.0.1, Request Buffer:GET / HTTP/1.1). See http://wiki.workerman.net/Error4 for detail
+2019-07-25 11:42:37 pid:1 Bad request for Register service. Request info(IP:127.0.0.1, Request Buffer:GET / HTTP/1.1). See http://wiki.workerman.net/Error4 for detail
+2019-07-25 11:42:37 pid:1 Bad request for Register service. Request info(IP:127.0.0.1, Request Buffer:GET / HTTP/1.1). See http://wiki.workerman.net/Error4 for detail
+2019-07-25 11:42:37 pid:1 Bad request for Register service. Request info(IP:127.0.0.1, Request Buffer:GET / HTTP/1.1). See http://wiki.workerman.net/Error4 for detail
+2019-07-25 11:42:38 pid:1 Bad request for Register service. Request info(IP:127.0.0.1, Request Buffer:GET / HTTP/1.1). See http://wiki.workerman.net/Error4 for detail
+2019-07-25 11:42:38 pid:1 Bad request for Register service. Request info(IP:127.0.0.1, Request Buffer:GET / HTTP/1.1). See http://wiki.workerman.net/Error4 for detail
+2019-07-25 11:42:38 pid:1 Bad request for Register service. Request info(IP:127.0.0.1, Request Buffer:GET / HTTP/1.1). See http://wiki.workerman.net/Error4 for detail
+2019-07-25 11:42:38 pid:1 Bad request for Register service. Request info(IP:127.0.0.1, Request Buffer:GET / HTTP/1.1). See http://wiki.workerman.net/Error4 for detail
+2019-07-25 11:42:38 pid:1 Bad request for Register service. Request info(IP:127.0.0.1, Request Buffer:GET / HTTP/1.1). See http://wiki.workerman.net/Error4 for detail
+2019-07-25 11:42:38 pid:1 Bad request for Register service. Request info(IP:127.0.0.1, Request Buffer:GET / HTTP/1.1). See http://wiki.workerman.net/Error4 for detail
+2019-07-25 11:42:38 pid:1 Bad request for Register service. Request info(IP:127.0.0.1, Request Buffer:GET / HTTP/1.1). See http://wiki.workerman.net/Error4 for detail
+2019-07-25 11:42:38 pid:1 Bad request for Register service. Request info(IP:127.0.0.1, Request Buffer:GET / HTTP/1.1). See http://wiki.workerman.net/Error4 for detail
+2019-07-25 11:42:38 pid:1 Bad request for Register service. Request info(IP:127.0.0.1, Request Buffer:GET / HTTP/1.1). See http://wiki.workerman.net/Error4 for detail
+2019-07-25 11:42:38 pid:1 Bad request for Register service. Request info(IP:127.0.0.1, Request Buffer:GET / HTTP/1.1). See http://wiki.workerman.net/Error4 for detail
+2019-07-25 11:42:38 pid:1 Bad request for Register service. Request info(IP:127.0.0.1, Request Buffer:GET / HTTP/1.1). See http://wiki.workerman.net/Error4 for detail
+2019-07-25 11:42:38 pid:1 Bad request for Register service. Request info(IP:127.0.0.1, Request Buffer:GET / HTTP/1.1). See http://wiki.workerman.net/Error4 for detail
+2019-07-25 11:42:38 pid:1 Bad request for Register service. Request info(IP:127.0.0.1, Request Buffer:GET / HTTP/1.1). See http://wiki.workerman.net/Error4 for detail
+2019-07-25 11:42:38 pid:1 Bad request for Register service. Request info(IP:127.0.0.1, Request Buffer:GET / HTTP/1.1). See http://wiki.workerman.net/Error4 for detail
+2019-07-25 11:42:38 pid:1 Bad request for Register service. Request info(IP:127.0.0.1, Request Buffer:GET / HTTP/1.1). See http://wiki.workerman.net/Error4 for detail
+2019-07-25 11:42:38 pid:1 Bad request for Register service. Request info(IP:127.0.0.1, Request Buffer:GET / HTTP/1.1). See http://wiki.workerman.net/Error4 for detail
+2019-07-25 11:42:39 pid:1 Bad request for Register service. Request info(IP:127.0.0.1, Request Buffer:GET / HTTP/1.1). See http://wiki.workerman.net/Error4 for detail
+2019-07-25 11:42:39 pid:1 Bad request for Register service. Request info(IP:127.0.0.1, Request Buffer:GET / HTTP/1.1). See http://wiki.workerman.net/Error4 for detail
+2019-07-25 11:42:39 pid:1 Bad request for Register service. Request info(IP:127.0.0.1, Request Buffer:GET / HTTP/1.1). See http://wiki.workerman.net/Error4 for detail
+2019-07-25 11:42:39 pid:1 Bad request for Register service. Request info(IP:127.0.0.1, Request Buffer:GET / HTTP/1.1). See http://wiki.workerman.net/Error4 for detail
+2019-07-25 11:42:39 pid:1 Bad request for Register service. Request info(IP:127.0.0.1, Request Buffer:GET / HTTP/1.1). See http://wiki.workerman.net/Error4 for detail
+2019-07-25 11:42:39 pid:1 Bad request for Register service. Request info(IP:127.0.0.1, Request Buffer:GET / HTTP/1.1). See http://wiki.workerman.net/Error4 for detail
+2019-07-25 11:42:39 pid:1 Bad request for Register service. Request info(IP:127.0.0.1, Request Buffer:GET / HTTP/1.1). See http://wiki.workerman.net/Error4 for detail
+2019-07-25 11:42:40 pid:1 Bad request for Register service. Request info(IP:127.0.0.1, Request Buffer:GET / HTTP/1.1). See http://wiki.workerman.net/Error4 for detail
+2019-07-25 11:42:40 pid:1 Bad request for Register service. Request info(IP:127.0.0.1, Request Buffer:GET / HTTP/1.1). See http://wiki.workerman.net/Error4 for detail
+2019-07-25 11:42:40 pid:1 Bad request for Register service. Request info(IP:127.0.0.1, Request Buffer:GET / HTTP/1.1). See http://wiki.workerman.net/Error4 for detail
+2019-07-25 11:42:40 pid:1 Bad request for Register service. Request info(IP:127.0.0.1, Request Buffer:GET / HTTP/1.1). See http://wiki.workerman.net/Error4 for detail
+2019-07-25 11:42:40 pid:1 Bad request for Register service. Request info(IP:127.0.0.1, Request Buffer:GET / HTTP/1.1). See http://wiki.workerman.net/Error4 for detail
+2019-07-25 11:42:41 pid:1 Bad request for Register service. Request info(IP:127.0.0.1, Request Buffer:GET / HTTP/1.1). See http://wiki.workerman.net/Error4 for detail
+2019-07-25 11:42:41 pid:1 Bad request for Register service. Request info(IP:127.0.0.1, Request Buffer:GET / HTTP/1.1). See http://wiki.workerman.net/Error4 for detail
+2019-07-25 11:42:41 pid:1 Bad request for Register service. Request info(IP:127.0.0.1, Request Buffer:GET / HTTP/1.1). See http://wiki.workerman.net/Error4 for detail
+2019-07-25 11:42:41 pid:1 Bad request for Register service. Request info(IP:127.0.0.1, Request Buffer:GET / HTTP/1.1). See http://wiki.workerman.net/Error4 for detail
+2019-07-25 11:42:42 pid:1 Bad request for Register service. Request info(IP:127.0.0.1, Request Buffer:GET / HTTP/1.1). See http://wiki.workerman.net/Error4 for detail
+2019-07-25 11:42:42 pid:1 Bad request for Register service. Request info(IP:127.0.0.1, Request Buffer:GET / HTTP/1.1). See http://wiki.workerman.net/Error4 for detail
+2019-07-25 11:42:42 pid:1 Bad request for Register service. Request info(IP:127.0.0.1, Request Buffer:GET / HTTP/1.1). See http://wiki.workerman.net/Error4 for detail
+2019-07-25 11:42:43 pid:1 Bad request for Register service. Request info(IP:127.0.0.1, Request Buffer:GET / HTTP/1.1). See http://wiki.workerman.net/Error4 for detail
+2019-07-25 11:42:43 pid:1 Bad request for Register service. Request info(IP:127.0.0.1, Request Buffer:GET / HTTP/1.1). See http://wiki.workerman.net/Error4 for detail
+2019-07-25 11:42:43 pid:1 Bad request for Register service. Request info(IP:127.0.0.1, Request Buffer:GET / HTTP/1.1). See http://wiki.workerman.net/Error4 for detail
+2019-07-25 11:42:44 pid:1 Bad request for Register service. Request info(IP:127.0.0.1, Request Buffer:GET / HTTP/1.1). See http://wiki.workerman.net/Error4 for detail
+2019-07-25 11:42:44 pid:1 Bad request for Register service. Request info(IP:127.0.0.1, Request Buffer:GET / HTTP/1.1). See http://wiki.workerman.net/Error4 for detail
+2019-07-25 11:42:45 pid:1 Bad request for Register service. Request info(IP:127.0.0.1, Request Buffer:GET / HTTP/1.1). See http://wiki.workerman.net/Error4 for detail
+2019-07-25 11:42:46 pid:1 Bad request for Register service. Request info(IP:127.0.0.1, Request Buffer:GET / HTTP/1.1). See http://wiki.workerman.net/Error4 for detail
+2019-07-25 11:42:46 pid:1 Bad request for Register service. Request info(IP:127.0.0.1, Request Buffer:GET / HTTP/1.1). See http://wiki.workerman.net/Error4 for detail
+2019-07-25 11:42:47 pid:1 Bad request for Register service. Request info(IP:127.0.0.1, Request Buffer:GET / HTTP/1.1). See http://wiki.workerman.net/Error4 for detail
+2019-07-25 11:42:48 pid:1 Bad request for Register service. Request info(IP:127.0.0.1, Request Buffer:GET / HTTP/1.1). See http://wiki.workerman.net/Error4 for detail
+2019-07-25 11:42:49 pid:1 Bad request for Register service. Request info(IP:127.0.0.1, Request Buffer:GET / HTTP/1.1). See http://wiki.workerman.net/Error4 for detail
+2019-07-25 11:42:49 pid:1 Bad request for Register service. Request info(IP:127.0.0.1, Request Buffer:GET / HTTP/1.1). See http://wiki.workerman.net/Error4 for detail
+2019-07-25 11:42:49 pid:1 Bad request for Register service. Request info(IP:127.0.0.1, Request Buffer:GET / HTTP/1.1). See http://wiki.workerman.net/Error4 for detail
+2019-07-25 11:42:50 pid:1 Bad request for Register service. Request info(IP:127.0.0.1, Request Buffer:GET / HTTP/1.1). See http://wiki.workerman.net/Error4 for detail
+2019-07-25 11:42:51 pid:1 Bad request for Register service. Request info(IP:127.0.0.1, Request Buffer:GET / HTTP/1.1). See http://wiki.workerman.net/Error4 for detail
+2019-07-25 11:42:52 pid:1 Bad request for Register service. Request info(IP:127.0.0.1, Request Buffer:GET / HTTP/1.1). See http://wiki.workerman.net/Error4 for detail
+2019-07-25 11:42:53 pid:1 Bad request for Register service. Request info(IP:127.0.0.1, Request Buffer:GET / HTTP/1.1). See http://wiki.workerman.net/Error4 for detail
+2019-07-25 11:42:54 pid:1 Bad request for Register service. Request info(IP:127.0.0.1, Request Buffer:GET / HTTP/1.1). See http://wiki.workerman.net/Error4 for detail
+2019-07-25 11:42:55 pid:1 Bad request for Register service. Request info(IP:127.0.0.1, Request Buffer:GET / HTTP/1.1). See http://wiki.workerman.net/Error4 for detail
+2019-07-25 11:42:58 pid:1 Bad request for Register service. Request info(IP:127.0.0.1, Request Buffer:GET / HTTP/1.1). See http://wiki.workerman.net/Error4 for detail
+2019-07-25 11:42:58 pid:1 Bad request for Register service. Request info(IP:127.0.0.1, Request Buffer:GET / HTTP/1.1). See http://wiki.workerman.net/Error4 for detail
+2019-07-25 11:43:00 pid:1 Bad request for Register service. Request info(IP:127.0.0.1, Request Buffer:GET / HTTP/1.1). See http://wiki.workerman.net/Error4 for detail
+2019-07-25 11:43:01 pid:1 Bad request for Register service. Request info(IP:127.0.0.1, Request Buffer:GET / HTTP/1.1). See http://wiki.workerman.net/Error4 for detail
+2019-07-25 11:43:02 pid:1 Bad request for Register service. Request info(IP:127.0.0.1, Request Buffer:GET / HTTP/1.1). See http://wiki.workerman.net/Error4 for detail
+2019-07-25 11:43:03 pid:1 Bad request for Register service. Request info(IP:127.0.0.1, Request Buffer:GET / HTTP/1.1). See http://wiki.workerman.net/Error4 for detail
+2019-07-25 11:43:04 pid:1 Bad request for Register service. Request info(IP:127.0.0.1, Request Buffer:GET / HTTP/1.1). See http://wiki.workerman.net/Error4 for detail
+2019-07-25 11:43:05 pid:1 Bad request for Register service. Request info(IP:127.0.0.1, Request Buffer:GET / HTTP/1.1). See http://wiki.workerman.net/Error4 for detail
+2019-07-25 11:43:05 pid:1 Bad request for Register service. Request info(IP:127.0.0.1, Request Buffer:GET / HTTP/1.1). See http://wiki.workerman.net/Error4 for detail
+2019-07-25 11:43:06 pid:1 Bad request for Register service. Request info(IP:127.0.0.1, Request Buffer:GET / HTTP/1.1). See http://wiki.workerman.net/Error4 for detail
+2019-07-25 11:43:08 pid:1 Bad request for Register service. Request info(IP:127.0.0.1, Request Buffer:GET / HTTP/1.1). See http://wiki.workerman.net/Error4 for detail
+2019-07-25 11:43:09 pid:1 Bad request for Register service. Request info(IP:127.0.0.1, Request Buffer:GET / HTTP/1.1). See http://wiki.workerman.net/Error4 for detail
+2019-07-25 11:43:09 pid:1 Bad request for Register service. Request info(IP:127.0.0.1, Request Buffer:GET / HTTP/1.1). See http://wiki.workerman.net/Error4 for detail
+2019-07-25 11:43:11 pid:1 Bad request for Register service. Request info(IP:127.0.0.1, Request Buffer:GET / HTTP/1.1). See http://wiki.workerman.net/Error4 for detail
+2019-07-25 11:43:12 pid:1 Bad request for Register service. Request info(IP:127.0.0.1, Request Buffer:GET / HTTP/1.1). See http://wiki.workerman.net/Error4 for detail
+2019-07-25 11:43:13 pid:1 Bad request for Register service. Request info(IP:127.0.0.1, Request Buffer:GET / HTTP/1.1). See http://wiki.workerman.net/Error4 for detail
+2019-07-25 11:43:15 pid:1 Bad request for Register service. Request info(IP:127.0.0.1, Request Buffer:GET / HTTP/1.1). See http://wiki.workerman.net/Error4 for detail
+2019-07-25 11:43:17 pid:1 Bad request for Register service. Request info(IP:127.0.0.1, Request Buffer:GET / HTTP/1.1). See http://wiki.workerman.net/Error4 for detail
+2019-07-25 11:43:18 pid:1 Bad request for Register service. Request info(IP:127.0.0.1, Request Buffer:GET / HTTP/1.1). See http://wiki.workerman.net/Error4 for detail
+2019-07-25 11:43:20 pid:1 Bad request for Register service. Request info(IP:127.0.0.1, Request Buffer:GET / HTTP/1.1). See http://wiki.workerman.net/Error4 for detail
+2019-07-25 11:43:22 pid:1 Bad request for Register service. Request info(IP:127.0.0.1, Request Buffer:GET / HTTP/1.1). See http://wiki.workerman.net/Error4 for detail
+2019-07-25 11:43:28 pid:1 Bad request for Register service. Request info(IP:127.0.0.1, Request Buffer:GET / HTTP/1.1). See http://wiki.workerman.net/Error4 for detail
+2019-07-25 11:43:30 pid:1 Bad request for Register service. Request info(IP:127.0.0.1, Request Buffer:GET / HTTP/1.1). See http://wiki.workerman.net/Error4 for detail
+2019-07-25 11:43:32 pid:1 Bad request for Register service. Request info(IP:127.0.0.1, Request Buffer:GET / HTTP/1.1). See http://wiki.workerman.net/Error4 for detail
+2019-07-25 11:43:34 pid:1 Bad request for Register service. Request info(IP:127.0.0.1, Request Buffer:GET / HTTP/1.1). See http://wiki.workerman.net/Error4 for detail
+2019-07-25 11:43:37 pid:1 Bad request for Register service. Request info(IP:127.0.0.1, Request Buffer:GET / HTTP/1.1). See http://wiki.workerman.net/Error4 for detail
+2019-07-25 11:43:38 pid:1 Bad request for Register service. Request info(IP:127.0.0.1, Request Buffer:GET / HTTP/1.1). See http://wiki.workerman.net/Error4 for detail
+2019-07-25 11:43:41 pid:1 Bad request for Register service. Request info(IP:127.0.0.1, Request Buffer:GET / HTTP/1.1). See http://wiki.workerman.net/Error4 for detail
+2019-07-25 11:43:42 pid:1 Bad request for Register service. Request info(IP:127.0.0.1, Request Buffer:GET / HTTP/1.1). See http://wiki.workerman.net/Error4 for detail
+2019-07-25 11:43:43 pid:1 Bad request for Register service. Request info(IP:127.0.0.1, Request Buffer:GET / HTTP/1.1). See http://wiki.workerman.net/Error4 for detail
+2019-07-25 11:43:45 pid:1 Bad request for Register service. Request info(IP:127.0.0.1, Request Buffer:GET / HTTP/1.1). See http://wiki.workerman.net/Error4 for detail
+2019-07-25 11:43:48 pid:1 Bad request for Register service. Request info(IP:127.0.0.1, Request Buffer:GET / HTTP/1.1). See http://wiki.workerman.net/Error4 for detail
+2019-07-25 11:43:48 pid:1 Bad request for Register service. Request info(IP:127.0.0.1, Request Buffer:GET / HTTP/1.1). See http://wiki.workerman.net/Error4 for detail
+2019-07-25 11:43:49 pid:1 Bad request for Register service. Request info(IP:127.0.0.1, Request Buffer:GET / HTTP/1.1). See http://wiki.workerman.net/Error4 for detail
+2019-07-25 11:43:52 pid:1 Bad request for Register service. Request info(IP:127.0.0.1, Request Buffer:GET / HTTP/1.1). See http://wiki.workerman.net/Error4 for detail
+2019-07-25 11:43:53 pid:1 Bad request for Register service. Request info(IP:127.0.0.1, Request Buffer:GET / HTTP/1.1). See http://wiki.workerman.net/Error4 for detail
+2019-07-25 11:43:56 pid:1 Bad request for Register service. Request info(IP:127.0.0.1, Request Buffer:GET / HTTP/1.1). See http://wiki.workerman.net/Error4 for detail
+2019-07-25 11:43:58 pid:1 Bad request for Register service. Request info(IP:127.0.0.1, Request Buffer:GET / HTTP/1.1). See http://wiki.workerman.net/Error4 for detail
+2019-07-25 11:44:03 pid:1 Bad request for Register service. Request info(IP:127.0.0.1, Request Buffer:GET / HTTP/1.1). See http://wiki.workerman.net/Error4 for detail
+2019-07-25 11:44:07 pid:1 Bad request for Register service. Request info(IP:127.0.0.1, Request Buffer:GET / HTTP/1.1). See http://wiki.workerman.net/Error4 for detail
+2019-07-25 11:44:11 pid:1 Bad request for Register service. Request info(IP:127.0.0.1, Request Buffer:GET / HTTP/1.1). See http://wiki.workerman.net/Error4 for detail
+2019-07-25 11:44:13 pid:1 Bad request for Register service. Request info(IP:127.0.0.1, Request Buffer:GET / HTTP/1.1). See http://wiki.workerman.net/Error4 for detail
+2019-07-25 17:44:57 pid:1 Worker process terminated with ERROR: E_COMPILE_ERROR "require_once(): Failed opening required 'MODULE_ROOT/library/GatewayClient/Gateway.php' (include_path='.;D:\soft\xamp\php\PEAR') in D:\soft\xamp\htdocs\project\we7\addons\we7_wmall\plugin\kefu\model.php on line 15"
+2019-07-26 09:39:10 pid:1 Worker process terminated with ERROR: E_COMPILE_ERROR "require_once(): Failed opening required 'MODULE_ROOT/library/GatewayClient/Gateway.php' (include_path='.;D:\soft\xamp\php\PEAR') in D:\soft\xamp\htdocs\project\we7\addons\we7_wmall\plugin\kefu\model.php on line 15"
+2019-07-26 09:39:13 pid:1 Worker process terminated with ERROR: E_COMPILE_ERROR "require_once(): Failed opening required 'MODULE_ROOT/library/GatewayClient/Gateway.php' (include_path='.;D:\soft\xamp\php\PEAR') in D:\soft\xamp\htdocs\project\we7\addons\we7_wmall\plugin\kefu\model.php on line 15"
+2019-07-26 09:39:31 pid:1 Worker process terminated with ERROR: E_COMPILE_ERROR "require_once(): Failed opening required 'MODULE_ROOT/library/GatewayClient/Gateway.php' (include_path='.;D:\soft\xamp\php\PEAR') in D:\soft\xamp\htdocs\project\we7\addons\we7_wmall\plugin\kefu\model.php on line 15"
+2019-07-26 09:39:40 pid:1 Worker process terminated with ERROR: E_COMPILE_ERROR "require_once(): Failed opening required 'MODULE_ROOT/library/GatewayClient/Gateway.php' (include_path='.;D:\soft\xamp\php\PEAR') in D:\soft\xamp\htdocs\project\we7\addons\we7_wmall\plugin\kefu\model.php on line 15"
+2019-07-26 03:39:41 pid:1 SendBufferToWorker fail. The connections between Gateway and BusinessWorker are not ready. See http://wiki.workerman.net/Error3
+2019-07-26 03:39:41 pid:1 SendBufferToWorker fail. The connections between Gateway and BusinessWorker are not ready. See http://wiki.workerman.net/Error3
+2019-07-26 03:39:41 pid:1 SendBufferToWorker fail. The connections between Gateway and BusinessWorker are not ready. See http://wiki.workerman.net/Error3
+2019-07-26 09:39:43 pid:1 Worker process terminated with ERROR: E_COMPILE_ERROR "require_once(): Failed opening required 'MODULE_ROOT/library/GatewayClient/Gateway.php' (include_path='.;D:\soft\xamp\php\PEAR') in D:\soft\xamp\htdocs\project\we7\addons\we7_wmall\plugin\kefu\model.php on line 15"
+2019-07-26 09:39:44 pid:1 Worker process terminated with ERROR: E_COMPILE_ERROR "require_once(): Failed opening required 'MODULE_ROOT/library/GatewayClient/Gateway.php' (include_path='.;D:\soft\xamp\php\PEAR') in D:\soft\xamp\htdocs\project\we7\addons\we7_wmall\plugin\kefu\model.php on line 15"
+2019-07-26 09:46:33 pid:1 Worker process terminated with ERROR: E_COMPILE_ERROR "require_once(): Failed opening required 'MODULE_ROOT/library/GatewayClient/Gateway.php' (include_path='.;D:\soft\xamp\php\PEAR') in D:\soft\xamp\htdocs\project\we7\addons\we7_wmall\plugin\kefu\model.php on line 15"
+2019-07-26 09:46:39 pid:1 Worker process terminated with ERROR: E_COMPILE_ERROR "require_once(): Failed opening required 'MODULE_ROOT/library/GatewayClient/Gateway.php' (include_path='.;D:\soft\xamp\php\PEAR') in D:\soft\xamp\htdocs\project\we7\addons\we7_wmall\plugin\kefu\model.php on line 15"
+2019-07-26 09:46:42 pid:1 Worker process terminated with ERROR: E_COMPILE_ERROR "require_once(): Failed opening required 'MODULE_ROOT/library/GatewayClient/Gateway.php' (include_path='.;D:\soft\xamp\php\PEAR') in D:\soft\xamp\htdocs\project\we7\addons\we7_wmall\plugin\kefu\model.php on line 15"
+2019-07-26 09:46:48 pid:1 Worker process terminated with ERROR: E_COMPILE_ERROR "require_once(): Failed opening required 'MODULE_ROOT/library/GatewayClient/Gateway.php' (include_path='.;D:\soft\xamp\php\PEAR') in D:\soft\xamp\htdocs\project\we7\addons\we7_wmall\plugin\kefu\model.php on line 15"
+2019-07-26 09:46:50 pid:1 Worker process terminated with ERROR: E_COMPILE_ERROR "require_once(): Failed opening required 'MODULE_ROOT/library/GatewayClient/Gateway.php' (include_path='.;D:\soft\xamp\php\PEAR') in D:\soft\xamp\htdocs\project\we7\addons\we7_wmall\plugin\kefu\model.php on line 15"
+2019-07-26 09:47:47 pid:1 Worker process terminated with ERROR: E_COMPILE_ERROR "require_once(): Failed opening required 'MODULE_ROOT/library/GatewayClient/Gateway.php' (include_path='.;D:\soft\xamp\php\PEAR') in D:\soft\xamp\htdocs\project\we7\addons\we7_wmall\plugin\kefu\model.php on line 15"
+2019-07-26 09:47:51 pid:1 Worker process terminated with ERROR: E_COMPILE_ERROR "require_once(): Failed opening required 'MODULE_ROOT/library/GatewayClient/Gateway.php' (include_path='.;D:\soft\xamp\php\PEAR') in D:\soft\xamp\htdocs\project\we7\addons\we7_wmall\plugin\kefu\model.php on line 15"
+2019-07-26 09:48:29 pid:1 Worker process terminated with ERROR: E_COMPILE_ERROR "require_once(): Failed opening required 'MODULE_ROOT/library/GatewayClient/Gateway.php' (include_path='.;D:\soft\xamp\php\PEAR') in D:\soft\xamp\htdocs\project\we7\addons\we7_wmall\plugin\kefu\model.php on line 15"
+2019-07-26 03:48:30 pid:1 SendBufferToWorker fail. The connections between Gateway and BusinessWorker are not ready. See http://wiki.workerman.net/Error3
+2019-07-26 03:48:30 pid:1 SendBufferToWorker fail. The connections between Gateway and BusinessWorker are not ready. See http://wiki.workerman.net/Error3
+2019-07-26 03:48:30 pid:1 SendBufferToWorker fail. The connections between Gateway and BusinessWorker are not ready. See http://wiki.workerman.net/Error3
+2019-07-26 10:10:02 pid:1 Worker process terminated with ERROR: E_COMPILE_ERROR "require_once(): Failed opening required 'MODULE_ROOT/library/GatewayClient/Gateway.php' (include_path='.;D:\soft\xamp\php\PEAR') in D:\soft\xamp\htdocs\project\we7\addons\we7_wmall\plugin\kefu\model.php on line 15"
+2019-07-26 10:10:09 pid:1 Worker process terminated with ERROR: E_COMPILE_ERROR "require_once(): Failed opening required 'MODULE_ROOT/library/GatewayClient/Gateway.php' (include_path='.;D:\soft\xamp\php\PEAR') in D:\soft\xamp\htdocs\project\we7\addons\we7_wmall\plugin\kefu\model.php on line 15"
+2019-07-26 10:11:27 pid:1 Worker process terminated with ERROR: E_COMPILE_ERROR "require_once(): Failed opening required 'MODULE_ROOT/library/GatewayClient/Gateway.php' (include_path='.;D:\soft\xamp\php\PEAR') in D:\soft\xamp\htdocs\project\we7\addons\we7_wmall\plugin\kefu\model.php on line 15"
+2019-07-26 10:11:29 pid:1 Worker process terminated with ERROR: E_COMPILE_ERROR "require_once(): Failed opening required 'MODULE_ROOT/library/GatewayClient/Gateway.php' (include_path='.;D:\soft\xamp\php\PEAR') in D:\soft\xamp\htdocs\project\we7\addons\we7_wmall\plugin\kefu\model.php on line 15"
+2019-07-26 10:11:30 pid:1 Worker process terminated with ERROR: E_COMPILE_ERROR "require_once(): Failed opening required 'MODULE_ROOT/library/GatewayClient/Gateway.php' (include_path='.;D:\soft\xamp\php\PEAR') in D:\soft\xamp\htdocs\project\we7\addons\we7_wmall\plugin\kefu\model.php on line 15"
+2019-07-26 10:12:44 pid:1 Worker process terminated with ERROR: E_COMPILE_ERROR "require_once(): Failed opening required 'MODULE_ROOT/library/GatewayClient/Gateway.php' (include_path='.;D:\soft\xamp\php\PEAR') in D:\soft\xamp\htdocs\project\we7\addons\we7_wmall\plugin\kefu\model.php on line 15"
+2019-07-26 10:12:44 pid:1 Worker process terminated with ERROR: E_COMPILE_ERROR "require_once(): Failed opening required 'MODULE_ROOT/library/GatewayClient/Gateway.php' (include_path='.;D:\soft\xamp\php\PEAR') in D:\soft\xamp\htdocs\project\we7\addons\we7_wmall\plugin\kefu\model.php on line 15"
+2019-07-26 10:12:50 pid:1 Worker process terminated with ERROR: E_COMPILE_ERROR "require_once(): Failed opening required 'MODULE_ROOT/library/GatewayClient/Gateway.php' (include_path='.;D:\soft\xamp\php\PEAR') in D:\soft\xamp\htdocs\project\we7\addons\we7_wmall\plugin\kefu\model.php on line 15"
+2019-07-26 10:31:10 pid:1 Worker process terminated with ERROR: E_COMPILE_ERROR "require_once(): Failed opening required 'MODULE_ROOT/library/GatewayClient/Gateway.php' (include_path='.;D:\soft\xamp\php\PEAR') in D:\soft\xamp\htdocs\project\we7\addons\we7_wmall\plugin\kefu\model.php on line 15"
+2019-07-26 10:31:11 pid:1 Worker process terminated with ERROR: E_COMPILE_ERROR "require_once(): Failed opening required 'MODULE_ROOT/library/GatewayClient/Gateway.php' (include_path='.;D:\soft\xamp\php\PEAR') in D:\soft\xamp\htdocs\project\we7\addons\we7_wmall\plugin\kefu\model.php on line 15"
+2019-07-26 10:31:13 pid:1 Worker process terminated with ERROR: E_COMPILE_ERROR "require_once(): Failed opening required 'MODULE_ROOT/library/GatewayClient/Gateway.php' (include_path='.;D:\soft\xamp\php\PEAR') in D:\soft\xamp\htdocs\project\we7\addons\we7_wmall\plugin\kefu\model.php on line 15"
+2019-07-26 04:31:15 pid:1 SendBufferToWorker fail. The connections between Gateway and BusinessWorker are not ready. See http://wiki.workerman.net/Error3
+2019-07-26 04:31:15 pid:1 SendBufferToWorker fail. The connections between Gateway and BusinessWorker are not ready. See http://wiki.workerman.net/Error3
+2019-07-26 04:31:15 pid:1 SendBufferToWorker fail. The connections between Gateway and BusinessWorker are not ready. See http://wiki.workerman.net/Error3
+2019-07-26 10:31:19 pid:1 Worker process terminated with ERROR: E_COMPILE_ERROR "require_once(): Failed opening required 'MODULE_ROOT/library/GatewayClient/Gateway.php' (include_path='.;D:\soft\xamp\php\PEAR') in D:\soft\xamp\htdocs\project\we7\addons\we7_wmall\plugin\kefu\model.php on line 15"
+2019-07-26 04:31:22 pid:1 SendBufferToWorker fail. The connections between Gateway and BusinessWorker are not ready. See http://wiki.workerman.net/Error3
+2019-07-26 04:31:22 pid:1 SendBufferToWorker fail. The connections between Gateway and BusinessWorker are not ready. See http://wiki.workerman.net/Error3
+2019-07-26 04:31:22 pid:1 SendBufferToWorker fail. The connections between Gateway and BusinessWorker are not ready. See http://wiki.workerman.net/Error3
+2019-07-26 10:35:23 pid:1 Worker process terminated with ERROR: E_COMPILE_ERROR "require_once(): Failed opening required 'MODULE_ROOT/library/GatewayClient/Gateway.php' (include_path='.;D:\soft\xamp\php\PEAR') in D:\soft\xamp\htdocs\project\we7\addons\we7_wmall\plugin\kefu\model.php on line 15"
+2019-07-26 04:35:24 pid:1 SendBufferToWorker fail. The connections between Gateway and BusinessWorker are not ready. See http://wiki.workerman.net/Error3
+2019-07-26 04:35:24 pid:1 SendBufferToWorker fail. The connections between Gateway and BusinessWorker are not ready. See http://wiki.workerman.net/Error3
+2019-07-26 04:35:24 pid:1 SendBufferToWorker fail. The connections between Gateway and BusinessWorker are not ready. See http://wiki.workerman.net/Error3
+2019-07-26 10:35:31 pid:1 Worker process terminated with ERROR: E_COMPILE_ERROR "require_once(): Failed opening required 'MODULE_ROOT/library/GatewayClient/Gateway.php' (include_path='.;D:\soft\xamp\php\PEAR') in D:\soft\xamp\htdocs\project\we7\addons\we7_wmall\plugin\kefu\model.php on line 15"
+2019-07-26 10:35:33 pid:1 Worker process terminated with ERROR: E_COMPILE_ERROR "require_once(): Failed opening required 'MODULE_ROOT/library/GatewayClient/Gateway.php' (include_path='.;D:\soft\xamp\php\PEAR') in D:\soft\xamp\htdocs\project\we7\addons\we7_wmall\plugin\kefu\model.php on line 15"
+2019-07-26 10:35:36 pid:1 Worker process terminated with ERROR: E_COMPILE_ERROR "require_once(): Failed opening required 'MODULE_ROOT/library/GatewayClient/Gateway.php' (include_path='.;D:\soft\xamp\php\PEAR') in D:\soft\xamp\htdocs\project\we7\addons\we7_wmall\plugin\kefu\model.php on line 15"
+2019-07-26 10:35:39 pid:1 Worker process terminated with ERROR: E_COMPILE_ERROR "require_once(): Failed opening required 'MODULE_ROOT/library/GatewayClient/Gateway.php' (include_path='.;D:\soft\xamp\php\PEAR') in D:\soft\xamp\htdocs\project\we7\addons\we7_wmall\plugin\kefu\model.php on line 15"
+2019-07-26 10:37:45 pid:1 Worker process terminated with ERROR: E_COMPILE_ERROR "require_once(): Failed opening required 'MODULE_ROOT/library/GatewayClient/Gateway.php' (include_path='.;D:\soft\xamp\php\PEAR') in D:\soft\xamp\htdocs\project\we7\addons\we7_wmall\plugin\kefu\model.php on line 15"
+2019-07-26 04:37:47 pid:1 SendBufferToWorker fail. The connections between Gateway and BusinessWorker are not ready. See http://wiki.workerman.net/Error3
+2019-07-26 10:37:47 pid:1 Worker process terminated with ERROR: E_COMPILE_ERROR "require_once(): Failed opening required 'MODULE_ROOT/library/GatewayClient/Gateway.php' (include_path='.;D:\soft\xamp\php\PEAR') in D:\soft\xamp\htdocs\project\we7\addons\we7_wmall\plugin\kefu\model.php on line 15"
+2019-07-26 10:38:08 pid:1 Worker process terminated with ERROR: E_COMPILE_ERROR "require_once(): Failed opening required 'MODULE_ROOT/library/GatewayClient/Gateway.php' (include_path='.;D:\soft\xamp\php\PEAR') in D:\soft\xamp\htdocs\project\we7\addons\we7_wmall\plugin\kefu\model.php on line 15"
+2019-07-26 10:38:14 pid:1 Worker process terminated with ERROR: E_COMPILE_ERROR "require_once(): Failed opening required 'MODULE_ROOT/library/GatewayClient/Gateway.php' (include_path='.;D:\soft\xamp\php\PEAR') in D:\soft\xamp\htdocs\project\we7\addons\we7_wmall\plugin\kefu\model.php on line 15"
+2019-07-26 10:38:24 pid:1 Worker process terminated with ERROR: E_COMPILE_ERROR "require_once(): Failed opening required 'MODULE_ROOT/library/GatewayClient/Gateway.php' (include_path='.;D:\soft\xamp\php\PEAR') in D:\soft\xamp\htdocs\project\we7\addons\we7_wmall\plugin\kefu\model.php on line 15"
+2019-07-26 10:38:25 pid:1 Worker process terminated with ERROR: E_COMPILE_ERROR "require_once(): Failed opening required 'MODULE_ROOT/library/GatewayClient/Gateway.php' (include_path='.;D:\soft\xamp\php\PEAR') in D:\soft\xamp\htdocs\project\we7\addons\we7_wmall\plugin\kefu\model.php on line 15"
+2019-07-26 10:39:52 pid:1 Worker process terminated with ERROR: E_COMPILE_ERROR "require_once(): Failed opening required 'MODULE_ROOT/library/GatewayClient/Gateway.php' (include_path='.;D:\soft\xamp\php\PEAR') in D:\soft\xamp\htdocs\project\we7\addons\we7_wmall\plugin\kefu\model.php on line 15"
+2019-07-26 10:40:08 pid:1 Worker process terminated with ERROR: E_COMPILE_ERROR "require_once(): Failed opening required 'MODULE_ROOT/library/GatewayClient/Gateway.php' (include_path='.;D:\soft\xamp\php\PEAR') in D:\soft\xamp\htdocs\project\we7\addons\we7_wmall\plugin\kefu\model.php on line 15"
+2019-07-26 10:40:13 pid:1 Worker process terminated with ERROR: E_COMPILE_ERROR "require_once(): Failed opening required 'MODULE_ROOT/library/GatewayClient/Gateway.php' (include_path='.;D:\soft\xamp\php\PEAR') in D:\soft\xamp\htdocs\project\we7\addons\we7_wmall\plugin\kefu\model.php on line 15"
+2019-07-26 10:40:32 pid:1 Worker process terminated with ERROR: E_COMPILE_ERROR "require_once(): Failed opening required 'MODULE_ROOT/library/GatewayClient/Gateway.php' (include_path='.;D:\soft\xamp\php\PEAR') in D:\soft\xamp\htdocs\project\we7\addons\we7_wmall\plugin\kefu\model.php on line 15"
+2019-07-26 10:40:41 pid:1 Worker process terminated with ERROR: E_COMPILE_ERROR "require_once(): Failed opening required 'MODULE_ROOT/library/GatewayClient/Gateway.php' (include_path='.;D:\soft\xamp\php\PEAR') in D:\soft\xamp\htdocs\project\we7\addons\we7_wmall\plugin\kefu\model.php on line 15"
+2019-07-26 10:49:39 pid:1 Worker process terminated with ERROR: E_COMPILE_ERROR "require_once(): Failed opening required 'MODULE_ROOT/library/GatewayClient/Gateway.php' (include_path='.;D:\soft\xamp\php\PEAR') in D:\soft\xamp\htdocs\project\we7\addons\we7_wmall\plugin\kefu\model.php on line 15"
+2019-07-26 12:20:53 pid:1 Worker process terminated with ERROR: E_COMPILE_ERROR "require_once(): Failed opening required 'MODULE_ROOT/library/GatewayClient/Gateway.php' (include_path='.;D:\soft\xamp\php\PEAR') in D:\soft\xamp\htdocs\project\we7\addons\we7_wmall\plugin\kefu\model.php on line 15"
+2019-07-26 12:20:57 pid:1 Worker process terminated with ERROR: E_COMPILE_ERROR "require_once(): Failed opening required 'MODULE_ROOT/library/GatewayClient/Gateway.php' (include_path='.;D:\soft\xamp\php\PEAR') in D:\soft\xamp\htdocs\project\we7\addons\we7_wmall\plugin\kefu\model.php on line 15"
+2019-07-26 12:21:00 pid:1 Worker process terminated with ERROR: E_COMPILE_ERROR "require_once(): Failed opening required 'MODULE_ROOT/library/GatewayClient/Gateway.php' (include_path='.;D:\soft\xamp\php\PEAR') in D:\soft\xamp\htdocs\project\we7\addons\we7_wmall\plugin\kefu\model.php on line 15"
+2019-07-26 12:21:01 pid:1 Worker process terminated with ERROR: E_COMPILE_ERROR "require_once(): Failed opening required 'MODULE_ROOT/library/GatewayClient/Gateway.php' (include_path='.;D:\soft\xamp\php\PEAR') in D:\soft\xamp\htdocs\project\we7\addons\we7_wmall\plugin\kefu\model.php on line 15"
+2019-07-26 15:14:51 pid:1 Worker process terminated with ERROR: E_COMPILE_ERROR "require_once(): Failed opening required 'MODULE_ROOT/library/GatewayClient/Gateway.php' (include_path='.;D:\soft\xamp\php\PEAR') in D:\soft\xamp\htdocs\project\we7\addons\we7_wmall\plugin\kefu\model.php on line 15"
+2019-07-26 15:14:59 pid:1 Worker process terminated with ERROR: E_COMPILE_ERROR "require_once(): Failed opening required 'MODULE_ROOT/library/GatewayClient/Gateway.php' (include_path='.;D:\soft\xamp\php\PEAR') in D:\soft\xamp\htdocs\project\we7\addons\we7_wmall\plugin\kefu\model.php on line 15"
+2019-07-26 15:15:11 pid:1 Worker process terminated with ERROR: E_COMPILE_ERROR "require_once(): Failed opening required 'MODULE_ROOT/library/GatewayClient/Gateway.php' (include_path='.;D:\soft\xamp\php\PEAR') in D:\soft\xamp\htdocs\project\we7\addons\we7_wmall\plugin\kefu\model.php on line 15"
+2019-07-27 09:52:04 pid:1 Worker process terminated with ERROR: E_COMPILE_ERROR "require_once(): Failed opening required 'MODULE_ROOT/library/GatewayClient/Gateway.php' (include_path='.;D:\soft\xamp\php\PEAR') in D:\soft\xamp\htdocs\project\we7\addons\we7_wmall\plugin\kefu\model.php on line 15"
+2019-07-27 03:52:07 pid:1 SendBufferToWorker fail. The connections between Gateway and BusinessWorker are not ready. See http://wiki.workerman.net/Error3
+2019-07-27 03:52:08 pid:1 SendBufferToWorker fail. The connections between Gateway and BusinessWorker are not ready. See http://wiki.workerman.net/Error3
+2019-07-27 03:52:08 pid:1 SendBufferToWorker fail. The connections between Gateway and BusinessWorker are not ready. See http://wiki.workerman.net/Error3
+2019-07-27 09:52:11 pid:1 Worker process terminated with ERROR: E_COMPILE_ERROR "require_once(): Failed opening required 'MODULE_ROOT/library/GatewayClient/Gateway.php' (include_path='.;D:\soft\xamp\php\PEAR') in D:\soft\xamp\htdocs\project\we7\addons\we7_wmall\plugin\kefu\model.php on line 15"
+2019-07-27 12:03:27 pid:1 Worker process terminated with ERROR: E_COMPILE_ERROR "require_once(): Failed opening required 'MODULE_ROOT/library/GatewayClient/Gateway.php' (include_path='.;D:\soft\xamp\php\PEAR') in D:\soft\xamp\htdocs\project\we7\addons\we7_wmall\plugin\kefu\model.php on line 15"
+2019-07-27 12:03:32 pid:1 Worker process terminated with ERROR: E_COMPILE_ERROR "require_once(): Failed opening required 'MODULE_ROOT/library/GatewayClient/Gateway.php' (include_path='.;D:\soft\xamp\php\PEAR') in D:\soft\xamp\htdocs\project\we7\addons\we7_wmall\plugin\kefu\model.php on line 15"
+2019-07-27 14:53:52 pid:1 Worker process terminated with ERROR: E_COMPILE_ERROR "require_once(): Failed opening required 'MODULE_ROOT/library/GatewayClient/Gateway.php' (include_path='.;D:\soft\xamp\php\PEAR') in D:\soft\xamp\htdocs\project\we7\addons\we7_wmall\plugin\kefu\model.php on line 15"
+2019-07-27 14:54:23 pid:1 Worker process terminated with ERROR: E_COMPILE_ERROR "require_once(): Failed opening required 'MODULE_ROOT/library/GatewayClient/Gateway.php' (include_path='.;D:\soft\xamp\php\PEAR') in D:\soft\xamp\htdocs\project\we7\addons\we7_wmall\plugin\kefu\model.php on line 15"
+2019-07-27 14:54:31 pid:1 Worker process terminated with ERROR: E_COMPILE_ERROR "require_once(): Failed opening required 'MODULE_ROOT/library/GatewayClient/Gateway.php' (include_path='.;D:\soft\xamp\php\PEAR') in D:\soft\xamp\htdocs\project\we7\addons\we7_wmall\plugin\kefu\model.php on line 15"
+2019-07-27 14:54:36 pid:1 Worker process terminated with ERROR: E_COMPILE_ERROR "require_once(): Failed opening required 'MODULE_ROOT/library/GatewayClient/Gateway.php' (include_path='.;D:\soft\xamp\php\PEAR') in D:\soft\xamp\htdocs\project\we7\addons\we7_wmall\plugin\kefu\model.php on line 15"
+2019-07-29 10:40:31 pid:1 Worker process terminated with ERROR: E_COMPILE_ERROR "require_once(): Failed opening required 'MODULE_ROOT/library/GatewayClient/Gateway.php' (include_path='.;D:\soft\xamp\php\PEAR') in D:\soft\xamp\htdocs\project\we7\addons\we7_wmall\plugin\kefu\model.php on line 15"
+2019-07-29 10:40:42 pid:1 Worker process terminated with ERROR: E_COMPILE_ERROR "require_once(): Failed opening required 'MODULE_ROOT/library/GatewayClient/Gateway.php' (include_path='.;D:\soft\xamp\php\PEAR') in D:\soft\xamp\htdocs\project\we7\addons\we7_wmall\plugin\kefu\model.php on line 15"
+2019-07-29 10:40:43 pid:1 Worker process terminated with ERROR: E_COMPILE_ERROR "require_once(): Failed opening required 'MODULE_ROOT/library/GatewayClient/Gateway.php' (include_path='.;D:\soft\xamp\php\PEAR') in D:\soft\xamp\htdocs\project\we7\addons\we7_wmall\plugin\kefu\model.php on line 15"
+2019-07-29 10:40:44 pid:1 Worker process terminated with ERROR: E_COMPILE_ERROR "require_once(): Failed opening required 'MODULE_ROOT/library/GatewayClient/Gateway.php' (include_path='.;D:\soft\xamp\php\PEAR') in D:\soft\xamp\htdocs\project\we7\addons\we7_wmall\plugin\kefu\model.php on line 15"
+2019-07-29 10:40:45 pid:1 Worker process terminated with ERROR: E_COMPILE_ERROR "require_once(): Failed opening required 'MODULE_ROOT/library/GatewayClient/Gateway.php' (include_path='.;D:\soft\xamp\php\PEAR') in D:\soft\xamp\htdocs\project\we7\addons\we7_wmall\plugin\kefu\model.php on line 15"
+2019-07-29 10:40:57 pid:1 Worker process terminated with ERROR: E_COMPILE_ERROR "require_once(): Failed opening required 'MODULE_ROOT/library/GatewayClient/Gateway.php' (include_path='.;D:\soft\xamp\php\PEAR') in D:\soft\xamp\htdocs\project\we7\addons\we7_wmall\plugin\kefu\model.php on line 15"
+2019-07-29 10:41:08 pid:1 Worker process terminated with ERROR: E_COMPILE_ERROR "require_once(): Failed opening required 'MODULE_ROOT/library/GatewayClient/Gateway.php' (include_path='.;D:\soft\xamp\php\PEAR') in D:\soft\xamp\htdocs\project\we7\addons\we7_wmall\plugin\kefu\model.php on line 15"
+2019-07-29 10:41:09 pid:1 Worker process terminated with ERROR: E_COMPILE_ERROR "require_once(): Failed opening required 'MODULE_ROOT/library/GatewayClient/Gateway.php' (include_path='.;D:\soft\xamp\php\PEAR') in D:\soft\xamp\htdocs\project\we7\addons\we7_wmall\plugin\kefu\model.php on line 15"
+2019-07-29 10:41:43 pid:1 Worker process terminated with ERROR: E_COMPILE_ERROR "require_once(): Failed opening required 'MODULE_ROOT/library/GatewayClient/Gateway.php' (include_path='.;D:\soft\xamp\php\PEAR') in D:\soft\xamp\htdocs\project\we7\addons\we7_wmall\plugin\kefu\model.php on line 15"
+2019-07-29 10:42:30 pid:1 Worker process terminated with ERROR: E_COMPILE_ERROR "require_once(): Failed opening required 'MODULE_ROOT/library/GatewayClient/Gateway.php' (include_path='.;D:\soft\xamp\php\PEAR') in D:\soft\xamp\htdocs\project\we7\addons\we7_wmall\plugin\kefu\model.php on line 15"
+2019-07-29 04:42:31 pid:1 SendBufferToWorker fail. The connections between Gateway and BusinessWorker are not ready. See http://wiki.workerman.net/Error3
+2019-07-29 04:42:31 pid:1 SendBufferToWorker fail. The connections between Gateway and BusinessWorker are not ready. See http://wiki.workerman.net/Error3
+2019-07-29 04:42:31 pid:1 SendBufferToWorker fail. The connections between Gateway and BusinessWorker are not ready. See http://wiki.workerman.net/Error3
+2019-07-29 10:42:31 pid:1 Worker process terminated with ERROR: E_COMPILE_ERROR "require_once(): Failed opening required 'MODULE_ROOT/library/GatewayClient/Gateway.php' (include_path='.;D:\soft\xamp\php\PEAR') in D:\soft\xamp\htdocs\project\we7\addons\we7_wmall\plugin\kefu\model.php on line 15"
+2019-07-29 12:28:06 pid:1 Worker process terminated with ERROR: E_COMPILE_ERROR "require_once(): Failed opening required 'MODULE_ROOT/library/GatewayClient/Gateway.php' (include_path='.;D:\soft\xamp\php\PEAR') in D:\soft\xamp\htdocs\project\we7\addons\we7_wmall\plugin\kefu\model.php on line 15"
+2019-07-29 12:29:03 pid:1 Worker process terminated with ERROR: E_COMPILE_ERROR "require_once(): Failed opening required 'MODULE_ROOT/library/GatewayClient/Gateway.php' (include_path='.;D:\soft\xamp\php\PEAR') in D:\soft\xamp\htdocs\project\we7\addons\we7_wmall\plugin\kefu\model.php on line 15"
+2019-07-29 15:50:39 pid:1 Worker process terminated with ERROR: E_COMPILE_ERROR "require_once(): Failed opening required 'MODULE_ROOT/library/GatewayClient/Gateway.php' (include_path='.;D:\soft\xamp\php\PEAR') in D:\soft\xamp\htdocs\project\we7\addons\we7_wmall\plugin\kefu\model.php on line 15"
+2019-07-29 09:50:45 pid:1 SendBufferToWorker fail. The connections between Gateway and BusinessWorker are not ready. See http://wiki.workerman.net/Error3
+2019-07-29 09:50:45 pid:1 SendBufferToWorker fail. The connections between Gateway and BusinessWorker are not ready. See http://wiki.workerman.net/Error3
+2019-07-29 09:50:45 pid:1 SendBufferToWorker fail. The connections between Gateway and BusinessWorker are not ready. See http://wiki.workerman.net/Error3
+2019-07-29 19:21:03 pid:1 Worker process terminated with ERROR: E_COMPILE_ERROR "require_once(): Failed opening required 'MODULE_ROOT/library/GatewayClient/Gateway.php' (include_path='.;D:\soft\xamp\php\PEAR') in D:\soft\xamp\htdocs\project\we7\addons\we7_wmall\plugin\kefu\model.php on line 15"

@@ -1,0 +1,231 @@
+page {
+    background-color: #f5f5f5;
+}
+
+page .page-pindan {
+    background: #f5f5f5;
+    box-sizing: border-box;
+    font-size: 14px;
+    line-height: 1;
+}
+
+.page-pindan .store {
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 10px;
+}
+
+.page-pindan .store image {
+    width: 55px;
+    height: 55px;
+    border-radius: 100%;
+}
+
+.page-pindan .store .name {
+    max-height: 90%;
+    margin: 10px auto;
+    font-size: 15px;
+    font-weight: 600;
+}
+
+.page-pindan .store .join {
+    width: 100%;
+    height: 45px;
+    line-height: 45px;
+    background: #ff2d4b;
+    color: #fff;
+    border-radius: 3px;
+    font-size: 16px;
+    text-align: center;
+}
+
+.page-pindan .label {
+    display: inline-block;
+    font-size: 9px;
+    border-radius: 2px;
+    height: 13px;
+    line-height: 13px;
+    padding: 0px 4px;
+    margin-left: 5px;
+}
+
+.page-pindan .label.label-mine {
+    color: #F8D594;
+    border: 1px solid #F8D594;
+}
+
+.page-pindan .label.label-start {
+    color: #4987DC;
+    border: 1px solid #4987DC;
+}
+
+.page-pindan .order-info .left {
+    width: 11%;
+}
+
+.page-pindan .order-info .right {
+    width: 86%;
+}
+
+.page-pindan .order-info .user .right {
+    min-height: 45px;
+}
+
+.page-pindan .order-info .user .avatar {
+    width: 100%;
+    border-radius: 100%;
+}
+
+.page-pindan .order-info .user .nickname {
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+    color: #000;
+    width: 55%;
+}
+
+.page-pindan .order-info .user .nickname text:first-child {
+    display: inline-block;
+    font-weight: 600;
+    max-width: 75%;
+}
+
+.page-pindan .order-info .btn-group .btn-item {
+    border-radius: 2px;
+    font-size: 11px;
+    padding: 2px 5px;
+    margin-right: 10px;
+}
+
+.page-pindan .order-info .btn-group .btn-item.edit-btn {
+    border: 1px solid #F4BC5D;
+    color: #E2BC59;
+}
+
+.page-pindan .order-info .btn-group .btn-item.cancle-btn {
+    border: 1px solid #BCBCBC;
+    color: #AEAEAE;
+}
+
+.page-pindan .order-info .goods .goods-item {
+    width: 100%;
+    margin: 10px 0;
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    color: #717171;
+}
+
+.page-pindan .order-info .goods .goods-item .goods-title {
+    width: 70%;
+    padding-right: 20px;
+    box-sizing: border-box;
+}
+
+.page-pindan .order-info .goods .goods-item .goods-num {
+    width: 10%;
+}
+
+.page-pindan .order-info .goods .goods-item .goods-price {
+    width: 20%;
+    box-sizing: border-box;
+    padding-right: 10px;
+    text-align: right;
+}
+
+.page-pindan .pay {
+    position: fixed;
+    height: 50px;
+    box-sizing: border-box;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+    z-index: 10;
+}
+
+.page-pindan .pay .takepart-tips {
+    position: absolute;
+    top: -32px;
+    right: 0;
+    left: 0;
+    height: 32px;
+    line-height: 32px;
+    text-align: center;
+    background-color: #fff7cc;
+    font-size: 12px;
+}
+
+.page-pindan .pay .total {
+    flex: 1;
+    height: 100%;
+    background: #414141;
+    box-sizing: border-box;
+    padding-left: 15px;
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: flex-start;
+    justify-content: center;
+}
+
+.page-pindan .pay .total .price {
+    font-size: 20px;
+    color: #fff;
+}
+
+.page-pindan .pay .total .delivery-fee {
+    color: #747474;
+    font-size: 12px;
+    margin-top: 3px;
+}
+
+.page-pindan .pay .topay {
+    width: 110px;
+    height: 50px;
+    line-height: 50px;
+    text-align: center;
+    background: #ff2d4b;
+    color: #fff;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.page-pindan .pay .topay.disabled {
+    background-color: #2A2A2A;
+    color: #999;
+}
+
+.page-pindan .lock {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 15;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.page-pindan .lock .lock-container {
+    width: 100%;
+    text-align: center;
+}
+
+.page-pindan .lock .lock-container .tip {
+    font-size: 16px;
+    color: #434343;
+    margin-bottom: 10px;
+}
+
+.page-pindan .lock .lock-container .deblock {
+    width: 270px;
+    height: 44px;
+    line-height: 43px;
+    border-radius: 3px;
+    background: #ff2d4b;
+    color: #fff;
+    font-size: 16px;
+    margin: 0 auto;
+}

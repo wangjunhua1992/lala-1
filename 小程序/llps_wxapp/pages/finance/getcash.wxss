@@ -1,0 +1,121 @@
+page {
+    background-color: #f5f5f5;
+    font-size: 14px;
+}
+
+.page-getcash .useful-account {
+    background-color: #fff;
+    margin: 10px 0;
+    padding: 15px;
+    font-size: 16px;
+}
+
+.page-getcash .useful-account text {
+    color: #ff2d4b;
+}
+
+.page-getcash .getcash-operation {
+    background-color: #fff;
+    padding: 15px 15px 5px;
+}
+
+.page-getcash .getcash-operation .title {
+    margin-bottom: 5px;
+}
+
+.page-getcash .getcash-operation input {
+    border: 1px solid #e7e7e7;
+    border-radius: 3px;
+    padding-left: 6px;
+    margin-bottom: 10px;
+    height: 35px;
+}
+
+.page-getcash .getcash-operation .tip {
+    color: #999;
+    position: relative;
+    padding-left: 10px;
+    margin: 0;
+}
+
+.page-getcash .getcash-operation .tip:before {
+    content: "";
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    position: absolute;
+    left: 0;
+    background: #ccc;
+    top: 50%;
+    margin-top: -2.5px;
+}
+
+.page-getcash .getcash-btn {
+    padding: 0 15px;
+    box-sizing: border-box;
+    margin-top: 20px;
+}
+
+.page-getcash .getcash-operation .getcash-title {
+    line-height: 1;
+    padding-top: 10px;
+}
+
+.page-getcash .getcash-operation .getcash-type .type-item {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    padding: 10px 15px 10px 0;
+    line-height: 14px;
+    font-size: 14px;
+    border-bottom: 1px solid #eee;
+}
+
+.page-getcash .getcash-operation .getcash-type .type-item:last-child {
+    border-bottom: 0;
+}
+
+.page-getcash .getcash-operation .getcash-type .type-item .type-left {
+    flex: 1;
+    color: #999;
+}
+
+.page-getcash .getcash-operation .getcash-type .type-item .type-right {
+    display: flex;
+    justify-content: flex-end;
+    flex: 1;
+}
+
+.page-getcash .getcash-operation .getcash-type .type-item .type-right .input-group {
+    position: relative;
+    width: 20px;
+    height: 20px;
+    border-radius: 20px;
+    border: 1px solid #999;
+}
+
+.page-getcash .getcash-operation .getcash-type .type-item .type-right .input-group .icon-check {
+    width: 20px;
+    height: 20px;
+    text-align: center;
+    line-height: 20px;
+    color: #fff;
+}
+
+.page-getcash .getcash-operation .getcash-type .type-item .type-right .input-group input {
+    border: 0;
+    padding: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    margin: 0;
+    width: 100%;
+    height: 100%;
+    min-height: 0;
+}
+
+.page-getcash .getcash-operation .getcash-type .type-item .type-right .input-group.active {
+    background-color: #4FAE52;
+    border: 1px solid #4FAE52;
+}

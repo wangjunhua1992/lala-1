@@ -1,0 +1,94 @@
+{itemplate 'public/header'}
+{if $op == 'list'}
+<form action="./index.php" class="form-horizontal form-filter">
+	{php echo tpl_form_filter_hidden('yinsihao/bind/list');}
+	<div class="form-group">
+		<label class="col-xs-12 col-sm-3 col-md-2 control-label">绑定类型</label>
+		<div class="col-sm-9 col-xs-12">
+			<div class="btn-group">
+				<div class="btn-group">
+					<a href="{php echo ifilter_url('type:0');}" class="btn {if !in_array($type, array('member', 'store', 'deliveryer', 'errander'))}btn-primary{else}btn-default{/if}">不限</a>
+					{loop $types $ktype $vtype}
+					<a href="{php echo ifilter_url('type:' . $ktype);}" class="btn {if $type == $ktype}btn-primary{else}btn-default{/if}">{$vtype['text']}</a>
+					{/loop}
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="form-group">
+		<label class="col-xs-12 col-sm-3 col-md-2 control-label">搜索</label>
+		<div class="col-sm-4 col-xs-4">
+			<input type="text" name="keyword" value="{$keyword}" class="form-control" placeholder="搜索手机号、隐私号">
+		</div>
+	</div>
+	<div class="form-group">
+		<label class="col-xs-12 col-sm-3 col-md-2 control-label"></label>
+		<div class="col-sm-4 col-xs-4">
+			<input type="submit" value="筛选" class="btn btn-primary">
+		</div>
+	</div>
+</form>
+<form action="" class="form-table form" method="post">
+	<div class="panel panel-table">
+		<div class="panel-body table-responsive js-table">
+			{if empty($data)}
+				<div class="no-result">
+					<p>还没有相关数据</p>
+				</div>
+			{else}
+				<table class="table table-hover">
+					<thead class="navbar-inner">
+					<tr>
+						<th width="40">
+							<div class="checkbox checkbox-inline">
+								<input type="checkbox" name="ids[]" value="{$item['id']}"/>
+								<label></label>
+							</div>
+						</th>
+						<th>真实手机号</th>
+						<th>隐私手机号</th>
+						<th>绑定类型</th>
+						<th>分机号</th>
+						<th>添加时间</th>
+						<th>到期时间</th>
+						<th style="width:150px; text-align:right;">操作</th>
+					</tr>
+					</thead>
+					<tbody>
+					{loop $data $item}
+					<tr>
+						<td>
+							<div class="checkbox checkbox-inline">
+								<input type="checkbox" name="ids[]" value="{$item['id']}"/>
+								<label></label>
+							</div>
+						</td>
+						<td>{$item['real_mobile']}</td>
+						<td>{$item['secret_mobile']}</td>
+						<td>
+							<span class="{$types[$item['type']]['css']}">{$types[$item['type']]['text']}</span>
+						</td>
+						<td>{$item['extension']}</td>
+						<td>{php echo date('Y-m-d H:i', $item['addtime'])}</td>
+						<td>{php echo date('Y-m-d H:i', $item['expiration'])}</td>
+						<td style="text-align:right;">
+							<a href="{php echo iurl('yinsihao/bind/unbind', array('id' => $item['id']))}" class="btn btn-default btn-sm js-remove" data-confirm="确定解除该隐私号绑定关系吗">解绑</a>
+						</td>
+					</tr>
+					{/loop}
+					</tbody>
+				</table>
+				<div class="btn-region clearfix">
+					<div class="pull-left">
+
+					</div>
+					<div class="pull-right">
+						{$pager}
+					</div>
+				</div>
+			{/if}
+		</div>
+	</div>
+</form>
+{/if}
+{itemplate 'public/footer'}

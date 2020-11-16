@@ -1,0 +1,93 @@
+<tab-bar menufooter="{{menufooter}}" wx:if="{{menufooter&&menufooter.data}}"></tab-bar>
+<view class="page-order">
+    <view bind:tap="onJsEvent" class="list-block flex-lr" data-event-type="jsUrl" data-url="pages/paotui/order" wx:if="{{errander_status}}">
+        <view class="errander-block flex">
+            <image src="http://cos.lalawaimai.com/we7_wmall/wxapp/suiyigou_icon.png"></image>
+            <view class="list-block-text">万能跑腿订单</view>
+        </view>
+        <view class="icon icon-right"></view>
+    </view>
+    <block wx:if="{{orders.empty==0}}">
+        <view class="order-list" wx:for="{{orders.data}}" wx:for-item="order">
+            <view class="order-item van-hairline--bottom">
+                <view bind:tap="onJsEvent" class="store-info van-hairline--bottom flex-lr" data-event-type="jsUrl" data-url="pages/store/goods?sid={{order.sid}}">
+                    <view class="flex">
+                        <image src="{{order.logo}}"></image>
+                        <text class="store-title">{{order.title}}</text>
+                        <text class="icon icon-right"></text>
+                    </view>
+                    <view class="plateform-delivery" wx:if="{{order.delivery_mode==2}}">
+                        <text wx:if="{{config_mall&&config_mall.delivery_title}}">{{config_mall.delivery_title}}</text>
+                    </view>
+                </view>
+                <view bind:tap="onJsEvent" class="goods-info flex-lr" data-event-type="jsUrl" data-url="pages/order/detail?id={{order.id}}">
+                    <view class="goods-info-left">
+                        <view class="goods-title">{{order.goods.goods_title}}等<text>{{order.num}}</text>件商品</view>
+                        <view class="date">{{order.addtime}}</view>
+                    </view>
+                    <view class="goods-info-right">
+                        <view class="price">{{Lang.dollarSign}}{{order.final_fee}}</view>
+                        <view class="status no-pay">{{order.status_text}}</view>
+                    </view>
+                </view>
+                <view class="order-status" wx:if="{{order.is_pay==0&&order.status!=6&&order.order_type!=3}}">
+                    <view class="pic">
+                        <image src="http://cos.lalawaimai.com/we7_wmall/wxapp/order_status_money.png"></image>
+                    </view>
+                    <view class="order-status-detail">
+                        <view class="arrow-left"></view>
+                        <view class="pay-status flex-lr">
+                            <text>待支付</text>
+                            <text class="font-12 c-gray">{{order.addtime_hm}}</text>
+                        </view>
+                        <view class="tips">
+                            <block wx:if="{{order.pay_time_limit>0}}">
+								请在提交订单后{{order.pay_time_limit}}分钟内完成支付
+							</block>
+                            <block wx:else>
+								请在提交订单后10分钟内完成支付
+							</block>
+                        </view>
+                    </view>
+                </view>
+            </view>
+            <view class="order-btn">
+                <block wx:if="{{order.is_pay==0&&order.status<5}}">
+                    <view catch:tap="onFinishMealPay" class="table-cell van-hairline--right" wx:if="{{order.order_type==3&&order.pay_type=='finishMeal'}}">立即支付</view>
+                    <view catch:tap="onJsEvent" class="table-cell van-hairline--right" data-event-type="jsPay" data-order-id="{{order.id}}" data-order-type="takeout" data-success-url="detail?id={{order.id}}" wx:else>立即支付</view>
+                    <view catch:tap="onJsEvent" class="table-cell van-hairline--right" data-event-type="jsUrl" data-url="tangshi/pages/table/goods?table_id={{order.table_id}}&sid={{order.sid}}&order_id={{order.id}}" wx:if="{{order.order_type==3}}">加菜</view>
+                </block>
+                <block wx:if="{{order.status==1}}">
+                    <view catch:tap="onJsEvent" class="table-cell van-hairline--right" data-confirm="确定取消订单吗?" data-event-type="jsPost" data-href="wmall/order/index/cancel?id={{order.id}}" data-success-url="detail?id={{order.id}}">取消订单</view>
+                    <view catch:tap="onJsEvent" class="table-cell van-hairline--right" data-event-type="jsPost" data-href="wmall/order/index/remind?id={{order.id}}" data-success-url="detail?id={{order.id}}" wx:if="{{order.is_pay==1}}">催单</view>
+                </block>
+                <block wx:elif="{{order.status>1&&order.status<5}}">
+                    <view catch:tap="onJsEvent" class="table-cell van-hairline--right" data-confirm="确定取消订单吗?" data-event-type="jsPost" data-href="wmall/order/index/cancel?id={{order.id}}" data-success-url="detail?id={{order.id}}" wx:if="{{order.customer_cancel_status==1}}">取消订单</view>
+                    <view catch:tap="onJsEvent" class="table-cell van-hairline--right" data-event-type="jsPost" data-href="wmall/order/index/remind?id={{order.id}}" data-success-url="detail?id={{order.id}}" wx:if="{{order.is_pay==1}}">催单</view>
+                    <view bind:tap="onJsEvent" class="table-cell van-hairline--right" data-confirm="你确定收到该商家的外卖?" data-event-type="jsPost" data-href="wmall/order/index/end?id={{order.id}}" data-success-url="comment?id={{order.id}}" wx:if="{{order.order_type==1&&order.status==4}}">确认送达</view>
+                    <view bind:tap="onJsEvent" class="table-cell van-hairline--right" data-confirm="确认已到店自提?" data-event-type="jsPost" data-href="wmall/order/index/end?id={{order.id}}" data-success-url="comment?id={{order.id}}" wx:if="{{order.order_type==2}}">我已提货</view>
+                    <view catch:tap="onJsEvent" class="table-cell van-hairline--right" data-event-type="jsUrl" data-url="tangshi/pages/table/goods?table_id={{order.table_id}}&sid={{order.sid}}&order_id={{order.id}}" wx:if="{{order.order_type==3&&order.is_pay==1&&order.pay_type=='finishMeal'}}">加菜</view>
+                </block>
+                <block wx:elif="{{order.status==5}}">
+                    <view catch:tap="onJsEvent" class="table-cell van-hairline--right" data-event-type="jsUrl" data-url="pages/store/goods?sid={{order.sid}}&order_id={{order.id}}">再来一单</view>
+                    <view catch:tap="onJsEvent" class="table-cell van-hairline--right" data-event-type="jsUrl" data-url="pages/order/comment?id={{order.id}}" url="comment?id={{order.id}}" wx:if="{{order.is_comment==0}}">{{order.comment_cn}}</view>
+                    <view class="table-cell van-hairline--right" style="display:none" wx:if="{{order.is_comment==1}}">查看评价</view>
+                </block>
+                <view catch:tap="onJsEvent" class="table-cell van-hairline--right" data-event-type="jsUrl" data-url="pages/store/goods?sid={{order.sid}}&order_id={{order.id}}" wx:else>再来一单</view>
+            </view>
+        </view>
+        <view class="wui-loadmore wui-loadmore-nomore" wx:if="{{orders.loaded==1}}">
+            <view class="wui-loadmore-tips">我是有底线的</view>
+            <view class="wui-loadmore-line"></view>
+        </view>
+        <view class="wui-loadmore" wx:else>
+            <view class="wui-loading"></view>
+            <view class="wui-loadmore-tips">正在加载中</view>
+        </view>
+    </block>
+    <view class="no-data" wx:if="{{orders.empty}}">
+        <image class="no-coupon" src="http://cos.lalawaimai.com/we7_wmall/wxapp/coupon_no_con.png"></image>
+        <text class="no-record">您没有订单哦</text>
+    </view>
+</view>
+<include src="../public/footer.wxml"></include>

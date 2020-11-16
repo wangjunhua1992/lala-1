@@ -1,0 +1,135 @@
+<view class="container">
+    <view class="content">
+        <view class="search-header-wrap">
+            <view class="search-header">
+                <view class="search-sec">
+                    <form>
+                        <view class="icon icon-search"></view>
+                        <input bindinput="onInput" class="search-input" value="{{keyword}}"></input>
+                    </form>
+                </view>
+                <view bind:tap="onSearch" class="search-btn">搜索</view>
+            </view>
+        </view>
+        <view class="no-result" wx:if="{{!stores}}">
+            <view class="img">
+                <view class="icon icon-store"></view>
+            </view>
+            <view class="text">抱歉,没有找到合适的商户</view>
+        </view>
+        <view class="store-list">
+            <view class="field clearfix" wx:for="{{stores}}">
+                <navigator url="{{item.url}}">
+                    <view class="avatar">
+                        <view class="{{item.label>0?'avatar-band':''}}" style="background-color: {{item.label_color}}">{{item.label_cn}}</view>
+                        <image src="{{item.logo}}"></image>
+                    </view>
+                </navigator>
+                <view class="content">
+                    <navigator url="{{item.url}}">
+                        <view class="shop-title">{{item.title}}</view>
+                        <view class="delivery-tip" wx:if="{{item.rest_reserve_cn}}">
+                            <text>{{item.rest_reserve_cn}}</text>
+                        </view>
+                        <view class="shop-mid-line clearfix">
+                            <view class="appr-status clearfix">
+                                <view class="appr-score appr-score-{{type}}" wx:for="{{item.scores}}" wx:for-item="type"></view>
+                            </view>
+                            <view class="shop-sold">月售 {{item.sailed}}</view>
+                            <view class="shop-right">{{item.distance}}km</view>
+                            <view class="shop-dvd-line">|</view>
+                            <view class="shop-delivery-time">{{item.delivery_time}}分钟</view>
+                        </view>
+                        <view class="shop-line clearfix">
+                            <view class="shop-line-item">
+									起送价
+									<view>{{Lang.dollarSign}}{{item.send_price}}</view>
+                            </view>
+                            <view class="shop-dvd-line">|</view>
+                            <view class="shop-line-item">
+									配送
+									<view>{{Lang.dollarSign}}{{item.delivery_price}}</view>
+                            </view>
+                            <view class="allocation-icon" wx:if="{{item.delivery_title}}">{{item.delivery_title}}</view>
+                        </view>
+                    </navigator>
+                    <view class="shop-discount-entries clearfix" wx:if="{{item.activity.num&&item.activity.num>0}}">
+                        <view bindtap="onToggleDiscount" class="shop-discount-entry-wrap" data-index="{{index}}">
+                            <view class="shop-discount-entry clearfix" wx:if="{{index<2||item.activity.is_show_all&&index>=2}}" wx:for="{{item.activity.items}}" wx:for-item="activity">
+                                <view class="icon-b">
+                                    <image src="/static/img/{{activity.type}}_b.png"></image>
+                                </view>
+                                <view class="text">{{activity.title}}</view>
+                            </view>
+                        </view>
+                        <view class="icon {{item.activity.is_show_all?'icon-fold':'icon-unfold'}}" wx:if="{{item.activity.num>2}}"></view>
+                    </view>
+                    <navigator class="goods-list show" url="/pages/store/goodsDetail?sid={{item.id}}&id={{goodsItem.id}}" wx:if="{{item.goods}}" wx:for="{{item.goods}}" wx:for-item="goodsItem">
+                        <view class="goods-item border-1px-t">
+                            <view class="goods-name active">
+										{{goodsItem.title}}
+										<view class="goods-price">{{Lang.dollarSign}}{{goodsItem.price}}</view>
+                            </view>
+                            <view class="goods-sold">月售 {{goodsItem.sailed}}</view>
+                        </view>
+                    </navigator>
+                </view>
+                <view bind:tap="onToggleHeight" class="load-more border-1px-t hide" data-id="{{index}}" wx:if="{{item.goods.length>1}}">
+						展开其他{{item.goods_num}}个商品 <view class="icon {{item.toggleHeight?'icon-fold':'icon-unfold'}}"></view>
+                </view>
+            </view>
+        </view>
+        <view class="suspect" wx:if="{{recommendStores.length>0}}">
+            <view class="wui-loadmore wui-loadmore-nodata">
+                <view class="wui-loadmore-tips">猜你喜欢</view>
+            </view>
+        </view>
+        <view class="store-list">
+            <view class="field clearfix" wx:for="{{recommendStores}}">
+                <navigator url="{{item.url}}">
+                    <view class="avatar">
+                        <view class="{{item.label>0?'avatar-band':''}}" style="background-color: {{item.label_color}}">{{item.label_cn}}</view>
+                        <image src="{{item.logo}}"></image>
+                    </view>
+                </navigator>
+                <view class="content">
+                    <navigator url="{{item.url}}">
+                        <view class="shop-title">{{item.title}}</view>
+                        <view class="shop-mid-line clearfix">
+                            <view class="appr-status clearfix">
+                                <view class="appr-score appr-score-{{type}}" wx:for="{{item.scores}}" wx:for-item="type"></view>
+                            </view>
+                            <view class="shop-sold">月售 {{item.sailed}}</view>
+                            <view class="shop-right">{{item.distance}}km</view>
+                            <view class="shop-dvd-line">|</view>
+                            <view class="shop-delivery-time">{{item.delivery_time}}分钟</view>
+                        </view>
+                        <view class="shop-line clearfix">
+                            <view class="shop-line-item">
+									起送价
+									<view>{{Lang.dollarSign}}{{item.send_price}}</view>
+                            </view>
+                            <view class="shop-dvd-line">|</view>
+                            <view class="shop-line-item">
+									配送
+									<view>{{Lang.dollarSign}}{{item.delivery_price}}</view>
+                            </view>
+                            <view class="allocation-icon" wx:if="{{item.delivery_title}}">{{item.delivery_title}}</view>
+                        </view>
+                    </navigator>
+                    <view class="shop-discount-entries clearfix show" wx:if="{{item.activity.num&&item.activity.num>0}}">
+                        <view bindtap="changeHeight" class="shop-discount-entry-wrap">
+                            <view class="shop-discount-entry clearfix" wx:for="{{item.activity.items}}" wx:for-item="activity">
+                                <view class="icon-b">
+                                    <image src="/static/img/{{activity.type}}_b.png"></image>
+                                </view>
+                                <view class="text">{{activity.title}}</view>
+                            </view>
+                        </view>
+                    </view>
+                </view>
+            </view>
+        </view>
+    </view>
+</view>
+<include src="../public/footer.wxml"></include>

@@ -1,0 +1,59 @@
+<view class="page-missionList">
+    <view class="content">
+        <view class="wrap-search">
+            <view class="tab-group flex-lr">
+                <view bind:tap="onToggleStatus" class="tab-item {{status==1?'active':''}}" data-status="1">进行中</view>
+                <view bind:tap="onToggleStatus" class="tab-item {{status==2?'active':''}}" data-status="2">已完成</view>
+                <view bind:tap="onToggleStatus" class="tab-item {{status==3?'active':''}}" data-status="3">已失败</view>
+            </view>
+        </view>
+        <view class="mission-list" wx:if="{{!records.empty}}">
+            <view class="mission-item" wx:for="{{records.data}}" wx:key="{{item.id}}">
+                <view class="mission-group">
+                    <view class="mission-img">
+                        <image alt="" src="{{item.avatar}}"></image>
+                    </view>
+                    <view class="mission-info">
+                        <view class="flex-lr">
+                            <view class="font-15">{{item.data.title}}</view>
+                            <view class="c-danger font-15">{{item.takepart_status_all.text}}</view>
+                        </view>
+                        <view class="c-gray font-13 padding-10-t flex">
+                            <text>领取时间：</text>
+                            <text>{{item.addtime_cn}}</text>
+                        </view>
+                        <view class="limit-time">
+                            <text>截止时间：</text>
+                            <text>{{item.overtime_cn}}</text>
+                        </view>
+                        <view class="finish-time" wx:if="{{item.status==2}}">
+                            <text>完成时间：</text>
+                            <text>{{item.endtime_cn}}</text>
+                        </view>
+                        <view class="mission-award">
+                            <text>任务奖励：</text>
+                            <text>{{item.award_cn}}</text>
+                        </view>
+                    </view>
+                </view>
+                <view class="mission-footer" wx:if="{{item.status==1}}">
+                    <view bind:tap="onJsEvent" class="itag itag-danger" data-event-type="jsUrl" data-url="pages/member/recharge" wx:if="{{item.task_type=='oneChargeFee'}}">去充值</view>
+                    <view bind:tap="onJsEvent" class="itag itag-danger" data-event-type="jsUrl" data-url="pages/home/index" wx:if="{{item.task_type=='oneOrderFee'}}">去完成</view>
+                </view>
+            </view>
+            <view class="wui-loadmore wui-loadmore-nomore" wx:if="{{records.loaded}}">
+                <view class="wui-loadmore-tips">我是有底线的</view>
+                <view class="wui-loadmore-line"></view>
+            </view>
+            <view class="wui-loadmore" wx:else>
+                <view class="wui-loading"></view>
+                <view class="wui-loadmore-tips">正在加载中</view>
+            </view>
+        </view>
+        <view class="no-data" wx:else>
+            <image class="no-coupon" src="../../static/img/order_no_con.png"></image>
+            <text class="no-record">还没有相关数据!</text>
+        </view>
+    </view>
+</view>
+<include src="../../../pages/public/footer.wxml"></include>

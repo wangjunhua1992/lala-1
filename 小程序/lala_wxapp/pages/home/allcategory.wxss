@@ -1,0 +1,107 @@
+page {
+    height: 100%;
+    font-size: 14px;
+    line-height: 1;
+    background-color: #f5f5f5;
+    box-sizing: border-box;
+}
+
+.home-allcategory,.content {
+    height: 100%;
+}
+
+.home-allcategory .allcategory-wrap {
+    display: flex;
+    height: 100%;
+}
+
+.home-allcategory .tab-list {
+    width: 21%;
+    background-color: #fff;
+}
+
+.home-allcategory .tab-list .tab-item {
+    padding: 15px 0;
+    text-align: center;
+}
+
+.home-allcategory .tab-list .tab-item .category-name {
+    font-size: 15px;
+}
+
+.home-allcategory .tab-list .tab-item .category-num {
+    display: inline-block;
+    color: #999;
+    font-size: 12px;
+    padding: 2px 8px;
+    border-radius: 16px;
+    background-color: #f5f5f5;
+    margin-top: 10px;
+}
+
+.home-allcategory .tab-list .tab-item.active {
+    background-color: #f5f5f5;
+    color: #ff2d4b;
+}
+
+.home-allcategory .tab-list .tab-item.active .category-num {
+    background-color: #fff;
+    color: #ff2d4b;
+}
+
+.home-allcategory .goods-list {
+    width: 79%;
+}
+
+.home-allcategory .goods-list .goods-info {
+    padding: 0 10px;
+}
+
+.home-allcategory .goods-list .goods-title {
+    flex: 1;
+    padding: 15px 0;
+}
+
+.home-allcategory .goods-list .goods-group {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 30px 15px 0px;
+    background-color: #fff;
+    border-radius: 5px;
+}
+
+.home-allcategory .goods-list .goods-group .goods-wrap {
+    width: 33%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.home-allcategory .goods-list .goods-group .goods-item {
+    text-align: center;
+}
+
+.home-allcategory .goods-list .goods-group .goods-item image {
+    width: 45px;
+    height: 45px;
+    border: none;
+}
+
+.home-allcategory .goods-list .goods-group .goods-item .goods-name {
+    padding-top: 5px;
+    font-size: 14px;
+}
+
+.home-allcategory .goods-list .goods-group .goods-item .goods-num {
+    display: inline-block;
+    color: #999;
+    font-size: 12px;
+    padding: 2px 8px;
+    margin: 5px 0px 10px;
+    border-radius: 16px;
+    background-color: #f5f5f5;
+}
+
+.home-allcategory .goods-list:last-child {
+    margin-bottom: 10px;
+}

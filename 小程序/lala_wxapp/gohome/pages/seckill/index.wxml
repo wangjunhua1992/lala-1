@@ -1,0 +1,61 @@
+<tab-bar menufooter="{{menufooter}}" wx:if="{{menufooter&&menufooter.data}}"></tab-bar>
+<view class="seckill-index container">
+    <view class="navs margin-10-b" wx:if="{{navs&&navs.length>0}}">
+        <view class="navs-container col-5">
+            <swiper circular="true" class="snot-one1" indicatorDots="{{false}}" style="height: {{navs.length>1||navs.length==1&&navs[0].length/5>1?168:84}}px">
+                <swiper-item class="not-one" wx:for="{{navs}}" wx:for-item="tempitem" wx:key="{{index}}">
+                    <view class="nav-col" wx:for="{{tempitem}}" wx:key="{{item.id}}">
+                        <view bind:tap="onJsEvent" data-event-type="jsUrl" data-url="{{item.link}}">
+                            <view class="nav-icon">
+                                <image src="{{item.thumb}}"></image>
+                            </view>
+                            <view class="nav-text">{{item.title}}</view>
+                        </view>
+                    </view>
+                </swiper-item>
+            </swiper>
+        </view>
+    </view>
+    <block wx:if="{{!records.empty}}">
+        <view class="padding-15-t padding-15-lr bg-default flex-lr c-danger font-14 ">超值好货限时抢购</view>
+        <view class="goods-list">
+            <view class="activity-item" wx:for="{{records.data}}" wx:key="{{item.id}}">
+                <view class="item-inner">
+                    <view class="thumb">
+                        <image alt="" src="{{item.thumb}}"></image>
+                        <view class="end-bg" wx:if="{{item.status==3}}">
+                            <image alt="" src="../../static/img/end.png"></image>
+                        </view>
+                    </view>
+                    <view class="goods-title">{{item.name}}</view>
+                    <view class="flex">
+                        <view class="c-danger font-500 font-15 margin-5-r">{{Lang.dollarSign}}{{item.price}}</view>
+                        <view class="c-gray line-through font-12">{{Lang.dollarSign}}{{item.oldprice}}</view>
+                        <view class="discount">{{item.discount}}折</view>
+                    </view>
+                    <view class="flex-lr margin-10-t">
+                        <view class="bar {{item.status==3||!item.total?'bar-end':''}}">
+                            <view class="bar-inner" style="width: {{item.sailed_percent}}%" wx:if="{{item.status!=3&&item.total>0}}"></view>
+                            <view class="bar-text">已抢{{item.sailed}}份</view>
+                        </view>
+                        <block wx:if="{{item.status==1}}">
+                            <view bind:tap="onJsEvent" class="seckill-btn btn-detail" data-event-type="jsUrl" data-url="gohome/pages/seckill/detail?id={{item.id}}" wx:if="{{item.total!=0}}">抢购</view>
+                            <view class="seckill-btn btn-end" wx:else>已抢光</view>
+                        </block>
+                        <view class="seckill-btn btn-end" wx:elif="{{item.status==2}}">未开始</view>
+                        <view class="seckill-btn btn-end" wx:elif="{{item.status==3}}">已结束</view>
+                    </view>
+                </view>
+            </view>
+        </view>
+        <view class="wui-loadmore wui-loadmore-nodata" wx:if="{{records.loaded}}">
+            <view class="wui-loadmore-tips">没有更多了</view>
+        </view>
+    </block>
+    <view class="no-data" wx:else>
+        <image class="no-coupon" src="http://cos.lalawaimai.com/we7_wmall/wxapp/goods_no_con.png"></image>
+        <text class="no-record">暂无抢购活动</text>
+    </view>
+</view>
+<failed-tips failedTips="{{failedTips}}" wx:if="{{failedTipsStatus}}"></failed-tips>
+<include src="../../../pages/public/footer.wxml"></include>

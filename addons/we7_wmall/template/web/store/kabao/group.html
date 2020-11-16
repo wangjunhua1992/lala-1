@@ -1,0 +1,153 @@
+{itemplate 'public/header'}
+{if $ta == 'list'}
+<form action="" class="form-table">
+	<div class="panel panel-table">
+		<div class="alert alert-danger">注意：<br>
+			1、添加或者删除会员等级后，商品的会员价格需重新进行设置； <br>
+			2、请勿设置升级条件相同的会员等级； <br>
+			3、在已有顾客绑定门店会员的情况下，对会员等级进行了增加、删除、修改(升级条件和等级名称)操作时，建议一键更新所有会员信息，否则会造成信息的不同步；<br>
+			4、会员等级享受的会员特权需在基本设置中开启才会生效。例如：基本设置中未开启积分赠送特权，即使会员等级开启了积分赠送的特权会员也享受不到该特权。
+			</div>
+		<div class="panel-heading">
+			<a href="{php echo iurl('store/kabao/group/post');}" class="btn btn-primary btn-sm">添加会员卡等级</a>
+			<a href="{php echo iurl('store/kabao/group/updateAll');}" class="btn btn-danger btn-sm js-post" data-confirm="此操作主要用于在已有顾客绑定门店会员的情况下，对会员等级进行了增加、删除、修改操作时，同步会员的等级信息，确定进行同步吗">一键更新所有会员信息</a>
+		</div>
+		<div class="panel-body table-responsive js-table">
+			{if empty($groups)}
+			<div class="no-result">
+				<p>还没有相关数据</p>
+			</div>
+			{else}
+			<table class="table table-hover">
+				<thead>
+				<tr>
+					<th>ID</th>
+					<th>等级名称</th>
+					<th>升级条件</th>
+					<th>是否开启积分赠送</th>
+					<th>是否开启积分兑换优惠券</th>
+					<th>是否开启减免运费</th>
+					<th>是否开启会员专享商品</th>
+					<th class="text-right">操作</th>
+				</tr>
+				</thead>
+				{loop $groups $group}
+				<tr>
+					<td>{$group['id']}</td>
+					<td>
+						{$group['title']}
+						{if $group['is_default'] == 1}
+						<span class="label label-success">初始等级</span>
+						{/if}
+					</td>
+					<td>积分总额满 <span class="text-danger">{$group['condition']}</span> 积分</td>
+					<td>
+						<input type="checkbox" class="js-checkbox" data-on-text="开启" data-off-text="关闭" data-href="{php echo iurl('store/kabao/group/update', array('id' => $group['id'], 'key' => 'give_credit1'));}" data-name="give_credit1" value="1" {if $group['give_credit1'] == 1}checked{/if}>
+					</td>
+					<td>
+						<input type="checkbox" class="js-checkbox" data-on-text="开启" data-off-text="关闭" data-href="{php echo iurl('store/kabao/group/update', array('id' => $group['id'], 'key' => 'credit1_exchage_coupon'));}" data-name="credit1_exchage_coupon" value="1" {if $group['credit1_exchage_coupon'] == 1}checked{/if}>
+					</td>
+					<td>
+						<input type="checkbox" class="js-checkbox" data-on-text="开启" data-off-text="关闭" data-href="{php echo iurl('store/kabao/group/update', array('id' => $group['id'], 'key' => 'free_delivery_fee'));}" data-name="free_delivery_fee" value="1" {if $group['free_delivery_fee'] == 1}checked{/if}>
+					</td>
+					<td>
+						<input type="checkbox" class="js-checkbox" data-on-text="开启" data-off-text="关闭" data-href="{php echo iurl('store/kabao/group/update', array('id' => $group['id'], 'key' => 'vip_goods'));}" data-name="vip_goods" value="1" {if $group['vip_goods'] == 1}checked{/if}>
+					</td>
+					<td class="text-right">
+						<a href="{php echo iurl('store/kabao/group/post', array('id' => $group['id']))}" class="btn btn-default btn-sm" title="编辑" data-toggle="tooltip" data-placement="top" >编辑</a>
+						<a href="{php echo iurl('store/kabao/group/delete', array('id' => $group['id']))}" class="btn btn-default btn-sm js-remove" data-confirm="确定删除该会员等级吗?">删除</a>
+					</td>
+				</tr>
+				{/loop}
+			</table>
+			{/if}
+		</div>
+	</div>
+</form>
+
+{elseif $ta== 'post'}
+<div class="page clearfix">
+	<form class="form-horizontal form form-validate" id="form-kabao-post" style="max-width: 100%" action="" method="post" enctype="multipart/form-data">
+		<div class="form-group">
+			<label class="col-xs-12 col-sm-3 col-md-2 control-label">会员等级名称</label>
+			<div class="col-sm-6 col-xs-6">
+				<input type="text" name="title" value="{$group['title']}" class="form-control" required="true">
+				<div class="help-block">8个字以内。例如：钻石会员</div>
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-xs-12 col-sm-3 col-md-2 control-label">升级条件</label>
+			<div class="col-sm-6 col-xs-6">
+				<div class="input-group" style="margin-top: 5px;">
+					<span class="input-group-addon">积分总额满</span>
+					<input type="text" class="form-control" name="condition" value="{$group['condition']}">
+					<span class="input-group-addon">积分</span>
+				</div>
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-xs-12 col-sm-3 col-md-2 control-label">是否开启积分赠送</label>
+			<div class="col-sm-6 col-xs-6">
+				<div class="radio radio-inline">
+					<input type="radio" name="give_credit1" value="1" id="give-credit1-1" {if $group['give_credit1'] == 1}checked{/if}/>
+					<label for="give-credit1-1">是</label>
+				</div>
+				<div class="radio radio-inline">
+					<input type="radio" name="give_credit1" value="0" id="give-credit1-0" {if empty($group['give_credit1'])}checked{/if}/>
+					<label for="give-credit1-0">否</label>
+				</div>
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-xs-12 col-sm-3 col-md-2 control-label">是否开启积分兑换优惠券</label>
+			<div class="col-sm-6 col-xs-6">
+				<div class="radio radio-inline">
+					<input type="radio" name="credit1_exchage_coupon" value="1" id="credit1-exchage-coupon-1" {if $group['credit1_exchage_coupon'] == 1}checked{/if}/>
+					<label for="credit1-exchage-coupon-1">是</label>
+				</div>
+				<div class="radio radio-inline">
+					<input type="radio" name="credit1_exchage_coupon" value="0" id="credit1-exchage-coupon-0" {if empty($group['credit1_exchage_coupon'])}checked{/if}/>
+					<label for="credit1-exchage-coupon-0">否</label>
+				</div>
+				<div class="help-block">开启此项后请确保已设置优惠券</div>
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-xs-12 col-sm-3 col-md-2 control-label">是否开启减免运费</label>
+			<div class="col-sm-6 col-xs-6">
+				<div class="radio radio-inline">
+					<input type="radio" name="free_delivery_fee" value="1" id="free-delivery-fee-1" {if $group['free_delivery_fee'] == 1}checked{/if}/>
+					<label for="free-delivery-fee-1">是</label>
+				</div>
+				<div class="radio radio-inline">
+					<input type="radio" name="free_delivery_fee" value="0" id="free-delivery-fee-0" {if empty($group['free_delivery_fee'])}checked{/if}/>
+					<label for="free-delivery-fee-0">否</label>
+				</div>
+				<div class="help-block">开启此项后请确保已设置减免配送费规则</div>
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-xs-12 col-sm-3 col-md-2 control-label">是否开启会员专享商品</label>
+			<div class="col-sm-6 col-xs-6">
+				<div class="radio radio-inline">
+					<input type="radio" name="vip_goods" value="1" id="vip-goods-1" {if $group['vip_goods'] == 1}checked{/if}/>
+					<label for="vip-goods-1">是</label>
+				</div>
+				<div class="radio radio-inline">
+					<input type="radio" name="vip_goods" value="0" id="vip-goods-0" {if empty($group['vip_goods'])}checked{/if}/>
+					<label for="vip-goods-0">否</label>
+				</div>
+				<div class="help-block">开启此项后请确保已设置会员商品</div>
+			</div>
+		</div>
+		<div class="form-group">
+			<div class="col-sm-9 col-xs-9 col-md-9">
+				<input type="submit" value="提交" class="btn btn-primary">
+			</div>
+		</div>
+	</form>
+</div>
+{/if}
+
+
+{itemplate 'public/footer'}

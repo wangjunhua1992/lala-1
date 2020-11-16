@@ -1,0 +1,46 @@
+page {
+    font-size: 14px;
+    line-height: 1;
+    background-color: #ffffff;
+    box-sizing: border-box;
+}
+
+.order-zhunshibao .blank {
+    width: 100%;
+    height: 10px;
+    background-color: #f5f5f5;
+}
+
+.order-zhunshibao .zhunshibao-list {
+    padding-left: 15px;
+}
+
+.order-zhunshibao .zhunshibao-list .zhunshibao-item {
+    display: flex;
+    align-items: center;
+    padding: 10px 15px 10px 0;
+}
+
+.order-zhunshibao .zhunshibao-list .zhunshibao-item .zhunshibao-item-left {
+    width: 35%;
+    text-align: left;
+    color: #999;
+}
+
+.order-zhunshibao .zhunshibao-list .zhunshibao-item .zhunshibao-item-right {
+    font-size: 15px;
+    color: #333;
+}
+
+.order-zhunshibao .zhunshibao-list .zhunshibao-item .zhunshibao-item-right view {
+    padding-bottom: 5px;
+    color: #333;
+}
+
+.order-zhunshibao .zhunshibao-list .zhunshibao-item .zhunshibao-item-right view:last-child {
+    padding-bottom: 0;
+}
+
+.order-zhunshibao .zhunshibao-list .zhunshibao-item.align-top {
+    align-items: flex-start;
+}

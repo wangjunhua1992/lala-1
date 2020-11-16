@@ -1,0 +1,49 @@
+<view class="container">
+    <view class="content">
+        <view class="wrapper">
+            <view class="type">{{mine.title}}</view>
+            <view class="title">排队序号</view>
+            <view class="number">{{mine.number}}</view>
+            <view class="wait-number">前方等待人数: {{mine[$before_num]}}</view>
+            <view class="divide">
+                <view class="divide-line"></view>
+            </view>
+            <view class="address">{{store.address}}</view>
+            <view bind:tap="onJsEvent" class="to-store" data-address="{{store.address}}" data-event-type="jsLocation" data-lat="{{store.location_x}}" data-lng="{{store.location_y}}" data-name="{{store.title}}">
+                <text class="icon icon-location"></text>
+				前往商家
+			</view>
+            <view class="detail border-1px-radius">
+                <view class="info border-1px-b">
+                    <text class="icon icon-time"></text>
+                    <view class="detail-item">
+                        <view class="key">取号时间</view>
+                        <view class="value">{{mine.createtime_cn}}</view>
+                    </view>
+                </view>
+                <view bind:tap="onJsEvent" class="info border-1px-b" data-event-type="jsUrl" data-url="pages/store/index?sid={{store.id}}">
+                    <text class="icon icon-choiceness"></text>
+                    <view class="detail-item">
+                        <view class="key">商家环境</view>
+                        <view class="value">
+                            <text class="icon icon-right"></text>
+                        </view>
+                    </view>
+                </view>
+                <view bind:tap="onJsEvent" class="info" data-event-type="jsPhone" data-phoneNumber="{{store.telephone}}">
+                    <text class="icon icon-telephone"></text>
+                    <view class="detail-item">
+                        <view class="key">商家电话</view>
+                        <view class="value">
+							{{store.telephone}}
+							<text class="icon icon-right"></text>
+                        </view>
+                    </view>
+                </view>
+            </view>
+            <view bind:tap="onJsEvent" class="cancel" data-confirm="确定取消排号吗?" data-event-type="jsPost" data-href="wmall/store/assign/cancel?id={{mine.id}}&sid={{store.id}}" data-success-url="./assign?sid={{store.id}}">取消排号</view>
+            <view class="line"></view>
+        </view>
+    </view>
+</view>
+<include src="../../../pages/public/footer.wxml"></include>

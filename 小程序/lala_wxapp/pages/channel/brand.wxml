@@ -1,0 +1,52 @@
+<view class="container">
+    <view class="content">
+        <view class="banner">
+            <image src="{{selective.imgurl}}"></image>
+        </view>
+        <view class="store-list">
+            <view class="store-item" wx:for="{{stores}}">
+                <view class="store-info clearfix">
+                    <view class="avatar">
+                        <image src="{{item.logo}}"></image>
+                    </view>
+                    <view class="store-detail">
+                        <view class="store-name">{{item.title}}</view>
+                        <view class="min-delivery clearfix">
+                            <view>起送{{Lang.dollarSign}}{{item.send_price}}</view>
+                            <view class="line">|</view>
+                            <view>配送{{Lang.dollarSign}}{{item.delivery_price}}</view>
+                        </view>
+                        <view class="activity-box" wx:if="{{item.activity.items[0]}}">
+                            <swiper autoplay="true" class="activity-scroll" vertical="true">
+                                <swiper-item>
+                                    <view class="activity clearfix">
+                                        <view class="icon-b">
+                                            <image src="/static/img/{{item.activity.items[0].type}}_b.png"></image>
+                                        </view>
+                                        <text>{{item.activity.items[0].title}}</text>
+                                    </view>
+                                </swiper-item>
+                            </swiper>
+                        </view>
+                    </view>
+                    <navigator class="in-store" url="{{item.url}}">
+							进店
+						</navigator>
+                </view>
+                <view class="goods clearfix" wx:if="{{item.goods}}">
+                    <navigator class="goods-item" hoverClass="none" url="../store/goodsDetail?sid={{item.sid}}&id={{item.id}}" wx:for="{{item.goods}}">
+                        <view class="goods-avatar">
+                            <image src="{{item.thumb}}"></image>
+                        </view>
+                        <view class="goods-name">{{item.title}}</view>
+                        <view class="goods-price">
+									{{Lang.dollarSign}}
+									<view class="price">{{item.price}}</view>
+                        </view>
+                    </navigator>
+                </view>
+            </view>
+        </view>
+    </view>
+</view>
+<include src="../public/footer.wxml"></include>

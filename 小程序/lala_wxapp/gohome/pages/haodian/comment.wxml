@@ -1,0 +1,37 @@
+<form bindsubmit="onSubmit">
+    <view class="haodian-comment">
+        <view class="margin-15 bg-default padding-15-lr radius-3">
+            <view class="padding-15-tb border-1px-b flex-lr">
+                <view class="avatar-wrap">
+                    <image alt="" src="{{store.logo}}"></image>
+                </view>
+                <view class="basic-info ellipsis font-15 font-500">{{store.title}}</view>
+            </view>
+            <view class="text-center padding-5-b">
+                <view class="margin-10-b rate">
+                    <van-rate bind:change="onChange" size="25" value="{{haodianStar}}"></van-rate>
+                </view>
+            </view>
+            <view class="comment-text">
+                <textarea bindinput="onNote" class="text" name="comment-text" placeholder="来点评一下吧，让更多小伙伴了解！" value="{{note}}"></textarea>
+            </view>
+            <view class="pic-box">
+                <view class="pic padding-10-b" wx:for="{{files}}" wx:key="{{index}}">
+                    <image src="{{item.url}}"></image>
+                    <view bind:tap="onJsEvent" data-event-type="jsDelImg" data-index="{{index}}" data-key="files">-</view>
+                </view>
+                <view bind:tap="onJsEvent" class="pic-icon margin-10-b" data-count="4" data-event-type="jsUploadImg" data-key="files">
+                    <view class="icon icon-camerafill"></view>
+                </view>
+                <view class="discription padding-10-l padding-10-b" wx:if="{{!files.length}}">
+                    <view>上传图片</view>
+                    <view class="margin-10-t">内容丰富的评价有机会成为优质评价</view>
+                </view>
+            </view>
+        </view>
+        <view class="margin-15">
+            <button class="order-submit {{islegal?'':'btn-disabled'}}" formType="submit">提交</button>
+        </view>
+    </view>
+</form>
+<include src="../../../pages/public/footer.wxml"></include>

@@ -1,0 +1,63 @@
+page {
+    background: #f4f4f4;
+}
+
+.page-down .wui-cell {
+    border-bottom: 1rpx solid #E5E5E5;
+    background: #fff;
+}
+
+.page-down .wui-cell:first-child {
+    margin-top: 10px;
+    border-top: 1rpx solid #E5E5E5;
+}
+
+.page-down .page-cell {
+    padding: 0px 0px;
+}
+
+.page-down .wui-cell::after {
+    border: 0px;
+}
+
+.page-down .wui-cell .user-photo {
+    width: 55.19px;
+    height: 55.19px;
+    margin: 5px;
+}
+
+.page-down .wui-cell .cell-time {
+    margin: 5px 5px;
+    color: #666;
+}
+
+.page-down .wui-cell .cell-user {
+    margin: 0px 5px;
+    font-size: 16px;
+}
+
+.page-down .wui-cell .cell-down-ft {
+    padding-left: 40px;
+    padding-right: 10px;
+}
+
+.cell-num-order {
+    font-size: 8px;
+}
+
+.page-down .wui-tab {
+    width: 100%;
+    position: fixed;
+    top: 0px;
+    z-index: 100;
+}
+
+.page-down .scroll {
+    padding-bottom: 20px;
+    height: 100%;
+    margin-top: 45px;
+}
+
+.page-down .scroll scroll-view {
+    height: 100%;
+}

@@ -1,0 +1,19 @@
+<view class="page-record">
+    <view class="grant-list">
+        <view class="grant-item wui-cell wui-cell-b" wx:for="{{records}}">
+            <view class="wui-cell-bd">
+                <view class="titles">{{item.mark}}</view>
+                <view class="text">
+                    <view class="label {{item.css}}">{{item.text}}</view>
+						{{item.addtime}}
+					</view>
+            </view>
+            <view class="wui-cell-tf grant">+{{item.grant}}</view>
+        </view>
+    </view>
+    <view class="no-data no-bottom" wx:if="{{showNodata}}">
+        <image class="no-coupon" src="http://cos.lalawaimai.com/we7_wmall/wxapp/coupon_no_con.png"></image>
+        <text class="no-record">没有更多明细</text>
+    </view>
+</view>
+<include src="../../../pages/public/footer.wxml"></include>

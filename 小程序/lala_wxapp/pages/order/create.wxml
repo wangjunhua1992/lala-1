@@ -1,0 +1,592 @@
+<view class="container">
+    <form bindsubmit="onOrderSubmit" reportSubmit="true">
+        <view class="content" style="padding-bottom: {{cart.bargain_use_limit==2?82:50}}px">
+            <scroll-view class="main" scrollY="{{true}}">
+                <view class="delivery-info">
+                    <view class="delivery-mode" wx:if="{{store.delivery_type==3}}">
+                        <view bind:tap="onChangeOrderType" class="delivery {{order.order_type==1?'active':''}}" data-type="1" wx:if="{{store.delivery_type==1||store.delivery_type==3}}">{{store.delivery_mode==1?'商家自送':'骑手配送'}}</view>
+                        <view bind:tap="onChangeOrderType" class="self {{order.order_type==2?'active':''}}" data-type="2" wx:if="{{store.delivery_type==2||store.delivery_type==3}}">到店自取 <view class="order-tags" wx:if="{{store.selfPickup_status>0}}">有优惠</view>
+                        </view>
+                    </view>
+                    <view class="plateform-box" wx:if="{{store.delivery_type==1||store.delivery_type==3}}">
+                        <view class="delivery-type" wx:if="{{store.delivery_type==1}}">{{store.delivery_mode==1?'商家自送':'骑手配送'}}</view>
+                        <view class="plateform-inner {{order.order_type==1?'':'hide'}}">
+                            <view bind:tap="onJsEvent" class="wui-cell wui-cell-access" data-event-type="jsUrl" data-open-type="redirectTo" data-url="{{addressUrl}}" wx:if="{{!address.address}}">
+                                <view class="wui-cell-bd address">
+                                    <view class="icon icon-plus"></view>
+								选择收货地址
+							</view>
+                                <view class="wui-cell-ft"></view>
+                            </view>
+                            <view bind:tap="onJsEvent" class="wui-cell wui-cell-access" data-event-type="jsUrl" data-open-type="redirectTo" data-url="{{addressUrl}}" wx:if="{{address.address}}">
+                                <view class="wui-cell-bd checked-address">
+                                    <view class="icon icon-locationfill"></view>
+                                    <view class="address-list">
+                                        <view class="detail">
+                                            <text class="tag-address tag-address-yellow" wx:if="{{address.tag=='1'}}">家</text>
+                                            <text class="tag-address tag-address-blue" wx:elif="{{address.tag=='2'}}">公司</text>
+                                            <text class="tag-address tag-address-green" wx:elif="{{address.tag=='3'}}">学校</text>
+                                            <text>{{address.address}}-{{address.number}}</text>
+                                        </view>
+                                        <view class="more">
+                                            <view class="name">{{address.realname}}{{address.sex}}</view>
+                                            <view class="tel">{{address.mobile}}</view>
+                                        </view>
+                                    </view>
+                                </view>
+                                <view class="wui-cell-ft"></view>
+                            </view>
+                            <view class="wui-cell wui-cell-access">
+                                <view bind:tap="onToggleTimes" class="wui-cell-bd send">
+                                    <view class="icon icon-timefill"></view>
+								{{order.deliveryTimes.predict_day_cn}} {{order.deliveryTimes.predict_time_cn}}
+							</view>
+                                <view class="wui-cell-ft"></view>
+                            </view>
+                            <view class="wui-cell wui-cell-access" wx:if="{{store.rest_reserve_cn}}">
+                                <view class="wui-cell-bd delivery-tip">{{store.rest_reserve_cn}}</view>
+                            </view>
+                        </view>
+                    </view>
+                    <view class="instore-box" wx:if="{{store.delivery_type==2||store.delivery_type==3}}">
+                        <view class="instore-box-title" wx:if="{{store.delivery_type==2}}">
+                            <span class="title-text">到店自取</span>
+                            <view class="order-tags" wx:if="{{store.selfPickup_status>0}}">有优惠</view>
+                        </view>
+                        <view class="instore-inner {{order.order_type==2?'':'hide'}}">
+                            <view class="wui-cell wui-cell-access">
+                                <view class="wui-cell-bd address">
+                                    <view class="address-icon">
+                                        <view class="icon icon-locationfill"></view>
+                                    </view>
+                                    <view bind:tap="onJsEvent" class="address-inner" data-address="{{store.address}}" data-event-type="jsLocation" data-lat="{{store.location_x}}" data-lng="{{store.location_y}}" data-name="{{store.title}}">
+                                        <view class="loc">{{store.address}}</view>
+                                        <view class="store-name">{{store.title}}</view>
+                                    </view>
+                                    <view class="right-icon">
+                                        <view class="wui-cell-ft"></view>
+                                    </view>
+                                </view>
+                            </view>
+                            <view bind:tap="onJsEvent" class="wui-cell wui-cell-access" data-event-type="jsPhone" data-phoneNumber="{{store.telephone}}">
+                                <view class="wui-cell-bd tel">
+                                    <view class="icon icon-mobilefill"></view>
+								{{store.telephone}}
+							</view>
+                                <view class="wui-cell-ft"></view>
+                            </view>
+                            <view bind:tap="onToggleTimes" class="wui-cell wui-cell-access">
+                                <view class="wui-cell-bd time">
+                                    <view class="time-icon">
+                                        <view class="icon icon-timefill"></view>
+                                    </view>
+                                    <view class="time-inner">
+                                        <view class="time-text">
+										{{order.deliveryTimes.predict_day_cn}} {{order.deliveryTimes.predict_time_cn}}
+									</view>
+                                    </view>
+                                </view>
+                                <view class="wui-cell-ft"></view>
+                            </view>
+                            <view class="wui-cell weui-cell_input mobile-taker">
+                                <view class="weui-cell__bd">
+                                    <view class="icon icon-mobilefill"></view>
+                                    <input class="weui-input" name="mobile" placeholder="请输入提货人手机号" value="{{mobile}}"></input>
+                                </view>
+                            </view>
+                        </view>
+                    </view>
+                </view>
+                <view class="order-food-region">
+                    <view class="order-food-title">
+                        <view class="food-shop">{{store.title}}</view>
+                        <view class="order-tips-thirpart" wx:if="{{store.delivery_mode==2&&store.delivery_type!=2}}">{{store.delivery_title}}</view>
+                    </view>
+                    <view class="food-list" wx:if="{{!is_pindan||!pindan_id}}">
+                        <block wx:for="{{cart.data}}">
+                            <view class="food-item" wx:if="{{option.goods_id!='88888'&&option.is_show==1}}" wx:for="{{item}}" wx:for-item="option">
+                                <view class="food-item-img">
+                                    <image src="{{option.thumb}}"></image>
+                                </view>
+                                <view class="food-item-price">
+                                    <view class="now-price">{{Lang.dollarSign}}{{option.total_discount_price_show}}</view>
+                                    <view class="old-price" wx:if="{{option.total_price_show>option.total_discount_price_show}}">{{Lang.dollarSign}}{{option.total_price_show}}</view>
+                                </view>
+                                <view class="food-item-info">
+                                    <view class="food-item-name">
+                                        <image src="/static/img/bargain_b.png" wx:if="{{option.bargain_id>0&&option.bargain_type=='bargain'}}"></image>
+										{{option.title}}
+									</view>
+                                    <view class="food-item-num" wx:if="{{option.bargain_type=='huangou'}}">x{{option.num-option.discount_num}}</view>
+                                    <view class="food-item-num" wx:else>x{{option.num}}</view>
+                                </view>
+                            </view>
+                        </block>
+                    </view>
+                    <view class="food-list" wx:elif="{{is_pindan==1&&pindan_id>0}}">
+                        <block wx:for="{{cart.data}}" wx:for-item="pindanData" wx:key="{{index}}">
+                            <view class="c-gray font-14 padding-10-l margin-10-b">口袋{{index+1}}</view>
+                            <block wx:for="{{pindanData}}" wx:for-index="pindanIndex" wx:for-item="pindanItem" wx:key="{{pindanIndex}}">
+                                <view class="food-item pindan-food-item" wx:if="{{option.goods_id!='88888'}}" wx:for="{{pindanItem}}" wx:for-index="optionIndex" wx:for-item="option" wx:key="{{optionIndex}}">
+                                    <view class="food-item-img">
+                                        <image src="{{option.thumb}}"></image>
+                                    </view>
+                                    <view class="food-item-price">
+                                        <view class="now-price">{{Lang.dollarSign}}{{option.total_discount_price}}</view>
+                                        <view class="old-price" wx:if="{{option.total_price>option.total_discount_price}}">{{Lang.dollarSign}}{{option.total_price}}</view>
+                                    </view>
+                                    <view class="food-item-info">
+                                        <view class="food-item-name">
+                                            <image src="/static/img/bargain_b.png" wx:if="{{option.bargain_id>0}}"></image>
+											{{option.title}}
+										</view>
+                                        <view class="food-item-num">x{{option.num}}</view>
+                                    </view>
+                                </view>
+                            </block>
+                        </block>
+                    </view>
+                    <view class="order-region-entries">
+                        <view class="order-region-entry">
+                            <view class="order-entry-price">{{Lang.dollarSign}}{{order.box_price}}</view>
+                            <view class="order-entry-name">{{store.cn.box_price}}</view>
+                        </view>
+                        <view class="order-region-entry" wx:if="{{order.pack_fee>0}}">
+                            <view class="order-entry-price">{{Lang.dollarSign}}{{order.pack_fee}}</view>
+                            <view class="order-entry-name">{{store.cn.pack_fee}}</view>
+                        </view>
+                        <view class="order-region-entry">
+                            <view class="order-entry-price">{{Lang.dollarSign}}{{order.delivery_fee}}</view>
+                            <view class="order-entry-name">配送费</view>
+                        </view>
+                        <view class="order-region-entry" wx:for="{{order.extra_fee_detail}}">
+                            <view class="order-entry-price">{{Lang.dollarSign}}{{item.fee}}</view>
+                            <view class="order-entry-name">{{item.name}}</view>
+                        </view>
+                    </view>
+                    <view class="divide">
+                        <view class="divide-line"></view>
+                    </view>
+                    <view class="discount-box">
+                        <view class="discount" wx:if="{{activity.type!='couponCollect'&&activity.type!='redPacket'}}" wx:for="{{order.activityed.list}}" wx:for-item="activity">
+                            <view class="discount-name">
+                                <view class="icon-b">
+                                    <image src="/static/img/{{activity.type}}_b.png"></image>
+                                </view>
+								{{activity.name}}
+							</view>
+                            <view class="discount-price">{{activity.text}}</view>
+                        </view>
+                        <view bind:tap="onToggleCoupon" class="wui-cell wui-cell-access coupon">
+                            <view class="wui-cell-bd">商家代金券</view>
+                            <view class="wui-cell-ft {{coupons.length?'':'disabled'}}" wx:if="{{!order.coupon.id}}">{{coupons.length>0?coupons.length+'张可用代金券':'暂无可用代金券'}}</view>
+                            <view class="wui-cell-ft" wx:if="{{order.coupon.id}}">-{{Lang.dollarSign}}{{order.coupon.discount}}</view>
+                        </view>
+                        <view bind:tap="onToggleRedpacket" class="wui-cell wui-cell-access redpacket">
+                            <view class="wui-cell-bd">平台红包</view>
+                            <block wx:if="{{!order.redpacket.id}}">
+                                <view class="wui-cell-ft {{redPackets.length?'':'disabled'}}" wx:if="{{redPackets.length>0}}">{{redPackets.length>0?redPackets.length+'个可用红包':'暂无可用红包'}}</view>
+                                <block wx:else>
+                                    <view class="wui-cell-ft" wx:if="{{svip_redpacket&&svip_redpacket.id}}">您有可领取的超级会员红包</view>
+                                    <view class="wui-cell-ft disabled" wx:else>暂无可用红包</view>
+                                </block>
+                            </block>
+                            <view class="wui-cell-ft" wx:if="{{order.redpacket.id}}">-{{Lang.dollarSign}}{{order.redpacket.discount}}</view>
+                        </view>
+                        <view class="redpacket-buy" wx:if="{{order.meal_redpackets}}">
+                            <view class="flex-lr">
+                                <view class="buy-tip">{{order.meal_redpackets.title}} <text bind:tap="onJsEvent" class="icon icon-question1" data-event-type="jsUrl" data-url="../public/richtext?key=mealRedpacket_rules" wx:if="{{0}}"></text>
+                                </view>
+                                <view bind:tap="onBuyMealredpacket" class="check-box flex {{buy_mealredpacket==1?'active':''}}">
+                                    <text class="icon icon-check"></text>
+                                </view>
+                            </view>
+                            <view class="flex-lr">
+                                <view class="buy-total">{{order.meal_redpackets.placeholder}}</view>
+                                <view class="redpacket-price">
+                                    <text class="old" wx:if="{{0}}">{{Lang.dollarSign}}{{order.meal_redpackets.old_price}}</text>
+                                    <text class="now">{{Lang.dollarSign}}{{order.meal_redpackets.price}}</text>
+                                </view>
+                            </view>
+                        </view>
+                    </view>
+                    <view class="divide">
+                        <view class="divide-line"></view>
+                    </view>
+                    <view class="order-region-entries">
+                        <view class="order-pay-info clearfix">
+                            <view class="pay-price">
+							实付
+							<view>{{Lang.dollarSign}}{{order.final_fee_show}}</view>
+                            </view>
+                            <view class="discount-fee">优惠{{Lang.dollarSign}}{{order.discount_fee}}</view>
+                            <view class="total-original">
+							共计{{Lang.dollarSign}}{{order.total_fee_show}}
+						</view>
+                        </view>
+                    </view>
+                </view>
+                <view class="buy-svip bg-default padding-15 margin-10-t flex-lr font-12" wx:if="{{order.show_buy_svip==1}}">
+                    <view class="left flex-lr">
+                        <view class="svip-desc">
+                            <view class="main-desc ">
+                                <text class="font-bold font-16">成为超级会员, 本单享优惠 </text>
+                                <text class="icon icon-question1 font-14"></text>
+                            </view>
+                            <view class="second-desc" wx:if="{{svip_redpacket&&svip_redpacket.id}}">1.可用一个{{svip_redpacket.discount}}{{Lang.dollarSignCn}}会员专享红包</view>
+                            <view class="second-desc" wx:else>成为超级会员, 尊享众多会员特权</view>
+                        </view>
+                        <view class="svip-price" wx:if="{{order.svip_meal}}">
+                            <view class="first-buy">{{order.svip_meal.description}}</view>
+                            <view class="flex-lr">
+                                <view class="c-gray line-through margin-15-r">{{Lang.dollarSign}}{{order.svip_meal.oldprice}}</view>
+                                <view class="font-16 font-bold">{{Lang.dollarSign}}{{order.svip_meal.price}}</view>
+                            </view>
+                        </view>
+                    </view>
+                    <view bind:tap="onToggleBuysvip" class="right">
+                        <view class="icon icon-check {{cart.is_buysvip==1?'active':''}} "></view>
+                    </view>
+                </view>
+                <view class="huangou-wrap" wx:if="{{huangou&&huangou.goods.length>0}}">
+                    <view class="huangou-title">
+                        <view class="huangou-title-left">{{huangou.activity.title}}</view>
+                        <block wx:if="{{huangou.can_buy_huangou_goods==1}}">
+                            <view class="font-12 c-gray" wx:if="{{huangou.price_limit>0}}">已购满{{huangou.price_limit}}{{Lang.dollarSignCn}}，获得换购特惠商品机会</view>
+                            <view class="font-12 c-gray">{{huangou.activity.content}}</view>
+                        </block>
+                        <view class="font-12 c-gray" wx:else>购满{{huangou.price_limit}}{{Lang.dollarSignCn}}，可获得换购特惠商品机会</view>
+                    </view>
+                    <scroll-view class="huangou-list" scrollX="true">
+                        <view class="huangou-item" wx:for="{{huangou.goods}}" wx:key="{{item.id}}">
+                            <view class="huangou-img">
+                                <image alt="" src="{{item.thumb}}"></image>
+                                <view class="discount">{{item.discount}}折</view>
+                            </view>
+                            <view class="goods-info">
+                                <view>{{item.title}}</view>
+                                <view class="flex">
+                                    <view class="price-wrap">
+                                        <text class="c-danger">{{Lang.dollarSign}}{{item.price}}</text>
+                                        <text class="old-price">{{Lang.dollarSign}}{{item.old_price?item.old_price:item.price}}</text>
+                                    </view>
+                                    <view class="goods-num" wx:if="{{huangou.can_buy_huangou_goods==1}}">
+                                        <text bind:tap="onHuangouGoods" class="icon icon-minus" data-goods_id="{{item.id}}" data-sign="-"></text>
+                                        <view class="num" wx:if="{{cart.data1&&cart.data1[item.id]}}">{{cart.data1[item.id][0]['num']?cart.data1[item.id][0]['discount_num']:0}}</view>
+                                        <view class="num" wx:else>0</view>
+                                        <text bind:tap="onHuangouGoods" class="icon icon-plus" data-goods_id="{{item.id}}" data-sign="+"></text>
+                                    </view>
+                                </view>
+                            </view>
+                        </view>
+                    </scroll-view>
+                </view>
+                <block wx:if="{{order.order_type==1}}">
+                    <view class="permit-time" wx:if="{{store.data.zhunshibao.status==1}}">
+                        <view class="flex-lr">
+                            <view bind:tap="onJsEvent" class="flex" data-event-type="jsUrl" data-url="/pages/public/richtext?key=zhunshibao_agreement">
+                                <text class="icon icon-security"></text>
+                                <view class="permit-time-title">准时宝</view>
+                                <text class="icon icon-question"></text>
+                            </view>
+                            <view class="flex">
+                                <view class="padding-10-r">{{Lang.dollarSign}}{{order.zhunshibao_price}}</view>
+                                <van-switch activeColor="#ff2d4b" bind:change="onChangeSwitch" checked="{{buy_zhunshibao}}" inactiveColor="#eee" size="22px"></van-switch>
+                            </view>
+                        </view>
+                        <view class="permit-time-tips">{{store.data.zhunshibao.rule_cn}}</view>
+                        <view class="agreement" wx:if="{{0}}">
+                            <text class="icon icon-check"></text>
+                            <navigator class="text">同意《准时宝服务协议》</navigator>
+                        </view>
+                    </view>
+                </block>
+                <view class="permit-time" wx:if="{{order.yinsihao.status==1}}">
+                    <view class="flex-lr">
+                        <view class="flex">
+                            <text class="icon icon-lock"></text>
+                            <view class="permit-time-title">号码保护</view>
+                            <text bind:tap="onJsEvent" class="icon icon-question" data-event-type="jsUrl" data-url="/pages/public/richtext?key=yinsihao_agreement"></text>
+                        </view>
+                        <view class="flex">
+                            <van-switch activeColor="#ff2d4b" bind:change="onChangeYinsihaoSwitch" checked="{{yinsihao_status}}" inactiveColor="#eee" size="22px"></van-switch>
+                        </view>
+                    </view>
+                    <view class="permit-time-tips">对商家、骑手隐藏您的真实手机号, 保护您的隐私</view>
+                </view>
+                <view class="order-region">
+                    <view class="order-region-entries">
+                        <view class="order-region-entry">
+                            <view>支付方式</view>
+                            <view class="order-pay-type">在线支付</view>
+                        </view>
+                    </view>
+                    <view class="order-field clearfix" wx:if="{{store.data&&store.data.order_form&&store.data.order_form.person_num==1}}">
+                        <view class="wui-cell wui-cell-access border-1px-t">
+                            <view class="wui-cell-bd">餐具数量</view>
+                            <view class="wui-cell-ft">
+                                <picker bindchange="onChangePersonNum" range="{{person}}" value="{{index}}">
+                                    <view>{{person_num}}人</view>
+                                </picker>
+                            </view>
+                        </view>
+                    </view>
+                    <view class="order-field clearfix">
+                        <view bind:tap="onJsEvent" class="wui-cell wui-cell-access border-1px-t" data-event-type="jsUrl" data-open-type="redirectTo" data-url="pages/order/note?sid={{cart.sid}}">
+                            <view class="wui-cell-bd">备注</view>
+                            <view class="wui-cell-ft" wx:if="{{!order.note}}">
+							{{store.data&&store.data.order_note_placeholder?store.data.order_note_placeholder:'口味、偏好等要求'}}
+						</view>
+                            <view class="wui-cell-ft" wx:else>{{order.note}}</view>
+                        </view>
+                    </view>
+                    <view class="order-field clearfix" wx:if="{{store.invoice_status==1}}">
+                        <view bind:tap="onJsEvent" class="wui-cell wui-cell-access border-1px-t" data-event-type="jsUrl" data-open-type="redirectTo" data-url="pages/order/note?sid={{cart.sid}}&type=invoice">
+                            <view class="wui-cell-bd">发票</view>
+                            <view class="wui-cell-ft" wx:if="{{invoiceTitle}}">{{invoiceTitle}}</view>
+                            <view class="wui-cell-ft" wx:else>不需要发票</view>
+                        </view>
+                    </view>
+                </view>
+            </scroll-view>
+        </view>
+        <view class="order-btn-field border-1px-t">
+            <view class="use-limit-tip" wx:if="{{cart.bargain_use_limit==2}}">提示：特价商品不与商户优惠活动（满减，代金券）同享</view>
+            <button class="order-submit {{islegal?'':'disabled'}}" formType="submit">提交订单</button>
+            <view class="order-total-field">
+			待支付<view class="order-total">{{Lang.dollarSign}}{{order.final_fee}}</view>
+            </view>
+            <view class="order-benefit">
+			已优惠<view>{{Lang.dollarSign}}{{order.discount_fee}}</view>
+            </view>
+        </view>
+    </form>
+    <view class="wui-dialog {{showRedpacket?'wui-dialog-show':''}}">
+        <view bind:tap="onToggleRedpacket" class="wui-dialog-mask"></view>
+        <view class="wui-dialog-container">
+            <view class="pop">
+                <view class="pop-title">平台红包</view>
+                <view class="pop-container">
+                    <scroll-view class="redPacket-container" scrollY="true">
+                        <view class="redPacket">
+                            <block wx:if="{{svip_redpacket&&svip_redpacket.id}}">
+                                <view class="wui-loadmore wui-loadmore-nodata">
+                                    <view class="wui-loadmore-tips">超级会员专享红包</view>
+                                </view>
+                                <view class="svip-redpacket" wx:if="{{cart.is_buysvip==1}}">
+                                    <view class="svip-redpacket-item">
+                                        <view class="svip-redpacket-top flex">
+                                            <view class="svip-redpacket-left flex">
+                                                <view class="redpacket-img">
+                                                    <image alt="" src="{{svip_redpacket.logo}}" wx:if="{{svip_redpacket.sid>0}}"></image>
+                                                    <image alt="" src="http://cos.lalawaimai.com/we7_wmall/wxapp/svip_redpacket.png" wx:else></image>
+                                                </view>
+                                                <view class="redpacket-info">
+                                                    <view class="redpacket-title">{{svip_redpacket.title}}</view>
+                                                    <view class="redpacket-time">
+                                                        <view class="redpacket-tips">超级会员</view>
+                                                        <text class="font-12 c-gray">限会员有效期内使用</text>
+                                                    </view>
+                                                </view>
+                                            </view>
+                                            <view class="svip-redpacket-right">
+                                                <view class="c-danger">
+                                                    <view class="redpacket-money">
+                                                        <text class="redpacket-unit">{{Lang.dollarSign}}</text>
+														{{svip_redpacket.discount}}
+													</view>
+                                                </view>
+                                                <view class="font-12 c-gray" wx:if="{{svip_redpacket.condition==0}}">无门槛</view>
+                                                <view class="font-12 c-gray" wx:elif="{{svip_redpacket.condition>0}}">满{{svip_redpacket.condition}}{{Lang.dollarSignCn}}</view>
+                                            </view>
+                                        </view>
+                                        <view class="svip-redpacket-line">
+                                            <view class="line"></view>
+                                        </view>
+                                        <view class="svip-redpacket-bottom flex-lr">
+                                            <view class="font-12 c-gray">{{svip_redpacket.desc}}</view>
+                                            <view bind:tap="onSelectRedpacket" class="svip-redpacket-convert" data-id="{{'svip_'+svip_redpacket.store_redpacket.id}}" wx:if="{{svip_redpacket.store_redpacket&&svip_redpacket.store_redpacket.id}}">立即使用</view>
+                                            <view bind:tap="onSelectRedpacket" class="svip-redpacket-convert" data-id="{{svip_redpacket.id}}" wx:else>立即使用</view>
+                                        </view>
+                                    </view>
+                                </view>
+                                <view class="svip-redpacket" wx:else>
+                                    <view class="svip-redpacket-item">
+                                        <view class="svip-redpacket-top flex">
+                                            <view class="svip-redpacket-left flex">
+                                                <view class="redpacket-img">
+                                                    <image alt="" src="{{svip_redpacket.logo}}" wx:if="{{svip_redpacket.sid>0}}"></image>
+                                                    <image alt="" src="http://cos.lalawaimai.com/we7_wmall/wxapp/svip_redpacket.png" wx:else></image>
+                                                </view>
+                                                <view class="redpacket-info">
+                                                    <view class="redpacket-title">{{svip_redpacket.title}}</view>
+                                                    <view class="redpacket-time">
+                                                        <view class="redpacket-tips">超级会员</view>
+                                                        <text class="font-12 c-gray">限{{svip_redpacket.endtime_cn}}前领取</text>
+                                                    </view>
+                                                </view>
+                                            </view>
+                                            <view class="svip-redpacket-right">
+                                                <view class="c-danger">
+                                                    <view class="redpacket-money">
+                                                        <text class="redpacket-unit">{{Lang.dollarSign}}</text>
+														{{svip_redpacket.discount}}
+													</view>
+                                                </view>
+                                                <view class="font-12 c-gray" wx:if="{{svip_redpacket.condition==0}}">无门槛</view>
+                                                <view class="font-12 c-gray" wx:elif="{{svip_redpacket.condition>0}}">满{{svip_redpacket.condition}}{{Lang.dollarSignCn}}</view>
+                                            </view>
+                                        </view>
+                                        <view class="svip-redpacket-line">
+                                            <view class="line"></view>
+                                        </view>
+                                        <view class="svip-redpacket-bottom flex-lr">
+                                            <view class="font-12 c-gray">{{svip_redpacket.desc}}</view>
+                                            <view bind:tap="onConfirmSvipExchange" class="svip-redpacket-convert" wx:if="{{svip_redpacket.take_status=='take'}}">立即领取</view>
+                                            <view bind:tap="onToggleSvipRedpacket" class="svip-redpacket-convert" wx:if="{{svip_redpacket.take_status=='exchange'}}">立即兑换</view>
+                                        </view>
+                                    </view>
+                                </view>
+                            </block>
+                            <view class="wui-loadmore wui-loadmore-nodata">
+                                <view class="wui-loadmore-tips">可用红包({{redPackets.length}}个)</view>
+                            </view>
+                            <view class="redPacket-list">
+                                <view bind:tap="onSelectRedpacket" class="item" data-id="{{item.id}}" wx:for="{{redPackets}}">
+                                    <view class="circle circle-left"></view>
+                                    <view class="circle circle-right"></view>
+                                    <view class="redPacket-info">
+                                        <view class="col-50">{{item.title}}</view>
+                                        <view class="col-50 text-right">
+												{{Lang.dollarSign}}<view class="price">{{item.discount}}</view>
+                                        </view>
+                                    </view>
+                                    <view class="redPacket-uselimit">
+                                        <view class="col-60">{{item.day_cn}}</view>
+                                        <view class="col-40 text-right">满{{item.condition}}{{Lang.dollarSignCn}}可用</view>
+                                    </view>
+                                    <view class="selected-status" wx:if="{{item.id==order.redpacket.id}}">
+                                        <image src="/static/img/selected-success.png"></image>
+                                    </view>
+                                </view>
+                            </view>
+                        </view>
+                    </scroll-view>
+                </view>
+                <view bind:tap="onSelectRedpacket" class="bottom-fixed border-1px-t" data-id="0">
+					不使用红包
+				</view>
+            </view>
+        </view>
+    </view>
+    <van-popup bind:close="onToggleSvipRedpacket" show="{{showSvipRedpacket}}" wx:if="{{svip_redpacket.take_status=='exchange'&&svip_redpacket.store_redpacket}}">
+        <view class="popup-svipRedpacket">
+            <view class="svipRedpacket-wrap">
+                <view class="svipRedpacket-title">兑换{{Lang.dollarSign}}{{svip_redpacket.store_redpacket.discount}}店铺专享红包</view>
+                <view class="margin-10-tb">
+                    <text class="font-14 c-gray">本次兑换将消耗<text class="c-danger">1个</text>「{{Lang.dollarSign}}{{svip_redpacket.discount}}会员红包」是否兑换？</text>
+                </view>
+                <view class="exchange-svipRedpacket">
+                    <view class="exchange-start">
+                        <text class="price">
+                            <text>{{Lang.dollarSign}}</text>{{svip_redpacket.discount}}</text>
+                        <text class="font-12">会员专享</text>
+                    </view>
+                    <view class="exchange-course">
+                        <image alt="" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2MiAzMyI+PGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJhIiB4MT0iNTAlIiB4Mj0iNTAlIiB5MT0iMTAwJSIgeTI9IjAlIj48c3RvcCBvZmZzZXQ9IjAlIiBzdG9wLWNvbG9yPSIjRkRGM0M3IiBzdG9wLW9wYWNpdHk9IjAiLz48c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNGNERFNzIiLz48L2xpbmVhckdyYWRpZW50PjwvZGVmcz48cGF0aCBmaWxsPSJ1cmwoI2EpIiBkPSJNMjQuNjcxIDIuNzZjMS4zMDcgNi41MTQgMi4wMzYgMTQuMzg3IDIuMTg3IDIzLjYxOS4xNSA5LjIzMi4yMDEgMTYuNDM4LjE1MyAyMS42Mmg5LjM2Yy44ODEtMy4xNTQgMS4zMjItMTAuNDIgMS4zMjItMjEuODAxIDAtMTEuMzgtLjEyLTE5LjE5My0uMzYtMjMuNDM4aDkuMTdhLjUuNSAwIDAgMCAuMzU2LS44NTFMMzEuMjg5LTEzLjg1YS41LjUgMCAwIDAtLjcxMy4wMDJMMTUuMTM2IDEuOTFhLjUuNSAwIDAgMCAuMzU3Ljg1aDkuMTc4eiIgdHJhbnNmb3JtPSJyb3RhdGUoOTAgMzEuMzI4IDE2LjY3KSIvPjwvc3ZnPg=="></image>
+                    </view>
+                    <view class="exchange-end">
+                        <text class="exchange-end-price">
+                            <text>{{Lang.dollarSign}}</text>{{svip_redpacket.store_redpacket.discount}}</text>
+                        <text class="font-12">{{svip_redpacket.store_redpacket.title}}</text>
+                    </view>
+                </view>
+                <view class="svipRedpacket-button">
+                    <van-button block bind:tap="onToggleSvipRedpacket" size="normal">放弃优惠</van-button>
+                    <van-button block bind:tap="onConfirmSvipExchange" size="normal">确认兑换</van-button>
+                </view>
+            </view>
+        </view>
+    </van-popup>
+    <view class="wui-dialog {{showCoupon?'wui-dialog-show':''}}">
+        <view bind:tap="onToggleCoupon" class="wui-dialog-mask"></view>
+        <view class="wui-dialog-container">
+            <view class="pop">
+                <view class="pop-title">商家代金券</view>
+                <view class="pop-container">
+                    <scroll-view class="coupons-container" scrollY="true">
+                        <view class="coupons">
+                            <view class="wui-loadmore wui-loadmore-nodata">
+                                <view class="wui-loadmore-tips">可用代金券({{coupons.length}}张)</view>
+                            </view>
+                            <view class="coupon-list">
+                                <view class="content-padded">
+                                    <view bind:tap="onSelectCoupon" class="item is-use" data-id="{{item.id}}" wx:for="{{coupons}}">
+                                        <view class="clearfix">
+                                            <view class="left">
+                                                <view class="store-logo">
+                                                    <image src="{{item.logo}}"></image>
+                                                </view>
+                                                <view class="coupon-detail">
+                                                    <view class="coupon-title">{{item.title}}</view>
+                                                    <view class="use-time">有效期至:{{item.endtime_cn}}</view>
+                                                </view>
+                                            </view>
+                                            <view class="right">
+                                                <view class="price">
+														{{Lang.dollarSign}}<view>{{item.discount}}</view>
+                                                </view>
+                                                <view class="condition">满{{item.condition}}可用</view>
+                                            </view>
+                                            <view class="circle circle-left"></view>
+                                            <view class="circle circle-right"></view>
+                                            <view class="selected-status" wx:if="{{item.id==order.coupon.id}}">
+                                                <image src="/static/img/selected-success.png"></image>
+                                            </view>
+                                        </view>
+                                    </view>
+                                </view>
+                            </view>
+                        </view>
+                    </scroll-view>
+                </view>
+                <view bind:tap="onSelectCoupon" class="bottom-fixed border-1px-t" data-id="0">
+					不使用代金券
+				</view>
+            </view>
+        </view>
+    </view>
+    <view class="wui-dialog {{showTimes?'wui-dialog-show':''}}">
+        <view bind:tap="onToggleTimes" catchtouchmove="true" class="wui-dialog-mask"></view>
+        <view catchtouchmove="true" class="wui-dialog-container">
+            <view class="pop time">
+                <view class="pop-container">
+                    <view class="left">
+                        <scroll-view scrollY="{{true}}">
+                            <view bind:tap="onSelectDeliveryday" class="item {{order.deliveryTimes.predict_day==item?'active':''}}" data-id="{{item}}" wx:for="{{order.deliveryTimes.days}}">
+									{{item}}
+								</view>
+                        </scroll-view>
+                    </view>
+                    <view class="right">
+                        <scroll-view scrollY="{{true}}">
+                            <view bind:tap="onSelectDeliverytimes" class="wui-cell" data-id="{{index}}" data-time="{{item.time_cn}}" wx:for="{{order.deliveryTimes.times[order.deliveryTimes.predict_day].times}}">
+                                <view class="text">
+                                    <view class="wui-cell-bd">{{item.time_cn}}{{item.time_cn=='立即送出'?'('+item.start+'~'+item.end+')':''}}</view>
+                                    <view class="wui-cell-ft" wx:if="{{order.order_type==1}}">{{item.total_delivery_price_cn}}</view>
+                                </view>
+                                <view class="weui-cell__ft weui-cell__ft_in-radio" wx:if="{{order.deliveryTimes.predict_index==index}}">
+                                    <icon class="weui-icon-radio" size="16" type="success_no_circle"></icon>
+                                </view>
+                            </view>
+                        </scroll-view>
+                    </view>
+                </view>
+                <view bind:tap="onToggleTimes" class="bottom-fixed border-1px-t">
+					取消
+				</view>
+            </view>
+        </view>
+    </view>
+</view>
+<include src="../public/footer.wxml"></include>

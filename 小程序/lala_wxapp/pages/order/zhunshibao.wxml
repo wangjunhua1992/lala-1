@@ -1,0 +1,39 @@
+<view class="order-zhunshibao">
+    <view class="content">
+        <view class="zhunshibao-list">
+            <view class="zhunshibao-item">
+                <view class="zhunshibao-item-left">价格</view>
+                <view class="zhunshibao-item-right">{{Lang.dollarSign}}{{order.zhunshibao_price}}</view>
+            </view>
+        </view>
+        <view class="blank"></view>
+        <view class="zhunshibao-list">
+            <view class="zhunshibao-item van-hairline--bottom">
+                <view class="zhunshibao-item-left">订单号</view>
+                <view class="zhunshibao-item-right">{{order.ordersn}}</view>
+            </view>
+            <view class="zhunshibao-item van-hairline--bottom">
+                <view class="zhunshibao-item-left">服务状态</view>
+                <view class="zhunshibao-item-right">{{order.status==6?'已退款':'购买成功'}}</view>
+            </view>
+            <view class="zhunshibao-item van-hairline--bottom align-top">
+                <view class="zhunshibao-item-left">赔付标准</view>
+                <view class="zhunshibao-item-right" wx:if="{{order.zhunshibao_tips}}">
+                    <view wx:for="{{order.zhunshibao_tips}}" wx:key="{{index}}">{{item}}</view>
+                </view>
+            </view>
+            <view bind:tap="onJsEvent" class="zhunshibao-item flex-lr" data-event-type="jsUrl" data-url="/pages/public/richtext?key=zhunshibao_agreement">
+                <view class="zhunshibao-item-left">服务说明</view>
+                <view class="icon icon-right c-gray"></view>
+            </view>
+        </view>
+        <view class="blank"></view>
+        <view class="zhunshibao-list">
+            <view class="zhunshibao-item van-hairline--bottom">
+                <view class="zhunshibao-item-left">配送状态</view>
+            </view>
+            <van-steps active="0" activeColor="#ff2d4b" direction="vertical" steps="{{steps}}"></van-steps>
+        </view>
+    </view>
+</view>
+<include src="../public/footer.wxml"></include>

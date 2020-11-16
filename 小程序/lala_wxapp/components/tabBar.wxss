@@ -1,0 +1,48 @@
+.diy-tab-bar {
+    position: fixed;
+    bottom: 0;
+    z-index: 9000;
+    width: 100%;
+    height: 50px;
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #fff;
+}
+
+.diy-tab-bar .tab-bar-item {
+    line-height: 1;
+    flex: 1;
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    justify-content: center;
+    color: #000;
+}
+
+.diy-tab-bar .tab-bar-item.active {
+    color: #ff2d4b;
+}
+
+.diy-tab-bar .tab-bar-item .icon {
+    font-size: 22px;
+}
+
+.diy-tab-bar .tab-bar-item .tab-text {
+    font-size: 12px;
+    margin-top: 5px;
+}
+
+.diy-tab-bar .tab-bar-item .img-wrap {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    overflow: hidden;
+    font-size: 0px;
+}
+
+.diy-tab-bar .tab-bar-item .img-wrap image {
+    width: 100%;
+    height: 100%;
+}

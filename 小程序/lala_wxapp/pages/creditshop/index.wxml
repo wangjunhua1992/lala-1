@@ -1,0 +1,71 @@
+<view class="creditshop-index">
+    <swiper autoplay="true" class="slide" indicatorDots="true" interval="4000" wx:if="{{adv.length>0}}">
+        <swiper-item wx:for="{{adv}}" wx:key="{{item.id}}">
+            <image bind:tap="onJsEvent" class="slide-image" data-event-type="jsUrl" data-url="{{item.wxapp_link}}" src="{{item.thumb}}"></image>
+        </swiper-item>
+    </swiper>
+    <view class="margin-10-b bg-default flex-lr">
+        <view class="flex-center flex-1 padding-10-tb border-1px-r">
+            <text class="icon icon-recharge margin-5-r"></text>积分:
+			<view class="c-danger">{{member.credit1}}</view>
+        </view>
+        <view bind:tap="onJsEvent" class="flex-center flex-1 padding-10-tb" data-event-type="jsUrl" data-url="pages/creditshop/list">
+            <text class="icon icon-order margin-5-r"></text>兑换记录
+		</view>
+    </view>
+    <view class="cell-group clearfix" wx:if="{{category.length>0}}">
+        <view class="icon-col" wx:for="{{category}}" wx:key="{{item.id}}">
+            <navigator hoverClass="none" url="./goods?category_id={{item.id}}">
+                <view class="img">
+                    <image src="{{item.thumb}}"></image>
+                </view>
+                <view class="text">
+						{{item.name}}
+					</view>
+            </navigator>
+        </view>
+    </view>
+    <block wx:if="{{!goods.empty}}">
+        <view class="creditshop-goods" wx:if="{{goods.data.length>0}}">
+            <view class="goods-title-wrap">
+                <view class="goods-title border-1px-b">
+                    <view class="title-left">
+                        <text class="icon icon-gifts"></text>
+                        <text>积分兑换</text>
+                    </view>
+                    <view class="title-right" wx:if="{{0}}">
+                        <text>更多</text>
+                        <text class="icon icon-right"></text>
+                    </view>
+                </view>
+            </view>
+            <view class="goods-list">
+                <view class="goods-item" wx:for="{{goods.data}}" wx:key="{{item.id}}">
+                    <view class="item-inner">
+                        <view class="thumb">
+                            <image alt="" src="{{item.thumb}}"></image>
+                        </view>
+                        <view class="goods-name">{{item.title}}</view>
+                        <view class="price">
+                            <text class="need-credit">{{item.use_credit1}}</text>
+                            <text>积分</text>
+                            <text class="need-price" wx:if="{{item.use_credit2>0}}">+ <text>{{Lang.dollarSign}}{{item.use_credit2}}</text>
+                            </text>
+                        </view>
+                        <view class="exchange">
+                            <navigator class="exchange-btn" url="./goodsDetail?id={{item.id}}">立即兑换</navigator>
+                        </view>
+                    </view>
+                </view>
+            </view>
+            <view class="wui-loadmore wui-loadmore-nodata" wx:if="{{goods.loaded}}">
+                <view class="wui-loadmore-tips">没有更多了</view>
+            </view>
+        </view>
+    </block>
+    <view class="no-data" wx:else>
+        <image class="no-coupon" src="http://cos.lalawaimai.com/we7_wmall/wxapp/goods_no_con.png"></image>
+        <text class="no-record">暂无积分兑换商品!</text>
+    </view>
+</view>
+<include src="../public/footer.wxml"></include>

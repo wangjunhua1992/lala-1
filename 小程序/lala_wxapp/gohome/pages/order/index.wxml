@@ -1,0 +1,53 @@
+<tab-bar menufooter="{{menufooter}}" wx:if="{{menufooter&&menufooter.data}}"></tab-bar>
+<view class="gohome-order-index container">
+    <view class="tab-group">
+        <view bind:tap="onChangeStatus" class="tab-item {{status==-1?'active':''}}" data-status="-1">全部</view>
+        <view bind:tap="onChangeStatus" class="tab-item {{status==1?'active':''}}" data-status="1">代付款</view>
+        <view bind:tap="onChangeStatus" class="tab-item {{status==3?'active':''}}" data-status="3">待使用</view>
+        <view bind:tap="onChangeStatus" class="tab-item {{status==5?'active':''}}" data-status="5">待评价</view>
+    </view>
+    <view class="order-list" wx:if="{{!records.empty}}">
+        <view class="order-item" wx:for="{{records.data}}" wx:key="{{item.id}}">
+            <view class="flex-lr">
+                <view class="flex" wx:if="{{item.store}}">
+                    <view class="icon icon-shop font-18 c-gray"></view>
+                    <view class="margin-5-l">{{item.store.title}}</view>
+                </view>
+                <view class="c-danger">{{item.status_all.text}}</view>
+            </view>
+            <view bind:tap="onJsEvent" class="padding-15-tb flex-lr" data-event-type="jsUrl" data-url="gohome/pages/order/detail?id={{item.id}}">
+                <view class="thumb">
+                    <image src="{{item.goods.thumb}}"></image>
+                </view>
+                <view class="info">
+                    <view class="goods-title ellipsis">
+                        <text class="order-type {{item.order_type_all.css}}">{{item.order_type_all.text}}</text>{{item.goods.name}}
+					</view>
+                    <view class="c-gray font-12">下单时间: {{item.addtime_cn}}</view>
+                    <view class="c-gray font-12" wx:if="{{item.status!=1}}">支付时间: {{item.paytime_cn}}</view>
+                    <view class="c-gray font-12" wx:elif="{{item.status==5||item.status==6}}">核销时间: 2018-11-23 11:06:51</view>
+                    <view class="c-danger">{{Lang.dollarSign}}{{item.final_fee}}</view>
+                </view>
+            </view>
+            <view class="padding-15-t btn-group border-1px-t " wx:if="{{item.status<6}}">
+                <block wx:if="{{item.status==1}}">
+                    <view bind:tap="onJsEvent" class="btn-item" data-confirm="确定取消订单吗" data-event-type="jsPost" data-url="gohome/order/cancel?id={{item.id}}">取消订单</view>
+                    <view bind:tap="onJsEvent" class="btn-item" data-event-type="jsUrl" data-url="pages/public/pay?order_id={{item.id}}&order_type=gohome">立即支付</view>
+                </block>
+                <block wx:elif="{{item.is_pay==1}}">
+                    <view bind:tap="onJsEvent" class="btn-item" data-event-type="jsUrl" data-url="gohome/pages/order/detail?id={{item.id}}" wx:if="{{item.status==3}}">去使用</view>
+                    <view bind:tap="onJsEvent" class="btn-item" data-event-type="jsUrl" data-url="gohome/pages/comment/comment?order_id={{item.id}}" wx:if="{{item.status==5}}">立即评价</view>
+                </block>
+            </view>
+        </view>
+        <view class="wui-loadmore wui-loadmore-nomore" wx:if="{{records.loaded}}">
+            <view class="wui-loadmore-tips">我是有底线的</view>
+            <view class="wui-loadmore-line"></view>
+        </view>
+    </view>
+    <view class="no-data" wx:else>
+        <image class="no-coupon" src="../../static/img/order_no_con.png"></image>
+        <text class="no-record">您还没有订单哦</text>
+    </view>
+</view>
+<include src="../../../pages/public/footer.wxml"></include>

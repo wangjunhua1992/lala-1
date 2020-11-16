@@ -1,0 +1,80 @@
+<failed-tips failedTips="{{failedTips}}" wx:if="{{failedTips.show}}"></failed-tips>
+<view class="haodian-application" wx:else>
+    <view class="content">
+        <van-cell-group>
+            <van-field bindinput="onInput" data-type="title" inputAlign="right" label="店铺名称" placeholder="请填写店铺名称" value="{{store.title}}"></van-field>
+            <van-field bindinput="onInput" data-type="telephone" inputAlign="right" label="店铺电话" placeholder="请填写店铺电话" value="{{store.telephone}}"></van-field>
+            <van-cell title="行业分类">
+                <picker bindchange="onSelectCategory" bindcolumnchange="onChangeColumn" mode="multiSelector" range="{{columns}}" rangeKey="title">
+					{{store.category_title?store.category_title:'请选择所属分类'}}
+				</picker>
+            </van-cell>
+            <van-field bindinput="onInput" data-type="address" inputAlign="right" label="店铺地址" placeholder="请填写店铺地址" value="{{store.address}}"></van-field>
+            <van-field bindinput="onInput" data-type="content" inputAlign="right" label="店铺简介" placeholder="请填写店铺简介" value="{{store.content}}"></van-field>
+        </van-cell-group>
+        <van-cell-group>
+            <van-cell>
+                <view class="pic-box">
+                    <view class="upload-title">添加店铺图标</view>
+                    <view class="pic padding-10-b" wx:if="{{logo[0].url}}">
+                        <image src="{{logo[0].url}}"></image>
+                        <view bind:tap="onJsEvent" data-event-type="jsDelImg" data-index="{{index}}" data-key="logo">-</view>
+                    </view>
+                    <view bind:tap="onJsEvent" class="pic-icon" data-count="1" data-event-type="jsUploadImg" data-key="logo" wx:else>
+                        <view class="icon icon-camerafill"></view>
+                    </view>
+                </view>
+            </van-cell>
+            <van-cell>
+                <view class="pic-box">
+                    <view class="upload-title">营业资质照(依次上传营业执照、餐饮服务许可证、其他资质)</view>
+                    <view class="flex">
+                        <view class="pic padding-10-b" wx:for="{{qualification}}" wx:key="{{index}}">
+                            <image src="{{item.url}}"></image>
+                            <view bind:tap="onJsEvent" data-event-type="jsDelImg" data-index="{{index}}" data-key="qualification">-</view>
+                        </view>
+                        <view bind:tap="onJsEvent" class="pic-icon" data-count="3" data-event-type="jsUploadImg" data-key="qualification">
+                            <view class="icon icon-camerafill"></view>
+                        </view>
+                    </view>
+                </view>
+            </van-cell>
+            <van-cell>
+                <view class="pic-box">
+                    <view class="upload-title">添加店铺详情图</view>
+                    <view class="flex">
+                        <view class="pic padding-10-b" wx:for="{{thumbs}}" wx:key="{{index}}">
+                            <image src="{{item.url}}"></image>
+                            <view bind:tap="onJsEvent" data-event-type="jsDelImg" data-index="{{index}}" data-key="thumbs">-</view>
+                        </view>
+                        <view bind:tap="onJsEvent" class="pic-icon" data-count="4" data-event-type="jsUploadImg" data-key="thumbs">
+                            <view class="icon icon-camerafill"></view>
+                        </view>
+                    </view>
+                </view>
+            </van-cell>
+        </van-cell-group>
+        <van-radio-group class="margin-10-t" wx:if="{{config.meal&&config.meal.length>0}}">
+            <van-cell-group>
+                <van-cell title="入驻费用"></van-cell>
+                <van-cell wx:for="{{config.meal}}" wx:key="index">
+                    <view bind:tap="onSelectMeal" data-index="{{index}}" slot="title">{{item.title}}<text class="c-danger">（{{item.time}}天 / {{Lang.dollarSign}}{{item.price}}）</text>
+                    </view>
+                    <van-radio bind:tap="onSelectMeal" data-index="{{index}}" name="{{index}}" value="{{meal.selectIndex}}"></van-radio>
+                </van-cell>
+            </van-cell-group>
+        </van-radio-group>
+        <view class="tips flex">
+            <view class="icon icon-check"></view>
+            <view>我已阅读并同意</view>
+            <view class="c-danger">
+                <navigator url="../../../pages/public/richtext?key=agreement_settle">《商户入驻协议》</navigator>
+            </view>
+        </view>
+        <view bind:tap="onSubmit" class="padding-15">
+            <van-button block="true" size="normal" type="danger" wx:if="{{meal.price>0}}">确认支付{{Lang.dollarSign}}{{meal.price}}</van-button>
+            <van-button block="true" size="normal" type="danger" wx:else>提交</van-button>
+        </view>
+    </view>
+</view>
+<include src="../../../pages/public/footer.wxml"></include>

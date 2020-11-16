@@ -1,0 +1,101 @@
+<view class="shareRedpacket-index">
+    <view class="content">
+        <view class="init-area">
+            <image alt="" mode="widthFix" src="../../static/img/init_pic.png"></image>
+        </view>
+        <view class="init-info">
+            <image alt="" mode="widthFix" src="../../static/img/init_bg.png"></image>
+            <view class="init-con">
+                <view class="init-text">
+					送好友最高<span class="c-danger">{{redPacket.follow_redpacket_max}}</span>红包，TA首次下单您最高可得
+				</view>
+                <view class="init-money">
+                    <text>{{Lang.dollarSign}}</text>{{redPacket.share_redpacket_max}}
+				</view>
+                <view bind:tap="onChangeZhezhao" class="init-btn">
+                    <div>发红包</div>
+                </view>
+            </view>
+        </view>
+        <view class="init-status">
+            <view class="buttons-tab">
+                <view bind:tap="onChangeType" class="button {{type=='invite'?'active':''}}" data-type="invite">
+                    <span>邀请奖励</span>
+                </view>
+                <view bind:tap="onChangeType" class="button {{type=='ranking'?'active':''}}" data-type="ranking">
+                    <span>排行榜</span>
+                </view>
+                <view bind:tap="onChangeType" class="button {{type=='agreement'?'active':''}}" data-type="agreement">
+                    <span>活动规则</span>
+                </view>
+            </view>
+            <block wx:if="{{type=='invite'}}">
+                <view class="init-title flex">
+                    <view class="init-tab">
+                        <view class="init-tab-h">
+                            <text class="icon icon-selection"></text>
+							成功邀请
+						</view>
+                        <view class="init-tab-c">
+							{{total}}<text class="font-12">人</text>
+                        </view>
+                    </view>
+                    <view class="init-tab">
+                        <view class="init-tab-h">
+                            <text class="icon icon-sponsorfill"></text>
+							赚取红包
+						</view>
+                        <view class="init-tab-c">
+							{{redPacket_num}}<text class="font-12">{{Lang.dollarSignCn}}</text>
+                        </view>
+                    </view>
+                </view>
+                <view class="init-friend">
+					共有<text class="c-danger">{{total}}</text>人接受了我的邀请
+				</view>
+            </block>
+            <view class="list-block" wx:if="{{type=='invite'}}">
+                <view class="invite-list" wx:if="{{!invited_info.empty}}">
+                    <view class="flex-lr" wx:for="{{invited_info.data}}" wx:key="{{item.id}}">
+                        <view class="item-media">
+                            <image alt="" src="{{item.avatar}}" wx:if="{{item.avatar}}"></image>
+                            <image alt="" src="../../static/img/head.png" wx:else></image>
+                        </view>
+                        <view class="item-inner">
+                            <view class="item-title-row flex-lr font-13">
+                                <view>{{item.nickname}}</view>
+                                <view wx:if="{{item.status==1}}">已经下单了 您获得<text class="c-danger">{{item.share_redpacket_discount}}</text>{{Lang.dollarSignCn}}红包</view>
+                                <view wx:else>等待下单</view>
+                            </view>
+                            <view class="item-subtitle">领取了您的红包</view>
+                        </view>
+                    </view>
+                </view>
+            </view>
+            <view class="list-block" wx:if="{{type=='ranking'}}">
+                <view class="invite-list" wx:if="{{!rankings.empty}}">
+                    <view class="flex-lr" wx:for="{{rankings.data}}" wx:key="{{item.id}}">
+                        <view class="item-media">
+                            <image alt="" src="{{item.avatar}}" wx:if="item.avatar"></image>
+                            <image src="../../static/img/head.png" wx:else></image>
+                        </view>
+                        <view class="item-inner">
+                            <view class="item-title-row flex-lr font-13">
+                                <view>{{item.nickname}}</view>
+                                <view>邀请{{item.total}}人</view>
+                            </view>
+                        </view>
+                    </view>
+                </view>
+            </view>
+            <view class="agreement" wx:if="{{type=='agreement'}}">
+                <template is="wxParse" data="{{wxParseData:richtext.nodes}}"></template>
+            </view>
+        </view>
+    </view>
+    <view bind:tap="onChangeZhezhao" class="share-zhezhao" wx:if="{{zhezhaoShow}}">
+        <image mode="widthFix" src="../../static/img/share-layer.png"></image>
+    </view>
+</view>
+<include src="../../../pages/public/footer.wxml"></include>
+<import src="/library/wxParse/wxParse.wxml"></import>

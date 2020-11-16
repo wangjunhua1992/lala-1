@@ -1,0 +1,54 @@
+<tab-bar menufooter="{{menufooter}}" wx:if="{{menufooter&&menufooter.data}}"></tab-bar>
+<view class="page-pintuan-index container">
+    <view class="content">
+        <block wx:if="{{!records.empty}}">
+            <view class="pintuan-title">拼团购物更优惠</view>
+            <view class="pintuan-list">
+                <view class="pintuan-item" wx:for="{{records.data}}">
+                    <view class="thumb">
+                        <image alt="" src="{{item.thumb}}"></image>
+                        <view class="mark" wx:if="1">{{item.peoplenum}}人团</view>
+                    </view>
+                    <view class="info">
+                        <view class="info-store">
+                            <view class="store-title">{{item.store.title}}</view>
+                            <view>{{item.name}}</view>
+                        </view>
+                        <view class="info-price">
+                            <view>
+                                <view class="price">
+                                    <view class="now-price">{{Lang.dollarSign}}{{item.price}}</view>
+                                    <view class="old-price">{{Lang.dollarSign}}{{item.oldprice}}</view>
+                                    <view class="discount">{{item.discount}}折</view>
+                                </view>
+                                <view class="progress-bar" wx:if="{{item.status==2}}">
+                                    <view class="bar-inner" style="width: 0%"></view>
+                                    <view class="bar-text">已团0份</view>
+                                </view>
+                                <view class="progress-bar {{item.total==0?'bar-end':''}}" wx:else>
+                                    <view class="bar-inner" style="width: {{item.sailed_percent}}%" wx:if="{{item.total!=-1}}"></view>
+                                    <view class="bar-text">已团{{item.falesailed_total}}份</view>
+                                </view>
+                            </view>
+                            <block wx:if="{{item.status==1}}">
+                                <view bind:tap="onJsEvent" class="btn btn-detail" data-event-type="jsUrl" data-url="gohome/pages/pintuan/detail?id={{item.id}}" wx:if="{{item.total!=0}}">去拼团</view>
+                                <view class="btn btn-end" wx:else>已抢光</view>
+                            </block>
+                            <view class="btn btn-end" wx:elif="{{item.status==2}}">未开始</view>
+                            <view class="btn btn-end" wx:elif="{{item.status==3}}">已结束</view>
+                        </view>
+                    </view>
+                </view>
+            </view>
+            <view class="wui-loadmore wui-loadmore-nomore">
+                <view class="wui-loadmore-tips">我是有底线的</view>
+                <view class="wui-loadmore-line"></view>
+            </view>
+        </block>
+        <view class="no-data" wx:else>
+            <image class="no-coupon" src="http://cos.lalawaimai.com/we7_wmall/wxapp/goods_no_con.png"></image>
+            <text class="no-record">暂无拼团活动</text>
+        </view>
+    </view>
+</view>
+<include src="../../../pages/public/footer.wxml"></include>

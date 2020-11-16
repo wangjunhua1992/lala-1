@@ -1,0 +1,112 @@
+page {
+    background: #F3F3F3;
+    font-size: 14px;
+    width: 100%;
+}
+
+::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+    color: transparent;
+}
+
+.content .reports {
+    margin: 10px 0;
+    background-color: #fff;
+}
+
+.content .reports radio {
+    display: block;
+    margin-left: 15px;
+    padding: 10px 15px 10px 0;
+    background-color: #fff;
+}
+
+.content .report-store {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 10px 15px;
+}
+
+.content .report-store .icon-infofill {
+    font-size: 22px;
+    margin-right: 10px;
+    line-height: 24px;
+}
+
+.content .tip {
+    padding: 10px 15px;
+    font-size: 14px;
+    color: #6d6d72;
+}
+
+.content .report-description {
+    background-color: #fff;
+    padding: 10px 15px;
+}
+
+.content .report-description .description {
+    height: 76px;
+    width: 100%;
+    font-size: 16px;
+}
+
+.content .zan-panel.shop-thumbs {
+    display: flex;
+    flex-flow: row wrap;
+    align-items: center;
+    padding: 5px;
+    background-color: #fff;
+}
+
+.content .zan-panel.shop-thumbs .thumb {
+    width: 33.33333333%;
+    height: 100px;
+    box-sizing: border-box;
+    padding: 5px;
+    font-size: 0;
+    position: relative;
+}
+
+.content .zan-panel.shop-thumbs .thumb image {
+    width: 100%;
+    height: 100%;
+    border-radius: 4px;
+}
+
+.content .zan-panel.shop-thumbs .thumb .img-remove {
+    width: 18px;
+    height: 18px;
+    line-height: 18px;
+    border-radius: 100%;
+    position: absolute;
+    right: 0px;
+    top: 0px;
+    text-align: center;
+    background-color: #33aafc;
+    color: #fff;
+    font-size: 14px;
+}
+
+.content .report-mobile {
+    background-color: #fff;
+    height: 44px;
+    padding: 0 15px;
+    font-size: 16px;
+}
+
+.content .report-mobile .mobile {
+    width: 100%;
+    height: 100%;
+    line-height: 44px;
+}
+
+.content .submit {
+    margin: 20px 0;
+    text-align: center;
+}
+
+.content .submit button {
+    line-height: 26px;
+}

@@ -1,0 +1,58 @@
+page {
+    background-color: #F5F5F5;
+    font-size: 14px;
+    line-height: 1;
+}
+
+.storebd-store .store-list .store-item {
+    margin-top: 10px;
+    background-color: #fff;
+}
+
+.storebd-store .store-list .store-item .store-content {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 15px;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.storebd-store .store-list .store-item .store-content .store-info {
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+}
+
+.storebd-store .store-list .store-item .store-content .store-info image {
+    width: 35px;
+    height: 35px;
+    border: none;
+    margin-right: 10px;
+}
+
+.storebd-store .store-list .store-item .store-content .bind-time {
+    text-align: right;
+    font-size: 14px;
+    line-height: 21px;
+}
+
+.storebd-store .store-list .store-item .store-tips {
+    padding: 10px 15px;
+    font-size: 12px;
+    color: #A9A9A9;
+}
+
+.storebd-store .store-list .store-item .store-tips .tips {
+    display: flex;
+    width: 100%;
+    overflow: hidden;
+}
+
+.storebd-store .store-list .store-item .store-tips .tips:last-child {
+    padding-top: 5px;
+}
+
+.storebd-store .store-list .store-item .store-tips .tips div {
+    line-height: 19px;
+}

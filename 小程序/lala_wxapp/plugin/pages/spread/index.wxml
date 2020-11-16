@@ -1,0 +1,97 @@
+<tab-bar menufooter="{{menufooter}}" wx:if="{{menufooter&&menufooter.data}}"></tab-bar>
+<view class="page page-spread-index container">
+    <view class="content">
+        <view class="header-info">
+            <view class="header-title">
+                <view class="spreader-info">
+                    <view class="avatar">
+                        <image alt="" src="{{member.avatar}}"></image>
+                    </view>
+                    <view>
+                        <view class="member">
+                            <text class="nickname">{{member.nickname}}</text>
+                            <text class="group-name">{{member.groupname?member.groupname:'暂无等级'}}</text>
+                        </view>
+                        <view class="number">邀请码: {{member.uid}}</view>
+                    </view>
+                </view>
+                <text bind:tap="onToggleStatus" class="icon icon-qrcode"></text>
+            </view>
+            <view class="header-getcash">
+                <view>成功提现佣金 {{Lang.dollarSign}}{{spread.commission_getcash_success}}</view>
+                <view>可提现佣金 {{Lang.dollarSign}}{{spread.spreadcredit2}}</view>
+            </view>
+        </view>
+        <view class="link-group">
+            <view class="weui-cells weui-cells_after-title">
+                <view bind:tap="onJsEvent" class="weui-cell weui-cell_access" data-event-type="jsUrl" data-url="plugin/pages/spread/commission">
+                    <view class="weui-cell__hd">
+                        <text class="icon icon-refund"></text>
+                    </view>
+                    <view class="weui-cell__bd">推广佣金</view>
+                    <view class="weui-cell__ft weui-cell__ft_in-access">{{Lang.dollarSign}}{{spread.commission_grandtotal}}</view>
+                </view>
+                <view bind:tap="onJsEvent" class="weui-cell weui-cell_access" data-event-type="jsUrl" data-url="plugin/pages/spread/current">
+                    <view class="weui-cell__hd">
+                        <text class="icon icon-list"></text>
+                    </view>
+                    <view class="weui-cell__bd">佣金明细</view>
+                    <view class="weui-cell__ft weui-cell__ft_in-access">{{current}}笔</view>
+                </view>
+                <view bind:tap="onJsEvent" class="weui-cell weui-cell_access" data-event-type="jsUrl" data-url="plugin/pages/spread/getCashLog">
+                    <view class="weui-cell__hd">
+                        <text class="icon icon-sort"></text>
+                    </view>
+                    <view class="weui-cell__bd">提现明细</view>
+                    <view class="weui-cell__ft weui-cell__ft_in-access">{{commission}}笔</view>
+                </view>
+                <view bind:tap="onJsEvent" class="weui-cell weui-cell_access" data-event-type="jsUrl" data-url="plugin/pages/spread/order">
+                    <view class="weui-cell__hd">
+                        <text class="icon icon-order"></text>
+                    </view>
+                    <view class="weui-cell__bd">推广订单</view>
+                    <view class="weui-cell__ft weui-cell__ft_in-access">{{order}}笔</view>
+                </view>
+                <view bind:tap="onJsEvent" class="weui-cell weui-cell_access" data-event-type="jsUrl" data-url="plugin/pages/spread/down">
+                    <view class="weui-cell__hd">
+                        <text class="icon icon-friend"></text>
+                    </view>
+                    <view class="weui-cell__bd">我的团队</view>
+                    <view class="weui-cell__ft weui-cell__ft_in-access">{{down}}人</view>
+                </view>
+                <view bind:tap="onJsEvent" class="weui-cell weui-cell_access" data-event-type="jsUrl" data-url="plugin/pages/spread/rank" wx:if="{{rank&&rank.status=='1'}}">
+                    <view class="weui-cell__hd">
+                        <text class="icon icon-hot1"></text>
+                    </view>
+                    <view class="weui-cell__bd">佣金排名</view>
+                    <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+                </view>
+            </view>
+            <view class="spread-button">
+                <view bind:tap="onToggleStatus" class="invite">邀请好友赚佣金</view>
+            </view>
+        </view>
+        <view class="wui-dialog {{showshare?'wui-dialog-show':''}}">
+            <view bind:tap="onToggleStatus" class="wui-dialog-mask">
+                <view class="wui-dialog-container">
+                    <view class="share">
+                        <view bind:tap="onJsEvent" class="share-item" data-event-type="jsUrl" data-url="plugin/pages/spread/poster">
+                            <image alt="" src="http://cos.lalawaimai.com/we7_wmall/wxapp/poster.png"></image>
+                            <view>生成海报</view>
+                        </view>
+                        <view bind:tap="onJsEvent" class="share-item hide" data-event-type="jsUrl" data-url="plugin/pages/spread/qrcode">
+                            <image alt="" src="http://cos.lalawaimai.com/we7_wmall/wxapp/qrcode.png"></image>
+                            <view>分享二维码</view>
+                        </view>
+                        <view bind:tap="onJsEvent" class="share-item" data-event-type="jsCopy" data-text="{{member.spread_url}}">
+                            <image alt="" src="http://cos.lalawaimai.com/we7_wmall/wxapp/link.png"></image>
+                            <view>复制链接</view>
+                        </view>
+                    </view>
+                    <view bind:tap="onToggleStatus" class="icon icon-close"></view>
+                </view>
+            </view>
+        </view>
+    </view>
+</view>
+<include src="../../../pages/public/footer.wxml"></include>

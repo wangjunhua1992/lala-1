@@ -1,0 +1,45 @@
+<tab-bar menufooter="{{menufooter}}" wx:if="{{menufooter&&menufooter.data}}"></tab-bar>
+<view class="kanjia-category container">
+    <block wx:if="{{!records.empty}}">
+        <view class="padding-15-tb padding-10-lr font-14 c-danger bg-default">召集好友来砍价</view>
+        <view class="activity-list">
+            <view class="activity-item {{index<records.data.length-1?'border-1px-b':''}}" wx:for="{{records.data}}" wx:key="{{item.id}}">
+                <view class="thumb">
+                    <image alt="" class="w-100" src="{{item.thumb}}"></image>
+                    <view class="end-bg" wx:if="{{item.status==3}}">
+                        <image mode="widthFix" src="../../static/img/end.png"></image>
+                    </view>
+                </view>
+                <view class="title">【邀请好友帮忙砍价】{{item.name}}</view>
+                <view class="flex-lr">
+                    <view class="flex-lr">
+                        <view class="flex">
+                            <view class="c-danger font-16 font-bold">{{Lang.dollarSign}}{{item.price}}</view>
+                            <view class="c-gray font-12 line-through margin-5-l">{{Lang.dollarSign}}{{item.price}}</view>
+                        </view>
+                        <view class="buy-history flex" wx:if="{{item.userlist&&item.userlist.length>0}}">
+                            <view class="avatar-list">
+                                <image src="{{avatar.avatar}}" wx:if="{{avatarIndex<3}}" wx:for="{{item.userlist}}" wx:for-index="avatarIndex" wx:for-item="avatar" wx:key="{{avatarIndex}}"></image>
+                            </view>
+                            <view class="font-12 c-gray margin-5-l">{{item.userlist.length}}人参与</view>
+                        </view>
+                    </view>
+                    <block wx:if="{{item.status==1}}">
+                        <view bind:tap="onJsEvent" class="btn btn-detail" data-event-type="jsUrl" data-url="gohome/pages/kanjia/detail?id={{item.id}}" wx:if="{{item.total!=0}}">去砍价</view>
+                        <view class="btn btn-end" wx:else>已抢光</view>
+                    </block>
+                    <view class="btn btn-end" wx:elif="{{item.status==2}}">未开始</view>
+                    <view class="btn btn-end" wx:elif="{{item.status==3}}">已结束</view>
+                </view>
+            </view>
+            <view class="wui-loadmore wui-loadmore-nodata" wx:if="{{records.loaded}}">
+                <view class="wui-loadmore-tips">没有更多了</view>
+            </view>
+        </view>
+    </block>
+    <view class="no-data" wx:else>
+        <image class="no-coupon" src="http://cos.lalawaimai.com/we7_wmall/wxapp/goods_no_con.png"></image>
+        <text class="no-record">暂无砍价活动</text>
+    </view>
+</view>
+<include src="../../../pages/public/footer.wxml"></include>

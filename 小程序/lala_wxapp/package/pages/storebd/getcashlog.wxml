@@ -1,0 +1,36 @@
+<view class="storebd-getcashlog">
+    <view class="content">
+        <view class="tab-group">
+            <view bind:tap="onChangeStatus" class="tab-item {{status==0?'active':''}}" data-status="0">所有</view>
+            <view bind:tap="onChangeStatus" class="tab-item {{status==1?'active':''}}" data-status="1">申请中</view>
+            <view bind:tap="onChangeStatus" class="tab-item {{status==2?'active':''}}" data-status="2">提现成功</view>
+            <view bind:tap="onChangeStatus" class="tab-item {{status==3?'active':''}}" data-status="3">已撤销</view>
+        </view>
+        <view class="getcashlog-list" wx:if="{{!records.empty}}">
+            <view class="getcashlog-item" wx:for="{{records.data}}" wx:key="{{item.id}}">
+                <view class="getcashlog-wrap">
+                    <view class="item-title">
+                        <view class="font-14 c-gray">编号: {{item.trade_no}}</view>
+                        <view class="info">申请佣金:{{item.get_fee}}实际金额:{{item.final_fee}},个人所得税:{{item.take_fee}}{{Lang.dollarSignCn}}</view>
+                        <view class="info">申请时间:{{item.addtime_cn}}</view>
+                    </view>
+                    <view class="item-after">
+                        <view>+{{item.status==3?item.get_fee:item.final_fee}}</view>
+                        <view wx:if="{{item.status==1}}">已成功</view>
+                        <view wx:elif="{{item.status==2}}">申请中</view>
+                        <view wx:else>已撤销</view>
+                    </view>
+                </view>
+            </view>
+            <view class="wui-loadmore wui-loadmore-nomore" wx:if="{{records.loaded}}">
+                <view class="wui-loadmore-tips">我是有底线的</view>
+                <view class="wui-loadmore-line"></view>
+            </view>
+        </view>
+        <view class="no-data" wx:else>
+            <image class="no-coupon" src="../../static/img/order_no_con.png"></image>
+            <text class="no-record">暂时没有提现明细哦～</text>
+        </view>
+    </view>
+</view>
+<include src="../../../pages/public/footer.wxml"></include>

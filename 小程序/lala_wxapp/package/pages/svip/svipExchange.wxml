@@ -1,0 +1,12 @@
+<view class="page-svipExchange">
+    <view class="content">
+        <view class="tips">成功兑换后将关联到当前帐号：{{nickname}}</view>
+        <van-cell-group>
+            <van-field bind:change="onChange" label="兑换码" placeholder="请输入16位兑换码" value="{{code}}"></van-field>
+        </van-cell-group>
+        <view class="padding-15">
+            <van-button block bind:tap="onSubmit" class="svip-button" disabled="{{!islegal}}" size="normal">兑换超级会员</van-button>
+        </view>
+    </view>
+</view>
+<include src="../../../pages/public/footer.wxml"></include>

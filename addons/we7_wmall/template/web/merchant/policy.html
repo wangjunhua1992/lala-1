@@ -1,0 +1,203 @@
+{itemplate 'public/header'}
+{if $op == 'list'}
+<form action="./index.php" class="form-horizontal form-filter">
+	{php echo tpl_form_filter_hidden('merchant/policy/list');}
+	<div class="form-group">
+		<label class="col-xs-12 col-sm-3 col-md-2 control-label">策略状态</label>
+		<div class="col-sm-9 col-xs-12">
+			<div class="btn-group">
+				<a href="{php echo ifilter_url('status:0');}" class="btn {if $status == 0}btn-primary{else}btn-default{/if}">全部</a>
+				{loop $status_arr $skey $sval}
+				<a href="{php echo ifilter_url('status:' .$skey);}" class="btn {if $status == $skey}btn-primary{else}btn-default{/if}">{$sval['text']}</a>
+				{/loop}
+			</div>
+		</div>
+	</div>
+	<div class="form-group">
+		<label class="col-xs-12 col-sm-3 col-md-2 control-label">创建时间</label>
+		<div class="col-sm-4 col-xs-4">
+			{php echo tpl_form_field_daterange('addtime', array('start' => date('Y-m-d H:i', $starttime), 'end' => date('Y-m-d H:i', $endtime)));}
+		</div>
+	</div>
+	<div class="form-group">
+		<label class="col-xs-12 col-sm-3 col-md-2 control-label">搜索</label>
+		<div class="col-sm-4 col-xs-4">
+			<input type="text" name="keywords" value="{$keywords}" class="form-control" placeholder="请输入策略描述关键字">
+		</div>
+	</div>
+	{if $_W['is_agent']}
+		<div class="form-group form-inline">
+			<label class="col-xs-12 col-sm-3 col-md-2 control-label">其他</label>
+			<div class="col-sm-9 col-xs-12">
+				<select name="agentid" class="select2 js-select2 form-control width-130">
+					<option value="0">选择代理区域</option>
+					{loop $_W['agents'] $agent}
+					<option value="{$agent['id']}" {if $agentid == $agent['id']}selected{/if}>{$agent['area']}</option>
+					{/loop}
+				</select>
+			</div>
+		</div>
+	{/if}
+	<div class="form-group">
+		<label class="col-xs-12 col-sm-3 col-md-2 control-label"></label>
+		<div class="col-sm-4 col-xs-4">
+			<input type="submit" value="筛选" class="btn btn-primary">
+		</div>
+	</div>
+</form>
+<form action="" class="form-table form" method="post">
+	<div class="panel panel-table">
+		<div class="panel-heading">
+			<a href="{php echo iurl('merchant/policy/post');}" class="btn btn-primary btn-sm">添加商户配送策略</a>
+		</div>
+		<div class="panel-body table-responsive js-table">
+			{if empty($policys)}
+			<div class="no-result">
+				<p>还没有相关数据</p>
+			</div>
+			{else}
+			<table class="table table-hover">
+				<thead>
+				<tr>
+					<th>策略描述</th>
+					{if $_W['is_agent']}
+					<th>所属城市</th>
+					{/if}
+					<th>创建时间</th>
+					<th>执行开始时间</th>
+					<th>执行结束时间</th>
+					<th>策略说明</th>
+					<th>状态</th>
+					<th class="text-right">操作</th>
+				</tr>
+				</thead>
+				{loop $policys $policy}
+				<tr>
+					<td>{$policy['title']}</td>
+					{if $_W['is_agent']}
+					<td>{php echo toagent($policy['agentid'])}</td>
+					{/if}
+					<td>{$policy['addtime_cn']}</td>
+					<td>{$policy['starttime_cn']}</td>
+					<td>{$policy['endtime_cn']}</td>
+					<td>
+						起送价{$policy['sign_cn']}{$policy['policy']['send_price']}{$_W['Lang']['dollarSignCn']}<br>
+						配送费{$policy['sign_cn']}{$policy['policy']['delivery_price']}{$_W['Lang']['dollarSignCn']}<br>
+						每1公里变化值{$policy['sign_cn']}{$policy['policy']['pre_km_fee']}{$_W['Lang']['dollarSignCn']}<br>
+					</td>
+					<td>
+						<span class="{$status_arr[$policy['status']]['css']}">{$status_arr[$policy['status']]['text']}</span>
+					</td>
+					<td class="text-right">
+						{if $policy['status'] == 1}
+							<a href="{php echo iurl('merchant/policy/start', array('id' => $policy['id']));}" data-confirm="确定开始执行该策略吗" class="btn btn-default btn-sm js-post">开始执行</a>
+							<a href="{php echo iurl('merchant/policy/delete', array('id' => $policy['id']))}" class="btn btn-default btn-sm js-post" data-confirm="删除后不可恢复，确定删除吗？">删除</a>
+						{elseif $policy['status'] == 2}
+							<a href="{php echo iurl('merchant/policy/end', array('id' => $policy['id']));}" data-confirm="确定结束该策略吗" class="btn btn-default btn-sm js-post">结束策略</a>
+						{elseif $policy['status'] == 3}
+							<a href="{php echo iurl('merchant/policy/delete', array('id' => $policy['id']))}" class="btn btn-default btn-sm js-post" data-confirm="删除后不可恢复，确定删除吗？">删除</a>
+						{/if}
+					</td>
+				</tr>
+				{/loop}
+			</table>
+			<div class="btn-region clearfix">
+				<div class="pull-left"></div>
+				<div class="pull-right">
+					{$pager}
+				</div>
+			</div>
+			{/if}
+		</div>
+	</div>
+</form>
+{/if}
+
+{if $op == 'post'}
+<div class="page clearfix">
+	<form class="form-horizontal form form-validate" id="form1" action="" method="post" enctype="multipart/form-data">
+		<h3>添加商户配送策略</h3>
+		<div class="form-group">
+			<label class="col-xs-12 col-sm-3 col-md-2 control-label">策略描述</label>
+			<div class="col-sm-9 col-xs-12">
+				<input type="text" class="form-control" name="title" value="{$policy['title']}" required="true">
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-xs-12 col-sm-3 col-md-2 control-label">变化方向</label>
+			<div class="col-sm-9 col-xs-12">
+				<div class="radio radio-inline">
+					<input type="radio" name="change_type" value="plus" id="change-type-plus" {if $policy['change_type'] == 'plus' || empty($policy['change_type'])}checked{/if}>
+					<label for="change-type-plus">增加</label>
+				</div>
+				<div class="radio radio-inline">
+					<input type="radio" name="change_type" value="minus" id="change-type-minus" {if $policy['change_type'] == 'minus'}checked{/if}>
+					<label for="change-type-minus">减少</label>
+				</div>
+				<span class="help-block">此设置是针对起送价变化值、配送费变化值和每增加1公里变化值的正负，设置为增加，则同时增加起送价、配送费和每增加1公里的值，反之则减少。</span>
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-xs-12 col-sm-3 col-md-2 control-label">起送价和配送费</label>
+			<div class="col-sm-9 col-xs-12">
+				<div class="input-group">
+					<div class="input-group-addon">起送价变化值</div>
+					<input type="number" class="form-control" name="send_price" value="{$policy['policy']['send_price']}" required>
+					<div class="input-group-addon">{$_W['Lang']['dollarSignCn']}，配送费变化值</div>
+					<input type="number" class="form-control" name="delivery_price" value="{$policy['policy']['delivery_price']}">
+					<div class="input-group-addon" required>{$_W['Lang']['dollarSignCn']}</div>
+				</div>
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-xs-12 col-sm-3 col-md-2 control-label">每增加1公里变化值</label>
+			<div class="col-sm-9 col-xs-12">
+				<div class="input-group">
+					<input type="number" class="form-control" name="pre_km_fee" value="{$policy['policy']['pre_km_fee']}" required>
+					<div class="input-group-addon">{$_W['Lang']['dollarSignCn']}</div>
+				</div>
+				<span class="help-block">此设置仅适用于按距离收取配送费的商家。如：商家A采用按距离收取配送费模式，原来每增加1公里配送费加5{$_W['Lang']['dollarSignCn']}, 此设置设置为3{$_W['Lang']['dollarSignCn']}，若变化方向为增加，则改变后的每增加1公里配送费增加 5+3=8 {$_W['Lang']['dollarSignCn']}，若变化方向为减少，则改变后的每增加1公里配送费增加 5-3=2 {$_W['Lang']['dollarSignCn']}</span>
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-xs-12 col-sm-3 col-md-2 control-label">将此策略同步到</label>
+			<div class="col-sm-9 col-xs-12 toggle-tabs" data-content=".sync-type">
+				<div class="input-group">
+					<div class="radio radio-inline">
+						<input type="radio" name="sync" value="1" id="sync-setting-1" />
+						<label for="sync-setting-1" class="toggle-role" data-target="sync-setting-1">同步到所有商户</label>
+					</div>
+					<div class="radio radio-inline">
+						<input type="radio" name="sync" value="2" id="sync-setting-2" />
+						<label for="sync-setting-2" class="toggle-role" data-target="sync-setting-type-2">同步到指定商户</label>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="toggle-content sync-type">
+			<div class="toggle-pane" id="sync-setting-type-2">
+				<div class="form-group">
+					<label class="col-xs-12 col-sm-3 col-md-2 control-label"></label>
+					<div class="col-sm-9 col-xs-12">
+						{loop $stores $store}
+						<div class="col-xs-3">
+							<div class="checkbox checkbox-inline">
+								<input type="checkbox" value="{$store['id']}" name="store_ids[]" id="sync-setting-{$store['id']}">
+								<label for="sync-setting-{$store['id']}">{$store['title']}</label>
+							</div>
+						</div>
+						{/loop}
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="form-group">
+			<div class="col-sm-9 col-xs-9 col-md-9">
+				<input type="hidden" name="token" value="{$_W['token']}">
+				<input type="submit" value="提交" class="btn btn-primary">
+			</div>
+		</div>
+	</form>
+</div>
+{/if}
+{itemplate 'public/footer'}

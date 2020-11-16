@@ -1,0 +1,74 @@
+page {
+    background: #f4f4f4;
+}
+
+.br {
+    border: 1px solid red;
+}
+
+.flex {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.page-luckier .luckier-item {
+    display: block;
+    box-sizing: border-box;
+    padding: 0 16px;
+    margin: 10px 0;
+    background-color: #fff;
+}
+
+.page-luckier .luckier-item .participant-title {
+    font-size: 12px;
+    padding: 10px 0;
+    color: #333;
+}
+
+.page-luckier .luckier-item .participant-title .plus {
+    display: inline-block;
+    padding: 0px 4px;
+    background: #ff2d4b;
+    border-radius: 2px;
+    color: #fff;
+    font-size: 10px;
+    margin-left: 5px;
+}
+
+.page-luckier .luckier-item .participant-title .prize-time {
+    color: #999;
+}
+
+.page-luckier .luckier-item .luckier-info {
+    font-size: 12px;
+    padding: 10px 0px;
+}
+
+.page-luckier .luckier-item .luckier-info .luckier-photo {
+    width: 16%;
+}
+
+.page-luckier .luckier-item .luckier-info .luckier-photo image {
+    width: 44px;
+    height: 44px;
+    border-radius: 100%;
+}
+
+.page-luckier .luckier-item .luckier-info .right {
+    width: 80%;
+    color: #999;
+}
+
+.page-luckier .luckier-item .luckier-info .right .luckier-key {
+    color: #666;
+}
+
+.page-luckier .luckier-item .luckier-info .right .luckier-value {
+    color: #000;
+}
+
+.page-luckier .luckier-item .luckier-info .right .luckier-value text {
+    color: #ff6000;
+}

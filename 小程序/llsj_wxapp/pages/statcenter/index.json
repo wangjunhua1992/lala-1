@@ -1,0 +1,6 @@
+{
+    "navigationBarTitleText": "商户统计",
+    "navigationBarBackgroundColor": "#33aafc",
+    "navigationBarTextStyle": "white",
+    "enablePullDownRefresh": true
+}

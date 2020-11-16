@@ -1,0 +1,88 @@
+<view class="kabao-detail">
+    <view class="btn-wrap van-hairline--top" wx:if="{{showFixedBtn}}">
+        <view class="btn-join">
+            <text class="icon icon-plus"></text>
+            <text class="font-16 margin-5-l ">免费加入</text>
+        </view>
+    </view>
+    <view class="content">
+        <view class="card-wrap">
+            <view class="card">
+                <view class="bg-img">
+                    <image alt="" class="img-100" src="../../static/img/vip_bg.png"></image>
+                </view>
+                <view class="store-info">
+                    <view class="logo">
+                        <image alt="" class="img-100" src="http://testlala.oss-cn-qingdao.aliyuncs.com/images/1/2019/06/RaX3TDRd5ZNfsDzdX0DzLS7d30Rda1.jpg"></image>
+                    </view>
+                    <view class="title ellipsis">鲜菜到家会员卡</view>
+                </view>
+                <view class="join">
+                    <i class="icon icon-plus font-12 margin-5-r"></i>
+                    <span class="font-16 font-500">免费加入</span>
+                </view>
+                <view class="to-store">进入商家</view>
+            </view>
+            <view class="bind">
+                <span class="font-12">支持线下会员一键绑定</span>
+                <i class="icon icon-right c-gray"></i>
+            </view>
+        </view>
+        <view class="headline">我的特权</view>
+        <view class="padding-15-lr">
+            <view class="powers van-hairline--bottom">
+                <view class="power-item" wx:for="{{6}}" wx:key="{{index}}">
+                    <text class="icon icon-bags"></text>
+                    <text class="title ellipsis">购物积分</text>
+                </view>
+            </view>
+        </view>
+        <view class="headline">使用规则</view>
+        <view class="rule">
+			使用规则富文本信息
+		</view>
+        <view class="headline nearby">附近5km(2个门店)</view>
+        <view class="stores padding-15-lr">
+            <view class="store-item {{index>0?'van-hairline--top':''}}" wx:for="{{4}}" wx:key="{{index}}">
+                <view class="logo">
+                    <image alt="" class="img-100" src="http://testlala.oss-cn-qingdao.aliyuncs.com/images/1/2019/06/RaX3TDRd5ZNfsDzdX0DzLS7d30Rda1.jpg"></image>
+                    <view class="label">品牌</view>
+                </view>
+                <view class="store-info">
+                    <view class="basic">
+                        <view class="font-500 w-100 ellipsis">鲜菜到家（蓝海市场店）</view>
+                        <view class="flex-lr font-12 w-100">
+                            <view class="flex">
+                                <view class="flex">
+                                    <text class="icon icon-favorfill c-danger font-12"></text>
+                                    <text>4.2</text>
+                                </view>
+                                <view class="margin-10-l">月售689</view>
+                            </view>
+                            <view class="flex">
+                                <view>30分钟</view>
+                                <view class="margin-10-l">1.5km</view>
+                            </view>
+                        </view>
+                        <view class="flex font-12">
+                            <text>起送￥20</text>
+                            <text class="margin-10-l">免配送费</text>
+                        </view>
+                    </view>
+                    <view class="activity-wrap">
+                        <view class="activity">
+                            <view class="activity-item active">29减6</view>
+                            <view class="activity-item active">59减12</view>
+                            <view class="activity-item">支持预定</view>
+                            <view class="activity-item">在线咨询</view>
+                        </view>
+                        <view class="icon-wrap">
+                            <text class="icon icon-unfold" wx:if="{{1}}"></text>
+                            <text class="icon icon-fold" wx:else></text>
+                        </view>
+                    </view>
+                </view>
+            </view>
+        </view>
+    </view>
+</view>

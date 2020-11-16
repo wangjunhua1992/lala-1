@@ -1,0 +1,175 @@
+<tab-bar menufooter="{{menufooter}}" wx:if="{{menufooter&&menufooter.data}}"></tab-bar>
+<view class="page-redpacketCoupon container">
+    <view class="content">
+        <view class="wrapper-list">
+            <view bind:tap="onToggleExchangeCost" class="wrapper-item" data-exchange-cost="-1">
+                <text class="item {{exchange_cost==-1?'active':''}}">每月领{{exchange_max}}个红包</text>
+            </view>
+            <view bind:tap="onToggleExchangeCost" class="wrapper-item" data-exchange-cost="1">
+                <text class="item {{exchange_cost==1?'active':''}}">奖励金兑换</text>
+            </view>
+        </view>
+        <view class="redpacket-group">
+            <block wx:if="{{exchange_cost==-1}}">
+                <view class="use-redpacket">
+                    <view class="use-redpacket-title">{{month.endday}}前可免费领红包：<text class="num">{{can_exchange}}</text>个</view>
+                    <view class="use-redpacket-list">
+                        <view class="use-redpacket-item active" wx:for="{{member_redpackets}}" wx:key="{{item.id}}">
+                            <view class="redpacket-info">
+                                <view class="price ellipsis">
+                                    <i>{{Lang.dollarSign}}</i>
+                                    <text>{{item.discount}}</text>
+                                </view>
+                                <view class="info">
+                                    <view class="font-14 ellipsis">{{item.title}}</view>
+                                    <view class="condition ellipsis" wx:if="{{item.condition>0}}">满{{item.condition}}{{Lang.dollarSignCn}}</view>
+                                    <view class="condition ellipsis" wx:elif="{{item.condition==0}}">无门槛</view>
+                                </view>
+                            </view>
+                        </view>
+                        <view class="use-redpacket-item" wx:if="{{can_exchange>0}}" wx:for="{{can_exchange}}" wx:key="{{index}}">
+                            <image alt="" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNjEiIGhlaWdodD0iNjEiPjxnIGZpbGw9Im5vbmUiIGZpbGwtcnVsZT0iZXZlbm9kZCI+PHBhdGggc3Ryb2tlPSIjRjJENDk5IiBzdHJva2Utb3BhY2l0eT0iLjkiIHN0cm9rZS13aWR0aD0iLjUiIGQ9Ik00IC4yNUEzLjc1IDMuNzUgMCAwIDAgLjI1IDR2NTNBMy43NSAzLjc1IDAgMCAwIDQgNjAuNzVoMTUzYTMuNzUgMy43NSAwIDAgMCAzLjc1LTMuNzVWNEEzLjc1IDMuNzUgMCAwIDAgMTU3IC4yNUg0eiIvPjxwYXRoIHN0cm9rZT0iI0YyRDQ5OSIgc3Ryb2tlLW9wYWNpdHk9Ii45IiBzdHJva2Utd2lkdGg9Ii41IiBkPSJNMjYgMGM2IDguMzMzIDkgMTguNSA5IDMwLjVTMzIgNTIuNjY3IDI2IDYxIi8+PHRleHQgZmlsbD0iI0YzRDhBMyIgZm9udC1mYW1pbHk9IlBpbmdGYW5nU0MtTWVkaXVtLCBQaW5nRmFuZyBTQyIgZm9udC1zaXplPSIxMyIgZm9udC13ZWlnaHQ9IjQwMCI+PHRzcGFuIHg9IjYxIiB5PSIzNiI+5b6F6aKG5Y+WPC90c3Bhbj48L3RleHQ+PC9nPjwvc3ZnPg=="></image>
+                        </view>
+                    </view>
+                </view>
+                <view class="redpacket-title" wx:if="{{!redpackets.empty}}">
+                    <view class="text flex">以下专属红包任意领</view>
+                </view>
+            </block>
+            <view class="header-bounty" wx:elif="{{exchange_cost==1}}">
+                <view class="left-header-bounty">
+                    <text>奖励金</text>
+                    <i>{{member.svip_credit1}}</i>
+                    <text>个</text>
+                </view>
+                <view bind:tap="onJsEvent" class="right-header-bounty" data-event-type="jsUrl" data-url="package/pages/svip/record">
+                    <text>兑换记录</text>
+                    <text class="icon icon-right"></text>
+                </view>
+            </view>
+            <block wx:if="{{!redpackets.empty}}">
+                <block wx:for="{{redpackets.data}}" wx:key="{{item.id}}">
+                    <view class="redpacket-item" wx:if="{{item.sid==0}}">
+                        <view class="top">
+                            <view class="left">
+                                <image alt="" src="http://cos.lalawaimai.com/we7_wmall/wxapp/svip_redpacket.png"></image>
+                                <view class="main">
+                                    <view class="name">
+                                        <h3>{{item.title}}</h3>
+                                    </view>
+                                    <view class="price">
+                                        <text>{{Lang.dollarSign}}</text>
+                                        <text class="price-num">{{item.discount}}</text>
+                                        <view wx:if="{{item.condition==0}}">无门槛红包</view>
+                                        <view wx:elif="{{item.condition>0}}">满{{item.condition}}{{Lang.dollarSignCn}}可用</view>
+                                    </view>
+                                </view>
+                            </view>
+                            <view class="right">
+                                <view class="status ellipsis" wx:if="{{exchange_cost==1&&item.exchange_cost>0}}">需<i>{{item.exchange_cost}}个</i>奖励金</view>
+                                <view bind:tap="onShowRedpacket" class="button" data-id="{{item.id}}" wx:if="{{exchange_cost==1&&item.exchange_cost>0}}">兑换</view>
+                                <view bind:tap="onShowRedpacket" class="button" data-id="{{item.id}}" wx:else>领取</view>
+                            </view>
+                        </view>
+                        <view class="bottom">
+								通用红包
+							</view>
+                    </view>
+                    <view class="store-redpacket-item" wx:elif="{{item.sid>0}}">
+                        <view class="item-header">
+                            <view class="item-left">
+                                <image alt="" src="{{item.logo}}"></image>
+                                <view class="item-main">
+                                    <view class="shop-name">
+                                        <h3>{{item.store_title}}</h3>
+                                        <text class="icon icon-right"></text>
+                                    </view>
+                                    <view class="meta">评价{{item.score}}分　月售{{item.sailed}}份</view>
+                                    <view class="price">
+                                        <text>{{Lang.dollarSign}}</text>
+                                        <text class="price-num">{{item.discount}}</text>
+                                        <view class="padding-5-l ellipsis" wx:if="{{item.condition==0}}">满任意金额可用</view>
+                                        <view class="padding-5-l ellipsis" wx:elif="{{item.condition>0}}">满{{item.condition}}{{Lang.dollarSignCn}}可用</view>
+                                    </view>
+                                </view>
+                            </view>
+                            <view class="item-right">
+                                <view class="status ellipsis" wx:if="{{exchange_cost==1&&item.exchange_cost>0}}">需<i>{{item.exchange_cost}}个</i>奖励金</view>
+                                <view bind:tap="onShowRedpacket" class="item-button" data-id="{{item.id}}" wx:if="{{exchange_cost==1&&item.exchange_cost>0}}">兑换</view>
+                                <view bind:tap="onShowRedpacket" class="item-button" data-id="{{item.id}}" wx:else>领取</view>
+                            </view>
+                        </view>
+                        <view class="item-footer flex">
+                            <view class="footer-title">优惠可叠加</view>
+                            <view class="ellipsis text" wx:if="{{item.activity&&item.activity.items&&item.activity.items.discount}}">{{item.activity.items.discount.title}}</view>
+                            <span class="ellipsis text" wx:else>暂无满减活动</span>
+                        </view>
+                    </view>
+                </block>
+                <view class="wui-loadmore wui-loadmore-nomore" wx:if="{{redpackets.loaded&&!redpackets.empty}}">
+                    <view class="wui-loadmore-tips">我是有底线的</view>
+                    <view class="wui-loadmore-line"></view>
+                </view>
+            </block>
+            <view class="wui-loadmore wui-loadmore-nomore" wx:else>
+                <view class="wui-loadmore-tips">暂无可领取红包</view>
+                <view class="wui-loadmore-line"></view>
+            </view>
+        </view>
+    </view>
+    <van-popup bind:close="onTogglePopup" position="bottom" show="{{showRedpacket}}">
+        <view class="redpacket-pop">
+            <view class="redpacket-pop-title">领取红包</view>
+            <view class="redpacket-info">
+                <view class="flex redpacket-top">
+                    <view class="price">
+                        <i>{{Lang.dollarSign}}</i>
+                        <text>{{redpacketActive.discount}}</text>
+                    </view>
+                    <view class="redpacket-left">
+                        <view class="font-15 font-bold ellipsis">{{redpacketActive.title}}</view>
+                        <view class="ellipsis redpacket-validity">满{{redpacketActive.condition>0?redpacketActive.condition+Lang.dollarSignCn:'任意金额'}}可用
+							<span>, 有效期{{redpacketActive.use_days_limit}}天</span>
+                        </view>
+                    </view>
+                </view>
+                <view class="flex redpacket-bottom" wx:if="{{redpacketActive.sid>0&&redpacketActive.activity&&redpacketActive.activity.items&&redpacketActive.activity.items.discount}}">
+                    <view class="redpacket-tips">优惠可叠加</view>
+                    <view class="font-12 c-default">{{redpacketActive.activity.items.discount.title}}</view>
+                </view>
+            </view>
+            <view class="hot-goods" wx:if="{{redpacketActive.sid>0&&redpacketActive.hot_goods&&redpacketActive.hot_goods.length>0}}">
+                <view class="flex-lr">
+                    <view class="font-14 font-bold">热销商品</view>
+                    <view bind:tap="onJsEvent" class="font-12 c-gray" data-event-type="jsUrl" data-url="pages/store/goods?sid={{redpacketActive.sid}}">查看更多商品 <span class="icon icon-right font-12"></span>
+                    </view>
+                </view>
+                <view class="goods-list flex margin-10-t">
+                    <view bind:tap="onJsEvent" class="goods-item" data-event-type="jsUrl" data-url="pages/store/goodsDetail?sid={{redpacketActive.sid}}&id={{item.id}}" wx:for="{{redpacketActive.hot_goods}}" wx:key="{{item.id}}">
+                        <image alt="" src="{{item.thumb}}"></image>
+                        <view class="goods-title">{{item.title}}</view>
+                        <view class="goods-price">
+                            <i>{{Lang.dollarSign}}</i>
+                            <text>{{item.price}}</text>
+                        </view>
+                    </view>
+                </view>
+            </view>
+            <van-button block bind:tap="onExchange" data-redpacket="{{redpacketActive}}" disabled="{{!islegal||exchange_cost==1&&redpacketActive.exchange_cost>member.svip_credit1}}" size="normal">
+                <block wx:if="{{exchange_cost==1&&redpacketActive.exchange_cost>member.svip_credit1}}">
+					余额不足(需{{redpacketActive.exchange_cost}}个奖励金)
+				</block>
+                <block wx:else>
+                    <block wx:if="{{exchange_cost==1}}">
+						立即兑换(需{{redpacketActive.exchange_cost}}个奖励金)
+					</block>
+                    <block wx:elif="{{exchange_cost==-1}}">
+						立即领取
+					</block>
+                </block>
+            </van-button>
+            <view class="bounty">奖励金余额：{{member.svip_credit1}}个</view>
+        </view>
+    </van-popup>
+</view>
+<include src="../../../pages/public/footer.wxml"></include>

@@ -1,0 +1,107 @@
+page {
+    background-color: #f4f4f4;
+}
+
+.page-order .weui-cells navigator:first-child .weui-cell {
+    border-top: 1px solid #E5E5E5;
+}
+
+.page-order .wui-tab {
+    width: 100%;
+    position: fixed;
+    top: 0px;
+    z-index: 100;
+}
+
+.page-order .wui-tab .wui-tab-bd {
+    width: 100%;
+}
+
+.page-order .weui-cells {
+    margin-top: 55px;
+    border: 0px;
+}
+
+.page-order .weui-cells::after {
+    border: 0px;
+}
+
+.page-order .weui-cells::before {
+    border: 0px;
+}
+
+.page-order .weui-cells .weui-cell__bd .order-number {
+    font-size: 14px;
+}
+
+.page-order .weui-cells .weui-cell__bd .order-time {
+    font-size: 14px;
+    color: #ccc;
+}
+
+.page-order .weui-cells .weui-cell__ft .order-sum {
+    font-size: 14px;
+    color: #666;
+    text-align: left;
+}
+
+.page-order .weui-cells .weui-cell__ft .order-status {
+    font-size: 14px;
+    text-align: left;
+}
+
+.page-order .weui-cells .weui-cell__ft {
+    padding-right: 5px;
+}
+
+.page-order .weui-cells .icon-right {
+    font-size: 14px;
+    color: #CCC;
+}
+
+.page-order .weui-cells .weui-cell {
+    position: relative;
+}
+
+.page-order .weui-cells .weui-cell .mark {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    z-index: 1;
+    background-color: #2FE964;
+    font-size: 12px;
+    color: white;
+    width: 45px;
+    height: 18px;
+    line-height: 18px;
+    text-align: center;
+}
+
+.page-order .weui-cells .weui-cell .mark-danger {
+    background-color: red;
+}
+
+.page-detail .weui-cells::before {
+    border: 0px;
+}
+
+.page-detail .weui-cells {
+    margin-top: 10px;
+}
+
+.page-detail .weui-cells::after {
+    border: 0px;
+}
+
+.page-detail .weui-cell::before {
+    border: 0px;
+}
+
+.page-detail .weui-cells .weui-cell .weui-cell__bd {
+    font-size: 16px;
+}
+
+.page-detail .weui-cells .weui-cell .weui-cell__ft {
+    font-size: 15px;
+    color: #666;
+}

@@ -1,0 +1,40 @@
+@import "../../../nmy/0.wxss";
+
+page {
+    background-color: #F5F5F5;
+    font-size: 14px;
+    line-height: 1;
+}
+
+.haodian-settle .van-cell-group {
+    margin-top: 10px;
+}
+
+.haodian-settle .submit {
+    margin-top: 20px;
+    padding: 0 15px;
+}
+
+.haodian-settle .email-img {
+    position: absolute;
+    height: 32px;
+    width: 90px;
+    top: 60px;
+    right: 15px;
+    z-index: 99;
+}
+
+.haodian-settle .email-img image {
+    width: 100%;
+    height: 100%;
+}
+
+.haodian-settle .list-password {
+    z-index: 99;
+    position: absolute;
+    top: 107px;
+    right: 15px;
+    font-size: 14px;
+    color: #888;
+    line-height: 24px;
+}

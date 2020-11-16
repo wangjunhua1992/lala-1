@@ -1,0 +1,124 @@
+.tiezi .tiezi-item {
+    box-sizing: border-box;
+    padding: 10px;
+    background-color: #fff;
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+
+.tiezi .tiezi-item .left {
+    width: 40px;
+}
+
+.tiezi .tiezi-item .right {
+    flex: 1;
+    padding-left: 10px;
+}
+
+.tiezi .tiezi-item .avatar {
+    width: 40px;
+    height: 40px;
+    font-size: 0px;
+}
+
+.tiezi .tiezi-item .avatar image {
+    border-radius: 50px;
+}
+
+.tiezi .tiezi-item .tag-top {
+    background-color: #ff2d4b;
+    color: #fff;
+    font-size: 10px;
+    padding: 3px 5px;
+    border-radius: 3px;
+    margin-right: 5px;
+}
+
+.tiezi .tiezi-item .tag-cate {
+    background-color: #FFE0E5;
+    color: #ff2d4b;
+    font-size: 10px;
+    padding: 3px 10px;
+    border-radius: 3px;
+    margin-right: 5px;
+}
+
+.tiezi .tiezi-item .nickname {
+    max-width: 100px;
+}
+
+.tiezi .tiezi-item .tags {
+    display: flex;
+    flex-flow: row wrap;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.tiezi .tiezi-item .tags .tag-item {
+    font-size: 10px;
+    color: #ff2d4b;
+    border: 1px solid #ff2d4b;
+    padding: 3px 5px;
+    border-radius: 3px;
+    margin: 5px 5px 0 0;
+}
+
+.tiezi .tiezi-item .tiezi-info {
+    padding-left: 50px;
+}
+
+.tiezi .tiezi-item .tiezi-info .text {
+    line-height: 1.5;
+    margin: 7px 0;
+}
+
+.tiezi .tiezi-item .tiezi-info .text.showsome {
+    max-height: 42px;
+    overflow: hidden;
+}
+
+.tiezi .tiezi-item .thumbs {
+    width: 100%;
+    margin: 5px -10px -5px -5px;
+    display: flex;
+    flex-flow: row wrap;
+    align-items: center;
+}
+
+.tiezi .tiezi-item .thumbs .thumb-item {
+    width: 25%;
+    box-sizing: border-box;
+    height: 70px;
+    padding: 5px;
+    overflow: hidden;
+    position: relative;
+}
+
+.tiezi .tiezi-item .thumbs .thumb-item .thumb-num {
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    bottom: 5px;
+    right: 5px;
+    background-color: rgba(0,0,0,0.6);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    border-radius: 3px;
+}
+
+.tiezi .tiezi-item .btn-group {
+    display: flex;
+    flex-flow: row wrap;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.tiezi .tiezi-item .btn-group .btn-item {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    margin: 10px 0 0 10px;
+}

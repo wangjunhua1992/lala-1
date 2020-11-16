@@ -1,0 +1,41 @@
+<failed-tips failedTips="{{failedTips}}" wx:if="{{!getLocationStatus}}"></failed-tips>
+<view class="home-allcategory">
+    <view class="content">
+        <view class="allcategory-wrap">
+            <scroll-view class="tab-list" scrollIntoView="tag-{{tabActive}}" scrollWithAnimation="true" scrollY="true">
+                <view bind:tap="onToggleTab" class="tab-item {{index==tabActive?'active':''}}" data-index="{{index}}" id="tag-{{index}}" wx:for="{{allcategory}}" wx:key="{{index}}">
+                    <view class="category-name">{{item.title}}</view>
+                    <text class="category-num">{{item.store_num}}</text>
+                </view>
+            </scroll-view>
+            <scroll-view bindscroll="onScroll" class="goods-list" scrollIntoView="{{containerActive}}" scrollWithAnimation="true" scrollY="true">
+                <view class="goods-info" id="childcategory-container-{{index}}" wx:for="{{allcategory}}" wx:key="{{index}}">
+                    <view class="goods-title flex-lr">
+                        <view class="font-15">{{item.title}}</view>
+                        <view bind:tap="onJsEvent" class="font-13 c-gray" data-event-type="jsUrl" data-url="pages/home/category?cid={{item.id}}">去频道 <text class="icon icon-right"></text>
+                        </view>
+                    </view>
+                    <view class="goods-group">
+                        <block wx:if="{{item.child}}">
+                            <view class="goods-wrap" wx:for="{{item.child}}" wx:for-item="childItem" wx:key="{{childItem.id}}">
+                                <view bind:tap="onJsEvent" class="goods-item" data-event-type="jsUrl" data-url="pages/home/category?cid={{item.id}}&child_id={{childItem.id}}">
+                                    <image alt="" src="{{childItem.thumb}}"></image>
+                                    <view class="goods-name">{{childItem.title}}</view>
+                                    <text class="goods-num">{{childItem.store_num}}</text>
+                                </view>
+                            </view>
+                        </block>
+                        <view class="goods-wrap" wx:else>
+                            <view bind:tap="onJsEvent" class="goods-item" data-event-type="jsUrl" data-url="pages/home/category?cid={{item.id}}">
+                                <image alt="" src="{{item.thumb}}"></image>
+                                <view class="goods-name">{{item.title}}</view>
+                                <text class="goods-num">{{item.store_num}}</text>
+                            </view>
+                        </view>
+                    </view>
+                </view>
+            </scroll-view>
+        </view>
+    </view>
+</view>
+<include src="../public/footer.wxml"></include>

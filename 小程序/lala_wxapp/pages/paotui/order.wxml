@@ -1,0 +1,62 @@
+<tab-bar menufooter="{{menufooter}}" wx:if="{{menufooter&&menufooter.data}}"></tab-bar>
+<view class="container">
+    <view class="content">
+        <view class="order-list" wx:if="{{!orders.empty}}">
+            <view class="list-item" wx:for="{{orders.data}}" wx:key="{{item.id}}">
+                <view bind:tap="onJsEvent" class="order-title" data-event-type="jsUrl" data-url="pages/paotui/diy?id={{item.order_cid}}">
+                    <view class="order-title-group">
+                        <image src="{{item.thumb}}" wx:if="{{item.thumb}}"></image>
+                        <span class="category-title">{{item.title}}</span>
+                        <span class="icon icon-right"></span>
+                    </view>
+                </view>
+                <view bind:tap="onJsEvent" class="order-info border-1px-t" data-event-type="jsUrl" data-url="pages/paotui/detail?id={{item.id}}">
+                    <view class="left">
+                        <view class="title">购买商品：{{item.goods_name}}</view>
+                        <view class="date">{{item.addtime}}</view>
+                    </view>
+                    <view class="right">
+                        <view class="price">{{Lang.dollarSign}} {{item.final_fee}}</view>
+                        <view class="status">{{item.order_status}}</view>
+                    </view>
+                </view>
+                <view class="order-btn border-1px-t" wx:if="{{item.status<3||item.refund_status>0}}">
+                    <view bind:tap="onJsEvent" class="order-btn-item" data-confirm="确定取消订单吗?" data-event-type="jsPost" data-href="errander/order/cancel?id={{item.id}}" data-success-url="detail?id={{item.id}}" wx:if="{{item.status==1}}">取消订单</view>
+                    <view bind:tap="onJsEvent" class="order-btn-item" data-event-type="jsPay" data-order-id="{{item.id}}" data-order-type="errander" data-success-url="detail?id={{item.id}}" wx:if="{{item.is_pay==0&&item.status!=3&&item.status!=4}}">立即支付</view>
+                    <block wx:if="{{item.status==2}}">
+                        <view bind:tap="onJsEvent" class="order-btn-item border-1px-r" data-confirm="确定已收到商品吗?" data-event-type="jsPost" data-href="errander/order/end?id={{item.id}}" data-success-url="detail?id={{item.id}}">确认收货</view>
+                        <view bind:tap="onCallDeliveryer" class="order-btn-item" data-id="{{item.id}}" data-mobile="{{item.deliveryer.mobile}}" data-ordersn="{{item.order_sn}}" wx:if="{{item.data&&item.data.yinsihao_status==1}}">联系骑士</view>
+                        <view bind:tap="onJsEvent" class="order-btn-item" data-event-type="jsPhone" data-phonenumber="{{item.deliveryer.mobile}}" wx:else>联系骑士</view>
+                    </block>
+                </view>
+            </view>
+        </view>
+        <view class="no-data" wx:else>
+            <image class="no-coupon" src="http://cos.lalawaimai.com/we7_wmall/wxapp/coupon_no_con.png"></image>
+            <text class="no-record">您没有订单哦</text>
+        </view>
+        <view class="weui-loadmore" wx:if="{{showloading}}">
+            <view class="weui-loading"></view>
+            <view class="weui-loadmore__tips">正在加载中</view>
+        </view>
+    </view>
+    <view class="wui-dialog {{yinsihao.status==1?'wui-dialog-show':''}} wui-dialog-yinsihao">
+        <view class="wui-dialog-mask"></view>
+        <view class="wui-dialog-container">
+            <view class="dialog-title">顾客号码保护中</view>
+            <view class="dialog-content">
+                <view class="call-mobile">
+                    <text class="secret-mobile">{{yinsihao.secret_mobile}}</text>
+                    <text>转</text>
+                    <text class="extension">{{yinsihao.extension}}</text>
+                </view>
+                <view class="call-tips">拨打{{yinsihao.secret_mobile}}接通后, 输入{{yinsihao.extension}}#即可</view>
+            </view>
+            <view class="dialog-footer border-1px-t">
+                <view bind:tap="onToggleYinsihaoStatus" class="dialog-btn border-1px-r">取消</view>
+                <view bind:tap="onCallSecretMobile" class="dialog-btn">立即联系</view>
+            </view>
+        </view>
+    </view>
+</view>
+<include src="../public/footer.wxml"></include>

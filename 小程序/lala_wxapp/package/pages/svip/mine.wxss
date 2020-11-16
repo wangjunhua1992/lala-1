@@ -1,0 +1,363 @@
+page {
+    background-color: #F5F5F5;
+    font-size: 14px;
+    line-height: 1;
+}
+
+.padding-5-t {
+    padding-top: 5px;
+}
+
+.svip-mine .svip-header {
+    background-image: linear-gradient(-8deg,hsla(0,0%,93%,0),hsla(0,0%,92%,0) 25%,#14110f 25.1%,#14110f);
+    background-size: 100% 70%;
+    background-repeat: no-repeat;
+    color: #e7b986;
+    padding: 15px;
+    box-sizing: border-box;
+}
+
+.svip-mine .svip-header .avatar {
+    width: 40px;
+    height: 40px;
+}
+
+.svip-mine .svip-header .avatar image {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+}
+
+.svip-mine .svip-header .user-title {
+    font-size: 20px;
+    font-weight: 500;
+}
+
+.svip-mine .svip-header .member-info {
+    flex: 1;
+}
+
+.svip-mine .svip-header .member-info .icon-question1 {
+    padding-left: 3px;
+    opacity: .6;
+}
+
+.svip-mine .svip-header .pay-button {
+    background: none;
+    border-radius: 50px;
+    border: 1px solid #f2d499;
+    color: #f2d499;
+    font-size: 13px;
+    padding: 4px 10px;
+}
+
+.svip-mine .svip-header .discounts-group {
+    position: relative;
+    margin-bottom: 20px;
+    z-index: 1;
+}
+
+.svip-mine .svip-header .discounts-group .discounts-list {
+    background-image: linear-gradient(90deg,#f5e3c1,#f2d499);
+    color: rgba(64,33,10,.8);
+    border-radius: 8px;
+    box-shadow: 0 2px 4px 0 rgba(0,0,0,.03);
+    background-color: #fff;
+    padding: 10px;
+    background-position: 50%;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    box-sizing: border-box;
+}
+
+.svip-mine .svip-header .discounts-group .discounts-list:after {
+    content: "";
+    position: absolute;
+    width: 0;
+    height: 0;
+    border: 5px solid transparent;
+    border-bottom-color: #29211b;
+    bottom: -1px;
+    left: 45px;
+}
+
+.svip-mine .svip-header .discounts-group .discounts-list .discounts-item {
+    padding-left: 10px;
+    flex-direction: column;
+    width: 33.333%;
+    align-items: flex-start;
+}
+
+.svip-mine .svip-header .discounts-group .discounts-list .discounts-item .num {
+    font-weight: 800;
+    margin: 5px 0;
+    font-size: 12px;
+}
+
+.svip-mine .svip-header .discounts-group .discounts-list .discounts-item .num text {
+    font-size: 26px;
+}
+
+.svip-mine .svip-header .discounts-group .discounts-list .discounts-item .discounts-but {
+    display: inline-block;
+    padding: 3px 15px;
+    border-radius: 50px;
+    font-weight: 800;
+    background-size: 110% 110%;
+    min-width: 16vw;
+    font-size: 12px;
+    background-image: linear-gradient(90deg,#d2974f,#b27739);
+    color: #fff;
+    box-sizing: border-box;
+}
+
+.svip-mine .svip-header .discounts-group .notice {
+    background-color: #29211b;
+    position: absolute;
+    width: 100%;
+    height: 38px;
+    left: 0;
+    bottom: -20px;
+    z-index: -1;
+    border-radius: 0 0 8px 8px;
+}
+
+.svip-mine .svip-header .discounts-group .notice .notice-group {
+    color: #fff;
+    margin-top: 20px;
+    font-size: 13px;
+    padding: 0 10px;
+    line-height: 18px;
+    display: flex;
+    align-items: center;
+    box-sizing: border-box;
+}
+
+.svip-mine .svip-header .discounts-group .notice .notice-group .icon {
+    color: #f2d499;
+    padding-right: 5px;
+}
+
+.svip-mine .svip-body {
+    border-radius: 8px;
+    box-shadow: 0 2px 4px 0 rgba(0,0,0,.03);
+    background-color: #fff;
+    border: 1px solid rgba(0,0,0,.08);
+    padding: 10px;
+    background-position: 50%;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    height: 100%;
+    overflow: hidden;
+    margin-bottom: 15px;
+    box-sizing: border-box;
+}
+
+.svip-mine .svip-body:last-child {
+    margin-bottom: 0;
+}
+
+.svip-mine .svip-body .activity-item:last-child .activity-right,.svip-mine .svip-body .activity-item:last-child .activity-right {
+    border: none;
+}
+
+.svip-mine .svip-body .activity-item {
+    overflow: hidden;
+    padding-top: 10px;
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.svip-mine .svip-body .activity-item .activity-left {
+    padding-bottom: 15px;
+}
+
+.svip-mine .svip-body .activity-item .activity-left image {
+    width: 36px;
+    height: 36px;
+}
+
+.svip-mine .svip-body .activity-item .activity-right {
+    width: 100%;
+    padding-left: 10px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid hsla(0,0%,93%,.5);
+}
+
+.svip-mine .svip-body .activity-item .activity-right .activity-info {
+    width: 70%;
+    font-size: 12px;
+    color: #999;
+    line-height: 1.5;
+}
+
+.svip-mine .svip-body .activity-item .activity-price {
+    width: 30%;
+    text-align: center;
+}
+
+.svip-mine .svip-body .activity-item .activity-price .activity-btn {
+    display: inline-block;
+    padding: 4px 15px;
+    font-size: 13px;
+    border-radius: 50px;
+    color: #594519;
+    background-image: linear-gradient(90deg,#faeaa7,#d4b96a);
+    background-size: 110% 110%;
+    width: 70px;
+    margin-top: 5px;
+    box-sizing: border-box;
+}
+
+.svip-mine .svip-body .redpacket-list {
+    overflow: hidden;
+    height: 90px;
+    overflow-x: auto;
+}
+
+.svip-mine .svip-body .redpacket-list .redpacket-item {
+    flex-shrink: 0;
+    color: #333;
+    background-color: #fef9f0;
+    flex-direction: column;
+    margin-right: 4px;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+.svip-mine .svip-body .redpacket-list .redpacket-item .redpacket-title {
+    display: flex;
+    width: 100%;
+    height: 30px;
+}
+
+.svip-mine .svip-body .redpacket-list .redpacket-item .redpacket-title .price {
+    width: 40%;
+    overflow: hidden;
+}
+
+.svip-mine .svip-body .redpacket-list .redpacket-item .redpacket-title .price i {
+    font-style: normal;
+    font-size: 12px;
+    line-height: 17px;
+    float: left;
+}
+
+.svip-mine .svip-body .redpacket-list .redpacket-item .redpacket-title .price text {
+    margin-right: 5px;
+    font-size: 32px;
+    line-height: 30px;
+}
+
+.svip-mine .svip-body .redpacket-list .redpacket-item .redpacket-title .info {
+    width: 60%;
+}
+
+.svip-mine .svip-body .redpacket-list .redpacket-item .redpacket-title .info .condition {
+    color: #999;
+    font-size: 12px;
+    padding-top: 5px;
+}
+
+.svip-mine .svip-body .redpacket-list .redpacket-item .redpacket-but {
+    margin-top: 10px;
+    width: 128px;
+    height: 26px;
+    line-height: 18px;
+    background: #f2d499;
+    padding: 4px 15px;
+    font-size: 12px;
+    border-radius: 50px;
+    font-weight: 800;
+    color: rgba(64,33,10,.8);
+    background-size: 110% 110%;
+    text-align: center;
+    box-sizing: border-box;
+}
+
+.svip-mine .svip-body .vip-privilege {
+    width: 325px;
+    height: 64px;
+}
+
+.svip-mine .svip-body .goods-list .goods-item {
+    margin-bottom: 15px;
+}
+
+.svip-mine .svip-body .goods-list .goods-item:last-child {
+    margin-bottom: 0px;
+}
+
+.svip-mine .svip-body .goods-list .goods-img {
+    width: 100px;
+    height: 100px;
+    margin-right: 10px;
+    border: none;
+}
+
+.svip-mine .svip-body .goods-list .goods-img image {
+    width: 100%;
+    height: 100%;
+}
+
+.svip-mine .svip-body .goods-list .goods-info {
+    display: flex;
+    flex: 1;
+    justify-content: space-between;
+    flex-direction: column;
+    height: 100px;
+}
+
+.svip-mine .svip-body .goods-list .goods-info .goods-discount {
+    margin-top: 5px;
+    height: 15px;
+    line-height: 15px;
+    width: 55px;
+    background-color: #29211b;
+    color: #ffefa6;
+    font-size: 12px;
+    border-radius: 3px;
+    text-align: center;
+}
+
+.svip-mine .svip-body .goods-list .goods-info .goods-but {
+    padding: 4px 15px;
+    font-size: 13px;
+    border-radius: 50px;
+    font-weight: 800;
+    color: rgba(64,33,10,.8);
+    background: #f2d499;
+    background-size: 110% 110%;
+}
+
+.svip-mine .svip-body .tequan-list {
+    display: flex;
+    justify-content: space-between;
+    padding: 7.5px;
+    background-color: #fff;
+}
+
+.svip-mine .svip-body .tequan-list .tequan-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex: 1;
+}
+
+.svip-mine .svip-body .tequan-list .tequan-item image {
+    display: block;
+    width: 52.9px;
+    height: 52.9px;
+}
+
+.svip-mine .svip-body .tequan-list .tequan-item text {
+    margin-top: 3px;
+    color: #999;
+    font-size: 12px;
+    line-height: 16px;
+}

@@ -1,0 +1,234 @@
+page {
+    background-color: #fff;
+    font-size: 14px;
+    line-height: 1;
+    box-sizing: border-box;
+}
+
+.btn-wrap~.content {
+    padding-bottom: 74px;
+}
+
+.headline {
+    padding: 15px;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.headline.nearby {
+    padding-bottom: 0px;
+}
+
+.card-wrap {
+    padding: 15px 15px 0 15px;
+}
+
+.card-wrap .card {
+    position: relative;
+    width: 100%;
+    height: 200px;
+    margin-bottom: 37px;
+}
+
+.card-wrap .card .bg-img {
+    width: 100%;
+    height: 100%;
+    font-size: 0px;
+}
+
+.card-wrap .card .join {
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    transform: translate(-50%,50%);
+    width: 40%;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 100px;
+    color: #fff;
+    background-color: #FF2D4B;
+}
+
+.card-wrap .card .to-store {
+    position: absolute;
+    right: 20px;
+    top: 20px;
+    padding: 7px 15px;
+    border-radius: 50px;
+    font-size: 13px;
+    color: #fff;
+    background-color: rgba(255,255,255,0.2);
+}
+
+.card-wrap .card .store-info {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    right: 0;
+    color: #fff;
+}
+
+.card-wrap .card .store-info .logo {
+    width: 44px;
+    height: 44px;
+    border-radius: 3px;
+    overflow: hidden;
+}
+
+.card-wrap .card .store-info .title {
+    position: absolute;
+    top: 0px;
+    right: 100px;
+    left: 60px;
+    height: 44px;
+    line-height: 44px;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.card-wrap .bind {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #666;
+}
+
+.card-wrap .bind .icon {
+    margin-left: 5px;
+    font-size: 12px;
+    line-height: 12px;
+}
+
+.powers {
+    display: flex;
+    flex-flow: row wrap;
+    align-items: center;
+}
+
+.powers .power-item {
+    width: 25%;
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    justify-content: center;
+    padding-bottom: 15px;
+}
+
+.powers .power-item .icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid rgba(255,45,75,0.3);
+    font-size: 22px;
+    color: #ff2d4b;
+}
+
+.powers .power-item .title {
+    max-width: 95%;
+}
+
+.rule {
+    padding: 0 15px;
+    overflow-x: hidden;
+}
+
+.stores .store-item {
+    position: relative;
+    padding: 15px 0;
+}
+
+.stores .store-item .logo {
+    position: absolute;
+    top: 15px;
+    left: 0;
+    width: 80px;
+    height: 60px;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.stores .store-item .logo .label {
+    position: absolute;
+    right: 0;
+    top: 0;
+    z-index: 1;
+    padding: 2px 3px;
+    font-size: 12px;
+    color: #fff;
+    background-color: #ff2d4b;
+    border-radius: 0 0 0 5px;
+}
+
+.stores .store-item .store-info {
+    margin-left: 90px;
+}
+
+.stores .store-item .store-info .basic {
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: flex-start;
+    justify-content: space-between;
+    height: 60px;
+    width: 100%;
+}
+
+.stores .store-item .activity-wrap {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 5px;
+}
+
+.stores .store-item .activity {
+    width: 90%;
+    display: flex;
+    flex-flow: row wrap;
+    align-items: center;
+}
+
+.stores .store-item .activity .activity-item {
+    padding: 0 3px;
+    border-radius: 3px;
+    margin: 5px 5px 0 0;
+    height: 17px;
+    line-height: 15px;
+    font-size: 12px;
+    color: #666;
+    border: 1px solid #EEEEED;
+}
+
+.stores .store-item .activity .activity-item.active {
+    color: #ff2d4b;
+    border-color: rgba(255,45,75,0.3);
+}
+
+.stores .store-item .icon-wrap {
+    width: 10%;
+    padding-top: 6px;
+    text-align: right;
+    color: #999;
+}
+
+.btn-wrap {
+    position: fixed;
+    z-index: 10;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: #fff;
+    padding: 15px;
+}
+
+.btn-wrap .btn-join {
+    height: 44px;
+    line-height: 44px;
+    text-align: center;
+    border-radius: 50px;
+    background-color: #ff2d4b;
+    color: #fff;
+}

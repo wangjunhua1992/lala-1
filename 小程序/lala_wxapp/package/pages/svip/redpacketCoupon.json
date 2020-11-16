@@ -1,0 +1,15 @@
+{
+    "navigationBarTitleText": "超级会员红包券",
+    "navigationBarTextStyle": "white",
+    "navigationBarBackgroundColor": "#272320",
+    "usingComponents": {
+        "van-popup": "/library/vant/popup/index",
+        "van-button": "/library/vant/button/index",
+        "van-cell": "/library/vant/cell/index",
+        "van-cell-group": "/library/vant/cell-group/index",
+        "van-row": "/library/vant/row/index",
+        "van-col": "/library/vant/col/index",
+        "van-rate": "/library/vant/rate/index",
+        "tab-bar": "/components/tabBar"
+    }
+}

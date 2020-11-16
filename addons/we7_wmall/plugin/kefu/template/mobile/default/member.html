@@ -1,0 +1,185 @@
+{itemplate 'public/header'}
+	<link rel="stylesheet" href="{php echo WE7_WMALL_LOCAL}static/js/components/layui/css/layui.mobile.css">
+	<script src="{php echo WE7_WMALL_LOCAL}static/js/components/layui/layui.js"></script>
+	<div class="page"></div>
+	<script type="text/javascript">
+		layui.config({
+			version: true
+		}).use('mobile', function(){
+			var mobile = layui.mobile
+				,layim = mobile.layim
+				,layer = mobile.layer;
+			var islegal = false
+			window.sysinfo = {
+				uniacid: "{$_W['uniacid']}",
+				siteroot: "{$_W['siteroot']}",
+				fans: {php echo json_encode($fans)},
+				cservice: {php echo json_encode($cservice)},
+				chat: {php echo json_encode($chat)}
+			}
+
+			var ws = new WebSocket("ws://127.0.0.1:2345");
+
+			//WebSocket连接成功之后触发
+			ws.onopen = function(e) {
+				console.log(e)
+				console.log('websocket init success');
+			};
+
+			ws.onerror = function(e) {
+				console.log('webSocket connect error');
+			};
+
+			ws.onclose = function(e) {
+				console.log('webSocket has closed');
+			}
+
+			ws.onmessage = function(e){
+				var data = eval("("+e.data+")");
+				switch(data.type) {
+					case 'connect':
+						var result = data.data;
+						var bindUrl = "{php echo imurl('kefu/bind/member');}";
+						$.post(bindUrl, {
+							client_id: result.clientId
+						}, function(data){
+						}, 'json');
+						break;
+
+					case 'message':
+						var result = data.data;
+						console.log(result);
+						return;
+						break;
+
+					case 'close':
+						console.log('会话已关闭')
+						layim.getMessage({
+							system: true //系统消息
+							,id: data.data.id //聊天窗口ID
+							,type: data.data.type //聊天窗口类型
+							,content: data.data.content
+						});
+						break;
+
+					case 'none':
+						console.log('客服已下线');
+						layim.getMessage({
+							system: true //系统消息
+							,id: data.data.id //聊天窗口ID
+							,type: data.data.type //聊天窗口类型
+							,content: data.data.content
+						});
+						break;
+
+					case 'uidError':
+						console.log('身份信息错误');
+						//window.location.href = "{php echo ivurl('pages/home/index', array(), true)}";
+						break;
+
+					default:
+
+				}
+			};
+
+			//监听发送消息
+			layim.on('sendMessage', function(data){
+				if(ws.readyState == 1) {
+					var content = data.mine.content;
+					layim.addchat(content, 'text');
+				} else {
+					alert('websocket链接已关闭')
+					//断开连接后，再发送消息时websocket重新连接
+				}
+			});
+
+			layim.sendParamsDeal = function(params) {
+				var temp = {
+					uniacid: window.sysinfo.uniacid,
+					siteroot: window.sysinfo.siteroot,
+				};
+				return Object.assign(temp, params);
+			};
+
+			//发送消息到数据库
+			layim.addchat = function(content, type) {
+				if(!islegal) {
+					return false;
+				}
+				islegal = false;
+				var cservice = window.sysinfo.cservice;
+				var chat = window.sysinfo.chat
+				var data = {
+					toopenid: cservice.token,
+					content: content,
+					chat_id: chat.id,
+					type: type,
+					token: "{$_W['token']}",
+					submit: 1,
+				};
+				$.ajax({
+					url: "{php echo imurl('kefu/member/addchat')}",
+					type: 'post',
+					data: data,
+					dataType: 'json',
+					success:function(data){
+						console.log(data)
+						if(data.error == 0){
+							/*var returnmsg = replace_em(data.content);
+							returnmsg = '<div class="time text-c">'+data.datetime+'</div>'
+								+'<div class="right flex">'
+								+'<img src="{$hasfanskefu['fansavatar']}" class="avatar" />'
+							+'<div class="con flex flex1">'
+							+'<div class="triangle-right"></div>'
+							+ returnmsg
+							+'<div class="flex1"></div>'
+							+'</div>'
+							+'</div>';
+							$('#chatcon').append(returnmsg).animate({scrollTop:10000000},300);
+							$('#chatcontent').val("");
+
+							if(data.jqr == 1){
+								if(data.hftype == 0){
+									data.jqrcontent = data.jqrcontent;
+								}else{
+									data.jqrcontent = '<img src="'+data.jqrcontent+'" class="sssbbb" />';
+								}
+								var jrqmsg = '<div class="time text-c">'+data.jqrtime+'</div>'
+									+'<div class="left flex">'
+									+'<img src="'+data.jqravatar+'" class="avatar" />'
+									+'<div class="con flex flex1">'
+									+'<div class="triangle-left"></div>'
+									+'<div class="concon">'+data.jqrcontent+'</div>'
+									+'<div class="flex1"></div>'
+									+'</div>'
+									+'</div>';
+								$('#chatcon').append(jrqmsg).animate({scrollTop:10000000},300);
+							}*/
+
+							/*$.ajax({
+								url:sendurl,
+								type:'get',
+								data:{
+									content:content,
+									msgtype:type,
+									toopenid:uid,
+									newnickname:'{$hasfanskefu["fansnickname"]}',
+									newavatar:'{$hasfanskefu["fansavatar"]}',
+									chatid: data.chatid,
+								},
+								dataType:'jsonp',
+								success:function(data){
+								}
+							});*/
+						}else{
+							$.alert(data.msg);
+						}
+						islegal = true;
+					}
+				});
+			}
+		});
+
+	</script>
+{itemplate 'public/footer'}
+

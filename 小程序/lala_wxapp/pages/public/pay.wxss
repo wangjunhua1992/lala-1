@@ -1,0 +1,169 @@
+page {
+    background: #f4f4f4;
+}
+
+.container swiper {
+    margin-bottom: 10px;
+    height: 80px;
+}
+
+.container swiper image {
+    width: 100%;
+    height: 100%;
+}
+
+.container .time-box {
+    text-align: center;
+    padding-bottom: 10px;
+    background: #F9F9FB;
+    padding-top: 15px;
+}
+
+.container .time-box .text {
+    font-size: 12px;
+}
+
+.container .time-box .time view {
+    display: inline-block;
+    font-size: 13px;
+    width: 20px;
+    height: 20px;
+    background: #646466;
+    color: #fff;
+    margin-right: 5px;
+    border-radius: 2px;
+}
+
+.container .time-box .time text {
+    font-size: 13px;
+    margin-right: 5px;
+}
+
+.container .goods-box {
+    padding: 15px 0;
+    margin-left: 0;
+    background: #f5f5f5 url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAACoCAMAAADXXz4xAAAANlBMVEUAAAAAAAADAwPY2NgAAADW1tbW1tbV1dXLy8vJycmzs7P5+fzz8/bY2Nj29vnw8PPn5+js7O3T+1eAAAAAC3RSTlMABQnwDOrhwHttMndfXogAAABzSURBVEjH7Y5LDoAgDAWfFb9FwPtfVggJYNKVbt9s2ky7GFwG0IofJwynMJzCcArDeRhOYTiF4ZSd7GQnO9nJTnayk53sZCc7f3WGEGLI1IlYXJpfIJW/xTlpOIf5Vp92mQYE53atR3Zo5H0S6aofMvjKA/hMjNDyVF7rAAAAAElFTkSuQmCC) repeat-x 0 0;
+    background-size: auto 100%;
+    box-sizing: border-box;
+    justify-content: center;
+}
+
+.container .goods-box .pic {
+    width: 50px;
+    height: 50px;
+}
+
+.container .goods-box .pic image {
+    width: 100%;
+    height: 100%;
+    border-radius: 100%;
+}
+
+.container .goods-box .right {
+    padding-left: 20px;
+}
+
+.container .goods-box .price {
+    font-size: 20px;
+    display: inline-block;
+    border-bottom: 1px dotted #e0e0e0;
+}
+
+.container .goods-box .note {
+    font-size: 14px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.container .goods-box .note view {
+    display: inline-block;
+    border-bottom: 1px dotted #e0e0e0;
+}
+
+.container .pay-box {
+    margin-top: 10px;
+    background: #fff;
+}
+
+.container .pay-box radio {
+    width: 100%;
+    height: 60px;
+    text-align: right;
+    box-sizing: border-box;
+    padding-right: 10px;
+    position: relative;
+    line-height: 50px;
+}
+
+.container .radio-text {
+    position: absolute;
+    top: 12.5px;
+    left: 75px;
+}
+
+.container .radio-text .title {
+    font-size: 14px;
+    color: #333;
+    line-height: 1;
+    text-align: left;
+}
+
+.container .radio-text .tips {
+    display: flex;
+    align-items: center;
+    margin-top: 5px;
+    color: #999;
+    font-size: 12px;
+    white-space: normal;
+    line-height: 1;
+}
+
+.container .radio-text .tips .pay-recommend {
+    color: #ff9c05;
+    padding: 2px;
+    margin-right: 5px;
+    border: 1px solid #ff9c05;
+    border-radius: 4px;
+    font-size: 12px;
+    box-sizing: border-box;
+}
+
+.container .radio-logo {
+    width: 40px;
+    height: 40px;
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translate(0,-50%);
+}
+
+.container .radio-logo image {
+    width: 100%;
+    height: 100%;
+}
+
+.fixed-bottom {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    text-align: center;
+    background: #fff;
+    padding: 10px 0;
+    display: flex;
+    align-items: center;
+}
+
+.fixed-bottom button {
+    display: inline-block;
+    width: 95%;
+    height: 50px;
+    font-size: 16px;
+    background: #ff2d4b;
+    color: #fff;
+}
+
+.fixed-bottom text {
+    font-size: 18px;
+}

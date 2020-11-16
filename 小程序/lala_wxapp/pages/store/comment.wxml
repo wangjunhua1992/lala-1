@@ -1,0 +1,195 @@
+<view class="page-comment">
+    <view class="content">
+        <view class="header clearfix" style="background-color: {{bgColor}}">
+            <view class="top clearfix">
+                <view class="avatar">
+                    <image src="{{store.logo}}"></image>
+                </view>
+                <view class="campaign">
+                    <view class="text">
+                        <view>起送{{Lang.dollarSign}}{{store.send_price}}</view>
+                        <view class="fg-line"></view>
+                        <view>配送{{Lang.dollarSign}}{{store.delivery_price}}</view>
+                        <view class="fg-line"></view>
+                        <view>{{store.delivery_time}}分钟</view>
+                        <view class="allocation-icon" wx:if="{{store.delivery_title}}">{{store.delivery_title}}</view>
+                    </view>
+                    <view class="notice">
+                        <view class="icon icon-voice"></view>
+						{{store.notice?store.notice:'本店暂无公告'}}
+					</view>
+                </view>
+                <view bind:tap="onFavor" class="collect" data-sid="{{store.id}}" wx:if="{{store.is_favorite==1}}">
+                    <view class="icon icon-favoritesfilling"></view>
+                    <view class="text">已收藏</view>
+                </view>
+                <view bind:tap="onFavor" class="collect" data-sid="{{store.id}}" wx:if="{{!store.is_favorite}}">
+                    <view class="icon icon-favorite"></view>
+                    <view class="text">收藏</view>
+                </view>
+            </view>
+            <view class="activity-box clearfix">
+                <swiper autoplay="true" circular="true" class="activity-scroll" vertical="true" wx:if="{{store.activity.num&&store.activity.num>0}}">
+                    <swiper-item wx:for="{{store.activity.items}}" wx:for-item="activity">
+                        <view class="activity">
+                            <image src="/static/img/{{activity.type}}_b.png"></image>
+                            <view>{{activity.title}}</view>
+                        </view>
+                    </swiper-item>
+                </swiper>
+                <view class="more" wx:if="{{store.activity.num&&store.activity.num>0}}">
+                    <navigator url="index?sid={{store.id}}">
+						{{store.activity.num}}个活动
+						<view class="icon icon-xiangyou1"></view>
+                    </navigator>
+                </view>
+                <view class="interim" wx:if="{{activityStatus}}">
+                    <view>起送{{Lang.dollarSign}}{{store.send_price}}</view>
+                    <view class="fg-line"></view>
+                    <view>配送{{Lang.dollarSign}}{{store.delivery_price}}</view>
+                    <view class="fg-line"></view>
+                    <view>{{store.delivery_time}}分钟</view>
+                </view>
+            </view>
+        </view>
+        <view class="wui-tab">
+            <view class="wui-tab-bd">
+                <navigator class="wui-tab-item" openType="redirect" url="goods?sid={{store.id}}">
+                    <view class="wui-tab-title">商品</view>
+                </navigator>
+                <view class="wui-tab-item wui-tab-item-selected">
+                    <view class="wui-tab-title" style="color: {{bgColor}}; border-bottom: 2px solid {{bgColor}}">评价</view>
+                </view>
+                <navigator class="wui-tab-item" openType="redirect" url="index?sid={{store.id}}">
+                    <view class="wui-tab-title">商家</view>
+                </navigator>
+            </view>
+        </view>
+        <view class="comment-menu">
+            <view class="comment-main">
+                <scroll-view class="list" scrollY="true">
+                    <view class="inner-content">
+                        <view class="comment-wrap">
+                            <view class="cmt-detail-info">
+                                <view class="cmt-detail-info-left-cell">
+                                    <view class="cmt-detail-info-data">
+                                        <view class="cmt-detail-info-receive">{{stat.score}}</view>
+                                    </view>
+                                    <view class="cmt-detail-info-desc">商家评价</view>
+                                </view>
+                                <view class="cmt-detail-info-middle-cell">
+                                    <view class="cmt-detail-info-stars">
+                                        <view class="cmt-detail-info-desc">商品质量</view>
+                                        <view class="appr-status">
+                                            <view class="appr-score {{goods=='all'?'appr-score-all':''}} {{goods=='half'?'appr-score-half':''}} {{goods=='gray'?'appr-score-gray':''}}" wx:for="{{stat.goods_quality_star}}" wx:for-item="goods" wx:key="{{goods.id}}"></view>
+                                        </view>
+                                        <view class="cmt-detail-info-receive">{{stat.goods_quality}}</view>
+                                    </view>
+                                    <view class="cmt-detail-info-stars">
+                                        <view class="cmt-detail-info-desc">配送质量</view>
+                                        <view class="appr-status">
+                                            <view class="appr-score {{delivery=='all'?'appr-score-all':''}} {{delivery=='half'?'appr-score-half':''}} {{delivery=='gray'?'appr-score-gray':''}}" wx:for="{{stat.delivery_service_star}}" wx:for-item="delivery" wx:key="{{delivery.id}}"></view>
+                                        </view>
+                                        <view class="cmt-detail-info-receive">{{stat.delivery_service}}</view>
+                                    </view>
+                                </view>
+                                <view class="cmt-detail-info-right-cell">
+                                    <view class="cmt-detail-info-dvy">{{stat.delivery_service}}</view>
+                                    <view class="cmt-detail-info-desc">配送评分</view>
+                                </view>
+                            </view>
+                            <view class="comment-grade">
+                                <view class="grade-list">
+                                    <view class="grade-group">
+                                        <view bind:tap="onChangeType" class="grade-item {{type==0?'active':''}}" data-type="0">
+                                            <view>全部</view>
+                                            <view>{{stat.all>999?'999+':stat.all}}</view>
+                                        </view>
+                                    </view>
+                                    <view class="grade-group">
+                                        <view bind:tap="onChangeType" class="grade-item {{type==1?'active':''}}" data-type="1">
+                                            <view>好评</view>
+                                            <view>{{stat.good>999?'999+':stat.good}}</view>
+                                        </view>
+                                    </view>
+                                    <view class="grade-group">
+                                        <view bind:tap="onChangeType" class="grade-item {{type==2?'active':''}}" data-type="2">
+                                            <view>中评</view>
+                                            <view>{{stat.middle>999?'999+':stat.middle}}</view>
+                                        </view>
+                                    </view>
+                                    <view class="grade-group">
+                                        <view bind:tap="onChangeType" class="grade-item {{type==3?'active':''}}" data-type="3">
+                                            <view>差评</view>
+                                            <view>{{stat.bad>999?'999+':stat.bad}}</view>
+                                        </view>
+                                    </view>
+                                </view>
+                                <view class="read-comment">
+                                    <div bind:tap="onCheckedReadComment" class="read-comment-group">
+                                        <i class="icon {{note==1?'icon-check':''}}"></i>
+                                        <span>只看有内容的评价</span>
+                                    </div>
+                                </view>
+                            </view>
+                            <view class="evaluates-field">
+                                <view class="evaluate-list">
+                                    <view class="evaluate-item" wx:for="{{comments}}" wx:for-index="idx">
+                                        <view class="evaluate-sub clearfix">
+                                            <view class="evaluate-sub-left">
+                                                <image class="evaluate-user-pic" src="{{item.avatar}}"></image>
+                                            </view>
+                                            <view class="evaluate-sub-right">
+                                                <view class="evaluate-sub clearfix">
+                                                    <view class="evaluate-name">{{item.mobile}}</view>
+                                                    <view class="evaluate-time">{{item.addtime}}</view>
+                                                </view>
+                                                <view class="evaluate-stars clearfix">
+                                                    <view class="appr-score appr-score-{{type}}" wx:for="{{item.scores}}" wx:for-item="type"></view>
+                                                    <view class="evaluate-ship-time" style="display: none">44分钟到达</view>
+                                                </view>
+                                                <view class="evaluate-comment clearfix" wx:if="{{item.note}}">
+															{{item.note}}
+													</view>
+                                                <view class="evaluate-comment-pics clearfix" wx:if="{{item.thumbs.length==1}}">
+                                                    <view bind:tap="onImg" class="comment-pics" data-id="{{index}}" data-idx="{{idx}}" wx:for="{{item.thumbs}}">
+                                                        <image src="{{item}}"></image>
+                                                    </view>
+                                                </view>
+                                                <view class="evaluate-comment-pics pic-multi clearfix" wx:if="{{item.thumbs.length>1}}">
+                                                    <view bind:tap="onImg" class="comment-pics" data-id="{{index}}" data-idx="{{idx}}" wx:for="{{item.thumbs}}">
+                                                        <image src="{{item}}"></image>
+                                                    </view>
+                                                </view>
+                                                <view class="comment-bottom clearfix" wx:if="{{item.data.good}}">
+                                                    <view class="icon icon-appreciate"></view>
+                                                    <view class="comment-favor-text">
+                                                        <block wx:for="{{item.data.good}}">
+																{{item}}
+															</block>
+                                                    </view>
+                                                </view>
+                                                <view class="replay" wx:if="{{item.reply}}">
+														商家回复({{item.replytime}}): {{item.reply}}
+													</view>
+                                            </view>
+                                        </view>
+                                    </view>
+                                </view>
+                            </view>
+                        </view>
+                    </view>
+                </scroll-view>
+            </view>
+        </view>
+        <view class="weui-loadmore" wx:if="{{showloading}}">
+            <view class="weui-loading"></view>
+            <view class="weui-loadmore__tips">正在加载中</view>
+        </view>
+        <view class="no-data" wx:if="{{showNodata}}">
+            <image class="no-coupon" src="http://cos.lalawaimai.com/we7_wmall/wxapp/comment_no_con.png"></image>
+            <text class="no-record">这个店铺还没有评价</text>
+        </view>
+    </view>
+</view>
+<include src="../public/footer.wxml"></include>

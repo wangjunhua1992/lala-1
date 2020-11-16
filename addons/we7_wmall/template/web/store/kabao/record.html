@@ -1,0 +1,86 @@
+{itemplate 'public/header'}
+<form action="./index.php?" class="form-horizontal form-filter" id="form1">
+	{php echo tpl_form_filter_hidden('store/kabao/record');}
+	<input type="hidden" name="trade_type" value="{$trade_type}"/>
+	<div class="form-group">
+		<label class="col-xs-12 col-sm-3 col-md-2 control-label">积分变动类型</label>
+		<div class="col-sm-9 col-xs-12">
+			<div class="btn-group">
+				<a href="{php echo ifilter_url('trade_type:');}" class="btn {if $trade_type == ''}btn-primary{else}btn-default{/if}">不限</a>
+				{loop $trade_types $tkey $vtype}
+					<a href="{php echo ifilter_url('trade_type:' . $tkey);}" class="btn {if $trade_type == $tkey}btn-primary{else}btn-default{/if}">{$vtype['text']}</a>
+				{/loop}
+			</div>
+		</div>
+	</div>
+	<div class="form-group">
+		<label class="col-xs-12 col-sm-3 col-md-2 control-label">关键字</label>
+		<div class="col-sm-9 col-xs-12">
+			<input class="form-control" name="keyword" placeholder="用户UID/手机号" type="text" value="{$_GPC['keyword']}">
+		</div>
+	</div>
+	<div class="form-group">
+		<label class="col-xs-12 col-sm-3 col-md-2 control-label"></label>
+		<div class="col-sm-9 col-xs-12">
+			<button class="btn btn-primary">筛选</button>
+		</div>
+	</div>
+</form>
+<form action="" class="form-table form" method="post">
+	<div class="panel panel-table">
+		<div class="panel-body table-responsive js-table">
+			{if empty($records)}
+				<div class="no-result">
+					<p>还没有相关数据</p>
+				</div>
+			{else}
+				<table class="table table-hover">
+					<thead class="navbar-inner">
+					<tr>
+						<th>会员uid</th>
+						<th>粉丝</th>
+						<th>变动类型</th>
+						<th>增加|减少(积分)</th>
+						<th>变动后剩余积分</th>
+						<th>变动时间</th>
+						<th>备注</th>
+					</tr>
+					</thead>
+					<tbody>
+					{loop $records $record}
+					<tr>
+						<td>{$record['uid']}</td>
+						<td>
+							{if !empty($record['avatar']) || !empty($record['nickname'])}
+							<img src="{php echo tomedia($record['avatar']);}" alt="" width="50"/>
+							{$record['nickname']}
+							{else}
+							未更新
+							{/if}
+						</td>
+						<td>
+							<span class="label {$trade_types[$record['trade_type']]['css']}">{$trade_types[$record['trade_type']]['text']}</span>
+						</td>
+						<td>
+							{if $record['fee'] > 0}
+								<span class="text-primary">+{$record['fee']}</span>
+							{else}
+								<span class="text-danger">{$record['fee']}</span>
+							{/if}
+						</td>
+						<td><span class="text-primary">{$record['amount']}</span></td>
+						<td>{php echo date('Y-m-d H:i:s', $record['addtime'])}</td>
+						<td>
+							<span>{$record['remark']}</span>
+						</td>
+					</tr>
+					{/loop}
+					</tbody>
+				</table>
+			{/if}
+			{$pager}
+		</div>
+	</div>
+</form>
+
+{itemplate 'public/footer'}

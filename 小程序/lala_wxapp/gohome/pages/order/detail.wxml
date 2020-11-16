@@ -1,0 +1,93 @@
+<view class="gohome-orderdetail">
+    <view class="content-scroll">
+        <view class="margin-15 font-14 flex-lr">
+            <view class="c-gray">到店核销</view>
+            <view class="c-danger">{{order.status_cn}}</view>
+        </view>
+        <view class="goods-info margin-15 padding-15 bg-default">
+            <view class="flex">
+                <view class="icon icon-store font-18"></view>
+                <text class="font-14 margin-10-l font-500">{{order.store.title}}</text>
+            </view>
+            <view bind:tap="onJsEvent" class="padding-15-t flex-lr" data-event-type="jsUrl" data-url="gohome/pages/{{order.order_type}}/detail?id={{order.goods.id}}">
+                <view class="thumb">
+                    <image alt="" src="{{order.goods.thumb}}"></image>
+                </view>
+                <view class="info">
+                    <view>{{order.goods.name}}</view>
+                    <view class="flex-lr w-100">
+                        <view class="flex">
+                            <view class="c-danger font-16 font-500">{{Lang.dollarSign}}{{order.final_fee}}</view>
+                            <view class="c-gray font-12 line-through margin-10-l">{{Lang.dollarSign}}{{order.goods.oldprice}}</view>
+                        </view>
+                        <view class="c-gray">x{{order.num}}</view>
+                    </view>
+                </view>
+            </view>
+        </view>
+        <view class="margin-15 padding-15 bg-default radius-3">
+            <view class="padding-15-b border-1px-b font-14">费用信息</view>
+            <view class="padding-15-b van-hairline--bottom font-13">
+                <view class="margin-15-t flex-lr">
+                    <view>商品费用</view>
+                    <view>{{Lang.dollarSign}}{{order.final_fee}}</view>
+                </view>
+            </view>
+            <view class="padding-15-t flex-lr font-14">
+                <view class="c-gray">实付款</view>
+                <view class="c-danger">{{Lang.dollarSign}}{{order.final_fee}}</view>
+            </view>
+        </view>
+        <view class="margin-15 padding-15 bg-default radius-3 font-13">
+            <view class="padding-15-b border-1px-b font-14">核销使用</view>
+            <view class="margin-10-t flex-lr">
+                <view>核销数量</view>
+                <view>{{order.num}}</view>
+            </view>
+            <view class="margin-10-t flex-lr hide">
+                <view class="c-gray">核销密码</view>
+                <input class="text-right" placeholder="请输入核销密码" type="text"></input>
+            </view>
+            <block wx:if="{{order.order_type!='pintuan'||order.order_type=='pintuan'&&order.status>=3}}">
+                <view class="code-qrcode">
+                    <canvas canvasId="canvas" style="width: 150px; height: 150px"></canvas>
+                    <view class="font-12 margin-10-t">核销码: {{order.code}}</view>
+                </view>
+                <view class="margin-10-t c-gray text-center">请商家扫描二维码或者填写核销码即可消费</view>
+            </block>
+        </view>
+        <view class="margin-15 padding-15 bg-default radius-3 font-13">
+            <view class="padding-15-b border-1px-b font-14">订单信息</view>
+            <view class="c-gray margin-10-t order-info">
+                <view class="info-left">订单编号</view>
+                <view class="info-right">{{order.ordersn}}</view>
+            </view>
+            <view class="c-gray margin-10-t order-info" wx:if="{{order.is_pay==1}}">
+                <view class="info-left">支付方式</view>
+                <view class="info-right">{{order.pay_type_cn}}</view>
+            </view>
+            <view class="c-gray margin-10-t order-info">
+                <view class="info-left">下单时间</view>
+                <view class="info-right">{{order.addtime_cn}}</view>
+            </view>
+            <view class="c-gray margin-10-t order-info" wx:if="{{order.is_pay==1}}">
+                <view class="info-left">支付时间</view>
+                <view class="info-right">{{order.paytime_cn}}</view>
+            </view>
+            <view class="c-gray margin-10-t order-info">
+                <view class="info-left">买家备注</view>
+                <view class="info-right">{{order.buyremark?order.buyremark:'无'}}</view>
+            </view>
+        </view>
+    </view>
+    <view class="fix-bottom border-1px-t">
+        <block wx:if="{{order.status==1}}">
+            <view bind:tap="onJsEvent" data-confirm="确定取消订单吗" data-event-type="jsPost" data-url="gohome/order/cancel?id={{order.id}}">取消订单</view>
+            <view bind:tap="onJsEvent" data-event-type="jsUrl" data-url="pages/public/pay?order_id={{order.id}}&order_type=gohome">立即支付</view>
+        </block>
+        <view bind:tap="onJsEvent" data-event-type="jsUrl" data-url="gohome/pages/pintuan/share?id={{order.goods_id}}&team_id={{order.team_id}}" wx:if="{{order.order_type=='pintuan'&&order.team_id>0}}">拼团详情</view>
+        <view bind:tap="onJsEvent" data-event-type="jsUrl" data-url="gohome/pages/{{order.order_type}}/index" wx:if="{{order.order_type_all}}">查看更多{{order.order_type_all.text}}活动</view>
+        <view bind:tap="onJsEvent" data-event-type="jsUrl" data-url="gohome/pages/comment/comment?order_id={{order.id}}" wx:if="{{order.status==5}}">立即评价</view>
+    </view>
+</view>
+<include src="../../../pages/public/footer.wxml"></include>

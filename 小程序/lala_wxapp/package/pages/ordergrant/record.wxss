@@ -1,0 +1,67 @@
+page {
+    backgound: #f4f4f4;
+}
+
+.page-record .grant-list {
+    background: #fff;
+}
+
+.page-record .grant-list .grant-item {
+    padding: 10px 10px 10px 10px;
+}
+
+.page-record .grant-list .wui-cell .wui-cell-bd {
+    padding-left: 10px;
+}
+
+.page-record .grant-list .wui-cell .wui-cell-tf {
+    padding-right: 10px;
+}
+
+.page-record .grant-list .wui-cell .wui-cell-bd .titles {
+    font-size: 18px;
+    color: #666;
+}
+
+.page-record .grant-list .wui-cell .wui-cell-bd .text .label {
+    display: inline-block;
+    color: #fff;
+}
+
+.page-record .grant-list .wui-cell .wui-cell-bd .text {
+    color: #666;
+}
+
+.label-success {
+    background-color: #4cd964;
+}
+
+.label-info {
+    background-color: #04ab02;
+}
+
+.label-warning {
+    background-color: #ff9326;
+}
+
+.label-primary {
+    background-color: #337ab7;
+}
+
+.label-danger {
+    background-color: #f6383a;
+}
+
+.label-default {
+    background-color: #777;
+}
+
+.page-record .grant-list .wui-cell .grant {
+    font-size: 18px;
+    margin-right: 10px;
+    color: #ff2d4b;
+}
+
+.page-record .grant-list .wui-cell-b:last-child::after {
+    border: 0px;
+}

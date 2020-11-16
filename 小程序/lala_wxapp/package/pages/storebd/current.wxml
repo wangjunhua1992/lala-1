@@ -1,0 +1,38 @@
+<view class="storebd-current">
+    <view class="content">
+        <view class="tab-group">
+            <view bind:tap="onChangeType" class="tab-item {{type==0?'active':''}}" data-type="0">全部</view>
+            <view bind:tap="onChangeType" class="tab-item {{type==1?'active':''}}" data-type="1">佣金入账</view>
+            <view bind:tap="onChangeType" class="tab-item {{type==2?'active':''}}" data-type="2">申请提现</view>
+            <view bind:tap="onChangeType" class="tab-item {{type==3?'active':''}}" data-type="3">其他变动</view>
+        </view>
+        <view class="current-list" wx:if="{{!current.empty}}">
+            <view class="current-item" wx:for="{{current.data}}" wx:key="{{item.id}}">
+                <view class="current-wrap">
+                    <view class="item-info">
+                        <view class="flex-lr">
+                            <view wx:if="{{item.trade_type==1}}">佣金入账</view>
+                            <view wx:elif="{{item.trade_type==2}}">申请提现</view>
+                            <view wx:else>其他变动</view>
+                            <view class="{{item.fee>0?'color-success':'color-danger'}}">{{item.fee>0?'+'+item.fee:item.fee}}</view>
+                        </view>
+                        <view class="flex-lr padding-10-t">
+                            <view class="font-14 c-gray">{{item.addtime_cn}}</view>
+                            <view class="font-14 c-gray">{{Lang.dollarSign}}{{item.amount}}</view>
+                        </view>
+                    </view>
+                    <text class="icon icon-right font-16 c-gray"></text>
+                </view>
+            </view>
+            <view class="wui-loadmore wui-loadmore-nomore" wx:if="{{current.loaded}}">
+                <view class="wui-loadmore-tips">我是有底线的</view>
+                <view class="wui-loadmore-line"></view>
+            </view>
+        </view>
+        <view class="no-data" wx:else>
+            <image class="no-coupon" src="../../static/img/order_no_con.png"></image>
+            <text class="no-record">暂时没有佣金明细哦～</text>
+        </view>
+    </view>
+</view>
+<include src="../../../pages/public/footer.wxml"></include>

@@ -1,0 +1,142 @@
+page {
+    background-color: #f4f4f4;
+}
+
+.container .content {
+    padding-bottom: 20px;
+}
+
+.container .content .redPacket-list {
+    margin: 10px;
+}
+
+.container .content .redPacket-list .item {
+    background-color: #fff;
+    overflow: hidden;
+    position: relative;
+    margin-bottom: 13px;
+}
+
+.container .content .redPacket-list .item .item-container {
+    width: 100%;
+    padding: 10px 15px;
+    box-sizing: border-box;
+}
+
+.container .content .redPacket-list .item .redPacket-info {
+    font-size: 17px;
+    color: #FF4648;
+}
+
+.container .content .redPacket-list .item .redPacket-info .col-50 {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.container .content .redPacket-list .item .redPacket-info .col-50:last-child {
+    font-size: 15px;
+}
+
+.container .content .redPacket-list .item .redPacket-info .price-num {
+    display: inline-block;
+    font-size: 22px;
+    margin-left: 3px;
+}
+
+.container .content .redPacket-list .item .redPacket-use-limit {
+    overflow: hidden;
+    margin-top: 8px;
+    color: #666;
+    font-size: 12px;
+    padding-bottom: 12px;
+    line-height: 20px;
+}
+
+.container .content .redPacket-list .item .redPacket-use-limit .superRedpacket-time .superRedpacket-meal {
+    height: 16px;
+    line-height: 16px;
+    padding: 2px 4px;
+    background-color: #ff2d4b;
+    color: #fff;
+    font-size: 12px;
+    border-radius: 2px;
+    margin-right: 5px;
+}
+
+.container .content .redPacket-list .item .redPacket-use-limit .superRedpacket-time {
+    float: left;
+    font-size: 12px;
+}
+
+.container .content .redPacket-list .item .redPacket-use-limit .superRedpacket-condition {
+    float: right;
+    font-size: 12px;
+}
+
+.container .content .redPacket-list .item .other-limit {
+    font-size: 13px;
+    color: #999;
+    border-top: 1px dashed #e0e0e0;
+    padding-top: 5px;
+}
+
+.container .content .redPacket-list .item .circle {
+    display: inline-block;
+    width: 17px;
+    height: 17px;
+    background-color: #f4f4f4;
+    border-radius: 100%;
+    position: absolute;
+    top: 50%;
+    z-index: 20;
+    transform: translate(0,-50%);
+}
+
+.container .content .redPacket-list .item .circle-left {
+    left: -9px;
+}
+
+.container .content .redPacket-list .item .circle-right {
+    right: -9px;
+}
+
+.container .content .redPacket-list .item.expire .overdue,.container .content .redPacket-list .item.is-use .use {
+    display: block;
+}
+
+.container .content .redPacket-list .item .overdue,.container .content .redPacket-list .item .use {
+    display: none;
+    position: absolute;
+    width: 77px;
+    height: 77px;
+    top: 11px;
+    right: 11px;
+}
+
+.container .content .redPacket-list .item .overdue image,.container .content .redPacket-list .item .use image {
+    width: 100%;
+    height: 100%;
+}
+
+.container .content .no-more {
+    text-align: center;
+    color: #999;
+    margin-bottom: 20px;
+    font-size: 13px;
+}
+
+.container .content .no-more.absolute {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+.container .content .no-more view,.container .content .no-more navigator {
+    display: inline-block;
+}
+
+.container .content .no-more .line {
+    margin: 0 5px;
+}

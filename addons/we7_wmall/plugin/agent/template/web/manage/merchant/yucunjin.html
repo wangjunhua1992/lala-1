@@ -1,0 +1,103 @@
+{itemplate 'public/header'}
+{if $op == 'list'}
+<form action="./wagent.php?" class="form-horizontal form-filter" id="form1">
+	{php echo tpl_form_filter_hidden('merchant/yucunjin/list');}
+	<input type="hidden" name="days" value="{$days}"/>
+	<div class="form-group">
+		<label class="col-xs-12 col-sm-3 col-md-2 control-label">类型</label>
+		<div class="col-sm-9 col-xs-12">
+			<div class="btn-group">
+				<a href="{php echo ifilter_url('trade_type:0');}" class="btn {if $trade_type == 0}btn-primary{else}btn-default{/if}">全部</a>
+				{loop $types $tkey $tvalue}
+				<a href="{php echo ifilter_url('trade_type:' .$tkey);}" class="btn {if $trade_type == $tkey}btn-primary{else}btn-default{/if}">{$tvalue['text']}</a>
+				{/loop}
+			</div>
+		</div>
+	</div>
+	<div class="form-group">
+		<label class="col-xs-12 col-sm-3 col-md-2 control-label">变更时间</label>
+		<div class="col-sm-9 col-xs-12 js-daterange" data-form="#form1">
+			<div class="btn-group">
+				<a href="{php echo ifilter_url('days:-2');}" class="btn {if $days == -2}btn-primary{else}btn-default{/if}">不限</a>
+				<a href="{php echo ifilter_url('days:7');}" class="btn {if $days == 7}btn-primary{else}btn-default{/if}">近一周</a>
+				<a href="{php echo ifilter_url('days:30');}" class="btn {if $days == 30}btn-primary{else}btn-default{/if}">近一月</a>
+				<a href="{php echo ifilter_url('days:90');}" class="btn {if $days == 90}btn-primary{else}btn-default{/if}">近三月</a>
+				<a href="javascript:;" class="btn js-btn-custom {if $days == -1}btn-primary{else}btn-default{/if}">自定义</a>
+			</div>
+			<span class="js-btn-daterange {if $days != -1}hide{/if}">
+				{php echo tpl_form_field_daterange('addtime', array('start' => date('Y-m-d H:i', $starttime), 'end' => date('Y-m-d H:i', $endtime)));}
+			</span>
+		</div>
+	</div>
+	<div class="form-group form-inline">
+		<label class="col-xs-12 col-sm-3 col-md-2 control-label">其他</label>
+		<div class="col-sm-9 col-xs-12">
+			<select name="sid" class="form-control select2" >
+				<option value="0" {if !$sid}selected{/if}>==选择门店==</option>
+				{loop $stores $store}
+				<option value="{$store['id']}" {if $sid == $store['id']}selected{/if}>{$store['title']}</option>
+				{/loop}
+			</select>
+		</div>
+	</div>
+	<div class="form-group">
+		<label class="col-xs-12 col-sm-3 col-md-2 control-label"></label>
+		<div class="col-sm-9 col-xs-12">
+			<button class="btn btn-primary">筛选</button>
+		</div>
+	</div>
+</form>
+<form action="" class="form-table form" method="post">
+	<div class="panel panel-table">
+		<div class="panel-body table-responsive js-table">
+			<table class="table table-hover">
+				<thead class="navbar-inner">
+				<tr>
+					<th>编号</th>
+					<th>时间</th>
+					<th>门店</th>
+					<th>类型</th>
+					<th>收入|支出({$_W['Lang']['dollarSignCn']})</th>
+					<th>预存金余额</th>
+					<th style="text-align:right;">操作</th>
+				</tr>
+				</thead>
+				<tbody>
+				{loop $records $record}
+				<tr>
+					<td>#{$record['id']}</td>
+					<td>{php echo date('Y-m-d H:i', $record['addtime']);}</td>
+					<td>{$stores[$record['sid']]['title']}</td>
+					<td>
+						<span class="{$types[$record['trade_type']]['css']}">{$types[$record['trade_type']]['text']}</span>
+					</td>
+					<td>
+						<span {if !empty($record['remark'])}data-toggle="popover" title="交心备注" data-content="{$record['remark']}"{/if}>
+						{if $record['fee'] > 0}
+						<strong class="text-success">+{$record['fee']}{$_W['Lang']['dollarSignCn']}</strong>
+						{else}
+						<strong class="text-danger">{$record['fee']}{$_W['Lang']['dollarSignCn']}</strong>
+						{/if}
+						{if !empty($record['remark'])}
+						<i class="fa fa-question-circle"></i>
+						{/if}
+						</span>
+					</td>
+					<td>
+						<strong>{$record['yucunjin']}{$_W['Lang']['dollarSignCn']}</strong>
+					</td>
+					<td style="text-align: right;">
+						{if $record['trade_type'] == 1}
+						<a href="{php echo iurl('order/takeout/detail', array('id' => $record['extra']))}" class="btn btn-default btn-sm" target="_blank">详情</a>
+						{/if}
+					</td>
+				</tr>
+				{/loop}
+				</tbody>
+			</table>
+			{$pager}
+		</div>
+	</div>
+</form>
+{/if}
+{itemplate 'public/footer'}

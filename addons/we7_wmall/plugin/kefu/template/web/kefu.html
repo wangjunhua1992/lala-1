@@ -1,0 +1,431 @@
+{itemplate 'public/header'}
+<div id="kefu-chat" v-cloak>
+	<div class="page clearfix kefu-chat">
+		<div class="form-group">
+			<div class="col-xs-12 col-sm-3 col-md-2 control-label chat-list">
+				<div class="kefu-info">
+					<div class="avatar">
+						<img :src="kefu.avatar" alt="">
+					</div>
+					<div class="info">
+						<div class="nickname">{{kefu.nickname}}</div>
+						<div class="status">
+							<a class="online" v-if="kefu.kefu_status == 1">在线</a>
+							<a class="busyline" v-else-if="kefu.kefu_status == 2">忙碌</a>
+							<a class="offline" v-else-if="kefu.kefu_status == 3">离线</a>
+							<div class="status-choice">
+								<ul>
+									<li class="online" @click="onToggleKefuStatus(1)">在线</li>
+									<li class="busyline" @click="onToggleKefuStatus(2)">忙碌</li>
+									<li class="offline" @click="onToggleKefuStatus(3)">离线</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="chat-list-title">交谈列表</div>
+				<div class="chats">
+					<template v-if="chats && chats.length && chats.length > 0">
+						<div
+							class="chat-item"
+							:class="{active: item.fansopenid == chat.fansopenid}"
+							v-for="(item, index) in chats"
+							:key="item.id"
+							@click="onToggleChatItem(item.relation, item.fansopenid)"
+						>
+							<i class="icon icon-close"></i>
+							<div class="icon icon-mobile"></div>
+							<div class="nickname">{{item.fansnickname}}</div>
+							<div class="msg-num" v-if="item.kefunotread > 0">{{item.kefunotread}}</div>
+						</div>
+					</template>
+					<template v-else>
+						<div class="no-chats">暂无接待记录</div>
+					</template>
+				</div>
+			</div>
+			<div class="col-sm-9 col-md-10 col-xs-12 chat-panel">
+				<div class="form-group" v-if="chat && chat.id > 0">
+					<div class="col-sm-8 col-md-9 col-xs-12 panel-left">
+						<div class="panel-title">
+							本次对话
+						</div>
+						<div class="panel-content" ref="chatlog">
+							<div class="load">
+								<a class="loading" @click="onLoadMore()" href="javascript:;"  v-if="!chatlog.finished">查看更多</a>
+								<a class="loaded" href="javascript:;" v-else>已加载全部</a>
+							</div>
+
+							<template v-if="chatlog.data && chatlog.data.length > 0">
+								<div class="log-item" :class="{left: chatlogItem.isleft == 1, right: chatlogItem.isleft == 0}" v-for="(chatlogItem, index) in chatlog.data">
+									<div class="log-item-info ">
+										<span class="nickname">{{chatlogItem.nickname}}</span>
+										<span>-</span>
+										<span>{{chatlogItem.timestamp_cn}}</span>
+									</div>
+									<div class="detail">
+										<div class="type-text" v-if="chatlogItem.type == 'text'">{{chatlogItem.content}}</div>
+										<img class="type-img" :src="chatlogItem.content" v-else-if="chatlogItem.type == 'image'">
+										<a :href="orderDetailUrl + chatlogItem.id" target="_blank" class="type-order" v-else-if="chatlogItem.type == 'orderTakeout'">
+											<div class="title">订单信息</div>
+											<div class="flex-lr">
+												<div class="store-logo">
+													<img :src="chatlogItem.content.logo" alt="">
+												</div>
+												<div class="order-info">
+													<div class="flex-lr">
+														<div class="store-title ellipsis">{{chatlogItem.content.title}}</div>
+														<div class="order-status ellipsis">{{chatlogItem.content.status_cn}}</div>
+													</div>
+													<div class="flex-lr">
+														<div class="goods-title ellipsis">{{chatlogItem.content.goods_title}}</div>
+														<div class="order-fee ellipsis">实付{$_W['Lang']['dollarSign']}{{chatlogItem.content.final_fee}}{$_W['Lang']['dollarSignCn']}</div>
+													</div>
+												</div>
+											</div>
+										</a>
+									</div>
+								</div>
+							</template>
+						</div>
+						<div class="panel-textarea">
+							<div class="top-bar">
+								<div class="icons">
+									<div class="icon icon-pic" @click="onUploadImg()"></div>
+									<div class="icon icon-attachment hide"></div>
+								</div>
+							</div>
+							<textarea v-model="content" placeholder="输入信息..."></textarea>
+							<div class="panel-bottom-bar">
+								<ul class="operate">
+									<li class="hide">
+										<i class="icon icon-close-circle"></i>
+										<span>结束对话</span>
+									</li>
+								</ul>
+								<div class="send dropup">
+									<div class="send-btn" @click="onSendMessage()">发送</div>
+									<div class="icon icon-arrow-up dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"></div>
+									<ul class="dropdown-menu">
+										<template v-if="fastReply && fastReply.length && fastReply.length > 0">
+											<li v-for="(item, index) in fastReply" :key="index" @click="onSendMessage(item, 'text')"><a class="ellipsis" href="javascript:;">{{item}}</a></li>
+										</template>
+										<li class="add-fastreply" data-toggle="modal" data-target=".fastreply-model">
+											<a href="javascript:;">
+												<i class="icon icon-add"></i>
+												<span>添加快捷回复</span>
+											</a>
+										</li>
+									</ul>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-xs-12 col-sm-4 col-md-3 panel-right">
+						<div class="panel-title">信息</div>
+						<div class="panel-content">
+							<dl>
+								<dt>访问信息</dt>
+								<dd>对话ID: {{chat.id}}</dd>
+								<template v-if="relation == 'member2kefu'">
+									<dd>对话人UID：{{fans.uid}}</dd>
+									<dd>
+										昵称：{{fans.nickname}}
+									</dd>
+									<dd>
+										姓名：{{fans.realname}}
+									</dd>
+									<dd>
+										手机号：{{fans.mobile}}
+									</dd>
+									<dd>
+										下单次数：{{fans.success_num}}
+									</dd>
+									<dd>
+										最近一次下单时间：{{fans.success_last_time_cn}}
+									</dd>
+									<dd>
+										设备信息：{{chat.data.fanssystem}}
+									</dd>
+								</template>
+
+							</dl>
+							<dl class="hide">
+								<dt>
+									其他信息
+								</dt>
+								<dd>
+									地理位置：-
+								</dd>
+								<dd>
+									ip地址：-
+								</dd>
+								<dd>
+									访问环境：-
+								</dd>
+								<dd>
+									操作系统：-
+								</dd>
+							</dl>
+							<dl class="hide">
+								<dt>访客操作</dt>
+								<dd>
+									<a class="btn btn-sm btn-red"><i class="icon icon-info"></i>封禁用户</a>
+								</dd>
+							</dl>
+						</div>
+					</div>
+				</div>
+				<div class="form-group chat-empty" v-else>
+					<div>
+						<i class="icon icon-weixin"></i>
+						<p>暂无会话</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="modal fade fastreply-model" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button data-dismiss="modal" class="close" type="button">×</button>
+						<h4 class="modal-title">添加快捷回复</h4>
+					</div>
+					<div class="modal-body">
+						<textarea v-model="faseReplyMsg" cols="100" rows="2" class="form-control" style="resize: none"></textarea>
+					</div>
+					<div class="modal-footer">
+						<button class="btn btn-info" @click="onConfirmFastReply()" >提交</button>
+						<button data-dismiss="modal" class="btn btn-default" type="button">取消</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<script type="text/javascript">
+	require(["util"], function(util){
+		irequire(['vue'], function(Vue){
+			var originData = {php echo json_encode($result)};
+			var orderDetailUrl = "{php echo iurl('order/takeout/detail')}" + '&id=';
+			console.log(originData);
+			var app = new Vue({
+				el: '#kefu-chat',
+				data: {
+					relation: originData.relation,
+					chatlog: {
+						min: originData.chatlog.min,
+						psize: 100,
+						loading: false,
+						finished: false,
+						data: [...originData.chatlog.logs]
+					},
+					chat: originData.chat,
+					chats: originData.chats.chats,
+					kefu: originData.kefu,
+					fans: originData.fans,
+					fastReply: [...originData.reply],
+					order: originData.order,
+					content: '',
+					faseReplyMsg: '',
+					orderDetailUrl: orderDetailUrl,
+					islegal: false
+				},
+				methods:{
+					onSendMessage(content, type) {
+						var that = this;
+						if(!that.islegal) {
+							return false;
+						}
+						that.islegal = false;
+						if(!content) {
+							content = that.content;
+						}
+						if(!type) {
+							type = 'text';
+						}
+						if(!content || content == '') {
+							return false;
+						}
+						var params = {
+							chatid: that.chat.id,
+							type: type,
+							content: content
+						};
+						$.post("{php echo iurl('kefu/kefu/addchat')}", params, function(data){
+							var result = data.message;
+							if(result.errno) {
+								Notify.error(result.message);
+							}
+							result = result.message;
+							that.chatlog.data.push(result.log);
+							that.onScrollBottom();
+							if(type == 'text') {
+								that.content = '';
+							}
+						}, 'json');
+					},
+
+					onToggleChatItem(relation, fansopenid) {
+						var that = this;
+						var params = {
+							relation: relation,
+							fansopenid: fansopenid,
+						};
+						$.post("{php echo iurl('kefu/kefu/chat')}", params, function(data){
+							var result = data.message;
+							if(result.errno) {
+								Notify.error(result.message);
+							}
+							result = result.message;
+							console.log(11111, result)
+							that.relation = result.relation;
+							that.chat = result.chat;
+							that.kefu = result.kefu;
+							that.fans = result.fans;
+							that.order = result.order;
+							if(result.chats.chats) {
+								that.chats = [...result.chats.chats];
+							}
+							if(result.reply) {
+								that.fastReply = [...result.reply];
+							}
+							that.chatlog.data = [...result.chatlog.logs];
+							that.chatlog.min = result.chatlog.min;
+							that.chatlog.finished = false;
+							that.onScrollBottom();
+						}, 'json');
+					},
+
+					onScrollBottom() {
+						var that = this;
+						setTimeout(() => {
+							that.islegal = true;
+							var chatLogDom = that.$refs.chatlog;
+							if(chatLogDom) {
+								chatLogDom.scrollTop = chatLogDom.scrollHeight;
+							}
+						}, 200);
+					},
+
+					onSetNotreadZero() {
+						var that = this;
+						$.post("{php echo iurl('kefu/kefu/zero')}", {chatid: that.chat.id}, function(data){
+							var result = data.message;
+							if(result.errno) {
+								Notify.error(result.message);
+							}
+							console.log('清零成功');
+						}, 'json');
+					},
+
+					onConfirmFastReply() {
+						var that = this;
+						if(!that.faseReplyMsg || that.faseReplyMsg == '') {
+							return false;
+						}
+						var params = {
+							content: that.faseReplyMsg,
+							relation: that.relation,
+						}
+						$.post("{php echo iurl('kefu/kefu/addreply')}", params, function(data){
+							var result = data.message;
+							if(result.errno) {
+								Notify.error(result.message);
+							}
+							result = result.message;
+							if(result.reply && result.reply.length > 0) {
+								that.fastReply = [...result.reply];
+							}
+							that.faseReplyMsg = '';
+							$('.fastreply-model').modal('hide');
+						}, 'json');
+					},
+
+					onUploadImg() {
+						var that = this;
+						util.image('', function(url){
+							var content = url.attachment;
+							if(content) {
+								that.onSendMessage(content, 'image');
+							}
+						}, null, {});
+					},
+
+					onLoadMore() {
+						var that = this;
+						if(that.chatlog.finished) {
+							return false;
+						}
+						var params = {
+							chatid: that.chat.id,
+							min: that.chatlog.min,
+							psize: that.chatlog.psize
+						};
+						$.post("{php echo iurl('kefu/kefu/more')}", params, function(data){
+							var result = data.message;
+							if(result.errno) {
+								Notify.error(result.message);
+							}
+							result = result.message;
+							if(result.chatlog.logs && result.chatlog.logs.length > 0) {
+								that.chatlog.data = result.chatlog.logs.concat(that.chatlog.data);
+								if(result.chatlog.logs.length < that.chatlog.psize) {
+									that.chatlog.finished = true;
+								}
+							}
+							that.chatlog.min = result.chatlog.min;
+							if(!that.chatlog.min) {
+								that.chatlog.finished = true;
+							}
+							//that.chatlog.loading = false;
+						}, 'json');
+					},
+
+					onToggleKefuStatus(kefuStatus) {
+						var that = this;
+						$.post("{php echo iurl('kefu/kefu/kefu_status')}", {kefu_status: kefuStatus}, function(data){
+							var result = data.message;
+							if(result.errno) {
+								Notify.error(result.message);
+							}
+							that.kefu.kefu_status = kefuStatus;
+							Notify.success(result.message);
+						}, 'json');
+					},
+
+					onLoad() {
+						var that = this;
+						that.onScrollBottom();
+						that.initWebSocket();
+					},
+
+					initWebSocket(){
+						var that = this;
+						iwebsocket.onGetMessage = that.onGetMessage;
+					},
+					onGetMessage(result){
+						var that = this;
+						if(that.chat.id == result.chat.chatid) {
+							that.chatlog.data.push(result.chat);
+							that.onScrollBottom();
+							that.onSetNotreadZero();
+						} else {
+							if(result.chats) {
+								that.chats = [...result.chats];
+							}
+						}
+					},
+				},
+				mounted() {
+					this.onLoad();
+				},
+			});
+		});
+	});
+
+</script>
+{itemplate 'public/footer'}

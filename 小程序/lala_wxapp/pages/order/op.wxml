@@ -1,0 +1,33 @@
+<view class="order-op">
+    <view class="content">
+        <view class="header-remind c-gray">温馨提示: 订单支付后无法修改以下信息，请仔细确认</view>
+        <van-cell-group>
+            <van-cell bind:tap="onJsEvent" data-event-type="jsUrl" data-url="pages/order/opUpdate?id={{order.id}}&type=note" title="备注">
+                <view class="flex c-gray" slot="right-icon">
+                    <text wx:if="{{order.note}}">点击修改</text>
+                    <text wx:else>口味、偏好等要求</text>
+                    <text class="icon icon-right"></text>
+                </view>
+            </van-cell>
+            <van-cell class="hide" title="发票">
+                <view class="flex c-gray" slot="right-icon">
+                    <text>该商家不支持开发票</text>
+                </view>
+            </van-cell>
+            <van-cell bind:tap="onJsEvent" data-event-type="jsUrl" data-url="pages/order/opUpdate?id={{order.id}}&type=mobile" title="收货电话">
+                <view class="flex" slot="right-icon">
+                    <text>{{order.mobile}}</text>
+                    <text class="icon icon-right c-gray"></text>
+                </view>
+            </van-cell>
+            <van-cell bind:tap="onJsEvent" data-event-type="jsUrl" data-url="pages/order/opUpdate?id={{order.id}}&type=person_num" title="餐具数量">
+                <view class="flex c-gray" slot="right-icon">
+                    <text wx:if="{{order.person_num}}">{{order.person_num}}套</text>
+                    <text wx:else>未选择</text>
+                    <text class="icon icon-right"></text>
+                </view>
+            </van-cell>
+        </van-cell-group>
+    </view>
+</view>
+<include src="../public/footer.wxml"></include>

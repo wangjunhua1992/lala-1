@@ -1,0 +1,90 @@
+<template name="tpl-store">
+    <view class="field clearfix border-1px-b">
+        <view class="diy-waimai-store-box">
+            <view class="waimai-store-item-list">
+                <view class="waimai-store-item border-1px-b {{item.is_rest==1?'disabled':''}}">
+                    <view class="mian-content-box ">
+                        <view class="content-left border-1px">
+                            <navigator class="item-image" url="../store/goods?sid={{item.id}}">
+                                <view class="item-rest" wx:if="{{item.is_rest==1}}">休息中</view>
+                                <image src="{{item.logo}}"></image>
+                            </navigator>
+                        </view>
+                        <view class="content-right">
+                            <navigator url="../store/goods?sid={{item.id}}">
+                                <view class="item-name-wrap">
+                                    <view class="item-name">{{item.title}}</view>
+                                </view>
+                                <view class="item-score-time">
+                                    <view class="item-score-sale">
+                                        <view class="item-star-box">
+                                            <view class="stars" style="color:#ff2d4b">
+                                                <view class="icon icon-favor_fill_light" wx:for="{{item.scores}}" wx:for-item="type"></view>
+                                            </view>
+                                            <view class="stars-bg">
+                                                <view class="icon icon-favor_light"></view>
+                                                <view class="icon icon-favor_light"></view>
+                                                <view class="icon icon-favor_light"></view>
+                                                <view class="icon icon-favor_light"></view>
+                                                <view class="icon icon-favor_light"></view>
+                                            </view>
+                                        </view>
+                                        <view class="item-sale">月售 {{item.sailed}}</view>
+                                    </view>
+                                    <view class="time-distance">
+                                        <view class="avg_delivery_time">{{item.delivery_time}}分钟</view>
+                                    </view>
+                                </view>
+                                <view class="item-min-delivery">
+                                    <view class="item-min-delivery-left">
+                                        <view>起送价{{Lang.dollarSign}}{{item.send_price}}</view>
+                                        <view class="line">|</view>
+                                        <view>配送费{{Lang.dollarSign}}{{item.delivery_price}}</view>
+                                    </view>
+                                    <view class="item-min-delivery-right" wx:if="{{item.delivery_title}}">{{item.delivery_title}}</view>
+                                </view>
+                            </navigator>
+                            <view bind:tap="onToggleDiscount" class="discount-box" data-index="{{index}}" wx:if="{{item.activity.num>0}}">
+                                <view class="toggle">
+                                    <view class="icon {{item.activity.is_show_all?'icon-fold':'icon-unfold'}}" wx:if="{{item.activity.num>2}}"></view>
+                                </view>
+                                <view class="single-line" wx:if="{{activityIndex<2||item.activity.is_show_all&&activityIndex>=2}}" wx:for="{{item.activity.items}}" wx:for-index="activityIndex" wx:for-item="activityItem">
+                                    <image class="discount-icon" src="/static/img/{{activityItem.type}}_b.png"></image>
+                                    <view class="discount-text">{{activityItem.title}}</view>
+                                </view>
+                            </view>
+                        </view>
+                    </view>
+                </view>
+            </view>
+        </view>
+    </view>
+</template>
+<template name="tpl-repacket">
+    <view class="item {{status==3?'expire':''}} {{status==2?'is-use':''}}">
+        <view class="item-container {{channel=='mealRedpacket_plus'||channel=='mealRedpacket'?'superredpacket-meal':''}}">
+            <view class="redPacket-info">
+                <view class="col-50">{{title}}</view>
+                <view class="col-50 text-right">
+					{{Lang.dollarSign}}<view class="price-num">{{discount}}</view>
+                </view>
+            </view>
+            <view class="redPacket-use-limit">
+                <view class="superRedpacket-time">
+                    <text class="superRedpacket-meal" wx:if="{{channel_cn}}">{{channel_cn}}</text>
+					有效期：{{starttime}}~{{endtime}}
+				</view>
+                <view class="superRedpacket-condition">满{{condition}}{{Lang.dollarSignCn}}</view>
+            </view>
+            <view class="other-limit" wx:if="{{time_cn||category_cn}}">{{category_cn}} {{time_cn}}</view>
+            <view class="overdue">
+                <image src="http://cos.lalawaimai.com/we7_wmall/wxapp/ws.png"></image>
+            </view>
+            <view class="use">
+                <image src="http://cos.lalawaimai.com/we7_wmall/wxapp/wu.png"></image>
+            </view>
+        </view>
+        <view class="border-1px-r circle circle-left {{channel=='mealRedpacket_plus'||channel=='mealRedpacket'?'superredpacket-meal':''}}"></view>
+        <view class="border-1px-l circle circle-right {{channel=='mealRedpacket_plus'||channel=='mealRedpacket'?'superredpacket-meal':''}}"></view>
+    </view>
+</template>

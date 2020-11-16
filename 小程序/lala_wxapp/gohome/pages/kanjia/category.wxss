@@ -1,0 +1,84 @@
+@import "../../../nmy/0.wxss";
+
+page {
+    background-color: #f5f5f5;
+    font-size: 14px;
+    line-height: 1;
+}
+
+.kanjia-category .activity-item {
+    padding: 10px;
+    background-color: #fff;
+}
+
+.kanjia-category .activity-item:first-child {
+    padding-top: 0px;
+}
+
+.kanjia-category .activity-item:first-child:after {
+    display: none;
+}
+
+.kanjia-category .activity-item .thumb {
+    width: 100%;
+    max-height: 162px;
+    font-size: 0px;
+    border-radius: 3px;
+    overflow: hidden;
+    position: relative;
+}
+
+.kanjia-category .activity-item .thumb .end-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background-color: rgba(0,0,0,0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.kanjia-category .activity-item .thumb .end-bg image {
+    width: 150px;
+}
+
+.kanjia-category .activity-item .title {
+    font-size: 14px;
+    padding: 8px 0;
+    line-height: 1.3;
+    font-weight: 500;
+}
+
+.kanjia-category .activity-item .btn {
+    color: #fff;
+    font-size: 14px;
+    padding: 8px 10px;
+    border-radius: 3px;
+    border: 0px;
+}
+
+.kanjia-category .activity-item .btn.btn-detail {
+    background: linear-gradient(to right,#FC6030,#FF0101);
+}
+
+.kanjia-category .activity-item .btn.btn-end {
+    background-color: #959595;
+    border: 0px;
+}
+
+.kanjia-category .activity-item .avatar-list {
+    margin-left: 20px;
+}
+
+.kanjia-category .activity-item .avatar-list image {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    margin-left: -10px;
+}
+
+.kanjia-category .activity-item .avatar-list image:first-child {
+    margin-left: 0;
+}

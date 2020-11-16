@@ -1,0 +1,183 @@
+{itemplate 'public/header'}
+<form action="./index.php" class="form-horizontal form-filter" id="form1">
+	{php echo tpl_form_filter_hidden('statcenter/member/orderNum');}
+	<input type="hidden" name="days" value="{$days}"/>
+	<div class="form-group">
+		<label class="col-xs-12 col-sm-3 col-md-3 control-label">筛选时间</label>
+		<div class="col-sm-9 col-xs-12 js-daterange" data-form="#form1">
+			<div class="btn-group">
+				<a href="{php echo ifilter_url('days:0');}" class="btn {if !$days}btn-primary{else}btn-default{/if}">今天</a>
+				<a href="{php echo ifilter_url('days:7');}" class="btn {if $days == 7}btn-primary{else}btn-default{/if}">最近7天</a>
+				<a href="{php echo ifilter_url('days:30');}" class="btn {if $days == 30}btn-primary{else}btn-default{/if}">最近30天</a>
+				<a href="javascript:;" class="btn js-btn-custom {if $days == -1}btn-primary{else}btn-default{/if}">自定义</a>
+			</div>
+			<span class="btn-daterange js-btn-daterange {if $days != -1}hide{/if}">
+				{php echo tpl_form_field_daterange('stat_day', array('start' => $starttime, 'end' => $endtime));}
+			</span>
+		</div>
+	</div>
+	<div class="form-group clearfix form-inline">
+		<label class="col-xs-12 col-sm-2 col-md-1 control-label">其他</label>
+		<div class="col-sm-7 col-lg-8 col-xs-12">
+			<select name="sid" class="form-control select2 js-select2 width-130" id="select-sid">
+				<option value="0" {if !$sid}selected{/if}>全部门店</option>
+				{loop $stores $store}
+				<option value="{$store['id']}" {if $store['id'] == $sid}selected{/if}>{$store['title']}</option>
+				{/loop}
+			</select>
+		</div>
+	</div>
+</form>
+<div class="clearfix">
+	<div class="panel panel-stat">
+		<div class="panel-heading">
+			<h3>成交频次分布</h3>
+		</div>
+		<div class="panel-body">
+			<div class="col-md-3">
+				<div class="title">
+					成交总人数
+					<i class="fa fa-info-circle" data-toggle="popover" data-placement="top" data-content="统计时间段内的成交的总人数"></i>
+				</div>
+				<div class="num-wrapper">
+					<a class="num" href="javascript:;">
+						<span>{$stat['total']}人</span>
+					</a>
+				</div>
+			</div>
+			<div class="col-md-3">
+				<div class="title">
+					成交1单人数
+					<i class="fa fa-info-circle" data-toggle="popover" data-placement="top" data-content="统计时间段内的成交1单的人数"></i>
+				</div>
+				<div class="num-wrapper">
+					<a class="num" href="javascript:;">
+						<span>{$stat['total_1']}人</span>
+					</a>
+					<span class="info">占比{$stat['percent_1']}%</span>
+				</div>
+			</div>
+			<div class="col-md-3">
+				<div class="title">
+					成交2单人数
+					<i class="fa fa-info-circle" data-toggle="popover" data-placement="top" data-content="统计时间段内的成交2单的人数"></i>
+				</div>
+				<div class="num-wrapper">
+					<a class="num" href="javascript:;">
+						<span>{$stat['total_2']}人</span>
+					</a>
+					<span class="info">占比{$stat['percent_2']}%</span>
+				</div>
+			</div>
+			<div class="col-md-3">
+				<div class="title">
+					成交3单人数
+					<i class="fa fa-info-circle" data-toggle="popover" data-placement="top" data-content="统计时间段内的成交3单的人数"></i>
+				</div>
+				<div class="num-wrapper">
+					<a class="num" href="javascript:;">
+						<span>{$stat['total_3']}人</span>
+					</a>
+					<span class="info">占比{$stat['percent_3']}%</span>
+				</div>
+			</div>
+			<div class="col-md-3">
+				<div class="title">
+					成交4单人数
+					<i class="fa fa-info-circle" data-toggle="popover" data-placement="top" data-content="统计时间段内的成交4单的人数"></i>
+				</div>
+				<div class="num-wrapper">
+					<a class="num" href="javascript:;">
+						<span>{$stat['total_4']}人</span>
+					</a>
+					<span class="info">占比{$stat['percent_4']}%</span>
+				</div>
+			</div>
+			<div class="col-md-3">
+				<div class="title">
+					成交5单人数
+					<i class="fa fa-info-circle" data-toggle="popover" data-placement="top" data-content="统计时间段内的成交5单的人数"></i>
+				</div>
+				<div class="num-wrapper">
+					<a class="num" href="javascript:;">
+						<span>{$stat['total_5']}人</span>
+					</a>
+					<span class="info">占比{$stat['percent_5']}%</span>
+				</div>
+			</div>
+			<div class="col-md-3">
+				<div class="title">
+					成交5单以上人数
+					<i class="fa fa-info-circle" data-toggle="popover" data-placement="top" data-content="统计时间段内的成交5单以上的人数"></i>
+				</div>
+				<div class="num-wrapper">
+					<a class="num" href="javascript:;">
+						<span>{$stat['total_6']}人</span>
+					</a>
+					<span class="info">占比{$stat['percent_6']}%</span>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="clearfix">
+	<div class="col-lg-12 padding-0">
+		<div class="panel panel-trend">
+			<div class="panel-heading">
+				<h3>成交频次分布</h3>
+			</div>
+			<div class="panel-body">
+				<div id="chart-order-holder-pie" style="width: 100%;height:400px;"></div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<script type="text/javascript">
+	irequire(['echarts'], function(echarts){
+		// 饼图
+		var option1 = {
+			title : {
+				text: '成交频次分布',
+				x:'center'
+			},
+			tooltip : {
+				trigger: 'item',
+				formatter: "{a} <br/>{b} : {c} ({d}%)"
+			},
+			legend: {
+				orient: 'vertical',
+				left: 'left',
+				data: []
+			},
+			series : [
+				{
+					name: '成交频次分布',
+					type: 'pie',
+					radius : '55%',
+					center: ['50%', '60%'],
+					data:[],
+					itemStyle: {
+						emphasis: {
+							shadowBlur: 10,
+							shadowOffsetX: 0,
+							shadowColor: 'rgba(0, 0, 0, 0.5)'
+						}
+					}
+				}
+			]
+		};
+		var myChartPie = echarts.init($('#chart-order-holder-pie')[0]);
+		myChartPie.showLoading();
+		$.post(location.href, function(data){
+			myChartPie.hideLoading();
+			var result = $.parseJSON(data);
+			// 饼图
+			option1.series[0].data = result.message.message.pieData;
+			option1.legend.data = result.message.message.pieTitles;
+			myChartPie.setOption(option1);
+		});
+	});
+</script>
+
+{itemplate 'public/footer'}

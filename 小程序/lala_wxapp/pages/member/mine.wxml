@@ -1,0 +1,234 @@
+<block wx:if="{{is_use_diy!=1}}">
+    <tab-bar menufooter="{{menufooter}}" wx:if="{{menufooter&&menufooter.data}}"></tab-bar>
+    <view class="page-member container">
+        <view class="diy-memberHeader">
+            <view class="member-headinfo">
+                <view class="headinfo-balance">
+                    <view class="headinfo-balance-price">余额</view>
+                    <view class="headinfo-price">{{Logged?credit2:0}}</view>
+                    <view bind:tap="onJsEvent" class="headinfo-filling-price" data-event-type="jsUrl" data-url="pages/member/recharge">充值</view>
+                </view>
+                <view class="headinfo-user">
+                    <block wx:if="{{Logged}}">
+                        <view class="user-face {{0=='radius'?'party':''}}">
+                            <image src="{{user.avatar}}"></image>
+                        </view>
+                        <view class="user-name">{{user.nickname}}</view>
+                        <view class="user-level" wx:if="{{user.groupid>0}}">
+							[{{user.groupname}}]
+							<text class="icon icon-question1" wx:if="{{0}}"></text>
+                        </view>
+                    </block>
+                    <block wx:else>
+                        <view class="user-face radius">
+                            <image src="../../static/img/head.png"></image>
+                        </view>
+                        <view bind:tap="onToAuth" class="user-name margin-10-t">点击登录/注册</view>
+                    </block>
+                </view>
+                <view class="headinfo-balance">
+                    <view class="headinfo-balance-price">积分</view>
+                    <view class="headinfo-price">{{Logged?credit1:0}}</view>
+                    <view bind:tap="onJsEvent" class="headinfo-filling-price" data-event-type="jsUrl" data-url="pages/creditshop/index">兑换</view>
+                </view>
+                <view class="icons">
+                    <view bind:tap="onJsEvent" data-event-type="jsUrl" data-url="pages/member/profile">
+                        <text class="icon icon-settings font-20 c-white"></text>
+                    </view>
+                    <view bind:tap="onJsEvent" class="kefu" data-event-type="jsUrl" data-url="plugin/pages/kefu/index" wx:if="{{kefu.status==1}}">
+                        <text class="icon icon-notice font-20 c-white"></text>
+                        <div class="nums" wx:if="{{kefu.notread>0}}">{{kefu.notread}}</div>
+                    </view>
+                </view>
+            </view>
+        </view>
+        <view class="diy-mobile-bind" wx:if="{{!user.mobile}}">
+            <view bind:tap="onJsEvent" class="mobile-cell" data-event-type="jsUrl" data-url="pages/member/bind">
+                <view class="mobile-cell-text">
+                    <text class="icon icon-phone1"></text>
+                    <text>绑定手机号</text>
+                    <view class="cell-text-info">如果您用手机号注册过会员或您想通过微信外购物请绑定您的手机号码</view>
+                </view>
+                <view class="mobile-cell-remark icon icon-right1"></view>
+            </view>
+        </view>
+        <view class="diy-blockNav">
+            <view class="col-4">
+                <view bind:tap="onJsEvent" class="diy-icon-col" data-event-type="jsUrl" data-url="pages/member/favorite">
+                    <view class="icon-img">
+                        <text class="icon icon-favor_light"></text>
+                    </view>
+                    <view class="text-icon">我的收藏</view>
+                </view>
+                <view bind:tap="onJsEvent" class="diy-icon-col" data-event-type="jsUrl" data-url="pages/member/address">
+                    <view class="icon-img">
+                        <text class="icon icon-zuobiao"></text>
+                    </view>
+                    <view class="text-icon">我的地址</view>
+                </view>
+            </view>
+        </view>
+        <view bind:tap="onJsEvent" class="diy-mealRedpacket" data-event-type="jsUrl" data-url="package/pages/mealRedpacket/meal" wx:if="{{mealRedpacket.status==1}}">
+            <view class="mealRedpacket-bg">
+                <image src="http://cos.lalawaimai.com/we7_wmall/wxapp/meal_bg.png"></image>
+            </view>
+            <view class="mealRedpacket-content">
+                <view class="my-mealRedpacket">
+                    <view class="mealRedpacket-logo">
+                        <image src="http://cos.lalawaimai.com/we7_wmall/wxapp/meal_logo.png"></image>
+                    </view>
+                    <view class="mealRedpacket-tip" wx:if="{{mealRedpacket.canBuy}}">{{mealRedpacket.title}}</view>
+                    <view class="mealRedpacket-tip" wx:else>已获得{{mealRedpacket.total_redpacket}}{{Lang.dollarSignCn}}红包</view>
+                </view>
+                <text class="icon icon-right"></text>
+            </view>
+        </view>
+        <swiper class="page-member-swiper" wx:if="{{slides}}">
+            <swiper-item wx:for="{{slides}}">
+                <image bind:tap="onJsEvent" data-event-type="jsUrl" data-url="{{item.wxapp_link}}" src="{{item.thumb}}"></image>
+            </swiper-item>
+        </swiper>
+        <view class="diy-blockNav">
+            <view class="blockNav-title border-1px-b">我的资产</view>
+            <view class="col-4">
+                <view bind:tap="onJsEvent" class="diy-icon-col" data-event-type="jsUrl" data-url="pages/member/recharge">
+                    <view class="icon-img">
+                        <text class="icon icon-recharge"></text>
+                    </view>
+                    <view class="text-icon">余额充值</view>
+                    <view class="icon-tips c-danger" wx:if="{{credit2>0}}">{{Lang.dollarSign}}{{credit2}}</view>
+                </view>
+                <view bind:tap="onJsEvent" class="diy-icon-col" data-event-type="jsUrl" data-url="pages/member/redPacket/index">
+                    <view class="icon-img">
+                        <text class="icon icon-money"></text>
+                    </view>
+                    <view class="text-icon">我的红包</view>
+                    <view class="icon-tips c-danger" wx:if="{{redpacket_nums>0}}">{{redpacket_nums}}个未使用</view>
+                </view>
+                <view bind:tap="onJsEvent" class="diy-icon-col" data-event-type="jsUrl" data-url="pages/member/coupon/index">
+                    <view class="icon-img">
+                        <text class="icon icon-iconpiaoquan01"></text>
+                    </view>
+                    <view class="text-icon">我的代金券</view>
+                    <view class="icon-tips" wx:if="{{coupon_nums>0}}">{{coupon_nums}}个未使用</view>
+                </view>
+                <view bind:tap="onJsEvent" class="diy-icon-col" data-event-type="jsUrl" data-url="package/pages/deliveryCard/index" wx:if="{{deliveryCard_status}}">
+                    <view class="icon-img">
+                        <text class="icon icon-vipcard"></text>
+                        <text class="nav-mark">hot</text>
+                    </view>
+                    <view class="text-icon">配送会员卡</view>
+                    <view class="icon-tips {{deliveryCard_setmeal_ok==1?'c-danger':''}}">{{deliveryCard_setmeal_ok==1?'已购买':'暂未购买'}}</view>
+                </view>
+                <view bind:tap="onJsEvent" class="diy-icon-col" data-event-type="jsUrl" data-url="package/pages/svip/index" wx:if="{{has_svip==1}}">
+                    <view class="icon-img">
+                        <text class="icon icon-vip"></text>
+                        <text class="nav-mark">new</text>
+                    </view>
+                    <view class="text-icon">超级会员</view>
+                    <view class="icon-tips {{user.svip_status==1?'c-danger':''}}">{{user.svip_status==1?'已购买':'暂未购买'}}</view>
+                </view>
+            </view>
+        </view>
+        <view class="diy-blockNav">
+            <view class="blockNav-title border-1px-b">我的服务</view>
+            <view class="col-4">
+                <view bind:tap="onJsEvent" class="diy-icon-col" data-event-type="jsUrl" data-url="pages/channel/brand">
+                    <view class="icon-img">
+                        <text class="icon icon-dianpu"></text>
+                        <text class="nav-mark">hot</text>
+                    </view>
+                    <view class="text-icon">为您优选</view>
+                </view>
+                <view bind:tap="onJsEvent" class="diy-icon-col" data-event-type="jsUrl" data-url="pages/channel/coupon">
+                    <view class="icon-img">
+                        <text class="icon icon-iconpiaoquan01"></text>
+                        <text class="nav-mark">hot</text>
+                    </view>
+                    <view class="text-icon">领券中心</view>
+                </view>
+                <view bind:tap="onJsEvent" class="diy-icon-col" data-event-type="jsUrl" data-url="pages/home/help">
+                    <view class="icon-img">
+                        <text class="icon icon-creative"></text>
+                    </view>
+                    <view class="text-icon">帮助与反馈</view>
+                </view>
+                <view bind:tap="onJsEvent" class="diy-icon-col" data-event-type="jsUrl" data-url="pages/home/help">
+                    <view class="icon-img">
+                        <text class="icon icon-service"></text>
+                    </view>
+                    <view class="text-icon">客服中心</view>
+                </view>
+            </view>
+        </view>
+        <view class="diy-blockNav" wx:if="{{has_gohome==1}}">
+            <view class="blockNav-title border-1px-b">生活圈</view>
+            <view class="col-4">
+                <view bind:tap="onJsEvent" class="diy-icon-col" data-event-type="jsUrl" data-url="gohome/pages/home/index">
+                    <view class="icon-img">
+                        <text class="icon icon-home"></text>
+                        <text class="nav-mark">hot</text>
+                    </view>
+                    <view class="text-icon">生活圈首页</view>
+                </view>
+                <view bind:tap="onJsEvent" class="diy-icon-col" data-event-type="jsUrl" data-url="gohome/pages/order/index">
+                    <view class="icon-img">
+                        <text class="icon icon-order"></text>
+                    </view>
+                    <view class="text-icon">我的订单</view>
+                </view>
+                <view bind:tap="onJsEvent" class="diy-icon-col" data-event-type="jsUrl" data-url="gohome/pages/member/favorite">
+                    <view class="icon-img">
+                        <text class="icon icon-like"></text>
+                    </view>
+                    <view class="text-icon">我的收藏</view>
+                </view>
+                <view bind:tap="onJsEvent" class="diy-icon-col" data-event-type="jsUrl" data-url="gohome/pages/kanjia/record">
+                    <view class="icon-img">
+                        <text class="icon icon-activity"></text>
+                    </view>
+                    <view class="text-icon">我的砍价</view>
+                </view>
+            </view>
+        </view>
+        <view class="diy-blockNav" wx:if="{{config.store.settle.status==1||spread&&spread.status==1||ordergrant==1}}">
+            <view class="blockNav-title border-1px-b">更多推荐</view>
+            <view class="col-4">
+                <view bind:tap="onJsEvent" class="diy-icon-col" data-event-type="jsUrl" data-url="pages/store/settle" wx:if="{{config.store.settle.status==1}}">
+                    <view class="icon-img">
+                        <text class="icon icon-shop"></text>
+                    </view>
+                    <view class="text-icon">商户入驻</view>
+                </view>
+                <view bind:tap="onJsEvent" class="diy-icon-col" data-event-type="jsUrl" data-url="plugin/pages/spread/register" wx:if="{{spread&&spread.status==1}}">
+                    <view class="icon-img">
+                        <text class="icon icon-friend"></text>
+                    </view>
+                    <view class="text-icon">{{spread.title}}</view>
+                </view>
+                <view bind:tap="onJsEvent" class="diy-icon-col" data-event-type="jsUrl" data-url="/package/pages/ordergrant/index" wx:if="{{ordergrant==1}}">
+                    <view class="icon-img">
+                        <text class="icon icon-refund"></text>
+                    </view>
+                    <view class="text-icon">下单有礼</view>
+                </view>
+                <view bind:tap="onJsEvent" class="diy-icon-col" data-event-type="jsUrl" data-url="plugin/pages/wheel/record" wx:if="{{has_wheel==1}}">
+                    <view class="icon-img">
+                        <text class="icon icon-brand"></text>
+                    </view>
+                    <view class="text-icon">大转盘</view>
+                </view>
+            </view>
+        </view>
+        <view class="diy-copyright copyright">
+            <template is="wxParse" data="{{wxParseData:copyright.nodes}}"></template>
+        </view>
+    </view>
+</block>
+<block wx:else>
+    <import src="../diy/template.wxml"></import>
+    <tab-bar menufooter="{{menufooter}}" wx:if="{{menufooter&&menufooter.data}}"></tab-bar>
+    <template is="tpl-diy" data="{{diy:diy,richtext:richtext,Logged:Logged,Lang:Lang}}"></template>
+</block>
+<include src="../public/footer.wxml"></include>
+<import src="/library/wxParse/wxParse.wxml"></import>

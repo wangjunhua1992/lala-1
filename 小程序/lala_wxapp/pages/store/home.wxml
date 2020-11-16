@@ -1,0 +1,4 @@
+<import src="../diy/template.wxml"></import>
+<tab-bar menufooter="{{menufooter}}" wx:if="{{menufooter&&menufooter.data}}"></tab-bar>
+<template is="tpl-diy" data="{{diy:diy,store_id:store_id,richtext:richtext,selectedtab:selectedtab,is_grant:is_grant,scrollToId:scrollToId,superRedpacket:superRedpacket,Lang:Lang}}"></template>
+<include src="../public/footer.wxml"></include>

@@ -1,0 +1,49 @@
+@import "../../../nmy/0.wxss";
+
+page {
+    background-color: #000;
+    font-size: 14px;
+    line-height: 1;
+}
+
+.poster-index .content {
+    position: absolute;
+    top: 0px;
+    right: 0;
+    bottom: 0px;
+    left: 0;
+    overflow-y: scroll;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.poster-index .content .img-wrap {
+    margin: 20px 20px 15px;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.poster-index .content .tip {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    justify-content: center;
+    font-size: 0px;
+}
+
+.poster-index .content .tip image {
+    width: 20px;
+    height: 21px;
+    margin-right: 5px;
+}
+
+.poster-index .content .save-img {
+    font-size: 16px;
+    padding: 10px 20px;
+    background-color: #ff2d4b;
+    color: #fff;
+    border-radius: 36px;
+    margin-bottom: 15px;
+}

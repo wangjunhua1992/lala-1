@@ -1,0 +1,73 @@
+page {
+    background: #eee;
+}
+
+.page-partakeSuccess .partake-info {
+    background-color: #fff;
+    text-align: center;
+    padding: 16px 0;
+}
+
+.page-partakeSuccess .partake-info .partake-h3 {
+    font-weight: blod;
+    font-size: 1.17em;
+    margin: 10px 0;
+}
+
+.page-partakeSuccess .partake-info .partake-serial {
+    font-size: 14px;
+    color: #666;
+}
+
+.page-partakeSuccess .partake-info .partake-serial text {
+    color: #f90;
+}
+
+.page-partakeSuccess .partake-info .pre-reward-time {
+    font-size: 12px;
+    color: #999;
+}
+
+.page-partakeSuccess .partake-info .scan {
+    margin: 10px 0;
+}
+
+.page-partakeSuccess .partake-info .scan .scan-btn {
+    display: inline-block;
+    padding: 6px 10px;
+    font-size: 14px;
+    font-weight: bold;
+    border: 1px solid #e0e0e0;
+    border-radius: 4px;
+    color: #333;
+}
+
+.page-partakeSuccess .repartake {
+    text-align: center;
+    padding: 16px 0;
+    font-size: 14px;
+}
+
+.page-partakeSuccess .repartake .remission {
+    color: #999;
+    font-size: 14px;
+}
+
+.page-partakeSuccess .repartake .repartake-invite {
+    margin: 10px;
+}
+
+.page-partakeSuccess .repartake .repartake-invite .repartake-btn {
+    line-height: 48px;
+    color: #fff;
+    background-color: #f6383a;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.page-partakeSuccess .repartake .partake-plus {
+    display: block;
+    margin-top: 16px;
+    color: #0894ec;
+    font-size: 14px;
+}

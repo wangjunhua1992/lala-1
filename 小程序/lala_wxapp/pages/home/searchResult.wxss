@@ -1,0 +1,416 @@
+page {
+    background-color: #f4f4f4;
+}
+
+.container .content .search-rmd-wrap {
+    margin-bottom: 11px;
+    background: #fff;
+}
+
+.container .content .rmd-history {
+    margin-bottom: 11px;
+}
+
+.search-rmd-title {
+    position: relative;
+    padding-left: 16px;
+    font-size: 15px;
+    line-height: 38px;
+    color: #656565;
+    background: #fff;
+}
+
+.search-rmd-title view:first-child {
+    border-bottom: 1rpx solid #e5e5e5;
+}
+
+.search-rmd-title .change {
+    position: absolute;
+    right: 11px;
+    top: 50%;
+    transform: translate(0,-50%);
+}
+
+.search-rmd {
+    max-height: 92px;
+    padding: 8px 9px;
+    background: #fff;
+    overflow: hidden;
+}
+
+.search-rmd navigator {
+    display: inline-block;
+    float: left;
+    max-width: 187px;
+    min-width: 58px;
+    height: 31px;
+    line-height: 31px;
+    margin: 8px 5px;
+    padding: 0 16px;
+    -mox-box-sizing: border-box;
+    box-sizing: border-box;
+    border-radius: 2px;
+    border: 1px solid #ccc;
+    color: #2f2f2f;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    text-align: center;
+    font-size: 14px;
+}
+
+.search-rmd navigator view {
+    float: left;
+    height: 30px;
+    margin-top: -2px;
+    margin-right: 3px;
+}
+
+.container .content .guess {
+    background: #fff;
+    line-height: 30px;
+}
+
+.container .content .guess .wui-cell image {
+    width: 30px;
+    height: 30px;
+    display: inline-block;
+    float: left;
+    border-radius: 100%;
+    margin-right: 5px;
+}
+
+.container .content .guess .wui-cell:last-child::after {
+    border-top: 0;
+}
+
+.container .content .suspect {
+    margin-top: 10px;
+}
+
+.container .content .suspect .wui-loadmore {
+    margin-top: 31px;
+    width: 80%;
+    margin-bottom: 0;
+}
+
+.container .content .no-result {
+    background-color: #fff;
+    font-size: 14px;
+    text-align: center;
+    padding-top: 15px;
+    padding-bottom: 10px;
+    color: #656565;
+    margin-bottom: 10px;
+}
+
+.container .content .no-result .img .icon {
+    font-size: 20px;
+}
+
+.container .content .no-result .text {
+    margin-top: 3px;
+}
+
+.container .content .store-list {
+    width: 100%;
+}
+
+.container .content .store-list .field {
+    position: relative;
+    padding: 10px 0 8px 10px;
+    margin-bottom: 10px;
+    background: #fff;
+}
+
+.container .content .store-list .field>navigator {
+    width: 24%;
+    height: 60px;
+    position: absolute;
+    text-align: center;
+    overflow: hidden;
+    border: 1px solid #E4E4E4;
+}
+
+.container .content .store-list .field>navigator .avatar {
+    width: 100%;
+    height: 100%;
+}
+
+.avatar-band,.avatar-new {
+    position: absolute;
+    left: 0;
+    top: 0;
+    font-size: 12px;
+    color: #fff;
+    width: 32px;
+    height: 17px;
+    line-height: 18px;
+}
+
+.container .content .store-list .field>navigator .avatar .avatar-band {
+    background-color: #ff2d4b;
+}
+
+.container .content .store-list .field>navigator .avatar .avatar-new {
+    background-color: #21C56C;
+}
+
+.container .content .store-list .field>navigator .avatar image {
+    width: 100%;
+    height: 100%;
+}
+
+.container .content .store-list .field .content {
+    margin-left: 27%;
+    position: relative;
+    overflow: hidden;
+    display: inline-block;
+    width: 73%;
+}
+
+.container .content .store-list .field .content navigator .shop-title {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.container .content .store-list .field .content navigator .delivery-tip {
+    display: flex;
+    line-height: 1;
+    margin-top: 5px;
+}
+
+.container .content .store-list .field .content navigator .delivery-tip text {
+    background: #4FCE99;
+    color: #fff;
+    font-size: 12px;
+    padding: 3px 5px;
+    border-radius: 2px;
+}
+
+.container .content .store-list .field .content navigator .shop-mid-line {
+    height: 20px;
+    font-size: 20px;
+}
+
+.container .content .store-list .field .content navigator .shop-mid-line .appr-status {
+    width: 76px;
+    float: left;
+    height: 12px;
+    position: relative;
+    margin: 6px 0 0 0;
+}
+
+.container .content .store-list .field .content navigator .shop-mid-line .appr-status .appr-score {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    float: left;
+    margin-right: 4px;
+    background: url(http://cos.lalawaimai.com/we7_wmall/wxapp/newstars.png) no-repeat;
+    background-position: 0 0;
+    background-size: cover;
+}
+
+.container .content .store-list .field .content navigator .shop-mid-line .shop-sold {
+    float: left;
+    margin-top: 2px;
+    font-size: 12px;
+    color: #656565;
+}
+
+.container .content .store-list .field .content navigator .shop-mid-line .shop-right {
+    float: right;
+    margin-right: 10px;
+    font-size: 12px;
+    padding-top: 2px;
+    text-align: right;
+    color: #656565;
+}
+
+.container .content .store-list .field .content navigator .shop-mid-line .shop-dvd-line {
+    float: right;
+    margin: 7px 5px 0 5px;
+    width: 0;
+    height: 9px;
+    font-size: 0;
+    border-right: 1px solid #ccc;
+}
+
+.container .content .store-list .field .content navigator .shop-mid-line .shop-delivery-time {
+    float: right;
+    font-size: 12px;
+    color: #656565;
+    text-align: right;
+    margin-top: 2px;
+}
+
+.container .content .store-list .field .content navigator .shop-line {
+    margin-top: 4px;
+    font-size: 12px;
+    color: #656565;
+}
+
+.container .content .store-list .field .content navigator .shop-line .shop-line-item {
+    float: left;
+}
+
+.container .content .store-list .field .content navigator .shop-line .shop-dvd-line {
+    float: left;
+    display: inline-block;
+    margin: 5px 5px 0 5px;
+    width: 0;
+    height: 9px;
+    font-size: 0;
+    border-right: 1px solid #ccc;
+}
+
+.container .content .store-list .field .content navigator .shop-line .shop-line-item view {
+    display: inline-block;
+}
+
+.container .content .store-list .field .content navigator .shop-line .allocation-icon {
+    float: right;
+    margin-right: 10px;
+    margin-top: 0;
+}
+
+.container .content .store-list .field .content navigator .shop-line .allocation-icon view {
+    position: relative;
+    background-color: #ff2d4b;
+    display: inline-block;
+    height: 15px;
+    line-height: 15px;
+    padding: 0 6px;
+    font-size: 10px;
+    color: #fff;
+    font-weight: normal;
+    vertical-align: baseline;
+}
+
+.container .content .store-list .field .content navigator .shop-line .allocation-icon view::before,.allocation-icon view::after {
+    content: "";
+    position: absolute;
+    border: 2px solid #fff;
+    width: 0;
+    height: 0;
+    font-size: 0;
+}
+
+.container .content .store-list .field .content navigator .shop-line .allocation-icon view::before {
+    left: 0;
+    top: 0;
+    border-color: #fff #ff2d4b #ff2d4b #fff;
+}
+
+.container .content .store-list .field .content navigator .shop-line .allocation-icon view::after {
+    right: 0;
+    bottom: 0;
+    border-color: #ff2d4b #fff #fff #ff2d4b;
+}
+
+.container .content .store-list .field .content .shop-discount-entries {
+    font-size: 11px;
+    color: #898989;
+    padding-top: 6px;
+    overflow: hidden;
+    position: relative;
+    margin-right: 10px;
+}
+
+.container .content .store-list .field .content .shop-discount-entries.show {
+    height: auto;
+    max-height: none;
+}
+
+.container .content .store-list .field .content .shop-discount-entries .shop-discount-entry-wrap .shop-discount-entry {
+    position: relative;
+    margin-bottom: 4px;
+}
+
+.container .content .store-list .field .content .shop-discount-entries .icon {
+    position: absolute;
+    right: 0px;
+    top: 5px;
+    font-size: 12px;
+}
+
+.container .content .store-list .field .content .shop-discount-entries .shop-discount-entry-wrap .shop-discount-entry .tags {
+    position: absolute;
+    top: 0;
+    font-size: 10px;
+}
+
+.container .content .store-list .field .content .shop-discount-entries .shop-discount-entry-wrap .shop-discount-entry .tags::before {
+    padding: 2px 3px;
+}
+
+.container .content .store-list .field .content .shop-discount-entries .shop-discount-entry-wrap .shop-discount-entry .text {
+    margin-left: 20px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    max-width: 80%;
+}
+
+.container .content .store-list .field .content .goods-list {
+    margin-top: 5px;
+    margin-right: 10px;
+    height: 54px;
+    overflow: hidden;
+}
+
+.container .content .store-list .field .content .goods-list.show {
+    height: auto;
+}
+
+.container .content .store-list .field .content .goods-list .goods-item {
+    padding: 8px 0;
+}
+
+.container .content .store-list .field .content .goods-list .goods-item .goods-name {
+    position: relative;
+    font-size: 16px;
+    color: #656565;
+}
+
+.container .content .store-list .field .content .goods-list .goods-item .goods-name.active {
+    color: #ff2d4b;
+}
+
+.container .content .store-list .field .content .goods-list .goods-item .goods-name .goods-price {
+    display: inline-block;
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translate(0,-50%);
+    font-size: 14px;
+    color: #ff2d4b;
+}
+
+.container .content .store-list .field .content .goods-list .goods-item .goods-sold {
+    font-size: 12px;
+    color: #656565;
+}
+
+.container .content .store-list .field .load-more {
+    margin-left: -10px;
+    text-align: center;
+    padding-top: 8px;
+    font-size: 15px;
+}
+
+.container .content .store-list .field .load-more .icon {
+    font-size: 12px;
+}
+
+.appr-status .appr-score-half {
+    background-position: -13px 0!important;
+}
+
+.appr-score-gray {
+    background-position: -27px 0!important;
+}

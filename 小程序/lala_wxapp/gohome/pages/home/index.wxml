@@ -1,0 +1,5 @@
+<failed-tips failedTips="{{failedTips}}" wx:if="{{!getLocationStatus}}"></failed-tips>
+<import src="../../../pages/diy/template.wxml"></import>
+<tab-bar menufooter="{{menufooter}}" wx:if="{{menufooter&&menufooter.data}}"></tab-bar>
+<template is="tpl-diy" data="{{diy:diy,location:location,cart_sum:cart_sum,richtext:richtext,danmu:danmu,dialog:dialog,storage:storage,topSearchBar:topSearchBar,Lang:Lang}}"></template>
+<include src="../../../pages/public/footer.wxml"></include>

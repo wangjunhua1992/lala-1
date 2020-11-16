@@ -1,0 +1,60 @@
+<tab-bar menufooter="{{menufooter}}" wx:if="{{menufooter&&menufooter.data}}"></tab-bar>
+<view class="page-order container">
+    <view class="wui-tab">
+        <view class="wui-tab-bd">
+            <view bind:tap="onToggleOrdertype" class="wui-tab-item {{order_type==item.type?'wui-tab-item-selected':''}}" data-order_type="{{item.type}}" wx:if="{{config.spread_types.length>1}}" wx:for="{{config.spread_types}}">
+                <view class="wui-tab-title">{{item.title}}</view>
+            </view>
+        </view>
+        <view class="wui-tab-bd" wx:if="{{config.spread_types.length==1}}">
+            <view bind:tap="onToggleStatus" class="wui-tab-item {{status==0?'wui-tab-item-selected':''}}" data-status="0">
+                <view class="wui-tab-title">所有</view>
+            </view>
+            <view bind:tap="onToggleStatus" class="wui-tab-item {{status==1?'wui-tab-item-selected':''}}" data-status="1">
+                <view class="wui-tab-title">未完成</view>
+            </view>
+            <view bind:tap="onToggleStatus" class="wui-tab-item {{status==2?'wui-tab-item-selected':''}}" data-status="2">
+                <view class="wui-tab-title">已完成</view>
+            </view>
+            <view bind:tap="onToggleStatus" class="wui-tab-item {{status==3?'wui-tab-item-selected':''}}" data-status="3">
+                <view class="wui-tab-title">已取消</view>
+            </view>
+        </view>
+    </view>
+    <view class="weui-cells weui-cells_after-title" wx:if="{{!records.empty}}">
+        <view bind:tap="onJsEvent" data-event-type="jsUrl" data-url="/plugin/pages/spread/detail?id={{item.id}}&order_type={{order_type}}" wx:for="{{records.data}}">
+            <view class="weui-cell border-1px-b">
+                <view class="mark" wx:if="{{item.spreadbalance==1}}">
+						已结算
+					</view>
+                <view class="mark mark-danger" wx:if="{{item.spreadbalance!=1}}">
+						未结算
+					</view>
+                <view class="weui-cell__bd">
+                    <view class="order-number">{{item.ordersn}} <text wx:if="{{item.spread1==item.spreadid}}">(一级)</text>
+                        <text wx:if="{{item.spread2==item.spreadid}}">(二级)</text>
+                    </view>
+                    <view class="order-time">{{item.paytime_cn}}</view>
+                </view>
+                <view class="weui-cell__ft">
+                    <view class="order-sum">+{{item.commission}}</view>
+                    <view class="order-status">{{item.status_cn}}</view>
+                </view>
+                <icon class="icon icon-right"></icon>
+            </view>
+        </view>
+    </view>
+    <view class="no-data no-bottom" wx:else>
+        <image class="no-coupon" src="http://cos.lalawaimai.com/we7_wmall/wxapp/coupon_no_con.png"></image>
+        <text class="no-record">暂时没有推广订单哦～</text>
+    </view>
+    <view class="weui-loadmore" wx:if="{{showloading}}">
+        <view class="weui-loading"></view>
+        <view class="weui-loadmore__tips">正在加载中</view>
+    </view>
+    <view class="wui-loadmore wui-loadmore-nomore" wx:elif="{{records.loaded}}">
+        <view class="wui-loadmore-tips">没有更多订单</view>
+        <view class="wui-loadmore-line"></view>
+    </view>
+</view>
+<include src="../../../pages/public/footer.wxml"></include>

@@ -1,0 +1,82 @@
+@import "../../../nmy/0.wxss";
+
+page {
+    background-color: #F5F5F5;
+    font-size: 14px;
+    line-height: 1;
+}
+
+.haodian-application .van-cell-group {
+    margin-bottom: 10px;
+}
+
+.haodian-application .pic-box {
+    position: relative;
+    padding-bottom: 5px;
+    background-color: #fff;
+}
+
+.haodian-application .pic-box .upload-title {
+    text-align: left;
+    padding-bottom: 10px;
+}
+
+.haodian-application .pic-box .pic-icon {
+    width: 65px;
+    height: 65px;
+    line-height: 65px;
+    text-align: center;
+    border: 1px solid #ececec;
+}
+
+.haodian-application .pic-box .pic {
+    width: 65px;
+    height: 65px;
+    border: 1px solid #fff;
+    margin-right: 10px;
+    position: relative;
+}
+
+.haodian-application .pic-box .pic image {
+    width: 100%;
+    height: 100%;
+}
+
+.haodian-application .pic-box .pic view {
+    position: absolute;
+    right: -5px;
+    top: -5px;
+    color: #fff;
+    background-color: #FA553E;
+    width: 18px;
+    height: 18px;
+    line-height: 15px;
+    text-align: center;
+    border-radius: 100%;
+}
+
+.haodian-application .pic-box .pic-icon .icon {
+    font-size: 20px;
+}
+
+.haodian-application .tips {
+    padding: 5px 10px 0;
+    font-size: 14px;
+    color: #999;
+}
+
+.haodian-application .tips .icon {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: 1px solid #ccc;
+    text-align: center;
+    line-height: 20px;
+    margin-right: 5px;
+}
+
+.haodian-application .tips .icon.icon-check {
+    color: #fff;
+    background-color: #ff2d4b;
+    border-color: #ff2d4b;
+}

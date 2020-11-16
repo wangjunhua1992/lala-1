@@ -1,0 +1,31 @@
+<view class="page-detail">
+    <view class="weui-cells weui-cells_after-title">
+        <view class="weui-cell border-1px-b">
+            <view class="weui-cell__bd">订单号</view>
+            <view class="weui-cell__ft">{{detail.ordersn}}</view>
+        </view>
+        <view class="weui-cell border-1px-b">
+            <view class="weui-cell__bd">下单人</view>
+            <view class="weui-cell__ft">{{detail.username}}</view>
+        </view>
+        <view class="weui-cell border-1px-b">
+            <view class="weui-cell__bd">订单佣金</view>
+            <view class="weui-cell__ft">{{Lang.dollarSign}}{{detail.commission}}</view>
+        </view>
+        <view class="weui-cell border-1px-b" wx:if="{{detail.spreadbalance==1}}">
+            <view class="weui-cell__bd">实际到账</view>
+            <view class="weui-cell__ft">{{Lang.dollarSign}}{{detail.real_commission}}</view>
+            <view class="weui-cell border-1px-b"></view>
+            <view class="weui-cell__bd">结算状态</view>
+            <view class="weui-cell__ft">
+                <block wx:if="{{detail.spreadbalance==1}}">已结算</block>
+                <block wx:else>未结算</block>
+            </view>
+        </view>
+        <view class="weui-cell">
+            <view class="weui-cell__bd">订单状态</view>
+            <view class="weui-cell__ft">{{detail.status_cn}}</view>
+        </view>
+    </view>
+</view>
+<include src="../../../pages/public/footer.wxml"></include>

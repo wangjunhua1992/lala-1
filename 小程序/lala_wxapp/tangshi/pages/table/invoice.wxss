@@ -1,0 +1,33 @@
+page {
+    background-color: #f4f4f4;
+}
+
+.content .title {
+    background: #fff;
+    margin-top: 10px;
+    padding: 10px;
+}
+
+.content .title input {
+    font-size: 14px;
+}
+
+.content .number {
+    background-color: #fff;
+    margin-top: 10px;
+    padding: 10px;
+}
+
+.content .number input {
+    font-size: 14px;
+}
+
+.content .btn-box {
+    text-align: center;
+    margin-top: 10px;
+}
+
+.content .btn-box button {
+    padding: 5px 0;
+    line-height: 28px;
+}

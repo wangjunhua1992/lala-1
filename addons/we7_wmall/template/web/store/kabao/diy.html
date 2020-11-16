@@ -1,0 +1,45 @@
+{itemplate 'public/header'}
+{if $ta == 'index'}
+	<div class="clearfix">
+		<div class="alert alert-danger form-horizontal" style="font-size: 18px;">
+			注意：门店会员卡详情页 页面只有 <span style="color: #f00;">保存</span> 后才会生效！
+		</div>
+		<div class="app-preview">
+			<div class="app-header"></div>
+			<div class="app-body">
+				<div class="title" id="page">会员卡详情</div>
+				<div class="main" id="app-preview"></div>
+			</div>
+			<div class="app-footer"></div>
+		</div>
+		<div class="app-editor form-horizontal" id="app-editor">
+			<div class="editor-arrow"></div>
+			<div class="inner">
+			</div>
+		</div>
+	</div>
+	<div class="app-action">
+		<div class="parts" id="parts"></div>
+		<div class="action">
+			<nav class="btn btn-default btn-sm pull-left" id="gotop">返回顶部</nav>
+			<nav class="btn btn-primary btn-sm btn-save">保存会员卡设置</nav>
+		</div>
+	</div>
+	{itemplate 'store/kabao/diyTpl'}
+	<script language="javascript">
+		var path = '../../plugin/kabao/static/js/diy.vue';
+		irequire([path, 'tmodtpl'],function(diy, tmodtpl){
+			diy.init({
+				tmodtpl: tmodtpl,
+				attachurl: "{$_W['attachurl']}",
+				store_id: {$store},
+				store: {php echo json_encode($store)},
+				type: 6,
+				plugins: {php echo json_encode($plugins)},
+				data: {if !empty($page['data'])}{php echo json_encode($page['data'])}{else}null{/if},
+			});
+		});
+	</script>
+{/if}
+
+{itemplate 'public/footer'}

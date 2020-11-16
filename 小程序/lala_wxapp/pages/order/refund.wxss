@@ -1,0 +1,87 @@
+page {
+    background: #f5f5f5;
+    font-size: 14px;
+    line-height: 1;
+}
+
+.order-refund .refund-item .no-fix .van-cell__value {
+    flex: none;
+    max-width: 90%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.order-refund .refund-item .van-icon.van-icon-checked {
+    background-color: #ff2d4b;
+    color: #fff!important;
+    border-radius: 50%;
+}
+
+.order-refund .refund-item .more {
+    display: inline-flex;
+    padding: 3px 10px;
+    border-radius: 3px;
+    font-size: 12px;
+    border: 1px solid #999;
+    margin-bottom: 10px;
+}
+
+.order-refund .refund-item .goods-list .goods-item {
+    display: flex;
+    background-color: #f5f5f5;
+    padding: 10px;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+}
+
+.order-refund .refund-item .goods-list .goods-item .img-wrap {
+    width: 18%;
+    font-size: 0px;
+}
+
+.order-refund .refund-item .goods-list .goods-item .img-wrap image {
+    width: 50px;
+    height: 50px;
+}
+
+.order-refund .refund-item .goods-list .goods-item .goods-info {
+    height: 50px;
+    display: flex;
+    width: 82%;
+    flex-flow: column nowrap;
+    align-items: flex-start;
+    justify-content: center;
+}
+
+.order-refund .refund-item .goods-list .goods-item .goods-info .goods-info-top {
+    width: 100%;
+}
+
+.order-refund .refund-item .goods-list .goods-item .goods-info .goods-info-top .goods-name {
+    max-width: 70%;
+}
+
+.order-refund .refund-item .refund-left {
+    width: 20%;
+}
+
+.order-refund .refund-item .wui-steps {
+    padding: 0 15px;
+}
+
+.order-refund .refund-item .wui-steps-title {
+    width: 90%;
+}
+
+.order-refund .refund-item .time {
+    display: inline-block;
+    float: right;
+    color: #999;
+}
+
+.order-refund .refund-item .explan {
+    padding-left: 27px;
+    color: #999;
+    padding-top: 5px;
+}

@@ -1,0 +1,17 @@
+page {
+    background-color: #F5F5F5;
+    font-size: 14px;
+    line-height: 1;
+}
+
+.page-svipExchange .tips {
+    padding: 10px 15px;
+    font-size: 14px;
+    color: #666;
+}
+
+.page-svipExchange .svip-button .van-button {
+    color: #fff;
+    background-color: #ff2d4b;
+    font-size: 16px;
+}

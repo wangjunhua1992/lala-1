@@ -1,0 +1,93 @@
+@import "../../nmy/5.wxss";
+
+.dialog .dialog-mask {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1000;
+    background: rgba(0,0,0,0.7);
+}
+
+.dialog.dialog-show .dialog-mask {
+    display: block;
+}
+
+.dialog .dialog-container {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background: white;
+    transform: translateY(-150%);
+    transition: all 0.4s ease;
+    z-index: 10001;
+}
+
+.dialog-show .dialog-container {
+    transform: translateY(0);
+}
+
+.dialog.dialog-guide .guide {
+    box-sizing: border-box;
+}
+
+.dialog.dialog-guide .dialog-mask {
+    z-index: 1100;
+}
+
+.dialog.dialog-guide .dialog-container {
+    width: 80%;
+    height: 70%;
+    top: 10%;
+    left: 50%;
+    margin-left: -40%;
+}
+
+.dialog.dialog-guide swiper {
+    width: 100%;
+    height: 100%;
+}
+
+.dialog.dialog-guide swiper image {
+    width: 100%;
+    height: 100%;
+}
+
+.dialog.dialog-guide swiper .wx-swiper-dot {
+    width: 6rpx;
+    height: 6rpx;
+    border-radius: 100%;
+}
+
+.dialog.dialog-guide swiper .wx-swiper-dot-active {
+    width: 14rpx;
+    height: 6rpx;
+    border-radius: 100%;
+}
+
+.dialog.dialog-guide .close-adv {
+    width: 100%;
+    height: 50px;
+    position: absolute;
+    bottom: -50px;
+    text-align: center;
+}
+
+.dialog.dialog-guide .close-adv .close-btn {
+    width: 30px;
+    height: 30px;
+    border-radius: 100%;
+    border: 1px solid #fff;
+    line-height: 30px;
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    margin-left: -15px;
+}
+
+.dialog.dialog-guide .close-adv .close-btn .icon {
+    font-size: 20px;
+    color: #fff;
+}

@@ -1,0 +1,12 @@
+<view class="deliveryCard-exchange">
+    <view class="content">
+        <view class="tips">成功兑换后将关联到当前帐号：{{member.nickname}}</view>
+        <van-cell-group>
+            <van-field bind:change="onChange" label="兑换码" placeholder="请输入16位兑换码" value="{{code}}"></van-field>
+        </van-cell-group>
+        <view class="btn-box">
+            <button bind:tap="onSubmit" class="btn btn-warning btn-large deliveryCard-button" disabled="{{!islegal}}">兑换配送会员卡</button>
+        </view>
+    </view>
+</view>
+<include src="../../../pages/public/footer.wxml"></include>

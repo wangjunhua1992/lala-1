@@ -1,0 +1,183 @@
+@import "../../../nmy/0.wxss";
+
+page {
+    background-color: #f5f5f5;
+    font-size: 15px;
+}
+
+.page-pintuan-index {
+    line-height: 1;
+}
+
+.page-pintuan-index .pintuan-title {
+    padding: 15px;
+    font-size: 14px;
+    color: #ff2d4b;
+    background-color: #fff;
+    margin-top: 10px;
+}
+
+.page-pintuan-index .pintuan-item {
+    position: relative;
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #fff;
+    color: #333;
+    padding: 15px;
+}
+
+.page-pintuan-index .pintuan-item:first-child {
+    padding-top: 0px;
+}
+
+.page-pintuan-index .pintuan-item .thumb {
+    position: relative;
+    width: 100px;
+    height: 100px;
+    border-radius: 2px;
+    overflow: hidden;
+}
+
+.page-pintuan-index .pintuan-item .thumb image {
+    width: 100%;
+    height: 100%;
+}
+
+.page-pintuan-index .pintuan-item .thumb .mark {
+    position: absolute;
+    width: 44px;
+    height: 28px;
+    top: 0;
+    left: 10px;
+    padding-top: 4px;
+    background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFQAAABCCAYAAADJ5PFHAAAABGdBTUEAALGPC/xhBQAAAAFzUkdCAK7OHOkAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAAZiS0dEAP8A/wD/oL2nkwAABShJREFUeNrtmF1MFFcUx//nzmIULPhFFCui5cXWCqYaSbQfNl3EhZaFtmtrCS3tbngpfWj1hfSFF/tS26ZJfehiGyuiKBEQHyhCNViJVivRYGibNLUfSRNJy6coysw9fQDiri7L4swwkN7f2505d+45/8w5+5+lkXw3Ywxtz14YH+6G4uERoQt6MtPpfGY9wvwj/ueszQhbKkFN4vrok7B1mKB6+ftO5zfrCX9Du645nc+sR7W8SWTn1bA1hdomhXnC3lBtz16n85n1KB9qMWqGmkX5UGtRPtRmlA+1GNXyJlE+1GaUD7UY5UMtRs1Qsygfai3Kh9qM8qEWo1reJMqH2ozyoRajfKjFqBlqFuVDrUX5UJtRPtRiVMubRPlQm1E+1GKUD7UYNUPNonyotSgfajPKh1qManmTKB9qM8qHWozyoRajZqhZlA+1FuVDbUb5UIuJ2PK05VlgzVqnc5v5JCTAOPhV2KWIgnJvD7T3PoC272tQgQ8QatQiPgGUmw+kpt27NjQEPl4TFuaKuLnrGox3/cCaJyCyPeDUNOCP606X5AxLkiGKSkBZW8Adl8BnWqOGk+51V4PxMgNzJ44igMc+qBLmQ3hfhWxtArpvOF2u7VCeF3DFgU+fAgYHJo4D3QFQRwDAb+QtlEMjxZKlH0BG1BOEgHi7FLQ1G3z9V8jqA8AvPzldtzWszQCtywTXVE1hE/0sBPYLmn+A6uv/pftvc0HOJoM5AMjXmfHIhM9xuUBZW4BlKQ/MkdkGvVgAkecFdB2ypgrcfjZ6PDAMwnFNUCXVt7Tddy8yXLwtwejHa0zsB/PmmJPbUQT09YK/PwPcvu20VjEhSssg276bvNMIXYJQKeK0g1Tb3BM5JAa40P24zhQgiWIGJ0cNXrkKYueboMynwBfOQe77DDAMpzUbZcFC0As5wO+/gS9fjGkLEW4DqNUEKqm+9dyk8VPJh32+OcadPi8IAQBuZp7YTyUmgZ7PBp9pAQb6R68JAUg5/UIuWgxRWgZatx7c3gb5zX5g6OZkynQKEpUC8VXU0NAX61FTEjQU9rlX6nfJT8wlDKyMadOjKyCK/eCWJnDHpXvOwWZoYxawaDH47GlgeDiKGHQLhGOa0IJU/+35hzrLbLJcUSH0q+e3kTQCAPKZERf1wGwPRLYHWJIM+cWno8JahRCgDZtAm5+B/PzjKahAVwSoUszXDlF100DsGyM8yrpqAPZ5kuXdkbckkx/gNVGDU9NAKcvBF0NeBBMjgTwvQewoArpvQDbWgdvboscTboLpqCZEkBqaYxuoseRhoZ5hcKH7acOgAAAfg+Nj2SN2lQP9/ZAtTVP+MqNCH/jHH4C//pwstEMQBQXPO0yNjYNW122boONwkSdR3tR3SiAA5o1RgxOTIPK8IPd2oLcHxu6yB2OWLoPYlgf+pxvcdDK2IgmDYBzRXNqXVNfcYWe9tgsaChfmZBqGDAAoYvDCaArQ+g3gK5fv/XAlLYDYVQ5anQ4+fQry2OHJf6mBS0QU1BLpCFWdGpqOGqdV0HG4pGSu0fP3KyAZAOM5jiWPVY+BVqSCL7QDuh6lIBoAuFoTFKSGlivTXZsjgobCBZ50Xep+IpQwc4qJUi4QcVBbOu8oBU/ecqoexwUdhysqXEZHe+7YR0MuM2uTJk/oA9MhjThIJ1o7na4BmEGChsL52csloYTB7zAjPULa7UQiqM1JrKXa2hn1h8GMFHQcZibdu30rkREAaCsTal3sCtKJpi6nc5uI/wAdYc5UJdnTiAAAAABJRU5ErkJggg==) no-repeat;
+    background-size: 100% 100%;
+    color: #fff;
+    font-size: 12px;
+    text-align: center;
+}
+
+.page-pintuan-index .pintuan-item .info {
+    flex: 1;
+    padding-left: 10px;
+    height: 100px;
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: flex-start;
+    justify-content: space-between;
+}
+
+.page-pintuan-index .pintuan-item .info .info-store {
+    font-size: 15px;
+    width: 100%;
+}
+
+.page-pintuan-index .pintuan-item .info .store-title {
+    margin-bottom: 10px;
+}
+
+.page-pintuan-index .pintuan-item .info .info-price {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: flex-end;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.page-pintuan-index .pintuan-item .info .info-price .price {
+    display: flex;
+    align-items: center;
+}
+
+.page-pintuan-index .pintuan-item .info .info-price .price .now-price {
+    font-size: 15px;
+    margin-right: 5px;
+    color: #ff2d4b;
+}
+
+.page-pintuan-index .pintuan-item .info .info-price .price .old-price {
+    font-size: 12px;
+    color: #999;
+    text-decoration: line-through;
+}
+
+.page-pintuan-index .pintuan-item .info .info-price .price .discount {
+    position: relative;
+    padding: 3px 5px 3px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    background-color: #FED4D5;
+    color: #C51C33;
+    margin-left: 15px;
+}
+
+.page-pintuan-index .pintuan-item .info .info-price .price .discount:before {
+    content: "";
+    display: block;
+    border-width: 8px;
+    position: absolute;
+    left: -8px;
+    transform: translateX(-50%);
+    border-style: solid dashed dashed;
+    border-color: transparent #FED4D5 transparent transparent;
+    font-size: 0;
+    line-height: 0;
+    z-index: 10;
+}
+
+.page-pintuan-index .pintuan-item .info .info-price .progress-bar {
+    width: 150px;
+    height: 14px;
+    border-radius: 20px;
+    background-color: #FED4D5;
+    position: relative;
+    margin-top: 5px;
+}
+
+.page-pintuan-index .pintuan-item .info .info-price .progress-bar.bar-end {
+    background-color: #959595;
+}
+
+.page-pintuan-index .pintuan-item .info .info-price .progress-bar .bar-inner {
+    position: absolute;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    border-radius: 20px;
+    background: linear-gradient(to right,#FD6131,#FE0000);
+}
+
+.page-pintuan-index .pintuan-item .info .info-price .progress-bar .bar-text {
+    position: absolute;
+    z-index: 2;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    padding-left: 10px;
+    display: flex;
+    align-items: center;
+    font-size: 10px;
+    color: #fff;
+    min-width: 80px;
+}
+
+.page-pintuan-index .pintuan-item .info .info-price .btn {
+    color: #fff;
+    font-size: 14px;
+    padding: 5px 7px;
+    border-radius: 3px;
+    border: 0px;
+}
+
+.page-pintuan-index .pintuan-item .info .info-price .btn.btn-end {
+    background-color: #959595;
+}
+
+.page-pintuan-index .pintuan-item .info .info-price .btn.btn-detail {
+    background: linear-gradient(to right,#FC6030,#FF0101);
+}

@@ -1,0 +1,135 @@
+page {
+    font-size: 14px;
+    box-sizing: border-box;
+    width: 100%;
+    height: 100%;
+    background-color: #F5F5F5;
+}
+
+.content {
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+.content .zan-panel {
+    margin-bottom: 10px;
+}
+
+.content .zan-cell__bd text {
+    color: #33aafc;
+}
+
+.content .takeout-list {
+    padding: 0 15px;
+    background-color: #fff;
+}
+
+.content .takeout-list .body {
+    padding: 15px 0 5px;
+    overflow: hidden;
+}
+
+.content .takeout-list .takeout-item-left {
+    font-size: 14px;
+    line-height: 21px;
+}
+
+.content .takeout-list .takeout-item-right {
+    width: 100%;
+}
+
+.content .takeout-list .takeout-item-right .takeout-item-input input {
+    background: none;
+    border: 1px solid #e7e7e7;
+    border-radius: 3px;
+    font-size: 14px;
+    padding: 1px 0 1px 6px;
+    margin: 6px 0 10px;
+    height: 30px;
+}
+
+.content .takeout-list .takeout-item-right .takeout-rule:before {
+    content: "";
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    position: absolute;
+    left: 0;
+    background: #ccc;
+    top: 7px;
+}
+
+.content .takeout-list .takeout-item-right .takeout-rule {
+    color: #999;
+    position: relative;
+    padding-left: 8px;
+    font-size: 14px;
+}
+
+.content .weui-btn[type=default] {
+    border: 1px solid #ddd;
+}
+
+.content .getcash-title {
+    line-height: 1;
+    padding-top: 10px;
+}
+
+.content .getcash-type .type-item {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    padding: 10px 15px 10px 0;
+    line-height: 14px;
+    font-size: 14px;
+    border-bottom: 1px solid #eee;
+}
+
+.content .getcash-type .type-item:last-child {
+    border-bottom: 0;
+}
+
+.content .getcash-type .type-item .type-left {
+    flex: 1;
+    color: #999;
+}
+
+.content .getcash-type .type-item .type-right {
+    display: flex;
+    justify-content: flex-end;
+    flex: 1;
+}
+
+.content .getcash-type .type-item .type-right .input-group {
+    position: relative;
+    width: 20px;
+    height: 20px;
+    border-radius: 20px;
+    border: 1px solid #999;
+}
+
+.content .getcash-type .type-item .type-right .input-group .icon-check {
+    width: 20px;
+    height: 20px;
+    text-align: center;
+    line-height: 20px;
+    color: #fff;
+}
+
+.content .getcash-type .type-item .type-right .input-group input {
+    border: 0;
+    padding: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    margin: 0;
+    width: 100%;
+    height: 100%;
+    min-height: 0;
+}
+
+.content .getcash-type .type-item .type-right .input-group.active {
+    background-color: #33aafc;
+    border: 1px solid #33aafc;
+}

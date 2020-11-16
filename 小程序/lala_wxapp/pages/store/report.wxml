@@ -1,0 +1,39 @@
+<form bindsubmit="onSubmit" reportSubmit="true">
+    <view class="page page-report">
+        <view class="content">
+            <view class="reports border-1px-tb">
+                <radio-group name="title">
+                    <view class="report-store">
+                        <view class="icon icon-infofill"></view>
+						举报商家:{{store_title}}
+					</view>
+                    <radio checked class="border-1px-t" color="#ff2d4b" value="{{item}}" wx:for="{{reports}}">
+                        <view class="redio-text">{{item}}</view>
+                    </radio>
+                </radio-group>
+            </view>
+            <view class="report-description border-1px-tb">
+                <textarea class="description" name="note" placeholder="必填。描述详细。"></textarea>
+            </view>
+            <view class="tip">有图有真相</view>
+            <view class="zan-panel shop-thumbs">
+                <view class="thumb" wx:if="{{thumbs.length>0}}" wx:for="{{thumbs}}">
+                    <image src="{{item.image}}" wx:if="{{item.image}}"></image>
+                    <image src="{{item.url}}" wx:else></image>
+                    <view bind:tap="onJsEvent" class="img-remove" data-event-type="jsDelImg" data-index="{{index}}" data-key="thumbs">-</view>
+                </view>
+                <view bind:tap="onJsEvent" class="thumb" data-count="4" data-event-type="jsUploadImg" data-key="thumbs">
+                    <image src="http://cos.lalawaimai.com/we7_wmall/wxapp/add_pic.png"></image>
+                </view>
+            </view>
+            <view class="tip">手机号,仅平台管理员可见</view>
+            <view class="report-mobile border-1px-tb">
+                <input class="mobile" name="mobile" placeholder="手机号码：仅平台管理员可见" type="text" value="{{member_mobile}}"></input>
+            </view>
+            <view class="submit">
+                <button class="btn btn-large btn-danger" formType="submit">保存</button>
+            </view>
+        </view>
+    </view>
+</form>
+<include src="../public/footer.wxml"></include>

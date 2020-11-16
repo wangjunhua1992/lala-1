@@ -1,0 +1,53 @@
+<tab-bar menufooter="{{menufooter}}" wx:if="{{menufooter&&menufooter.data}}"></tab-bar>
+<view class="kanjia-record container">
+    <view class="content">
+        <block wx:if="{{!records.empty}}">
+            <view class="record-list">
+                <view class="record-item flex-lr" wx:if="{{item.goods_status==1&&item.total!=0}}" wx:for="{{records.data}}" wx:key="{{item.id}}">
+                    <view class="record-img">
+                        <image alt="" src="{{item.thumb}}"></image>
+                    </view>
+                    <view class="record-info">
+                        <view class="goods-title ellipsis">{{item.name}}</view>
+                        <view class="progress" wx:if="{{item.status==1}}">
+                            <view class="font-13 margin-5-r">{{Lang.dollarSign}}{{item.old_price}}</view>
+                            <view class="progress-inner">
+                                <view class="now-price" style="left: {{item.per_price}}%;">{{Lang.dollarSign}}{{item.price}}</view>
+                                <view class="bar">
+                                    <view class="bar-inner" style="width: {{item.per_price}}%;"></view>
+                                </view>
+                            </view>
+                            <view class="font-13 margin-5-r c-danger">{{Lang.dollarSign}}{{item.new_price}}</view>
+                        </view>
+                        <view class="flex" wx:else>
+                            <view class="c-danger font-16 font-bold">{{Lang.dollarSign}}{{item.old_price}}</view>
+                            <view class="c-gray font-12 line-through margin-5-l">{{Lang.dollarSign}}{{item.new_price}}</view>
+                        </view>
+                        <view class="flex-lr w-100">
+                            <block wx:if="{{item.price==item.new_price}}">
+                                <view class="c-danger font-14">砍价成功</view>
+                                <view bind:tap="onJsEvent" class="record-btn btn-detail" data-event-type="jsUrl" data-url="gohome/pages/kanjia/order/create?activityid={{item.activityid}}">去下单</view>
+                            </block>
+                            <block wx:else>
+                                <view class="flex">
+                                    <view class="font-12 c-gray margin-5-r">距结束</view>
+                                    <count-down endtime="{{item.endtime_cn}}" wx:if="{{item&&item.endtime_cn}}"></count-down>
+                                </view>
+                                <view bind:tap="onJsEvent" class="record-btn btn-detail" data-event-type="jsUrl" data-url="gohome/pages/kanjia/share?activityid={{item.activityid}}&uid={{item.uid}}">找人砍</view>
+                            </block>
+                        </view>
+                    </view>
+                </view>
+            </view>
+            <view class="wui-loadmore wui-loadmore-nomore" wx:if="{{records.loaded}}">
+                <view class="wui-loadmore-tips">我是有底线的</view>
+                <view class="wui-loadmore-line"></view>
+            </view>
+        </block>
+        <view class="no-data" wx:else>
+            <image class="no-coupon" src="http://cos.lalawaimai.com/we7_wmall/wxapp/goods_no_con.png"></image>
+            <text class="no-record">暂无砍价活动</text>
+        </view>
+    </view>
+</view>
+<include src="../../../pages/public/footer.wxml"></include>

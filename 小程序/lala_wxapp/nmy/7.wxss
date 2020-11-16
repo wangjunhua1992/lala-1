@@ -1,0 +1,467 @@
+.diy-store-button-tab {
+    padding: 11px 0;
+    position: relative;
+    background-color: #ffffff;
+}
+
+.diy-store-button-tab::before {
+    top: 0;
+}
+
+.diy-store-button-tab::after {
+    bottom: 0;
+}
+
+.diy-store-button-tab {
+    font-size: 14px;
+}
+
+.diy-store-button-tab .col-25 {
+    text-align: center;
+    color: #333;
+    position: relative;
+}
+
+.diy-store-button-tab .col-25.active {
+    font-weight: bold;
+}
+
+.diy-store-button-tab .col-25 text {
+    margin-left: 5px;
+    padding: 2px 5px;
+    border-radius: 100%;
+    font-size: 10px;
+    background-color: #333;
+    color: white;
+}
+
+.diy-store-button-tab .icon {
+    font-size: 12px;
+}
+
+.diy-waimai-store-box {
+    padding: 0px 0px;
+}
+
+.diy-waimai-store-box .waimai-store-item-list {
+    background-color: #fff;
+    border-radius: 4rpx;
+}
+
+.diy-waimai-store-box .waimai-store-item {
+    padding: 24rpx;
+    position: relative;
+}
+
+.diy-waimai-store-box .waimai-store-item .item-mask {
+    position: absolute;
+    z-index: 100;
+    top: 0rpx;
+    bottom: 0rpx;
+    left: 0rpx;
+    right: 0rpx;
+    background: rgba(255,255,255,0.5);
+}
+
+.diy-waimai-store-box .waimai-store-item .mian-content-box {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+}
+
+.diy-waimai-store-box .waimai-store-item.disabled {
+    background-color: #fff!important;
+    opacity: 0.5;
+}
+
+.diy-waimai-store-box .waimai-store-item .content-left {
+    width: 25%;
+    height: 120rpx;
+    margin-right: 3%;
+}
+
+.diy-waimai-store-box .waimai-store-item .content-left .item-image {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    border-radius: 10rpx;
+}
+
+.diy-waimai-store-box .waimai-store-item .item-image .store-label {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 40px;
+    height: 40px;
+    overflow: hidden;
+}
+
+.diy-waimai-store-box .waimai-store-item .item-image .store-label .label {
+    position: absolute;
+    top: 7px;
+    left: -19px;
+    z-index: 100;
+    height: 12px;
+    width: 60px;
+    line-height: 12px;
+    text-align: center;
+    transform: rotate(-45deg);
+    background-color: #f00;
+    color: #fff;
+    font-style: normal;
+    font-size: 10px;
+    padding: 0 2px;
+    overflow: hidden;
+}
+
+.diy-waimai-store-box .waimai-store-item .item-image .item-num {
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    position: absolute;
+    right: -7.5px;
+    top: -7.5px;
+    background-color: #FE4C44;
+    line-height: 15px;
+    font-size: 12px;
+    text-align: center;
+    color: #fff;
+}
+
+.diy-waimai-store-box .waimai-store-item .item-image .item-rest {
+    position: absolute;
+    bottom: 0rpx;
+    background: #ADADAD;
+    width: 100%;
+    height: 40rpx;
+    text-align: center;
+    color: #FFF;
+    font-size: 24rpx;
+    line-height: 40rpx;
+}
+
+.diy-waimai-store-box .waimai-store-item .content-left image {
+    width: 100%;
+    height: 100%;
+    border-radius: 10rpx;
+}
+
+.diy-waimai-store-box .waimai-store-item .content-right {
+    width: 72%;
+}
+
+.diy-waimai-store-box .waimai-store-item .content-right .item-name-wrap {
+    margin-top: -4px;
+}
+
+.diy-waimai-store-box .waimai-store-item .content-right .item-name {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 100%;
+    font-size: 32rpx;
+    font-weight: 700;
+    color: #333;
+}
+
+.diy-waimai-store-box .waimai-store-item .content-right .delivery-tip {
+    display: flex;
+    line-height: 1;
+    margin-top: 5px;
+}
+
+.diy-waimai-store-box .waimai-store-item .content-right .delivery-tip text {
+    background: #4FCE99;
+    color: #fff;
+    font-size: 12px;
+    padding: 3px 5px;
+    border-radius: 2px;
+}
+
+.diy-waimai-store-box .waimai-store-item .content-right .item-score-time {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.diy-waimai-store-box .waimai-store-item .content-right .item-sale {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-size: 24rpx;
+    color: #666;
+    line-height: 32rpx;
+    align-self: center;
+    padding-left: 4rpx;
+}
+
+.diy-waimai-store-box .waimai-store-item .content-right .item-score-sale {
+    width: 65%;
+    display: flex;
+    align-items: center;
+}
+
+.diy-waimai-store-box .waimai-store-item .content-right .item-score-sale .item-star-box {
+    width: 70px;
+    position: relative;
+}
+
+.diy-waimai-store-box .waimai-store-item .content-right .item-star-box .stars-bg {
+    color: #ff2d4b;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    white-space: nowrap;
+    margin-top: -4rpx;
+}
+
+.diy-waimai-store-box .waimai-store-item .content-right .item-star-box .stars {
+    width: 0;
+    margin-top: -4rpx;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.diy-waimai-store-box .waimai-store-item .content-right .time-distance {
+    max-width: 40%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-size: 24rpx;
+    height: 32rpx;
+    line-height: 32rpx;
+    color: #999;
+    align-self: center;
+    display: flex;
+}
+
+.diy-waimai-store-box .waimai-store-item .content-right .item-min-delivery {
+    font-size: 24rpx;
+    color: #666;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    height: 36rpx;
+    line-height: 48rpx;
+    width: 100%;
+    display: flex;
+    flew: row nowrap;
+    justify-content: space-between;
+}
+
+.diy-waimai-store-box .waimai-store-item .content-right .item-min-delivery-left {
+    display: flex;
+    flex-flow: row nowrap;
+}
+
+.diy-waimai-store-box .waimai-store-item .content-right .item-min-delivery-right-wrap {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: flex-end;
+    width: 60%;
+}
+
+.diy-waimai-store-box .waimai-store-item .content-right .item-min-delivery-right-wrap view:last-child {
+    margin-right: 0;
+}
+
+.diy-waimai-store-box .waimai-store-item .content-right .item-min-delivery-right-wrap .zhunshibao {
+    color: #ff2d4b;
+    border: 1px solid #ff2d4b;
+    font-size: 12px;
+    padding: 1px 4px;
+    margin-right: 5px;
+    height: 14px;
+    line-height: 1;
+}
+
+.diy-waimai-store-box .waimai-store-item .content-right .item-min-delivery-right {
+    background-color: #ff2d4b;
+    color: #fff;
+    height: 28rpx;
+    line-height: 28rpx;
+    text-align: center;
+    border-radius: 16rpx 0 16rpx 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    max-width: 55%;
+    padding: 0 10rpx;
+    align-self: center;
+}
+
+.diy-waimai-store-box .waimai-store-item .content-right .line {
+    padding: 0 5rpx;
+    color: #e4e4e4;
+    font-size: 18rpx;
+}
+
+.diy-waimai-store-box .waimai-store-item .content-right .discount-box {
+    width: 100%;
+    padding-top: 10rpx;
+    position: relative;
+}
+
+.diy-waimai-store-box .waimai-store-item .content-right .discount-box .toggle {
+    position: absolute;
+    right: 0rpx;
+    font-size: 22rpx;
+    color: #999;
+}
+
+.diy-waimai-store-box .waimai-store-item .content-right .discount-box .toggle .icon {
+    font-size: 22rpx;
+    color: #999;
+}
+
+.diy-waimai-store-box .waimai-store-item .content-right .single-line {
+    max-width: 94%;
+    padding-top: 12rpx;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    line-height: 24rpx;
+    display: flex;
+    flex-flow: row wrap;
+    align-items: center;
+}
+
+.diy-waimai-store-box .waimai-store-item .content-right .single-line image {
+    width: 15px;
+    height: 15px;
+}
+
+.diy-waimai-store-box .waimai-store-item .content-right .single-line .discount-text {
+    color: #999;
+    width: 90%;
+    font-size: 24rpx;
+    padding-left: 10rpx;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.diy-waimai-store-box .waimai-store-item .content-right .discount-box .label-wrap {
+    max-width: 94%;
+    height: 26px;
+    line-height: 1;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.diy-waimai-store-box .waimai-store-item .content-right .discount-box .label-wrap.autoHeight {
+    height: auto;
+    white-space: normal;
+    overflow: visible;
+}
+
+.diy-waimai-store-box .waimai-store-item .content-right .hot-box {
+    width: 100%;
+    height: 180rpx;
+    overflow: hidden;
+    margin-top: .3rem;
+    display: flex;
+    flew-flow: row nowrap;
+    justify-content: flex-start;
+}
+
+.diy-waimai-store-box .waimai-store-item .content-right .hot-box navigator {
+    width: 31%;
+    height: 100%;
+    margin-right: 3%;
+}
+
+.diy-waimai-store-box .waimai-store-item .hot-box .hot-box-item {
+    width: 100%;
+    height: 100%;
+}
+
+.diy-waimai-store-box .waimai-store-item .hot-box .hot-box-item .hot-t {
+    width: 100%;
+    height: 56%;
+    overflow: hidden;
+}
+
+.diy-waimai-store-box .waimai-store-item .hot-box .hot-box-item .hot-t image {
+    width: 100%;
+}
+
+.diy-waimai-store-box .waimai-store-item .hot-box .hot-box-item .hot-b {
+    width: 100%;
+    height: 40%;
+}
+
+.diy-waimai-store-box .waimai-store-item .hot-box .hot-box-item .shop-name {
+    width: 100%;
+    height: 50%;
+    padding-top: 10rpx;
+    font-size: 24rpx;
+    text-align: center;
+    line-height: 32rpx;
+    color: #333;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.diy-waimai-store-box .waimai-store-item .hot-box .hot-box-item .shop-price {
+    width: 100%;
+    height: 50%;
+    font-size: 24rpx;
+    text-align: center;
+    justify-conten: center;
+}
+
+.diy-waimai-store-box .waimai-store-item .hot-box .hot-box-item .now-price {
+    display: inline-block;
+    line-height: 32rpx;
+    color: #FB544B;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.diy-waimai-store-box .waimai-store-item .hot-box .hot-box-item .old-price {
+    display: inline-block;
+    max-width: 50%;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    line-height: 32rpx;
+    color: #999;
+    font-size: 12px;
+    text-decoration: line-through;
+}
+
+.diy-waimai-store-box .waimai-store-item .hot-box .hot-box-item .hot-t>view {
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 0 4rpx;
+    background-color: #F28683;
+    font-size: 24rpx;
+    color: #fff;
+    height: 28rpx;
+    line-height: 28rpx;
+    text-align: center;
+}
+
+.diy-waimai-store-box .no-store {
+    width: 100%;
+    padding: 20px 0px 30px 0px;
+    background: #f5f5f5;
+}
+
+.diy-waimai-store-box .no-store .no-coupon {
+    display: block;
+    width: 100px;
+    height: 100px;
+    margin: 0 auto;
+}
+
+.diy-waimai-store-box .no-store .no-record {
+    text-align: center;
+    color: #768491;
+    font-size: 16px;
+    padding: 17px 0 10px 0;
+}

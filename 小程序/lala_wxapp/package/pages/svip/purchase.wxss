@@ -1,0 +1,275 @@
+page {
+    background-color: #F5F5F5;
+    font-size: 14px;
+    line-height: 1;
+}
+
+.page-purchase .content {
+    padding-bottom: 65px;
+}
+
+.page-purchase .header {
+    background: #282728;
+}
+
+.page-purchase .header .user {
+    display: flex;
+    align-items: center;
+    padding: 0 4% 2.934%;
+}
+
+.page-purchase .header .user .avatar {
+    display: block;
+    overflow: hidden;
+    margin-right: 3.2%;
+    margin-top: 7px;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+}
+
+.page-purchase .header .user .info {
+    display: flex;
+    align-items: baseline;
+    color: #fff;
+    line-height: 24px;
+    margin-top: 5px;
+}
+
+.page-purchase .header .user .info span:first-child {
+    font-weight: 700;
+    font-size: 17px;
+}
+
+.page-purchase .header .user .info span:last-child {
+    font-size: 12px;
+}
+
+.page-purchase .header .user .svip text {
+    color: rgba(255,255,255,0.7);
+    font-size: 12px;
+}
+
+.page-purchase .wrapper-item {
+    background: #fff;
+    margin-bottom: 15px;
+}
+
+.page-purchase .wrapper-item .header-title {
+    display: flex;
+    padding: 24px 15px 14px;
+}
+
+.page-purchase .wrapper-item .header-title .title {
+    color: #333;
+    display: block;
+    font-size: 15px;
+    font-weight: 700;
+    margin-bottom: 5px;
+    line-height: 18px;
+}
+
+.page-purchase .wrapper-item .header-title .title .sub-title {
+    color: #999;
+    font-size: 12px;
+}
+
+.page-purchase .wrapper-item .header-title .title .sub-title .offer {
+    color: rgb(255,83,57);
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.page-purchase .wrapper-item .meal-list {
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    padding: 0 7.5px;
+}
+
+.page-purchase .wrapper-item .meal-list .container {
+    width: 33.33%;
+    background-color: #fff;
+}
+
+.page-purchase .wrapper-item .meal-list .container .meal-item {
+    position: relative;
+    display: flex;
+    align-items: center;
+    height: 150px;
+    box-shadow: 0 0 0 1px #eee,0 1px 1.5px 0 rgba(0,0,0,.04);
+    border-radius: 4px;
+    text-align: center;
+    margin: 0 7.5px 15px;
+}
+
+.page-purchase .wrapper-item .meal-list .container .meal-item.active {
+    box-shadow: 0 0 0 2px #dfc78a,0 1px 2px 0 rgba(0,0,0,.04);
+    background-color: #fffcee;
+}
+
+.page-purchase .wrapper-item .meal-list .meal-item:nth-child(2) {
+    margin: 0 10px;
+}
+
+.page-purchase .wrapper-item .meal-list .meal-item .meal-info {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+}
+
+.page-purchase .wrapper-item .meal-list .meal-item .meal-info .meal-time {
+    color: #666;
+    font-weight: 700;
+    font-size: 16px;
+    text-align: center;
+    margin-bottom: 4px;
+}
+
+.page-purchase .wrapper-item .meal-list .meal-item.active .meal-info .meal-time {
+    color: #b99c5b;
+}
+
+.page-purchase .wrapper-item .meal-list .meal-item .meal-info .price {
+    display: flex;
+    flex-direction: column;
+}
+
+.page-purchase .wrapper-item .meal-list .meal-item .meal-info .price .nums {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.page-purchase .wrapper-item .meal-list .meal-item .meal-info .price .nums .yuan {
+    font-size: 32px;
+    font-weight: 500;
+    color: #ff5339;
+}
+
+.page-purchase .wrapper-item .meal-list .meal-item.active .meal-info .price .nums .yuan {
+    color: #8b5d22;
+}
+
+.page-purchase .wrapper-item .meal-list .meal-item .meal-info .price .nums .yuan text {
+    font-size: 20px;
+    color: #ff5339;
+    margin-right: -2px;
+}
+
+.page-purchase .wrapper-item .meal-list .meal-item.active .meal-info .price .nums .yuan text {
+    color: #8b5d22;
+}
+
+.page-purchase .wrapper-item .meal-list .meal-item .meal-info .price .nums .old-price {
+    color: #bbb;
+    font-size: 14px;
+    text-decoration: line-through;
+}
+
+.page-purchase .wrapper-item .meal-list .meal-item.active .meal-info .price .nums .old-price {
+    color: #b99c5b;
+    text-decoration: line-through;
+}
+
+.page-purchase .wrapper-item .meal-list .meal-item .tag {
+    position: absolute;
+    left: -3px;
+    top: -5px;
+    font-size: 12px;
+    font-weight: 700;
+    color: #fff;
+    padding: 4px 8px;
+    background-color: #ff5339;
+    border-radius: 0 6px;
+    box-shadow: 0 1px 2px 0 rgba(216,54,30,.2);
+}
+
+.page-purchase .wrapper-item .meal-list .meal-item .tips {
+    position: absolute;
+    bottom: -.53333vw;
+    left: -.4vw;
+    width: calc(100% + .8vw);
+    padding: 1.6vw 2.4vw;
+    text-align: center;
+    color: #ff5339;
+    font-size: 2.66667vw;
+    line-height: 4.4vw;
+    background: #fff4e8;
+    border-radius: 0 0 1.06667vw 1.06667vw;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+.page-purchase .description {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 15px;
+    height: 4.26667vw;
+}
+
+.page-purchase .description text {
+    margin: 0 13px;
+    color: #999;
+    font-size: 12px;
+}
+
+.page-purchase .bottomBar {
+    display: flex;
+    align-items: center;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 50px;
+    background-color: #fff;
+    box-shadow: 0 -1px 3px 0 rgba(0,0,0,.1);
+}
+
+.page-purchase .bottomBar .allprice {
+    flex: 1;
+    display: flex;
+    align-items: center;
+}
+
+.page-purchase .bottomBar .allprice .total {
+    display: flex;
+    align-items: center;
+    margin-left: 15px;
+    font-size: 17px;
+    font-weight: 500;
+    padding-right: 12px;
+}
+
+.page-purchase .bottomBar .allprice .total .price {
+    color: #ff5339;
+    margin-left: 4px;
+}
+
+.page-purchase .bottomBar .allprice .total .price .new-price {
+    color: #ff5339;
+    margin-left: -3px;
+}
+
+.page-purchase .bottomBar .allprice .total .old-price {
+    font-size: 12px;
+    color: #999;
+    margin-left: 4px;
+    text-decoration: line-through;
+}
+
+.page-purchase .bottomBar button {
+    position: relative;
+    width: 130px;
+    height: 50px;
+    line-height: 50px;
+    background-image: linear-gradient(90deg,#f5e3c1,#f2d499);
+    font-size: 17px;
+    font-weight: 600;
+    color: #5c4415;
+    border-radius: 0;
+}

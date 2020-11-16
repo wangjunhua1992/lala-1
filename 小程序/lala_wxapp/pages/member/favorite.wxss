@@ -1,0 +1,5 @@
+@import "../../nmy/7.wxss";
+
+page {
+    background-color: #f5f5f5;
+}

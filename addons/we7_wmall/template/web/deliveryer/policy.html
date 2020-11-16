@@ -1,0 +1,87 @@
+{itemplate 'public/header'}
+<div class="page clearfix">
+	<form class="form-horizontal form form-validate" id="form1" action="" method="post" enctype="multipart/form-data">
+		<h3>一键增加配送员提成</h3>
+		<input type="hidden" name="form_type" value="deliveryer">
+		<div class="form-group">
+			<label class="col-xs-12 col-sm-3 col-md-2 control-label">外卖配送员是否开启增加配送费</label>
+			<div class="col-sm-9 col-xs-9 col-md-9">
+				<div class="radio radio-inline">
+					<input type="radio" name="fee_takeout[status]" value="1" id="fee-takeout-status-1" {if $special['deliveryer']['fee_takeout']['status'] == 1}checked{/if}>
+					<label for="fee-takeout-status-1">开启</label>
+				</div>
+				<div class="radio radio-inline">
+					<input type="radio" name="fee_takeout[status]" value="0" id="fee-takeout-status-0" {if empty($special['deliveryer']['fee_takeout']['status'])}checked{/if}>
+					<label for="fee-takeout-status-0">关闭</label>
+				</div>
+				<span class="help-block">开启之后，每个外卖配送员的配送费会叠加。比如A配送员开启之前的配送费是5{$_W['Lang']['dollarSignCn']}，设置一键增加配送费固定3{$_W['Lang']['dollarSignCn']}，组配送员所得配送费为8{$_W['Lang']['dollarSignCn']}。关闭后则恢复之前设置</span>
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-xs-12 col-sm-3 col-md-2 control-label">外卖配送员配送费增加方式</label>
+			<div class="col-sm-9 col-xs-12">
+				<div class="input-group">
+					<label class="input-group-addon">
+						<input type="radio" name="fee_takeout[type]" value="1" {if $special['deliveryer']['fee_takeout']['type'] == 1 || !$special['deliveryer']['fee_takeout']['type']}checked{/if}>
+					</label>
+					<span class="input-group-addon">固定增加</span>
+					<input type="text" class="form-control" name="fee_takeout[fee]" {if $special['deliveryer']['fee_takeout']['type'] == 1}value="{$special['deliveryer']['fee_takeout']['fee']}"{/if}>
+					<span class="input-group-addon">{$_W['Lang']['dollarSignCn']}</span>
+				</div>
+				<br>
+				<div class="input-group">
+					<label class="input-group-addon">
+						<input type="radio" name="fee_takeout[type]" value="2" {if $special['deliveryer']['fee_takeout']['type'] == 2}checked{/if}>
+					</label>
+					<span class="input-group-addon">按原配送费百分比增加</span>
+					<input type="text" class="form-control" name="fee_takeout[rate]" {if $special['deliveryer']['fee_takeout']['type'] == 2}value="{$special['deliveryer']['fee_takeout']['rate']}"{/if}>
+					<span class="input-group-addon">%</span>
+				</div>
+			</div>
+		</div>
+		{if check_plugin_perm('errander')}
+			<div class="form-group">
+				<label class="col-xs-12 col-sm-3 col-md-2 control-label">跑腿配送员是否开启增加配送费</label>
+				<div class="col-sm-9 col-xs-9 col-md-9">
+					<div class="radio radio-inline">
+						<input type="radio" name="fee_errander[status]" value="1" id="fee-errander-status-1" {if $special['deliveryer']['fee_errander']['status'] == 1}checked{/if}>
+						<label for="fee-errander-status-1">开启</label>
+					</div>
+					<div class="radio radio-inline">
+						<input type="radio" name="fee_errander[status]" value="0" id="fee-errander-status-0" {if empty($special['deliveryer']['fee_errander']['status'])}checked{/if}>
+						<label for="fee-errander-status-0">关闭</label>
+					</div>
+					<span class="help-block">开启之后，每个跑腿配送员的配送费会叠加。比如A配送员开启之前的配送费是5{$_W['Lang']['dollarSignCn']}，设置一键增加配送费固定3{$_W['Lang']['dollarSignCn']}，组配送员所得配送费为8{$_W['Lang']['dollarSignCn']}。关闭后则恢复之前设置</span>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-xs-12 col-sm-3 col-md-2 control-label">跑腿配送员配送费增加方式</label>
+				<div class="col-sm-9 col-xs-12">
+					<div class="input-group">
+						<label class="input-group-addon">
+							<input type="radio" name="fee_errander[type]" value="1" {if $special['deliveryer']['fee_errander']['type'] == 1 || !$special['deliveryer']['fee_errander']['type']}checked{/if}>
+						</label>
+						<span class="input-group-addon">固定增加</span>
+						<input type="text" class="form-control" name="fee_errander[fee]" {if $special['deliveryer']['fee_errander']['type'] == 1}value="{$special['deliveryer']['fee_errander']['fee']}"{/if}>
+						<span class="input-group-addon">{$_W['Lang']['dollarSignCn']}</span>
+					</div>
+					<br>
+					<div class="input-group">
+						<label class="input-group-addon">
+							<input type="radio" name="fee_errander[type]" value="2" {if $special['deliveryer']['fee_errander']['type'] == 2}checked{/if}>
+						</label>
+						<span class="input-group-addon">按原配送费百分比增加</span>
+						<input type="text" class="form-control" name="fee_errander[rate]" {if $special['deliveryer']['fee_errander']['type'] == 2}value="{$special['deliveryer']['fee_errander']['rate']}"{/if}>
+						<span class="input-group-addon">%</span>
+					</div>
+				</div>
+			</div>
+		{/if}
+		<div class="form-group">
+			<div class="col-sm-9 col-xs-9 col-md-9">
+				<input type="submit" value="提交" class="btn btn-primary">
+			</div>
+		</div>
+	</form>
+</div>
+{itemplate 'public/footer'}

@@ -1,0 +1,69 @@
+<view class="order-refund">
+    <view class="refund-list" wx:if="{{refunds.length>0}}">
+        <view class="refund-item margin-10-b" wx:for="{{refunds}}" wx:key="{{index}}">
+            <view class="padding-15 bg-danger">
+                <view class="font-20 c-white">{{item.status_cn}}</view>
+                <view class="font-12 c-white margin-10-t" wx:if="{{0}}">预计最晚2019年01月24日到账</view>
+            </view>
+            <van-cell-group>
+                <van-cell title="退款金额">
+                    <view class="c-danger" slot="right-icon">{{Lang.dollarSign}}{{item.fee}}</view>
+                </van-cell>
+                <van-cell class="no-fix" title="退款账户" value="{{item.account}}" wx:if="{{item.account}}"></van-cell>
+            </van-cell-group>
+            <view class="margin-10-t bg-default" wx:if="{{item.logs&&item.logs.length>0}}">
+                <view class="padding-15-lr padding-15-t padding-5-b">退款流程</view>
+                <scroll-view scrollY="true">
+                    <view class="wui-steps wui-steps-vsteps wui-steps-3 my-class">
+                        <view class="wui-steps-step {{logIndex==0?'wui-steps-step-first-child':''}} {{logIndex==item.logs.length-1?'wui-steps-step-last-child':''}} {{logIndex==item.logs.length-1?' wui-steps-step-done wui-steps-step-cur':''}}" wx:for="{{item.logs}}" wx:for-index="logIndex" wx:for-item="log" wx:key="{{logIndex}}">
+                            <view class="wui-steps-title">
+									{{log.title}}
+								</view>
+                            <view class="explan" wx:if="{{log.note}}">{{log.note}}</view>
+                            <view class="explan">{{log.addtime_cn}}</view>
+                            <view class="wui-steps-icons">
+                                <view class="wui-steps-circle"></view>
+                            </view>
+                            <view class="wui-steps-line"></view>
+                        </view>
+                    </view>
+                </scroll-view>
+                <view class="flex-center" wx:if="{{0}}">
+                    <view class="more">
+						展开更多 <text class="icon icon-unfold margin-5-l c-gray"></text>
+                    </view>
+                </view>
+            </view>
+            <view class="margin-10-t bg-default padding-10-b">
+                <view class="padding-15-lr padding-15">退款信息</view>
+                <view class="goods-list" wx:if="{{item.data&&item.data.refund_goods&&item.data.refund_goods.length>0}}">
+                    <view :key="{{index}}" class="goods-item" wx:for="{{item.data.refund_goods}}" wx:for-item="goods">
+                        <view class="img-wrap">
+                            <image alt="" src="{{goods.thumb}}"></image>
+                        </view>
+                        <view class="goods-info">
+                            <view class="goods-info-top flex-lr">
+                                <view class="goods-name ellipsis">{{goods.goods_title}}</view>
+                                <view>{{Lang.dollarSign}}{{goods.fee}}</view>
+                            </view>
+                            <view class="c-gray margin-10-t">x{{goods.total_num}}</view>
+                        </view>
+                    </view>
+                </view>
+                <view class="padding-15-lr margin-10-t flex">
+                    <view class="refund-left">退款原因</view>
+                    <view>{{item.reason}}</view>
+                </view>
+                <view class="padding-15-lr margin-10-t flex">
+                    <view class="refund-left">订单号码</view>
+                    <view>{{item.order_sn}}</view>
+                </view>
+            </view>
+        </view>
+    </view>
+    <view class="wui-loadmore wui-loadmore-nomore" wx:else>
+        <view class="wui-loadmore-tips">暂无记录</view>
+        <view class="wui-loadmore-line"></view>
+    </view>
+</view>
+<include src="../public/footer.wxml"></include>

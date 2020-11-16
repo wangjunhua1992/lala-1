@@ -1,0 +1,186 @@
+<view class="page-redpacket">
+    <view class="content">
+        <view class="header-top">
+            <view class="wrapper">
+                <view class="left">
+                    <image alt="" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NSA1MCI+PGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJhIiB4MT0iMCUiIHgyPSI5Ny41NDMlIiB5MT0iNTAlIiB5Mj0iNTAlIj48c3RvcCBvZmZzZXQ9IjAlIiBzdG9wLWNvbG9yPSIjRkFFQUE3Ii8+PHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjRTBDNDcwIi8+PC9saW5lYXJHcmFkaWVudD48L2RlZnM+PHBhdGggZmlsbD0idXJsKCNhKSIgZmlsbC1ydWxlPSJldmVub2RkIiBkPSJNNDIuMzgyIDI0Ljg2OEw1NCAxNGwtMi42MDUgMjloLTM4Ljc5TDEwIDE0bDEzLjAwNSAxMi4xNjZMMzMgNWw5LjM4MiAxOS44Njh6TTMyLjUgM2ExLjUgMS41IDAgMSAxIDAtMyAxLjUgMS41IDAgMCAxIDAgM3ptMjUgNWExLjUgMS41IDAgMSAxIDAtMyAxLjUgMS41IDAgMCAxIDAgM3ptLTQ5IDBhMS41IDEuNSAwIDEgMSAwLTMgMS41IDEuNSAwIDAgMSAwIDN6TTEyIDQ3aDQwdjNIMTJ2LTN6Ii8+PC9zdmc+"></image>
+                    <view>
+                        <text class="data">2018-08-31 到期</text>
+                        <view class="total">
+                            <text>已为您节省</text>
+                            <text class="strong">{{Lang.dollarSign}}27</text>
+                            <view class="icon icon-right"></view>
+                        </view>
+                    </view>
+                </view>
+                <view class="button">
+					立即续费
+				</view>
+            </view>
+            <view class="header-container">
+                <view>
+                    <view class="title">本月可免费领会员红包</view>
+                    <view class="main">
+                        <text class="main-total">4</text>
+                        <view class="main-right">
+                            <text class="number">个</text>
+                            <text>领取红包</text>
+                            <view class="icon icon-right"></view>
+                        </view>
+                    </view>
+                </view>
+                <view>
+                    <view class="title">奖励金</view>
+                    <view class="main">
+                        <text class="main-total">0</text>
+                        <view class="main-right">
+                            <text class="number">个</text>
+                            <text>兑换红包</text>
+                            <view class="icon icon-right"></view>
+                        </view>
+                    </view>
+                </view>
+            </view>
+        </view>
+        <div class="container-body">
+            <view class="container-title">
+                <view class="icon icon-info"></view>
+				每月免费领4个会员红包，立即领取
+				<view class="icon icon-right"></view>
+            </view>
+            <view class="nav-list">
+                <navigator class="navItem navactive" url="">超级会员红包</navigator>
+                <navigator class="navItem" url="">奖励金红包</navigator>
+            </view>
+            <view class="container-wrapper">
+                <view class="coupon-list">
+                    <view class="coupon-item">
+                        <view class="top">
+                            <view class="top-amount">
+                                <text class="price">{{Lang.dollarSign}}</text>
+                                <text>5</text>
+                            </view>
+                            <view class="top-info">
+                                <text class="text">无门槛红包</text>
+                                <view class="name">饿了么通用红包</view>
+                            </view>
+                        </view>
+                        <view class="bottom">
+                            <view class="button">立即领取</view>
+                        </view>
+                    </view>
+                    <view class="coupon-item">
+                        <view class="top">
+                            <view class="top-amount">
+                                <text class="price">{{Lang.dollarSign}}</text>
+                                <text>5</text>
+                            </view>
+                            <view class="top-info">
+                                <text class="text">无门槛红包</text>
+                                <view class="name">饿了么通用红包</view>
+                            </view>
+                        </view>
+                        <view class="bottom">
+                            <view class="button">立即领取</view>
+                        </view>
+                    </view>
+                    <view class="coupon-item">
+                        <view class="top">
+                            <view class="top-amount">
+                                <text class="price">{{Lang.dollarSign}}</text>
+                                <text>5</text>
+                            </view>
+                            <view class="top-info">
+                                <text class="text">无门槛红包</text>
+                                <view class="name">饿了么通用红包</view>
+                            </view>
+                        </view>
+                        <view class="bottom">
+                            <view class="button">立即领取</view>
+                        </view>
+                    </view>
+                    <view class="coupon-item">
+                        <view class="top">
+                            <view class="top-amount">
+                                <text class="price">{{Lang.dollarSign}}</text>
+                                <text>5</text>
+                            </view>
+                            <view class="top-info">
+                                <text class="text">无门槛红包</text>
+                                <view class="name">饿了么通用红包</view>
+                            </view>
+                        </view>
+                        <view class="bottom">
+                            <view class="button">立即领取</view>
+                        </view>
+                    </view>
+                    <view class="coupon-item">
+                        <view class="top">
+                            <view class="top-amount">
+                                <text class="price">{{Lang.dollarSign}}</text>
+                                <text>5</text>
+                            </view>
+                            <view class="top-info">
+                                <text class="text">无门槛红包</text>
+                                <view class="name">饿了么通用红包</view>
+                            </view>
+                        </view>
+                        <view class="bottom">
+                            <view class="button">立即领取</view>
+                        </view>
+                    </view>
+                    <view class="coupon-item">
+                        <view class="top">
+                            <view class="top-amount">
+                                <text class="price">{{Lang.dollarSign}}</text>
+                                <text>5</text>
+                            </view>
+                            <view class="top-info">
+                                <text class="text">无门槛红包</text>
+                                <view class="name">饿了么通用红包</view>
+                            </view>
+                        </view>
+                        <view class="bottom">
+                            <view class="button">立即领取</view>
+                        </view>
+                    </view>
+                </view>
+            </view>
+            <view class="wrapper-footer">
+				查看更多红包
+				<view class="icon icon-right"></view>
+            </view>
+        </div>
+        <view class="card-list">
+            <view class="list-header">
+                <view class="title-header">会员特权</view>
+            </view>
+            <navigator class="list-bonus" url="">
+				特权说明
+				<view class="icon icon-question1"></view>
+            </navigator>
+            <view class="list-item">
+                <view>
+                    <image alt="" src="https://fuss10.elemecdn.com/f/87/799dfb89d44c62acdd7e4582a9710png.png?imageMogr/format/webp/thumbnail/!96x96r/gravity/Center/crop/96x96/"></image>
+                    <text>专享红包</text>
+                </view>
+                <view>
+                    <image alt="" src="https://fuss10.elemecdn.com/6/ad/0fb92edac0134f17233c936b93b76png.png?imageMogr/format/webp/thumbnail/!96x96r/gravity/Center/crop/96x96/"></image>
+                    <text>奖励金</text>
+                </view>
+                <view>
+                    <image alt="" src="https://fuss10.elemecdn.com/d/98/b97e16564eee212dc3ba473801919png.png?imageMogr/format/webp/thumbnail/!96x96r/gravity/Center/crop/96x96/"></image>
+                    <text>专属客服</text>
+                </view>
+                <view>
+                    <image alt="" src="https://fuss10.elemecdn.com/3/0a/db7aa15a383d582a7360456fc2530png.png?imageMogr/format/webp/thumbnail/!96x96r/gravity/Center/crop/96x96/"></image>
+                    <text>专属折扣</text>
+                </view>
+                <view>
+                    <image alt="" src="https://fuss10.elemecdn.com/0/b0/e848951397ac0dfddb961edf10c57png.png?imageMogr/format/webp/thumbnail/!96x96r/gravity/Center/crop/96x96/"></image>
+                    <text>金币特权</text>
+                </view>
+            </view>
+        </view>
+    </view>
+</view>

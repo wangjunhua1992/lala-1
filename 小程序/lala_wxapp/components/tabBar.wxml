@@ -1,0 +1,11 @@
+<view catchtouchmove="{{true}}" class="diy-tab-bar border-1px-t" wx:if="{{menufooter&&menufooter.data}}">
+    <view bind:tap="onJsEvent" class="tab-bar-item" data-event-type="jsUrl" data-open-type="redirectTo" data-url="{{item.link}}" style="color: {{item.link==menufooter.currentPageLink||item.link=='/'+menufooter.currentPageLink?menufooter.css.iconColorActive:menufooter.css.iconColor}}; " wx:for="{{menufooter.data}}" wx:key="{{index}}">
+        <view class="img-wrap" wx:if="{{menufooter.params.navstyle==1}}">
+            <image src="{{item.img}}"></image>
+        </view>
+        <block wx:else>
+            <view class="icon {{item.icon}}"></view>
+            <view class="tab-text">{{item.text}}</view>
+        </block>
+    </view>
+</view>

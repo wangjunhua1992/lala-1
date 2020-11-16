@@ -1,0 +1,72 @@
+<view class="page-statistic">
+    <view class="content">
+        <view class="statistic-head">
+            <view class="statistic-title">今日统计</view>
+            <view class="statistic-data">
+                <view class="statistic-list">
+                    <view class="statistic-border">
+                        <view class="store-data-sum" wx:if="{{days==0}}">{{total_success_order}}</view>
+                        <view class="store-data-sum" wx:else>0</view>
+                        <view class="store-data-info">今日有效订单</view>
+                    </view>
+                </view>
+                <view class="statistic-list">
+                    <view class="statistic-border">
+                        <view class="store-data-sum" wx:if="{{days==0}}">{{total_fee}}</view>
+                        <view class="store-data-sum" wx:else>0</view>
+                        <view class="store-data-info">今日总营业额</view>
+                    </view>
+                </view>
+                <view class="statistic-list">
+                    <view class="statistic-border">
+                        <view class="store-data-sum" wx:if="{{days==0}}">{{store_final_fee}}</view>
+                        <view class="store-data-sum" wx:else>0</view>
+                        <view class="store-data-info">今日总收入</view>
+                    </view>
+                </view>
+            </view>
+        </view>
+        <view class="tabs-list">
+            <view bind:tap="onChangeStatus" class="tabs-item {{!days||days==0?'active':''}}" data-days="0">今日</view>
+            <view bind:tap="onChangeStatus" class="tabs-item {{days==7?'active':''}}" data-days="7">近7天</view>
+            <view bind:tap="onChangeStatus" class="tabs-item {{days==30?'active':''}}" data-days="30">近30天</view>
+            <view bind:tap="onChangeStatus" class="tabs-item {{days==-1?'active':''}}" data-days="-1">自定义</view>
+        </view>
+        <form bindreset="formReset" bindsubmit="onSubmit" reportSubmit="true">
+            <view class="time-limit" wx:if="{{days==-1}}">
+                <view class="time-wrap">
+                    <picker bindchange="changeStartTime" mode="date" value="{{startTime}}">
+                        <input name="start" type="text" value="{{startTime}}"></input>
+                    </picker>
+                    <view>至</view>
+                    <picker bindchange="changeEndTime" mode="date" value="{{endTime}}">
+                        <input name="end" type="text" value="{{endTime}}"></input>
+                    </picker>
+                    <button formType="submit">提交</button>
+                </view>
+            </view>
+        </form>
+        <view class="statistic-head">
+            <view class="statistic-data">
+                <view class="statistic-list">
+                    <view class="statistic-border">
+                        <view class="store-data-sum">{{total_success_order}}</view>
+                        <view class="store-data-info">今日有效订单</view>
+                    </view>
+                </view>
+                <view class="statistic-list">
+                    <view class="statistic-border">
+                        <view class="store-data-sum">{{total_fee}}</view>
+                        <view class="store-data-info">今日总营业额</view>
+                    </view>
+                </view>
+                <view class="statistic-list">
+                    <view class="statistic-border">
+                        <view class="store-data-sum">{{store_final_fee}}</view>
+                        <view class="store-data-info">今日总收入</view>
+                    </view>
+                </view>
+            </view>
+        </view>
+    </view>
+</view>

@@ -1,0 +1,71 @@
+<form bindsubmit="onSubmit">
+    <view class="seckill-order-create">
+        <view class="delivery-info margin-10-b bg-default radius-3">
+            <view class="padding-15-lr padding-15-t font-18 font-bold">到店核销</view>
+            <view class="padding-15-tb margin-15-lr border-1px-b text-center">
+                <view class="font-14 c-gray">商家地址</view>
+                <view class="margin-10-tb">{{goods.store.address}}</view>
+                <text bind:tap="onJsEvent" class="font-14 c-danger" data-address="{{goods.store.address}}" data-event-type="jsLocation" data-lat="{{goods.store.location_x}}" data-lng="{{goods.store.location_y}}" data-name="{{goods.store.title}}">查看地图</text>
+            </view>
+            <view class="username-mobile flex-lr font-13 padding-15-tb margin-15-lr">
+                <view class="border-1px-r">
+                    <view class="margin-5-b">姓名</view>
+                    <input class="font-14" name="username" placeholder="请输入姓名" type="text" value="{{username}}"></input>
+                </view>
+                <view class="padding-10-l">
+                    <view class="margin-5-b">手机号</view>
+                    <input name="mobile" placeholder="请输入手机号" type="text" value="{{mobile}}"></input>
+                </view>
+            </view>
+        </view>
+        <view class="order-info">
+            <view class="flex">
+                <text class="icon icon-store font-18"></text>
+                <text class="font-14 margin-10-l font-500">{{goods.store.title}}</text>
+            </view>
+            <view class="padding-15-tb goods flex-lr border-1px-b">
+                <view class="thumb">
+                    <image alt="" class="wh-100" src="{{goods.thumb}}"></image>
+                </view>
+                <div class="info">
+                    <p>{{goods.name}}</p>
+                    <div class="flex">
+                        <div class="c-danger font-16 font-bold">{{Lang.dollarSign}}{{goods.price}}</div>
+                        <div class="c-gray font-12 line-through margin-5-l">{{Lang.dollarSign}}{{goods.oldprice}}</div>
+                    </div>
+                </div>
+            </view>
+            <view class="border-1px-b padding-15-b font-13">
+                <view class="margin-15-t flex-lr">
+                    <text>数量</text>
+                    <view class="num-step">
+                        <text bind:tap="onMinus" class="step-item step-minus {{goodsNum<=1?'disabled':''}}">-</text>
+                        <input bindinput="onInput" class="num" name="goodsNum" value="{{goodsNum}}"></input>
+                        <text bind:tap="onPlus" class="step-item step-plus {{goodsNum>=goods.total?'disabled':''}}">+</text>
+                    </view>
+                </view>
+                <view class="margin-15-t flex-lr">
+                    <text>总价</text>
+                    <text class="c-danger">{{Lang.dollarSign}}{{totalPrice}}</text>
+                </view>
+            </view>
+            <view class="padding-15-t total-price">
+                <view class="margin-15-l">
+                    <span>小计</span>
+                    <span class="c-danger font-16 font-500">{{Lang.dollarSign}}{{totalPrice}}</span>
+                </view>
+            </view>
+        </view>
+        <view class="note">
+            <view class="margin-10-t">备注</view>
+            <textarea bindinput="onNote" placeholder="口味、偏好等要求" value="{{buyremark}}"></textarea>
+        </view>
+    </view>
+    <view class="order-btn-field border-1px-t">
+        <button class="order-submit {{islegal?'':'disabled'}}" formType="submit">提交订单</button>
+        <view class="order-total-field">
+			待支付<view class="order-total">{{Lang.dollarSign}}{{totalPrice}}</view>
+        </view>
+    </view>
+</form>
+<include src="../../../../pages/public/footer.wxml"></include>

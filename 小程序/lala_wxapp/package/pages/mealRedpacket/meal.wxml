@@ -1,0 +1,151 @@
+<view class="page-mealredpacketplus">
+    <view class="content" wx:if="{{mealRedpacketId>0}}">
+        <view class="info">
+            <view class="city-records">
+                <view class="city">
+                    <block wx:if="{{0}}">
+                        <text>使用城市:</text>
+                        <image alt="" class="img-location" src="../../static/img/meal/location1.png"></image>
+                        <text>太原市</text>
+                        <image alt="" class="img-right" src="../../static/img/meal/right1.png"></image>
+                    </block>
+                </view>
+                <view bind:tap="onJsEvent" class="records" data-event-type="jsUrl" data-url="package/pages/mealRedpacket/ordermeal">
+                    <image alt="" src="../../static/img/meal/meal_time.png"></image>
+                    <text>购买记录</text>
+                </view>
+            </view>
+            <view class="meal-info" style="background: url({{params.backgroundImage}}) no-repeat top left/100% 100%">
+                <view class="tip" style="color: {{style.rulesColor}}">
+                    <text bindtap="onJsEvent" class="icon icon-question1" data-event-type="jsUrl" data-url="pages/public/richtext?key=meal_rules"></text>
+                    <text bindtap="onJsEvent" data-event-type="jsUrl" data-url="pages/public/richtext?key=meal_rules">特权说明</text>
+                </view>
+                <view class="title" style="color: {{style.titleColor}}">{{params.title}}</view>
+                <view class="contain" style="color: {{style.placeholderColor}}">{{params.placeholder}}</view>
+                <view class="btn-buy" wx:if="{{!canBuy}}">本月购买次数已用完</view>
+                <view bind:tap="onSubmit" class="btn-buy haved {{islegal?'':'disabled'}}" style="color: {{style.btnColor}}; background: {{style.btnBackground}}" wx:else>
+                    <text class="renminbi">{{Lang.dollarSign}}</text>
+                    <text class="price">{{params.price}}</text>
+                    <text>{{params.btnText}}</text>
+                </view>
+            </view>
+            <view class="use-limit">
+                <view class="limit-item" wx:for="{{params.tips}}" wx:key="{{index}}">
+                    <view class="img">
+                        <image alt="" src="{{item.imgurl}}"></image>
+                    </view>
+                    <text class="text" style="color: {{item.color}}">{{item.text}}</text>
+                </view>
+            </view>
+        </view>
+        <view class="detail">
+            <block wx:if="{{redpackets.length>0}}">
+                <view class="title flex-lr" wx:if="{{!canBuy}}">
+                    <view class="avail-num">
+                        <text>会员红包</text>
+                    </view>
+                    <view class="flex">
+                        <text class="margin-5-r">剩余</text>
+                        <text class="font-bold font-20 c-default">{{usefulNum}}</text>
+                        <text>/{{redpackets.length}}张</text>
+                    </view>
+                </view>
+                <view class="redpacket-list">
+                    <view class="van-row">
+                        <view class="van-col" wx:if="{{redpackets.length>0}}" wx:for="{{redpackets}}" wx:key="{{index}}">
+                            <view class="redpacket-item {{item.status>1?'used':''}}">
+                                <view class="top">
+                                    <view class="flex-lr">
+                                        <view class="name">{{item.name}}</view>
+                                        <view class="price">
+											{{Lang.dollarSign}}<text class="font-20">{{item.discount}}</text>
+                                        </view>
+                                    </view>
+                                    <view class="flex-lr margin-10-t">
+                                        <view class="useday-limit">有效期: {{item.use_days_limit}}天</view>
+                                        <view class="color-main" wx:if="{{item.condition>0}}">满{{item.condition}}{{Lang.dollarSignCn}}</view>
+                                        <view class="color-main" wx:else>无门槛</view>
+                                    </view>
+                                </view>
+                                <view class="divide">
+                                    <view class="divide-line"></view>
+                                </view>
+                                <view class="bottom" wx:if="{{!canBuy}}">{{item.endtime_cn}}</view>
+                                <view class="bottom" wx:else>购买后即可享受优惠</view>
+                            </view>
+                        </view>
+                    </view>
+                </view>
+            </block>
+            <block wx:if="{{params.exchangeStatus==1&&!exchanges.empty}}">
+                <view class="store-title">
+                    <text class="avail-num">会员红包金额升级</text>
+                    <text class="c-gray font-12 margin-5-l">以下商家支持红包金额升级</text>
+                </view>
+                <view class="exchange-list">
+                    <view class="van-row">
+                        <view class="van-col" wx:for="{{exchanges.data}}" wx:key="{{index}}">
+                            <view class="new-exchange-item">
+                                <view class="redpacket-info">
+                                    <view class="flex-center">
+                                        <text class="c-danger">{{Lang.dollarSign}}</text>
+                                        <text class="c-danger font-24 font-bold margin-5-r">{{item.discount}}</text>
+                                        <text class="c-gray font-12" wx:if="{{item.condition>0}}">满{{item.condition}}{{Lang.dollarSignCn}}</text>
+                                        <text class="c-gray font-12" wx:else>无门槛</text>
+                                    </view>
+                                    <view bind:tap="onDialogShow" class="upgrade" data-sid="{{item.store_id}}">升级</view>
+                                    <view class="c-gray font-12">需1张会员红包升级</view>
+                                </view>
+                                <view class="divide">
+                                    <view class="divide-line"></view>
+                                </view>
+                                <view bind:tap="onJsEvent" class="store-info" data-event-type="jsUrl" data-url="pages/store/goods?sid={{item.sid}}">
+                                    <view class="store-logo">
+                                        <image alt="" src="{{item.logo}}"></image>
+                                    </view>
+                                    <view class="store-title">{{item.title}}</view>
+                                </view>
+                            </view>
+                        </view>
+                    </view>
+                </view>
+            </block>
+        </view>
+    </view>
+    <view class="wui-dialog dialog-exchange {{dialogStatus?'wui-dialog-show':''}}">
+        <view bind:tap="onToggleDialog" class="wui-dialog-mask"></view>
+        <view class="wui-dialog-container">
+            <view class="pop-title border-1px-b">请选择一个可用红包进行兑换</view>
+            <scroll-view class="pop-container" scrollY="true">
+                <view class="redpacket-list">
+                    <view class="van-row">
+                        <view class="van-col" wx:if="{{redpackets.length>0}}" wx:for="{{redpackets}}" wx:key="{{index}}">
+                            <view bind:tap="onSelectRedpacket" class="redpacket-item {{item.status>1||item.sid>0||item.scene=='paotui'?'used':''}} {{item.id==selectedRedpacketId?'active':''}}" data-id="{{item.id}}" data-scene="{{item.scene}}" data-sid="{{item.sid}}" data-status="{{item.status}}">
+                                <view class="top">
+                                    <view class="flex-lr">
+                                        <view class="name">{{item.name}}</view>
+                                        <view class="price">
+											{{Lang.dollarSign}}<text class="font-20">{{item.discount}}</text>
+                                        </view>
+                                    </view>
+                                    <view class="flex-lr margin-10-t">
+                                        <view class="useday-limit">有效期: {{item.use_days_limit}}天</view>
+                                        <view class="color-main" wx:if="{{item.condition>0}}">满{{item.condition}}{{Lang.dollarSignCn}}</view>
+                                        <view class="color-main" wx:else>无门槛</view>
+                                    </view>
+                                </view>
+                                <view class="divide">
+                                    <view class="divide-line"></view>
+                                </view>
+                                <view class="bottom" wx:if="{{!canBuy}}">{{item.endtime_cn}}</view>
+                                <view class="bottom" wx:else>购买后即可享受优惠</view>
+                            </view>
+                        </view>
+                    </view>
+                </view>
+            </scroll-view>
+            <view bind:tap="onExchange" class="bottom-fixed border-1px-t">立即升级</view>
+        </view>
+    </view>
+</view>
+<include src="../../../pages/public/footer.wxml"></include>

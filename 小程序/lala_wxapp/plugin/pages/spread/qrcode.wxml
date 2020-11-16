@@ -1,0 +1,10 @@
+<view class="page page-spread-qrcode">
+    <view class="content">
+        <view class="tips">邀请朋友扫描下方二维码</view>
+        <view class="qrcode-wrap">
+            <image src="http://cos.lalawaimai.com/we7_wmall/wxapp/qrcode1.png"></image>
+        </view>
+        <view class="explain">好友扫描您的二维码,并且下单, {{settle.balance_condition==1?'确认收货之后':'确认收货并评价之后'}}, 您就可以获得佣金</view>
+    </view>
+</view>
+<include src="../../../pages/public/footer.wxml"></include>

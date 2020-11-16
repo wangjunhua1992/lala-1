@@ -1,0 +1,127 @@
+page {
+    background: #F3F3F3;
+}
+
+.container .content {
+    width: 100%;
+}
+
+.container .content .list-item {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 0px 10px;
+    background: #fff;
+    margin-bottom: 10px;
+}
+
+.container .content .list-item:last-child {
+    margin-bottom: 0px;
+}
+
+.container .content .list-item .first-line {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 0px;
+}
+
+.container .content .list-item .first-line .order-sn {
+    color: #757575;
+    font-size: 16px;
+}
+
+.container .content .list-item .first-line .status {
+    color: #F2965B;
+    font-size: 16px;
+}
+
+.container .content .list-item .second-line {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: flex-start;
+    padding-bottom: 10px;
+}
+
+.container .content .list-item .second-line .left {
+    width: 100px;
+    margin-left: 10px;
+}
+
+.container .content .list-item .second-line .left image {
+    width: 100px;
+    height: 100px;
+    border-radius: 5px;
+}
+
+.container .content .list-item .second-line .right {
+    width: 270px;
+    box-sizing: border-box;
+    padding-left: 15px;
+}
+
+.container .content .list-item .second-line .right .title {
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-size: 16px;
+    font-weight: 600;
+    height: 33px;
+    margin-top: -5px;
+    margin-bottom: 5px;
+}
+
+.container .content .list-item .second-line .right .type {
+    display: flex;
+    align-items: center;
+    height: 33px;
+    display: flex;
+    align-items: center;
+}
+
+.container .content .list-item .second-line .right .type text {
+    display: flex;
+    align-items: center;
+    padding: 0 5px;
+    color: #fff;
+    background: #F44453;
+    font-size: 12px;
+    border-radius: 3px;
+}
+
+.container .content .list-item .second-line .right .credit {
+    font-size: 14px;
+    color: #D34B4C;
+    height: 33px;
+    display: flex;
+    align-items: flex-end;
+}
+
+.container .content .list-item .third-line {
+    font-size: 16px;
+    color: #9F9F9F;
+    display: flex;
+    padding: 10px 0;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.container .content .list-item .third-line .btn-group {
+    display: flex;
+    justify-content: right;
+}
+
+.container .content .list-item .third-line .pay-btn .btn {
+    background: #ff2d4b;
+    padding: 0px;
+    border: 0px;
+}
+
+.container .content .list-item .third-line .cancel-btn .btn {
+    padding: 0px;
+    border: 1px solid #ccc;
+    margin-right: 10px;
+}

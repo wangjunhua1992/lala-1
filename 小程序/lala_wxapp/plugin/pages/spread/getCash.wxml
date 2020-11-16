@@ -1,0 +1,41 @@
+<tab-bar menufooter="{{menufooter}}" wx:if="{{menufooter&&menufooter.data}}"></tab-bar>
+<view class="page-getCash container">
+    <view class="list-block">
+        <view class="item item-title">账户可用余额：</view>
+        <view class="item price color-danger">{{Lang.dollarSign}} {{member.spreadcredit2}}</view>
+    </view>
+    <view class="list-item">
+        <view class="item-text">提现金额</view>
+        <view class="item-input">
+            <input bindinput="onInput" class="wui-input" placeholder=""></input>
+        </view>
+        <view class="list-text">
+            <view class="icon icon-circle"></view>
+			最低提现金额为{{config.withdraw}}{{Lang.dollarSignCn}}
+		</view>
+        <view class="list-text">
+            <view class="icon icon-circle"></view>
+			提现费率为{{config.withdrawcharge}}%
+		</view>
+    </view>
+    <view class="list-block border-1px-tb">
+        <radio-group bindchange="onRadioChange">
+            <block wx:for="{{config.cashcredit}}">
+                <radio checked="{{channel=='credit'?true:false}}" class="radio border-1px-b" color="#ff2d4b" value="credit" wx:if="{{item=='credit2'}}">
+                    <view class="radio-text">提现到余额</view>
+                </radio>
+                <radio checked="{{channel=='wechat'?true:false}}" class="radio border-1px-b" color="#ff2d4b" value="wechat" wx:elif="{{item=='wechat'}}">
+                    <view class="radio-text">提现到微信</view>
+                </radio>
+                <radio checked="{{channel=='bank'?true:false}}" class="radio border-1px-b" color="#ff2d4b" value="bank" wx:elif="{{item=='bank'}}">
+                    <view class="radio-text">提现到银行卡</view>
+                </radio>
+                <radio checked="{{channel=='alipay'?true:false}}" class="radio" color="#ff2d4b" value="alipay" wx:elif="{{item=='alipay'}}">
+                    <view class="radio-text">提现到支付宝</view>
+                </radio>
+            </block>
+        </radio-group>
+    </view>
+    <view bind:tap="onSubmit" class="btn btn-danger btn-submit">提现</view>
+</view>
+<include src="../../../pages/public/footer.wxml"></include>

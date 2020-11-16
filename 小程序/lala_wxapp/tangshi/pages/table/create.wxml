@@ -1,0 +1,229 @@
+<view class="container">
+    <form>
+        <view class="content">
+            <scroll-view class="main" scrollY="true">
+                <view class="plateform-box">
+                    <view class="plateform-inner">
+                        <view class="wui-cell">
+                            <view class="wui-cell-bd">
+                                <view class="list-title">来客人数:</view>
+                                <view class="list-content">
+                                    <input bindinput="onChangeInput" data-key="person_num" placeholder="来客人数" value="{{extra.person_num}}"></input>
+                                </view>
+                            </view>
+                        </view>
+                    </view>
+                </view>
+                <view class="order-food-region">
+                    <view class="order-food-title">
+                        <view class="food-shop">{{store.title}}</view>
+                    </view>
+                    <view class="food-list" wx:if="{{!is_pindan||!pindan_id}}">
+                        <block wx:for="{{cart.data}}" wx:key="{{index}}">
+                            <view class="food-item" wx:if="{{option.goods_id!='88888'}}" wx:for="{{item}}" wx:for-index="optionIndex" wx:for-item="option" wx:key="{{optionIndex}}">
+                                <view class="food-item-img">
+                                    <image src="{{option.thumb}}"></image>
+                                </view>
+                                <view class="food-item-price">
+                                    <view class="now-price">{{Lang.dollarSign}}{{option.total_discount_price}}</view>
+                                    <view class="old-price" wx:if="{{option.total_price>option.total_discount_price}}">{{Lang.dollarSign}}{{option.total_price}}</view>
+                                </view>
+                                <view class="food-item-info">
+                                    <view class="food-item-name">
+                                        <image src="/static/img/bargain_b.png" wx:if="{{option.bargain_id>0}}"></image>
+											{{option.title}}
+										</view>
+                                    <view class="food-item-num">x{{option.num}}</view>
+                                </view>
+                            </view>
+                        </block>
+                    </view>
+                    <view class="food-list" wx:elif="{{is_pindan==1&&pindan_id>0}}">
+                        <block wx:for="{{cart.data}}" wx:for-item="pindanData" wx:key="{{index}}">
+                            <view class="c-gray font-14 padding-10-l margin-10-b">口袋{{index+1}}</view>
+                            <block wx:for="{{pindanData}}" wx:for-index="pindanIndex" wx:for-item="pindanItem" wx:key="{{pindanIndex}}">
+                                <view class="food-item pindan-food-item" wx:if="{{option.goods_id!='88888'}}" wx:for="{{pindanItem}}" wx:for-index="optionIndex" wx:for-item="option" wx:key="{{optionIndex}}">
+                                    <view class="food-item-img">
+                                        <image src="{{option.thumb}}"></image>
+                                    </view>
+                                    <view class="food-item-price">
+                                        <view class="now-price">{{Lang.dollarSign}}{{option.total_discount_price}}</view>
+                                        <view class="old-price" wx:if="{{option.total_price>option.total_discount_price}}">{{Lang.dollarSign}}{{option.total_price}}</view>
+                                    </view>
+                                    <view class="food-item-info">
+                                        <view class="food-item-name">
+                                            <image src="/static/img/bargain_b.png" wx:if="{{option.bargain_id>0}}"></image>
+												{{option.title}}
+											</view>
+                                        <view class="food-item-num">x{{option.num}}</view>
+                                    </view>
+                                </view>
+                            </block>
+                        </block>
+                    </view>
+                    <view class="order-region-entries">
+                        <view class="order-region-entry">
+                            <view class="order-entry-price">{{Lang.dollarSign}}{{order.serve_fee}}</view>
+                            <view class="order-entry-name">服务费</view>
+                        </view>
+                        <view class="order-region-entry" wx:if="{{order.box_price>0}}">
+                            <view class="order-entry-price">{{Lang.dollarSign}}{{order.box_price}}</view>
+                            <view class="order-entry-name">餐具费</view>
+                        </view>
+                    </view>
+                    <view class="divide">
+                        <view class="divide-line"></view>
+                    </view>
+                    <view class="discount-box">
+                        <view class="discount" wx:if="{{activity.type!='couponCollect'&&activity.type!='redPacket'}}" wx:for="{{order.activityed.list}}" wx:for-item="activity" wx:key="{{index}}">
+                            <view class="discount-name">
+                                <view class="icon-b">
+                                    <image src="/static/img/{{activity.type}}_b.png"></image>
+                                </view>
+									{{activity.name}}
+								</view>
+                            <view class="discount-price">{{activity.text}}</view>
+                        </view>
+                        <view bind:tap="onToggleCoupon" class="wui-cell wui-cell-access coupon">
+                            <view class="wui-cell-bd">商家代金券</view>
+                            <view class="wui-cell-ft {{coupons.length?'':'disabled'}}" wx:if="{{!order.coupon.id}}">{{coupons.length>0?coupons.length+'张可用代金券':'暂无可用代金券'}}</view>
+                            <view class="wui-cell-ft" wx:if="{{order.coupon.id}}">-{{Lang.dollarSign}}{{order.coupon.discount}}</view>
+                        </view>
+                        <view bind:tap="onToggleRedpacket" class="wui-cell wui-cell-access">
+                            <view class="wui-cell-bd">平台红包</view>
+                            <view class="wui-cell-ft {{redPackets.length?'':'disabled'}}" wx:if="{{!order.redpacket.id}}">{{redPackets.length>0?redPackets.length+'个可用红包':'暂无可用红包'}}</view>
+                            <view class="wui-cell-ft" wx:if="{{order.redpacket.id}}">-{{Lang.dollarSign}}{{order.redpacket.discount}}</view>
+                        </view>
+                    </view>
+                    <view class="divide">
+                        <view class="divide-line"></view>
+                    </view>
+                    <view class="order-region-entries">
+                        <view class="order-pay-info clearfix">
+                            <view class="pay-price">
+								实付
+								<view>{{Lang.dollarSign}}{{order.final_fee}}</view>
+                            </view>
+                            <view class="discount-fee">优惠{{Lang.dollarSign}}{{order.discount_fee}}</view>
+                            <view class="total-original">
+								共计{{Lang.dollarSign}}{{order.total_fee}}
+							</view>
+                        </view>
+                    </view>
+                </view>
+                <view class="order-region">
+                    <view class="order-region-entries">
+                        <view class="order-region-entry">
+                            <view>支付方式</view>
+                            <view class="order-pay-type">在线支付</view>
+                        </view>
+                    </view>
+                    <view class="order-field clearfix border-1px-t">
+                        <navigator class="wui-cell wui-cell-access" url="./note?sid={{store.id}}&is_pindan={{is_pindan}}&pindan_id={{pindan_id}}">
+                            <view class="wui-cell-bd">备注/发票</view>
+                            <view class="wui-cell-ft" wx:if="{{!order.note}}">口味、偏好等要求</view>
+                            <view class="wui-cell-ft" wx:if="{{order.note}}">{{order.note}}</view>
+                        </navigator>
+                    </view>
+                </view>
+            </scroll-view>
+        </view>
+        <view class="order-btn-field border-1px-t">
+            <view bind:tap="onOrderSubmit" class="order-submit {{islegal?'':'disabled'}}">提交订单</view>
+            <view class="order-total-field">
+				待支付<view class="order-total">{{Lang.dollarSign}}{{order.final_fee}}</view>
+            </view>
+            <view class="order-benefit">
+				已优惠<view>{{Lang.dollarSign}}{{order.discount_fee}}</view>
+            </view>
+        </view>
+    </form>
+    <view class="wui-dialog {{showRedpacket?'wui-dialog-show':''}}">
+        <view bind:tap="onToggleRedpacket" class="wui-dialog-mask"></view>
+        <view class="wui-dialog-container">
+            <view class="pop">
+                <view class="pop-title">平台红包</view>
+                <view class="pop-container">
+                    <scroll-view class="redPacket-container" scrollY="true">
+                        <view class="redPacket">
+                            <view class="wui-loadmore wui-loadmore-nodata">
+                                <view class="wui-loadmore-tips">可用红包({{redPackets.length}}个)</view>
+                            </view>
+                            <view class="redPacket-list">
+                                <view bind:tap="onSelectRedpacket" class="item" data-id="{{item.id}}" wx:for="{{redPackets}}" wx:key="{{index}}">
+                                    <view class="circle circle-left"></view>
+                                    <view class="circle circle-right"></view>
+                                    <view class="redPacket-info">
+                                        <view class="col-50">{{item.title}}</view>
+                                        <view class="col-50 text-right">
+												{{Lang.dollarSign}}<view class="price">{{item.discount}}</view>
+                                        </view>
+                                    </view>
+                                    <view class="redPacket-uselimit">
+                                        <view class="col-60">{{item.day_cn}}</view>
+                                        <view class="col-40 text-right">满{{item.condition}}{{Lang.dollarSignCn}}可用</view>
+                                    </view>
+                                    <view class="selected-status" wx:if="{{item.id==order.redpacket.id}}">
+                                        <image src="/static/img/selected-success.png"></image>
+                                    </view>
+                                </view>
+                            </view>
+                        </view>
+                    </scroll-view>
+                </view>
+                <view bind:tap="onSelectRedpacket" class="bottom-fixed border-1px-t" data-id="0">
+					不使用红包
+				</view>
+            </view>
+        </view>
+    </view>
+    <view class="wui-dialog {{showCoupon?'wui-dialog-show':''}}">
+        <view bind:tap="onToggleCoupon" class="wui-dialog-mask"></view>
+        <view class="wui-dialog-container">
+            <view class="pop">
+                <view class="pop-title">商家代金券</view>
+                <view class="pop-container">
+                    <scroll-view class="coupons-container" scrollY="true">
+                        <view class="coupons">
+                            <view class="wui-loadmore wui-loadmore-nodata">
+                                <view class="wui-loadmore-tips">可用代金券({{coupons.length}}张)</view>
+                            </view>
+                            <view class="coupon-list">
+                                <view class="content-padded">
+                                    <view bind:tap="onSelectCoupon" class="item is-use" data-id="{{item.id}}" wx:for="{{coupons}}" wx:key="{{index}}">
+                                        <view class="clearfix">
+                                            <view class="left">
+                                                <view class="store-logo">
+                                                    <image src="{{item.logo}}"></image>
+                                                </view>
+                                                <view class="coupon-detail">
+                                                    <view class="coupon-title">{{item.title}}</view>
+                                                    <view class="use-time">有效期至:{{item.endtime_cn}}</view>
+                                                </view>
+                                            </view>
+                                            <view class="right">
+                                                <view class="price">
+														{{Lang.dollarSign}}<view>{{item.discount}}</view>
+                                                </view>
+                                                <view class="condition">满{{item.condition}}可用</view>
+                                            </view>
+                                            <view class="circle circle-left"></view>
+                                            <view class="circle circle-right"></view>
+                                            <view class="selected-status" wx:if="{{item.id==order.coupon.id}}">
+                                                <image src="/static/img/selected-success.png"></image>
+                                            </view>
+                                        </view>
+                                    </view>
+                                </view>
+                            </view>
+                        </view>
+                    </scroll-view>
+                </view>
+                <view bind:tap="onSelectCoupon" class="bottom-fixed border-1px-t" data-id="0">
+					不使用代金券
+				</view>
+            </view>
+        </view>
+    </view>
+</view>
+<include src="../../../pages/public/footer.wxml"></include>

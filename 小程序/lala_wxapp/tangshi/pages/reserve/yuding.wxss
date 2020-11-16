@@ -1,0 +1,228 @@
+page {
+    font-size: 14px;
+    line-height: 1;
+    background-color: #f5f5f5;
+    box-sizing: border-box;
+}
+
+.reserve-yuding .yuding-header-wrap {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 2;
+}
+
+.reserve-yuding .yuding-header {
+    width: 100%;
+    white-space: nowrap;
+    font-size: 0;
+    padding: 10px 15px;
+    background-color: #fff;
+    box-sizing: border-box;
+}
+
+.reserve-yuding .yuding-header .yuding-date {
+    display: inline-block;
+    padding: 5px 20px;
+    color: #999;
+    font-size: 14px;
+    text-align: center;
+    margin-right: 10px;
+}
+
+.reserve-yuding .yuding-header .yuding-date.active {
+    border: 1px solid #FFCDB2;
+    background-color: #FFF5F0;
+    color: #FF5900;
+    border-radius: 35px;
+}
+
+.reserve-yuding .yuding-header .yuding-date .time {
+    padding-top: 5px;
+}
+
+.reserve-yuding .yuding-header .yuding-date:last-child {
+    margin-right: 0;
+}
+
+.reserve-yuding .yuding-filter {
+    position: relative;
+    padding: 15px;
+    font-size: 14px;
+    color: #787878;
+    background-color: #fff;
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.reserve-yuding .yuding-filter .filter-item {
+    padding: 0 10px;
+}
+
+.reserve-yuding .tables-list {
+    padding: 109px 15px 15px;
+}
+
+.reserve-yuding .tables-list .tables-item {
+    display: flex;
+    align-items: center;
+    margin-top: 15px;
+    padding: 15px 0;
+    background-color: #fff;
+    box-shadow: 2px 2px 5px #e0e0e0;
+    border-radius: 5px;
+}
+
+.reserve-yuding .tables-list .tables-item .tables-left {
+    width: 75%;
+    padding: 0 15px;
+    border-right: 1px dashed #e0e0e0;
+}
+
+.reserve-yuding .tables-list .tables-item .tables-left .tables-info {
+    display: flex;
+    align-items: flex-end;
+}
+
+.reserve-yuding .tables-list .tables-item .tables-left .tables-time {
+    font-size: 22px;
+    font-weight: bold;
+    color: #FF5900;
+    padding-right: 10px;
+}
+
+.reserve-yuding .tables-list .tables-item .tables-left .tables-date {
+    font-size: 14px;
+    color: #FF5900;
+    padding-right: 10px;
+}
+
+.reserve-yuding .tables-list .tables-item .tables-left .tables-bar {
+    width: 65%;
+    height: 5px;
+    border-radius: 5px;
+    background-color: #FFE6D8;
+    position: relative;
+    margin: 15px 0 5px;
+    overflow: hidden;
+}
+
+.reserve-yuding .tables-list .tables-item .tables-left .tables-bar .bar-inner {
+    position: absolute;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    border-radius: 20px;
+    background: linear-gradient(to right,#FD6131,#FE0000);
+}
+
+.reserve-yuding .tables-list .tables-item .tables-left .tables-text {
+    font-size: 12px;
+    color: #999;
+    padding-left: 10px;
+    margin-top: 6px;
+}
+
+.reserve-yuding .tables-list .tables-item .tables-right {
+    width: 25%;
+}
+
+.reserve-yuding .tables-list .tables-item .tables-right .btn-tables {
+    background: linear-gradient(to right,#FF9701,#FF6200);
+    color: #fff;
+    border-radius: 50px;
+    padding: 7px 12px;
+    font-size: 12px;
+    margin: 0 auto;
+}
+
+.reserve-yuding .tables-list .tables-item .tables-right .btn-tables.border-gray {
+    background: #999;
+}
+
+.dialog .dialog-mask {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1000;
+    background: rgba(0,0,0,0.7);
+}
+
+.dialog.dialog-show .dialog-mask {
+    display: block;
+}
+
+.dialog .dialog-container {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background: white;
+    transform: translateY(-150%);
+    transition: all 0.4s ease;
+    z-index: 10001;
+}
+
+.dialog-show .dialog-container {
+    transform: translateY(0);
+}
+
+.dialog .dialog-container .search-btn-tab {
+    padding: 15px 0;
+    position: relative;
+    background-color: #ffffff;
+    display: flex;
+    font-size: 14px;
+}
+
+.dialog .dialog-container .search-btn-tab .search-btn-item {
+    position: relative;
+    text-align: center;
+    color: #333;
+    width: 33.33%;
+}
+
+.dialog .dialog-container .search-btn-tab .search-btn-item.active {
+    color: #ff2d4b;
+}
+
+.dialog .dialog-container .search-alltable {
+    width: 100%;
+    background-color: #fff;
+    padding: 10px 10px 5px 10px;
+    box-sizing: border-box;
+}
+
+.dialog .dialog-container .search-alltable .new-search-group {
+    display: flex;
+    flex-wrap: wrap;
+    position: relative;
+    width: 100%;
+}
+
+.dialog .dialog-container .search-alltable .new-search-group .new-search-item {
+    width: 33.33%;
+}
+
+.dialog .dialog-container .search-alltable .new-search-group .new-search-item .info {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    color: #333;
+    padding: 8px 5px;
+    background: #fafafa;
+    margin: 0 5px 5px;
+}
+
+.dialog .dialog-container .search-alltable .new-search-group .new-search-item .info.active {
+    color: #FF5900;
+    background-color: #FFF5F0;
+    border-radius: 3px;
+}

@@ -1,0 +1,89 @@
+page {
+    background-color: #F5F5F5;
+    font-size: 14px;
+    line-height: 1;
+}
+
+.storebd-getcash .getcash-title {
+    margin-top: 10px;
+    background-color: #fff;
+}
+
+.storebd-getcash .getcash-title .getcash-inner {
+    display: flex;
+    position: relative;
+    padding-left: 15px;
+}
+
+.storebd-getcash .getcash-title .getcash-inner .item-inner {
+    width: 100%;
+    padding: 10px 15px 10px 0;
+    font-size: 16px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    box-sizing: border-box;
+    line-height: 22px;
+}
+
+.storebd-getcash .getcash-item {
+    margin-top: 10px;
+    background-color: #fff;
+}
+
+.storebd-getcash .getcash-item .getcash-group {
+    padding: 10px;
+}
+
+.storebd-getcash .getcash-item .getcash-group .title {
+    font-size: 14px;
+    line-height: 22px;
+}
+
+.storebd-getcash .getcash-item .getcash-group .input {
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-top: 10px;
+}
+
+.storebd-getcash .getcash-item .getcash-group .input input {
+    height: 38px;
+    padding: 0 5px;
+}
+
+.storebd-getcash .getcash-item .getcash-group .help {
+    position: relative;
+    margin-top: 5px;
+    color: #999;
+    font-size: 14px;
+}
+
+.storebd-getcash .getcash-item .getcash-group .help view:before {
+    content: "";
+    width: 4px;
+    height: 4px;
+    position: absolute;
+    left: 0;
+    top: 40%;
+    background-color: #999;
+    border-radius: 100%;
+}
+
+.storebd-getcash .getcash-item .getcash-group .help view {
+    line-height: 21px;
+    padding-left: 16px;
+    position: relative;
+}
+
+.storebd-getcash .btn-group {
+    text-align: center;
+    margin-top: 10px;
+    padding: 0 5%;
+}
+
+.storebd-getcash .btn-group button {
+    font-size: 16px;
+    background: #ff2d4b;
+    padding: 8px 0;
+    line-height: 27px;
+}

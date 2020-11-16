@@ -1,0 +1,167 @@
+page {
+    background-color: #fff;
+    font-size: 14px;
+    line-height: 1;
+    box-sizing: border-box;
+}
+
+.headline {
+    padding: 15px;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.mycard {
+    padding: 0 15px;
+    color: #fff;
+}
+
+.mycard .mycard-item {
+    position: relative;
+    padding: 20px 20px 25px 20px;
+    margin: 15px 0;
+    border-radius: 15px 15px 5px 5px;
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: flex-start;
+    justify-content: space-between;
+}
+
+.mycard .mycard-item:first-child {
+    margin-top: 0px;
+}
+
+.mycard .mycard-item:last-child {
+    margin-bottom: 0px;
+}
+
+.mycard .mycard-item .store-logo {
+    width: 40px;
+    height: 40px;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.mycard .mycard-item .store-info {
+    position: absolute;
+    top: 20px;
+    left: 75px;
+    right: 123px;
+    height: 40px;
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: flex-start;
+    justify-content: space-between;
+}
+
+.mycard .mycard-item .store-info .store-title {
+    width: 100%;
+    font-weight: bold;
+    font-size: 15px;
+}
+
+.mycard .mycard-item .vip-detail {
+    padding: 7px 15px;
+    border-radius: 100px;
+    background-color: rgba(0,0,0,0.1);
+    border: 1px solid #494958;
+}
+
+.nearby-store-item {
+    padding: 0 15px;
+    margin: 15px 0;
+    border-radius: 10px;
+    box-shadow: 1px 1px 10px #999;
+}
+
+.nearby-store-item .store {
+    position: relative;
+}
+
+.nearby-store-item:first-child {
+    margin-top: 0px;
+}
+
+.nearby-store-item:last-child {
+    margin-bottom: 0px;
+}
+
+.nearby-store-item .store-logo {
+    position: absolute;
+    top: 15px;
+    left: 0;
+    width: 40px;
+    height: 40px;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.nearby-store-item .store-address {
+    max-width: 90%;
+}
+
+.nearby-store-item .join {
+    position: absolute;
+    top: 20px;
+    right: 0px;
+    padding: 8px 15px;
+    border-radius: 100px;
+    background-color: #ff2d4b;
+    color: #fff;
+}
+
+.nearby-store-item .store-info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin: 0 110px 0 50px;
+    min-height: 40px;
+}
+
+.nearby-store-item .store-info .power {
+    display: flex;
+    flex-flow: row wrap;
+}
+
+.nearby-store-item .store-info .power .power-item {
+    padding: 3px 8px;
+    border: 1px solid rgba(255,45,75,0.3);
+    border-radius: 50px;
+    margin-right: 5px;
+    font-size: 12px;
+    color: #ff2d4b;
+}
+
+.tongcheng-stores {
+    display: flex;
+    flex-flow: row wrap;
+    align-items: center;
+    padding: 0 10px;
+}
+
+.tongcheng-stores .tc-store-item {
+    width: 25%;
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    justify-content: center;
+    padding-bottom: 15px;
+}
+
+.tongcheng-stores .tc-store-item .store-logo {
+    width: 50px;
+    height: 50px;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.tongcheng-stores .tc-store-item .store-title {
+    max-width: 90%;
+    font-size: 12px;
+    margin-top: 5px;
+}
+
+.wui-loadmore-nomore .wui-loadmore-tips {
+    background-color: #fff;
+}

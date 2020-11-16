@@ -1,0 +1,97 @@
+<tab-bar menufooter="{{menufooter}}" wx:if="{{menufooter&&menufooter.data}}"></tab-bar>
+<view class="container">
+    <view class="content">
+        <view class="label-container" wx:if="{{order.order_type==1}}">
+            <view class="order-title">
+                <view class="avatar">
+                    <image src="{{store.logo}}" wx:if="{{order.delivery_type==1}}"></image>
+                    <image src="{{deliveryer.avatar}}" wx:if="{{order.delivery_type==2}}"></image>
+                </view>
+                <view class="order-content">
+                    <view>{{order.delivery_type==1?'商家配送':store.delivery_title}}</view>
+                    <view class="time"></view>
+                </view>
+            </view>
+            <view class="label-content">
+                <view class="text" wx:if="{{activeDelivery.title}}">"{{activeDelivery.title}}"</view>
+                <view class="star-box">
+                    <view bind:tap="onStarChange" class="i-star {{activeDelivery.value>=index?'i-star-light':''}}" data-id="{{index}}" data-type="deliveryStar" wx:for="{{delivery}}"></view>
+                </view>
+                <view class="label-box">
+                    <view bind:tap="chooseTags" class="{{item.selected==1?'active':''}}" data-id="{{index}}" wx:for="{{activeDelivery.tags}}">{{item.name}}</view>
+                </view>
+            </view>
+        </view>
+        <view class="comment-container">
+            <view class="order-title">
+                <view class="avatar">
+                    <image src="{{store.logo}}"></image>
+                </view>
+                <view class="store-name">
+					{{store.title}}
+				</view>
+            </view>
+            <view class="comment-content">
+                <view class="text" wx:if="{{goodsTitle}}">"{{goodsTitle}}"</view>
+                <view class="star-box">
+                    <view bind:tap="onStarChange" class="i-star {{goodsStar>index?'i-star-light':''}}" data-id="{{index}}" data-style="goods" data-type="goodsStar" wx:for="{{goodsComment}}"></view>
+                </view>
+                <view class="score-box" wx:if="{{goodsStar}}">
+                    <view class="word">口味<view>(必填)</view>
+                    </view>
+                    <view class="star">
+                        <view bind:tap="onStarChange" class="i-star {{tasteStar>index?'i-star-light':''}}" data-id="{{index}}" data-style="taste" data-type="goodsStar" wx:for="{{tasteComment}}"></view>
+                    </view>
+                    <view class="result">{{tasteTitle}}</view>
+                </view>
+                <view class="score-box" wx:if="{{goodsStar}}">
+                    <view class="word">包装<view>(必填)</view>
+                    </view>
+                    <view class="star">
+                        <view bind:tap="onStarChange" class="i-star {{packageStar>index?'i-star-light':''}}" data-id="{{index}}" data-style="package" data-type="goodsStar" wx:for="{{packageComment}}"></view>
+                    </view>
+                    <view class="result">{{packageTitle}}</view>
+                </view>
+                <textarea bindinput="onComment" placeholder="亲,菜品口味如何,对包装服务等还满意吗?"></textarea>
+                <view class="pic-box clearfix">
+                    <view class="pic" wx:for="{{files}}">
+                        <image src="{{item.url}}"></image>
+                        <view bind:tap="onJsEvent" data-event-type="jsDelImg" data-index="{{index}}" data-key="files">-</view>
+                    </view>
+                    <view bind:tap="onJsEvent" class="pic-icon" data-count="4" data-event-type="jsUploadImg" data-key="files">
+                        <view class="icon icon-camerafill"></view>
+                    </view>
+                    <view class="discription" wx:if="{{!files.length}}">
+                        <view>上传图片</view>
+                        <view>内容丰富的评价有机会成为优质评价</view>
+                    </view>
+                </view>
+                <view class="food-list">
+                    <view class="food-item" wx:for="{{goodsList}}">
+                        <view class="food-name">{{item.goods_title}}</view>
+                        <view class="favor-oppose">
+                            <view class="radio-box">
+                                <view bind:tap="favorOppose" class="favor" data-id="{{index}}" data-type="favor">
+                                    <image src="http://cos.lalawaimai.com/we7_wmall/wxapp/favor_grey.png" wx:if="{{item.activity==0||item.activity==2}}"></image>
+                                    <image src="http://cos.lalawaimai.com/we7_wmall/wxapp/favor.png" wx:if="{{item.activity==1}}"></image>
+                                </view>
+                            </view>
+                            <view class="radio-box">
+                                <view bind:tap="favorOppose" class="oppose" data-id="{{index}}" data-type="oppose">
+                                    <image src="http://cos.lalawaimai.com/we7_wmall/wxapp/oppose_grey.png" wx:if="{{item.activity==0||item.activity==1}}"></image>
+                                    <image src="http://cos.lalawaimai.com/we7_wmall/wxapp/oppose.png" wx:if="{{item.activity==2}}"></image>
+                                </view>
+                            </view>
+                        </view>
+                    </view>
+                </view>
+            </view>
+        </view>
+        <view class="btn-content">
+            <view bind:tap="onSubmit" class="btn btn-large {{submit?'btn-warning':'btn-disabled'}}">
+				提交
+			</view>
+        </view>
+    </view>
+</view>
+<include src="../public/footer.wxml"></include>

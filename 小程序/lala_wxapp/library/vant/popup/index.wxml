@@ -1,0 +1,4 @@
+<van-overlay mask bind:click="onClickOverlay" customStyle="{{overlayStyle}}" show="{{show}}" zIndex="{{zIndex}}" wx:if="{{inited&&overlay}}"></van-overlay>
+<view bind:animationend="onAnimationEnd" class="custom-class van-popup {{position?'van-popup--'+position:''}}" style="z-index: {{zIndex}}; animation-name: van-{{transition||position}}-{{type}}; animation-duration: {{duration}}ms; {{display?'':'display: none;'}}{{customStyle}}" wx:if="{{inited}}">
+    <slot></slot>
+</view>

@@ -1,0 +1,84 @@
+<view class="container">
+    <form bindreset="formReset" bindsubmit="onSubmit" class="content">
+        <view class="address border-1px-tb">
+            <block wx:if="{{address.store.auto_get_address==1}}">
+                <view class="wui-cell wui-cell-access border-1px-b" wx:if="{{!address.address_type}}">
+                    <view class="wui-cell-bd clearfix">
+                        <view class="text">小区/大厦/学校</view>
+                        <view bind:tap="onChooseLocation">
+                            <view class="icon icon-location"></view>
+								{{address.address?address.address:'点击选择'}}
+							</view>
+                    </view>
+                    <view class="wui-cell-ft"></view>
+                </view>
+                <view class="wui-cell wui-cell-access border-1px-b" wx:elif="{{address.address_type==1}}">
+                    <view class="wui-cell-bd clearfix">
+                        <view class="text">选择地址</view>
+                        <picker bindchange="onSelectAddress" bindcolumnchange="onChangeColumn" mode="multiSelector" range="{{columns}}" rangeKey="title" value="{{multiIndex}}">
+								{{address.address?address.address:'点击选择地址(必填)'}}
+							</picker>
+                    </view>
+                    <view class="wui-cell-ft"></view>
+                </view>
+            </block>
+            <view class="wui-cell border-1px-b" wx:else>
+                <view class="wui-cell-bd clearfix">
+                    <view class="text">收货地址</view>
+                    <view>
+                        <input bindinput="onFormChange" data-type="address" name="address" placeholder="请输入收货地址" value="{{address.address}}"></input>
+                    </view>
+                </view>
+            </view>
+            <view class="wui-cell border-1px-b">
+                <view class="wui-cell-bd clearfix">
+                    <view class="text">楼号-门牌号</view>
+                    <view>
+                        <input bindinput="onFormChange" data-type="number" name="number" placeholder="例:16号楼427室" value="{{address.number}}"></input>
+                    </view>
+                </view>
+            </view>
+            <view class="wui-cell contact">
+                <view class="wui-cell-bd">
+                    <view class="text">联系人</view>
+                    <view>
+                        <view class="name border-1px-b">
+                            <input bindinput="onFormChange" data-type="realname" name="realname" placeholder="请填写收货人的姓名" value="{{address.realname}}"></input>
+                        </view>
+                        <view class="sex border-1px-b">
+                            <radio-group bindchange="onFormChange" data-type="sex" name="sex">
+                                <radio checked="{{address.sex=='先生'}}" color="#ff2d4b" value="先生">
+                                    <view class="redio-text">先生</view>
+                                </radio>
+                                <radio checked="{{address.sex=='女士'}}" color="#ff2d4b" value="女士">
+                                    <view class="radio-text">女士</view>
+                                </radio>
+                            </radio-group>
+                        </view>
+                    </view>
+                </view>
+            </view>
+            <view class="wui-cell">
+                <view class="wui-cell-bd clearfix">
+                    <view class="text">手机号</view>
+                    <view>
+                        <input bindinput="onFormChange" data-type="mobile" name="mobile" placeholder="请填写收货手机号码" value="{{address.mobile}}"></input>
+                    </view>
+                </view>
+            </view>
+            <view class="address-tag border-1px-t">
+                <view class="tag-title">标签</view>
+                <view class="tag-list">
+                    <view bind:tap="onChangeAddressTag" class="tag-item {{address.tag=='1'?'active':''}}" data-tag="1">家</view>
+                    <view bind:tap="onChangeAddressTag" class="tag-item {{address.tag=='2'?'active':''}}" data-tag="2">公司</view>
+                    <view bind:tap="onChangeAddressTag" class="tag-item {{address.tag=='3'?'active':''}}" data-tag="3">学校</view>
+                </view>
+            </view>
+        </view>
+        <view class="btn-box">
+            <button class="btn btn-warning btn-large" formType="submit" type="primary">保存</button>
+            <button bind:tap="onDel" class="btn btn-large btn-blank" data-id="{{address.id}}" wx:if="{{address.id}}">删除</button>
+        </view>
+    </form>
+</view>
+<include src="../public/footer.wxml"></include>

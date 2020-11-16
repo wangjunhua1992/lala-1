@@ -1,0 +1,56 @@
+<view class="page-mealindex" wx:if="{{sid>0}}">
+    <view class="meal-container ">
+        <view class="top ">
+            <view class="title">选择套餐红包</view>
+            <view class="tip">
+				提示信息
+				<text>{{placeholder}}</text>
+            </view>
+        </view>
+        <block wx:if="{{redpackets}}">
+            <view bindtap="onChooseMeal" class="meal-item" data-index="{{index}}" wx:for="{{redpackets}}">
+                <view class="item-container {{index==selectedIndex?'active':''}}">
+                    <view class="left ">{{item.name}}</view>
+                    <view class="right ">
+                        <text class="old-price">{{Lang.dollarSign}}{{item.old_price}}</text>
+                        <text class="price">{{Lang.dollarSign}}{{item.price}}</text>
+                    </view>
+                </view>
+            </view>
+            <view class="redpacket-wrap {{index==selectedIndex?'':'hide'}}" wx:for="{{redpackets}}">
+                <view class="redpacket-wrap-title">{{item.name}}红包套餐内容</view>
+                <view class="redpacket-item" wx:for="{{item.data}}" wx:for-item="redpacket">
+                    <view class="redpacket-item-body">
+                        <view class="item-body-price">
+									{{Lang.dollarSign}}
+									<text class="body-price-number">
+                                <text>{{redpacket.discount}}</text>
+                            </text>
+                        </view>
+                        <view class="item-body-name">
+                            <view class="name-general">{{redpacket.name}}</view>
+                            <view class="name-reduction">满{{redpacket.condition}}{{Lang.dollarSignCn}}可用</view>
+                        </view>
+                    </view>
+                </view>
+            </view>
+        </block>
+    </view>
+    <view bindtap="onJsEvent" class="meal-explain" data-event-type="jsUrl" data-url="pages/public/richtext?key=mealPlus_rules">
+		套餐规则
+		<text class="icon icon-question"></text>
+    </view>
+    <view bindtap="onJsEvent" class="mealorder-url" data-event-type="jsUrl" data-url="package/pages/mealRedpacket/orderplus">
+        <view>购买记录</view>
+        <view class="icon icon-right"></view>
+    </view>
+    <view class="submit-container">
+        <view class="final-price">
+            <view class="text">总价</view>
+            <view class="price">{{Lang.dollarSign}}{{price}}</view>
+            <view class="old-price">{{Lang.dollarSign}}{{old_price}}</view>
+        </view>
+        <view bindtap="onOrderSubmit" class="submit-button {{islegal?'':'disabled'}}">立即购买</view>
+    </view>
+</view>
+<include src="../../../pages/public/footer.wxml"></include>

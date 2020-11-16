@@ -1,0 +1,78 @@
+<template name="wui-oauth">
+    <view class="wui-dialog wui-dialog-oauth {{wuiOauth.show?'wui-dialog-show':''}}">
+        <view class="wui-dialog-mask"></view>
+        <view class="wui-dialog-container">
+            <view class="wui-dialog-title border-1px-b">微信授权</view>
+            <view class="wui-dialog-content">
+                <image src="{{wuiOauth.data.logo}}"></image>
+                <view class="tip-oauth border-1px-b">{{wuiOauth.data.title}}申请获得以下权限:</view>
+                <view class="info-oauth">获得你的公开信息（昵称、头像等）</view>
+            </view>
+            <button bindgetuserinfo="onJsEvent" class="wui-dialog-confirm border-1px-t" data-event-type="jsOauth" openType="getUserInfo">确定授权</button>
+        </view>
+    </view>
+</template>
+<template name="wui-navigator">
+    <view class="navs-right" style="right: {{menu.position&&menu.position.right?menu.position.right:'10px'}}; bottom: {{menu.position&&menu.position.bottom?menu.position.bottom:'110px'}}; left: {{menu.position&&menu.position.left?menu.position.left:'inherit'}}" wx:if="{{menu}}">
+        <view bind:tap="onJsEvent" class="open" data-event-type="jsToggleNavigator" wx:if="{{!show}}">
+            <view>快捷</view>
+            <view>导航</view>
+        </view>
+        <view bind:tap="onJsEvent" class="icon icon-close" data-event-type="jsToggleNavigator" wx:else></view>
+        <view class="navs {{show?'show':''}}">
+            <view bind:tap="onJsEvent" class="nav-item" data-event-type="jsUrl" data-url="{{item.link}}" style="background-color: {{menu.params.navstyle==1?'transparent':menu.css.iconBackgroundColor}}" wx:for="{{menu.data}}" wx:key="{{index}}">
+                <view class="img-wrap" wx:if="{{menu.params&&menu.params.navstyle==1}}">
+                    <image class="wh-100" src="{{item.img}}"></image>
+                </view>
+                <block wx:else>
+                    <text class="icon {{item.icon}} font-16" style="color: {{menu.css.iconColor}}"></text>
+                    <view class="font-12" style="color: {{menu.css.textColor}}" wx:if="{{item.text}}">{{item.text}}</view>
+                </block>
+            </view>
+        </view>
+    </view>
+</template>
+<template name="wui-message">
+    <view class="message" wx:if="{{wuiMessage.show==1}}">
+        <view class="content">
+            <view class="container {{wuiMessage.type}}">
+                <view class="icon-area">
+                    <view class="icon icon-icon"></view>
+                </view>
+                <view class="text-area">
+                    <view class="msg-title">{{wuiMessage.title}}</view>
+                    <view class="desc" wx:if="{{wuiMessage.message}}">{{wuiMessage.message}}</view>
+                </view>
+                <view class="btn-area">
+                    <view>
+                        <view bind:tap="onJsEvent" class="button" data-event-type="jsUrl" data-url="{{wuiMessage.url}}">{{wuiMessage.btn_text?wuiMessage.btn_text:'确定'}}</view>
+                    </view>
+                </view>
+                <view class="extra-area">
+                    <view bind:tap="onJsEvent" data-event-type="jsUrl" data-url="/pages/home/index">返回首页</view>
+                </view>
+            </view>
+        </view>
+    </view>
+</template>
+<template name="wui-loading">
+    <view class="loading-wrapper" wx:if="{{wuiLoading.show==1}}">
+        <view class="diy-loading" wx:if="{{wuiLoading.img}}">
+            <image mode="widthFix" src="{{wuiLoading.img}}"></image>
+        </view>
+        <view class="sk-spinner sk-spinner-three-bounce" wx:else>
+            <view class="sk-bounce1"></view>
+            <view class="sk-bounce2"></view>
+            <view class="sk-bounce3"></view>
+        </view>
+    </view>
+</template>
+<template name="wui-toast">
+    <view bindtap="clearWuiToast" class="wui-toast" wx:if="{{wuiToast.show}}">{{wuiToast.title}}</view>
+</template>
+<template is="wui-toast" data="{{wuiToast:wuiToast}}"></template>
+<template is="wui-loading" data="{{wuiLoading:wuiLoading}}"></template>
+<template is="wui-message" data="{{wuiMessage:wuiMessage}}"></template>
+<template is="wui-navigator" data="{{...wuiNavigator}}"></template>
+<import src="/library/wxParse/wxParse.wxml"></import>
+<template is="wui-oauth" data="{{wuiOauth:wuiOauth}}"></template>

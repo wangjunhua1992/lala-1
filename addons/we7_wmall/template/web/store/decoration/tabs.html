@@ -1,0 +1,57 @@
+<div class="second-sidebar-title">
+	装修
+</div>
+<div class="nav slimscroll">
+	<div class="menu-header">模板</div>
+	<ul class="menu-item">
+		<li {if $_W['_op'] == 'template' && $_W['_ta'] == 'index'}class="active"{/if}>
+		<a href="{php echo iurl('store/decoration/template');}">模板配置</a>
+		</li>
+	</ul>
+	<div class="menu-header">招牌</div>
+	<ul class="menu-item">
+		<li {if $_W['_op'] == 'sign'}class="active"{/if}>
+		<a href="{php echo iurl('store/decoration/sign');}">门店招牌</a>
+		</li>
+	</ul>
+	<div class="menu-header">海报</div>
+	<ul class="menu-item">
+		<li {if $_W['_op'] == 'shopPage'}class="active"{/if}>
+			<a href="{php echo iurl('store/decoration/shopPage');}">商品海报</a>
+		</li>
+	</ul>
+	<div class="menu-header">首页</div>
+	<ul class="menu-item">
+		{if check_plugin_exist('wxapp')}
+			<li {if $_W['_op'] == 'home' && $_W['_ta'] == 'index'}class="active"{/if}>
+				<a href="{php echo iurl('store/decoration/home/index');}">门店首页</a>
+			</li>
+			<li {if $_W['_ta'] == 'list'}class="active"{/if}>
+				<a href="{php echo iurl('store/decoration/menu/list');}">门店底部菜单</a>
+			</li>
+			<li {if $_W['_ta'] == 'setting'}class="active"{/if}>
+				<a href="{php echo iurl('store/decoration/menu/setting');}">底部菜单设置</a>
+			</li>
+		{/if}
+		<li {if $_W['_ta'] == 'cover'}class="active"{/if}>
+			<a href="{php echo iurl('store/decoration/home/cover');}">链接和二维码</a>
+		</li>
+	</ul>
+	{if check_plugin_exist('diypage')}
+		<div class="menu-header">自定义DIY</div>
+		<ul class="menu-item">
+			<li {if $_W['_op'] == 'diyPage'}class="active"{/if}>
+				<a href="{php echo iurl('store/decoration/diyPage');}">店铺装修</a>
+			</li>
+			<li {if $_W['_op'] == 'vuemenu'}class="active"{/if}>
+				<a href="{php echo iurl('store/decoration/vuemenu')}">菜单列表{$_GPC['_op']}</a>
+			</li>
+			<li {if $_W['_op'] == 'vuemall'}class="active"{/if}>
+				<a href="{php echo iurl('store/decoration/vuemall')}">菜单设置</a>
+			</li>
+			<li {if $_W['_op'] == 'vuediyShop'}class="active"{/if}>
+				<a href="{php echo iurl('store/decoration/vuediyShop')}">页面设置</a>
+			</li>
+		</ul>
+	{/if}
+</div>

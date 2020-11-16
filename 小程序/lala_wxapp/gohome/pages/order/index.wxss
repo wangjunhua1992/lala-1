@@ -1,0 +1,126 @@
+@import "../../../nmy/0.wxss";
+
+page {
+    background-color: #f5f5f5;
+    font-size: 14px;
+}
+
+.gohome-order-index {
+    line-height: 1;
+}
+
+.gohome-order-index .tab-group {
+    width: 100%;
+    position: fixed;
+    top: 0;
+    z-index: 10;
+    left: 0;
+    right: 0;
+    height: 45px;
+    line-height: 45px;
+    background-color: #fff;
+    color: #333;
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.gohome-order-index .tab-group .tab-item {
+    width: 25%;
+    height: 100%;
+    text-align: center;
+    font-size: 14px;
+    position: relative;
+    flex: 1;
+}
+
+.gohome-order-index .tab-group .tab-item.active {
+    color: #ff2d4b;
+}
+
+.gohome-order-index .tab-group .tab-item.active:after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 0;
+    border-bottom: 2px solid #ff2d4b;
+}
+
+.gohome-order-index .order-list {
+    padding-top: 45px;
+}
+
+.gohome-order-index .order-list .order-item {
+    margin: 15px;
+    padding: 15px;
+    background-color: #fff;
+    font-size: 14px;
+    border-radius: 3px;
+}
+
+.gohome-order-index .order-list .order-item .thumb {
+    width: 80px;
+    height: 80px;
+    border-radius: 3px;
+    overflow: hidden;
+}
+
+.gohome-order-index .order-list .order-item .thumb image {
+    width: 100%;
+    height: 100%;
+}
+
+.gohome-order-index .order-list .order-item .info {
+    width: 70%;
+    padding-left: 10px;
+    height: 80px;
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: flex-start;
+    justify-content: space-between;
+    font-size: 14px;
+}
+
+.gohome-order-index .order-list .order-item .info .order-type {
+    display: inline-block;
+    background-color: #ff2d4b;
+    color: #fff;
+    font-size: 12px;
+    padding: 3px 5px;
+    border-radius: 3px;
+    margin-right: 5px;
+}
+
+.gohome-order-index .order-list .order-item .info .label {
+    color: #fff;
+}
+
+.gohome-order-index .order-list .order-item .info .label.label-info {
+    background-color: #5bc0de;
+}
+
+.gohome-order-index .order-list .order-item .info .label.label-danger {
+    background-color: #ff2d4b;
+}
+
+.gohome-order-index .order-list .order-item .info .label.label-warning {
+    background-color: #f0ad4e;
+}
+
+.gohome-order-index .order-list .order-item .btn-group {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.gohome-order-index .order-list .order-item .btn-group .btn-item {
+    color: #ff2d4b;
+    border: 1px solid #ff2d4b;
+    border-radius: 3px;
+    padding: 5px 8px;
+    margin-left: 10px;
+    font-size: 12px;
+}

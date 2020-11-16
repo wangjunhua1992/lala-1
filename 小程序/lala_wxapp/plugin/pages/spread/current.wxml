@@ -1,0 +1,43 @@
+<tab-bar menufooter="{{menufooter}}" wx:if="{{menufooter&&menufooter.data}}"></tab-bar>
+<view class="container">
+    <view class="content">
+        <view class="wui-tab">
+            <view class="wui-tab-bd">
+                <view bind:tap="onSubmit" class="wui-tab-item {{num==0?'wui-tab-item-selected':''}}" data-value="0">
+                    <view class="wui-tab-title">全部</view>
+                </view>
+                <view bind:tap="onSubmit" class="wui-tab-item {{num==1?'wui-tab-item-selected':''}}" data-value="1">
+                    <view class="wui-tab-title">佣金入账</view>
+                </view>
+                <view bind:tap="onSubmit" class="wui-tab-item {{num==2?'wui-tab-item-selected':''}}" data-value="2">
+                    <view class="wui-tab-title">申请提现</view>
+                </view>
+                <view bind:tap="onSubmit" class="wui-tab-item {{num==3?'wui-tab-item-selected':''}}" data-value="3">
+                    <view class="wui-tab-title">其他变动</view>
+                </view>
+            </view>
+        </view>
+        <view class="current-list">
+            <view bind:tap="onJsEvent" class="wui-cell wui-cell-access" data-event-type="jsUrl" data-url="/plugin/pages/spread/currentDetail?id={{item.id}}" wx:for="{{current}}">
+                <view class="wui-cell-bd">
+                    <view wx:if="{{item.trade_type==1}}">佣金入账</view>
+                    <view wx:if="{{item.trade_type==2}}">申请提现</view>
+                    <view class="cell-description">{{item.addtime}}</view>
+                </view>
+                <view class="wui-cell-ft">
+                    <view class="cell-num {{item.fee>0?'color-success':'color-danger'}}">{{item.fee}}</view>
+                    <view class="cell-description">{{Lang.dollarSign}}{{item.amount}}</view>
+                </view>
+            </view>
+        </view>
+    </view>
+    <view class="weui-loadmore" wx:if="{{showloading}}">
+        <view class="weui-loading"></view>
+        <view class="weui-loadmore__tips">正在加载中</view>
+    </view>
+    <view class="no-data no-bottom" wx:if="{{showNodata}}">
+        <image class="no-coupon" src="http://cos.lalawaimai.com/we7_wmall/wxapp/coupon_no_con.png"></image>
+        <text class="no-record">没有更多明细</text>
+    </view>
+</view>
+<include src="../../../pages/public/footer.wxml"></include>

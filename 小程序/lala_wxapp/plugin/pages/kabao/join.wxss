@@ -1,0 +1,126 @@
+page {
+    background-color: #fff;
+    font-size: 14px;
+    line-height: 1;
+    box-sizing: border-box;
+}
+
+.card-wrap {
+    position: relative;
+    width: 100%;
+    height: 60px;
+    background-color: #ff2d4b;
+    margin-bottom: 55px;
+}
+
+.card-wrap .card {
+    position: absolute;
+    left: 15px;
+    right: 15px;
+    bottom: 0;
+    transform: translateY(50%);
+    padding: 15px 20px;
+    border-radius: 10px;
+    color: #fff;
+}
+
+.card-wrap .card .store-logo {
+    float: left;
+    width: 50px;
+    height: 50px;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.card-wrap .card .store-title {
+    margin-left: 65px;
+    height: 50px;
+    line-height: 50px;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.powers {
+    display: flex;
+    flex-flow: row wrap;
+    align-items: center;
+}
+
+.powers .power-item {
+    width: 25%;
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    justify-content: center;
+    padding-bottom: 15px;
+}
+
+.powers .power-item .icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid rgba(255,45,75,0.3);
+    font-size: 22px;
+    color: #ff2d4b;
+}
+
+.powers .power-item .title {
+    max-width: 95%;
+}
+
+.input-wrap {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 7.5%;
+    margin: 0 20px;
+    border-radius: 100px;
+    border: 1px solid rgba(255,45,75,0.34);
+}
+
+.input-wrap input {
+    width: 55%;
+    height: 44px;
+    font-size: 16px;
+}
+
+.input-wrap text {
+    width: 30%;
+    text-align: right;
+    color: #999;
+}
+
+.tips {
+    padding: 15px 20px;
+}
+
+.tips .diy-checkbox {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+}
+
+.tips .diy-label {
+    width: 92%;
+    font-size: 12px;
+    line-height: 1.4;
+}
+
+.btn-join {
+    margin: 20px 20px;
+    height: 44px;
+    line-height: 44px;
+    text-align: center;
+    border-radius: 50px;
+    background-color: #ff2d4b;
+    color: #fff;
+    font-size: 16px;
+}
+
+.btn-join.disabled {
+    background-color: #ccc;
+}

@@ -1,0 +1,38 @@
+<view class="storebd-store">
+    <view class="content">
+        <view class="store-list" wx:if="{{!stores.empty}}">
+            <view class="store-item" wx:for="{{stores.data}}" wx:key="{{item.id}}">
+                <view class="store-content">
+                    <view class="store-info">
+                        <image alt="" src="{{item.logo}}"></image>
+                        <view class="font-14">{{item.title}}</view>
+                    </view>
+                    <view class="bind-time">绑定时间：{{item.addtime_cn}}</view>
+                </view>
+                <view class="store-tips">
+                    <view class="tips">
+                        <view>店内单佣金计算方式：</view>
+                        <view wx:if="{{item.fee_instore.type==1}}">抽成比例：{{item.fee_instore.fee_rate}}% ,最低抽成金额：{{item.fee_instore.fee_min}}{{Lang.dollarSignCn}}</view>
+                        <view wx:elif="{{item.fee_instore.type==2}}">固定抽成：{{item.fee_instore.fee}}{{Lang.dollarSignCn}}</view>
+                        <view wx:else>未设置</view>
+                    </view>
+                    <view class="tips">
+                        <view>外卖单佣金计算方式：</view>
+                        <view wx:if="{{item.fee_takeout.type==1}}">抽成比例：{{item.fee_takeout.fee_rate}}% ,最低抽成金额：{{item.fee_takeout.fee_min}}{{Lang.dollarSignCn}}</view>
+                        <view wx:elif="{{item.fee_takeout.type==2}}">固定抽成：{{item.fee_takeout.fee}}{{Lang.dollarSignCn}}</view>
+                        <view wx:else>未设置</view>
+                    </view>
+                </view>
+            </view>
+            <view class="wui-loadmore wui-loadmore-nomore" wx:if="{{stores.loaded}}">
+                <view class="wui-loadmore-tips">我是有底线的</view>
+                <view class="wui-loadmore-line"></view>
+            </view>
+        </view>
+        <view class="no-data" wx:else>
+            <image class="no-coupon" src="../../static/img/order_no_con.png"></image>
+            <text class="no-record">暂时没有数据哦～</text>
+        </view>
+    </view>
+</view>
+<include src="../../../pages/public/footer.wxml"></include>

@@ -1,0 +1,132 @@
+<view class="container">
+    <view class="content">
+        <view class="list-block">
+            <view class="item-content border">
+                <view class="item-inner">
+                    <view class="item-title label">消费总额({{Lang.dollarSignCn}})</view>
+                    <view class="item-input">
+                        <input bindinput="onTotalfee" placeholder="询问服务员后输入" type="digit"></input>
+                    </view>
+                </view>
+            </view>
+            <checkbox-group bindchange="bindAgreeChange">
+                <label class="weui-agree" for="weuiAgree">
+                    <view class="weui-agree__text">
+                        <checkbox checked="{{isAgree}}" class="weui-agree__checkbox" id="weuiAgree" value="agree"></checkbox>
+                        <view class="weui-agree__checkbox-icon">
+                            <icon class="weui-agree__checkbox-icon-check" size="14" type="success_no_circle" wx:if="{{isAgree}}"></icon>
+                        </view>
+						输入不参与优惠金额(如酒水、套餐)
+					</view>
+                </label>
+            </checkbox-group>
+            <view class="item-content border" wx:if="{{isAgree}}">
+                <view class="item-inner">
+                    <view class="item-title label">不参与优惠金额</view>
+                    <view class="item-input">
+                        <input bindinput="noDiscountPart" placeholder="询问服务员后输入" type="digit"></input>
+                    </view>
+                </view>
+            </view>
+        </view>
+        <block wx:if="{{paybill_extra=='1'}}">
+            <view class="select">
+                <view class="weui-cell weui-cell_select">
+                    <view class="weui-cell__hd weui-cell__hd_in-select-after">
+                        <view class="weui-label">包厢/桌号</view>
+                    </view>
+                    <view class="weui-cell__bd">
+                        <picker bindchange="bindChange" range="{{tables}}" rangeKey="title" value="{{index}}">
+                            <view class="weui-select weui-select_in-select-after text-right c-gray" wx:if="{{table_num}}">{{tables[table_num].title}}</view>
+                            <view class="weui-select weui-select_in-select-after text-right c-gray" wx:else>请选择桌号</view>
+                        </picker>
+                    </view>
+                </view>
+            </view>
+            <view class="text">
+                <textarea bindinput="onNote" placeholder="请输入备注,最多50字哦" value="{{note}}"></textarea>
+            </view>
+        </block>
+        <view class="list-block">
+            <view class="item-content border-1px-t">
+                <view class="item-inner border-1px-b">
+                    <view class="item-title label">
+						优惠券
+						<view class="coupon" wx:if="{{couponNum>0}}">{{couponNum}}张可用</view>
+                    </view>
+                    <view bind:tap="showCoupon" class="item-input">
+                        <view class="select-coupon">
+                            <view class="coupon-price">
+                                <view class="no-use" wx:if="{{!showCouponPrice}}">未使用</view>
+                                <view class="coupon-text" wx:if="{{showCouponPrice}}">{{activityCoupon.discount}}{{Lang.dollarSignCn}}券</view>
+                            </view>
+                            <view class="icon icon-right"></view>
+                        </view>
+                    </view>
+                </view>
+            </view>
+            <view class="item-content border-1px-b">
+                <view class="item-inner">
+                    <view class="item-title label">
+						实付金额
+					</view>
+                    <view class="item-input">
+                        <view class="price">
+							{{Lang.dollarSign}}{{interim}}
+						</view>
+                    </view>
+                </view>
+            </view>
+        </view>
+        <view class="submit">
+            <view bind:tap="onSubmit" class="btn btn-large {{submit?'btn-danger':'btn-disabled'}}">确认买单</view>
+        </view>
+    </view>
+    <view class="wui-dialog {{showCoupon?'wui-dialog-show':''}}">
+        <view bind:tap="showCoupon" class="wui-dialog-mask"></view>
+        <view class="wui-dialog-container">
+            <view class="pop">
+                <view class="pop-title">选择优惠券</view>
+                <view class="pop-container">
+                    <scroll-view scrollY="true">
+                        <view class="coupon">
+                            <view class="wui-loadmore wui-loadmore-nodata">
+                                <view class="wui-loadmore-tips">可用优惠券({{couponNum}}张)</view>
+                            </view>
+                            <view class="coupon-list">
+                                <view bind:tap="selectCoupon" class="item {{item.selected?'selected':''}}" data-id="{{index}}" wx:for="{{coupons}}">
+                                    <view>
+                                        <view class="clearfix">
+                                            <view class="left">
+                                                <view class="store-logo">
+                                                    <image src="{{item.logo}}"></image>
+                                                </view>
+                                                <view class="coupon-detail">
+                                                    <view class="coupon-title">{{item.title}}</view>
+                                                    <view class="use-time">有效期至:{{item.endtime}}</view>
+                                                </view>
+                                            </view>
+                                            <view class="right">
+                                                <view class="price">
+														{{Lang.dollarSign}}<view>{{item.discount}}</view>
+                                                </view>
+                                                <view class="condition">满{{item.condition}}可用</view>
+                                            </view>
+                                            <view class="circle circle-left"></view>
+                                            <view class="circle circle-right"></view>
+                                            <view class="selected-status">
+                                                <image src="/static/img/selected-success.png"></image>
+                                            </view>
+                                        </view>
+                                    </view>
+                                </view>
+                            </view>
+                        </view>
+                    </scroll-view>
+                </view>
+                <view bind:tap="noUse" class="bottom-fixed border-1px-t">不使用代金券</view>
+            </view>
+        </view>
+    </view>
+</view>
+<include src="../public/footer.wxml"></include>
